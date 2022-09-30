@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+# SPDX-License-Identifier: 0BSD
+
+cff-version: 1.2.0
+title: terraform-provider-k8s
+message: If you use this software, please cite it as below.
+type: software
+authors:
+- family-names: Hoß
+  given-names: Sebastian
+  email: seb@hoß.de
+url: https://registry.terraform.io/providers/metio/k8s/
+license: 0BSD
+keywords:
+  - go
+  - k8s
+  - kubernetes
+  - make
+  - terraform
+  - terraform-provider

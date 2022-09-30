@@ -1,0 +1,52 @@
+/*
+* SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+* SPDX-License-Identifier: 0BSD
+*/
+
+package {{ (index . 0).Package }}
+
+import (
+	"context"
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/diag"
+	"github.com/hashicorp/terraform-plugin-framework/provider"
+	"github.com/hashicorp/terraform-plugin-framework/resource"
+	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
+)
+
+type K8sProvider struct{}
+
+var (
+	_ provider.Provider             = (*K8sProvider)(nil)
+	_ provider.ProviderWithMetadata = (*K8sProvider)(nil)
+)
+
+func New() provider.Provider {
+	return &K8sProvider{}
+}
+
+func (p *K8sProvider) Metadata(_ context.Context, _ provider.MetadataRequest, resp *provider.MetadataResponse) {
+	resp.TypeName = "k8s"
+}
+
+func (p *K8sProvider) GetSchema(_ context.Context) (tfsdk.Schema, diag.Diagnostics) {
+	return tfsdk.Schema{
+		Description:         "Provider for custom Kubernetes resources. Requires Terraform 1.0 or later.",
+		MarkdownDescription: "Provider for custom [Kubernetes](https://kubernetes.io/) resources. Requires Terraform 1.0 or later.",
+	}, nil
+}
+
+func (p *K8sProvider) Configure(_ context.Context, _ provider.ConfigureRequest, _ *provider.ConfigureResponse) {
+	// NO-OP: provider requires no configuration
+}
+
+func (p *K8sProvider) DataSources(_ context.Context) []func() datasource.DataSource {
+	return []func() datasource.DataSource{}
+}
+
+func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
+	return []func() resource.Resource{
+		{{ range $index, $resource := . }}New{{ $resource.TerraformResourceType }},
+		{{ end }}
+	}
+}

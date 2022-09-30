@@ -1,0 +1,83 @@
+# source: https://github.com/quay/container-security-operator/blob/master/bundle/manifests/imagemanifestvulns.secscan.quay.redhat.com.crd.yaml
+
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: imagemanifestvulns.secscan.quay.redhat.com
+spec:
+  group: secscan.quay.redhat.com
+  scope: Namespaced
+  names:
+    plural: imagemanifestvulns
+    singular: imagemanifestvuln
+    kind: ImageManifestVuln
+    listKind: ImageManifestVulnList
+    shortNames:
+      - vuln
+  preserveUnknownFields: false
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          type: object
+          required: ["spec"]
+          properties:
+            spec:
+              type: object
+              properties:
+                image:
+                  type: string
+                  minLength: 1
+                manifest:
+                  type: string
+                  minLength: 1
+                namespaceName:
+                  type: string
+                  minLength: 1
+                features:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        minLength: 1
+                      versionformat:
+                        type: string
+                        minLength: 1
+                      namespaceName:
+                        type: string
+                        minLength: 1
+                      version:
+                        type: string
+                        minLength: 1
+                      vulnerabilities:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              minLength: 1
+                            namespaceName:
+                              type: string
+                              minLength: 1
+                            description:
+                              type: string
+                              minLength: 1
+                            link:
+                              type: string
+                              minLength: 1
+                            fixedby:
+                              type: string
+                              minLength: 1
+                            severity:
+                              type: string
+                              minLength: 1
+                            metadata:
+                              type: string
+                              minLength: 1

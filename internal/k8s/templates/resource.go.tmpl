@@ -1,0 +1,238 @@
+/*
+* SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+* SPDX-License-Identifier: 0BSD
+*/
+
+package {{ .Package }}
+
+import (
+	"context"
+	"github.com/hashicorp/terraform-plugin-framework/diag"
+	"github.com/hashicorp/terraform-plugin-framework/resource"
+	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-log/tflog"
+	"github.com/metio/terraform-provider-k8s/internal/utilities"
+	"github.com/metio/terraform-provider-k8s/internal/validators"
+	"gopkg.in/yaml.v3"
+	"time"
+)
+
+type {{ .TerraformResourceType }} struct{}
+
+var (
+	_ resource.Resource = (*{{ .TerraformResourceType }})(nil)
+)
+
+type {{ .TerraformModelType }} struct {
+	Id types.Int64 {{ .BT }}tfsdk:"id"{{ .BT }}
+	YAML types.String {{ .BT }}tfsdk:"yaml"{{ .BT }}
+	ApiVersion types.String {{ .BT }}tfsdk:"api_version"{{ .BT }}
+	Kind types.String {{ .BT }}tfsdk:"kind"{{ .BT }}
+	Metadata types.Object {{ .BT }}tfsdk:"metadata"{{ .BT }}
+	{{ range $index, $property := .Properties }}{{ $property.GoName }} {{ $property.TerraformValueType }} {{ $.BT }}tfsdk:"{{ $property.TerraformAttributeName }}"{{ $.BT }}
+	{{ end }}
+}
+
+type {{ .GoModelType }} struct {
+	Id *int64 {{ .BT }}tfsdk:"id" yaml:",omitempty"{{ .BT }}
+	YAML *string {{ .BT }}tfsdk:"yaml" yaml:",omitempty"{{ .BT }}
+	ApiVersion *string {{ .BT }}tfsdk:"api_version" yaml:"apiVersion"{{ .BT }}
+	Kind *string {{ .BT }}tfsdk:"kind" yaml:"kind"{{ .BT }}
+
+	Metadata struct {
+		Name string {{ .BT }}tfsdk:"name" yaml:"name"{{ .BT }}
+		{{ if .Namespaced }}
+		Namespace *string {{ .BT }}tfsdk:"namespace" yaml:"namespace"{{ .BT }}
+		{{ end }}
+		Labels map[string]string {{ .BT }}tfsdk:"labels" yaml:",omitempty"{{ .BT }}
+		Annotations map[string]string {{ .BT }}tfsdk:"annotations" yaml:",omitempty"{{ .BT }}
+	} {{ .BT }}tfsdk:"metadata" yaml:"metadata"{{ .BT }}
+	{{ range $index, $property := .Properties }}
+	{{ template "yaml_attribute.tmpl" $property }}
+	{{ end }}
+}
+
+func New{{ .TerraformResourceType }}() resource.Resource {
+	return &{{ .TerraformResourceType }}{}
+}
+
+func (r *{{ .TerraformResourceType }}) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+	resp.TypeName = req.ProviderTypeName + "_{{ .TerraformResourceName }}"
+}
+
+func (r *{{ .TerraformResourceType }}) GetSchema(_ context.Context) (tfsdk.Schema, diag.Diagnostics) {
+	return tfsdk.Schema{
+		Description:         "{{ .Description }}",
+		MarkdownDescription: "{{ .Description }}",
+		Attributes: map[string]tfsdk.Attribute{
+			"id": {
+				Description:         "The timestamp of the last change to this resource.",
+				MarkdownDescription: "The timestamp of the last change to this resource.",
+				Type:                types.Int64Type,
+				Computed:            true,
+				Optional:            false,
+			},
+
+			"yaml": {
+				Description:         "The generated manifest in YAML format.",
+				MarkdownDescription: "The generated manifest in YAML format.",
+				Type:                types.StringType,
+				Computed:            true,
+				Optional:            false,
+			},
+
+			"metadata": {
+				Description:         "Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details.",
+				MarkdownDescription: "Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details.",
+				Required:            true,
+				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+					"name": {
+						Description:         "Unique identifier for this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names for more details.",
+						MarkdownDescription: "Unique identifier for this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names for more details.",
+						Type:                types.StringType,
+						Required:            true,
+						PlanModifiers: []tfsdk.AttributePlanModifier{
+							resource.RequiresReplace(),
+						},
+						Validators: []tfsdk.AttributeValidator{
+							validators.NameValidator(),
+						},
+					},
+					{{ if .Namespaced }}
+					"namespace": {
+						Description:         "Namespaces provides a mechanism for isolating groups of resources within a single cluster. See https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ for more details.",
+						MarkdownDescription: "Namespaces provides a mechanism for isolating groups of resources within a single cluster. See https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ for more details.",
+						Type:                types.StringType,
+						Optional:            true,
+					},
+					{{ end }}
+					"labels": {
+						Description:         "Keys and values that can be used to organize and categorize objects. See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more details.",
+						MarkdownDescription: "Keys and values that can be used to organize and categorize objects. See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more details.",
+						Type:                types.MapType{ElemType: types.StringType},
+						Optional:            true,
+						Validators: []tfsdk.AttributeValidator{
+							validators.LabelValidator(),
+						},
+					},
+					"annotations": {
+						Description:         "Keys and values that can be used by external tooling to store and retrieve arbitrary metadata about this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ for more details.",
+						MarkdownDescription: "Keys and values that can be used by external tooling to store and retrieve arbitrary metadata about this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ for more details.",
+						Type:                types.MapType{ElemType: types.StringType},
+						Optional:            true,
+						Validators: []tfsdk.AttributeValidator{
+							validators.AnnotationValidator(),
+						},
+					},
+				}),
+			},
+
+			"api_version": {
+				Description:         "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+				MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+				Type:                types.StringType,
+				Computed:            true,
+				Optional:            false,
+			},
+
+			"kind": {
+				Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+				MarkdownDescription: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+				Type:                types.StringType,
+				Computed:            true,
+				Optional:            false,
+			},
+
+			{{ range $index, $property := .Properties }}
+			{{ template "schema_attribute.tmpl" $property }}
+			{{ end }}
+		},
+	}, nil
+}
+
+
+func (r *{{ .TerraformResourceType }}) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+	tflog.Debug(ctx, "Create resource k8s_{{ .TerraformResourceName }}")
+
+	var state {{ .TerraformModelType }}
+	diags := req.Config.Get(ctx, &state)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+	var goModel {{ .GoModelType }}
+	diags = req.Config.Get(ctx, &goModel)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	goModel.ApiVersion = utilities.Ptr("{{ .Group }}/{{ .Version }}")
+	goModel.Kind = utilities.Ptr("{{ .Kind }}")
+
+	state.Id = types.Int64{Value: time.Now().UnixNano()}
+	state.ApiVersion = types.String{Value: *goModel.ApiVersion}
+	state.Kind = types.String{Value: *goModel.Kind}
+
+	marshal, err := yaml.Marshal(goModel)
+	if err != nil {
+		resp.Diagnostics.AddError("Could not generate YAML", err.Error())
+		return
+	}
+	state.YAML = types.String{Value: string(marshal)}
+
+	diags = resp.State.Set(ctx, &state)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+}
+
+func (r *{{ .TerraformResourceType }}) Read(ctx context.Context, _ resource.ReadRequest, _ *resource.ReadResponse) {
+	tflog.Debug(ctx, "Read resource k8s_{{ .TerraformResourceName }}")
+	// NO-OP: All data is already in Terraform state
+}
+
+func (r *{{ .TerraformResourceType }}) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+	tflog.Debug(ctx, "Update resource k8s_{{ .TerraformResourceName }}")
+
+	var state {{ .TerraformModelType }}
+	diags := req.Config.Get(ctx, &state)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+	var goModel {{ .GoModelType }}
+	diags = req.Config.Get(ctx, &goModel)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	goModel.ApiVersion = utilities.Ptr("{{ .Group }}/{{ .Version }}")
+	goModel.Kind = utilities.Ptr("{{ .Kind }}")
+
+
+	state.Id = types.Int64{Value: time.Now().UnixNano()}
+	state.ApiVersion = types.String{Value: *goModel.ApiVersion}
+	state.Kind = types.String{Value: *goModel.Kind}
+
+	marshal, err := yaml.Marshal(goModel)
+	if err != nil {
+		resp.Diagnostics.AddError("Could not generate YAML", err.Error())
+		return
+	}
+	state.YAML = types.String{Value: string(marshal)}
+
+	diags = resp.State.Set(ctx, &state)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+}
+
+func (r *{{ .TerraformResourceType }}) Delete(ctx context.Context, _ resource.DeleteRequest, _ *resource.DeleteResponse) {
+	tflog.Debug(ctx, "Delete resource k8s_{{ .TerraformResourceName }}")
+	// NO-OP: Terraform removes the state automatically for us
+}

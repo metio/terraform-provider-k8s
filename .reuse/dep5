@@ -1,0 +1,16 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: terraform-provider-k8s
+Upstream-Contact: Sebastian Hoß <seb@hoß.de>
+Source: https://github.com/metio/terraform-provider-k8s
+
+Files: .idea/*
+Copyright: The terraform-provider-k8s Authors
+License: 0BSD
+
+Files: docs/*
+Copyright: The terraform-provider-k8s Authors
+License: 0BSD
+
+Files: examples/*
+Copyright: The terraform-provider-k8s Authors
+License: 0BSD

@@ -1,0 +1,5 @@
+output "resources" {
+  value = {
+    "minimal" = k8s_operator_tigera_io_installation_v1.minimal.yaml
+  }
+}

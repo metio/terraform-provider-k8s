@@ -1,0 +1,10 @@
+<component name="CopyrightManager">
+  <settings default="terraform-provider-k8scr">
+    <module2copyright>
+      <element module="Project Files" copyright="terraform-provider-k8scr" />
+    </module2copyright>
+    <LanguageOptions name="JAVA">
+      <option name="addBlankBefore" value="true" />
+    </LanguageOptions>
+  </settings>
+</component>
