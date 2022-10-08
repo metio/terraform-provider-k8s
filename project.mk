@@ -26,7 +26,7 @@ out/install-sentinel: out/${PROVIDER}
 
 out/terratests-run-sentinel: out/install-sentinel $(shell find ./terratest -type f -name '*.go') $(shell find ./examples/resources -type f -name '*.tf')
 	mkdir --parents $(@D)
-	find ./terratest -type f -name 'k8s_*_test.go' | xargs --max-args=1 --max-procs=1 go test
+	find ./terratest -type f -name 'k8s_*_test.go' | xargs --max-args=1 --max-procs=4 go test
 	touch $@
 
 out/tests-sentinel: $(shell find ./internal -type f -name '*.go')
