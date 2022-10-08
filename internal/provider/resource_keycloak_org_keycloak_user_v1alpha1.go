@@ -62,19 +62,11 @@ type KeycloakOrgKeycloakUserV1Alpha1GoModel struct {
 		} `tfsdk:"realm_selector" yaml:"realmSelector,omitempty"`
 
 		User *struct {
-			ClientRoles *map[string][]string `tfsdk:"client_roles" yaml:"clientRoles,omitempty"`
+			RequiredActions *[]string `tfsdk:"required_actions" yaml:"requiredActions,omitempty"`
 
-			Email *string `tfsdk:"email" yaml:"email,omitempty"`
-
-			Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
-
-			RealmRoles *[]string `tfsdk:"realm_roles" yaml:"realmRoles,omitempty"`
+			Username *string `tfsdk:"username" yaml:"username,omitempty"`
 
 			Attributes *map[string][]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
-
-			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
-
-			FirstName *string `tfsdk:"first_name" yaml:"firstName,omitempty"`
 
 			Credentials *[]struct {
 				Temporary *bool `tfsdk:"temporary" yaml:"temporary,omitempty"`
@@ -86,21 +78,29 @@ type KeycloakOrgKeycloakUserV1Alpha1GoModel struct {
 
 			EmailVerified *bool `tfsdk:"email_verified" yaml:"emailVerified,omitempty"`
 
-			FederatedIdentities *[]struct {
-				IdentityProvider *string `tfsdk:"identity_provider" yaml:"identityProvider,omitempty"`
+			RealmRoles *[]string `tfsdk:"realm_roles" yaml:"realmRoles,omitempty"`
 
+			FederatedIdentities *[]struct {
 				UserId *string `tfsdk:"user_id" yaml:"userId,omitempty"`
 
 				UserName *string `tfsdk:"user_name" yaml:"userName,omitempty"`
+
+				IdentityProvider *string `tfsdk:"identity_provider" yaml:"identityProvider,omitempty"`
 			} `tfsdk:"federated_identities" yaml:"federatedIdentities,omitempty"`
 
-			LastName *string `tfsdk:"last_name" yaml:"lastName,omitempty"`
+			Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
 
 			Id *string `tfsdk:"id" yaml:"id,omitempty"`
 
-			RequiredActions *[]string `tfsdk:"required_actions" yaml:"requiredActions,omitempty"`
+			LastName *string `tfsdk:"last_name" yaml:"lastName,omitempty"`
 
-			Username *string `tfsdk:"username" yaml:"username,omitempty"`
+			ClientRoles *map[string][]string `tfsdk:"client_roles" yaml:"clientRoles,omitempty"`
+
+			Email *string `tfsdk:"email" yaml:"email,omitempty"`
+
+			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+
+			FirstName *string `tfsdk:"first_name" yaml:"firstName,omitempty"`
 		} `tfsdk:"user" yaml:"user,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -276,44 +276,22 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"client_roles": {
-								Description:         "A set of Client Roles.",
-								MarkdownDescription: "A set of Client Roles.",
+							"required_actions": {
+								Description:         "A set of Required Actions.",
+								MarkdownDescription: "A set of Required Actions.",
 
-								Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
+								Type: types.ListType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"email": {
-								Description:         "Email.",
-								MarkdownDescription: "Email.",
+							"username": {
+								Description:         "User Name.",
+								MarkdownDescription: "User Name.",
 
 								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"groups": {
-								Description:         "A set of Groups.",
-								MarkdownDescription: "A set of Groups.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"realm_roles": {
-								Description:         "A set of Realm Roles.",
-								MarkdownDescription: "A set of Realm Roles.",
-
-								Type: types.ListType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,
@@ -325,28 +303,6 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 								MarkdownDescription: "A set of Attributes.",
 
 								Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"enabled": {
-								Description:         "User enabled flag.",
-								MarkdownDescription: "User enabled flag.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"first_name": {
-								Description:         "First Name.",
-								MarkdownDescription: "First Name.",
-
-								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
@@ -409,22 +365,22 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 
+							"realm_roles": {
+								Description:         "A set of Realm Roles.",
+								MarkdownDescription: "A set of Realm Roles.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"federated_identities": {
 								Description:         "A set of Federated Identities.",
 								MarkdownDescription: "A set of Federated Identities.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"identity_provider": {
-										Description:         "Federated Identity Provider.",
-										MarkdownDescription: "Federated Identity Provider.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"user_id": {
 										Description:         "Federated Identity User ID.",
@@ -447,6 +403,17 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 										Optional: true,
 										Computed: false,
 									},
+
+									"identity_provider": {
+										Description:         "Federated Identity Provider.",
+										MarkdownDescription: "Federated Identity Provider.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -454,11 +421,11 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 
-							"last_name": {
-								Description:         "Last Name.",
-								MarkdownDescription: "Last Name.",
+							"groups": {
+								Description:         "A set of Groups.",
+								MarkdownDescription: "A set of Groups.",
 
-								Type: types.StringType,
+								Type: types.ListType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,
@@ -476,20 +443,53 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 
-							"required_actions": {
-								Description:         "A set of Required Actions.",
-								MarkdownDescription: "A set of Required Actions.",
+							"last_name": {
+								Description:         "Last Name.",
+								MarkdownDescription: "Last Name.",
 
-								Type: types.ListType{ElemType: types.StringType},
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"username": {
-								Description:         "User Name.",
-								MarkdownDescription: "User Name.",
+							"client_roles": {
+								Description:         "A set of Client Roles.",
+								MarkdownDescription: "A set of Client Roles.",
+
+								Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"email": {
+								Description:         "Email.",
+								MarkdownDescription: "Email.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"enabled": {
+								Description:         "User enabled flag.",
+								MarkdownDescription: "User enabled flag.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"first_name": {
+								Description:         "First Name.",
+								MarkdownDescription: "First Name.",
 
 								Type: types.StringType,
 

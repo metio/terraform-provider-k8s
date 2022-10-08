@@ -57,9 +57,9 @@ type ArgoprojIoApplicationV1Alpha1GoModel struct {
 		} `tfsdk:"info" yaml:"info,omitempty"`
 
 		InitiatedBy *struct {
-			Automated *bool `tfsdk:"automated" yaml:"automated,omitempty"`
-
 			Username *string `tfsdk:"username" yaml:"username,omitempty"`
+
+			Automated *bool `tfsdk:"automated" yaml:"automated,omitempty"`
 		} `tfsdk:"initiated_by" yaml:"initiatedBy,omitempty"`
 
 		Retry *struct {
@@ -75,6 +75,16 @@ type ArgoprojIoApplicationV1Alpha1GoModel struct {
 		} `tfsdk:"retry" yaml:"retry,omitempty"`
 
 		Sync *struct {
+			SyncStrategy *struct {
+				Apply *struct {
+					Force *bool `tfsdk:"force" yaml:"force,omitempty"`
+				} `tfsdk:"apply" yaml:"apply,omitempty"`
+
+				Hook *struct {
+					Force *bool `tfsdk:"force" yaml:"force,omitempty"`
+				} `tfsdk:"hook" yaml:"hook,omitempty"`
+			} `tfsdk:"sync_strategy" yaml:"syncStrategy,omitempty"`
+
 			DryRun *bool `tfsdk:"dry_run" yaml:"dryRun,omitempty"`
 
 			Manifests *[]string `tfsdk:"manifests" yaml:"manifests,omitempty"`
@@ -82,55 +92,19 @@ type ArgoprojIoApplicationV1Alpha1GoModel struct {
 			Prune *bool `tfsdk:"prune" yaml:"prune,omitempty"`
 
 			Resources *[]struct {
+				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
 				Group *string `tfsdk:"group" yaml:"group,omitempty"`
 
 				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 			} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 			Revision *string `tfsdk:"revision" yaml:"revision,omitempty"`
 
 			Source *struct {
-				Helm *struct {
-					PassCredentials *bool `tfsdk:"pass_credentials" yaml:"passCredentials,omitempty"`
-
-					ReleaseName *string `tfsdk:"release_name" yaml:"releaseName,omitempty"`
-
-					SkipCrds *bool `tfsdk:"skip_crds" yaml:"skipCrds,omitempty"`
-
-					Values *string `tfsdk:"values" yaml:"values,omitempty"`
-
-					Version *string `tfsdk:"version" yaml:"version,omitempty"`
-
-					FileParameters *[]struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
-					} `tfsdk:"file_parameters" yaml:"fileParameters,omitempty"`
-
-					Parameters *[]struct {
-						ForceString *bool `tfsdk:"force_string" yaml:"forceString,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Value *string `tfsdk:"value" yaml:"value,omitempty"`
-					} `tfsdk:"parameters" yaml:"parameters,omitempty"`
-
-					ValueFiles *[]string `tfsdk:"value_files" yaml:"valueFiles,omitempty"`
-
-					IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" yaml:"ignoreMissingValueFiles,omitempty"`
-				} `tfsdk:"helm" yaml:"helm,omitempty"`
-
 				Kustomize *struct {
-					ForceCommonLabels *bool `tfsdk:"force_common_labels" yaml:"forceCommonLabels,omitempty"`
-
-					Images *[]string `tfsdk:"images" yaml:"images,omitempty"`
-
-					NamePrefix *string `tfsdk:"name_prefix" yaml:"namePrefix,omitempty"`
-
 					NameSuffix *string `tfsdk:"name_suffix" yaml:"nameSuffix,omitempty"`
 
 					Version *string `tfsdk:"version" yaml:"version,omitempty"`
@@ -140,6 +114,12 @@ type ArgoprojIoApplicationV1Alpha1GoModel struct {
 					CommonLabels *map[string]string `tfsdk:"common_labels" yaml:"commonLabels,omitempty"`
 
 					ForceCommonAnnotations *bool `tfsdk:"force_common_annotations" yaml:"forceCommonAnnotations,omitempty"`
+
+					ForceCommonLabels *bool `tfsdk:"force_common_labels" yaml:"forceCommonLabels,omitempty"`
+
+					Images *[]string `tfsdk:"images" yaml:"images,omitempty"`
+
+					NamePrefix *string `tfsdk:"name_prefix" yaml:"namePrefix,omitempty"`
 				} `tfsdk:"kustomize" yaml:"kustomize,omitempty"`
 
 				Path *string `tfsdk:"path" yaml:"path,omitempty"`
@@ -161,17 +141,13 @@ type ArgoprojIoApplicationV1Alpha1GoModel struct {
 				Chart *string `tfsdk:"chart" yaml:"chart,omitempty"`
 
 				Directory *struct {
-					Exclude *string `tfsdk:"exclude" yaml:"exclude,omitempty"`
-
-					Include *string `tfsdk:"include" yaml:"include,omitempty"`
-
 					Jsonnet *struct {
 						ExtVars *[]struct {
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
 							Code *bool `tfsdk:"code" yaml:"code,omitempty"`
 
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
 						} `tfsdk:"ext_vars" yaml:"extVars,omitempty"`
 
 						Libs *[]string `tfsdk:"libs" yaml:"libs,omitempty"`
@@ -186,32 +162,84 @@ type ArgoprojIoApplicationV1Alpha1GoModel struct {
 					} `tfsdk:"jsonnet" yaml:"jsonnet,omitempty"`
 
 					Recurse *bool `tfsdk:"recurse" yaml:"recurse,omitempty"`
+
+					Exclude *string `tfsdk:"exclude" yaml:"exclude,omitempty"`
+
+					Include *string `tfsdk:"include" yaml:"include,omitempty"`
 				} `tfsdk:"directory" yaml:"directory,omitempty"`
+
+				Helm *struct {
+					IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" yaml:"ignoreMissingValueFiles,omitempty"`
+
+					ReleaseName *string `tfsdk:"release_name" yaml:"releaseName,omitempty"`
+
+					Values *string `tfsdk:"values" yaml:"values,omitempty"`
+
+					FileParameters *[]struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+					} `tfsdk:"file_parameters" yaml:"fileParameters,omitempty"`
+
+					Parameters *[]struct {
+						ForceString *bool `tfsdk:"force_string" yaml:"forceString,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Value *string `tfsdk:"value" yaml:"value,omitempty"`
+					} `tfsdk:"parameters" yaml:"parameters,omitempty"`
+
+					PassCredentials *bool `tfsdk:"pass_credentials" yaml:"passCredentials,omitempty"`
+
+					SkipCrds *bool `tfsdk:"skip_crds" yaml:"skipCrds,omitempty"`
+
+					ValueFiles *[]string `tfsdk:"value_files" yaml:"valueFiles,omitempty"`
+
+					Version *string `tfsdk:"version" yaml:"version,omitempty"`
+				} `tfsdk:"helm" yaml:"helm,omitempty"`
 			} `tfsdk:"source" yaml:"source,omitempty"`
 
 			SyncOptions *[]string `tfsdk:"sync_options" yaml:"syncOptions,omitempty"`
-
-			SyncStrategy *struct {
-				Apply *struct {
-					Force *bool `tfsdk:"force" yaml:"force,omitempty"`
-				} `tfsdk:"apply" yaml:"apply,omitempty"`
-
-				Hook *struct {
-					Force *bool `tfsdk:"force" yaml:"force,omitempty"`
-				} `tfsdk:"hook" yaml:"hook,omitempty"`
-			} `tfsdk:"sync_strategy" yaml:"syncStrategy,omitempty"`
 		} `tfsdk:"sync" yaml:"sync,omitempty"`
 	} `tfsdk:"operation" yaml:"operation,omitempty"`
 
 	Spec *struct {
+		Destination *struct {
+			Server *string `tfsdk:"server" yaml:"server,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+		} `tfsdk:"destination" yaml:"destination,omitempty"`
+
+		IgnoreDifferences *[]struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+			Group *string `tfsdk:"group" yaml:"group,omitempty"`
+
+			JqPathExpressions *[]string `tfsdk:"jq_path_expressions" yaml:"jqPathExpressions,omitempty"`
+
+			JsonPointers *[]string `tfsdk:"json_pointers" yaml:"jsonPointers,omitempty"`
+
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			ManagedFieldsManagers *[]string `tfsdk:"managed_fields_managers" yaml:"managedFieldsManagers,omitempty"`
+		} `tfsdk:"ignore_differences" yaml:"ignoreDifferences,omitempty"`
+
+		Info *[]struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Value *string `tfsdk:"value" yaml:"value,omitempty"`
+		} `tfsdk:"info" yaml:"info,omitempty"`
+
+		Project *string `tfsdk:"project" yaml:"project,omitempty"`
+
+		RevisionHistoryLimit *int64 `tfsdk:"revision_history_limit" yaml:"revisionHistoryLimit,omitempty"`
+
 		Source *struct {
 			Kustomize *struct {
-				NamePrefix *string `tfsdk:"name_prefix" yaml:"namePrefix,omitempty"`
-
-				NameSuffix *string `tfsdk:"name_suffix" yaml:"nameSuffix,omitempty"`
-
-				Version *string `tfsdk:"version" yaml:"version,omitempty"`
-
 				CommonAnnotations *map[string]string `tfsdk:"common_annotations" yaml:"commonAnnotations,omitempty"`
 
 				CommonLabels *map[string]string `tfsdk:"common_labels" yaml:"commonLabels,omitempty"`
@@ -221,6 +249,12 @@ type ArgoprojIoApplicationV1Alpha1GoModel struct {
 				ForceCommonLabels *bool `tfsdk:"force_common_labels" yaml:"forceCommonLabels,omitempty"`
 
 				Images *[]string `tfsdk:"images" yaml:"images,omitempty"`
+
+				NamePrefix *string `tfsdk:"name_prefix" yaml:"namePrefix,omitempty"`
+
+				NameSuffix *string `tfsdk:"name_suffix" yaml:"nameSuffix,omitempty"`
+
+				Version *string `tfsdk:"version" yaml:"version,omitempty"`
 			} `tfsdk:"kustomize" yaml:"kustomize,omitempty"`
 
 			Path *string `tfsdk:"path" yaml:"path,omitempty"`
@@ -242,47 +276,51 @@ type ArgoprojIoApplicationV1Alpha1GoModel struct {
 			Chart *string `tfsdk:"chart" yaml:"chart,omitempty"`
 
 			Directory *struct {
+				Exclude *string `tfsdk:"exclude" yaml:"exclude,omitempty"`
+
 				Include *string `tfsdk:"include" yaml:"include,omitempty"`
 
 				Jsonnet *struct {
-					Tlas *[]struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-						Code *bool `tfsdk:"code" yaml:"code,omitempty"`
-					} `tfsdk:"tlas" yaml:"tlas,omitempty"`
-
 					ExtVars *[]struct {
+						Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
 						Code *bool `tfsdk:"code" yaml:"code,omitempty"`
 
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Value *string `tfsdk:"value" yaml:"value,omitempty"`
 					} `tfsdk:"ext_vars" yaml:"extVars,omitempty"`
 
 					Libs *[]string `tfsdk:"libs" yaml:"libs,omitempty"`
+
+					Tlas *[]struct {
+						Code *bool `tfsdk:"code" yaml:"code,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Value *string `tfsdk:"value" yaml:"value,omitempty"`
+					} `tfsdk:"tlas" yaml:"tlas,omitempty"`
 				} `tfsdk:"jsonnet" yaml:"jsonnet,omitempty"`
 
 				Recurse *bool `tfsdk:"recurse" yaml:"recurse,omitempty"`
-
-				Exclude *string `tfsdk:"exclude" yaml:"exclude,omitempty"`
 			} `tfsdk:"directory" yaml:"directory,omitempty"`
 
 			Helm *struct {
+				SkipCrds *bool `tfsdk:"skip_crds" yaml:"skipCrds,omitempty"`
+
+				Values *string `tfsdk:"values" yaml:"values,omitempty"`
+
 				IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" yaml:"ignoreMissingValueFiles,omitempty"`
 
 				Parameters *[]struct {
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
 					ForceString *bool `tfsdk:"force_string" yaml:"forceString,omitempty"`
 
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
 				} `tfsdk:"parameters" yaml:"parameters,omitempty"`
 
-				PassCredentials *bool `tfsdk:"pass_credentials" yaml:"passCredentials,omitempty"`
+				ReleaseName *string `tfsdk:"release_name" yaml:"releaseName,omitempty"`
 
-				Values *string `tfsdk:"values" yaml:"values,omitempty"`
+				ValueFiles *[]string `tfsdk:"value_files" yaml:"valueFiles,omitempty"`
 
 				Version *string `tfsdk:"version" yaml:"version,omitempty"`
 
@@ -292,11 +330,7 @@ type ArgoprojIoApplicationV1Alpha1GoModel struct {
 					Path *string `tfsdk:"path" yaml:"path,omitempty"`
 				} `tfsdk:"file_parameters" yaml:"fileParameters,omitempty"`
 
-				ReleaseName *string `tfsdk:"release_name" yaml:"releaseName,omitempty"`
-
-				SkipCrds *bool `tfsdk:"skip_crds" yaml:"skipCrds,omitempty"`
-
-				ValueFiles *[]string `tfsdk:"value_files" yaml:"valueFiles,omitempty"`
+				PassCredentials *bool `tfsdk:"pass_credentials" yaml:"passCredentials,omitempty"`
 			} `tfsdk:"helm" yaml:"helm,omitempty"`
 		} `tfsdk:"source" yaml:"source,omitempty"`
 
@@ -311,11 +345,11 @@ type ArgoprojIoApplicationV1Alpha1GoModel struct {
 
 			Retry *struct {
 				Backoff *struct {
-					MaxDuration *string `tfsdk:"max_duration" yaml:"maxDuration,omitempty"`
-
 					Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
 
 					Factor *int64 `tfsdk:"factor" yaml:"factor,omitempty"`
+
+					MaxDuration *string `tfsdk:"max_duration" yaml:"maxDuration,omitempty"`
 				} `tfsdk:"backoff" yaml:"backoff,omitempty"`
 
 				Limit *int64 `tfsdk:"limit" yaml:"limit,omitempty"`
@@ -323,40 +357,6 @@ type ArgoprojIoApplicationV1Alpha1GoModel struct {
 
 			SyncOptions *[]string `tfsdk:"sync_options" yaml:"syncOptions,omitempty"`
 		} `tfsdk:"sync_policy" yaml:"syncPolicy,omitempty"`
-
-		Destination *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-			Server *string `tfsdk:"server" yaml:"server,omitempty"`
-		} `tfsdk:"destination" yaml:"destination,omitempty"`
-
-		IgnoreDifferences *[]struct {
-			JqPathExpressions *[]string `tfsdk:"jq_path_expressions" yaml:"jqPathExpressions,omitempty"`
-
-			JsonPointers *[]string `tfsdk:"json_pointers" yaml:"jsonPointers,omitempty"`
-
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-			ManagedFieldsManagers *[]string `tfsdk:"managed_fields_managers" yaml:"managedFieldsManagers,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-			Group *string `tfsdk:"group" yaml:"group,omitempty"`
-		} `tfsdk:"ignore_differences" yaml:"ignoreDifferences,omitempty"`
-
-		Info *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Value *string `tfsdk:"value" yaml:"value,omitempty"`
-		} `tfsdk:"info" yaml:"info,omitempty"`
-
-		Project *string `tfsdk:"project" yaml:"project,omitempty"`
-
-		RevisionHistoryLimit *int64 `tfsdk:"revision_history_limit" yaml:"revisionHistoryLimit,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -497,22 +497,22 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"automated": {
-								Description:         "Automated is set to true if operation was initiated automatically by the application controller.",
-								MarkdownDescription: "Automated is set to true if operation was initiated automatically by the application controller.",
+							"username": {
+								Description:         "Username contains the name of a user who started operation",
+								MarkdownDescription: "Username contains the name of a user who started operation",
 
-								Type: types.BoolType,
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"username": {
-								Description:         "Username contains the name of a user who started operation",
-								MarkdownDescription: "Username contains the name of a user who started operation",
+							"automated": {
+								Description:         "Automated is set to true if operation was initiated automatically by the application controller.",
+								MarkdownDescription: "Automated is set to true if operation was initiated automatically by the application controller.",
 
-								Type: types.StringType,
+								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,
@@ -599,6 +599,64 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+							"sync_strategy": {
+								Description:         "SyncStrategy describes how to perform the sync",
+								MarkdownDescription: "SyncStrategy describes how to perform the sync",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"apply": {
+										Description:         "Apply will perform a 'kubectl apply' to perform the sync.",
+										MarkdownDescription: "Apply will perform a 'kubectl apply' to perform the sync.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"force": {
+												Description:         "Force indicates whether or not to supply the --force flag to 'kubectl apply'. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
+												MarkdownDescription: "Force indicates whether or not to supply the --force flag to 'kubectl apply'. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"hook": {
+										Description:         "Hook will submit any referenced resources to perform the sync. This is the default strategy",
+										MarkdownDescription: "Hook will submit any referenced resources to perform the sync. This is the default strategy",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"force": {
+												Description:         "Force indicates whether or not to supply the --force flag to 'kubectl apply'. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
+												MarkdownDescription: "Force indicates whether or not to supply the --force flag to 'kubectl apply'. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"dry_run": {
 								Description:         "DryRun specifies to perform a 'kubectl apply --dry-run' without actually performing the sync",
 								MarkdownDescription: "DryRun specifies to perform a 'kubectl apply --dry-run' without actually performing the sync",
@@ -638,6 +696,17 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+									"namespace": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"group": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -670,17 +739,6 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 										Optional: false,
 										Computed: false,
 									},
-
-									"namespace": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -705,212 +763,11 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"helm": {
-										Description:         "Helm holds helm specific options",
-										MarkdownDescription: "Helm holds helm specific options",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"pass_credentials": {
-												Description:         "PassCredentials pass credentials to all domains (Helm's --pass-credentials)",
-												MarkdownDescription: "PassCredentials pass credentials to all domains (Helm's --pass-credentials)",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"release_name": {
-												Description:         "ReleaseName is the Helm release name to use. If omitted it will use the application name",
-												MarkdownDescription: "ReleaseName is the Helm release name to use. If omitted it will use the application name",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"skip_crds": {
-												Description:         "SkipCrds skips custom resource definition installation step (Helm's --skip-crds)",
-												MarkdownDescription: "SkipCrds skips custom resource definition installation step (Helm's --skip-crds)",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"values": {
-												Description:         "Values specifies Helm values to be passed to helm template, typically defined as a block",
-												MarkdownDescription: "Values specifies Helm values to be passed to helm template, typically defined as a block",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"version": {
-												Description:         "Version is the Helm version to use for templating ('3')",
-												MarkdownDescription: "Version is the Helm version to use for templating ('3')",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"file_parameters": {
-												Description:         "FileParameters are file parameters to the helm template",
-												MarkdownDescription: "FileParameters are file parameters to the helm template",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "Name is the name of the Helm parameter",
-														MarkdownDescription: "Name is the name of the Helm parameter",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"path": {
-														Description:         "Path is the path to the file containing the values for the Helm parameter",
-														MarkdownDescription: "Path is the path to the file containing the values for the Helm parameter",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"parameters": {
-												Description:         "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
-												MarkdownDescription: "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"force_string": {
-														Description:         "ForceString determines whether to tell Helm to interpret booleans and numbers as strings",
-														MarkdownDescription: "ForceString determines whether to tell Helm to interpret booleans and numbers as strings",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "Name is the name of the Helm parameter",
-														MarkdownDescription: "Name is the name of the Helm parameter",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"value": {
-														Description:         "Value is the value for the Helm parameter",
-														MarkdownDescription: "Value is the value for the Helm parameter",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"value_files": {
-												Description:         "ValuesFiles is a list of Helm value files to use when generating a template",
-												MarkdownDescription: "ValuesFiles is a list of Helm value files to use when generating a template",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"ignore_missing_value_files": {
-												Description:         "IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values",
-												MarkdownDescription: "IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"kustomize": {
 										Description:         "Kustomize holds kustomize specific options",
 										MarkdownDescription: "Kustomize holds kustomize specific options",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"force_common_labels": {
-												Description:         "ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps",
-												MarkdownDescription: "ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"images": {
-												Description:         "Images is a list of Kustomize image override specifications",
-												MarkdownDescription: "Images is a list of Kustomize image override specifications",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"name_prefix": {
-												Description:         "NamePrefix is a prefix appended to resources for Kustomize apps",
-												MarkdownDescription: "NamePrefix is a prefix appended to resources for Kustomize apps",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
 											"name_suffix": {
 												Description:         "NameSuffix is a suffix appended to resources for Kustomize apps",
@@ -961,6 +818,39 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 												MarkdownDescription: "ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps",
 
 												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"force_common_labels": {
+												Description:         "ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps",
+												MarkdownDescription: "ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"images": {
+												Description:         "Images is a list of Kustomize image override specifications",
+												MarkdownDescription: "Images is a list of Kustomize image override specifications",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name_prefix": {
+												Description:         "NamePrefix is a prefix appended to resources for Kustomize apps",
+												MarkdownDescription: "NamePrefix is a prefix appended to resources for Kustomize apps",
+
+												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
@@ -1080,28 +970,6 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"exclude": {
-												Description:         "Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation",
-												MarkdownDescription: "Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"include": {
-												Description:         "Include contains a glob pattern to match paths against that should be explicitly included during manifest generation",
-												MarkdownDescription: "Include contains a glob pattern to match paths against that should be explicitly included during manifest generation",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"jsonnet": {
 												Description:         "Jsonnet holds options specific to Jsonnet",
 												MarkdownDescription: "Jsonnet holds options specific to Jsonnet",
@@ -1113,17 +981,6 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 														MarkdownDescription: "ExtVars is a list of Jsonnet External Variables",
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"value": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
 
 															"code": {
 																Description:         "",
@@ -1137,6 +994,17 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 															},
 
 															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"value": {
 																Description:         "",
 																MarkdownDescription: "",
 
@@ -1225,6 +1093,196 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 												Optional: true,
 												Computed: false,
 											},
+
+											"exclude": {
+												Description:         "Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation",
+												MarkdownDescription: "Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"include": {
+												Description:         "Include contains a glob pattern to match paths against that should be explicitly included during manifest generation",
+												MarkdownDescription: "Include contains a glob pattern to match paths against that should be explicitly included during manifest generation",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"helm": {
+										Description:         "Helm holds helm specific options",
+										MarkdownDescription: "Helm holds helm specific options",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"ignore_missing_value_files": {
+												Description:         "IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values",
+												MarkdownDescription: "IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"release_name": {
+												Description:         "ReleaseName is the Helm release name to use. If omitted it will use the application name",
+												MarkdownDescription: "ReleaseName is the Helm release name to use. If omitted it will use the application name",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"values": {
+												Description:         "Values specifies Helm values to be passed to helm template, typically defined as a block",
+												MarkdownDescription: "Values specifies Helm values to be passed to helm template, typically defined as a block",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"file_parameters": {
+												Description:         "FileParameters are file parameters to the helm template",
+												MarkdownDescription: "FileParameters are file parameters to the helm template",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "Name is the name of the Helm parameter",
+														MarkdownDescription: "Name is the name of the Helm parameter",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": {
+														Description:         "Path is the path to the file containing the values for the Helm parameter",
+														MarkdownDescription: "Path is the path to the file containing the values for the Helm parameter",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"parameters": {
+												Description:         "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
+												MarkdownDescription: "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"force_string": {
+														Description:         "ForceString determines whether to tell Helm to interpret booleans and numbers as strings",
+														MarkdownDescription: "ForceString determines whether to tell Helm to interpret booleans and numbers as strings",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "Name is the name of the Helm parameter",
+														MarkdownDescription: "Name is the name of the Helm parameter",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"value": {
+														Description:         "Value is the value for the Helm parameter",
+														MarkdownDescription: "Value is the value for the Helm parameter",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"pass_credentials": {
+												Description:         "PassCredentials pass credentials to all domains (Helm's --pass-credentials)",
+												MarkdownDescription: "PassCredentials pass credentials to all domains (Helm's --pass-credentials)",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"skip_crds": {
+												Description:         "SkipCrds skips custom resource definition installation step (Helm's --skip-crds)",
+												MarkdownDescription: "SkipCrds skips custom resource definition installation step (Helm's --skip-crds)",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"value_files": {
+												Description:         "ValuesFiles is a list of Helm value files to use when generating a template",
+												MarkdownDescription: "ValuesFiles is a list of Helm value files to use when generating a template",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"version": {
+												Description:         "Version is the Helm version to use for templating ('3')",
+												MarkdownDescription: "Version is the Helm version to use for templating ('3')",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										}),
 
 										Required: false,
@@ -1243,64 +1301,6 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 								MarkdownDescription: "SyncOptions provide per-sync sync-options, e.g. Validate=false",
 
 								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"sync_strategy": {
-								Description:         "SyncStrategy describes how to perform the sync",
-								MarkdownDescription: "SyncStrategy describes how to perform the sync",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"apply": {
-										Description:         "Apply will perform a 'kubectl apply' to perform the sync.",
-										MarkdownDescription: "Apply will perform a 'kubectl apply' to perform the sync.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"force": {
-												Description:         "Force indicates whether or not to supply the --force flag to 'kubectl apply'. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
-												MarkdownDescription: "Force indicates whether or not to supply the --force flag to 'kubectl apply'. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"hook": {
-										Description:         "Hook will submit any referenced resources to perform the sync. This is the default strategy",
-										MarkdownDescription: "Hook will submit any referenced resources to perform the sync. This is the default strategy",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"force": {
-												Description:         "Force indicates whether or not to supply the --force flag to 'kubectl apply'. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
-												MarkdownDescription: "Force indicates whether or not to supply the --force flag to 'kubectl apply'. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
 
 								Required: false,
 								Optional: true,
@@ -1325,6 +1325,196 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"destination": {
+						Description:         "Destination is a reference to the target Kubernetes server and namespace",
+						MarkdownDescription: "Destination is a reference to the target Kubernetes server and namespace",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"server": {
+								Description:         "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
+								MarkdownDescription: "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name is an alternate way of specifying the target cluster by its symbolic name",
+								MarkdownDescription: "Name is an alternate way of specifying the target cluster by its symbolic name",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"namespace": {
+								Description:         "Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace",
+								MarkdownDescription: "Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"ignore_differences": {
+						Description:         "IgnoreDifferences is a list of resources and their fields which should be ignored during comparison",
+						MarkdownDescription: "IgnoreDifferences is a list of resources and their fields which should be ignored during comparison",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"namespace": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"group": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"jq_path_expressions": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"json_pointers": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"kind": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"managed_fields_managers": {
+								Description:         "ManagedFieldsManagers is a list of trusted managers. Fields mutated by those managers will take precedence over the desired state defined in the SCM and won't be displayed in diffs",
+								MarkdownDescription: "ManagedFieldsManagers is a list of trusted managers. Fields mutated by those managers will take precedence over the desired state defined in the SCM and won't be displayed in diffs",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"info": {
+						Description:         "Info contains a list of information (URLs, email addresses, and plain text) that relates to the application",
+						MarkdownDescription: "Info contains a list of information (URLs, email addresses, and plain text) that relates to the application",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"value": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"project": {
+						Description:         "Project is a reference to the project this application belongs to. The empty string means that application belongs to the 'default' project.",
+						MarkdownDescription: "Project is a reference to the project this application belongs to. The empty string means that application belongs to the 'default' project.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"revision_history_limit": {
+						Description:         "RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10.",
+						MarkdownDescription: "RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"source": {
 						Description:         "Source is a reference to the location of the application's manifests or chart",
 						MarkdownDescription: "Source is a reference to the location of the application's manifests or chart",
@@ -1336,39 +1526,6 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 								MarkdownDescription: "Kustomize holds kustomize specific options",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name_prefix": {
-										Description:         "NamePrefix is a prefix appended to resources for Kustomize apps",
-										MarkdownDescription: "NamePrefix is a prefix appended to resources for Kustomize apps",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name_suffix": {
-										Description:         "NameSuffix is a suffix appended to resources for Kustomize apps",
-										MarkdownDescription: "NameSuffix is a suffix appended to resources for Kustomize apps",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"version": {
-										Description:         "Version controls which version of Kustomize to use for rendering manifests",
-										MarkdownDescription: "Version controls which version of Kustomize to use for rendering manifests",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"common_annotations": {
 										Description:         "CommonAnnotations is a list of additional annotations to add to rendered manifests",
@@ -1419,6 +1576,39 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 										MarkdownDescription: "Images is a list of Kustomize image override specifications",
 
 										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name_prefix": {
+										Description:         "NamePrefix is a prefix appended to resources for Kustomize apps",
+										MarkdownDescription: "NamePrefix is a prefix appended to resources for Kustomize apps",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name_suffix": {
+										Description:         "NameSuffix is a suffix appended to resources for Kustomize apps",
+										MarkdownDescription: "NameSuffix is a suffix appended to resources for Kustomize apps",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"version": {
+										Description:         "Version controls which version of Kustomize to use for rendering manifests",
+										MarkdownDescription: "Version controls which version of Kustomize to use for rendering manifests",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -1538,6 +1728,17 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+									"exclude": {
+										Description:         "Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation",
+										MarkdownDescription: "Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"include": {
 										Description:         "Include contains a glob pattern to match paths against that should be explicitly included during manifest generation",
 										MarkdownDescription: "Include contains a glob pattern to match paths against that should be explicitly included during manifest generation",
@@ -1555,57 +1756,23 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"tlas": {
-												Description:         "TLAS is a list of Jsonnet Top-level Arguments",
-												MarkdownDescription: "TLAS is a list of Jsonnet Top-level Arguments",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"value": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"code": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"ext_vars": {
 												Description:         "ExtVars is a list of Jsonnet External Variables",
 												MarkdownDescription: "ExtVars is a list of Jsonnet External Variables",
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+													"value": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
 													"code": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -1618,17 +1785,6 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 													},
 
 													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"value": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -1655,6 +1811,51 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 												Optional: true,
 												Computed: false,
 											},
+
+											"tlas": {
+												Description:         "TLAS is a list of Jsonnet Top-level Arguments",
+												MarkdownDescription: "TLAS is a list of Jsonnet Top-level Arguments",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"code": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"value": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										}),
 
 										Required: false,
@@ -1667,17 +1868,6 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 										MarkdownDescription: "Recurse specifies whether to scan a directory recursively for manifests",
 
 										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"exclude": {
-										Description:         "Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation",
-										MarkdownDescription: "Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation",
-
-										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -1696,6 +1886,28 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+									"skip_crds": {
+										Description:         "SkipCrds skips custom resource definition installation step (Helm's --skip-crds)",
+										MarkdownDescription: "SkipCrds skips custom resource definition installation step (Helm's --skip-crds)",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"values": {
+										Description:         "Values specifies Helm values to be passed to helm template, typically defined as a block",
+										MarkdownDescription: "Values specifies Helm values to be passed to helm template, typically defined as a block",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"ignore_missing_value_files": {
 										Description:         "IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values",
 										MarkdownDescription: "IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values",
@@ -1712,17 +1924,6 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 										MarkdownDescription: "Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation",
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"value": {
-												Description:         "Value is the value for the Helm parameter",
-												MarkdownDescription: "Value is the value for the Helm parameter",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
 											"force_string": {
 												Description:         "ForceString determines whether to tell Helm to interpret booleans and numbers as strings",
@@ -1745,6 +1946,17 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 												Optional: true,
 												Computed: false,
 											},
+
+											"value": {
+												Description:         "Value is the value for the Helm parameter",
+												MarkdownDescription: "Value is the value for the Helm parameter",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										}),
 
 										Required: false,
@@ -1752,22 +1964,22 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 										Computed: false,
 									},
 
-									"pass_credentials": {
-										Description:         "PassCredentials pass credentials to all domains (Helm's --pass-credentials)",
-										MarkdownDescription: "PassCredentials pass credentials to all domains (Helm's --pass-credentials)",
+									"release_name": {
+										Description:         "ReleaseName is the Helm release name to use. If omitted it will use the application name",
+										MarkdownDescription: "ReleaseName is the Helm release name to use. If omitted it will use the application name",
 
-										Type: types.BoolType,
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"values": {
-										Description:         "Values specifies Helm values to be passed to helm template, typically defined as a block",
-										MarkdownDescription: "Values specifies Helm values to be passed to helm template, typically defined as a block",
+									"value_files": {
+										Description:         "ValuesFiles is a list of Helm value files to use when generating a template",
+										MarkdownDescription: "ValuesFiles is a list of Helm value files to use when generating a template",
 
-										Type: types.StringType,
+										Type: types.ListType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
@@ -1819,33 +2031,11 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 										Computed: false,
 									},
 
-									"release_name": {
-										Description:         "ReleaseName is the Helm release name to use. If omitted it will use the application name",
-										MarkdownDescription: "ReleaseName is the Helm release name to use. If omitted it will use the application name",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"skip_crds": {
-										Description:         "SkipCrds skips custom resource definition installation step (Helm's --skip-crds)",
-										MarkdownDescription: "SkipCrds skips custom resource definition installation step (Helm's --skip-crds)",
+									"pass_credentials": {
+										Description:         "PassCredentials pass credentials to all domains (Helm's --pass-credentials)",
+										MarkdownDescription: "PassCredentials pass credentials to all domains (Helm's --pass-credentials)",
 
 										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"value_files": {
-										Description:         "ValuesFiles is a list of Helm value files to use when generating a template",
-										MarkdownDescription: "ValuesFiles is a list of Helm value files to use when generating a template",
-
-										Type: types.ListType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
@@ -1927,17 +2117,6 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"max_duration": {
-												Description:         "MaxDuration is the maximum amount of time allowed for the backoff strategy",
-												MarkdownDescription: "MaxDuration is the maximum amount of time allowed for the backoff strategy",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"duration": {
 												Description:         "Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. '2m', '1h')",
 												MarkdownDescription: "Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. '2m', '1h')",
@@ -1954,6 +2133,17 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 												MarkdownDescription: "Factor is a factor to multiply the base duration after each failed retry",
 
 												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"max_duration": {
+												Description:         "MaxDuration is the maximum amount of time allowed for the backoff strategy",
+												MarkdownDescription: "MaxDuration is the maximum amount of time allowed for the backoff strategy",
+
+												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
@@ -1994,196 +2184,6 @@ func (r *ArgoprojIoApplicationV1Alpha1Resource) GetSchema(_ context.Context) (tf
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"destination": {
-						Description:         "Destination is a reference to the target Kubernetes server and namespace",
-						MarkdownDescription: "Destination is a reference to the target Kubernetes server and namespace",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name is an alternate way of specifying the target cluster by its symbolic name",
-								MarkdownDescription: "Name is an alternate way of specifying the target cluster by its symbolic name",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"namespace": {
-								Description:         "Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace",
-								MarkdownDescription: "Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"server": {
-								Description:         "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
-								MarkdownDescription: "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"ignore_differences": {
-						Description:         "IgnoreDifferences is a list of resources and their fields which should be ignored during comparison",
-						MarkdownDescription: "IgnoreDifferences is a list of resources and their fields which should be ignored during comparison",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"jq_path_expressions": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"json_pointers": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"kind": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"managed_fields_managers": {
-								Description:         "ManagedFieldsManagers is a list of trusted managers. Fields mutated by those managers will take precedence over the desired state defined in the SCM and won't be displayed in diffs",
-								MarkdownDescription: "ManagedFieldsManagers is a list of trusted managers. Fields mutated by those managers will take precedence over the desired state defined in the SCM and won't be displayed in diffs",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"namespace": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"group": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"info": {
-						Description:         "Info contains a list of information (URLs, email addresses, and plain text) that relates to the application",
-						MarkdownDescription: "Info contains a list of information (URLs, email addresses, and plain text) that relates to the application",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"value": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"project": {
-						Description:         "Project is a reference to the project this application belongs to. The empty string means that application belongs to the 'default' project.",
-						MarkdownDescription: "Project is a reference to the project this application belongs to. The empty string means that application belongs to the 'default' project.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"revision_history_limit": {
-						Description:         "RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10.",
-						MarkdownDescription: "RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10.",
-
-						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,

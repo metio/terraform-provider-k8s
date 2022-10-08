@@ -63,11 +63,11 @@ type CouchbaseComCouchbaseGroupV2GoModel struct {
 
 				Selector *struct {
 					MatchExpressions *[]struct {
+						Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
 						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 						Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-						Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 					} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -75,23 +75,23 @@ type CouchbaseComCouchbaseGroupV2GoModel struct {
 			} `tfsdk:"buckets" yaml:"buckets,omitempty"`
 
 			Collections *struct {
+				Resources *[]struct {
+					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"resources" yaml:"resources,omitempty"`
+
 				Selector *struct {
 					MatchExpressions *[]struct {
+						Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
 						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 						Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-						Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 					} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 				} `tfsdk:"selector" yaml:"selector,omitempty"`
-
-				Resources *[]struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-				} `tfsdk:"resources" yaml:"resources,omitempty"`
 			} `tfsdk:"collections" yaml:"collections,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -105,11 +105,11 @@ type CouchbaseComCouchbaseGroupV2GoModel struct {
 
 				Selector *struct {
 					MatchExpressions *[]struct {
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 						Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 						Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 					} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -296,6 +296,17 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+													"values": {
+														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"key": {
 														Description:         "key is the label key that the selector applies to.",
 														MarkdownDescription: "key is the label key that the selector applies to.",
@@ -315,17 +326,6 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 
 														Required: true,
 														Optional: false,
-														Computed: false,
-													},
-
-													"values": {
-														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
 														Computed: false,
 													},
 												}),
@@ -364,6 +364,40 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+									"resources": {
+										Description:         "Resources is an explicit list of named resources that will be considered for inclusion in this collection or collections.  If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.",
+										MarkdownDescription: "Resources is an explicit list of named resources that will be considered for inclusion in this collection or collections.  If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"kind": {
+												Description:         "Kind indicates the kind of resource that is being referenced.  A scope can only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource kinds.  This field defaults to 'CouchbaseCollection' if not specified.",
+												MarkdownDescription: "Kind indicates the kind of resource that is being referenced.  A scope can only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource kinds.  This field defaults to 'CouchbaseCollection' if not specified.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name is the name of the Kubernetes resource name that is being referenced. Legal collection names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
+												MarkdownDescription: "Name is the name of the Kubernetes resource name that is being referenced. Legal collection names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"selector": {
 										Description:         "Selector allows resources to be implicitly considered for inclusion in this collection or collections.  More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#labelselector-v1-meta",
 										MarkdownDescription: "Selector allows resources to be implicitly considered for inclusion in this collection or collections.  More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#labelselector-v1-meta",
@@ -375,6 +409,17 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"values": {
+														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
 
 													"key": {
 														Description:         "key is the label key that the selector applies to.",
@@ -397,17 +442,6 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 														Optional: false,
 														Computed: false,
 													},
-
-													"values": {
-														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 												}),
 
 												Required: false,
@@ -420,40 +454,6 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 
 												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"resources": {
-										Description:         "Resources is an explicit list of named resources that will be considered for inclusion in this collection or collections.  If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.",
-										MarkdownDescription: "Resources is an explicit list of named resources that will be considered for inclusion in this collection or collections.  If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "Name is the name of the Kubernetes resource name that is being referenced. Legal collection names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
-												MarkdownDescription: "Name is the name of the Kubernetes resource name that is being referenced. Legal collection names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"kind": {
-												Description:         "Kind indicates the kind of resource that is being referenced.  A scope can only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource kinds.  This field defaults to 'CouchbaseCollection' if not specified.",
-												MarkdownDescription: "Kind indicates the kind of resource that is being referenced.  A scope can only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource kinds.  This field defaults to 'CouchbaseCollection' if not specified.",
-
-												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
@@ -535,6 +535,17 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+													"key": {
+														Description:         "key is the label key that the selector applies to.",
+														MarkdownDescription: "key is the label key that the selector applies to.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
 													"operator": {
 														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
@@ -554,17 +565,6 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 
 														Required: false,
 														Optional: true,
-														Computed: false,
-													},
-
-													"key": {
-														Description:         "key is the label key that the selector applies to.",
-														MarkdownDescription: "key is the label key that the selector applies to.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
 														Computed: false,
 													},
 												}),

@@ -49,13 +49,13 @@ type SecurityProfilesOperatorXK8SIoProfileBindingV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
 		ProfileRef *struct {
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"profile_ref" yaml:"profileRef,omitempty"`
-
-		Image *string `tfsdk:"image" yaml:"image,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -156,6 +156,17 @@ func (r *SecurityProfilesOperatorXK8SIoProfileBindingV1Alpha1Resource) GetSchema
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"image": {
+						Description:         "Image name within pod containers to match to the profile.",
+						MarkdownDescription: "Image name within pod containers to match to the profile.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
 					"profile_ref": {
 						Description:         "ProfileRef references a SeccompProfile or other profile type in the current namespace.",
 						MarkdownDescription: "ProfileRef references a SeccompProfile or other profile type in the current namespace.",
@@ -184,17 +195,6 @@ func (r *SecurityProfilesOperatorXK8SIoProfileBindingV1Alpha1Resource) GetSchema
 								Computed: false,
 							},
 						}),
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"image": {
-						Description:         "Image name within pod containers to match to the profile.",
-						MarkdownDescription: "Image name within pod containers to match to the profile.",
-
-						Type: types.StringType,
 
 						Required: true,
 						Optional: false,

@@ -49,12 +49,42 @@ type CertManagerIoIssuerV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Venafi *struct {
+			Cloud *struct {
+				ApiTokenSecretRef *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"api_token_secret_ref" yaml:"apiTokenSecretRef,omitempty"`
+
+				Url *string `tfsdk:"url" yaml:"url,omitempty"`
+			} `tfsdk:"cloud" yaml:"cloud,omitempty"`
+
+			Tpp *struct {
+				CaBundle *string `tfsdk:"ca_bundle" yaml:"caBundle,omitempty"`
+
+				CredentialsRef *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"credentials_ref" yaml:"credentialsRef,omitempty"`
+
+				Url *string `tfsdk:"url" yaml:"url,omitempty"`
+			} `tfsdk:"tpp" yaml:"tpp,omitempty"`
+
+			Zone *string `tfsdk:"zone" yaml:"zone,omitempty"`
+		} `tfsdk:"venafi" yaml:"venafi,omitempty"`
+
 		Acme *struct {
+			PrivateKeySecretRef *struct {
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"private_key_secret_ref" yaml:"privateKeySecretRef,omitempty"`
+
+			Server *string `tfsdk:"server" yaml:"server,omitempty"`
+
 			DisableAccountKeyGeneration *bool `tfsdk:"disable_account_key_generation" yaml:"disableAccountKeyGeneration,omitempty"`
 
 			Email *string `tfsdk:"email" yaml:"email,omitempty"`
-
-			EnableDurationFeature *bool `tfsdk:"enable_duration_feature" yaml:"enableDurationFeature,omitempty"`
 
 			ExternalAccountBinding *struct {
 				KeyAlgorithm *string `tfsdk:"key_algorithm" yaml:"keyAlgorithm,omitempty"`
@@ -62,23 +92,11 @@ type CertManagerIoIssuerV1GoModel struct {
 				KeyID *string `tfsdk:"key_id" yaml:"keyID,omitempty"`
 
 				KeySecretRef *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 				} `tfsdk:"key_secret_ref" yaml:"keySecretRef,omitempty"`
 			} `tfsdk:"external_account_binding" yaml:"externalAccountBinding,omitempty"`
-
-			PreferredChain *string `tfsdk:"preferred_chain" yaml:"preferredChain,omitempty"`
-
-			Server *string `tfsdk:"server" yaml:"server,omitempty"`
-
-			PrivateKeySecretRef *struct {
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"private_key_secret_ref" yaml:"privateKeySecretRef,omitempty"`
-
-			SkipTLSVerify *bool `tfsdk:"skip_tls_verify" yaml:"skipTLSVerify,omitempty"`
 
 			Solvers *[]struct {
 				Http01 *struct {
@@ -86,33 +104,21 @@ type CertManagerIoIssuerV1GoModel struct {
 						Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
 
 						ParentRefs *[]struct {
-							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-							SectionName *string `tfsdk:"section_name" yaml:"sectionName,omitempty"`
-
 							Group *string `tfsdk:"group" yaml:"group,omitempty"`
 
 							Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+							SectionName *string `tfsdk:"section_name" yaml:"sectionName,omitempty"`
 						} `tfsdk:"parent_refs" yaml:"parentRefs,omitempty"`
 
 						ServiceType *string `tfsdk:"service_type" yaml:"serviceType,omitempty"`
 					} `tfsdk:"gateway_http_route" yaml:"gatewayHTTPRoute,omitempty"`
 
 					Ingress *struct {
-						Class *string `tfsdk:"class" yaml:"class,omitempty"`
-
-						IngressTemplate *struct {
-							Metadata *struct {
-								Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-								Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-							} `tfsdk:"metadata" yaml:"metadata,omitempty"`
-						} `tfsdk:"ingress_template" yaml:"ingressTemplate,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
 						PodTemplate *struct {
 							Metadata *struct {
 								Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
@@ -121,19 +127,139 @@ type CertManagerIoIssuerV1GoModel struct {
 							} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
 							Spec *struct {
-								Tolerations *[]struct {
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-									TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
-
-									Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-									Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
-								} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
-
 								Affinity *struct {
+									PodAffinity *struct {
+										PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+											PodAffinityTerm *struct {
+												LabelSelector *struct {
+													MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+
+													MatchExpressions *[]struct {
+														Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+														Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+														Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+													} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+												} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+												NamespaceSelector *struct {
+													MatchExpressions *[]struct {
+														Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+														Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+														Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+													} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+													MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+												} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
+												Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+												TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+											} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
+
+											Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+										} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+
+										RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+											LabelSelector *struct {
+												MatchExpressions *[]struct {
+													Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+												} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+												MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+											} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+											NamespaceSelector *struct {
+												MatchExpressions *[]struct {
+													Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+												} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+												MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+											} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
+											Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+											TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+										} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+									} `tfsdk:"pod_affinity" yaml:"podAffinity,omitempty"`
+
+									PodAntiAffinity *struct {
+										PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+											PodAffinityTerm *struct {
+												NamespaceSelector *struct {
+													MatchExpressions *[]struct {
+														Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+														Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+														Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+													} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+													MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+												} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
+												Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+												TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+
+												LabelSelector *struct {
+													MatchExpressions *[]struct {
+														Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+														Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+														Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+													} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+													MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+												} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+											} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
+
+											Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+										} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+
+										RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+											LabelSelector *struct {
+												MatchExpressions *[]struct {
+													Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+												} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+												MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+											} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+											NamespaceSelector *struct {
+												MatchExpressions *[]struct {
+													Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+												} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+												MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+											} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
+											Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+											TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+										} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+									} `tfsdk:"pod_anti_affinity" yaml:"podAntiAffinity,omitempty"`
+
 									NodeAffinity *struct {
 										PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 											Preference *struct {
@@ -160,155 +286,23 @@ type CertManagerIoIssuerV1GoModel struct {
 										RequiredDuringSchedulingIgnoredDuringExecution *struct {
 											NodeSelectorTerms *[]struct {
 												MatchExpressions *[]struct {
-													Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
 													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+													Key *string `tfsdk:"key" yaml:"key,omitempty"`
 												} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 												MatchFields *[]struct {
-													Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
 													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+													Key *string `tfsdk:"key" yaml:"key,omitempty"`
 												} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
 											} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
 										} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 									} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
-
-									PodAffinity *struct {
-										PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-											PodAffinityTerm *struct {
-												NamespaceSelector *struct {
-													MatchExpressions *[]struct {
-														Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-														Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-														Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-													} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-													MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-												} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-
-												Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-												TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
-												LabelSelector *struct {
-													MatchExpressions *[]struct {
-														Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-														Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-														Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-													} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-													MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-												} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-											} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
-
-											Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-										} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
-
-										RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
-											Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-											TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
-											LabelSelector *struct {
-												MatchExpressions *[]struct {
-													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-													Key *string `tfsdk:"key" yaml:"key,omitempty"`
-												} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-												MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-											} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-											NamespaceSelector *struct {
-												MatchExpressions *[]struct {
-													Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-												} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-												MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-											} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-										} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
-									} `tfsdk:"pod_affinity" yaml:"podAffinity,omitempty"`
-
-									PodAntiAffinity *struct {
-										PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-											PodAffinityTerm *struct {
-												LabelSelector *struct {
-													MatchExpressions *[]struct {
-														Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-														Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-														Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-													} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-													MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-												} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-												NamespaceSelector *struct {
-													MatchExpressions *[]struct {
-														Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-														Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-														Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-													} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-													MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-												} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-
-												Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-												TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-											} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
-
-											Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-										} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
-
-										RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
-											Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-											TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
-											LabelSelector *struct {
-												MatchExpressions *[]struct {
-													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-													Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-												} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-												MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-											} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-											NamespaceSelector *struct {
-												MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-
-												MatchExpressions *[]struct {
-													Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-												} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-											} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-										} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
-									} `tfsdk:"pod_anti_affinity" yaml:"podAntiAffinity,omitempty"`
 								} `tfsdk:"affinity" yaml:"affinity,omitempty"`
 
 								NodeSelector *map[string]string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
@@ -316,10 +310,34 @@ type CertManagerIoIssuerV1GoModel struct {
 								PriorityClassName *string `tfsdk:"priority_class_name" yaml:"priorityClassName,omitempty"`
 
 								ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
+
+								Tolerations *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
+
+									Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+									Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
+								} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
 							} `tfsdk:"spec" yaml:"spec,omitempty"`
 						} `tfsdk:"pod_template" yaml:"podTemplate,omitempty"`
 
 						ServiceType *string `tfsdk:"service_type" yaml:"serviceType,omitempty"`
+
+						Class *string `tfsdk:"class" yaml:"class,omitempty"`
+
+						IngressTemplate *struct {
+							Metadata *struct {
+								Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+
+								Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+							} `tfsdk:"metadata" yaml:"metadata,omitempty"`
+						} `tfsdk:"ingress_template" yaml:"ingressTemplate,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
 					} `tfsdk:"ingress" yaml:"ingress,omitempty"`
 				} `tfsdk:"http01" yaml:"http01,omitempty"`
 
@@ -380,39 +398,33 @@ type CertManagerIoIssuerV1GoModel struct {
 						} `tfsdk:"token_secret_ref" yaml:"tokenSecretRef,omitempty"`
 					} `tfsdk:"digitalocean" yaml:"digitalocean,omitempty"`
 
-					Route53 *struct {
-						AccessKeyID *string `tfsdk:"access_key_id" yaml:"accessKeyID,omitempty"`
+					Webhook *struct {
+						SolverName *string `tfsdk:"solver_name" yaml:"solverName,omitempty"`
 
-						AccessKeyIDSecretRef *struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
 
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-						} `tfsdk:"access_key_id_secret_ref" yaml:"accessKeyIDSecretRef,omitempty"`
-
-						HostedZoneID *string `tfsdk:"hosted_zone_id" yaml:"hostedZoneID,omitempty"`
-
-						Region *string `tfsdk:"region" yaml:"region,omitempty"`
-
-						Role *string `tfsdk:"role" yaml:"role,omitempty"`
-
-						SecretAccessKeySecretRef *struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-						} `tfsdk:"secret_access_key_secret_ref" yaml:"secretAccessKeySecretRef,omitempty"`
-					} `tfsdk:"route53" yaml:"route53,omitempty"`
+						GroupName *string `tfsdk:"group_name" yaml:"groupName,omitempty"`
+					} `tfsdk:"webhook" yaml:"webhook,omitempty"`
 
 					AcmeDNS *struct {
 						AccountSecretRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 						} `tfsdk:"account_secret_ref" yaml:"accountSecretRef,omitempty"`
 
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 					} `tfsdk:"acme_dns" yaml:"acmeDNS,omitempty"`
 
 					AzureDNS *struct {
+						ManagedIdentity *struct {
+							ClientID *string `tfsdk:"client_id" yaml:"clientID,omitempty"`
+
+							ResourceID *string `tfsdk:"resource_id" yaml:"resourceID,omitempty"`
+						} `tfsdk:"managed_identity" yaml:"managedIdentity,omitempty"`
+
+						ResourceGroupName *string `tfsdk:"resource_group_name" yaml:"resourceGroupName,omitempty"`
+
 						SubscriptionID *string `tfsdk:"subscription_id" yaml:"subscriptionID,omitempty"`
 
 						TenantID *string `tfsdk:"tenant_id" yaml:"tenantID,omitempty"`
@@ -428,14 +440,6 @@ type CertManagerIoIssuerV1GoModel struct {
 						Environment *string `tfsdk:"environment" yaml:"environment,omitempty"`
 
 						HostedZoneName *string `tfsdk:"hosted_zone_name" yaml:"hostedZoneName,omitempty"`
-
-						ManagedIdentity *struct {
-							ResourceID *string `tfsdk:"resource_id" yaml:"resourceID,omitempty"`
-
-							ClientID *string `tfsdk:"client_id" yaml:"clientID,omitempty"`
-						} `tfsdk:"managed_identity" yaml:"managedIdentity,omitempty"`
-
-						ResourceGroupName *string `tfsdk:"resource_group_name" yaml:"resourceGroupName,omitempty"`
 					} `tfsdk:"azure_dns" yaml:"azureDNS,omitempty"`
 
 					CloudDNS *struct {
@@ -451,8 +455,6 @@ type CertManagerIoIssuerV1GoModel struct {
 					} `tfsdk:"cloud_dns" yaml:"cloudDNS,omitempty"`
 
 					Rfc2136 *struct {
-						TsigKeyName *string `tfsdk:"tsig_key_name" yaml:"tsigKeyName,omitempty"`
-
 						TsigSecretSecretRef *struct {
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -462,25 +464,47 @@ type CertManagerIoIssuerV1GoModel struct {
 						Nameserver *string `tfsdk:"nameserver" yaml:"nameserver,omitempty"`
 
 						TsigAlgorithm *string `tfsdk:"tsig_algorithm" yaml:"tsigAlgorithm,omitempty"`
+
+						TsigKeyName *string `tfsdk:"tsig_key_name" yaml:"tsigKeyName,omitempty"`
 					} `tfsdk:"rfc2136" yaml:"rfc2136,omitempty"`
 
-					Webhook *struct {
-						Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+					Route53 *struct {
+						Region *string `tfsdk:"region" yaml:"region,omitempty"`
 
-						GroupName *string `tfsdk:"group_name" yaml:"groupName,omitempty"`
+						Role *string `tfsdk:"role" yaml:"role,omitempty"`
 
-						SolverName *string `tfsdk:"solver_name" yaml:"solverName,omitempty"`
-					} `tfsdk:"webhook" yaml:"webhook,omitempty"`
+						SecretAccessKeySecretRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"secret_access_key_secret_ref" yaml:"secretAccessKeySecretRef,omitempty"`
+
+						AccessKeyID *string `tfsdk:"access_key_id" yaml:"accessKeyID,omitempty"`
+
+						AccessKeyIDSecretRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"access_key_id_secret_ref" yaml:"accessKeyIDSecretRef,omitempty"`
+
+						HostedZoneID *string `tfsdk:"hosted_zone_id" yaml:"hostedZoneID,omitempty"`
+					} `tfsdk:"route53" yaml:"route53,omitempty"`
 				} `tfsdk:"dns01" yaml:"dns01,omitempty"`
 			} `tfsdk:"solvers" yaml:"solvers,omitempty"`
+
+			EnableDurationFeature *bool `tfsdk:"enable_duration_feature" yaml:"enableDurationFeature,omitempty"`
+
+			PreferredChain *string `tfsdk:"preferred_chain" yaml:"preferredChain,omitempty"`
+
+			SkipTLSVerify *bool `tfsdk:"skip_tls_verify" yaml:"skipTLSVerify,omitempty"`
 		} `tfsdk:"acme" yaml:"acme,omitempty"`
 
 		Ca *struct {
+			CrlDistributionPoints *[]string `tfsdk:"crl_distribution_points" yaml:"crlDistributionPoints,omitempty"`
+
 			OcspServers *[]string `tfsdk:"ocsp_servers" yaml:"ocspServers,omitempty"`
 
 			SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-
-			CrlDistributionPoints *[]string `tfsdk:"crl_distribution_points" yaml:"crlDistributionPoints,omitempty"`
 		} `tfsdk:"ca" yaml:"ca,omitempty"`
 
 		SelfSigned *struct {
@@ -490,6 +514,8 @@ type CertManagerIoIssuerV1GoModel struct {
 		Vault *struct {
 			Auth *struct {
 				AppRole *struct {
+					Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
 					RoleId *string `tfsdk:"role_id" yaml:"roleId,omitempty"`
 
 					SecretRef *struct {
@@ -497,20 +523,18 @@ type CertManagerIoIssuerV1GoModel struct {
 
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
 					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-					Path *string `tfsdk:"path" yaml:"path,omitempty"`
 				} `tfsdk:"app_role" yaml:"appRole,omitempty"`
 
 				Kubernetes *struct {
+					MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+					Role *string `tfsdk:"role" yaml:"role,omitempty"`
+
 					SecretRef *struct {
 						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
 					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-					MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-
-					Role *string `tfsdk:"role" yaml:"role,omitempty"`
 				} `tfsdk:"kubernetes" yaml:"kubernetes,omitempty"`
 
 				TokenSecretRef *struct {
@@ -528,30 +552,6 @@ type CertManagerIoIssuerV1GoModel struct {
 
 			Server *string `tfsdk:"server" yaml:"server,omitempty"`
 		} `tfsdk:"vault" yaml:"vault,omitempty"`
-
-		Venafi *struct {
-			Cloud *struct {
-				Url *string `tfsdk:"url" yaml:"url,omitempty"`
-
-				ApiTokenSecretRef *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"api_token_secret_ref" yaml:"apiTokenSecretRef,omitempty"`
-			} `tfsdk:"cloud" yaml:"cloud,omitempty"`
-
-			Tpp *struct {
-				CredentialsRef *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"credentials_ref" yaml:"credentialsRef,omitempty"`
-
-				Url *string `tfsdk:"url" yaml:"url,omitempty"`
-
-				CaBundle *string `tfsdk:"ca_bundle" yaml:"caBundle,omitempty"`
-			} `tfsdk:"tpp" yaml:"tpp,omitempty"`
-
-			Zone *string `tfsdk:"zone" yaml:"zone,omitempty"`
-		} `tfsdk:"venafi" yaml:"venafi,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -652,11 +652,193 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"venafi": {
+						Description:         "Venafi configures this issuer to sign certificates using a Venafi TPP or Venafi Cloud policy zone.",
+						MarkdownDescription: "Venafi configures this issuer to sign certificates using a Venafi TPP or Venafi Cloud policy zone.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"cloud": {
+								Description:         "Cloud specifies the Venafi cloud configuration settings. Only one of TPP or Cloud may be specified.",
+								MarkdownDescription: "Cloud specifies the Venafi cloud configuration settings. Only one of TPP or Cloud may be specified.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"api_token_secret_ref": {
+										Description:         "APITokenSecretRef is a secret key selector for the Venafi Cloud API token.",
+										MarkdownDescription: "APITokenSecretRef is a secret key selector for the Venafi Cloud API token.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+												MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"url": {
+										Description:         "URL is the base URL for Venafi Cloud. Defaults to 'https://api.venafi.cloud/v1'.",
+										MarkdownDescription: "URL is the base URL for Venafi Cloud. Defaults to 'https://api.venafi.cloud/v1'.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tpp": {
+								Description:         "TPP specifies Trust Protection Platform configuration settings. Only one of TPP or Cloud may be specified.",
+								MarkdownDescription: "TPP specifies Trust Protection Platform configuration settings. Only one of TPP or Cloud may be specified.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"ca_bundle": {
+										Description:         "CABundle is a PEM encoded TLS certificate to use to verify connections to the TPP instance. If specified, system roots will not be used and the issuing CA for the TPP instance must be verifiable using the provided root. If not specified, the connection will be verified using the cert-manager system root certificates.",
+										MarkdownDescription: "CABundle is a PEM encoded TLS certificate to use to verify connections to the TPP instance. If specified, system roots will not be used and the issuing CA for the TPP instance must be verifiable using the provided root. If not specified, the connection will be verified using the cert-manager system root certificates.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"credentials_ref": {
+										Description:         "CredentialsRef is a reference to a Secret containing the username and password for the TPP server. The secret must contain two keys, 'username' and 'password'.",
+										MarkdownDescription: "CredentialsRef is a reference to a Secret containing the username and password for the TPP server. The secret must contain two keys, 'username' and 'password'.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"url": {
+										Description:         "URL is the base URL for the vedsdk endpoint of the Venafi TPP instance, for example: 'https://tpp.example.com/vedsdk'.",
+										MarkdownDescription: "URL is the base URL for the vedsdk endpoint of the Venafi TPP instance, for example: 'https://tpp.example.com/vedsdk'.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"zone": {
+								Description:         "Zone is the Venafi Policy Zone to use for this issuer. All requests made to the Venafi platform will be restricted by the named zone policy. This field is required.",
+								MarkdownDescription: "Zone is the Venafi Policy Zone to use for this issuer. All requests made to the Venafi platform will be restricted by the named zone policy. This field is required.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"acme": {
 						Description:         "ACME configures this issuer to communicate with a RFC8555 (ACME) server to obtain signed x509 certificates.",
 						MarkdownDescription: "ACME configures this issuer to communicate with a RFC8555 (ACME) server to obtain signed x509 certificates.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"private_key_secret_ref": {
+								Description:         "PrivateKey is the name of a Kubernetes Secret resource that will be used to store the automatically generated ACME account private key. Optionally, a 'key' may be specified to select a specific entry within the named Secret resource. If 'key' is not specified, a default of 'tls.key' will be used.",
+								MarkdownDescription: "PrivateKey is the name of a Kubernetes Secret resource that will be used to store the automatically generated ACME account private key. Optionally, a 'key' may be specified to select a specific entry within the named Secret resource. If 'key' is not specified, a default of 'tls.key' will be used.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"key": {
+										Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+										MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"server": {
+								Description:         "Server is the URL used to access the ACME server's 'directory' endpoint. For example, for Let's Encrypt's staging endpoint, you would use: 'https://acme-staging-v02.api.letsencrypt.org/directory'. Only ACME v2 endpoints (i.e. RFC 8555) are supported.",
+								MarkdownDescription: "Server is the URL used to access the ACME server's 'directory' endpoint. For example, for Let's Encrypt's staging endpoint, you would use: 'https://acme-staging-v02.api.letsencrypt.org/directory'. Only ACME v2 endpoints (i.e. RFC 8555) are supported.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
 
 							"disable_account_key_generation": {
 								Description:         "Enables or disables generating a new ACME account key. If true, the Issuer resource will *not* request a new account but will expect the account key to be supplied via an existing secret. If false, the cert-manager system will generate a new ACME account key for the Issuer. Defaults to false.",
@@ -674,17 +856,6 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 								MarkdownDescription: "Email is the email address to be associated with the ACME account. This field is optional, but it is strongly recommended to be set. It will be used to contact you in case of issues with your account or certificates, including expiry notification emails. This field may be updated after the account is initially registered.",
 
 								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"enable_duration_feature": {
-								Description:         "Enables requesting a Not After date on certificates that matches the duration of the certificate. This is not supported by all ACME servers like Let's Encrypt. If set to true when the ACME server does not support it it will create an error on the Order. Defaults to false.",
-								MarkdownDescription: "Enables requesting a Not After date on certificates that matches the duration of the certificate. This is not supported by all ACME servers like Let's Encrypt. If set to true when the ACME server does not support it it will create an error on the Order. Defaults to false.",
-
-								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,
@@ -725,17 +896,6 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"name": {
-												Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
 											"key": {
 												Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 												MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
@@ -746,6 +906,17 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 												Optional: true,
 												Computed: false,
 											},
+
+											"name": {
+												Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
 										}),
 
 										Required: true,
@@ -753,73 +924,6 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 										Computed: false,
 									},
 								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"preferred_chain": {
-								Description:         "PreferredChain is the chain to use if the ACME server outputs multiple. PreferredChain is no guarantee that this one gets delivered by the ACME endpoint. For example, for Let's Encrypt's DST crosssign you would use: 'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA. This value picks the first certificate bundle in the ACME alternative chains that has a certificate with this value as its issuer's CN",
-								MarkdownDescription: "PreferredChain is the chain to use if the ACME server outputs multiple. PreferredChain is no guarantee that this one gets delivered by the ACME endpoint. For example, for Let's Encrypt's DST crosssign you would use: 'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA. This value picks the first certificate bundle in the ACME alternative chains that has a certificate with this value as its issuer's CN",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"server": {
-								Description:         "Server is the URL used to access the ACME server's 'directory' endpoint. For example, for Let's Encrypt's staging endpoint, you would use: 'https://acme-staging-v02.api.letsencrypt.org/directory'. Only ACME v2 endpoints (i.e. RFC 8555) are supported.",
-								MarkdownDescription: "Server is the URL used to access the ACME server's 'directory' endpoint. For example, for Let's Encrypt's staging endpoint, you would use: 'https://acme-staging-v02.api.letsencrypt.org/directory'. Only ACME v2 endpoints (i.e. RFC 8555) are supported.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"private_key_secret_ref": {
-								Description:         "PrivateKey is the name of a Kubernetes Secret resource that will be used to store the automatically generated ACME account private key. Optionally, a 'key' may be specified to select a specific entry within the named Secret resource. If 'key' is not specified, a default of 'tls.key' will be used.",
-								MarkdownDescription: "PrivateKey is the name of a Kubernetes Secret resource that will be used to store the automatically generated ACME account private key. Optionally, a 'key' may be specified to select a specific entry within the named Secret resource. If 'key' is not specified, a default of 'tls.key' will be used.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"key": {
-										Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-										MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-										MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"skip_tls_verify": {
-								Description:         "Enables or disables validation of the ACME server TLS certificate. If true, requests to the ACME server will not have their TLS certificate validated (i.e. insecure connections will be allowed). Only enable this option in development environments. The cert-manager system installed roots will be used to verify connections to the ACME server if this is false. Defaults to false.",
-								MarkdownDescription: "Enables or disables validation of the ACME server TLS certificate. If true, requests to the ACME server will not have their TLS certificate validated (i.e. insecure connections will be allowed). Only enable this option in development environments. The cert-manager system installed roots will be used to verify connections to the ACME server if this is false. Defaults to false.",
-
-								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,
@@ -861,28 +965,6 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-															"namespace": {
-																Description:         "Namespace is the namespace of the referent. When unspecified (or empty string), this refers to the local namespace of the Route.  Support: Core",
-																MarkdownDescription: "Namespace is the namespace of the referent. When unspecified (or empty string), this refers to the local namespace of the Route.  Support: Core",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"section_name": {
-																Description:         "SectionName is the name of a section within the target resource. In the following resources, SectionName is interpreted as the following:  * Gateway: Listener Name  Implementations MAY choose to support attaching Routes to other resources. If that is the case, they MUST clearly document how SectionName is interpreted.  When unspecified (empty string), this will reference the entire resource. For the purpose of status, an attachment is considered successful if at least one section in the parent resource accepts it. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway.  Support: Core",
-																MarkdownDescription: "SectionName is the name of a section within the target resource. In the following resources, SectionName is interpreted as the following:  * Gateway: Listener Name  Implementations MAY choose to support attaching Routes to other resources. If that is the case, they MUST clearly document how SectionName is interpreted.  When unspecified (empty string), this will reference the entire resource. For the purpose of status, an attachment is considered successful if at least one section in the parent resource accepts it. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway.  Support: Core",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"group": {
 																Description:         "Group is the group of the referent.  Support: Core",
 																MarkdownDescription: "Group is the group of the referent.  Support: Core",
@@ -915,6 +997,28 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 																Optional: false,
 																Computed: false,
 															},
+
+															"namespace": {
+																Description:         "Namespace is the namespace of the referent. When unspecified (or empty string), this refers to the local namespace of the Route.  Support: Core",
+																MarkdownDescription: "Namespace is the namespace of the referent. When unspecified (or empty string), this refers to the local namespace of the Route.  Support: Core",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"section_name": {
+																Description:         "SectionName is the name of a section within the target resource. In the following resources, SectionName is interpreted as the following:  * Gateway: Listener Name  Implementations MAY choose to support attaching Routes to other resources. If that is the case, they MUST clearly document how SectionName is interpreted.  When unspecified (empty string), this will reference the entire resource. For the purpose of status, an attachment is considered successful if at least one section in the parent resource accepts it. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway.  Support: Core",
+																MarkdownDescription: "SectionName is the name of a section within the target resource. In the following resources, SectionName is interpreted as the following:  * Gateway: Listener Name  Implementations MAY choose to support attaching Routes to other resources. If that is the case, they MUST clearly document how SectionName is interpreted.  When unspecified (empty string), this will reference the entire resource. For the purpose of status, an attachment is considered successful if at least one section in the parent resource accepts it. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway.  Support: Core",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
 														}),
 
 														Required: false,
@@ -944,74 +1048,6 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 												MarkdownDescription: "The ingress based HTTP01 challenge solver will solve challenges by creating or modifying Ingress resources in order to route requests for '/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are provisioned by cert-manager for each Challenge to be completed.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"class": {
-														Description:         "The ingress class to use when creating Ingress resources to solve ACME challenges that use this challenge solver. Only one of 'class' or 'name' may be specified.",
-														MarkdownDescription: "The ingress class to use when creating Ingress resources to solve ACME challenges that use this challenge solver. Only one of 'class' or 'name' may be specified.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"ingress_template": {
-														Description:         "Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.",
-														MarkdownDescription: "Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"metadata": {
-																Description:         "ObjectMeta overrides for the ingress used to solve HTTP01 challenges. Only the 'labels' and 'annotations' fields may be set. If labels or annotations overlap with in-built values, the values here will override the in-built values.",
-																MarkdownDescription: "ObjectMeta overrides for the ingress used to solve HTTP01 challenges. Only the 'labels' and 'annotations' fields may be set. If labels or annotations overlap with in-built values, the values here will override the in-built values.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"annotations": {
-																		Description:         "Annotations that should be added to the created ACME HTTP01 solver ingress.",
-																		MarkdownDescription: "Annotations that should be added to the created ACME HTTP01 solver ingress.",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"labels": {
-																		Description:         "Labels that should be added to the created ACME HTTP01 solver ingress.",
-																		MarkdownDescription: "Labels that should be added to the created ACME HTTP01 solver ingress.",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "The name of the ingress resource that should have ACME challenge solving routes inserted into it in order to solve HTTP01 challenges. This is typically used in conjunction with ingress controllers like ingress-gce, which maintains a 1:1 mapping between external IPs and ingress resources.",
-														MarkdownDescription: "The name of the ingress resource that should have ACME challenge solving routes inserted into it in order to solve HTTP01 challenges. This is typically used in conjunction with ingress controllers like ingress-gce, which maintains a 1:1 mapping between external IPs and ingress resources.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 
 													"pod_template": {
 														Description:         "Optional pod template used to configure the ACME challenge solver pods used for HTTP01 challenges.",
@@ -1059,78 +1095,761 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"tolerations": {
-																		Description:         "If specified, the pod's tolerations.",
-																		MarkdownDescription: "If specified, the pod's tolerations.",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"key": {
-																				Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-																				MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"operator": {
-																				Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-																				MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"toleration_seconds": {
-																				Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-																				MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-
-																				Type: types.Int64Type,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"value": {
-																				Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-																				MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"effect": {
-																				Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-																				MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
 																	"affinity": {
 																		Description:         "If specified, the pod's scheduling constraints",
 																		MarkdownDescription: "If specified, the pod's scheduling constraints",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"pod_affinity": {
+																				Description:         "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
+																				MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"preferred_during_scheduling_ignored_during_execution": {
+																						Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+																						MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+
+																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																							"pod_affinity_term": {
+																								Description:         "Required. A pod affinity term, associated with the corresponding weight.",
+																								MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
+
+																								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																									"label_selector": {
+																										Description:         "A label query over a set of resources, in this case pods.",
+																										MarkdownDescription: "A label query over a set of resources, in this case pods.",
+
+																										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																											"match_labels": {
+																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																												Type: types.MapType{ElemType: types.StringType},
+
+																												Required: false,
+																												Optional: true,
+																												Computed: false,
+																											},
+
+																											"match_expressions": {
+																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																													"key": {
+																														Description:         "key is the label key that the selector applies to.",
+																														MarkdownDescription: "key is the label key that the selector applies to.",
+
+																														Type: types.StringType,
+
+																														Required: true,
+																														Optional: false,
+																														Computed: false,
+																													},
+
+																													"operator": {
+																														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																														Type: types.StringType,
+
+																														Required: true,
+																														Optional: false,
+																														Computed: false,
+																													},
+
+																													"values": {
+																														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																														Type: types.ListType{ElemType: types.StringType},
+
+																														Required: false,
+																														Optional: true,
+																														Computed: false,
+																													},
+																												}),
+
+																												Required: false,
+																												Optional: true,
+																												Computed: false,
+																											},
+																										}),
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+
+																									"namespace_selector": {
+																										Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																										MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+
+																										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																											"match_expressions": {
+																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																													"key": {
+																														Description:         "key is the label key that the selector applies to.",
+																														MarkdownDescription: "key is the label key that the selector applies to.",
+
+																														Type: types.StringType,
+
+																														Required: true,
+																														Optional: false,
+																														Computed: false,
+																													},
+
+																													"operator": {
+																														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																														Type: types.StringType,
+
+																														Required: true,
+																														Optional: false,
+																														Computed: false,
+																													},
+
+																													"values": {
+																														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																														Type: types.ListType{ElemType: types.StringType},
+
+																														Required: false,
+																														Optional: true,
+																														Computed: false,
+																													},
+																												}),
+
+																												Required: false,
+																												Optional: true,
+																												Computed: false,
+																											},
+
+																											"match_labels": {
+																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																												Type: types.MapType{ElemType: types.StringType},
+
+																												Required: false,
+																												Optional: true,
+																												Computed: false,
+																											},
+																										}),
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+
+																									"namespaces": {
+																										Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																										MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+
+																										Type: types.ListType{ElemType: types.StringType},
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+
+																									"topology_key": {
+																										Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																										MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+
+																										Type: types.StringType,
+
+																										Required: true,
+																										Optional: false,
+																										Computed: false,
+																									},
+																								}),
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+
+																							"weight": {
+																								Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																								MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+
+																								Type: types.Int64Type,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+																						}),
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"required_during_scheduling_ignored_during_execution": {
+																						Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																						MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+
+																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																							"label_selector": {
+																								Description:         "A label query over a set of resources, in this case pods.",
+																								MarkdownDescription: "A label query over a set of resources, in this case pods.",
+
+																								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																									"match_expressions": {
+																										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																											"key": {
+																												Description:         "key is the label key that the selector applies to.",
+																												MarkdownDescription: "key is the label key that the selector applies to.",
+
+																												Type: types.StringType,
+
+																												Required: true,
+																												Optional: false,
+																												Computed: false,
+																											},
+
+																											"operator": {
+																												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																												Type: types.StringType,
+
+																												Required: true,
+																												Optional: false,
+																												Computed: false,
+																											},
+
+																											"values": {
+																												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																												Type: types.ListType{ElemType: types.StringType},
+
+																												Required: false,
+																												Optional: true,
+																												Computed: false,
+																											},
+																										}),
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+
+																									"match_labels": {
+																										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																										Type: types.MapType{ElemType: types.StringType},
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								}),
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"namespace_selector": {
+																								Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																								MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+
+																								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																									"match_expressions": {
+																										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																											"key": {
+																												Description:         "key is the label key that the selector applies to.",
+																												MarkdownDescription: "key is the label key that the selector applies to.",
+
+																												Type: types.StringType,
+
+																												Required: true,
+																												Optional: false,
+																												Computed: false,
+																											},
+
+																											"operator": {
+																												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																												Type: types.StringType,
+
+																												Required: true,
+																												Optional: false,
+																												Computed: false,
+																											},
+
+																											"values": {
+																												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																												Type: types.ListType{ElemType: types.StringType},
+
+																												Required: false,
+																												Optional: true,
+																												Computed: false,
+																											},
+																										}),
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+
+																									"match_labels": {
+																										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																										Type: types.MapType{ElemType: types.StringType},
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								}),
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"namespaces": {
+																								Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																								MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+
+																								Type: types.ListType{ElemType: types.StringType},
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"topology_key": {
+																								Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																								MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+																						}),
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"pod_anti_affinity": {
+																				Description:         "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
+																				MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"preferred_during_scheduling_ignored_during_execution": {
+																						Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+																						MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+
+																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																							"pod_affinity_term": {
+																								Description:         "Required. A pod affinity term, associated with the corresponding weight.",
+																								MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
+
+																								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																									"namespace_selector": {
+																										Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																										MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+
+																										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																											"match_expressions": {
+																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																													"key": {
+																														Description:         "key is the label key that the selector applies to.",
+																														MarkdownDescription: "key is the label key that the selector applies to.",
+
+																														Type: types.StringType,
+
+																														Required: true,
+																														Optional: false,
+																														Computed: false,
+																													},
+
+																													"operator": {
+																														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																														Type: types.StringType,
+
+																														Required: true,
+																														Optional: false,
+																														Computed: false,
+																													},
+
+																													"values": {
+																														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																														Type: types.ListType{ElemType: types.StringType},
+
+																														Required: false,
+																														Optional: true,
+																														Computed: false,
+																													},
+																												}),
+
+																												Required: false,
+																												Optional: true,
+																												Computed: false,
+																											},
+
+																											"match_labels": {
+																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																												Type: types.MapType{ElemType: types.StringType},
+
+																												Required: false,
+																												Optional: true,
+																												Computed: false,
+																											},
+																										}),
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+
+																									"namespaces": {
+																										Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																										MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+
+																										Type: types.ListType{ElemType: types.StringType},
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+
+																									"topology_key": {
+																										Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																										MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+
+																										Type: types.StringType,
+
+																										Required: true,
+																										Optional: false,
+																										Computed: false,
+																									},
+
+																									"label_selector": {
+																										Description:         "A label query over a set of resources, in this case pods.",
+																										MarkdownDescription: "A label query over a set of resources, in this case pods.",
+
+																										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																											"match_expressions": {
+																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																													"key": {
+																														Description:         "key is the label key that the selector applies to.",
+																														MarkdownDescription: "key is the label key that the selector applies to.",
+
+																														Type: types.StringType,
+
+																														Required: true,
+																														Optional: false,
+																														Computed: false,
+																													},
+
+																													"operator": {
+																														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																														Type: types.StringType,
+
+																														Required: true,
+																														Optional: false,
+																														Computed: false,
+																													},
+
+																													"values": {
+																														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																														Type: types.ListType{ElemType: types.StringType},
+
+																														Required: false,
+																														Optional: true,
+																														Computed: false,
+																													},
+																												}),
+
+																												Required: false,
+																												Optional: true,
+																												Computed: false,
+																											},
+
+																											"match_labels": {
+																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																												Type: types.MapType{ElemType: types.StringType},
+
+																												Required: false,
+																												Optional: true,
+																												Computed: false,
+																											},
+																										}),
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								}),
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+
+																							"weight": {
+																								Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																								MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+
+																								Type: types.Int64Type,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+																						}),
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"required_during_scheduling_ignored_during_execution": {
+																						Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+																						MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+
+																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																							"label_selector": {
+																								Description:         "A label query over a set of resources, in this case pods.",
+																								MarkdownDescription: "A label query over a set of resources, in this case pods.",
+
+																								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																									"match_expressions": {
+																										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																											"key": {
+																												Description:         "key is the label key that the selector applies to.",
+																												MarkdownDescription: "key is the label key that the selector applies to.",
+
+																												Type: types.StringType,
+
+																												Required: true,
+																												Optional: false,
+																												Computed: false,
+																											},
+
+																											"operator": {
+																												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																												Type: types.StringType,
+
+																												Required: true,
+																												Optional: false,
+																												Computed: false,
+																											},
+
+																											"values": {
+																												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																												Type: types.ListType{ElemType: types.StringType},
+
+																												Required: false,
+																												Optional: true,
+																												Computed: false,
+																											},
+																										}),
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+
+																									"match_labels": {
+																										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																										Type: types.MapType{ElemType: types.StringType},
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								}),
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"namespace_selector": {
+																								Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																								MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+
+																								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																									"match_expressions": {
+																										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																											"key": {
+																												Description:         "key is the label key that the selector applies to.",
+																												MarkdownDescription: "key is the label key that the selector applies to.",
+
+																												Type: types.StringType,
+
+																												Required: true,
+																												Optional: false,
+																												Computed: false,
+																											},
+
+																											"operator": {
+																												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																												Type: types.StringType,
+
+																												Required: true,
+																												Optional: false,
+																												Computed: false,
+																											},
+
+																											"values": {
+																												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																												Type: types.ListType{ElemType: types.StringType},
+
+																												Required: false,
+																												Optional: true,
+																												Computed: false,
+																											},
+																										}),
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+
+																									"match_labels": {
+																										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																										Type: types.MapType{ElemType: types.StringType},
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								}),
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"namespaces": {
+																								Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																								MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+
+																								Type: types.ListType{ElemType: types.StringType},
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"topology_key": {
+																								Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																								MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+																						}),
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
 
 																			"node_affinity": {
 																				Description:         "Describes node affinity scheduling rules for the pod.",
@@ -1281,17 +2000,6 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 
 																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																											"key": {
-																												Description:         "The label key that the selector applies to.",
-																												MarkdownDescription: "The label key that the selector applies to.",
-
-																												Type: types.StringType,
-
-																												Required: true,
-																												Optional: false,
-																												Computed: false,
-																											},
-
 																											"operator": {
 																												Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																												MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
@@ -1311,6 +2019,17 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 
 																												Required: false,
 																												Optional: true,
+																												Computed: false,
+																											},
+
+																											"key": {
+																												Description:         "The label key that the selector applies to.",
+																												MarkdownDescription: "The label key that the selector applies to.",
+
+																												Type: types.StringType,
+
+																												Required: true,
+																												Optional: false,
 																												Computed: false,
 																											},
 																										}),
@@ -1326,17 +2045,6 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 
 																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																											"key": {
-																												Description:         "The label key that the selector applies to.",
-																												MarkdownDescription: "The label key that the selector applies to.",
-
-																												Type: types.StringType,
-
-																												Required: true,
-																												Optional: false,
-																												Computed: false,
-																											},
-
 																											"operator": {
 																												Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																												MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
@@ -1358,754 +2066,15 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 																												Optional: true,
 																												Computed: false,
 																											},
-																										}),
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-																								}),
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-																						}),
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"pod_affinity": {
-																				Description:         "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
-																				MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"preferred_during_scheduling_ignored_during_execution": {
-																						Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-																						MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-
-																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																							"pod_affinity_term": {
-																								Description:         "Required. A pod affinity term, associated with the corresponding weight.",
-																								MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
-
-																								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																									"namespace_selector": {
-																										Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																										MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-
-																										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																											"match_expressions": {
-																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																													"key": {
-																														Description:         "key is the label key that the selector applies to.",
-																														MarkdownDescription: "key is the label key that the selector applies to.",
-
-																														Type: types.StringType,
-
-																														Required: true,
-																														Optional: false,
-																														Computed: false,
-																													},
-
-																													"operator": {
-																														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																														Type: types.StringType,
-
-																														Required: true,
-																														Optional: false,
-																														Computed: false,
-																													},
-
-																													"values": {
-																														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																														Type: types.ListType{ElemType: types.StringType},
-
-																														Required: false,
-																														Optional: true,
-																														Computed: false,
-																													},
-																												}),
-
-																												Required: false,
-																												Optional: true,
-																												Computed: false,
-																											},
-
-																											"match_labels": {
-																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																												Type: types.MapType{ElemType: types.StringType},
-
-																												Required: false,
-																												Optional: true,
-																												Computed: false,
-																											},
-																										}),
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-
-																									"namespaces": {
-																										Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																										MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-
-																										Type: types.ListType{ElemType: types.StringType},
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-
-																									"topology_key": {
-																										Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																										MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-
-																										Type: types.StringType,
-
-																										Required: true,
-																										Optional: false,
-																										Computed: false,
-																									},
-
-																									"label_selector": {
-																										Description:         "A label query over a set of resources, in this case pods.",
-																										MarkdownDescription: "A label query over a set of resources, in this case pods.",
-
-																										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																											"match_expressions": {
-																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																													"key": {
-																														Description:         "key is the label key that the selector applies to.",
-																														MarkdownDescription: "key is the label key that the selector applies to.",
-
-																														Type: types.StringType,
-
-																														Required: true,
-																														Optional: false,
-																														Computed: false,
-																													},
-
-																													"operator": {
-																														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																														Type: types.StringType,
-
-																														Required: true,
-																														Optional: false,
-																														Computed: false,
-																													},
-
-																													"values": {
-																														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																														Type: types.ListType{ElemType: types.StringType},
-
-																														Required: false,
-																														Optional: true,
-																														Computed: false,
-																													},
-																												}),
-
-																												Required: false,
-																												Optional: true,
-																												Computed: false,
-																											},
-
-																											"match_labels": {
-																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																												Type: types.MapType{ElemType: types.StringType},
-
-																												Required: false,
-																												Optional: true,
-																												Computed: false,
-																											},
-																										}),
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-																								}),
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-
-																							"weight": {
-																								Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-																								MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-
-																								Type: types.Int64Type,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-																						}),
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"required_during_scheduling_ignored_during_execution": {
-																						Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-																						MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-
-																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																							"namespaces": {
-																								Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																								MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-
-																								Type: types.ListType{ElemType: types.StringType},
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-
-																							"topology_key": {
-																								Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																								MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-
-																							"label_selector": {
-																								Description:         "A label query over a set of resources, in this case pods.",
-																								MarkdownDescription: "A label query over a set of resources, in this case pods.",
-
-																								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																									"match_expressions": {
-																										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																											"operator": {
-																												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																												Type: types.StringType,
-
-																												Required: true,
-																												Optional: false,
-																												Computed: false,
-																											},
-
-																											"values": {
-																												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																												Type: types.ListType{ElemType: types.StringType},
-
-																												Required: false,
-																												Optional: true,
-																												Computed: false,
-																											},
 
 																											"key": {
-																												Description:         "key is the label key that the selector applies to.",
-																												MarkdownDescription: "key is the label key that the selector applies to.",
+																												Description:         "The label key that the selector applies to.",
+																												MarkdownDescription: "The label key that the selector applies to.",
 
 																												Type: types.StringType,
 
 																												Required: true,
 																												Optional: false,
-																												Computed: false,
-																											},
-																										}),
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-
-																									"match_labels": {
-																										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																										Type: types.MapType{ElemType: types.StringType},
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-																								}),
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-
-																							"namespace_selector": {
-																								Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																								MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-
-																								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																									"match_expressions": {
-																										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																											"key": {
-																												Description:         "key is the label key that the selector applies to.",
-																												MarkdownDescription: "key is the label key that the selector applies to.",
-
-																												Type: types.StringType,
-
-																												Required: true,
-																												Optional: false,
-																												Computed: false,
-																											},
-
-																											"operator": {
-																												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																												Type: types.StringType,
-
-																												Required: true,
-																												Optional: false,
-																												Computed: false,
-																											},
-
-																											"values": {
-																												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																												Type: types.ListType{ElemType: types.StringType},
-
-																												Required: false,
-																												Optional: true,
-																												Computed: false,
-																											},
-																										}),
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-
-																									"match_labels": {
-																										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																										Type: types.MapType{ElemType: types.StringType},
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-																								}),
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-																						}),
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"pod_anti_affinity": {
-																				Description:         "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
-																				MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"preferred_during_scheduling_ignored_during_execution": {
-																						Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-																						MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-
-																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																							"pod_affinity_term": {
-																								Description:         "Required. A pod affinity term, associated with the corresponding weight.",
-																								MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
-
-																								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																									"label_selector": {
-																										Description:         "A label query over a set of resources, in this case pods.",
-																										MarkdownDescription: "A label query over a set of resources, in this case pods.",
-
-																										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																											"match_expressions": {
-																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																													"key": {
-																														Description:         "key is the label key that the selector applies to.",
-																														MarkdownDescription: "key is the label key that the selector applies to.",
-
-																														Type: types.StringType,
-
-																														Required: true,
-																														Optional: false,
-																														Computed: false,
-																													},
-
-																													"operator": {
-																														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																														Type: types.StringType,
-
-																														Required: true,
-																														Optional: false,
-																														Computed: false,
-																													},
-
-																													"values": {
-																														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																														Type: types.ListType{ElemType: types.StringType},
-
-																														Required: false,
-																														Optional: true,
-																														Computed: false,
-																													},
-																												}),
-
-																												Required: false,
-																												Optional: true,
-																												Computed: false,
-																											},
-
-																											"match_labels": {
-																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																												Type: types.MapType{ElemType: types.StringType},
-
-																												Required: false,
-																												Optional: true,
-																												Computed: false,
-																											},
-																										}),
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-
-																									"namespace_selector": {
-																										Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																										MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-
-																										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																											"match_expressions": {
-																												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																													"values": {
-																														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																														Type: types.ListType{ElemType: types.StringType},
-
-																														Required: false,
-																														Optional: true,
-																														Computed: false,
-																													},
-
-																													"key": {
-																														Description:         "key is the label key that the selector applies to.",
-																														MarkdownDescription: "key is the label key that the selector applies to.",
-
-																														Type: types.StringType,
-
-																														Required: true,
-																														Optional: false,
-																														Computed: false,
-																													},
-
-																													"operator": {
-																														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																														Type: types.StringType,
-
-																														Required: true,
-																														Optional: false,
-																														Computed: false,
-																													},
-																												}),
-
-																												Required: false,
-																												Optional: true,
-																												Computed: false,
-																											},
-
-																											"match_labels": {
-																												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																												Type: types.MapType{ElemType: types.StringType},
-
-																												Required: false,
-																												Optional: true,
-																												Computed: false,
-																											},
-																										}),
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-
-																									"namespaces": {
-																										Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																										MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-
-																										Type: types.ListType{ElemType: types.StringType},
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-
-																									"topology_key": {
-																										Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																										MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-
-																										Type: types.StringType,
-
-																										Required: true,
-																										Optional: false,
-																										Computed: false,
-																									},
-																								}),
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-
-																							"weight": {
-																								Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-																								MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-
-																								Type: types.Int64Type,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-																						}),
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"required_during_scheduling_ignored_during_execution": {
-																						Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-																						MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-
-																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																							"namespaces": {
-																								Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																								MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-
-																								Type: types.ListType{ElemType: types.StringType},
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-
-																							"topology_key": {
-																								Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																								MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-
-																							"label_selector": {
-																								Description:         "A label query over a set of resources, in this case pods.",
-																								MarkdownDescription: "A label query over a set of resources, in this case pods.",
-
-																								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																									"match_expressions": {
-																										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																											"values": {
-																												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																												Type: types.ListType{ElemType: types.StringType},
-
-																												Required: false,
-																												Optional: true,
-																												Computed: false,
-																											},
-
-																											"key": {
-																												Description:         "key is the label key that the selector applies to.",
-																												MarkdownDescription: "key is the label key that the selector applies to.",
-
-																												Type: types.StringType,
-
-																												Required: true,
-																												Optional: false,
-																												Computed: false,
-																											},
-
-																											"operator": {
-																												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																												Type: types.StringType,
-
-																												Required: true,
-																												Optional: false,
-																												Computed: false,
-																											},
-																										}),
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-
-																									"match_labels": {
-																										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																										Type: types.MapType{ElemType: types.StringType},
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-																								}),
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-
-																							"namespace_selector": {
-																								Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																								MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-
-																								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																									"match_labels": {
-																										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																										Type: types.MapType{ElemType: types.StringType},
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-
-																									"match_expressions": {
-																										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																											"key": {
-																												Description:         "key is the label key that the selector applies to.",
-																												MarkdownDescription: "key is the label key that the selector applies to.",
-
-																												Type: types.StringType,
-
-																												Required: true,
-																												Optional: false,
-																												Computed: false,
-																											},
-
-																											"operator": {
-																												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																												Type: types.StringType,
-
-																												Required: true,
-																												Optional: false,
-																												Computed: false,
-																											},
-
-																											"values": {
-																												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																												Type: types.ListType{ElemType: types.StringType},
-
-																												Required: false,
-																												Optional: true,
 																												Computed: false,
 																											},
 																										}),
@@ -2116,8 +2085,8 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 																									},
 																								}),
 
-																								Required: false,
-																								Optional: true,
+																								Required: true,
+																								Optional: false,
 																								Computed: false,
 																							},
 																						}),
@@ -2171,6 +2140,73 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 																		Optional: true,
 																		Computed: false,
 																	},
+
+																	"tolerations": {
+																		Description:         "If specified, the pod's tolerations.",
+																		MarkdownDescription: "If specified, the pod's tolerations.",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																				MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+																				MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"toleration_seconds": {
+																				Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+																				MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+
+																				Type: types.Int64Type,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"value": {
+																				Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																				MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"effect": {
+																				Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																				MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
 																}),
 
 																Required: false,
@@ -2187,6 +2223,74 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 													"service_type": {
 														Description:         "Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.",
 														MarkdownDescription: "Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"class": {
+														Description:         "The ingress class to use when creating Ingress resources to solve ACME challenges that use this challenge solver. Only one of 'class' or 'name' may be specified.",
+														MarkdownDescription: "The ingress class to use when creating Ingress resources to solve ACME challenges that use this challenge solver. Only one of 'class' or 'name' may be specified.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"ingress_template": {
+														Description:         "Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.",
+														MarkdownDescription: "Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"metadata": {
+																Description:         "ObjectMeta overrides for the ingress used to solve HTTP01 challenges. Only the 'labels' and 'annotations' fields may be set. If labels or annotations overlap with in-built values, the values here will override the in-built values.",
+																MarkdownDescription: "ObjectMeta overrides for the ingress used to solve HTTP01 challenges. Only the 'labels' and 'annotations' fields may be set. If labels or annotations overlap with in-built values, the values here will override the in-built values.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"annotations": {
+																		Description:         "Annotations that should be added to the created ACME HTTP01 solver ingress.",
+																		MarkdownDescription: "Annotations that should be added to the created ACME HTTP01 solver ingress.",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"labels": {
+																		Description:         "Labels that should be added to the created ACME HTTP01 solver ingress.",
+																		MarkdownDescription: "Labels that should be added to the created ACME HTTP01 solver ingress.",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "The name of the ingress resource that should have ACME challenge solving routes inserted into it in order to solve HTTP01 challenges. This is typically used in conjunction with ingress controllers like ingress-gce, which maintains a 1:1 mapping between external IPs and ingress resources.",
+														MarkdownDescription: "The name of the ingress resource that should have ACME challenge solving routes inserted into it in order to solve HTTP01 challenges. This is typically used in conjunction with ingress controllers like ingress-gce, which maintains a 1:1 mapping between external IPs and ingress resources.",
 
 														Type: types.StringType,
 
@@ -2531,71 +2635,15 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 												Computed: false,
 											},
 
-											"route53": {
-												Description:         "Use the AWS Route53 API to manage DNS01 challenge records.",
-												MarkdownDescription: "Use the AWS Route53 API to manage DNS01 challenge records.",
+											"webhook": {
+												Description:         "Configure an external webhook based DNS01 challenge solver to manage DNS01 challenge records.",
+												MarkdownDescription: "Configure an external webhook based DNS01 challenge solver to manage DNS01 challenge records.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"access_key_id": {
-														Description:         "The AccessKeyID is used for authentication. Cannot be set when SecretAccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-														MarkdownDescription: "The AccessKeyID is used for authentication. Cannot be set when SecretAccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"access_key_id_secret_ref": {
-														Description:         "The SecretAccessKey is used for authentication. If set, pull the AWS access key ID from a key within a Kubernetes Secret. Cannot be set when AccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-														MarkdownDescription: "The SecretAccessKey is used for authentication. If set, pull the AWS access key ID from a key within a Kubernetes Secret. Cannot be set when AccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"hosted_zone_id": {
-														Description:         "If set, the provider will manage only this zone in Route53 and will not do an lookup using the route53:ListHostedZonesByName api call.",
-														MarkdownDescription: "If set, the provider will manage only this zone in Route53 and will not do an lookup using the route53:ListHostedZonesByName api call.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"region": {
-														Description:         "Always set the region when using AccessKeyID and SecretAccessKey",
-														MarkdownDescription: "Always set the region when using AccessKeyID and SecretAccessKey",
+													"solver_name": {
+														Description:         "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g. 'cloudflare'.",
+														MarkdownDescription: "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g. 'cloudflare'.",
 
 														Type: types.StringType,
 
@@ -2604,48 +2652,25 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 														Computed: false,
 													},
 
-													"role": {
-														Description:         "Role is a Role ARN which the Route53 provider will assume using either the explicit credentials AccessKeyID/SecretAccessKey or the inferred credentials from environment variables, shared credentials file or AWS Instance metadata",
-														MarkdownDescription: "Role is a Role ARN which the Route53 provider will assume using either the explicit credentials AccessKeyID/SecretAccessKey or the inferred credentials from environment variables, shared credentials file or AWS Instance metadata",
+													"config": {
+														Description:         "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
+														MarkdownDescription: "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
 
-														Type: types.StringType,
+														Type: types.MapType{ElemType: types.StringType},
 
 														Required: false,
 														Optional: true,
 														Computed: false,
 													},
 
-													"secret_access_key_secret_ref": {
-														Description:         "The SecretAccessKey is used for authentication. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-														MarkdownDescription: "The SecretAccessKey is used for authentication. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+													"group_name": {
+														Description:         "The API group name that should be used when POSTing ChallengePayload resources to the webhook apiserver. This should be the same as the GroupName specified in the webhook provider implementation.",
+														MarkdownDescription: "The API group name that should be used when POSTing ChallengePayload resources to the webhook apiserver. This should be the same as the GroupName specified in the webhook provider implementation.",
 
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+														Type: types.StringType,
 
-															"name": {
-																Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
+														Required: true,
+														Optional: false,
 														Computed: false,
 													},
 												}),
@@ -2667,17 +2692,6 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"name": {
 																Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
@@ -2686,6 +2700,17 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 
 																Required: true,
 																Optional: false,
+																Computed: false,
+															},
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
 																Computed: false,
 															},
 														}),
@@ -2717,6 +2742,51 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 												MarkdownDescription: "Use the Microsoft Azure DNS API to manage DNS01 challenge records.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"managed_identity": {
+														Description:         "managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID",
+														MarkdownDescription: "managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"client_id": {
+																Description:         "client ID of the managed identity, can not be used at the same time as resourceID",
+																MarkdownDescription: "client ID of the managed identity, can not be used at the same time as resourceID",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"resource_id": {
+																Description:         "resource ID of the managed identity, can not be used at the same time as clientID",
+																MarkdownDescription: "resource ID of the managed identity, can not be used at the same time as clientID",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"resource_group_name": {
+														Description:         "resource group the DNS zone is located in",
+														MarkdownDescription: "resource group the DNS zone is located in",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
 
 													"subscription_id": {
 														Description:         "ID of the Azure subscription",
@@ -2806,51 +2876,6 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 														Optional: true,
 														Computed: false,
 													},
-
-													"managed_identity": {
-														Description:         "managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID",
-														MarkdownDescription: "managed identity configuration, can not be used at the same time as clientID, clientSecretSecretRef or tenantID",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"resource_id": {
-																Description:         "resource ID of the managed identity, can not be used at the same time as clientID",
-																MarkdownDescription: "resource ID of the managed identity, can not be used at the same time as clientID",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"client_id": {
-																Description:         "client ID of the managed identity, can not be used at the same time as resourceID",
-																MarkdownDescription: "client ID of the managed identity, can not be used at the same time as resourceID",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"resource_group_name": {
-														Description:         "resource group the DNS zone is located in",
-														MarkdownDescription: "resource group the DNS zone is located in",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
 												}),
 
 												Required: false,
@@ -2932,17 +2957,6 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"tsig_key_name": {
-														Description:         "The TSIG Key name configured in the DNS. If ''tsigSecretSecretRef'' is defined, this field is required.",
-														MarkdownDescription: "The TSIG Key name configured in the DNS. If ''tsigSecretSecretRef'' is defined, this field is required.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
 													"tsig_secret_secret_ref": {
 														Description:         "The name of the secret containing the TSIG value. If ''tsigKeyName'' is defined, this field is required.",
 														MarkdownDescription: "The name of the secret containing the TSIG value. If ''tsigKeyName'' is defined, this field is required.",
@@ -2998,6 +3012,17 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 														Optional: true,
 														Computed: false,
 													},
+
+													"tsig_key_name": {
+														Description:         "The TSIG Key name configured in the DNS. If ''tsigSecretSecretRef'' is defined, this field is required.",
+														MarkdownDescription: "The TSIG Key name configured in the DNS. If ''tsigSecretSecretRef'' is defined, this field is required.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
 												}),
 
 												Required: false,
@@ -3005,42 +3030,121 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 												Computed: false,
 											},
 
-											"webhook": {
-												Description:         "Configure an external webhook based DNS01 challenge solver to manage DNS01 challenge records.",
-												MarkdownDescription: "Configure an external webhook based DNS01 challenge solver to manage DNS01 challenge records.",
+											"route53": {
+												Description:         "Use the AWS Route53 API to manage DNS01 challenge records.",
+												MarkdownDescription: "Use the AWS Route53 API to manage DNS01 challenge records.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"config": {
-														Description:         "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
-														MarkdownDescription: "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
+													"region": {
+														Description:         "Always set the region when using AccessKeyID and SecretAccessKey",
+														MarkdownDescription: "Always set the region when using AccessKeyID and SecretAccessKey",
 
-														Type: types.MapType{ElemType: types.StringType},
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"role": {
+														Description:         "Role is a Role ARN which the Route53 provider will assume using either the explicit credentials AccessKeyID/SecretAccessKey or the inferred credentials from environment variables, shared credentials file or AWS Instance metadata",
+														MarkdownDescription: "Role is a Role ARN which the Route53 provider will assume using either the explicit credentials AccessKeyID/SecretAccessKey or the inferred credentials from environment variables, shared credentials file or AWS Instance metadata",
+
+														Type: types.StringType,
 
 														Required: false,
 														Optional: true,
 														Computed: false,
 													},
 
-													"group_name": {
-														Description:         "The API group name that should be used when POSTing ChallengePayload resources to the webhook apiserver. This should be the same as the GroupName specified in the webhook provider implementation.",
-														MarkdownDescription: "The API group name that should be used when POSTing ChallengePayload resources to the webhook apiserver. This should be the same as the GroupName specified in the webhook provider implementation.",
+													"secret_access_key_secret_ref": {
+														Description:         "The SecretAccessKey is used for authentication. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+														MarkdownDescription: "The SecretAccessKey is used for authentication. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
 
-														Type: types.StringType,
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-														Required: true,
-														Optional: false,
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
 														Computed: false,
 													},
 
-													"solver_name": {
-														Description:         "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g. 'cloudflare'.",
-														MarkdownDescription: "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g. 'cloudflare'.",
+													"access_key_id": {
+														Description:         "The AccessKeyID is used for authentication. Cannot be set when SecretAccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+														MarkdownDescription: "The AccessKeyID is used for authentication. Cannot be set when SecretAccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
 
 														Type: types.StringType,
 
-														Required: true,
-														Optional: false,
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"access_key_id_secret_ref": {
+														Description:         "The SecretAccessKey is used for authentication. If set, pull the AWS access key ID from a key within a Kubernetes Secret. Cannot be set when AccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+														MarkdownDescription: "The SecretAccessKey is used for authentication. If set, pull the AWS access key ID from a key within a Kubernetes Secret. Cannot be set when AccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"hosted_zone_id": {
+														Description:         "If set, the provider will manage only this zone in Route53 and will not do an lookup using the route53:ListHostedZonesByName api call.",
+														MarkdownDescription: "If set, the provider will manage only this zone in Route53 and will not do an lookup using the route53:ListHostedZonesByName api call.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
 														Computed: false,
 													},
 												}),
@@ -3061,6 +3165,39 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 								Optional: true,
 								Computed: false,
 							},
+
+							"enable_duration_feature": {
+								Description:         "Enables requesting a Not After date on certificates that matches the duration of the certificate. This is not supported by all ACME servers like Let's Encrypt. If set to true when the ACME server does not support it it will create an error on the Order. Defaults to false.",
+								MarkdownDescription: "Enables requesting a Not After date on certificates that matches the duration of the certificate. This is not supported by all ACME servers like Let's Encrypt. If set to true when the ACME server does not support it it will create an error on the Order. Defaults to false.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"preferred_chain": {
+								Description:         "PreferredChain is the chain to use if the ACME server outputs multiple. PreferredChain is no guarantee that this one gets delivered by the ACME endpoint. For example, for Let's Encrypt's DST crosssign you would use: 'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA. This value picks the first certificate bundle in the ACME alternative chains that has a certificate with this value as its issuer's CN",
+								MarkdownDescription: "PreferredChain is the chain to use if the ACME server outputs multiple. PreferredChain is no guarantee that this one gets delivered by the ACME endpoint. For example, for Let's Encrypt's DST crosssign you would use: 'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA. This value picks the first certificate bundle in the ACME alternative chains that has a certificate with this value as its issuer's CN",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"skip_tls_verify": {
+								Description:         "Enables or disables validation of the ACME server TLS certificate. If true, requests to the ACME server will not have their TLS certificate validated (i.e. insecure connections will be allowed). Only enable this option in development environments. The cert-manager system installed roots will be used to verify connections to the ACME server if this is false. Defaults to false.",
+								MarkdownDescription: "Enables or disables validation of the ACME server TLS certificate. If true, requests to the ACME server will not have their TLS certificate validated (i.e. insecure connections will be allowed). Only enable this option in development environments. The cert-manager system installed roots will be used to verify connections to the ACME server if this is false. Defaults to false.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						}),
 
 						Required: false,
@@ -3073,6 +3210,17 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 						MarkdownDescription: "CA configures this issuer to sign certificates using a signing CA keypair stored in a Secret resource. This is used to build internal PKIs that are managed by cert-manager.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"crl_distribution_points": {
+								Description:         "The CRL distribution points is an X.509 v3 certificate extension which identifies the location of the CRL from which the revocation of this certificate can be checked. If not set, certificates will be issued without distribution points set.",
+								MarkdownDescription: "The CRL distribution points is an X.509 v3 certificate extension which identifies the location of the CRL from which the revocation of this certificate can be checked. If not set, certificates will be issued without distribution points set.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"ocsp_servers": {
 								Description:         "The OCSP server list is an X.509 v3 extension that defines a list of URLs of OCSP responders. The OCSP responders can be queried for the revocation status of an issued certificate. If not set, the certificate will be issued with no OCSP servers set. For example, an OCSP server URL could be 'http://ocsp.int-x3.letsencrypt.org'.",
@@ -3093,17 +3241,6 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 
 								Required: true,
 								Optional: false,
-								Computed: false,
-							},
-
-							"crl_distribution_points": {
-								Description:         "The CRL distribution points is an X.509 v3 certificate extension which identifies the location of the CRL from which the revocation of this certificate can be checked. If not set, certificates will be issued without distribution points set.",
-								MarkdownDescription: "The CRL distribution points is an X.509 v3 certificate extension which identifies the location of the CRL from which the revocation of this certificate can be checked. If not set, certificates will be issued without distribution points set.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
 								Computed: false,
 							},
 						}),
@@ -3154,6 +3291,17 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+											"path": {
+												Description:         "Path where the App Role authentication backend is mounted in Vault, e.g: 'approle'",
+												MarkdownDescription: "Path where the App Role authentication backend is mounted in Vault, e.g: 'approle'",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
 											"role_id": {
 												Description:         "RoleID configured in the App Role authentication backend when setting up the authentication backend in Vault.",
 												MarkdownDescription: "RoleID configured in the App Role authentication backend when setting up the authentication backend in Vault.",
@@ -3198,17 +3346,6 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 												Optional: false,
 												Computed: false,
 											},
-
-											"path": {
-												Description:         "Path where the App Role authentication backend is mounted in Vault, e.g: 'approle'",
-												MarkdownDescription: "Path where the App Role authentication backend is mounted in Vault, e.g: 'approle'",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
 										}),
 
 										Required: false,
@@ -3221,6 +3358,28 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 										MarkdownDescription: "Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"mount_path": {
+												Description:         "The Vault mountPath here is the mount path to use when authenticating with Vault. For example, setting a value to '/v1/auth/foo', will use the path '/v1/auth/foo/login' to authenticate with Vault. If unspecified, the default value '/v1/auth/kubernetes' will be used.",
+												MarkdownDescription: "The Vault mountPath here is the mount path to use when authenticating with Vault. For example, setting a value to '/v1/auth/foo', will use the path '/v1/auth/foo/login' to authenticate with Vault. If unspecified, the default value '/v1/auth/kubernetes' will be used.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"role": {
+												Description:         "A required field containing the Vault Role to assume. A Role binds a Kubernetes ServiceAccount with a set of Vault policies.",
+												MarkdownDescription: "A required field containing the Vault Role to assume. A Role binds a Kubernetes ServiceAccount with a set of Vault policies.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
 
 											"secret_ref": {
 												Description:         "The required Secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Vault. Use of 'ambient credentials' is not supported.",
@@ -3250,28 +3409,6 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 														Computed: false,
 													},
 												}),
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"mount_path": {
-												Description:         "The Vault mountPath here is the mount path to use when authenticating with Vault. For example, setting a value to '/v1/auth/foo', will use the path '/v1/auth/foo/login' to authenticate with Vault. If unspecified, the default value '/v1/auth/kubernetes' will be used.",
-												MarkdownDescription: "The Vault mountPath here is the mount path to use when authenticating with Vault. For example, setting a value to '/v1/auth/foo', will use the path '/v1/auth/foo/login' to authenticate with Vault. If unspecified, the default value '/v1/auth/kubernetes' will be used.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"role": {
-												Description:         "A required field containing the Vault Role to assume. A Role binds a Kubernetes ServiceAccount with a set of Vault policies.",
-												MarkdownDescription: "A required field containing the Vault Role to assume. A Role binds a Kubernetes ServiceAccount with a set of Vault policies.",
-
-												Type: types.StringType,
 
 												Required: true,
 												Optional: false,
@@ -3360,143 +3497,6 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 							"server": {
 								Description:         "Server is the connection address for the Vault server, e.g: 'https://vault.example.com:8200'.",
 								MarkdownDescription: "Server is the connection address for the Vault server, e.g: 'https://vault.example.com:8200'.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"venafi": {
-						Description:         "Venafi configures this issuer to sign certificates using a Venafi TPP or Venafi Cloud policy zone.",
-						MarkdownDescription: "Venafi configures this issuer to sign certificates using a Venafi TPP or Venafi Cloud policy zone.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"cloud": {
-								Description:         "Cloud specifies the Venafi cloud configuration settings. Only one of TPP or Cloud may be specified.",
-								MarkdownDescription: "Cloud specifies the Venafi cloud configuration settings. Only one of TPP or Cloud may be specified.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"url": {
-										Description:         "URL is the base URL for Venafi Cloud. Defaults to 'https://api.venafi.cloud/v1'.",
-										MarkdownDescription: "URL is the base URL for Venafi Cloud. Defaults to 'https://api.venafi.cloud/v1'.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"api_token_secret_ref": {
-										Description:         "APITokenSecretRef is a secret key selector for the Venafi Cloud API token.",
-										MarkdownDescription: "APITokenSecretRef is a secret key selector for the Venafi Cloud API token.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-												MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"tpp": {
-								Description:         "TPP specifies Trust Protection Platform configuration settings. Only one of TPP or Cloud may be specified.",
-								MarkdownDescription: "TPP specifies Trust Protection Platform configuration settings. Only one of TPP or Cloud may be specified.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"credentials_ref": {
-										Description:         "CredentialsRef is a reference to a Secret containing the username and password for the TPP server. The secret must contain two keys, 'username' and 'password'.",
-										MarkdownDescription: "CredentialsRef is a reference to a Secret containing the username and password for the TPP server. The secret must contain two keys, 'username' and 'password'.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"url": {
-										Description:         "URL is the base URL for the vedsdk endpoint of the Venafi TPP instance, for example: 'https://tpp.example.com/vedsdk'.",
-										MarkdownDescription: "URL is the base URL for the vedsdk endpoint of the Venafi TPP instance, for example: 'https://tpp.example.com/vedsdk'.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"ca_bundle": {
-										Description:         "CABundle is a PEM encoded TLS certificate to use to verify connections to the TPP instance. If specified, system roots will not be used and the issuing CA for the TPP instance must be verifiable using the provided root. If not specified, the connection will be verified using the cert-manager system root certificates.",
-										MarkdownDescription: "CABundle is a PEM encoded TLS certificate to use to verify connections to the TPP instance. If specified, system roots will not be used and the issuing CA for the TPP instance must be verifiable using the provided root. If not specified, the connection will be verified using the cert-manager system root certificates.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"zone": {
-								Description:         "Zone is the Venafi Policy Zone to use for this issuer. All requests made to the Venafi platform will be restricted by the named zone policy. This field is required.",
-								MarkdownDescription: "Zone is the Venafi Policy Zone to use for this issuer. All requests made to the Venafi platform will be restricted by the named zone policy. This field is required.",
 
 								Type: types.StringType,
 

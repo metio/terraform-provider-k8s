@@ -52,15 +52,15 @@ type CouchbaseComCouchbaseReplicationV2GoModel struct {
 	ExplicitMapping *struct {
 		AllowRules *[]struct {
 			SourceKeyspace *struct {
-				Collection *string `tfsdk:"collection" yaml:"collection,omitempty"`
-
 				Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
+
+				Collection *string `tfsdk:"collection" yaml:"collection,omitempty"`
 			} `tfsdk:"source_keyspace" yaml:"sourceKeyspace,omitempty"`
 
 			TargetKeyspace *struct {
-				Collection *string `tfsdk:"collection" yaml:"collection,omitempty"`
-
 				Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
+
+				Collection *string `tfsdk:"collection" yaml:"collection,omitempty"`
 			} `tfsdk:"target_keyspace" yaml:"targetKeyspace,omitempty"`
 		} `tfsdk:"allow_rules" yaml:"allowRules,omitempty"`
 
@@ -74,15 +74,15 @@ type CouchbaseComCouchbaseReplicationV2GoModel struct {
 	} `tfsdk:"explicit_mapping" yaml:"explicitMapping,omitempty"`
 
 	Spec *struct {
-		Bucket *string `tfsdk:"bucket" yaml:"bucket,omitempty"`
-
-		CompressionType *string `tfsdk:"compression_type" yaml:"compressionType,omitempty"`
-
 		FilterExpression *string `tfsdk:"filter_expression" yaml:"filterExpression,omitempty"`
 
 		Paused *bool `tfsdk:"paused" yaml:"paused,omitempty"`
 
 		RemoteBucket *string `tfsdk:"remote_bucket" yaml:"remoteBucket,omitempty"`
+
+		Bucket *string `tfsdk:"bucket" yaml:"bucket,omitempty"`
+
+		CompressionType *string `tfsdk:"compression_type" yaml:"compressionType,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -195,17 +195,6 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"collection": {
-										Description:         "The optional collection within the scope. May be empty to just work at scope level.",
-										MarkdownDescription: "The optional collection within the scope. May be empty to just work at scope level.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"scope": {
 										Description:         "The scope to use.",
 										MarkdownDescription: "The scope to use.",
@@ -214,6 +203,17 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 
 										Required: true,
 										Optional: false,
+										Computed: false,
+									},
+
+									"collection": {
+										Description:         "The optional collection within the scope. May be empty to just work at scope level.",
+										MarkdownDescription: "The optional collection within the scope. May be empty to just work at scope level.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 								}),
@@ -229,17 +229,6 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"collection": {
-										Description:         "The optional collection within the scope. May be empty to just work at scope level.",
-										MarkdownDescription: "The optional collection within the scope. May be empty to just work at scope level.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"scope": {
 										Description:         "The scope to use.",
 										MarkdownDescription: "The scope to use.",
@@ -248,6 +237,17 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 
 										Required: true,
 										Optional: false,
+										Computed: false,
+									},
+
+									"collection": {
+										Description:         "The optional collection within the scope. May be empty to just work at scope level.",
+										MarkdownDescription: "The optional collection within the scope. May be empty to just work at scope level.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 								}),
@@ -321,28 +321,6 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"bucket": {
-						Description:         "Bucket is the source bucket to replicate from.  This refers to the Couchbase bucket name, not the resource name of the bucket.  A bucket with this name must be defined on this cluster.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
-						MarkdownDescription: "Bucket is the source bucket to replicate from.  This refers to the Couchbase bucket name, not the resource name of the bucket.  A bucket with this name must be defined on this cluster.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"compression_type": {
-						Description:         "CompressionType is the type of compression to apply to the replication. When None, no compression will be applied to documents as they are transferred between clusters.  When Auto, Couchbase server will automatically compress documents as they are transferred to reduce bandwidth requirements. This field must be one of 'None' or 'Auto', defaulting to 'Auto'.",
-						MarkdownDescription: "CompressionType is the type of compression to apply to the replication. When None, no compression will be applied to documents as they are transferred between clusters.  When Auto, Couchbase server will automatically compress documents as they are transferred to reduce bandwidth requirements. This field must be one of 'None' or 'Auto', defaulting to 'Auto'.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"filter_expression": {
 						Description:         "FilterExpression allows certain documents to be filtered out of the replication.",
 						MarkdownDescription: "FilterExpression allows certain documents to be filtered out of the replication.",
@@ -373,6 +351,28 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"bucket": {
+						Description:         "Bucket is the source bucket to replicate from.  This refers to the Couchbase bucket name, not the resource name of the bucket.  A bucket with this name must be defined on this cluster.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
+						MarkdownDescription: "Bucket is the source bucket to replicate from.  This refers to the Couchbase bucket name, not the resource name of the bucket.  A bucket with this name must be defined on this cluster.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"compression_type": {
+						Description:         "CompressionType is the type of compression to apply to the replication. When None, no compression will be applied to documents as they are transferred between clusters.  When Auto, Couchbase server will automatically compress documents as they are transferred to reduce bandwidth requirements. This field must be one of 'None' or 'Auto', defaulting to 'Auto'.",
+						MarkdownDescription: "CompressionType is the type of compression to apply to the replication. When None, no compression will be applied to documents as they are transferred between clusters.  When Auto, Couchbase server will automatically compress documents as they are transferred to reduce bandwidth requirements. This field must be one of 'None' or 'Auto', defaulting to 'Auto'.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 				}),

@@ -52,38 +52,6 @@ type NetworkingIstioIoGatewayV1Alpha3GoModel struct {
 		Selector *map[string]string `tfsdk:"selector" yaml:"selector,omitempty"`
 
 		Servers *[]struct {
-			Tls *struct {
-				CipherSuites *[]string `tfsdk:"cipher_suites" yaml:"cipherSuites,omitempty"`
-
-				MaxProtocolVersion *string `tfsdk:"max_protocol_version" yaml:"maxProtocolVersion,omitempty"`
-
-				MinProtocolVersion *string `tfsdk:"min_protocol_version" yaml:"minProtocolVersion,omitempty"`
-
-				Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
-
-				VerifyCertificateHash *[]string `tfsdk:"verify_certificate_hash" yaml:"verifyCertificateHash,omitempty"`
-
-				VerifyCertificateSpki *[]string `tfsdk:"verify_certificate_spki" yaml:"verifyCertificateSpki,omitempty"`
-
-				CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
-
-				HttpsRedirect *bool `tfsdk:"https_redirect" yaml:"httpsRedirect,omitempty"`
-
-				PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
-
-				ServerCertificate *string `tfsdk:"server_certificate" yaml:"serverCertificate,omitempty"`
-
-				SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
-
-				CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
-			} `tfsdk:"tls" yaml:"tls,omitempty"`
-
-			Bind *string `tfsdk:"bind" yaml:"bind,omitempty"`
-
-			DefaultEndpoint *string `tfsdk:"default_endpoint" yaml:"defaultEndpoint,omitempty"`
-
-			Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
-
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Port *struct {
@@ -95,6 +63,38 @@ type NetworkingIstioIoGatewayV1Alpha3GoModel struct {
 
 				TargetPort *int64 `tfsdk:"target_port" yaml:"targetPort,omitempty"`
 			} `tfsdk:"port" yaml:"port,omitempty"`
+
+			Tls *struct {
+				ServerCertificate *string `tfsdk:"server_certificate" yaml:"serverCertificate,omitempty"`
+
+				SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
+
+				VerifyCertificateSpki *[]string `tfsdk:"verify_certificate_spki" yaml:"verifyCertificateSpki,omitempty"`
+
+				CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
+
+				CipherSuites *[]string `tfsdk:"cipher_suites" yaml:"cipherSuites,omitempty"`
+
+				CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
+
+				MaxProtocolVersion *string `tfsdk:"max_protocol_version" yaml:"maxProtocolVersion,omitempty"`
+
+				PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
+
+				HttpsRedirect *bool `tfsdk:"https_redirect" yaml:"httpsRedirect,omitempty"`
+
+				MinProtocolVersion *string `tfsdk:"min_protocol_version" yaml:"minProtocolVersion,omitempty"`
+
+				Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
+
+				VerifyCertificateHash *[]string `tfsdk:"verify_certificate_hash" yaml:"verifyCertificateHash,omitempty"`
+			} `tfsdk:"tls" yaml:"tls,omitempty"`
+
+			Bind *string `tfsdk:"bind" yaml:"bind,omitempty"`
+
+			DefaultEndpoint *string `tfsdk:"default_endpoint" yaml:"defaultEndpoint,omitempty"`
+
+			Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
 		} `tfsdk:"servers" yaml:"servers,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -213,183 +213,6 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"tls": {
-								Description:         "Set of TLS related options that govern the server's behavior.",
-								MarkdownDescription: "Set of TLS related options that govern the server's behavior.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"cipher_suites": {
-										Description:         "Optional: If specified, only support the specified cipher list.",
-										MarkdownDescription: "Optional: If specified, only support the specified cipher list.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"max_protocol_version": {
-										Description:         "Optional: Maximum TLS protocol version.",
-										MarkdownDescription: "Optional: Maximum TLS protocol version.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"min_protocol_version": {
-										Description:         "Optional: Minimum TLS protocol version.",
-										MarkdownDescription: "Optional: Minimum TLS protocol version.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"mode": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"verify_certificate_hash": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"verify_certificate_spki": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"ca_certificates": {
-										Description:         "REQUIRED if mode is 'MUTUAL'.",
-										MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"https_redirect": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"private_key": {
-										Description:         "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
-										MarkdownDescription: "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"server_certificate": {
-										Description:         "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
-										MarkdownDescription: "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"subject_alt_names": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"credential_name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"bind": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"default_endpoint": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"hosts": {
-								Description:         "One or more hosts exposed by this gateway.",
-								MarkdownDescription: "One or more hosts exposed by this gateway.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"name": {
 								Description:         "An optional name of the server, when set must be unique across all servers.",
 								MarkdownDescription: "An optional name of the server, when set must be unique across all servers.",
@@ -451,6 +274,183 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tls": {
+								Description:         "Set of TLS related options that govern the server's behavior.",
+								MarkdownDescription: "Set of TLS related options that govern the server's behavior.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"server_certificate": {
+										Description:         "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
+										MarkdownDescription: "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"subject_alt_names": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"verify_certificate_spki": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"ca_certificates": {
+										Description:         "REQUIRED if mode is 'MUTUAL'.",
+										MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"cipher_suites": {
+										Description:         "Optional: If specified, only support the specified cipher list.",
+										MarkdownDescription: "Optional: If specified, only support the specified cipher list.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"credential_name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"max_protocol_version": {
+										Description:         "Optional: Maximum TLS protocol version.",
+										MarkdownDescription: "Optional: Maximum TLS protocol version.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"private_key": {
+										Description:         "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
+										MarkdownDescription: "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"https_redirect": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"min_protocol_version": {
+										Description:         "Optional: Minimum TLS protocol version.",
+										MarkdownDescription: "Optional: Minimum TLS protocol version.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"mode": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"verify_certificate_hash": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"bind": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"default_endpoint": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"hosts": {
+								Description:         "One or more hosts exposed by this gateway.",
+								MarkdownDescription: "One or more hosts exposed by this gateway.",
+
+								Type: types.ListType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,

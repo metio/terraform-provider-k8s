@@ -49,13 +49,13 @@ type KafkaStrimziIoKafkaConnectorV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Class *string `tfsdk:"class" yaml:"class,omitempty"`
-
-		Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
-
 		Pause *bool `tfsdk:"pause" yaml:"pause,omitempty"`
 
 		TasksMax *int64 `tfsdk:"tasks_max" yaml:"tasksMax,omitempty"`
+
+		Class *string `tfsdk:"class" yaml:"class,omitempty"`
+
+		Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -156,28 +156,6 @@ func (r *KafkaStrimziIoKafkaConnectorV1Beta2Resource) GetSchema(_ context.Contex
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"class": {
-						Description:         "The Class for the Kafka Connector.",
-						MarkdownDescription: "The Class for the Kafka Connector.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"config": {
-						Description:         "The Kafka Connector configuration. The following properties cannot be set: connector.class, tasks.max.",
-						MarkdownDescription: "The Kafka Connector configuration. The following properties cannot be set: connector.class, tasks.max.",
-
-						Type: types.MapType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"pause": {
 						Description:         "Whether the connector should be paused. Defaults to false.",
 						MarkdownDescription: "Whether the connector should be paused. Defaults to false.",
@@ -194,6 +172,28 @@ func (r *KafkaStrimziIoKafkaConnectorV1Beta2Resource) GetSchema(_ context.Contex
 						MarkdownDescription: "The maximum number of tasks for the Kafka Connector.",
 
 						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"class": {
+						Description:         "The Class for the Kafka Connector.",
+						MarkdownDescription: "The Class for the Kafka Connector.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"config": {
+						Description:         "The Kafka Connector configuration. The following properties cannot be set: connector.class, tasks.max.",
+						MarkdownDescription: "The Kafka Connector configuration. The following properties cannot be set: connector.class, tasks.max.",
+
+						Type: types.MapType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

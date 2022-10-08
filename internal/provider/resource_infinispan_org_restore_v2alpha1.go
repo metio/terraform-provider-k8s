@@ -49,11 +49,9 @@ type InfinispanOrgRestoreV2Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Backup *string `tfsdk:"backup" yaml:"backup,omitempty"`
-
-		Cluster *string `tfsdk:"cluster" yaml:"cluster,omitempty"`
-
 		Container *struct {
+			CliExtraJvmOpts *string `tfsdk:"cli_extra_jvm_opts" yaml:"cliExtraJvmOpts,omitempty"`
+
 			Cpu *string `tfsdk:"cpu" yaml:"cpu,omitempty"`
 
 			ExtraJvmOpts *string `tfsdk:"extra_jvm_opts" yaml:"extraJvmOpts,omitempty"`
@@ -61,11 +59,11 @@ type InfinispanOrgRestoreV2Alpha1GoModel struct {
 			Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
 
 			RouterExtraJvmOpts *string `tfsdk:"router_extra_jvm_opts" yaml:"routerExtraJvmOpts,omitempty"`
-
-			CliExtraJvmOpts *string `tfsdk:"cli_extra_jvm_opts" yaml:"cliExtraJvmOpts,omitempty"`
 		} `tfsdk:"container" yaml:"container,omitempty"`
 
 		Resources *struct {
+			ProtoSchemas *[]string `tfsdk:"proto_schemas" yaml:"protoSchemas,omitempty"`
+
 			Scripts *[]string `tfsdk:"scripts" yaml:"scripts,omitempty"`
 
 			Tasks *[]string `tfsdk:"tasks" yaml:"tasks,omitempty"`
@@ -77,9 +75,11 @@ type InfinispanOrgRestoreV2Alpha1GoModel struct {
 			Caches *[]string `tfsdk:"caches" yaml:"caches,omitempty"`
 
 			Counters *[]string `tfsdk:"counters" yaml:"counters,omitempty"`
-
-			ProtoSchemas *[]string `tfsdk:"proto_schemas" yaml:"protoSchemas,omitempty"`
 		} `tfsdk:"resources" yaml:"resources,omitempty"`
+
+		Backup *string `tfsdk:"backup" yaml:"backup,omitempty"`
+
+		Cluster *string `tfsdk:"cluster" yaml:"cluster,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -180,33 +180,22 @@ func (r *InfinispanOrgRestoreV2Alpha1Resource) GetSchema(_ context.Context) (tfs
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"backup": {
-						Description:         "The Infinispan Backup to restore",
-						MarkdownDescription: "The Infinispan Backup to restore",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"cluster": {
-						Description:         "Infinispan cluster name",
-						MarkdownDescription: "Infinispan cluster name",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
 					"container": {
 						Description:         "InfinispanContainerSpec specify resource requirements per container",
 						MarkdownDescription: "InfinispanContainerSpec specify resource requirements per container",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"cli_extra_jvm_opts": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"cpu": {
 								Description:         "",
@@ -251,17 +240,6 @@ func (r *InfinispanOrgRestoreV2Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Optional: true,
 								Computed: false,
 							},
-
-							"cli_extra_jvm_opts": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
 
 						Required: false,
@@ -274,6 +252,17 @@ func (r *InfinispanOrgRestoreV2Alpha1Resource) GetSchema(_ context.Context) (tfs
 						MarkdownDescription: "",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"proto_schemas": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"scripts": {
 								Description:         "Deprecated and to be removed on subsequent release. Use .Tasks instead.",
@@ -340,21 +329,32 @@ func (r *InfinispanOrgRestoreV2Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Optional: true,
 								Computed: false,
 							},
-
-							"proto_schemas": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
 
 						Required: false,
 						Optional: true,
+						Computed: false,
+					},
+
+					"backup": {
+						Description:         "The Infinispan Backup to restore",
+						MarkdownDescription: "The Infinispan Backup to restore",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"cluster": {
+						Description:         "Infinispan cluster name",
+						MarkdownDescription: "Infinispan cluster name",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 				}),

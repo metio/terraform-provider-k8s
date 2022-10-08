@@ -49,6 +49,22 @@ type ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Commit *struct {
+			AuthorEmail *string `tfsdk:"author_email" yaml:"authorEmail,omitempty"`
+
+			AuthorName *string `tfsdk:"author_name" yaml:"authorName,omitempty"`
+
+			MessageTemplate *string `tfsdk:"message_template" yaml:"messageTemplate,omitempty"`
+
+			SigningKey *struct {
+				SecretRef *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+			} `tfsdk:"signing_key" yaml:"signingKey,omitempty"`
+		} `tfsdk:"commit" yaml:"commit,omitempty"`
+
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
 		Push *struct {
 			Branch *string `tfsdk:"branch" yaml:"branch,omitempty"`
 		} `tfsdk:"push" yaml:"push,omitempty"`
@@ -68,22 +84,6 @@ type ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha1GoModel struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 			} `tfsdk:"git_repository_ref" yaml:"gitRepositoryRef,omitempty"`
 		} `tfsdk:"checkout" yaml:"checkout,omitempty"`
-
-		Commit *struct {
-			AuthorEmail *string `tfsdk:"author_email" yaml:"authorEmail,omitempty"`
-
-			AuthorName *string `tfsdk:"author_name" yaml:"authorName,omitempty"`
-
-			MessageTemplate *string `tfsdk:"message_template" yaml:"messageTemplate,omitempty"`
-
-			SigningKey *struct {
-				SecretRef *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-			} `tfsdk:"signing_key" yaml:"signingKey,omitempty"`
-		} `tfsdk:"commit" yaml:"commit,omitempty"`
-
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -183,6 +183,97 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha1Resource) GetSchema(_ 
 				MarkdownDescription: "ImageUpdateAutomationSpec defines the desired state of ImageUpdateAutomation",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+					"commit": {
+						Description:         "Commit specifies how to commit to the git repository.",
+						MarkdownDescription: "Commit specifies how to commit to the git repository.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"author_email": {
+								Description:         "AuthorEmail gives the email to provide when making a commit",
+								MarkdownDescription: "AuthorEmail gives the email to provide when making a commit",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"author_name": {
+								Description:         "AuthorName gives the name to provide when making a commit",
+								MarkdownDescription: "AuthorName gives the name to provide when making a commit",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"message_template": {
+								Description:         "MessageTemplate provides a template for the commit message, into which will be interpolated the details of the change made.",
+								MarkdownDescription: "MessageTemplate provides a template for the commit message, into which will be interpolated the details of the change made.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"signing_key": {
+								Description:         "SigningKey provides the option to sign commits with a GPG key",
+								MarkdownDescription: "SigningKey provides the option to sign commits with a GPG key",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"secret_ref": {
+										Description:         "SecretRef holds the name to a secret that contains a 'git.asc' key corresponding to the ASCII Armored file containing the GPG signing keypair as the value. It must be in the same namespace as the ImageUpdateAutomation.",
+										MarkdownDescription: "SecretRef holds the name to a secret that contains a 'git.asc' key corresponding to the ASCII Armored file containing the GPG signing keypair as the value. It must be in the same namespace as the ImageUpdateAutomation.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "Name of the referent.",
+												MarkdownDescription: "Name of the referent.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"interval": {
+						Description:         "Interval gives an lower bound for how often the automation run should be attempted.",
+						MarkdownDescription: "Interval gives an lower bound for how often the automation run should be attempted.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
 
 					"push": {
 						Description:         "Push specifies how and where to push commits made by the automation. If missing, commits are pushed (back) to '.spec.checkout.branch'.",
@@ -292,97 +383,6 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha1Resource) GetSchema(_ 
 								Computed: false,
 							},
 						}),
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"commit": {
-						Description:         "Commit specifies how to commit to the git repository.",
-						MarkdownDescription: "Commit specifies how to commit to the git repository.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"author_email": {
-								Description:         "AuthorEmail gives the email to provide when making a commit",
-								MarkdownDescription: "AuthorEmail gives the email to provide when making a commit",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"author_name": {
-								Description:         "AuthorName gives the name to provide when making a commit",
-								MarkdownDescription: "AuthorName gives the name to provide when making a commit",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"message_template": {
-								Description:         "MessageTemplate provides a template for the commit message, into which will be interpolated the details of the change made.",
-								MarkdownDescription: "MessageTemplate provides a template for the commit message, into which will be interpolated the details of the change made.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"signing_key": {
-								Description:         "SigningKey provides the option to sign commits with a GPG key",
-								MarkdownDescription: "SigningKey provides the option to sign commits with a GPG key",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"secret_ref": {
-										Description:         "SecretRef holds the name to a secret that contains a 'git.asc' key corresponding to the ASCII Armored file containing the GPG signing keypair as the value. It must be in the same namespace as the ImageUpdateAutomation.",
-										MarkdownDescription: "SecretRef holds the name to a secret that contains a 'git.asc' key corresponding to the ASCII Armored file containing the GPG signing keypair as the value. It must be in the same namespace as the ImageUpdateAutomation.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "Name of the referent.",
-												MarkdownDescription: "Name of the referent.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"interval": {
-						Description:         "Interval gives an lower bound for how often the automation run should be attempted.",
-						MarkdownDescription: "Interval gives an lower bound for how often the automation run should be attempted.",
-
-						Type: types.StringType,
 
 						Required: true,
 						Optional: false,

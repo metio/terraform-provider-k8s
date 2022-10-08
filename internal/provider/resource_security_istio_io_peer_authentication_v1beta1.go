@@ -49,15 +49,15 @@ type SecurityIstioIoPeerAuthenticationV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Mtls *struct {
+			Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
+		} `tfsdk:"mtls" yaml:"mtls,omitempty"`
+
 		PortLevelMtls *map[string]string `tfsdk:"port_level_mtls" yaml:"portLevelMtls,omitempty"`
 
 		Selector *struct {
 			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 		} `tfsdk:"selector" yaml:"selector,omitempty"`
-
-		Mtls *struct {
-			Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
-		} `tfsdk:"mtls" yaml:"mtls,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -158,6 +158,29 @@ func (r *SecurityIstioIoPeerAuthenticationV1Beta1Resource) GetSchema(_ context.C
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"mtls": {
+						Description:         "Mutual TLS settings for workload.",
+						MarkdownDescription: "Mutual TLS settings for workload.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"mode": {
+								Description:         "Defines the mTLS mode used for peer authentication.",
+								MarkdownDescription: "Defines the mTLS mode used for peer authentication.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"port_level_mtls": {
 						Description:         "Port specific mutual TLS settings.",
 						MarkdownDescription: "Port specific mutual TLS settings.",
@@ -180,29 +203,6 @@ func (r *SecurityIstioIoPeerAuthenticationV1Beta1Resource) GetSchema(_ context.C
 								MarkdownDescription: "",
 
 								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"mtls": {
-						Description:         "Mutual TLS settings for workload.",
-						MarkdownDescription: "Mutual TLS settings for workload.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"mode": {
-								Description:         "Defines the mTLS mode used for peer authentication.",
-								MarkdownDescription: "Defines the mTLS mode used for peer authentication.",
-
-								Type: types.StringType,
 
 								Required: false,
 								Optional: true,

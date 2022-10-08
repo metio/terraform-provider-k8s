@@ -49,6 +49,14 @@ type SourceToolkitFluxcdIoGitRepositoryV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
+
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+
+		Url *string `tfsdk:"url" yaml:"url,omitempty"`
+
 		Verify *struct {
 			Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
 
@@ -57,49 +65,41 @@ type SourceToolkitFluxcdIoGitRepositoryV1Beta1GoModel struct {
 			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 		} `tfsdk:"verify" yaml:"verify,omitempty"`
 
-		GitImplementation *string `tfsdk:"git_implementation" yaml:"gitImplementation,omitempty"`
-
-		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
-
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-		RecurseSubmodules *bool `tfsdk:"recurse_submodules" yaml:"recurseSubmodules,omitempty"`
-
-		Ref *struct {
-			Branch *string `tfsdk:"branch" yaml:"branch,omitempty"`
-
-			Commit *string `tfsdk:"commit" yaml:"commit,omitempty"`
-
-			Semver *string `tfsdk:"semver" yaml:"semver,omitempty"`
-
-			Tag *string `tfsdk:"tag" yaml:"tag,omitempty"`
-		} `tfsdk:"ref" yaml:"ref,omitempty"`
-
-		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
-
-		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
 		AccessFrom *struct {
 			NamespaceSelectors *[]struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 			} `tfsdk:"namespace_selectors" yaml:"namespaceSelectors,omitempty"`
 		} `tfsdk:"access_from" yaml:"accessFrom,omitempty"`
 
+		GitImplementation *string `tfsdk:"git_implementation" yaml:"gitImplementation,omitempty"`
+
 		Include *[]struct {
+			ToPath *string `tfsdk:"to_path" yaml:"toPath,omitempty"`
+
 			FromPath *string `tfsdk:"from_path" yaml:"fromPath,omitempty"`
 
 			Repository *struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 			} `tfsdk:"repository" yaml:"repository,omitempty"`
-
-			ToPath *string `tfsdk:"to_path" yaml:"toPath,omitempty"`
 		} `tfsdk:"include" yaml:"include,omitempty"`
+
+		RecurseSubmodules *bool `tfsdk:"recurse_submodules" yaml:"recurseSubmodules,omitempty"`
+
+		Ref *struct {
+			Commit *string `tfsdk:"commit" yaml:"commit,omitempty"`
+
+			Semver *string `tfsdk:"semver" yaml:"semver,omitempty"`
+
+			Tag *string `tfsdk:"tag" yaml:"tag,omitempty"`
+
+			Branch *string `tfsdk:"branch" yaml:"branch,omitempty"`
+		} `tfsdk:"ref" yaml:"ref,omitempty"`
 
 		SecretRef *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
-		Url *string `tfsdk:"url" yaml:"url,omitempty"`
+		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -200,6 +200,50 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta1Resource) GetSchema(_ context.
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"ignore": {
+						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"interval": {
+						Description:         "The interval at which to check for repository updates.",
+						MarkdownDescription: "The interval at which to check for repository updates.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"suspend": {
+						Description:         "This flag tells the controller to suspend the reconciliation of this source.",
+						MarkdownDescription: "This flag tells the controller to suspend the reconciliation of this source.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"url": {
+						Description:         "The repository URL, can be a HTTP/S or SSH address.",
+						MarkdownDescription: "The repository URL, can be a HTTP/S or SSH address.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
 					"verify": {
 						Description:         "Verify OpenPGP signature for the Git commit HEAD points to.",
 						MarkdownDescription: "Verify OpenPGP signature for the Git commit HEAD points to.",
@@ -246,128 +290,6 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta1Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"git_implementation": {
-						Description:         "Determines which git client library to use. Defaults to go-git, valid values are ('go-git', 'libgit2').",
-						MarkdownDescription: "Determines which git client library to use. Defaults to go-git, valid values are ('go-git', 'libgit2').",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"ignore": {
-						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
-						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"interval": {
-						Description:         "The interval at which to check for repository updates.",
-						MarkdownDescription: "The interval at which to check for repository updates.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"recurse_submodules": {
-						Description:         "When enabled, after the clone is created, initializes all submodules within, using their default settings. This option is available only when using the 'go-git' GitImplementation.",
-						MarkdownDescription: "When enabled, after the clone is created, initializes all submodules within, using their default settings. This option is available only when using the 'go-git' GitImplementation.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"ref": {
-						Description:         "The Git reference to checkout and monitor for changes, defaults to master branch.",
-						MarkdownDescription: "The Git reference to checkout and monitor for changes, defaults to master branch.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"branch": {
-								Description:         "The Git branch to checkout, defaults to master.",
-								MarkdownDescription: "The Git branch to checkout, defaults to master.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"commit": {
-								Description:         "The Git commit SHA to checkout, if specified Tag filters will be ignored.",
-								MarkdownDescription: "The Git commit SHA to checkout, if specified Tag filters will be ignored.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"semver": {
-								Description:         "The Git tag semver expression, takes precedence over Tag.",
-								MarkdownDescription: "The Git tag semver expression, takes precedence over Tag.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"tag": {
-								Description:         "The Git tag to checkout, takes precedence over Branch.",
-								MarkdownDescription: "The Git tag to checkout, takes precedence over Branch.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"suspend": {
-						Description:         "This flag tells the controller to suspend the reconciliation of this source.",
-						MarkdownDescription: "This flag tells the controller to suspend the reconciliation of this source.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"timeout": {
-						Description:         "The timeout for remote Git operations like cloning, defaults to 60s.",
-						MarkdownDescription: "The timeout for remote Git operations like cloning, defaults to 60s.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"access_from": {
 						Description:         "AccessFrom defines an Access Control List for allowing cross-namespace references to this object.",
 						MarkdownDescription: "AccessFrom defines an Access Control List for allowing cross-namespace references to this object.",
@@ -403,11 +325,33 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta1Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
+					"git_implementation": {
+						Description:         "Determines which git client library to use. Defaults to go-git, valid values are ('go-git', 'libgit2').",
+						MarkdownDescription: "Determines which git client library to use. Defaults to go-git, valid values are ('go-git', 'libgit2').",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"include": {
 						Description:         "Extra git repositories to map into the repository",
 						MarkdownDescription: "Extra git repositories to map into the repository",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"to_path": {
+								Description:         "The path to copy contents to, defaults to the name of the source ref.",
+								MarkdownDescription: "The path to copy contents to, defaults to the name of the source ref.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"from_path": {
 								Description:         "The path to copy contents from, defaults to the root directory.",
@@ -442,10 +386,66 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta1Resource) GetSchema(_ context.
 								Optional: false,
 								Computed: false,
 							},
+						}),
 
-							"to_path": {
-								Description:         "The path to copy contents to, defaults to the name of the source ref.",
-								MarkdownDescription: "The path to copy contents to, defaults to the name of the source ref.",
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"recurse_submodules": {
+						Description:         "When enabled, after the clone is created, initializes all submodules within, using their default settings. This option is available only when using the 'go-git' GitImplementation.",
+						MarkdownDescription: "When enabled, after the clone is created, initializes all submodules within, using their default settings. This option is available only when using the 'go-git' GitImplementation.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"ref": {
+						Description:         "The Git reference to checkout and monitor for changes, defaults to master branch.",
+						MarkdownDescription: "The Git reference to checkout and monitor for changes, defaults to master branch.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"commit": {
+								Description:         "The Git commit SHA to checkout, if specified Tag filters will be ignored.",
+								MarkdownDescription: "The Git commit SHA to checkout, if specified Tag filters will be ignored.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"semver": {
+								Description:         "The Git tag semver expression, takes precedence over Tag.",
+								MarkdownDescription: "The Git tag semver expression, takes precedence over Tag.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tag": {
+								Description:         "The Git tag to checkout, takes precedence over Branch.",
+								MarkdownDescription: "The Git tag to checkout, takes precedence over Branch.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"branch": {
+								Description:         "The Git branch to checkout, defaults to master.",
+								MarkdownDescription: "The Git branch to checkout, defaults to master.",
 
 								Type: types.StringType,
 
@@ -483,14 +483,14 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta1Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"url": {
-						Description:         "The repository URL, can be a HTTP/S or SSH address.",
-						MarkdownDescription: "The repository URL, can be a HTTP/S or SSH address.",
+					"timeout": {
+						Description:         "The timeout for remote Git operations like cloning, defaults to 60s.",
+						MarkdownDescription: "The timeout for remote Git operations like cloning, defaults to 60s.",
 
 						Type: types.StringType,
 
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 				}),

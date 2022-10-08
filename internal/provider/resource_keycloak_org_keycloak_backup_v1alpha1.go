@@ -49,29 +49,29 @@ type KeycloakOrgKeycloakBackupV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
-
 		Aws *struct {
-			Schedule *string `tfsdk:"schedule" yaml:"schedule,omitempty"`
-
 			CredentialsSecretName *string `tfsdk:"credentials_secret_name" yaml:"credentialsSecretName,omitempty"`
 
 			EncryptionKeySecretName *string `tfsdk:"encryption_key_secret_name" yaml:"encryptionKeySecretName,omitempty"`
+
+			Schedule *string `tfsdk:"schedule" yaml:"schedule,omitempty"`
 		} `tfsdk:"aws" yaml:"aws,omitempty"`
 
 		InstanceSelector *struct {
 			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 
 			MatchExpressions *[]struct {
+				Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 				Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-				Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 			} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 		} `tfsdk:"instance_selector" yaml:"instanceSelector,omitempty"`
 
 		Restore *bool `tfsdk:"restore" yaml:"restore,omitempty"`
+
+		StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -172,33 +172,11 @@ func (r *KeycloakOrgKeycloakBackupV1Alpha1Resource) GetSchema(_ context.Context)
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"storage_class_name": {
-						Description:         "Name of the StorageClass for Postgresql Backup Persistent Volume Claim",
-						MarkdownDescription: "Name of the StorageClass for Postgresql Backup Persistent Volume Claim",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"aws": {
 						Description:         "If provided, an automatic database backup will be created on AWS S3 instead of a local Persistent Volume. If this property is not provided - a local Persistent Volume backup will be chosen.",
 						MarkdownDescription: "If provided, an automatic database backup will be created on AWS S3 instead of a local Persistent Volume. If this property is not provided - a local Persistent Volume backup will be chosen.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"schedule": {
-								Description:         "If specified, it will be used as a schedule for creating a CronJob.",
-								MarkdownDescription: "If specified, it will be used as a schedule for creating a CronJob.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"credentials_secret_name": {
 								Description:         "Provides a secret name used for connecting to AWS S3 Service. The secret needs to be in the following form:      apiVersion: v1     kind: Secret     metadata:       name: <Secret name>     type: Opaque     stringData:       AWS_S3_BUCKET_NAME: <S3 Bucket Name>       AWS_ACCESS_KEY_ID: <AWS Access Key ID>       AWS_SECRET_ACCESS_KEY: <AWS Secret Key>  For more information, please refer to the Operator documentation.",
@@ -214,6 +192,17 @@ func (r *KeycloakOrgKeycloakBackupV1Alpha1Resource) GetSchema(_ context.Context)
 							"encryption_key_secret_name": {
 								Description:         "If provided, the database backup will be encrypted. Provides a secret name used for encrypting database data. The secret needs to be in the following form:      apiVersion: v1     kind: Secret     metadata:       name: <Secret name>     type: Opaque     stringData:       GPG_PUBLIC_KEY: <GPG Public Key>       GPG_TRUST_MODEL: <GPG Trust Model>       GPG_RECIPIENT: <GPG Recipient>  For more information, please refer to the Operator documentation.",
 								MarkdownDescription: "If provided, the database backup will be encrypted. Provides a secret name used for encrypting database data. The secret needs to be in the following form:      apiVersion: v1     kind: Secret     metadata:       name: <Secret name>     type: Opaque     stringData:       GPG_PUBLIC_KEY: <GPG Public Key>       GPG_TRUST_MODEL: <GPG Trust Model>       GPG_RECIPIENT: <GPG Recipient>  For more information, please refer to the Operator documentation.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"schedule": {
+								Description:         "If specified, it will be used as a schedule for creating a CronJob.",
+								MarkdownDescription: "If specified, it will be used as a schedule for creating a CronJob.",
 
 								Type: types.StringType,
 
@@ -251,6 +240,17 @@ func (r *KeycloakOrgKeycloakBackupV1Alpha1Resource) GetSchema(_ context.Context)
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+									"values": {
+										Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"key": {
 										Description:         "key is the label key that the selector applies to.",
 										MarkdownDescription: "key is the label key that the selector applies to.",
@@ -272,17 +272,6 @@ func (r *KeycloakOrgKeycloakBackupV1Alpha1Resource) GetSchema(_ context.Context)
 										Optional: false,
 										Computed: false,
 									},
-
-									"values": {
-										Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -301,6 +290,17 @@ func (r *KeycloakOrgKeycloakBackupV1Alpha1Resource) GetSchema(_ context.Context)
 						MarkdownDescription: "Controls automatic restore behavior. Currently not implemented.  In the future this will be used to trigger automatic restore for a given KeycloakBackup. Each backup will correspond to a single snapshot of the database (stored either in a Persistent Volume or AWS). If a user wants to restore it, all he/she needs to do is to change this flag to true. Potentially, it will be possible to restore a single backup multiple times.",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"storage_class_name": {
+						Description:         "Name of the StorageClass for Postgresql Backup Persistent Volume Claim",
+						MarkdownDescription: "Name of the StorageClass for Postgresql Backup Persistent Volume Claim",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

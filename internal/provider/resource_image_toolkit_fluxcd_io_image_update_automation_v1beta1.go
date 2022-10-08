@@ -63,12 +63,6 @@ type ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1GoModel struct {
 			} `tfsdk:"checkout" yaml:"checkout,omitempty"`
 
 			Commit *struct {
-				SigningKey *struct {
-					SecretRef *struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-				} `tfsdk:"signing_key" yaml:"signingKey,omitempty"`
-
 				Author *struct {
 					Email *string `tfsdk:"email" yaml:"email,omitempty"`
 
@@ -76,6 +70,12 @@ type ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1GoModel struct {
 				} `tfsdk:"author" yaml:"author,omitempty"`
 
 				MessageTemplate *string `tfsdk:"message_template" yaml:"messageTemplate,omitempty"`
+
+				SigningKey *struct {
+					SecretRef *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+				} `tfsdk:"signing_key" yaml:"signingKey,omitempty"`
 			} `tfsdk:"commit" yaml:"commit,omitempty"`
 
 			Push *struct {
@@ -86,13 +86,13 @@ type ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1GoModel struct {
 		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 
 		SourceRef *struct {
-			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 		} `tfsdk:"source_ref" yaml:"sourceRef,omitempty"`
 
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
@@ -282,41 +282,6 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Resource) GetSchema(_ c
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"signing_key": {
-										Description:         "SigningKey provides the option to sign commits with a GPG key",
-										MarkdownDescription: "SigningKey provides the option to sign commits with a GPG key",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"secret_ref": {
-												Description:         "SecretRef holds the name to a secret that contains a 'git.asc' key corresponding to the ASCII Armored file containing the GPG signing keypair as the value. It must be in the same namespace as the ImageUpdateAutomation.",
-												MarkdownDescription: "SecretRef holds the name to a secret that contains a 'git.asc' key corresponding to the ASCII Armored file containing the GPG signing keypair as the value. It must be in the same namespace as the ImageUpdateAutomation.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "Name of the referent.",
-														MarkdownDescription: "Name of the referent.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"author": {
 										Description:         "Author gives the email and optionally the name to use as the author of commits.",
 										MarkdownDescription: "Author gives the email and optionally the name to use as the author of commits.",
@@ -356,6 +321,41 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Resource) GetSchema(_ c
 										MarkdownDescription: "MessageTemplate provides a template for the commit message, into which will be interpolated the details of the change made.",
 
 										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"signing_key": {
+										Description:         "SigningKey provides the option to sign commits with a GPG key",
+										MarkdownDescription: "SigningKey provides the option to sign commits with a GPG key",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"secret_ref": {
+												Description:         "SecretRef holds the name to a secret that contains a 'git.asc' key corresponding to the ASCII Armored file containing the GPG signing keypair as the value. It must be in the same namespace as the ImageUpdateAutomation.",
+												MarkdownDescription: "SecretRef holds the name to a secret that contains a 'git.asc' key corresponding to the ASCII Armored file containing the GPG signing keypair as the value. It must be in the same namespace as the ImageUpdateAutomation.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "Name of the referent.",
+														MarkdownDescription: "Name of the referent.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
 
 										Required: false,
 										Optional: true,
@@ -414,28 +414,6 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Resource) GetSchema(_ c
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"api_version": {
-								Description:         "API version of the referent.",
-								MarkdownDescription: "API version of the referent.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"kind": {
-								Description:         "Kind of the referent.",
-								MarkdownDescription: "Kind of the referent.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
 							"name": {
 								Description:         "Name of the referent.",
 								MarkdownDescription: "Name of the referent.",
@@ -455,6 +433,28 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Resource) GetSchema(_ c
 
 								Required: false,
 								Optional: true,
+								Computed: false,
+							},
+
+							"api_version": {
+								Description:         "API version of the referent.",
+								MarkdownDescription: "API version of the referent.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"kind": {
+								Description:         "Kind of the referent.",
+								MarkdownDescription: "Kind of the referent.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
 								Computed: false,
 							},
 						}),

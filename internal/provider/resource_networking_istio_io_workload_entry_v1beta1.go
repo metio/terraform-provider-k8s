@@ -49,10 +49,6 @@ type NetworkingIstioIoWorkloadEntryV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Address *string `tfsdk:"address" yaml:"address,omitempty"`
-
-		Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-
 		Locality *string `tfsdk:"locality" yaml:"locality,omitempty"`
 
 		Network *string `tfsdk:"network" yaml:"network,omitempty"`
@@ -62,6 +58,10 @@ type NetworkingIstioIoWorkloadEntryV1Beta1GoModel struct {
 		ServiceAccount *string `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
 
 		Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+
+		Address *string `tfsdk:"address" yaml:"address,omitempty"`
+
+		Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -162,28 +162,6 @@ func (r *NetworkingIstioIoWorkloadEntryV1Beta1Resource) GetSchema(_ context.Cont
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"address": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"labels": {
-						Description:         "One or more labels associated with the endpoint.",
-						MarkdownDescription: "One or more labels associated with the endpoint.",
-
-						Type: types.MapType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"locality": {
 						Description:         "The locality associated with the endpoint.",
 						MarkdownDescription: "The locality associated with the endpoint.",
@@ -233,6 +211,28 @@ func (r *NetworkingIstioIoWorkloadEntryV1Beta1Resource) GetSchema(_ context.Cont
 						MarkdownDescription: "The load balancing weight associated with the endpoint.",
 
 						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"address": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"labels": {
+						Description:         "One or more labels associated with the endpoint.",
+						MarkdownDescription: "One or more labels associated with the endpoint.",
+
+						Type: types.MapType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

@@ -49,89 +49,47 @@ type MonitoringCoreosComProbeV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Authorization *struct {
-			Credentials *struct {
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-			} `tfsdk:"credentials" yaml:"credentials,omitempty"`
-
-			Type *string `tfsdk:"type" yaml:"type,omitempty"`
-		} `tfsdk:"authorization" yaml:"authorization,omitempty"`
-
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
 		LabelValueLengthLimit *int64 `tfsdk:"label_value_length_limit" yaml:"labelValueLengthLimit,omitempty"`
-
-		Module *string `tfsdk:"module" yaml:"module,omitempty"`
 
 		SampleLimit *int64 `tfsdk:"sample_limit" yaml:"sampleLimit,omitempty"`
 
-		LabelNameLengthLimit *int64 `tfsdk:"label_name_length_limit" yaml:"labelNameLengthLimit,omitempty"`
+		BasicAuth *struct {
+			Password *struct {
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
-		MetricRelabelings *[]struct {
-			Action *string `tfsdk:"action" yaml:"action,omitempty"`
-
-			Modulus *int64 `tfsdk:"modulus" yaml:"modulus,omitempty"`
-
-			Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
-
-			Replacement *string `tfsdk:"replacement" yaml:"replacement,omitempty"`
-
-			Separator *string `tfsdk:"separator" yaml:"separator,omitempty"`
-
-			SourceLabels *[]string `tfsdk:"source_labels" yaml:"sourceLabels,omitempty"`
-
-			TargetLabel *string `tfsdk:"target_label" yaml:"targetLabel,omitempty"`
-		} `tfsdk:"metric_relabelings" yaml:"metricRelabelings,omitempty"`
-
-		Oauth2 *struct {
-			ClientId *struct {
-				ConfigMap *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-				} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-				Secret *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-				} `tfsdk:"secret" yaml:"secret,omitempty"`
-			} `tfsdk:"client_id" yaml:"clientId,omitempty"`
-
-			ClientSecret *struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+			} `tfsdk:"password" yaml:"password,omitempty"`
 
+			Username *struct {
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-			} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
 
-			EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
-			Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
+				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+			} `tfsdk:"username" yaml:"username,omitempty"`
+		} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
 
-			TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
-		} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 
-		ScrapeTimeout *string `tfsdk:"scrape_timeout" yaml:"scrapeTimeout,omitempty"`
+		LabelLimit *int64 `tfsdk:"label_limit" yaml:"labelLimit,omitempty"`
+
+		BearerTokenSecret *struct {
+			Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+			Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
+
+		Module *string `tfsdk:"module" yaml:"module,omitempty"`
 
 		Targets *struct {
 			Ingress *struct {
-				NamespaceSelector *struct {
-					Any *bool `tfsdk:"any" yaml:"any,omitempty"`
-
-					MatchNames *[]string `tfsdk:"match_names" yaml:"matchNames,omitempty"`
-				} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-
 				RelabelingConfigs *[]struct {
+					TargetLabel *string `tfsdk:"target_label" yaml:"targetLabel,omitempty"`
+
 					Action *string `tfsdk:"action" yaml:"action,omitempty"`
 
 					Modulus *int64 `tfsdk:"modulus" yaml:"modulus,omitempty"`
@@ -143,8 +101,6 @@ type MonitoringCoreosComProbeV1GoModel struct {
 					Separator *string `tfsdk:"separator" yaml:"separator,omitempty"`
 
 					SourceLabels *[]string `tfsdk:"source_labels" yaml:"sourceLabels,omitempty"`
-
-					TargetLabel *string `tfsdk:"target_label" yaml:"targetLabel,omitempty"`
 				} `tfsdk:"relabeling_configs" yaml:"relabelingConfigs,omitempty"`
 
 				Selector *struct {
@@ -158,14 +114,18 @@ type MonitoringCoreosComProbeV1GoModel struct {
 
 					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 				} `tfsdk:"selector" yaml:"selector,omitempty"`
+
+				NamespaceSelector *struct {
+					MatchNames *[]string `tfsdk:"match_names" yaml:"matchNames,omitempty"`
+
+					Any *bool `tfsdk:"any" yaml:"any,omitempty"`
+				} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 			} `tfsdk:"ingress" yaml:"ingress,omitempty"`
 
 			StaticConfig *struct {
 				Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
 
 				RelabelingConfigs *[]struct {
-					Replacement *string `tfsdk:"replacement" yaml:"replacement,omitempty"`
-
 					Separator *string `tfsdk:"separator" yaml:"separator,omitempty"`
 
 					SourceLabels *[]string `tfsdk:"source_labels" yaml:"sourceLabels,omitempty"`
@@ -177,53 +137,13 @@ type MonitoringCoreosComProbeV1GoModel struct {
 					Modulus *int64 `tfsdk:"modulus" yaml:"modulus,omitempty"`
 
 					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
+
+					Replacement *string `tfsdk:"replacement" yaml:"replacement,omitempty"`
 				} `tfsdk:"relabeling_configs" yaml:"relabelingConfigs,omitempty"`
 
 				Static *[]string `tfsdk:"static" yaml:"static,omitempty"`
 			} `tfsdk:"static_config" yaml:"staticConfig,omitempty"`
 		} `tfsdk:"targets" yaml:"targets,omitempty"`
-
-		BasicAuth *struct {
-			Username *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-			} `tfsdk:"username" yaml:"username,omitempty"`
-
-			Password *struct {
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-			} `tfsdk:"password" yaml:"password,omitempty"`
-		} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
-
-		BearerTokenSecret *struct {
-			Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-		} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
-
-		JobName *string `tfsdk:"job_name" yaml:"jobName,omitempty"`
-
-		LabelLimit *int64 `tfsdk:"label_limit" yaml:"labelLimit,omitempty"`
-
-		Prober *struct {
-			Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-			ProxyUrl *string `tfsdk:"proxy_url" yaml:"proxyUrl,omitempty"`
-
-			Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-			Url *string `tfsdk:"url" yaml:"url,omitempty"`
-		} `tfsdk:"prober" yaml:"prober,omitempty"`
-
-		TargetLimit *int64 `tfsdk:"target_limit" yaml:"targetLimit,omitempty"`
 
 		TlsConfig *struct {
 			Ca *struct {
@@ -254,11 +174,11 @@ type MonitoringCoreosComProbeV1GoModel struct {
 				} `tfsdk:"config_map" yaml:"configMap,omitempty"`
 
 				Secret *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 				} `tfsdk:"secret" yaml:"secret,omitempty"`
 			} `tfsdk:"cert" yaml:"cert,omitempty"`
 
@@ -274,6 +194,86 @@ type MonitoringCoreosComProbeV1GoModel struct {
 
 			ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
 		} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
+
+		LabelNameLengthLimit *int64 `tfsdk:"label_name_length_limit" yaml:"labelNameLengthLimit,omitempty"`
+
+		MetricRelabelings *[]struct {
+			Modulus *int64 `tfsdk:"modulus" yaml:"modulus,omitempty"`
+
+			Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
+
+			Replacement *string `tfsdk:"replacement" yaml:"replacement,omitempty"`
+
+			Separator *string `tfsdk:"separator" yaml:"separator,omitempty"`
+
+			SourceLabels *[]string `tfsdk:"source_labels" yaml:"sourceLabels,omitempty"`
+
+			TargetLabel *string `tfsdk:"target_label" yaml:"targetLabel,omitempty"`
+
+			Action *string `tfsdk:"action" yaml:"action,omitempty"`
+		} `tfsdk:"metric_relabelings" yaml:"metricRelabelings,omitempty"`
+
+		ScrapeTimeout *string `tfsdk:"scrape_timeout" yaml:"scrapeTimeout,omitempty"`
+
+		Prober *struct {
+			Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+			Url *string `tfsdk:"url" yaml:"url,omitempty"`
+
+			Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+			ProxyUrl *string `tfsdk:"proxy_url" yaml:"proxyUrl,omitempty"`
+		} `tfsdk:"prober" yaml:"prober,omitempty"`
+
+		TargetLimit *int64 `tfsdk:"target_limit" yaml:"targetLimit,omitempty"`
+
+		Authorization *struct {
+			Credentials *struct {
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+			} `tfsdk:"credentials" yaml:"credentials,omitempty"`
+
+			Type *string `tfsdk:"type" yaml:"type,omitempty"`
+		} `tfsdk:"authorization" yaml:"authorization,omitempty"`
+
+		JobName *string `tfsdk:"job_name" yaml:"jobName,omitempty"`
+
+		Oauth2 *struct {
+			EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
+
+			Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
+
+			TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
+
+			ClientId *struct {
+				ConfigMap *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+				Secret *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"secret" yaml:"secret,omitempty"`
+			} `tfsdk:"client_id" yaml:"clientId,omitempty"`
+
+			ClientSecret *struct {
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+			} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
+		} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -374,15 +374,37 @@ func (r *MonitoringCoreosComProbeV1Resource) GetSchema(_ context.Context) (tfsdk
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"authorization": {
-						Description:         "Authorization section for this endpoint",
-						MarkdownDescription: "Authorization section for this endpoint",
+					"label_value_length_limit": {
+						Description:         "Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+						MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"sample_limit": {
+						Description:         "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.",
+						MarkdownDescription: "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"basic_auth": {
+						Description:         "BasicAuth allow an endpoint to authenticate over basic authentication. More info: https://prometheus.io/docs/operating/configuration/#endpoint",
+						MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authentication. More info: https://prometheus.io/docs/operating/configuration/#endpoint",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"credentials": {
-								Description:         "The secret's key that contains the credentials of the request",
-								MarkdownDescription: "The secret's key that contains the credentials of the request",
+							"password": {
+								Description:         "The secret in the service monitor namespace that contains the password for authentication.",
+								MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -425,11 +447,45 @@ func (r *MonitoringCoreosComProbeV1Resource) GetSchema(_ context.Context) (tfsdk
 								Computed: false,
 							},
 
-							"type": {
-								Description:         "Set the authentication type. Defaults to Bearer, Basic will cause an error",
-								MarkdownDescription: "Set the authentication type. Defaults to Bearer, Basic will cause an error",
+							"username": {
+								Description:         "The secret in the service monitor namespace that contains the username for authentication.",
+								MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
 
-								Type: types.StringType,
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"key": {
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"optional": {
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,
@@ -453,11 +509,56 @@ func (r *MonitoringCoreosComProbeV1Resource) GetSchema(_ context.Context) (tfsdk
 						Computed: false,
 					},
 
-					"label_value_length_limit": {
-						Description:         "Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+					"label_limit": {
+						Description:         "Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+						MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
 
 						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"bearer_token_secret": {
+						Description:         "Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the probe and accessible by the Prometheus Operator.",
+						MarkdownDescription: "Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the probe and accessible by the Prometheus Operator.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"optional": {
+								Description:         "Specify whether the Secret or its key must be defined",
+								MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"key": {
+								Description:         "The key of the secret to select from.  Must be a valid secret key.",
+								MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
@@ -467,320 +568,6 @@ func (r *MonitoringCoreosComProbeV1Resource) GetSchema(_ context.Context) (tfsdk
 					"module": {
 						Description:         "The module to use for probing specifying how to probe the target. Example module configuring in the blackbox exporter: https://github.com/prometheus/blackbox_exporter/blob/master/example.yml",
 						MarkdownDescription: "The module to use for probing specifying how to probe the target. Example module configuring in the blackbox exporter: https://github.com/prometheus/blackbox_exporter/blob/master/example.yml",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"sample_limit": {
-						Description:         "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.",
-						MarkdownDescription: "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"label_name_length_limit": {
-						Description:         "Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"metric_relabelings": {
-						Description:         "MetricRelabelConfigs to apply to samples before ingestion.",
-						MarkdownDescription: "MetricRelabelConfigs to apply to samples before ingestion.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"action": {
-								Description:         "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
-								MarkdownDescription: "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"modulus": {
-								Description:         "Modulus to take of the hash of the source label values.",
-								MarkdownDescription: "Modulus to take of the hash of the source label values.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"regex": {
-								Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-								MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"replacement": {
-								Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
-								MarkdownDescription: "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"separator": {
-								Description:         "Separator placed between concatenated source label values. default is ';'.",
-								MarkdownDescription: "Separator placed between concatenated source label values. default is ';'.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"source_labels": {
-								Description:         "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
-								MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"target_label": {
-								Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
-								MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"oauth2": {
-						Description:         "OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"client_id": {
-								Description:         "The secret or configmap containing the OAuth2 client id",
-								MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"config_map": {
-										Description:         "ConfigMap containing data to use for the targets.",
-										MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "The key to select.",
-												MarkdownDescription: "The key to select.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "Specify whether the ConfigMap or its key must be defined",
-												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"secret": {
-										Description:         "Secret containing data to use for the targets.",
-										MarkdownDescription: "Secret containing data to use for the targets.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"client_secret": {
-								Description:         "The secret containing the OAuth2 client secret",
-								MarkdownDescription: "The secret containing the OAuth2 client secret",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"optional": {
-										Description:         "Specify whether the Secret or its key must be defined",
-										MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"key": {
-										Description:         "The key of the secret to select from.  Must be a valid secret key.",
-										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"endpoint_params": {
-								Description:         "Parameters to append to the token URL",
-								MarkdownDescription: "Parameters to append to the token URL",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"scopes": {
-								Description:         "OAuth2 scopes used for the token request",
-								MarkdownDescription: "OAuth2 scopes used for the token request",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"token_url": {
-								Description:         "The URL to fetch the token from",
-								MarkdownDescription: "The URL to fetch the token from",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"scrape_timeout": {
-						Description:         "Timeout for scraping metrics from the Prometheus exporter. If not specified, the Prometheus global scrape interval is used.",
-						MarkdownDescription: "Timeout for scraping metrics from the Prometheus exporter. If not specified, the Prometheus global scrape interval is used.",
 
 						Type: types.StringType,
 
@@ -801,45 +588,22 @@ func (r *MonitoringCoreosComProbeV1Resource) GetSchema(_ context.Context) (tfsdk
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"namespace_selector": {
-										Description:         "From which namespaces to select Ingress objects.",
-										MarkdownDescription: "From which namespaces to select Ingress objects.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"any": {
-												Description:         "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
-												MarkdownDescription: "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"match_names": {
-												Description:         "List of namespace names to select from.",
-												MarkdownDescription: "List of namespace names to select from.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"relabeling_configs": {
 										Description:         "RelabelConfigs to apply to the label set of the target before it gets scraped. The original ingress address is available via the '__tmp_prometheus_ingress_address' label. It can be used to customize the probed URL. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
 										MarkdownDescription: "RelabelConfigs to apply to the label set of the target before it gets scraped. The original ingress address is available via the '__tmp_prometheus_ingress_address' label. It can be used to customize the probed URL. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"target_label": {
+												Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
+												MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 
 											"action": {
 												Description:         "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
@@ -901,17 +665,6 @@ func (r *MonitoringCoreosComProbeV1Resource) GetSchema(_ context.Context) (tfsdk
 												MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
 
 												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"target_label": {
-												Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
-												MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
-
-												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
@@ -991,6 +744,40 @@ func (r *MonitoringCoreosComProbeV1Resource) GetSchema(_ context.Context) (tfsdk
 										Optional: true,
 										Computed: false,
 									},
+
+									"namespace_selector": {
+										Description:         "From which namespaces to select Ingress objects.",
+										MarkdownDescription: "From which namespaces to select Ingress objects.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"match_names": {
+												Description:         "List of namespace names to select from.",
+												MarkdownDescription: "List of namespace names to select from.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"any": {
+												Description:         "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
+												MarkdownDescription: "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -1020,17 +807,6 @@ func (r *MonitoringCoreosComProbeV1Resource) GetSchema(_ context.Context) (tfsdk
 										MarkdownDescription: "RelabelConfigs to apply to the label set of the targets before it gets scraped. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"replacement": {
-												Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
-												MarkdownDescription: "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
 											"separator": {
 												Description:         "Separator placed between concatenated source label values. default is ';'.",
@@ -1097,6 +873,17 @@ func (r *MonitoringCoreosComProbeV1Resource) GetSchema(_ context.Context) (tfsdk
 												Optional: true,
 												Computed: false,
 											},
+
+											"replacement": {
+												Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
+												MarkdownDescription: "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										}),
 
 										Required: false,
@@ -1121,242 +908,6 @@ func (r *MonitoringCoreosComProbeV1Resource) GetSchema(_ context.Context) (tfsdk
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"basic_auth": {
-						Description:         "BasicAuth allow an endpoint to authenticate over basic authentication. More info: https://prometheus.io/docs/operating/configuration/#endpoint",
-						MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authentication. More info: https://prometheus.io/docs/operating/configuration/#endpoint",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"username": {
-								Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-								MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"optional": {
-										Description:         "Specify whether the Secret or its key must be defined",
-										MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"key": {
-										Description:         "The key of the secret to select from.  Must be a valid secret key.",
-										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"password": {
-								Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-								MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"key": {
-										Description:         "The key of the secret to select from.  Must be a valid secret key.",
-										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"optional": {
-										Description:         "Specify whether the Secret or its key must be defined",
-										MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"bearer_token_secret": {
-						Description:         "Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the probe and accessible by the Prometheus Operator.",
-						MarkdownDescription: "Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the probe and accessible by the Prometheus Operator.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"key": {
-								Description:         "The key of the secret to select from.  Must be a valid secret key.",
-								MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"optional": {
-								Description:         "Specify whether the Secret or its key must be defined",
-								MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"job_name": {
-						Description:         "The job name assigned to scraped metrics by default.",
-						MarkdownDescription: "The job name assigned to scraped metrics by default.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"label_limit": {
-						Description:         "Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"prober": {
-						Description:         "Specification for the prober to use for probing targets. The prober.URL parameter is required. Targets cannot be probed if left empty.",
-						MarkdownDescription: "Specification for the prober to use for probing targets. The prober.URL parameter is required. Targets cannot be probed if left empty.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"path": {
-								Description:         "Path to collect metrics from. Defaults to '/probe'.",
-								MarkdownDescription: "Path to collect metrics from. Defaults to '/probe'.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"proxy_url": {
-								Description:         "Optional ProxyURL.",
-								MarkdownDescription: "Optional ProxyURL.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"scheme": {
-								Description:         "HTTP scheme to use for scraping. Defaults to 'http'.",
-								MarkdownDescription: "HTTP scheme to use for scraping. Defaults to 'http'.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"url": {
-								Description:         "Mandatory URL of the prober.",
-								MarkdownDescription: "Mandatory URL of the prober.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"target_limit": {
-						Description:         "TargetLimit defines a limit on the number of scraped targets that will be accepted.",
-						MarkdownDescription: "TargetLimit defines a limit on the number of scraped targets that will be accepted.",
-
-						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,
@@ -1528,6 +1079,17 @@ func (r *MonitoringCoreosComProbeV1Resource) GetSchema(_ context.Context) (tfsdk
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+											"key": {
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
 											"name": {
 												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -1547,17 +1109,6 @@ func (r *MonitoringCoreosComProbeV1Resource) GetSchema(_ context.Context) (tfsdk
 
 												Required: false,
 												Optional: true,
-												Computed: false,
-											},
-
-											"key": {
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
 												Computed: false,
 											},
 										}),
@@ -1637,6 +1188,455 @@ func (r *MonitoringCoreosComProbeV1Resource) GetSchema(_ context.Context) (tfsdk
 
 								Required: false,
 								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"label_name_length_limit": {
+						Description:         "Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+						MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"metric_relabelings": {
+						Description:         "MetricRelabelConfigs to apply to samples before ingestion.",
+						MarkdownDescription: "MetricRelabelConfigs to apply to samples before ingestion.",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"modulus": {
+								Description:         "Modulus to take of the hash of the source label values.",
+								MarkdownDescription: "Modulus to take of the hash of the source label values.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"regex": {
+								Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
+								MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"replacement": {
+								Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
+								MarkdownDescription: "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"separator": {
+								Description:         "Separator placed between concatenated source label values. default is ';'.",
+								MarkdownDescription: "Separator placed between concatenated source label values. default is ';'.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"source_labels": {
+								Description:         "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
+								MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"target_label": {
+								Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
+								MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"action": {
+								Description:         "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
+								MarkdownDescription: "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"scrape_timeout": {
+						Description:         "Timeout for scraping metrics from the Prometheus exporter. If not specified, the Prometheus global scrape interval is used.",
+						MarkdownDescription: "Timeout for scraping metrics from the Prometheus exporter. If not specified, the Prometheus global scrape interval is used.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"prober": {
+						Description:         "Specification for the prober to use for probing targets. The prober.URL parameter is required. Targets cannot be probed if left empty.",
+						MarkdownDescription: "Specification for the prober to use for probing targets. The prober.URL parameter is required. Targets cannot be probed if left empty.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"scheme": {
+								Description:         "HTTP scheme to use for scraping. Defaults to 'http'.",
+								MarkdownDescription: "HTTP scheme to use for scraping. Defaults to 'http'.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"url": {
+								Description:         "Mandatory URL of the prober.",
+								MarkdownDescription: "Mandatory URL of the prober.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"path": {
+								Description:         "Path to collect metrics from. Defaults to '/probe'.",
+								MarkdownDescription: "Path to collect metrics from. Defaults to '/probe'.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"proxy_url": {
+								Description:         "Optional ProxyURL.",
+								MarkdownDescription: "Optional ProxyURL.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"target_limit": {
+						Description:         "TargetLimit defines a limit on the number of scraped targets that will be accepted.",
+						MarkdownDescription: "TargetLimit defines a limit on the number of scraped targets that will be accepted.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"authorization": {
+						Description:         "Authorization section for this endpoint",
+						MarkdownDescription: "Authorization section for this endpoint",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"credentials": {
+								Description:         "The secret's key that contains the credentials of the request",
+								MarkdownDescription: "The secret's key that contains the credentials of the request",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"key": {
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"optional": {
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"type": {
+								Description:         "Set the authentication type. Defaults to Bearer, Basic will cause an error",
+								MarkdownDescription: "Set the authentication type. Defaults to Bearer, Basic will cause an error",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"job_name": {
+						Description:         "The job name assigned to scraped metrics by default.",
+						MarkdownDescription: "The job name assigned to scraped metrics by default.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"oauth2": {
+						Description:         "OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer.",
+						MarkdownDescription: "OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"endpoint_params": {
+								Description:         "Parameters to append to the token URL",
+								MarkdownDescription: "Parameters to append to the token URL",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"scopes": {
+								Description:         "OAuth2 scopes used for the token request",
+								MarkdownDescription: "OAuth2 scopes used for the token request",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"token_url": {
+								Description:         "The URL to fetch the token from",
+								MarkdownDescription: "The URL to fetch the token from",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"client_id": {
+								Description:         "The secret or configmap containing the OAuth2 client id",
+								MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"config_map": {
+										Description:         "ConfigMap containing data to use for the targets.",
+										MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "The key to select.",
+												MarkdownDescription: "The key to select.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the ConfigMap or its key must be defined",
+												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"secret": {
+										Description:         "Secret containing data to use for the targets.",
+										MarkdownDescription: "Secret containing data to use for the targets.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"client_secret": {
+								Description:         "The secret containing the OAuth2 client secret",
+								MarkdownDescription: "The secret containing the OAuth2 client secret",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"key": {
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"optional": {
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: true,
+								Optional: false,
 								Computed: false,
 							},
 						}),

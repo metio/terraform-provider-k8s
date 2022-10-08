@@ -55,12 +55,46 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 			Managed *bool `tfsdk:"managed" yaml:"managed,omitempty"`
 
 			Overrides *struct {
-				VolumeSize *string `tfsdk:"volume_size" yaml:"volumeSize,omitempty"`
-
 				Affinity *struct {
-					NodeAffinity *struct {
+					PodAntiAffinity *struct {
 						PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-							Preference *struct {
+							Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+
+							PodAffinityTerm *struct {
+								LabelSelector *struct {
+									MatchExpressions *[]struct {
+										Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+								} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+								NamespaceSelector *struct {
+									MatchExpressions *[]struct {
+										Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+								} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
+								Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+								TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+							} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
+						} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+
+						RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+
+							LabelSelector *struct {
 								MatchExpressions *[]struct {
 									Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -69,18 +103,26 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-								MatchFields *[]struct {
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 
 									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-								} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
-							} `tfsdk:"preference" yaml:"preference,omitempty"`
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
-							Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-						} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+						} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+					} `tfsdk:"pod_anti_affinity" yaml:"podAntiAffinity,omitempty"`
 
+					NodeAffinity *struct {
 						RequiredDuringSchedulingIgnoredDuringExecution *struct {
 							NodeSelectorTerms *[]struct {
 								MatchExpressions *[]struct {
@@ -92,14 +134,36 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 								MatchFields *[]struct {
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+								} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
+							} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
+						} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+
+						PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+							Preference *struct {
+								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchFields *[]struct {
 									Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 								} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
-							} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
-						} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+							} `tfsdk:"preference" yaml:"preference,omitempty"`
+
+							Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+						} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
 					} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
 
 					PodAffinity *struct {
@@ -108,15 +172,15 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 
 							PodAffinityTerm *struct {
 								LabelSelector *struct {
+									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+
 									MatchExpressions *[]struct {
+										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
 										Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 								NamespaceSelector *struct {
@@ -138,101 +202,35 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 						} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
 
 						RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
-							NamespaceSelector *struct {
-								MatchExpressions *[]struct {
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
 							LabelSelector *struct {
 								MatchExpressions *[]struct {
-									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
 									Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 						} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 					} `tfsdk:"pod_affinity" yaml:"podAffinity,omitempty"`
-
-					PodAntiAffinity *struct {
-						PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-							PodAffinityTerm *struct {
-								Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-								TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
-								LabelSelector *struct {
-									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-
-									MatchExpressions *[]struct {
-										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-										Key *string `tfsdk:"key" yaml:"key,omitempty"`
-									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-								} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-								NamespaceSelector *struct {
-									MatchExpressions *[]struct {
-										Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-								} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-							} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
-
-							Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-						} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
-
-						RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
-							LabelSelector *struct {
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-
-								MatchExpressions *[]struct {
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-							NamespaceSelector *struct {
-								MatchExpressions *[]struct {
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-
-							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-						} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
-					} `tfsdk:"pod_anti_affinity" yaml:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" yaml:"affinity,omitempty"`
 
 				Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
@@ -243,14 +241,6 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 					Value *string `tfsdk:"value" yaml:"value,omitempty"`
 
 					ValueFrom *struct {
-						SecretKeyRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
-
 						ConfigMapKeyRef *struct {
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -266,18 +256,28 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 						} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
 
 						ResourceFieldRef *struct {
+							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
+
 							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
 							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
-
-							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
+
+						SecretKeyRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
 				} `tfsdk:"env" yaml:"env,omitempty"`
 
 				Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
 
 				Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
+
+				VolumeSize *string `tfsdk:"volume_size" yaml:"volumeSize,omitempty"`
 			} `tfsdk:"overrides" yaml:"overrides,omitempty"`
 		} `tfsdk:"components" yaml:"components,omitempty"`
 
@@ -416,283 +416,21 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"volume_size": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"affinity": {
 										Description:         "Affinity is a group of affinity scheduling rules.",
 										MarkdownDescription: "Affinity is a group of affinity scheduling rules.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"node_affinity": {
-												Description:         "Describes node affinity scheduling rules for the pod.",
-												MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
+											"pod_anti_affinity": {
+												Description:         "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
+												MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 													"preferred_during_scheduling_ignored_during_execution": {
-														Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
-														MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"preference": {
-																Description:         "A node selector term, associated with the corresponding weight.",
-																MarkdownDescription: "A node selector term, associated with the corresponding weight.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"match_expressions": {
-																		Description:         "A list of node selector requirements by node's labels.",
-																		MarkdownDescription: "A list of node selector requirements by node's labels.",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"key": {
-																				Description:         "The label key that the selector applies to.",
-																				MarkdownDescription: "The label key that the selector applies to.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"operator": {
-																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"values": {
-																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_fields": {
-																		Description:         "A list of node selector requirements by node's fields.",
-																		MarkdownDescription: "A list of node selector requirements by node's fields.",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"values": {
-																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"key": {
-																				Description:         "The label key that the selector applies to.",
-																				MarkdownDescription: "The label key that the selector applies to.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"operator": {
-																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"weight": {
-																Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
-																MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
-
-																Type: types.Int64Type,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"required_during_scheduling_ignored_during_execution": {
-														Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
-														MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"node_selector_terms": {
-																Description:         "Required. A list of node selector terms. The terms are ORed.",
-																MarkdownDescription: "Required. A list of node selector terms. The terms are ORed.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"match_expressions": {
-																		Description:         "A list of node selector requirements by node's labels.",
-																		MarkdownDescription: "A list of node selector requirements by node's labels.",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"key": {
-																				Description:         "The label key that the selector applies to.",
-																				MarkdownDescription: "The label key that the selector applies to.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"operator": {
-																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"values": {
-																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_fields": {
-																		Description:         "A list of node selector requirements by node's fields.",
-																		MarkdownDescription: "A list of node selector requirements by node's fields.",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"key": {
-																				Description:         "The label key that the selector applies to.",
-																				MarkdownDescription: "The label key that the selector applies to.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"operator": {
-																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"values": {
-																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"pod_affinity": {
-												Description:         "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
-												MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"preferred_during_scheduling_ignored_during_execution": {
-														Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-														MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+														Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+														MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -769,6 +507,632 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 																				MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 
 																				Type: types.MapType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"namespace_selector": {
+																		Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																		MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"match_expressions": {
+																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																				MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"key": {
+																						Description:         "key is the label key that the selector applies to.",
+																						MarkdownDescription: "key is the label key that the selector applies to.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"operator": {
+																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"values": {
+																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																						Type: types.ListType{ElemType: types.StringType},
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"match_labels": {
+																				Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																				MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																				Type: types.MapType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"namespaces": {
+																		Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																		MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"topology_key": {
+																		Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																		MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"required_during_scheduling_ignored_during_execution": {
+														Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+														MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"topology_key": {
+																Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"label_selector": {
+																Description:         "A label query over a set of resources, in this case pods.",
+																MarkdownDescription: "A label query over a set of resources, in this case pods.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																		MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "key is the label key that the selector applies to.",
+																				MarkdownDescription: "key is the label key that the selector applies to.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace_selector": {
+																Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																		MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"operator": {
+																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"key": {
+																				Description:         "key is the label key that the selector applies to.",
+																				MarkdownDescription: "key is the label key that the selector applies to.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespaces": {
+																Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"node_affinity": {
+												Description:         "Describes node affinity scheduling rules for the pod.",
+												MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"required_during_scheduling_ignored_during_execution": {
+														Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
+														MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"node_selector_terms": {
+																Description:         "Required. A list of node selector terms. The terms are ORed.",
+																MarkdownDescription: "Required. A list of node selector terms. The terms are ORed.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "A list of node selector requirements by node's labels.",
+																		MarkdownDescription: "A list of node selector requirements by node's labels.",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "The label key that the selector applies to.",
+																				MarkdownDescription: "The label key that the selector applies to.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_fields": {
+																		Description:         "A list of node selector requirements by node's fields.",
+																		MarkdownDescription: "A list of node selector requirements by node's fields.",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"operator": {
+																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"key": {
+																				Description:         "The label key that the selector applies to.",
+																				MarkdownDescription: "The label key that the selector applies to.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"preferred_during_scheduling_ignored_during_execution": {
+														Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+														MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"preference": {
+																Description:         "A node selector term, associated with the corresponding weight.",
+																MarkdownDescription: "A node selector term, associated with the corresponding weight.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "A list of node selector requirements by node's labels.",
+																		MarkdownDescription: "A list of node selector requirements by node's labels.",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "The label key that the selector applies to.",
+																				MarkdownDescription: "The label key that the selector applies to.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_fields": {
+																		Description:         "A list of node selector requirements by node's fields.",
+																		MarkdownDescription: "A list of node selector requirements by node's fields.",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "The label key that the selector applies to.",
+																				MarkdownDescription: "The label key that the selector applies to.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"weight": {
+																Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+																MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+
+																Type: types.Int64Type,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"pod_affinity": {
+												Description:         "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
+												MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"preferred_during_scheduling_ignored_during_execution": {
+														Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+														MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"weight": {
+																Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+
+																Type: types.Int64Type,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"pod_affinity_term": {
+																Description:         "Required. A pod affinity term, associated with the corresponding weight.",
+																MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"label_selector": {
+																		Description:         "A label query over a set of resources, in this case pods.",
+																		MarkdownDescription: "A label query over a set of resources, in this case pods.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"match_labels": {
+																				Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																				MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																				Type: types.MapType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"match_expressions": {
+																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																				MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"values": {
+																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																						Type: types.ListType{ElemType: types.StringType},
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"key": {
+																						Description:         "key is the label key that the selector applies to.",
+																						MarkdownDescription: "key is the label key that the selector applies to.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"operator": {
+																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				}),
 
 																				Required: false,
 																				Optional: true,
@@ -889,74 +1253,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-															"namespace_selector": {
-																Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"match_expressions": {
-																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																		MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"key": {
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"operator": {
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"values": {
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_labels": {
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"namespaces": {
 																Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
 																MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
@@ -991,302 +1287,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																			"values": {
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"key": {
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"operator": {
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_labels": {
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"pod_anti_affinity": {
-												Description:         "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
-												MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"preferred_during_scheduling_ignored_during_execution": {
-														Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-														MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"pod_affinity_term": {
-																Description:         "Required. A pod affinity term, associated with the corresponding weight.",
-																MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"namespaces": {
-																		Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																		MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"topology_key": {
-																		Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																		MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"label_selector": {
-																		Description:         "A label query over a set of resources, in this case pods.",
-																		MarkdownDescription: "A label query over a set of resources, in this case pods.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"match_labels": {
-																				Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																				MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																				Type: types.MapType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"match_expressions": {
-																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																				MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"operator": {
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"values": {
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																						Type: types.ListType{ElemType: types.StringType},
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"key": {
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"namespace_selector": {
-																		Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																		MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"match_expressions": {
-																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																				MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"key": {
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"operator": {
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"values": {
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																						Type: types.ListType{ElemType: types.StringType},
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"match_labels": {
-																				Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																				MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																				Type: types.MapType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"weight": {
-																Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-																MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-
-																Type: types.Int64Type,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"required_during_scheduling_ignored_during_execution": {
-														Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-														MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"label_selector": {
-																Description:         "A label query over a set of resources, in this case pods.",
-																MarkdownDescription: "A label query over a set of resources, in this case pods.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"match_labels": {
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_expressions": {
-																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																		MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
 																			"key": {
 																				Description:         "key is the label key that the selector applies to.",
 																				MarkdownDescription: "key is the label key that the selector applies to.",
@@ -1320,6 +1320,17 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 																				Computed: false,
 																			},
 																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																		Type: types.MapType{ElemType: types.StringType},
 
 																		Required: false,
 																		Optional: true,
@@ -1344,17 +1355,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																			"key": {
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
 																			"operator": {
 																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
@@ -1374,6 +1374,17 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 																				Required: false,
 																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"key": {
+																				Description:         "key is the label key that the selector applies to.",
+																				MarkdownDescription: "key is the label key that the selector applies to.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
 																				Computed: false,
 																			},
 																		}),
@@ -1397,28 +1408,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 																Required: false,
 																Optional: true,
-																Computed: false,
-															},
-
-															"namespaces": {
-																Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"topology_key": {
-																Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
 																Computed: false,
 															},
 														}),
@@ -1484,51 +1473,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 												MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"secret_key_ref": {
-														Description:         "Selects a key of a secret in the pod's namespace",
-														MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 
 													"config_map_key_ref": {
 														Description:         "Selects a key of a ConfigMap.",
@@ -1615,6 +1559,17 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+															"resource": {
+																Description:         "Required: resource to select",
+																MarkdownDescription: "Required: resource to select",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
 															"container_name": {
 																Description:         "Container name: required for volumes, optional for env vars",
 																MarkdownDescription: "Container name: required for volumes, optional for env vars",
@@ -1636,15 +1591,49 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 																Optional: true,
 																Computed: false,
 															},
+														}),
 
-															"resource": {
-																Description:         "Required: resource to select",
-																MarkdownDescription: "Required: resource to select",
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"secret_key_ref": {
+														Description:         "Selects a key of a secret in the pod's namespace",
+														MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
 
 																Type: types.StringType,
 
 																Required: true,
 																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
 																Computed: false,
 															},
 														}),
@@ -1682,6 +1671,17 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 										MarkdownDescription: "",
 
 										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volume_size": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,

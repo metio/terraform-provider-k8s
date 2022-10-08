@@ -49,31 +49,31 @@ type CheEclipseOrgKubernetesImagePullerV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Affinity *string `tfsdk:"affinity" yaml:"affinity,omitempty"`
-
 		CachingCPULimit *string `tfsdk:"caching_cpu_limit" yaml:"cachingCPULimit,omitempty"`
 
 		CachingCPURequest *string `tfsdk:"caching_cpu_request" yaml:"cachingCPURequest,omitempty"`
 
-		CachingMemoryLimit *string `tfsdk:"caching_memory_limit" yaml:"cachingMemoryLimit,omitempty"`
-
 		CachingMemoryRequest *string `tfsdk:"caching_memory_request" yaml:"cachingMemoryRequest,omitempty"`
-
-		ConfigMapName *string `tfsdk:"config_map_name" yaml:"configMapName,omitempty"`
-
-		DeploymentName *string `tfsdk:"deployment_name" yaml:"deploymentName,omitempty"`
-
-		ImagePullSecrets *string `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
-
-		CachingIntervalHours *string `tfsdk:"caching_interval_hours" yaml:"cachingIntervalHours,omitempty"`
-
-		DaemonsetName *string `tfsdk:"daemonset_name" yaml:"daemonsetName,omitempty"`
-
-		ImagePullerImage *string `tfsdk:"image_puller_image" yaml:"imagePullerImage,omitempty"`
 
 		Images *string `tfsdk:"images" yaml:"images,omitempty"`
 
 		NodeSelector *string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
+
+		ImagePullSecrets *string `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
+
+		ImagePullerImage *string `tfsdk:"image_puller_image" yaml:"imagePullerImage,omitempty"`
+
+		Affinity *string `tfsdk:"affinity" yaml:"affinity,omitempty"`
+
+		CachingIntervalHours *string `tfsdk:"caching_interval_hours" yaml:"cachingIntervalHours,omitempty"`
+
+		CachingMemoryLimit *string `tfsdk:"caching_memory_limit" yaml:"cachingMemoryLimit,omitempty"`
+
+		ConfigMapName *string `tfsdk:"config_map_name" yaml:"configMapName,omitempty"`
+
+		DaemonsetName *string `tfsdk:"daemonset_name" yaml:"daemonsetName,omitempty"`
+
+		DeploymentName *string `tfsdk:"deployment_name" yaml:"deploymentName,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -174,17 +174,6 @@ func (r *CheEclipseOrgKubernetesImagePullerV1Alpha1Resource) GetSchema(_ context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"affinity": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"caching_cpu_limit": {
 						Description:         "",
 						MarkdownDescription: "",
@@ -207,84 +196,7 @@ func (r *CheEclipseOrgKubernetesImagePullerV1Alpha1Resource) GetSchema(_ context
 						Computed: false,
 					},
 
-					"caching_memory_limit": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"caching_memory_request": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"config_map_name": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"deployment_name": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"image_pull_secrets": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"caching_interval_hours": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"daemonset_name": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"image_puller_image": {
 						Description:         "",
 						MarkdownDescription: "",
 
@@ -307,6 +219,94 @@ func (r *CheEclipseOrgKubernetesImagePullerV1Alpha1Resource) GetSchema(_ context
 					},
 
 					"node_selector": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"image_pull_secrets": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"image_puller_image": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"affinity": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"caching_interval_hours": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"caching_memory_limit": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"config_map_name": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"daemonset_name": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"deployment_name": {
 						Description:         "",
 						MarkdownDescription: "",
 

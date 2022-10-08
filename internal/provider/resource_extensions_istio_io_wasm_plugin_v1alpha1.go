@@ -49,11 +49,13 @@ type ExtensionsIstioIoWasmPluginV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Phase *string `tfsdk:"phase" yaml:"phase,omitempty"`
-
 		PluginConfig *map[string]string `tfsdk:"plugin_config" yaml:"pluginConfig,omitempty"`
 
+		Phase *string `tfsdk:"phase" yaml:"phase,omitempty"`
+
 		PluginName *string `tfsdk:"plugin_name" yaml:"pluginName,omitempty"`
+
+		Priority *int64 `tfsdk:"priority" yaml:"priority,omitempty"`
 
 		Selector *struct {
 			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -73,21 +75,19 @@ type ExtensionsIstioIoWasmPluginV1Alpha1GoModel struct {
 			} `tfsdk:"ports" yaml:"ports,omitempty"`
 		} `tfsdk:"match" yaml:"match,omitempty"`
 
-		VmConfig *struct {
-			Env *[]struct {
-				ValueFrom *string `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Value *string `tfsdk:"value" yaml:"value,omitempty"`
-			} `tfsdk:"env" yaml:"env,omitempty"`
-		} `tfsdk:"vm_config" yaml:"vmConfig,omitempty"`
-
-		Priority *int64 `tfsdk:"priority" yaml:"priority,omitempty"`
-
 		Url *string `tfsdk:"url" yaml:"url,omitempty"`
 
 		VerificationKey *string `tfsdk:"verification_key" yaml:"verificationKey,omitempty"`
+
+		VmConfig *struct {
+			Env *[]struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+				ValueFrom *string `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
+			} `tfsdk:"env" yaml:"env,omitempty"`
+		} `tfsdk:"vm_config" yaml:"vmConfig,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -188,17 +188,6 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"phase": {
-						Description:         "Determines where in the filter chain this 'WasmPlugin' is to be injected.",
-						MarkdownDescription: "Determines where in the filter chain this 'WasmPlugin' is to be injected.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"plugin_config": {
 						Description:         "The configuration that will be passed on to the plugin.",
 						MarkdownDescription: "The configuration that will be passed on to the plugin.",
@@ -210,11 +199,33 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 						Computed: false,
 					},
 
+					"phase": {
+						Description:         "Determines where in the filter chain this 'WasmPlugin' is to be injected.",
+						MarkdownDescription: "Determines where in the filter chain this 'WasmPlugin' is to be injected.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"plugin_name": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"priority": {
+						Description:         "Determines ordering of 'WasmPlugins' in the same 'phase'.",
+						MarkdownDescription: "Determines ordering of 'WasmPlugins' in the same 'phase'.",
+
+						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,
@@ -323,6 +334,28 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 						Computed: false,
 					},
 
+					"url": {
+						Description:         "URL of a Wasm module or OCI container.",
+						MarkdownDescription: "URL of a Wasm module or OCI container.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"verification_key": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"vm_config": {
 						Description:         "Configuration for a Wasm VM.",
 						MarkdownDescription: "Configuration for a Wasm VM.",
@@ -334,17 +367,6 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 								MarkdownDescription: "Specifies environment variables to be injected to this VM.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"value_from": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"name": {
 										Description:         "",
@@ -367,6 +389,17 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 										Optional: true,
 										Computed: false,
 									},
+
+									"value_from": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -374,39 +407,6 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"priority": {
-						Description:         "Determines ordering of 'WasmPlugins' in the same 'phase'.",
-						MarkdownDescription: "Determines ordering of 'WasmPlugins' in the same 'phase'.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"url": {
-						Description:         "URL of a Wasm module or OCI container.",
-						MarkdownDescription: "URL of a Wasm module or OCI container.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"verification_key": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

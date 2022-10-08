@@ -49,17 +49,13 @@ type SourceToolkitFluxcdIoHelmChartV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Version *string `tfsdk:"version" yaml:"version,omitempty"`
+
 		AccessFrom *struct {
 			NamespaceSelectors *[]struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 			} `tfsdk:"namespace_selectors" yaml:"namespaceSelectors,omitempty"`
 		} `tfsdk:"access_from" yaml:"accessFrom,omitempty"`
-
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-		ReconcileStrategy *string `tfsdk:"reconcile_strategy" yaml:"reconcileStrategy,omitempty"`
-
-		ValuesFiles *[]string `tfsdk:"values_files" yaml:"valuesFiles,omitempty"`
 
 		Chart *string `tfsdk:"chart" yaml:"chart,omitempty"`
 
@@ -71,11 +67,15 @@ type SourceToolkitFluxcdIoHelmChartV1Beta2GoModel struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"source_ref" yaml:"sourceRef,omitempty"`
 
-		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
-
 		ValuesFile *string `tfsdk:"values_file" yaml:"valuesFile,omitempty"`
 
-		Version *string `tfsdk:"version" yaml:"version,omitempty"`
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+		ReconcileStrategy *string `tfsdk:"reconcile_strategy" yaml:"reconcileStrategy,omitempty"`
+
+		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+
+		ValuesFiles *[]string `tfsdk:"values_files" yaml:"valuesFiles,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -176,6 +176,17 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta2Resource) GetSchema(_ context.Cont
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"version": {
+						Description:         "Version is the chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
+						MarkdownDescription: "Version is the chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"access_from": {
 						Description:         "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
 						MarkdownDescription: "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
@@ -205,39 +216,6 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta2Resource) GetSchema(_ context.Cont
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"interval": {
-						Description:         "Interval is the interval at which to check the Source for updates.",
-						MarkdownDescription: "Interval is the interval at which to check the Source for updates.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"reconcile_strategy": {
-						Description:         "ReconcileStrategy determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
-						MarkdownDescription: "ReconcileStrategy determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"values_files": {
-						Description:         "ValuesFiles is an alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
-						MarkdownDescription: "ValuesFiles is an alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
-
-						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,
@@ -300,17 +278,6 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta2Resource) GetSchema(_ context.Cont
 						Computed: false,
 					},
 
-					"suspend": {
-						Description:         "Suspend tells the controller to suspend the reconciliation of this source.",
-						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this source.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"values_file": {
 						Description:         "ValuesFile is an alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file specified here is merged before the ValuesFiles items. Ignored when omitted.",
 						MarkdownDescription: "ValuesFile is an alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file specified here is merged before the ValuesFiles items. Ignored when omitted.",
@@ -322,11 +289,44 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta2Resource) GetSchema(_ context.Cont
 						Computed: false,
 					},
 
-					"version": {
-						Description:         "Version is the chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
-						MarkdownDescription: "Version is the chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
+					"interval": {
+						Description:         "Interval is the interval at which to check the Source for updates.",
+						MarkdownDescription: "Interval is the interval at which to check the Source for updates.",
 
 						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"reconcile_strategy": {
+						Description:         "ReconcileStrategy determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
+						MarkdownDescription: "ReconcileStrategy determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"suspend": {
+						Description:         "Suspend tells the controller to suspend the reconciliation of this source.",
+						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this source.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"values_files": {
+						Description:         "ValuesFiles is an alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
+						MarkdownDescription: "ValuesFiles is an alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
+
+						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

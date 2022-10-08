@@ -49,8 +49,6 @@ type CouchbaseComCouchbaseScopeV2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
 		Collections *struct {
 			Managed *bool `tfsdk:"managed" yaml:"managed,omitempty"`
 
@@ -76,6 +74,8 @@ type CouchbaseComCouchbaseScopeV2GoModel struct {
 		} `tfsdk:"collections" yaml:"collections,omitempty"`
 
 		DefaultScope *bool `tfsdk:"default_scope" yaml:"defaultScope,omitempty"`
+
+		Name *string `tfsdk:"name" yaml:"name,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -175,17 +175,6 @@ func (r *CouchbaseComCouchbaseScopeV2Resource) GetSchema(_ context.Context) (tfs
 				MarkdownDescription: "Spec defines the desired state of the resource.",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-					"name": {
-						Description:         "Name specifies the name of the scope.  By default, the metadata.name is used to define the scope name, however, due to the limited character set, this field can be used to override the default and provide the full functionality. Additionally the 'metadata.name' field is a DNS label, and thus limited to 63 characters, this field must be used if the name is longer than this limit. Scope names must be 1-251 characters in length, contain only [a-zA-Z0-9_-%] and not start with either _ or %.",
-						MarkdownDescription: "Name specifies the name of the scope.  By default, the metadata.name is used to define the scope name, however, due to the limited character set, this field can be used to override the default and provide the full functionality. Additionally the 'metadata.name' field is a DNS label, and thus limited to 63 characters, this field must be used if the name is longer than this limit. Scope names must be 1-251 characters in length, contain only [a-zA-Z0-9_-%] and not start with either _ or %.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
 
 					"collections": {
 						Description:         "Collections defines how to collate collections included in this scope or scope group. Any of the provided methods may be used to collate a set of collections to manage.  Collated collections must have unique names, otherwise it is considered ambiguous, and an error condition.",
@@ -328,6 +317,17 @@ func (r *CouchbaseComCouchbaseScopeV2Resource) GetSchema(_ context.Context) (tfs
 						MarkdownDescription: "DefaultScope indicates whether this resource represents the default scope for a bucket.  When set to 'true', this allows the user to refer to and manage collections within the default scope.  When not defined, the Operator will implicitly manage the default scope as the default scope can not be deleted from Couchbase Server.  The Operator defined default scope will also have the 'persistDefaultCollection' flag set to 'true'.  Only one default scope is permitted to be contained in a bucket.",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"name": {
+						Description:         "Name specifies the name of the scope.  By default, the metadata.name is used to define the scope name, however, due to the limited character set, this field can be used to override the default and provide the full functionality. Additionally the 'metadata.name' field is a DNS label, and thus limited to 63 characters, this field must be used if the name is longer than this limit. Scope names must be 1-251 characters in length, contain only [a-zA-Z0-9_-%] and not start with either _ or %.",
+						MarkdownDescription: "Name specifies the name of the scope.  By default, the metadata.name is used to define the scope name, however, due to the limited character set, this field can be used to override the default and provide the full functionality. Additionally the 'metadata.name' field is a DNS label, and thus limited to 63 characters, this field must be used if the name is longer than this limit. Scope names must be 1-251 characters in length, contain only [a-zA-Z0-9_-%] and not start with either _ or %.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

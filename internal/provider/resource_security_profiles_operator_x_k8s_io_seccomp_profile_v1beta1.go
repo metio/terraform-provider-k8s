@@ -65,13 +65,13 @@ type SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1GoModel struct {
 			Action *string `tfsdk:"action" yaml:"action,omitempty"`
 
 			Args *[]struct {
-				Index *int64 `tfsdk:"index" yaml:"index,omitempty"`
-
 				Op *string `tfsdk:"op" yaml:"op,omitempty"`
 
 				Value *int64 `tfsdk:"value" yaml:"value,omitempty"`
 
 				ValueTwo *int64 `tfsdk:"value_two" yaml:"valueTwo,omitempty"`
+
+				Index *int64 `tfsdk:"index" yaml:"index,omitempty"`
 			} `tfsdk:"args" yaml:"args,omitempty"`
 
 			ErrnoRet *string `tfsdk:"errno_ret" yaml:"errnoRet,omitempty"`
@@ -267,17 +267,6 @@ func (r *SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Resource) GetSchema(
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"index": {
-										Description:         "the index for syscall arguments in seccomp",
-										MarkdownDescription: "the index for syscall arguments in seccomp",
-
-										Type: types.Int64Type,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
 									"op": {
 										Description:         "the operator for syscall arguments in seccomp",
 										MarkdownDescription: "the operator for syscall arguments in seccomp",
@@ -308,6 +297,17 @@ func (r *SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Resource) GetSchema(
 
 										Required: false,
 										Optional: true,
+										Computed: false,
+									},
+
+									"index": {
+										Description:         "the index for syscall arguments in seccomp",
+										MarkdownDescription: "the index for syscall arguments in seccomp",
+
+										Type: types.Int64Type,
+
+										Required: true,
+										Optional: false,
 										Computed: false,
 									},
 								}),

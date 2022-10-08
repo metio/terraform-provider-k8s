@@ -62,10 +62,6 @@ type ImageToolkitFluxcdIoImagePolicyV1Beta1GoModel struct {
 		} `tfsdk:"image_repository_ref" yaml:"imageRepositoryRef,omitempty"`
 
 		Policy *struct {
-			Alphabetical *struct {
-				Order *string `tfsdk:"order" yaml:"order,omitempty"`
-			} `tfsdk:"alphabetical" yaml:"alphabetical,omitempty"`
-
 			Numerical *struct {
 				Order *string `tfsdk:"order" yaml:"order,omitempty"`
 			} `tfsdk:"numerical" yaml:"numerical,omitempty"`
@@ -73,6 +69,10 @@ type ImageToolkitFluxcdIoImagePolicyV1Beta1GoModel struct {
 			Semver *struct {
 				Range *string `tfsdk:"range" yaml:"range,omitempty"`
 			} `tfsdk:"semver" yaml:"semver,omitempty"`
+
+			Alphabetical *struct {
+				Order *string `tfsdk:"order" yaml:"order,omitempty"`
+			} `tfsdk:"alphabetical" yaml:"alphabetical,omitempty"`
 		} `tfsdk:"policy" yaml:"policy,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -248,29 +248,6 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Beta1Resource) GetSchema(_ context.Con
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"alphabetical": {
-								Description:         "Alphabetical set of rules to use for alphabetical ordering of the tags.",
-								MarkdownDescription: "Alphabetical set of rules to use for alphabetical ordering of the tags.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"order": {
-										Description:         "Order specifies the sorting order of the tags. Given the letters of the alphabet as tags, ascending order would select Z, and descending order would select A.",
-										MarkdownDescription: "Order specifies the sorting order of the tags. Given the letters of the alphabet as tags, ascending order would select Z, and descending order would select A.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"numerical": {
 								Description:         "Numerical set of rules to use for numerical ordering of the tags.",
 								MarkdownDescription: "Numerical set of rules to use for numerical ordering of the tags.",
@@ -308,6 +285,29 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Beta1Resource) GetSchema(_ context.Con
 
 										Required: true,
 										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"alphabetical": {
+								Description:         "Alphabetical set of rules to use for alphabetical ordering of the tags.",
+								MarkdownDescription: "Alphabetical set of rules to use for alphabetical ordering of the tags.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"order": {
+										Description:         "Order specifies the sorting order of the tags. Given the letters of the alphabet as tags, ascending order would select Z, and descending order would select A.",
+										MarkdownDescription: "Order specifies the sorting order of the tags. Given the letters of the alphabet as tags, ascending order would select Z, and descending order would select A.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 								}),

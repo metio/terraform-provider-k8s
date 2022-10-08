@@ -53,36 +53,28 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 			Equal *[]string `tfsdk:"equal" yaml:"equal,omitempty"`
 
 			SourceMatch *[]struct {
-				Regex *bool `tfsdk:"regex" yaml:"regex,omitempty"`
-
 				Value *string `tfsdk:"value" yaml:"value,omitempty"`
 
 				MatchType *string `tfsdk:"match_type" yaml:"matchType,omitempty"`
 
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Regex *bool `tfsdk:"regex" yaml:"regex,omitempty"`
 			} `tfsdk:"source_match" yaml:"sourceMatch,omitempty"`
 
 			TargetMatch *[]struct {
-				MatchType *string `tfsdk:"match_type" yaml:"matchType,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
 				Regex *bool `tfsdk:"regex" yaml:"regex,omitempty"`
 
 				Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+				MatchType *string `tfsdk:"match_type" yaml:"matchType,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 			} `tfsdk:"target_match" yaml:"targetMatch,omitempty"`
 		} `tfsdk:"inhibit_rules" yaml:"inhibitRules,omitempty"`
 
 		MuteTimeIntervals *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
 			TimeIntervals *[]struct {
-				Times *[]struct {
-					EndTime *string `tfsdk:"end_time" yaml:"endTime,omitempty"`
-
-					StartTime *string `tfsdk:"start_time" yaml:"startTime,omitempty"`
-				} `tfsdk:"times" yaml:"times,omitempty"`
-
 				Weekdays *[]string `tfsdk:"weekdays" yaml:"weekdays,omitempty"`
 
 				Years *[]string `tfsdk:"years" yaml:"years,omitempty"`
@@ -94,775 +86,53 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 				} `tfsdk:"days_of_month" yaml:"daysOfMonth,omitempty"`
 
 				Months *[]string `tfsdk:"months" yaml:"months,omitempty"`
+
+				Times *[]struct {
+					EndTime *string `tfsdk:"end_time" yaml:"endTime,omitempty"`
+
+					StartTime *string `tfsdk:"start_time" yaml:"startTime,omitempty"`
+				} `tfsdk:"times" yaml:"times,omitempty"`
 			} `tfsdk:"time_intervals" yaml:"timeIntervals,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"mute_time_intervals" yaml:"muteTimeIntervals,omitempty"`
 
 		Receivers *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			OpsgenieConfigs *[]struct {
-				Actions *string `tfsdk:"actions" yaml:"actions,omitempty"`
-
-				ApiKey *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-				} `tfsdk:"api_key" yaml:"apiKey,omitempty"`
-
-				Details *[]struct {
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-				} `tfsdk:"details" yaml:"details,omitempty"`
-
-				Responders *[]struct {
-					Id *string `tfsdk:"id" yaml:"id,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-					Username *string `tfsdk:"username" yaml:"username,omitempty"`
-				} `tfsdk:"responders" yaml:"responders,omitempty"`
-
-				Priority *string `tfsdk:"priority" yaml:"priority,omitempty"`
-
-				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
-
-				Tags *string `tfsdk:"tags" yaml:"tags,omitempty"`
-
-				ApiURL *string `tfsdk:"api_url" yaml:"apiURL,omitempty"`
-
-				Description *string `tfsdk:"description" yaml:"description,omitempty"`
-
-				Entity *string `tfsdk:"entity" yaml:"entity,omitempty"`
-
-				Message *string `tfsdk:"message" yaml:"message,omitempty"`
-
-				Note *string `tfsdk:"note" yaml:"note,omitempty"`
-
-				Source *string `tfsdk:"source" yaml:"source,omitempty"`
-
-				UpdateAlerts *bool `tfsdk:"update_alerts" yaml:"updateAlerts,omitempty"`
-
-				HttpConfig *struct {
-					TlsConfig *struct {
-						ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
-
-						Ca *struct {
-							ConfigMap *struct {
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"ca" yaml:"ca,omitempty"`
-
-						Cert *struct {
-							ConfigMap *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"cert" yaml:"cert,omitempty"`
-
-						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
-
-						KeySecret *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
-					} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
-
-					Authorization *struct {
-						Credentials *struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-						} `tfsdk:"credentials" yaml:"credentials,omitempty"`
-
-						Type *string `tfsdk:"type" yaml:"type,omitempty"`
-					} `tfsdk:"authorization" yaml:"authorization,omitempty"`
-
-					BasicAuth *struct {
-						Password *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"password" yaml:"password,omitempty"`
-
-						Username *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"username" yaml:"username,omitempty"`
-					} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
-
-					BearerTokenSecret *struct {
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
-
-					FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
-
-					Oauth2 *struct {
-						ClientSecret *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
-
-						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
-
-						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
-
-						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
-
-						ClientId *struct {
-							ConfigMap *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"client_id" yaml:"clientId,omitempty"`
-					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
-
-					ProxyURL *string `tfsdk:"proxy_url" yaml:"proxyURL,omitempty"`
-				} `tfsdk:"http_config" yaml:"httpConfig,omitempty"`
-			} `tfsdk:"opsgenie_configs" yaml:"opsgenieConfigs,omitempty"`
-
-			PagerdutyConfigs *[]struct {
-				Component *string `tfsdk:"component" yaml:"component,omitempty"`
-
-				Description *string `tfsdk:"description" yaml:"description,omitempty"`
-
-				Severity *string `tfsdk:"severity" yaml:"severity,omitempty"`
-
-				Url *string `tfsdk:"url" yaml:"url,omitempty"`
-
-				Client *string `tfsdk:"client" yaml:"client,omitempty"`
-
-				PagerDutyLinkConfigs *[]struct {
-					Alt *string `tfsdk:"alt" yaml:"alt,omitempty"`
-
-					Href *string `tfsdk:"href" yaml:"href,omitempty"`
-				} `tfsdk:"pager_duty_link_configs" yaml:"pagerDutyLinkConfigs,omitempty"`
-
-				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
-
-				ServiceKey *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-				} `tfsdk:"service_key" yaml:"serviceKey,omitempty"`
-
-				Details *[]struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-				} `tfsdk:"details" yaml:"details,omitempty"`
-
-				PagerDutyImageConfigs *[]struct {
-					Alt *string `tfsdk:"alt" yaml:"alt,omitempty"`
-
-					Href *string `tfsdk:"href" yaml:"href,omitempty"`
-
-					Src *string `tfsdk:"src" yaml:"src,omitempty"`
-				} `tfsdk:"pager_duty_image_configs" yaml:"pagerDutyImageConfigs,omitempty"`
-
-				RoutingKey *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-				} `tfsdk:"routing_key" yaml:"routingKey,omitempty"`
-
-				Class *string `tfsdk:"class" yaml:"class,omitempty"`
-
-				ClientURL *string `tfsdk:"client_url" yaml:"clientURL,omitempty"`
-
-				Group *string `tfsdk:"group" yaml:"group,omitempty"`
-
-				HttpConfig *struct {
-					Authorization *struct {
-						Credentials *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"credentials" yaml:"credentials,omitempty"`
-
-						Type *string `tfsdk:"type" yaml:"type,omitempty"`
-					} `tfsdk:"authorization" yaml:"authorization,omitempty"`
-
-					BasicAuth *struct {
-						Password *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"password" yaml:"password,omitempty"`
-
-						Username *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"username" yaml:"username,omitempty"`
-					} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
-
-					BearerTokenSecret *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
-
-					FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
-
-					Oauth2 *struct {
-						ClientSecret *struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-						} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
-
-						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
-
-						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
-
-						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
-
-						ClientId *struct {
-							Secret *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-
-							ConfigMap *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-						} `tfsdk:"client_id" yaml:"clientId,omitempty"`
-					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
-
-					ProxyURL *string `tfsdk:"proxy_url" yaml:"proxyURL,omitempty"`
-
-					TlsConfig *struct {
-						Cert *struct {
-							Secret *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-
-							ConfigMap *struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-						} `tfsdk:"cert" yaml:"cert,omitempty"`
-
-						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
-
-						KeySecret *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
-
-						ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
-
-						Ca *struct {
-							ConfigMap *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"ca" yaml:"ca,omitempty"`
-					} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
-				} `tfsdk:"http_config" yaml:"httpConfig,omitempty"`
-			} `tfsdk:"pagerduty_configs" yaml:"pagerdutyConfigs,omitempty"`
-
-			SlackConfigs *[]struct {
-				ApiURL *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-				} `tfsdk:"api_url" yaml:"apiURL,omitempty"`
-
-				ThumbURL *string `tfsdk:"thumb_url" yaml:"thumbURL,omitempty"`
-
-				Title *string `tfsdk:"title" yaml:"title,omitempty"`
-
-				ImageURL *string `tfsdk:"image_url" yaml:"imageURL,omitempty"`
-
-				Pretext *string `tfsdk:"pretext" yaml:"pretext,omitempty"`
-
-				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
-
-				ShortFields *bool `tfsdk:"short_fields" yaml:"shortFields,omitempty"`
-
-				Color *string `tfsdk:"color" yaml:"color,omitempty"`
-
-				Fallback *string `tfsdk:"fallback" yaml:"fallback,omitempty"`
-
-				HttpConfig *struct {
-					TlsConfig *struct {
-						Ca *struct {
-							ConfigMap *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"ca" yaml:"ca,omitempty"`
-
-						Cert *struct {
-							ConfigMap *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"cert" yaml:"cert,omitempty"`
-
-						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
-
-						KeySecret *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
-
-						ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
-					} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
-
-					Authorization *struct {
-						Credentials *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"credentials" yaml:"credentials,omitempty"`
-
-						Type *string `tfsdk:"type" yaml:"type,omitempty"`
-					} `tfsdk:"authorization" yaml:"authorization,omitempty"`
-
-					BasicAuth *struct {
-						Password *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"password" yaml:"password,omitempty"`
-
-						Username *struct {
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-						} `tfsdk:"username" yaml:"username,omitempty"`
-					} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
-
-					BearerTokenSecret *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
-
-					FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
-
-					Oauth2 *struct {
-						ClientId *struct {
-							ConfigMap *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"client_id" yaml:"clientId,omitempty"`
-
-						ClientSecret *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
-
-						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
-
-						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
-
-						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
-					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
-
-					ProxyURL *string `tfsdk:"proxy_url" yaml:"proxyURL,omitempty"`
-				} `tfsdk:"http_config" yaml:"httpConfig,omitempty"`
-
-				IconEmoji *string `tfsdk:"icon_emoji" yaml:"iconEmoji,omitempty"`
-
-				Username *string `tfsdk:"username" yaml:"username,omitempty"`
-
-				Text *string `tfsdk:"text" yaml:"text,omitempty"`
-
-				TitleLink *string `tfsdk:"title_link" yaml:"titleLink,omitempty"`
-
-				Actions *[]struct {
-					Text *string `tfsdk:"text" yaml:"text,omitempty"`
-
-					Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-					Url *string `tfsdk:"url" yaml:"url,omitempty"`
-
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-					Confirm *struct {
-						OkText *string `tfsdk:"ok_text" yaml:"okText,omitempty"`
-
-						Text *string `tfsdk:"text" yaml:"text,omitempty"`
-
-						Title *string `tfsdk:"title" yaml:"title,omitempty"`
-
-						DismissText *string `tfsdk:"dismiss_text" yaml:"dismissText,omitempty"`
-					} `tfsdk:"confirm" yaml:"confirm,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Style *string `tfsdk:"style" yaml:"style,omitempty"`
-				} `tfsdk:"actions" yaml:"actions,omitempty"`
-
-				CallbackId *string `tfsdk:"callback_id" yaml:"callbackId,omitempty"`
-
-				Fields *[]struct {
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-					Short *bool `tfsdk:"short" yaml:"short,omitempty"`
-
-					Title *string `tfsdk:"title" yaml:"title,omitempty"`
-				} `tfsdk:"fields" yaml:"fields,omitempty"`
-
-				MrkdwnIn *[]string `tfsdk:"mrkdwn_in" yaml:"mrkdwnIn,omitempty"`
-
-				Channel *string `tfsdk:"channel" yaml:"channel,omitempty"`
-
-				Footer *string `tfsdk:"footer" yaml:"footer,omitempty"`
-
-				IconURL *string `tfsdk:"icon_url" yaml:"iconURL,omitempty"`
-
-				LinkNames *bool `tfsdk:"link_names" yaml:"linkNames,omitempty"`
-			} `tfsdk:"slack_configs" yaml:"slackConfigs,omitempty"`
-
-			WechatConfigs *[]struct {
-				AgentID *string `tfsdk:"agent_id" yaml:"agentID,omitempty"`
-
-				ApiSecret *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-				} `tfsdk:"api_secret" yaml:"apiSecret,omitempty"`
-
-				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
-
-				ToParty *string `tfsdk:"to_party" yaml:"toParty,omitempty"`
-
-				ApiURL *string `tfsdk:"api_url" yaml:"apiURL,omitempty"`
-
-				CorpID *string `tfsdk:"corp_id" yaml:"corpID,omitempty"`
-
-				HttpConfig *struct {
-					TlsConfig *struct {
-						Ca *struct {
-							ConfigMap *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"ca" yaml:"ca,omitempty"`
-
-						Cert *struct {
-							ConfigMap *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"cert" yaml:"cert,omitempty"`
-
-						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
-
-						KeySecret *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
-
-						ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
-					} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
-
-					Authorization *struct {
-						Credentials *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"credentials" yaml:"credentials,omitempty"`
-
-						Type *string `tfsdk:"type" yaml:"type,omitempty"`
-					} `tfsdk:"authorization" yaml:"authorization,omitempty"`
-
-					BasicAuth *struct {
-						Password *struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-						} `tfsdk:"password" yaml:"password,omitempty"`
-
-						Username *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"username" yaml:"username,omitempty"`
-					} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
-
-					BearerTokenSecret *struct {
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
-
-					FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
-
-					Oauth2 *struct {
-						ClientId *struct {
-							ConfigMap *struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"client_id" yaml:"clientId,omitempty"`
-
-						ClientSecret *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
-
-						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
-
-						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
-
-						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
-					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
-
-					ProxyURL *string `tfsdk:"proxy_url" yaml:"proxyURL,omitempty"`
-				} `tfsdk:"http_config" yaml:"httpConfig,omitempty"`
-
-				Message *string `tfsdk:"message" yaml:"message,omitempty"`
-
-				MessageType *string `tfsdk:"message_type" yaml:"messageType,omitempty"`
-
-				ToTag *string `tfsdk:"to_tag" yaml:"toTag,omitempty"`
-
-				ToUser *string `tfsdk:"to_user" yaml:"toUser,omitempty"`
-			} `tfsdk:"wechat_configs" yaml:"wechatConfigs,omitempty"`
-
 			EmailConfigs *[]struct {
-				Headers *[]struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+				Html *string `tfsdk:"html" yaml:"html,omitempty"`
 
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-				} `tfsdk:"headers" yaml:"headers,omitempty"`
+				RequireTLS *bool `tfsdk:"require_tls" yaml:"requireTLS,omitempty"`
 
-				Hello *string `tfsdk:"hello" yaml:"hello,omitempty"`
+				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
 
 				AuthSecret *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 				} `tfsdk:"auth_secret" yaml:"authSecret,omitempty"`
-
-				AuthUsername *string `tfsdk:"auth_username" yaml:"authUsername,omitempty"`
-
-				Smarthost *string `tfsdk:"smarthost" yaml:"smarthost,omitempty"`
 
 				TlsConfig *struct {
 					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
 
 					KeySecret *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 					} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
 
 					ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
 
 					Ca *struct {
 						ConfigMap *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 						} `tfsdk:"config_map" yaml:"configMap,omitempty"`
 
 						Secret *struct {
@@ -895,70 +165,46 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 
 				AuthIdentity *string `tfsdk:"auth_identity" yaml:"authIdentity,omitempty"`
 
-				AuthPassword *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-				} `tfsdk:"auth_password" yaml:"authPassword,omitempty"`
+				AuthUsername *string `tfsdk:"auth_username" yaml:"authUsername,omitempty"`
 
 				From *string `tfsdk:"from" yaml:"from,omitempty"`
 
-				Html *string `tfsdk:"html" yaml:"html,omitempty"`
+				Headers *[]struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
-				RequireTLS *bool `tfsdk:"require_tls" yaml:"requireTLS,omitempty"`
-
-				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+				} `tfsdk:"headers" yaml:"headers,omitempty"`
 
 				Text *string `tfsdk:"text" yaml:"text,omitempty"`
 
+				AuthPassword *struct {
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"auth_password" yaml:"authPassword,omitempty"`
+
+				Smarthost *string `tfsdk:"smarthost" yaml:"smarthost,omitempty"`
+
 				To *string `tfsdk:"to" yaml:"to,omitempty"`
+
+				Hello *string `tfsdk:"hello" yaml:"hello,omitempty"`
 			} `tfsdk:"email_configs" yaml:"emailConfigs,omitempty"`
 
-			PushoverConfigs *[]struct {
-				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
+			PagerdutyConfigs *[]struct {
+				Details *[]struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
-				Title *string `tfsdk:"title" yaml:"title,omitempty"`
-
-				Url *string `tfsdk:"url" yaml:"url,omitempty"`
-
-				UrlTitle *string `tfsdk:"url_title" yaml:"urlTitle,omitempty"`
-
-				Message *string `tfsdk:"message" yaml:"message,omitempty"`
-
-				Retry *string `tfsdk:"retry" yaml:"retry,omitempty"`
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+				} `tfsdk:"details" yaml:"details,omitempty"`
 
 				HttpConfig *struct {
-					BasicAuth *struct {
-						Password *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"password" yaml:"password,omitempty"`
-
-						Username *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"username" yaml:"username,omitempty"`
-					} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
-
-					BearerTokenSecret *struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
-
-					FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
-
 					Oauth2 *struct {
+						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
+
+						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
+
 						ClientId *struct {
 							ConfigMap *struct {
 								Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -978,33 +224,19 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 						} `tfsdk:"client_id" yaml:"clientId,omitempty"`
 
 						ClientSecret *struct {
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 						} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
 
 						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
-
-						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
-
-						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
 					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
 
 					ProxyURL *string `tfsdk:"proxy_url" yaml:"proxyURL,omitempty"`
 
 					TlsConfig *struct {
-						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
-
-						KeySecret *struct {
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-						} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
-
 						ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
 
 						Ca *struct {
@@ -1042,22 +274,114 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 							} `tfsdk:"secret" yaml:"secret,omitempty"`
 						} `tfsdk:"cert" yaml:"cert,omitempty"`
+
+						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
+
+						KeySecret *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
 					} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
 
 					Authorization *struct {
 						Credentials *struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
 							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
 						} `tfsdk:"credentials" yaml:"credentials,omitempty"`
 
 						Type *string `tfsdk:"type" yaml:"type,omitempty"`
 					} `tfsdk:"authorization" yaml:"authorization,omitempty"`
+
+					BasicAuth *struct {
+						Password *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"password" yaml:"password,omitempty"`
+
+						Username *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"username" yaml:"username,omitempty"`
+					} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
+
+					BearerTokenSecret *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
+
+					FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
 				} `tfsdk:"http_config" yaml:"httpConfig,omitempty"`
 
+				RoutingKey *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"routing_key" yaml:"routingKey,omitempty"`
+
+				Class *string `tfsdk:"class" yaml:"class,omitempty"`
+
+				ClientURL *string `tfsdk:"client_url" yaml:"clientURL,omitempty"`
+
+				ServiceKey *struct {
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"service_key" yaml:"serviceKey,omitempty"`
+
+				Severity *string `tfsdk:"severity" yaml:"severity,omitempty"`
+
+				Url *string `tfsdk:"url" yaml:"url,omitempty"`
+
+				Description *string `tfsdk:"description" yaml:"description,omitempty"`
+
+				Group *string `tfsdk:"group" yaml:"group,omitempty"`
+
+				Client *string `tfsdk:"client" yaml:"client,omitempty"`
+
+				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
+
+				PagerDutyLinkConfigs *[]struct {
+					Alt *string `tfsdk:"alt" yaml:"alt,omitempty"`
+
+					Href *string `tfsdk:"href" yaml:"href,omitempty"`
+				} `tfsdk:"pager_duty_link_configs" yaml:"pagerDutyLinkConfigs,omitempty"`
+
+				Component *string `tfsdk:"component" yaml:"component,omitempty"`
+
+				PagerDutyImageConfigs *[]struct {
+					Src *string `tfsdk:"src" yaml:"src,omitempty"`
+
+					Alt *string `tfsdk:"alt" yaml:"alt,omitempty"`
+
+					Href *string `tfsdk:"href" yaml:"href,omitempty"`
+				} `tfsdk:"pager_duty_image_configs" yaml:"pagerDutyImageConfigs,omitempty"`
+			} `tfsdk:"pagerduty_configs" yaml:"pagerdutyConfigs,omitempty"`
+
+			PushoverConfigs *[]struct {
+				Html *bool `tfsdk:"html" yaml:"html,omitempty"`
+
 				Priority *string `tfsdk:"priority" yaml:"priority,omitempty"`
+
+				Retry *string `tfsdk:"retry" yaml:"retry,omitempty"`
 
 				Sound *string `tfsdk:"sound" yaml:"sound,omitempty"`
 
@@ -1070,62 +394,18 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 				} `tfsdk:"token" yaml:"token,omitempty"`
 
 				UserKey *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 				} `tfsdk:"user_key" yaml:"userKey,omitempty"`
+
+				UrlTitle *string `tfsdk:"url_title" yaml:"urlTitle,omitempty"`
 
 				Expire *string `tfsdk:"expire" yaml:"expire,omitempty"`
 
-				Html *bool `tfsdk:"html" yaml:"html,omitempty"`
-			} `tfsdk:"pushover_configs" yaml:"pushoverConfigs,omitempty"`
-
-			SnsConfigs *[]struct {
-				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
-
-				Subject *string `tfsdk:"subject" yaml:"subject,omitempty"`
-
-				ApiURL *string `tfsdk:"api_url" yaml:"apiURL,omitempty"`
-
-				Attributes *map[string]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
-
 				HttpConfig *struct {
-					Oauth2 *struct {
-						ClientId *struct {
-							ConfigMap *struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"client_id" yaml:"clientId,omitempty"`
-
-						ClientSecret *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
-
-						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
-
-						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
-
-						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
-					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
-
 					ProxyURL *string `tfsdk:"proxy_url" yaml:"proxyURL,omitempty"`
 
 					TlsConfig *struct {
@@ -1141,11 +421,11 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
 
 							Secret *struct {
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
 								Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 							} `tfsdk:"secret" yaml:"secret,omitempty"`
 						} `tfsdk:"ca" yaml:"ca,omitempty"`
 
@@ -1170,11 +450,11 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
 
 						KeySecret *struct {
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 						} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
 					} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
 
@@ -1217,25 +497,599 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
 
 					FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
+
+					Oauth2 *struct {
+						ClientSecret *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
+
+						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
+
+						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
+
+						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
+
+						ClientId *struct {
+							ConfigMap *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"client_id" yaml:"clientId,omitempty"`
+					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
 				} `tfsdk:"http_config" yaml:"httpConfig,omitempty"`
 
 				Message *string `tfsdk:"message" yaml:"message,omitempty"`
 
-				PhoneNumber *string `tfsdk:"phone_number" yaml:"phoneNumber,omitempty"`
+				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
 
-				Sigv4 *struct {
-					Region *string `tfsdk:"region" yaml:"region,omitempty"`
+				Title *string `tfsdk:"title" yaml:"title,omitempty"`
 
-					RoleArn *string `tfsdk:"role_arn" yaml:"roleArn,omitempty"`
+				Url *string `tfsdk:"url" yaml:"url,omitempty"`
+			} `tfsdk:"pushover_configs" yaml:"pushoverConfigs,omitempty"`
 
-					SecretKey *struct {
+			VictoropsConfigs *[]struct {
+				HttpConfig *struct {
+					FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
+
+					Oauth2 *struct {
+						ClientId *struct {
+							ConfigMap *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"client_id" yaml:"clientId,omitempty"`
+
+						ClientSecret *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
+
+						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
+
+						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
+
+						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
+					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
+
+					ProxyURL *string `tfsdk:"proxy_url" yaml:"proxyURL,omitempty"`
+
+					TlsConfig *struct {
+						Ca *struct {
+							ConfigMap *struct {
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"ca" yaml:"ca,omitempty"`
+
+						Cert *struct {
+							Secret *struct {
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+
+							ConfigMap *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+						} `tfsdk:"cert" yaml:"cert,omitempty"`
+
+						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
+
+						KeySecret *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
+
+						ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
+					} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
+
+					Authorization *struct {
+						Credentials *struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+						} `tfsdk:"credentials" yaml:"credentials,omitempty"`
+
+						Type *string `tfsdk:"type" yaml:"type,omitempty"`
+					} `tfsdk:"authorization" yaml:"authorization,omitempty"`
+
+					BasicAuth *struct {
+						Password *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"password" yaml:"password,omitempty"`
+
+						Username *struct {
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"username" yaml:"username,omitempty"`
+					} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
+
+					BearerTokenSecret *struct {
 						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"secret_key" yaml:"secretKey,omitempty"`
+					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
+				} `tfsdk:"http_config" yaml:"httpConfig,omitempty"`
 
+				MessageType *string `tfsdk:"message_type" yaml:"messageType,omitempty"`
+
+				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
+
+				StateMessage *string `tfsdk:"state_message" yaml:"stateMessage,omitempty"`
+
+				EntityDisplayName *string `tfsdk:"entity_display_name" yaml:"entityDisplayName,omitempty"`
+
+				ApiUrl *string `tfsdk:"api_url" yaml:"apiUrl,omitempty"`
+
+				CustomFields *[]struct {
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+				} `tfsdk:"custom_fields" yaml:"customFields,omitempty"`
+
+				MonitoringTool *string `tfsdk:"monitoring_tool" yaml:"monitoringTool,omitempty"`
+
+				RoutingKey *string `tfsdk:"routing_key" yaml:"routingKey,omitempty"`
+
+				ApiKey *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"api_key" yaml:"apiKey,omitempty"`
+			} `tfsdk:"victorops_configs" yaml:"victoropsConfigs,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			OpsgenieConfigs *[]struct {
+				ApiURL *string `tfsdk:"api_url" yaml:"apiURL,omitempty"`
+
+				Details *[]struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+				} `tfsdk:"details" yaml:"details,omitempty"`
+
+				Message *string `tfsdk:"message" yaml:"message,omitempty"`
+
+				Note *string `tfsdk:"note" yaml:"note,omitempty"`
+
+				Priority *string `tfsdk:"priority" yaml:"priority,omitempty"`
+
+				Source *string `tfsdk:"source" yaml:"source,omitempty"`
+
+				ApiKey *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"api_key" yaml:"apiKey,omitempty"`
+
+				Description *string `tfsdk:"description" yaml:"description,omitempty"`
+
+				Entity *string `tfsdk:"entity" yaml:"entity,omitempty"`
+
+				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
+
+				Tags *string `tfsdk:"tags" yaml:"tags,omitempty"`
+
+				UpdateAlerts *bool `tfsdk:"update_alerts" yaml:"updateAlerts,omitempty"`
+
+				HttpConfig *struct {
+					ProxyURL *string `tfsdk:"proxy_url" yaml:"proxyURL,omitempty"`
+
+					TlsConfig *struct {
+						KeySecret *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
+
+						ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
+
+						Ca *struct {
+							ConfigMap *struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"ca" yaml:"ca,omitempty"`
+
+						Cert *struct {
+							ConfigMap *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"cert" yaml:"cert,omitempty"`
+
+						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
+					} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
+
+					Authorization *struct {
+						Credentials *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"credentials" yaml:"credentials,omitempty"`
+
+						Type *string `tfsdk:"type" yaml:"type,omitempty"`
+					} `tfsdk:"authorization" yaml:"authorization,omitempty"`
+
+					BasicAuth *struct {
+						Password *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"password" yaml:"password,omitempty"`
+
+						Username *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"username" yaml:"username,omitempty"`
+					} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
+
+					BearerTokenSecret *struct {
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
+
+					FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
+
+					Oauth2 *struct {
+						ClientSecret *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
+
+						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
+
+						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
+
+						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
+
+						ClientId *struct {
+							ConfigMap *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"client_id" yaml:"clientId,omitempty"`
+					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
+				} `tfsdk:"http_config" yaml:"httpConfig,omitempty"`
+
+				Actions *string `tfsdk:"actions" yaml:"actions,omitempty"`
+
+				Responders *[]struct {
+					Username *string `tfsdk:"username" yaml:"username,omitempty"`
+
+					Id *string `tfsdk:"id" yaml:"id,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Type *string `tfsdk:"type" yaml:"type,omitempty"`
+				} `tfsdk:"responders" yaml:"responders,omitempty"`
+			} `tfsdk:"opsgenie_configs" yaml:"opsgenieConfigs,omitempty"`
+
+			SlackConfigs *[]struct {
+				IconURL *string `tfsdk:"icon_url" yaml:"iconURL,omitempty"`
+
+				Title *string `tfsdk:"title" yaml:"title,omitempty"`
+
+				TitleLink *string `tfsdk:"title_link" yaml:"titleLink,omitempty"`
+
+				Actions *[]struct {
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+					Confirm *struct {
+						OkText *string `tfsdk:"ok_text" yaml:"okText,omitempty"`
+
+						Text *string `tfsdk:"text" yaml:"text,omitempty"`
+
+						Title *string `tfsdk:"title" yaml:"title,omitempty"`
+
+						DismissText *string `tfsdk:"dismiss_text" yaml:"dismissText,omitempty"`
+					} `tfsdk:"confirm" yaml:"confirm,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Style *string `tfsdk:"style" yaml:"style,omitempty"`
+
+					Text *string `tfsdk:"text" yaml:"text,omitempty"`
+
+					Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+					Url *string `tfsdk:"url" yaml:"url,omitempty"`
+				} `tfsdk:"actions" yaml:"actions,omitempty"`
+
+				ApiURL *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"api_url" yaml:"apiURL,omitempty"`
+
+				HttpConfig *struct {
+					Authorization *struct {
+						Credentials *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"credentials" yaml:"credentials,omitempty"`
+
+						Type *string `tfsdk:"type" yaml:"type,omitempty"`
+					} `tfsdk:"authorization" yaml:"authorization,omitempty"`
+
+					BasicAuth *struct {
+						Password *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"password" yaml:"password,omitempty"`
+
+						Username *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"username" yaml:"username,omitempty"`
+					} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
+
+					BearerTokenSecret *struct {
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
+
+					FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
+
+					Oauth2 *struct {
+						ClientId *struct {
+							ConfigMap *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"client_id" yaml:"clientId,omitempty"`
+
+						ClientSecret *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
+
+						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
+
+						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
+
+						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
+					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
+
+					ProxyURL *string `tfsdk:"proxy_url" yaml:"proxyURL,omitempty"`
+
+					TlsConfig *struct {
+						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
+
+						KeySecret *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
+
+						ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
+
+						Ca *struct {
+							ConfigMap *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"ca" yaml:"ca,omitempty"`
+
+						Cert *struct {
+							ConfigMap *struct {
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"cert" yaml:"cert,omitempty"`
+					} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
+				} `tfsdk:"http_config" yaml:"httpConfig,omitempty"`
+
+				ShortFields *bool `tfsdk:"short_fields" yaml:"shortFields,omitempty"`
+
+				ThumbURL *string `tfsdk:"thumb_url" yaml:"thumbURL,omitempty"`
+
+				Fallback *string `tfsdk:"fallback" yaml:"fallback,omitempty"`
+
+				Fields *[]struct {
+					Short *bool `tfsdk:"short" yaml:"short,omitempty"`
+
+					Title *string `tfsdk:"title" yaml:"title,omitempty"`
+
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+				} `tfsdk:"fields" yaml:"fields,omitempty"`
+
+				LinkNames *bool `tfsdk:"link_names" yaml:"linkNames,omitempty"`
+
+				MrkdwnIn *[]string `tfsdk:"mrkdwn_in" yaml:"mrkdwnIn,omitempty"`
+
+				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
+
+				Username *string `tfsdk:"username" yaml:"username,omitempty"`
+
+				Footer *string `tfsdk:"footer" yaml:"footer,omitempty"`
+
+				ImageURL *string `tfsdk:"image_url" yaml:"imageURL,omitempty"`
+
+				Color *string `tfsdk:"color" yaml:"color,omitempty"`
+
+				IconEmoji *string `tfsdk:"icon_emoji" yaml:"iconEmoji,omitempty"`
+
+				Pretext *string `tfsdk:"pretext" yaml:"pretext,omitempty"`
+
+				Text *string `tfsdk:"text" yaml:"text,omitempty"`
+
+				CallbackId *string `tfsdk:"callback_id" yaml:"callbackId,omitempty"`
+
+				Channel *string `tfsdk:"channel" yaml:"channel,omitempty"`
+			} `tfsdk:"slack_configs" yaml:"slackConfigs,omitempty"`
+
+			SnsConfigs *[]struct {
+				Message *string `tfsdk:"message" yaml:"message,omitempty"`
+
+				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
+
+				Sigv4 *struct {
 					AccessKey *struct {
 						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -1245,14 +1099,164 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 					} `tfsdk:"access_key" yaml:"accessKey,omitempty"`
 
 					Profile *string `tfsdk:"profile" yaml:"profile,omitempty"`
+
+					Region *string `tfsdk:"region" yaml:"region,omitempty"`
+
+					RoleArn *string `tfsdk:"role_arn" yaml:"roleArn,omitempty"`
+
+					SecretKey *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+					} `tfsdk:"secret_key" yaml:"secretKey,omitempty"`
 				} `tfsdk:"sigv4" yaml:"sigv4,omitempty"`
 
 				TargetARN *string `tfsdk:"target_arn" yaml:"targetARN,omitempty"`
 
 				TopicARN *string `tfsdk:"topic_arn" yaml:"topicARN,omitempty"`
+
+				ApiURL *string `tfsdk:"api_url" yaml:"apiURL,omitempty"`
+
+				Attributes *map[string]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
+
+				HttpConfig *struct {
+					BasicAuth *struct {
+						Password *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"password" yaml:"password,omitempty"`
+
+						Username *struct {
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"username" yaml:"username,omitempty"`
+					} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
+
+					BearerTokenSecret *struct {
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
+
+					FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
+
+					Oauth2 *struct {
+						ClientId *struct {
+							ConfigMap *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"client_id" yaml:"clientId,omitempty"`
+
+						ClientSecret *struct {
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
+
+						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
+
+						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
+
+						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
+					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
+
+					ProxyURL *string `tfsdk:"proxy_url" yaml:"proxyURL,omitempty"`
+
+					TlsConfig *struct {
+						KeySecret *struct {
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
+
+						ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
+
+						Ca *struct {
+							ConfigMap *struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"ca" yaml:"ca,omitempty"`
+
+						Cert *struct {
+							ConfigMap *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"cert" yaml:"cert,omitempty"`
+
+						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
+					} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
+
+					Authorization *struct {
+						Credentials *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"credentials" yaml:"credentials,omitempty"`
+
+						Type *string `tfsdk:"type" yaml:"type,omitempty"`
+					} `tfsdk:"authorization" yaml:"authorization,omitempty"`
+				} `tfsdk:"http_config" yaml:"httpConfig,omitempty"`
+
+				PhoneNumber *string `tfsdk:"phone_number" yaml:"phoneNumber,omitempty"`
+
+				Subject *string `tfsdk:"subject" yaml:"subject,omitempty"`
 			} `tfsdk:"sns_configs" yaml:"snsConfigs,omitempty"`
 
 			TelegramConfigs *[]struct {
+				ParseMode *string `tfsdk:"parse_mode" yaml:"parseMode,omitempty"`
+
 				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
 
 				ApiURL *string `tfsdk:"api_url" yaml:"apiURL,omitempty"`
@@ -1270,6 +1274,96 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 				DisableNotifications *bool `tfsdk:"disable_notifications" yaml:"disableNotifications,omitempty"`
 
 				HttpConfig *struct {
+					ProxyURL *string `tfsdk:"proxy_url" yaml:"proxyURL,omitempty"`
+
+					TlsConfig *struct {
+						Ca *struct {
+							ConfigMap *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"ca" yaml:"ca,omitempty"`
+
+						Cert *struct {
+							ConfigMap *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"cert" yaml:"cert,omitempty"`
+
+						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
+
+						KeySecret *struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+						} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
+
+						ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
+					} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
+
+					Authorization *struct {
+						Credentials *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"credentials" yaml:"credentials,omitempty"`
+
+						Type *string `tfsdk:"type" yaml:"type,omitempty"`
+					} `tfsdk:"authorization" yaml:"authorization,omitempty"`
+
+					BasicAuth *struct {
+						Password *struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+						} `tfsdk:"password" yaml:"password,omitempty"`
+
+						Username *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"username" yaml:"username,omitempty"`
+					} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
+
+					BearerTokenSecret *struct {
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
+
 					FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
 
 					Oauth2 *struct {
@@ -1279,11 +1373,11 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 
 						ClientId *struct {
 							ConfigMap *struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
 								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 
 								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
 							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
 
 							Secret *struct {
@@ -1305,264 +1399,12 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 
 						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
 					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
-
-					ProxyURL *string `tfsdk:"proxy_url" yaml:"proxyURL,omitempty"`
-
-					TlsConfig *struct {
-						Ca *struct {
-							ConfigMap *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"ca" yaml:"ca,omitempty"`
-
-						Cert *struct {
-							ConfigMap *struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"cert" yaml:"cert,omitempty"`
-
-						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
-
-						KeySecret *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
-
-						ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
-					} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
-
-					Authorization *struct {
-						Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-						Credentials *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"credentials" yaml:"credentials,omitempty"`
-					} `tfsdk:"authorization" yaml:"authorization,omitempty"`
-
-					BasicAuth *struct {
-						Password *struct {
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-						} `tfsdk:"password" yaml:"password,omitempty"`
-
-						Username *struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-						} `tfsdk:"username" yaml:"username,omitempty"`
-					} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
-
-					BearerTokenSecret *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
 				} `tfsdk:"http_config" yaml:"httpConfig,omitempty"`
 
 				Message *string `tfsdk:"message" yaml:"message,omitempty"`
-
-				ParseMode *string `tfsdk:"parse_mode" yaml:"parseMode,omitempty"`
 			} `tfsdk:"telegram_configs" yaml:"telegramConfigs,omitempty"`
 
-			VictoropsConfigs *[]struct {
-				ApiUrl *string `tfsdk:"api_url" yaml:"apiUrl,omitempty"`
-
-				CustomFields *[]struct {
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-				} `tfsdk:"custom_fields" yaml:"customFields,omitempty"`
-
-				MessageType *string `tfsdk:"message_type" yaml:"messageType,omitempty"`
-
-				RoutingKey *string `tfsdk:"routing_key" yaml:"routingKey,omitempty"`
-
-				StateMessage *string `tfsdk:"state_message" yaml:"stateMessage,omitempty"`
-
-				ApiKey *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-				} `tfsdk:"api_key" yaml:"apiKey,omitempty"`
-
-				EntityDisplayName *string `tfsdk:"entity_display_name" yaml:"entityDisplayName,omitempty"`
-
-				HttpConfig *struct {
-					Authorization *struct {
-						Credentials *struct {
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-						} `tfsdk:"credentials" yaml:"credentials,omitempty"`
-
-						Type *string `tfsdk:"type" yaml:"type,omitempty"`
-					} `tfsdk:"authorization" yaml:"authorization,omitempty"`
-
-					BasicAuth *struct {
-						Password *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"password" yaml:"password,omitempty"`
-
-						Username *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"username" yaml:"username,omitempty"`
-					} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
-
-					BearerTokenSecret *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
-
-					FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
-
-					Oauth2 *struct {
-						ClientId *struct {
-							ConfigMap *struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"client_id" yaml:"clientId,omitempty"`
-
-						ClientSecret *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
-
-						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
-
-						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
-
-						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
-					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
-
-					ProxyURL *string `tfsdk:"proxy_url" yaml:"proxyURL,omitempty"`
-
-					TlsConfig *struct {
-						Ca *struct {
-							ConfigMap *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"ca" yaml:"ca,omitempty"`
-
-						Cert *struct {
-							Secret *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-
-							ConfigMap *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-						} `tfsdk:"cert" yaml:"cert,omitempty"`
-
-						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
-
-						KeySecret *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
-
-						ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
-					} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
-				} `tfsdk:"http_config" yaml:"httpConfig,omitempty"`
-
-				MonitoringTool *string `tfsdk:"monitoring_tool" yaml:"monitoringTool,omitempty"`
-
-				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
-			} `tfsdk:"victorops_configs" yaml:"victoropsConfigs,omitempty"`
-
 			WebhookConfigs *[]struct {
-				Url *string `tfsdk:"url" yaml:"url,omitempty"`
-
 				UrlSecret *struct {
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -1572,6 +1414,92 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 				} `tfsdk:"url_secret" yaml:"urlSecret,omitempty"`
 
 				HttpConfig *struct {
+					Oauth2 *struct {
+						ClientId *struct {
+							ConfigMap *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"client_id" yaml:"clientId,omitempty"`
+
+						ClientSecret *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
+
+						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
+
+						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
+
+						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
+					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
+
+					ProxyURL *string `tfsdk:"proxy_url" yaml:"proxyURL,omitempty"`
+
+					TlsConfig *struct {
+						Cert *struct {
+							ConfigMap *struct {
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"cert" yaml:"cert,omitempty"`
+
+						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
+
+						KeySecret *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"key_secret" yaml:"keySecret,omitempty"`
+
+						ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
+
+						Ca *struct {
+							ConfigMap *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+							Secret *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+						} `tfsdk:"ca" yaml:"ca,omitempty"`
+					} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
+
 					Authorization *struct {
 						Credentials *struct {
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -1586,11 +1514,11 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 
 					BasicAuth *struct {
 						Password *struct {
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 						} `tfsdk:"password" yaml:"password,omitempty"`
 
 						Username *struct {
@@ -1611,41 +1539,19 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
 
 					FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
+				} `tfsdk:"http_config" yaml:"httpConfig,omitempty"`
 
-					Oauth2 *struct {
-						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
+				MaxAlerts *int64 `tfsdk:"max_alerts" yaml:"maxAlerts,omitempty"`
 
-						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
+				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
 
-						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
+				Url *string `tfsdk:"url" yaml:"url,omitempty"`
+			} `tfsdk:"webhook_configs" yaml:"webhookConfigs,omitempty"`
 
-						ClientId *struct {
-							ConfigMap *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+			WechatConfigs *[]struct {
+				CorpID *string `tfsdk:"corp_id" yaml:"corpID,omitempty"`
 
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-							Secret *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
-						} `tfsdk:"client_id" yaml:"clientId,omitempty"`
-
-						ClientSecret *struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-						} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
-					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
-
+				HttpConfig *struct {
 					ProxyURL *string `tfsdk:"proxy_url" yaml:"proxyURL,omitempty"`
 
 					TlsConfig *struct {
@@ -1668,21 +1574,21 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 						} `tfsdk:"ca" yaml:"ca,omitempty"`
 
 						Cert *struct {
-							ConfigMap *struct {
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
 							Secret *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 								Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
 							} `tfsdk:"secret" yaml:"secret,omitempty"`
+
+							ConfigMap *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
 						} `tfsdk:"cert" yaml:"cert,omitempty"`
 
 						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
@@ -1697,17 +1603,109 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 
 						ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
 					} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
+
+					Authorization *struct {
+						Credentials *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"credentials" yaml:"credentials,omitempty"`
+
+						Type *string `tfsdk:"type" yaml:"type,omitempty"`
+					} `tfsdk:"authorization" yaml:"authorization,omitempty"`
+
+					BasicAuth *struct {
+						Username *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"username" yaml:"username,omitempty"`
+
+						Password *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"password" yaml:"password,omitempty"`
+					} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
+
+					BearerTokenSecret *struct {
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+					} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
+
+					FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
+
+					Oauth2 *struct {
+						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
+
+						TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
+
+						ClientId *struct {
+							Secret *struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+
+							ConfigMap *struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+						} `tfsdk:"client_id" yaml:"clientId,omitempty"`
+
+						ClientSecret *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
+
+						EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
+					} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
 				} `tfsdk:"http_config" yaml:"httpConfig,omitempty"`
 
-				MaxAlerts *int64 `tfsdk:"max_alerts" yaml:"maxAlerts,omitempty"`
+				MessageType *string `tfsdk:"message_type" yaml:"messageType,omitempty"`
 
 				SendResolved *bool `tfsdk:"send_resolved" yaml:"sendResolved,omitempty"`
-			} `tfsdk:"webhook_configs" yaml:"webhookConfigs,omitempty"`
+
+				ApiURL *string `tfsdk:"api_url" yaml:"apiURL,omitempty"`
+
+				ApiSecret *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"api_secret" yaml:"apiSecret,omitempty"`
+
+				Message *string `tfsdk:"message" yaml:"message,omitempty"`
+
+				ToParty *string `tfsdk:"to_party" yaml:"toParty,omitempty"`
+
+				ToTag *string `tfsdk:"to_tag" yaml:"toTag,omitempty"`
+
+				ToUser *string `tfsdk:"to_user" yaml:"toUser,omitempty"`
+
+				AgentID *string `tfsdk:"agent_id" yaml:"agentID,omitempty"`
+			} `tfsdk:"wechat_configs" yaml:"wechatConfigs,omitempty"`
 		} `tfsdk:"receivers" yaml:"receivers,omitempty"`
 
 		Route *struct {
-			Routes *[]string `tfsdk:"routes" yaml:"routes,omitempty"`
-
 			GroupInterval *string `tfsdk:"group_interval" yaml:"groupInterval,omitempty"`
 
 			GroupWait *string `tfsdk:"group_wait" yaml:"groupWait,omitempty"`
@@ -1722,15 +1720,17 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1GoModel struct {
 				Value *string `tfsdk:"value" yaml:"value,omitempty"`
 			} `tfsdk:"matchers" yaml:"matchers,omitempty"`
 
-			MuteTimeIntervals *[]string `tfsdk:"mute_time_intervals" yaml:"muteTimeIntervals,omitempty"`
-
 			Receiver *string `tfsdk:"receiver" yaml:"receiver,omitempty"`
 
-			RepeatInterval *string `tfsdk:"repeat_interval" yaml:"repeatInterval,omitempty"`
+			Routes *[]string `tfsdk:"routes" yaml:"routes,omitempty"`
 
 			Continue *bool `tfsdk:"continue" yaml:"continue,omitempty"`
 
 			GroupBy *[]string `tfsdk:"group_by" yaml:"groupBy,omitempty"`
+
+			MuteTimeIntervals *[]string `tfsdk:"mute_time_intervals" yaml:"muteTimeIntervals,omitempty"`
+
+			RepeatInterval *string `tfsdk:"repeat_interval" yaml:"repeatInterval,omitempty"`
 		} `tfsdk:"route" yaml:"route,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -1855,17 +1855,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"regex": {
-										Description:         "Whether to match on equality (false) or regular-expression (true). Deprecated as of AlertManager >= v0.22.0 where a user should use MatchType instead.",
-										MarkdownDescription: "Whether to match on equality (false) or regular-expression (true). Deprecated as of AlertManager >= v0.22.0 where a user should use MatchType instead.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"value": {
 										Description:         "Label value to match.",
 										MarkdownDescription: "Label value to match.",
@@ -1896,6 +1885,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 										Required: true,
 										Optional: false,
+										Computed: false,
+									},
+
+									"regex": {
+										Description:         "Whether to match on equality (false) or regular-expression (true). Deprecated as of AlertManager >= v0.22.0 where a user should use MatchType instead.",
+										MarkdownDescription: "Whether to match on equality (false) or regular-expression (true). Deprecated as of AlertManager >= v0.22.0 where a user should use MatchType instead.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 								}),
@@ -1911,28 +1911,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"match_type": {
-										Description:         "Match operation available with AlertManager >= v0.22.0 and takes precedence over Regex (deprecated) if non-empty.",
-										MarkdownDescription: "Match operation available with AlertManager >= v0.22.0 and takes precedence over Regex (deprecated) if non-empty.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "Label to match.",
-										MarkdownDescription: "Label to match.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
 									"regex": {
 										Description:         "Whether to match on equality (false) or regular-expression (true). Deprecated as of AlertManager >= v0.22.0 where a user should use MatchType instead.",
 										MarkdownDescription: "Whether to match on equality (false) or regular-expression (true). Deprecated as of AlertManager >= v0.22.0 where a user should use MatchType instead.",
@@ -1952,6 +1930,28 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 										Required: false,
 										Optional: true,
+										Computed: false,
+									},
+
+									"match_type": {
+										Description:         "Match operation available with AlertManager >= v0.22.0 and takes precedence over Regex (deprecated) if non-empty.",
+										MarkdownDescription: "Match operation available with AlertManager >= v0.22.0 and takes precedence over Regex (deprecated) if non-empty.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Label to match.",
+										MarkdownDescription: "Label to match.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
 										Computed: false,
 									},
 								}),
@@ -1973,56 +1973,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"name": {
-								Description:         "Name of the time interval",
-								MarkdownDescription: "Name of the time interval",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"time_intervals": {
 								Description:         "TimeIntervals is a list of TimeInterval",
 								MarkdownDescription: "TimeIntervals is a list of TimeInterval",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"times": {
-										Description:         "Times is a list of TimeRange",
-										MarkdownDescription: "Times is a list of TimeRange",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"end_time": {
-												Description:         "EndTime is the end time in 24hr format.",
-												MarkdownDescription: "EndTime is the end time in 24hr format.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"start_time": {
-												Description:         "StartTime is the start time in 24hr format.",
-												MarkdownDescription: "StartTime is the start time in 24hr format.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"weekdays": {
 										Description:         "Weekdays is a list of WeekdayRange",
@@ -2090,7 +2045,52 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Optional: true,
 										Computed: false,
 									},
+
+									"times": {
+										Description:         "Times is a list of TimeRange",
+										MarkdownDescription: "Times is a list of TimeRange",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"end_time": {
+												Description:         "EndTime is the end time in 24hr format.",
+												MarkdownDescription: "EndTime is the end time in 24hr format.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"start_time": {
+												Description:         "StartTime is the start time in 24hr format.",
+												MarkdownDescription: "StartTime is the start time in 24hr format.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name of the time interval",
+								MarkdownDescription: "Name of the time interval",
+
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
@@ -2109,4130 +2109,39 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"name": {
-								Description:         "Name of the receiver. Must be unique across all items from the list.",
-								MarkdownDescription: "Name of the receiver. Must be unique across all items from the list.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"opsgenie_configs": {
-								Description:         "List of OpsGenie configurations.",
-								MarkdownDescription: "List of OpsGenie configurations.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"actions": {
-										Description:         "Comma separated list of actions that will be available for the alert.",
-										MarkdownDescription: "Comma separated list of actions that will be available for the alert.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"api_key": {
-										Description:         "The secret's key that contains the OpsGenie API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-										MarkdownDescription: "The secret's key that contains the OpsGenie API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"details": {
-										Description:         "A set of arbitrary key/value pairs that provide further detail about the incident.",
-										MarkdownDescription: "A set of arbitrary key/value pairs that provide further detail about the incident.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"value": {
-												Description:         "Value of the tuple.",
-												MarkdownDescription: "Value of the tuple.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"key": {
-												Description:         "Key of the tuple.",
-												MarkdownDescription: "Key of the tuple.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"responders": {
-										Description:         "List of responders responsible for notifications.",
-										MarkdownDescription: "List of responders responsible for notifications.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"id": {
-												Description:         "ID of the responder.",
-												MarkdownDescription: "ID of the responder.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the responder.",
-												MarkdownDescription: "Name of the responder.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"type": {
-												Description:         "Type of responder.",
-												MarkdownDescription: "Type of responder.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"username": {
-												Description:         "Username of the responder.",
-												MarkdownDescription: "Username of the responder.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"priority": {
-										Description:         "Priority level of alert. Possible values are P1, P2, P3, P4, and P5.",
-										MarkdownDescription: "Priority level of alert. Possible values are P1, P2, P3, P4, and P5.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"send_resolved": {
-										Description:         "Whether or not to notify about resolved alerts.",
-										MarkdownDescription: "Whether or not to notify about resolved alerts.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"tags": {
-										Description:         "Comma separated list of tags attached to the notifications.",
-										MarkdownDescription: "Comma separated list of tags attached to the notifications.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"api_url": {
-										Description:         "The URL to send OpsGenie API requests to.",
-										MarkdownDescription: "The URL to send OpsGenie API requests to.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"description": {
-										Description:         "Description of the incident.",
-										MarkdownDescription: "Description of the incident.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"entity": {
-										Description:         "Optional field that can be used to specify which domain alert is related to.",
-										MarkdownDescription: "Optional field that can be used to specify which domain alert is related to.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"message": {
-										Description:         "Alert text limited to 130 characters.",
-										MarkdownDescription: "Alert text limited to 130 characters.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"note": {
-										Description:         "Additional alert note.",
-										MarkdownDescription: "Additional alert note.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"source": {
-										Description:         "Backlink to the sender of the notification.",
-										MarkdownDescription: "Backlink to the sender of the notification.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"update_alerts": {
-										Description:         "Whether to update message and description of the alert in OpsGenie if it already exists By default, the alert is never updated in OpsGenie, the new message only appears in activity log.",
-										MarkdownDescription: "Whether to update message and description of the alert in OpsGenie if it already exists By default, the alert is never updated in OpsGenie, the new message only appears in activity log.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"http_config": {
-										Description:         "HTTP client configuration.",
-										MarkdownDescription: "HTTP client configuration.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"tls_config": {
-												Description:         "TLS configuration for the client.",
-												MarkdownDescription: "TLS configuration for the client.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"server_name": {
-														Description:         "Used to verify the hostname for the targets.",
-														MarkdownDescription: "Used to verify the hostname for the targets.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"ca": {
-														Description:         "Struct containing the CA cert to use for the targets.",
-														MarkdownDescription: "Struct containing the CA cert to use for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"cert": {
-														Description:         "Struct containing the client cert file for the targets.",
-														MarkdownDescription: "Struct containing the client cert file for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"insecure_skip_verify": {
-														Description:         "Disable target certificate validation.",
-														MarkdownDescription: "Disable target certificate validation.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"key_secret": {
-														Description:         "Secret containing the client key file for the targets.",
-														MarkdownDescription: "Secret containing the client key file for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"authorization": {
-												Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-												MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"credentials": {
-														Description:         "The secret's key that contains the credentials of the request",
-														MarkdownDescription: "The secret's key that contains the credentials of the request",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"type": {
-														Description:         "Set the authentication type. Defaults to Bearer, Basic will cause an error",
-														MarkdownDescription: "Set the authentication type. Defaults to Bearer, Basic will cause an error",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"basic_auth": {
-												Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-												MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"password": {
-														Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-														MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"username": {
-														Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-														MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"bearer_token_secret": {
-												Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"optional": {
-														Description:         "Specify whether the Secret or its key must be defined",
-														MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"key": {
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"follow_redirects": {
-												Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
-												MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"oauth2": {
-												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
-												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"client_secret": {
-														Description:         "The secret containing the OAuth2 client secret",
-														MarkdownDescription: "The secret containing the OAuth2 client secret",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"endpoint_params": {
-														Description:         "Parameters to append to the token URL",
-														MarkdownDescription: "Parameters to append to the token URL",
-
-														Type: types.MapType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"scopes": {
-														Description:         "OAuth2 scopes used for the token request",
-														MarkdownDescription: "OAuth2 scopes used for the token request",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"token_url": {
-														Description:         "The URL to fetch the token from",
-														MarkdownDescription: "The URL to fetch the token from",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"client_id": {
-														Description:         "The secret or configmap containing the OAuth2 client id",
-														MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"proxy_url": {
-												Description:         "Optional proxy URL.",
-												MarkdownDescription: "Optional proxy URL.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"pagerduty_configs": {
-								Description:         "List of PagerDuty configurations.",
-								MarkdownDescription: "List of PagerDuty configurations.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"component": {
-										Description:         "The part or component of the affected system that is broken.",
-										MarkdownDescription: "The part or component of the affected system that is broken.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"description": {
-										Description:         "Description of the incident.",
-										MarkdownDescription: "Description of the incident.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"severity": {
-										Description:         "Severity of the incident.",
-										MarkdownDescription: "Severity of the incident.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"url": {
-										Description:         "The URL to send requests to.",
-										MarkdownDescription: "The URL to send requests to.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"client": {
-										Description:         "Client identification.",
-										MarkdownDescription: "Client identification.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"pager_duty_link_configs": {
-										Description:         "A list of link details to attach that provide further detail about an incident.",
-										MarkdownDescription: "A list of link details to attach that provide further detail about an incident.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"alt": {
-												Description:         "Text that describes the purpose of the link, and can be used as the link's text.",
-												MarkdownDescription: "Text that describes the purpose of the link, and can be used as the link's text.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"href": {
-												Description:         "Href is the URL of the link to be attached",
-												MarkdownDescription: "Href is the URL of the link to be attached",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"send_resolved": {
-										Description:         "Whether or not to notify about resolved alerts.",
-										MarkdownDescription: "Whether or not to notify about resolved alerts.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"service_key": {
-										Description:         "The secret's key that contains the PagerDuty service key (when using integration type 'Prometheus'). Either this field or 'routingKey' needs to be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-										MarkdownDescription: "The secret's key that contains the PagerDuty service key (when using integration type 'Prometheus'). Either this field or 'routingKey' needs to be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"details": {
-										Description:         "Arbitrary key/value pairs that provide further detail about the incident.",
-										MarkdownDescription: "Arbitrary key/value pairs that provide further detail about the incident.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "Key of the tuple.",
-												MarkdownDescription: "Key of the tuple.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"value": {
-												Description:         "Value of the tuple.",
-												MarkdownDescription: "Value of the tuple.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"pager_duty_image_configs": {
-										Description:         "A list of image details to attach that provide further detail about an incident.",
-										MarkdownDescription: "A list of image details to attach that provide further detail about an incident.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"alt": {
-												Description:         "Alt is the optional alternative text for the image.",
-												MarkdownDescription: "Alt is the optional alternative text for the image.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"href": {
-												Description:         "Optional URL; makes the image a clickable link.",
-												MarkdownDescription: "Optional URL; makes the image a clickable link.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"src": {
-												Description:         "Src of the image being attached to the incident",
-												MarkdownDescription: "Src of the image being attached to the incident",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"routing_key": {
-										Description:         "The secret's key that contains the PagerDuty integration key (when using Events API v2). Either this field or 'serviceKey' needs to be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-										MarkdownDescription: "The secret's key that contains the PagerDuty integration key (when using Events API v2). Either this field or 'serviceKey' needs to be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"class": {
-										Description:         "The class/type of the event.",
-										MarkdownDescription: "The class/type of the event.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"client_url": {
-										Description:         "Backlink to the sender of notification.",
-										MarkdownDescription: "Backlink to the sender of notification.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"group": {
-										Description:         "A cluster or grouping of sources.",
-										MarkdownDescription: "A cluster or grouping of sources.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"http_config": {
-										Description:         "HTTP client configuration.",
-										MarkdownDescription: "HTTP client configuration.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"authorization": {
-												Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-												MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"credentials": {
-														Description:         "The secret's key that contains the credentials of the request",
-														MarkdownDescription: "The secret's key that contains the credentials of the request",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"type": {
-														Description:         "Set the authentication type. Defaults to Bearer, Basic will cause an error",
-														MarkdownDescription: "Set the authentication type. Defaults to Bearer, Basic will cause an error",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"basic_auth": {
-												Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-												MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"password": {
-														Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-														MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"username": {
-														Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-														MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"bearer_token_secret": {
-												Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"key": {
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "Specify whether the Secret or its key must be defined",
-														MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"follow_redirects": {
-												Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
-												MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"oauth2": {
-												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
-												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"client_secret": {
-														Description:         "The secret containing the OAuth2 client secret",
-														MarkdownDescription: "The secret containing the OAuth2 client secret",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"endpoint_params": {
-														Description:         "Parameters to append to the token URL",
-														MarkdownDescription: "Parameters to append to the token URL",
-
-														Type: types.MapType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"scopes": {
-														Description:         "OAuth2 scopes used for the token request",
-														MarkdownDescription: "OAuth2 scopes used for the token request",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"token_url": {
-														Description:         "The URL to fetch the token from",
-														MarkdownDescription: "The URL to fetch the token from",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"client_id": {
-														Description:         "The secret or configmap containing the OAuth2 client id",
-														MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"proxy_url": {
-												Description:         "Optional proxy URL.",
-												MarkdownDescription: "Optional proxy URL.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tls_config": {
-												Description:         "TLS configuration for the client.",
-												MarkdownDescription: "TLS configuration for the client.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"cert": {
-														Description:         "Struct containing the client cert file for the targets.",
-														MarkdownDescription: "Struct containing the client cert file for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"insecure_skip_verify": {
-														Description:         "Disable target certificate validation.",
-														MarkdownDescription: "Disable target certificate validation.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"key_secret": {
-														Description:         "Secret containing the client key file for the targets.",
-														MarkdownDescription: "Secret containing the client key file for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"server_name": {
-														Description:         "Used to verify the hostname for the targets.",
-														MarkdownDescription: "Used to verify the hostname for the targets.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"ca": {
-														Description:         "Struct containing the CA cert to use for the targets.",
-														MarkdownDescription: "Struct containing the CA cert to use for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"slack_configs": {
-								Description:         "List of Slack configurations.",
-								MarkdownDescription: "List of Slack configurations.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"api_url": {
-										Description:         "The secret's key that contains the Slack webhook URL. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-										MarkdownDescription: "The secret's key that contains the Slack webhook URL. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"key": {
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"thumb_url": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"title": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"image_url": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"pretext": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"send_resolved": {
-										Description:         "Whether or not to notify about resolved alerts.",
-										MarkdownDescription: "Whether or not to notify about resolved alerts.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"short_fields": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"color": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"fallback": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"http_config": {
-										Description:         "HTTP client configuration.",
-										MarkdownDescription: "HTTP client configuration.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"tls_config": {
-												Description:         "TLS configuration for the client.",
-												MarkdownDescription: "TLS configuration for the client.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"ca": {
-														Description:         "Struct containing the CA cert to use for the targets.",
-														MarkdownDescription: "Struct containing the CA cert to use for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"cert": {
-														Description:         "Struct containing the client cert file for the targets.",
-														MarkdownDescription: "Struct containing the client cert file for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"insecure_skip_verify": {
-														Description:         "Disable target certificate validation.",
-														MarkdownDescription: "Disable target certificate validation.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"key_secret": {
-														Description:         "Secret containing the client key file for the targets.",
-														MarkdownDescription: "Secret containing the client key file for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"server_name": {
-														Description:         "Used to verify the hostname for the targets.",
-														MarkdownDescription: "Used to verify the hostname for the targets.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"authorization": {
-												Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-												MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"credentials": {
-														Description:         "The secret's key that contains the credentials of the request",
-														MarkdownDescription: "The secret's key that contains the credentials of the request",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"type": {
-														Description:         "Set the authentication type. Defaults to Bearer, Basic will cause an error",
-														MarkdownDescription: "Set the authentication type. Defaults to Bearer, Basic will cause an error",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"basic_auth": {
-												Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-												MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"password": {
-														Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-														MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"username": {
-														Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-														MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"bearer_token_secret": {
-												Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"key": {
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "Specify whether the Secret or its key must be defined",
-														MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"follow_redirects": {
-												Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
-												MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"oauth2": {
-												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
-												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"client_id": {
-														Description:         "The secret or configmap containing the OAuth2 client id",
-														MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"client_secret": {
-														Description:         "The secret containing the OAuth2 client secret",
-														MarkdownDescription: "The secret containing the OAuth2 client secret",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"endpoint_params": {
-														Description:         "Parameters to append to the token URL",
-														MarkdownDescription: "Parameters to append to the token URL",
-
-														Type: types.MapType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"scopes": {
-														Description:         "OAuth2 scopes used for the token request",
-														MarkdownDescription: "OAuth2 scopes used for the token request",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"token_url": {
-														Description:         "The URL to fetch the token from",
-														MarkdownDescription: "The URL to fetch the token from",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"proxy_url": {
-												Description:         "Optional proxy URL.",
-												MarkdownDescription: "Optional proxy URL.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"icon_emoji": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"username": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"text": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"title_link": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"actions": {
-										Description:         "A list of Slack actions that are sent with each notification.",
-										MarkdownDescription: "A list of Slack actions that are sent with each notification.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"text": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"type": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"url": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"value": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"confirm": {
-												Description:         "SlackConfirmationField protect users from destructive actions or particularly distinguished decisions by asking them to confirm their button click one more time. See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fields for more information.",
-												MarkdownDescription: "SlackConfirmationField protect users from destructive actions or particularly distinguished decisions by asking them to confirm their button click one more time. See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fields for more information.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"ok_text": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"text": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"title": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"dismiss_text": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"style": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"callback_id": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"fields": {
-										Description:         "A list of Slack fields that are sent with each notification.",
-										MarkdownDescription: "A list of Slack fields that are sent with each notification.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"value": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"short": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"title": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"mrkdwn_in": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"channel": {
-										Description:         "The channel or user to send notifications to.",
-										MarkdownDescription: "The channel or user to send notifications to.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"footer": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"icon_url": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"link_names": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"wechat_configs": {
-								Description:         "List of WeChat configurations.",
-								MarkdownDescription: "List of WeChat configurations.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"agent_id": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"api_secret": {
-										Description:         "The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-										MarkdownDescription: "The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"send_resolved": {
-										Description:         "Whether or not to notify about resolved alerts.",
-										MarkdownDescription: "Whether or not to notify about resolved alerts.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"to_party": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"api_url": {
-										Description:         "The WeChat API URL.",
-										MarkdownDescription: "The WeChat API URL.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"corp_id": {
-										Description:         "The corp id for authentication.",
-										MarkdownDescription: "The corp id for authentication.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"http_config": {
-										Description:         "HTTP client configuration.",
-										MarkdownDescription: "HTTP client configuration.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"tls_config": {
-												Description:         "TLS configuration for the client.",
-												MarkdownDescription: "TLS configuration for the client.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"ca": {
-														Description:         "Struct containing the CA cert to use for the targets.",
-														MarkdownDescription: "Struct containing the CA cert to use for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"cert": {
-														Description:         "Struct containing the client cert file for the targets.",
-														MarkdownDescription: "Struct containing the client cert file for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"insecure_skip_verify": {
-														Description:         "Disable target certificate validation.",
-														MarkdownDescription: "Disable target certificate validation.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"key_secret": {
-														Description:         "Secret containing the client key file for the targets.",
-														MarkdownDescription: "Secret containing the client key file for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"server_name": {
-														Description:         "Used to verify the hostname for the targets.",
-														MarkdownDescription: "Used to verify the hostname for the targets.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"authorization": {
-												Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-												MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"credentials": {
-														Description:         "The secret's key that contains the credentials of the request",
-														MarkdownDescription: "The secret's key that contains the credentials of the request",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"type": {
-														Description:         "Set the authentication type. Defaults to Bearer, Basic will cause an error",
-														MarkdownDescription: "Set the authentication type. Defaults to Bearer, Basic will cause an error",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"basic_auth": {
-												Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-												MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"password": {
-														Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-														MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"username": {
-														Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-														MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"bearer_token_secret": {
-												Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"optional": {
-														Description:         "Specify whether the Secret or its key must be defined",
-														MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"key": {
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"follow_redirects": {
-												Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
-												MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"oauth2": {
-												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
-												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"client_id": {
-														Description:         "The secret or configmap containing the OAuth2 client id",
-														MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"client_secret": {
-														Description:         "The secret containing the OAuth2 client secret",
-														MarkdownDescription: "The secret containing the OAuth2 client secret",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"endpoint_params": {
-														Description:         "Parameters to append to the token URL",
-														MarkdownDescription: "Parameters to append to the token URL",
-
-														Type: types.MapType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"scopes": {
-														Description:         "OAuth2 scopes used for the token request",
-														MarkdownDescription: "OAuth2 scopes used for the token request",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"token_url": {
-														Description:         "The URL to fetch the token from",
-														MarkdownDescription: "The URL to fetch the token from",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"proxy_url": {
-												Description:         "Optional proxy URL.",
-												MarkdownDescription: "Optional proxy URL.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"message": {
-										Description:         "API request data as defined by the WeChat API.",
-										MarkdownDescription: "API request data as defined by the WeChat API.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"message_type": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"to_tag": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"to_user": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"email_configs": {
 								Description:         "List of Email configurations.",
 								MarkdownDescription: "List of Email configurations.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"headers": {
-										Description:         "Further headers email header key/value pairs. Overrides any headers previously set by the notification implementation.",
-										MarkdownDescription: "Further headers email header key/value pairs. Overrides any headers previously set by the notification implementation.",
+									"html": {
+										Description:         "The HTML body of the email notification.",
+										MarkdownDescription: "The HTML body of the email notification.",
 
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "Key of the tuple.",
-												MarkdownDescription: "Key of the tuple.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"value": {
-												Description:         "Value of the tuple.",
-												MarkdownDescription: "Value of the tuple.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"hello": {
-										Description:         "The hostname to identify to the SMTP server.",
-										MarkdownDescription: "The hostname to identify to the SMTP server.",
+									"require_tls": {
+										Description:         "The SMTP TLS requirement. Note that Go does not support unencrypted connections to remote SMTP endpoints.",
+										MarkdownDescription: "The SMTP TLS requirement. Note that Go does not support unencrypted connections to remote SMTP endpoints.",
 
-										Type: types.StringType,
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"send_resolved": {
+										Description:         "Whether or not to notify about resolved alerts.",
+										MarkdownDescription: "Whether or not to notify about resolved alerts.",
+
+										Type: types.BoolType,
 
 										Required: false,
 										Optional: true,
@@ -6245,17 +2154,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"key": {
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
 											"name": {
 												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -6277,29 +2175,18 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Optional: true,
 												Computed: false,
 											},
+
+											"key": {
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
 										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"auth_username": {
-										Description:         "The username to use for authentication.",
-										MarkdownDescription: "The username to use for authentication.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"smarthost": {
-										Description:         "The SMTP host and port through which emails are sent. E.g. example.com:25",
-										MarkdownDescription: "The SMTP host and port through which emails are sent. E.g. example.com:25",
-
-										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -6329,17 +2216,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"key": {
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
 													"name": {
 														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -6359,6 +2235,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 														Required: false,
 														Optional: true,
+														Computed: false,
+													},
+
+													"key": {
+														Description:         "The key of the secret to select from.  Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
 														Computed: false,
 													},
 												}),
@@ -6391,6 +2278,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+															"key": {
+																Description:         "The key to select.",
+																MarkdownDescription: "The key to select.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
 															"name": {
 																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -6410,17 +2308,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 																Required: false,
 																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "The key to select.",
-																MarkdownDescription: "The key to select.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
 																Computed: false,
 															},
 														}),
@@ -6600,11 +2487,89 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Computed: false,
 									},
 
+									"auth_username": {
+										Description:         "The username to use for authentication.",
+										MarkdownDescription: "The username to use for authentication.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"from": {
+										Description:         "The sender address.",
+										MarkdownDescription: "The sender address.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"headers": {
+										Description:         "Further headers email header key/value pairs. Overrides any headers previously set by the notification implementation.",
+										MarkdownDescription: "Further headers email header key/value pairs. Overrides any headers previously set by the notification implementation.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "Key of the tuple.",
+												MarkdownDescription: "Key of the tuple.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"value": {
+												Description:         "Value of the tuple.",
+												MarkdownDescription: "Value of the tuple.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"text": {
+										Description:         "The text body of the email notification.",
+										MarkdownDescription: "The text body of the email notification.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"auth_password": {
 										Description:         "The secret's key that contains the password to use for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
 										MarkdownDescription: "The secret's key that contains the password to use for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"optional": {
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 
 											"key": {
 												Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -6627,17 +2592,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Optional: true,
 												Computed: false,
 											},
-
-											"optional": {
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 										}),
 
 										Required: false,
@@ -6645,53 +2599,9 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Computed: false,
 									},
 
-									"from": {
-										Description:         "The sender address.",
-										MarkdownDescription: "The sender address.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"html": {
-										Description:         "The HTML body of the email notification.",
-										MarkdownDescription: "The HTML body of the email notification.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"require_tls": {
-										Description:         "The SMTP TLS requirement. Note that Go does not support unencrypted connections to remote SMTP endpoints.",
-										MarkdownDescription: "The SMTP TLS requirement. Note that Go does not support unencrypted connections to remote SMTP endpoints.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"send_resolved": {
-										Description:         "Whether or not to notify about resolved alerts.",
-										MarkdownDescription: "Whether or not to notify about resolved alerts.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"text": {
-										Description:         "The text body of the email notification.",
-										MarkdownDescription: "The text body of the email notification.",
+									"smarthost": {
+										Description:         "The SMTP host and port through which emails are sent. E.g. example.com:25",
+										MarkdownDescription: "The SMTP host and port through which emails are sent. E.g. example.com:25",
 
 										Type: types.StringType,
 
@@ -6710,6 +2620,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Optional: true,
 										Computed: false,
 									},
+
+									"hello": {
+										Description:         "The hostname to identify to the SMTP server.",
+										MarkdownDescription: "The hostname to identify to the SMTP server.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -6717,72 +2638,40 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 								Computed: false,
 							},
 
-							"pushover_configs": {
-								Description:         "List of Pushover configurations.",
-								MarkdownDescription: "List of Pushover configurations.",
+							"pagerduty_configs": {
+								Description:         "List of PagerDuty configurations.",
+								MarkdownDescription: "List of PagerDuty configurations.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"send_resolved": {
-										Description:         "Whether or not to notify about resolved alerts.",
-										MarkdownDescription: "Whether or not to notify about resolved alerts.",
+									"details": {
+										Description:         "Arbitrary key/value pairs that provide further detail about the incident.",
+										MarkdownDescription: "Arbitrary key/value pairs that provide further detail about the incident.",
 
-										Type: types.BoolType,
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
+											"key": {
+												Description:         "Key of the tuple.",
+												MarkdownDescription: "Key of the tuple.",
 
-									"title": {
-										Description:         "Notification title.",
-										MarkdownDescription: "Notification title.",
+												Type: types.StringType,
 
-										Type: types.StringType,
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
 
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
+											"value": {
+												Description:         "Value of the tuple.",
+												MarkdownDescription: "Value of the tuple.",
 
-									"url": {
-										Description:         "A supplementary URL shown alongside the message.",
-										MarkdownDescription: "A supplementary URL shown alongside the message.",
+												Type: types.StringType,
 
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"url_title": {
-										Description:         "A title for supplementary URL, otherwise just the URL is shown",
-										MarkdownDescription: "A title for supplementary URL, otherwise just the URL is shown",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"message": {
-										Description:         "Notification message.",
-										MarkdownDescription: "Notification message.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"retry": {
-										Description:         "How often the Pushover servers will send the same notification to the user. Must be at least 30 seconds.",
-										MarkdownDescription: "How often the Pushover servers will send the same notification to the user. Must be at least 30 seconds.",
-
-										Type: types.StringType,
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
 
 										Required: false,
 										Optional: true,
@@ -6795,139 +2684,26 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"basic_auth": {
-												Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-												MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+											"oauth2": {
+												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"password": {
-														Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-														MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+													"scopes": {
+														Description:         "OAuth2 scopes used for the token request",
+														MarkdownDescription: "OAuth2 scopes used for the token request",
 
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
+														Type: types.ListType{ElemType: types.StringType},
 
 														Required: false,
 														Optional: true,
 														Computed: false,
 													},
 
-													"username": {
-														Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-														MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"bearer_token_secret": {
-												Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "Specify whether the Secret or its key must be defined",
-														MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"key": {
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													"token_url": {
+														Description:         "The URL to fetch the token from",
+														MarkdownDescription: "The URL to fetch the token from",
 
 														Type: types.StringType,
 
@@ -6935,29 +2711,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 														Optional: false,
 														Computed: false,
 													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"follow_redirects": {
-												Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
-												MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"oauth2": {
-												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
-												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 													"client_id": {
 														Description:         "The secret or configmap containing the OAuth2 client id",
@@ -7067,17 +2820,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"key": {
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
 																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
@@ -7099,6 +2841,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 																Optional: true,
 																Computed: false,
 															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
 														}),
 
 														Required: true,
@@ -7114,28 +2867,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 														Required: false,
 														Optional: true,
-														Computed: false,
-													},
-
-													"scopes": {
-														Description:         "OAuth2 scopes used for the token request",
-														MarkdownDescription: "OAuth2 scopes used for the token request",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"token_url": {
-														Description:         "The URL to fetch the token from",
-														MarkdownDescription: "The URL to fetch the token from",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
 														Computed: false,
 													},
 												}),
@@ -7161,62 +2892,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												MarkdownDescription: "TLS configuration for the client.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"insecure_skip_verify": {
-														Description:         "Disable target certificate validation.",
-														MarkdownDescription: "Disable target certificate validation.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"key_secret": {
-														Description:         "Secret containing the client key file for the targets.",
-														MarkdownDescription: "Secret containing the client key file for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 
 													"server_name": {
 														Description:         "Used to verify the hostname for the targets.",
@@ -7432,24 +3107,34 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 														Optional: true,
 														Computed: false,
 													},
-												}),
 
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
+													"insecure_skip_verify": {
+														Description:         "Disable target certificate validation.",
+														MarkdownDescription: "Disable target certificate validation.",
 
-											"authorization": {
-												Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-												MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Type: types.BoolType,
 
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
 
-													"credentials": {
-														Description:         "The secret's key that contains the credentials of the request",
-														MarkdownDescription: "The secret's key that contains the credentials of the request",
+													"key_secret": {
+														Description:         "Secret containing the client key file for the targets.",
+														MarkdownDescription: "Secret containing the client key file for the targets.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
 
 															"name": {
 																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -7472,6 +3157,41 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 																Optional: true,
 																Computed: false,
 															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"authorization": {
+												Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+												MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"credentials": {
+														Description:         "The secret's key that contains the credentials of the request",
+														MarkdownDescription: "The secret's key that contains the credentials of the request",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
 
 															"key": {
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7481,6 +3201,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 																Required: true,
 																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
 																Computed: false,
 															},
 														}),
@@ -7506,7 +3237,456 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Optional: true,
 												Computed: false,
 											},
+
+											"basic_auth": {
+												Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+												MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"password": {
+														Description:         "The secret in the service monitor namespace that contains the password for authentication.",
+														MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"username": {
+														Description:         "The secret in the service monitor namespace that contains the username for authentication.",
+														MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"bearer_token_secret": {
+												Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"key": {
+														Description:         "The key of the secret to select from.  Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"follow_redirects": {
+												Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+												MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"routing_key": {
+										Description:         "The secret's key that contains the PagerDuty integration key (when using Events API v2). Either this field or 'serviceKey' needs to be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+										MarkdownDescription: "The secret's key that contains the PagerDuty integration key (when using Events API v2). Either this field or 'serviceKey' needs to be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"class": {
+										Description:         "The class/type of the event.",
+										MarkdownDescription: "The class/type of the event.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"client_url": {
+										Description:         "Backlink to the sender of notification.",
+										MarkdownDescription: "Backlink to the sender of notification.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"service_key": {
+										Description:         "The secret's key that contains the PagerDuty service key (when using integration type 'Prometheus'). Either this field or 'routingKey' needs to be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+										MarkdownDescription: "The secret's key that contains the PagerDuty service key (when using integration type 'Prometheus'). Either this field or 'routingKey' needs to be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"optional": {
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"key": {
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"severity": {
+										Description:         "Severity of the incident.",
+										MarkdownDescription: "Severity of the incident.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"url": {
+										Description:         "The URL to send requests to.",
+										MarkdownDescription: "The URL to send requests to.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"description": {
+										Description:         "Description of the incident.",
+										MarkdownDescription: "Description of the incident.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"group": {
+										Description:         "A cluster or grouping of sources.",
+										MarkdownDescription: "A cluster or grouping of sources.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"client": {
+										Description:         "Client identification.",
+										MarkdownDescription: "Client identification.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"send_resolved": {
+										Description:         "Whether or not to notify about resolved alerts.",
+										MarkdownDescription: "Whether or not to notify about resolved alerts.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"pager_duty_link_configs": {
+										Description:         "A list of link details to attach that provide further detail about an incident.",
+										MarkdownDescription: "A list of link details to attach that provide further detail about an incident.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"alt": {
+												Description:         "Text that describes the purpose of the link, and can be used as the link's text.",
+												MarkdownDescription: "Text that describes the purpose of the link, and can be used as the link's text.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"href": {
+												Description:         "Href is the URL of the link to be attached",
+												MarkdownDescription: "Href is the URL of the link to be attached",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"component": {
+										Description:         "The part or component of the affected system that is broken.",
+										MarkdownDescription: "The part or component of the affected system that is broken.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"pager_duty_image_configs": {
+										Description:         "A list of image details to attach that provide further detail about an incident.",
+										MarkdownDescription: "A list of image details to attach that provide further detail about an incident.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"src": {
+												Description:         "Src of the image being attached to the incident",
+												MarkdownDescription: "Src of the image being attached to the incident",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"alt": {
+												Description:         "Alt is the optional alternative text for the image.",
+												MarkdownDescription: "Alt is the optional alternative text for the image.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"href": {
+												Description:         "Optional URL; makes the image a clickable link.",
+												MarkdownDescription: "Optional URL; makes the image a clickable link.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"pushover_configs": {
+								Description:         "List of Pushover configurations.",
+								MarkdownDescription: "List of Pushover configurations.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"html": {
+										Description:         "Whether notification message is HTML or plain text.",
+										MarkdownDescription: "Whether notification message is HTML or plain text.",
+
+										Type: types.BoolType,
 
 										Required: false,
 										Optional: true,
@@ -7516,6 +3696,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 									"priority": {
 										Description:         "Priority, see https://pushover.net/api#priority",
 										MarkdownDescription: "Priority, see https://pushover.net/api#priority",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"retry": {
+										Description:         "How often the Pushover servers will send the same notification to the user. Must be at least 30 seconds.",
+										MarkdownDescription: "How often the Pushover servers will send the same notification to the user. Must be at least 30 seconds.",
 
 										Type: types.StringType,
 
@@ -7586,6 +3777,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+											"key": {
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
 											"name": {
 												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -7607,18 +3809,18 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Optional: true,
 												Computed: false,
 											},
-
-											"key": {
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
 										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"url_title": {
+										Description:         "A title for supplementary URL, otherwise just the URL is shown",
+										MarkdownDescription: "A title for supplementary URL, otherwise just the URL is shown",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -7636,270 +3838,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Computed: false,
 									},
 
-									"html": {
-										Description:         "Whether notification message is HTML or plain text.",
-										MarkdownDescription: "Whether notification message is HTML or plain text.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"sns_configs": {
-								Description:         "List of SNS configurations",
-								MarkdownDescription: "List of SNS configurations",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"send_resolved": {
-										Description:         "Whether or not to notify about resolved alerts.",
-										MarkdownDescription: "Whether or not to notify about resolved alerts.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"subject": {
-										Description:         "Subject line when the message is delivered to email endpoints.",
-										MarkdownDescription: "Subject line when the message is delivered to email endpoints.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"api_url": {
-										Description:         "The SNS API URL i.e. https://sns.us-east-2.amazonaws.com. If not specified, the SNS API URL from the SNS SDK will be used.",
-										MarkdownDescription: "The SNS API URL i.e. https://sns.us-east-2.amazonaws.com. If not specified, the SNS API URL from the SNS SDK will be used.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"attributes": {
-										Description:         "SNS message attributes.",
-										MarkdownDescription: "SNS message attributes.",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"http_config": {
 										Description:         "HTTP client configuration.",
 										MarkdownDescription: "HTTP client configuration.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"oauth2": {
-												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
-												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"client_id": {
-														Description:         "The secret or configmap containing the OAuth2 client id",
-														MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"client_secret": {
-														Description:         "The secret containing the OAuth2 client secret",
-														MarkdownDescription: "The secret containing the OAuth2 client secret",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"endpoint_params": {
-														Description:         "Parameters to append to the token URL",
-														MarkdownDescription: "Parameters to append to the token URL",
-
-														Type: types.MapType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"scopes": {
-														Description:         "OAuth2 scopes used for the token request",
-														MarkdownDescription: "OAuth2 scopes used for the token request",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"token_url": {
-														Description:         "The URL to fetch the token from",
-														MarkdownDescription: "The URL to fetch the token from",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
 											"proxy_url": {
 												Description:         "Optional proxy URL.",
@@ -7986,17 +3929,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
 																	"key": {
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
 																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
@@ -8013,6 +3945,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 
 																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
 
 																		Required: false,
 																		Optional: true,
@@ -8150,6 +4093,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"key": {
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
 																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
@@ -8166,17 +4120,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 
 																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
 
 																Required: false,
 																Optional: true,
@@ -8420,6 +4363,198 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Optional: true,
 												Computed: false,
 											},
+
+											"oauth2": {
+												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"client_secret": {
+														Description:         "The secret containing the OAuth2 client secret",
+														MarkdownDescription: "The secret containing the OAuth2 client secret",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"endpoint_params": {
+														Description:         "Parameters to append to the token URL",
+														MarkdownDescription: "Parameters to append to the token URL",
+
+														Type: types.MapType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"scopes": {
+														Description:         "OAuth2 scopes used for the token request",
+														MarkdownDescription: "OAuth2 scopes used for the token request",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"token_url": {
+														Description:         "The URL to fetch the token from",
+														MarkdownDescription: "The URL to fetch the token from",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"client_id": {
+														Description:         "The secret or configmap containing the OAuth2 client id",
+														MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										}),
 
 										Required: false,
@@ -8428,8 +4563,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 									},
 
 									"message": {
-										Description:         "The message content of the SNS notification.",
-										MarkdownDescription: "The message content of the SNS notification.",
+										Description:         "Notification message.",
+										MarkdownDescription: "Notification message.",
 
 										Type: types.StringType,
 
@@ -8438,9 +4573,20 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Computed: false,
 									},
 
-									"phone_number": {
-										Description:         "Phone number if message is delivered via SMS in E.164 format. If you don't specify this value, you must specify a value for the TopicARN or TargetARN.",
-										MarkdownDescription: "Phone number if message is delivered via SMS in E.164 format. If you don't specify this value, you must specify a value for the TopicARN or TargetARN.",
+									"send_resolved": {
+										Description:         "Whether or not to notify about resolved alerts.",
+										MarkdownDescription: "Whether or not to notify about resolved alerts.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"title": {
+										Description:         "Notification title.",
+										MarkdownDescription: "Notification title.",
 
 										Type: types.StringType,
 
@@ -8449,15 +4595,241 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Computed: false,
 									},
 
-									"sigv4": {
-										Description:         "Configures AWS's Signature Verification 4 signing process to sign requests.",
-										MarkdownDescription: "Configures AWS's Signature Verification 4 signing process to sign requests.",
+									"url": {
+										Description:         "A supplementary URL shown alongside the message.",
+										MarkdownDescription: "A supplementary URL shown alongside the message.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"victorops_configs": {
+								Description:         "List of VictorOps configurations.",
+								MarkdownDescription: "List of VictorOps configurations.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"http_config": {
+										Description:         "The HTTP client's configuration.",
+										MarkdownDescription: "The HTTP client's configuration.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"region": {
-												Description:         "Region is the AWS region. If blank, the region from the default credentials chain used.",
-												MarkdownDescription: "Region is the AWS region. If blank, the region from the default credentials chain used.",
+											"follow_redirects": {
+												Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+												MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"oauth2": {
+												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"client_id": {
+														Description:         "The secret or configmap containing the OAuth2 client id",
+														MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"client_secret": {
+														Description:         "The secret containing the OAuth2 client secret",
+														MarkdownDescription: "The secret containing the OAuth2 client secret",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"endpoint_params": {
+														Description:         "Parameters to append to the token URL",
+														MarkdownDescription: "Parameters to append to the token URL",
+
+														Type: types.MapType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"scopes": {
+														Description:         "OAuth2 scopes used for the token request",
+														MarkdownDescription: "OAuth2 scopes used for the token request",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"token_url": {
+														Description:         "The URL to fetch the token from",
+														MarkdownDescription: "The URL to fetch the token from",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"proxy_url": {
+												Description:         "Optional proxy URL.",
+												MarkdownDescription: "Optional proxy URL.",
 
 												Type: types.StringType,
 
@@ -8466,20 +4838,462 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Computed: false,
 											},
 
-											"role_arn": {
-												Description:         "RoleArn is the named AWS profile used to authenticate.",
-												MarkdownDescription: "RoleArn is the named AWS profile used to authenticate.",
+											"tls_config": {
+												Description:         "TLS configuration for the client.",
+												MarkdownDescription: "TLS configuration for the client.",
 
-												Type: types.StringType,
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"ca": {
+														Description:         "Struct containing the CA cert to use for the targets.",
+														MarkdownDescription: "Struct containing the CA cert to use for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"cert": {
+														Description:         "Struct containing the client cert file for the targets.",
+														MarkdownDescription: "Struct containing the client cert file for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"insecure_skip_verify": {
+														Description:         "Disable target certificate validation.",
+														MarkdownDescription: "Disable target certificate validation.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"key_secret": {
+														Description:         "Secret containing the client key file for the targets.",
+														MarkdownDescription: "Secret containing the client key file for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"server_name": {
+														Description:         "Used to verify the hostname for the targets.",
+														MarkdownDescription: "Used to verify the hostname for the targets.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
 
 												Required: false,
 												Optional: true,
 												Computed: false,
 											},
 
-											"secret_key": {
-												Description:         "SecretKey is the AWS API secret. If blank, the environment variable 'AWS_SECRET_ACCESS_KEY' is used.",
-												MarkdownDescription: "SecretKey is the AWS API secret. If blank, the environment variable 'AWS_SECRET_ACCESS_KEY' is used.",
+											"authorization": {
+												Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+												MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"credentials": {
+														Description:         "The secret's key that contains the credentials of the request",
+														MarkdownDescription: "The secret's key that contains the credentials of the request",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"type": {
+														Description:         "Set the authentication type. Defaults to Bearer, Basic will cause an error",
+														MarkdownDescription: "Set the authentication type. Defaults to Bearer, Basic will cause an error",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"basic_auth": {
+												Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+												MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"password": {
+														Description:         "The secret in the service monitor namespace that contains the password for authentication.",
+														MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"username": {
+														Description:         "The secret in the service monitor namespace that contains the username for authentication.",
+														MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"bearer_token_secret": {
+												Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -8521,6 +5335,2369 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Optional: true,
 												Computed: false,
 											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"message_type": {
+										Description:         "Describes the behavior of the alert (CRITICAL, WARNING, INFO).",
+										MarkdownDescription: "Describes the behavior of the alert (CRITICAL, WARNING, INFO).",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"send_resolved": {
+										Description:         "Whether or not to notify about resolved alerts.",
+										MarkdownDescription: "Whether or not to notify about resolved alerts.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"state_message": {
+										Description:         "Contains long explanation of the alerted problem.",
+										MarkdownDescription: "Contains long explanation of the alerted problem.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"entity_display_name": {
+										Description:         "Contains summary of the alerted problem.",
+										MarkdownDescription: "Contains summary of the alerted problem.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"api_url": {
+										Description:         "The VictorOps API URL.",
+										MarkdownDescription: "The VictorOps API URL.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"custom_fields": {
+										Description:         "Additional custom fields for notification.",
+										MarkdownDescription: "Additional custom fields for notification.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"value": {
+												Description:         "Value of the tuple.",
+												MarkdownDescription: "Value of the tuple.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"key": {
+												Description:         "Key of the tuple.",
+												MarkdownDescription: "Key of the tuple.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"monitoring_tool": {
+										Description:         "The monitoring tool the state message is from.",
+										MarkdownDescription: "The monitoring tool the state message is from.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"routing_key": {
+										Description:         "A key used to map the alert to a team.",
+										MarkdownDescription: "A key used to map the alert to a team.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"api_key": {
+										Description:         "The secret's key that contains the API key to use when talking to the VictorOps API. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+										MarkdownDescription: "The secret's key that contains the API key to use when talking to the VictorOps API. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name of the receiver. Must be unique across all items from the list.",
+								MarkdownDescription: "Name of the receiver. Must be unique across all items from the list.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"opsgenie_configs": {
+								Description:         "List of OpsGenie configurations.",
+								MarkdownDescription: "List of OpsGenie configurations.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"api_url": {
+										Description:         "The URL to send OpsGenie API requests to.",
+										MarkdownDescription: "The URL to send OpsGenie API requests to.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"details": {
+										Description:         "A set of arbitrary key/value pairs that provide further detail about the incident.",
+										MarkdownDescription: "A set of arbitrary key/value pairs that provide further detail about the incident.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "Key of the tuple.",
+												MarkdownDescription: "Key of the tuple.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"value": {
+												Description:         "Value of the tuple.",
+												MarkdownDescription: "Value of the tuple.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"message": {
+										Description:         "Alert text limited to 130 characters.",
+										MarkdownDescription: "Alert text limited to 130 characters.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"note": {
+										Description:         "Additional alert note.",
+										MarkdownDescription: "Additional alert note.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"priority": {
+										Description:         "Priority level of alert. Possible values are P1, P2, P3, P4, and P5.",
+										MarkdownDescription: "Priority level of alert. Possible values are P1, P2, P3, P4, and P5.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"source": {
+										Description:         "Backlink to the sender of the notification.",
+										MarkdownDescription: "Backlink to the sender of the notification.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"api_key": {
+										Description:         "The secret's key that contains the OpsGenie API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+										MarkdownDescription: "The secret's key that contains the OpsGenie API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"description": {
+										Description:         "Description of the incident.",
+										MarkdownDescription: "Description of the incident.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"entity": {
+										Description:         "Optional field that can be used to specify which domain alert is related to.",
+										MarkdownDescription: "Optional field that can be used to specify which domain alert is related to.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"send_resolved": {
+										Description:         "Whether or not to notify about resolved alerts.",
+										MarkdownDescription: "Whether or not to notify about resolved alerts.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"tags": {
+										Description:         "Comma separated list of tags attached to the notifications.",
+										MarkdownDescription: "Comma separated list of tags attached to the notifications.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"update_alerts": {
+										Description:         "Whether to update message and description of the alert in OpsGenie if it already exists By default, the alert is never updated in OpsGenie, the new message only appears in activity log.",
+										MarkdownDescription: "Whether to update message and description of the alert in OpsGenie if it already exists By default, the alert is never updated in OpsGenie, the new message only appears in activity log.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http_config": {
+										Description:         "HTTP client configuration.",
+										MarkdownDescription: "HTTP client configuration.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"proxy_url": {
+												Description:         "Optional proxy URL.",
+												MarkdownDescription: "Optional proxy URL.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tls_config": {
+												Description:         "TLS configuration for the client.",
+												MarkdownDescription: "TLS configuration for the client.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"key_secret": {
+														Description:         "Secret containing the client key file for the targets.",
+														MarkdownDescription: "Secret containing the client key file for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"server_name": {
+														Description:         "Used to verify the hostname for the targets.",
+														MarkdownDescription: "Used to verify the hostname for the targets.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"ca": {
+														Description:         "Struct containing the CA cert to use for the targets.",
+														MarkdownDescription: "Struct containing the CA cert to use for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"cert": {
+														Description:         "Struct containing the client cert file for the targets.",
+														MarkdownDescription: "Struct containing the client cert file for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"insecure_skip_verify": {
+														Description:         "Disable target certificate validation.",
+														MarkdownDescription: "Disable target certificate validation.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"authorization": {
+												Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+												MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"credentials": {
+														Description:         "The secret's key that contains the credentials of the request",
+														MarkdownDescription: "The secret's key that contains the credentials of the request",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"type": {
+														Description:         "Set the authentication type. Defaults to Bearer, Basic will cause an error",
+														MarkdownDescription: "Set the authentication type. Defaults to Bearer, Basic will cause an error",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"basic_auth": {
+												Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+												MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"password": {
+														Description:         "The secret in the service monitor namespace that contains the password for authentication.",
+														MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"username": {
+														Description:         "The secret in the service monitor namespace that contains the username for authentication.",
+														MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"bearer_token_secret": {
+												Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"key": {
+														Description:         "The key of the secret to select from.  Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"follow_redirects": {
+												Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+												MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"oauth2": {
+												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"client_secret": {
+														Description:         "The secret containing the OAuth2 client secret",
+														MarkdownDescription: "The secret containing the OAuth2 client secret",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"endpoint_params": {
+														Description:         "Parameters to append to the token URL",
+														MarkdownDescription: "Parameters to append to the token URL",
+
+														Type: types.MapType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"scopes": {
+														Description:         "OAuth2 scopes used for the token request",
+														MarkdownDescription: "OAuth2 scopes used for the token request",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"token_url": {
+														Description:         "The URL to fetch the token from",
+														MarkdownDescription: "The URL to fetch the token from",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"client_id": {
+														Description:         "The secret or configmap containing the OAuth2 client id",
+														MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"actions": {
+										Description:         "Comma separated list of actions that will be available for the alert.",
+										MarkdownDescription: "Comma separated list of actions that will be available for the alert.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"responders": {
+										Description:         "List of responders responsible for notifications.",
+										MarkdownDescription: "List of responders responsible for notifications.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"username": {
+												Description:         "Username of the responder.",
+												MarkdownDescription: "Username of the responder.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"id": {
+												Description:         "ID of the responder.",
+												MarkdownDescription: "ID of the responder.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the responder.",
+												MarkdownDescription: "Name of the responder.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"type": {
+												Description:         "Type of responder.",
+												MarkdownDescription: "Type of responder.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"slack_configs": {
+								Description:         "List of Slack configurations.",
+								MarkdownDescription: "List of Slack configurations.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"icon_url": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"title": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"title_link": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"actions": {
+										Description:         "A list of Slack actions that are sent with each notification.",
+										MarkdownDescription: "A list of Slack actions that are sent with each notification.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"value": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"confirm": {
+												Description:         "SlackConfirmationField protect users from destructive actions or particularly distinguished decisions by asking them to confirm their button click one more time. See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fields for more information.",
+												MarkdownDescription: "SlackConfirmationField protect users from destructive actions or particularly distinguished decisions by asking them to confirm their button click one more time. See https://api.slack.com/docs/interactive-message-field-guide#confirmation_fields for more information.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"ok_text": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"text": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"title": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"dismiss_text": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"style": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"text": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"type": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"url": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"api_url": {
+										Description:         "The secret's key that contains the Slack webhook URL. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+										MarkdownDescription: "The secret's key that contains the Slack webhook URL. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http_config": {
+										Description:         "HTTP client configuration.",
+										MarkdownDescription: "HTTP client configuration.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"authorization": {
+												Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+												MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"credentials": {
+														Description:         "The secret's key that contains the credentials of the request",
+														MarkdownDescription: "The secret's key that contains the credentials of the request",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"type": {
+														Description:         "Set the authentication type. Defaults to Bearer, Basic will cause an error",
+														MarkdownDescription: "Set the authentication type. Defaults to Bearer, Basic will cause an error",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"basic_auth": {
+												Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+												MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"password": {
+														Description:         "The secret in the service monitor namespace that contains the password for authentication.",
+														MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"username": {
+														Description:         "The secret in the service monitor namespace that contains the username for authentication.",
+														MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"bearer_token_secret": {
+												Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"optional": {
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"key": {
+														Description:         "The key of the secret to select from.  Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"follow_redirects": {
+												Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+												MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"oauth2": {
+												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"client_id": {
+														Description:         "The secret or configmap containing the OAuth2 client id",
+														MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"client_secret": {
+														Description:         "The secret containing the OAuth2 client secret",
+														MarkdownDescription: "The secret containing the OAuth2 client secret",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"endpoint_params": {
+														Description:         "Parameters to append to the token URL",
+														MarkdownDescription: "Parameters to append to the token URL",
+
+														Type: types.MapType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"scopes": {
+														Description:         "OAuth2 scopes used for the token request",
+														MarkdownDescription: "OAuth2 scopes used for the token request",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"token_url": {
+														Description:         "The URL to fetch the token from",
+														MarkdownDescription: "The URL to fetch the token from",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"proxy_url": {
+												Description:         "Optional proxy URL.",
+												MarkdownDescription: "Optional proxy URL.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tls_config": {
+												Description:         "TLS configuration for the client.",
+												MarkdownDescription: "TLS configuration for the client.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"insecure_skip_verify": {
+														Description:         "Disable target certificate validation.",
+														MarkdownDescription: "Disable target certificate validation.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"key_secret": {
+														Description:         "Secret containing the client key file for the targets.",
+														MarkdownDescription: "Secret containing the client key file for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"server_name": {
+														Description:         "Used to verify the hostname for the targets.",
+														MarkdownDescription: "Used to verify the hostname for the targets.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"ca": {
+														Description:         "Struct containing the CA cert to use for the targets.",
+														MarkdownDescription: "Struct containing the CA cert to use for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"cert": {
+														Description:         "Struct containing the client cert file for the targets.",
+														MarkdownDescription: "Struct containing the client cert file for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"short_fields": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"thumb_url": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"fallback": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"fields": {
+										Description:         "A list of Slack fields that are sent with each notification.",
+										MarkdownDescription: "A list of Slack fields that are sent with each notification.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"short": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"title": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"value": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"link_names": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"mrkdwn_in": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"send_resolved": {
+										Description:         "Whether or not to notify about resolved alerts.",
+										MarkdownDescription: "Whether or not to notify about resolved alerts.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"username": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"footer": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"image_url": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"color": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"icon_emoji": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"pretext": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"text": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"callback_id": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"channel": {
+										Description:         "The channel or user to send notifications to.",
+										MarkdownDescription: "The channel or user to send notifications to.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"sns_configs": {
+								Description:         "List of SNS configurations",
+								MarkdownDescription: "List of SNS configurations",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"message": {
+										Description:         "The message content of the SNS notification.",
+										MarkdownDescription: "The message content of the SNS notification.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"send_resolved": {
+										Description:         "Whether or not to notify about resolved alerts.",
+										MarkdownDescription: "Whether or not to notify about resolved alerts.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"sigv4": {
+										Description:         "Configures AWS's Signature Verification 4 signing process to sign requests.",
+										MarkdownDescription: "Configures AWS's Signature Verification 4 signing process to sign requests.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 											"access_key": {
 												Description:         "AccessKey is the AWS API key. If blank, the environment variable 'AWS_ACCESS_KEY_ID' is used.",
@@ -8577,6 +7754,73 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Optional: true,
 												Computed: false,
 											},
+
+											"region": {
+												Description:         "Region is the AWS region. If blank, the region from the default credentials chain used.",
+												MarkdownDescription: "Region is the AWS region. If blank, the region from the default credentials chain used.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"role_arn": {
+												Description:         "RoleArn is the named AWS profile used to authenticate.",
+												MarkdownDescription: "RoleArn is the named AWS profile used to authenticate.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret_key": {
+												Description:         "SecretKey is the AWS API secret. If blank, the environment variable 'AWS_SECRET_ACCESS_KEY' is used.",
+												MarkdownDescription: "SecretKey is the AWS API secret. If blank, the environment variable 'AWS_SECRET_ACCESS_KEY' is used.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"key": {
+														Description:         "The key of the secret to select from.  Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										}),
 
 										Required: false,
@@ -8605,6 +7849,774 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Optional: true,
 										Computed: false,
 									},
+
+									"api_url": {
+										Description:         "The SNS API URL i.e. https://sns.us-east-2.amazonaws.com. If not specified, the SNS API URL from the SNS SDK will be used.",
+										MarkdownDescription: "The SNS API URL i.e. https://sns.us-east-2.amazonaws.com. If not specified, the SNS API URL from the SNS SDK will be used.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"attributes": {
+										Description:         "SNS message attributes.",
+										MarkdownDescription: "SNS message attributes.",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http_config": {
+										Description:         "HTTP client configuration.",
+										MarkdownDescription: "HTTP client configuration.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"basic_auth": {
+												Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+												MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"password": {
+														Description:         "The secret in the service monitor namespace that contains the password for authentication.",
+														MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"username": {
+														Description:         "The secret in the service monitor namespace that contains the username for authentication.",
+														MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"bearer_token_secret": {
+												Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"key": {
+														Description:         "The key of the secret to select from.  Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"follow_redirects": {
+												Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+												MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"oauth2": {
+												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"client_id": {
+														Description:         "The secret or configmap containing the OAuth2 client id",
+														MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"client_secret": {
+														Description:         "The secret containing the OAuth2 client secret",
+														MarkdownDescription: "The secret containing the OAuth2 client secret",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"endpoint_params": {
+														Description:         "Parameters to append to the token URL",
+														MarkdownDescription: "Parameters to append to the token URL",
+
+														Type: types.MapType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"scopes": {
+														Description:         "OAuth2 scopes used for the token request",
+														MarkdownDescription: "OAuth2 scopes used for the token request",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"token_url": {
+														Description:         "The URL to fetch the token from",
+														MarkdownDescription: "The URL to fetch the token from",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"proxy_url": {
+												Description:         "Optional proxy URL.",
+												MarkdownDescription: "Optional proxy URL.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tls_config": {
+												Description:         "TLS configuration for the client.",
+												MarkdownDescription: "TLS configuration for the client.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"key_secret": {
+														Description:         "Secret containing the client key file for the targets.",
+														MarkdownDescription: "Secret containing the client key file for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"server_name": {
+														Description:         "Used to verify the hostname for the targets.",
+														MarkdownDescription: "Used to verify the hostname for the targets.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"ca": {
+														Description:         "Struct containing the CA cert to use for the targets.",
+														MarkdownDescription: "Struct containing the CA cert to use for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"cert": {
+														Description:         "Struct containing the client cert file for the targets.",
+														MarkdownDescription: "Struct containing the client cert file for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"insecure_skip_verify": {
+														Description:         "Disable target certificate validation.",
+														MarkdownDescription: "Disable target certificate validation.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"authorization": {
+												Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+												MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"credentials": {
+														Description:         "The secret's key that contains the credentials of the request",
+														MarkdownDescription: "The secret's key that contains the credentials of the request",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"type": {
+														Description:         "Set the authentication type. Defaults to Bearer, Basic will cause an error",
+														MarkdownDescription: "Set the authentication type. Defaults to Bearer, Basic will cause an error",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"phone_number": {
+										Description:         "Phone number if message is delivered via SMS in E.164 format. If you don't specify this value, you must specify a value for the TopicARN or TargetARN.",
+										MarkdownDescription: "Phone number if message is delivered via SMS in E.164 format. If you don't specify this value, you must specify a value for the TopicARN or TargetARN.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"subject": {
+										Description:         "Subject line when the message is delivered to email endpoints.",
+										MarkdownDescription: "Subject line when the message is delivered to email endpoints.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -8617,6 +8629,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 								MarkdownDescription: "List of Telegram configurations.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"parse_mode": {
+										Description:         "Parse mode for telegram message",
+										MarkdownDescription: "Parse mode for telegram message",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"send_resolved": {
 										Description:         "Whether to notify about resolved alerts.",
@@ -8713,6 +8736,515 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+											"proxy_url": {
+												Description:         "Optional proxy URL.",
+												MarkdownDescription: "Optional proxy URL.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tls_config": {
+												Description:         "TLS configuration for the client.",
+												MarkdownDescription: "TLS configuration for the client.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"ca": {
+														Description:         "Struct containing the CA cert to use for the targets.",
+														MarkdownDescription: "Struct containing the CA cert to use for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"cert": {
+														Description:         "Struct containing the client cert file for the targets.",
+														MarkdownDescription: "Struct containing the client cert file for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"insecure_skip_verify": {
+														Description:         "Disable target certificate validation.",
+														MarkdownDescription: "Disable target certificate validation.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"key_secret": {
+														Description:         "Secret containing the client key file for the targets.",
+														MarkdownDescription: "Secret containing the client key file for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"server_name": {
+														Description:         "Used to verify the hostname for the targets.",
+														MarkdownDescription: "Used to verify the hostname for the targets.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"authorization": {
+												Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+												MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"credentials": {
+														Description:         "The secret's key that contains the credentials of the request",
+														MarkdownDescription: "The secret's key that contains the credentials of the request",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"type": {
+														Description:         "Set the authentication type. Defaults to Bearer, Basic will cause an error",
+														MarkdownDescription: "Set the authentication type. Defaults to Bearer, Basic will cause an error",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"basic_auth": {
+												Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+												MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"password": {
+														Description:         "The secret in the service monitor namespace that contains the password for authentication.",
+														MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"username": {
+														Description:         "The secret in the service monitor namespace that contains the username for authentication.",
+														MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"bearer_token_secret": {
+												Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"key": {
+														Description:         "The key of the secret to select from.  Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"follow_redirects": {
 												Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
 												MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
@@ -8764,17 +9296,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
 																	"optional": {
 																		Description:         "Specify whether the ConfigMap or its key must be defined",
 																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
@@ -8794,6 +9315,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 																		Required: true,
 																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
 																		Computed: false,
 																	},
 																}),
@@ -8904,515 +9436,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 														MarkdownDescription: "Parameters to append to the token URL",
 
 														Type: types.MapType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"proxy_url": {
-												Description:         "Optional proxy URL.",
-												MarkdownDescription: "Optional proxy URL.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tls_config": {
-												Description:         "TLS configuration for the client.",
-												MarkdownDescription: "TLS configuration for the client.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"ca": {
-														Description:         "Struct containing the CA cert to use for the targets.",
-														MarkdownDescription: "Struct containing the CA cert to use for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"cert": {
-														Description:         "Struct containing the client cert file for the targets.",
-														MarkdownDescription: "Struct containing the client cert file for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"insecure_skip_verify": {
-														Description:         "Disable target certificate validation.",
-														MarkdownDescription: "Disable target certificate validation.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"key_secret": {
-														Description:         "Secret containing the client key file for the targets.",
-														MarkdownDescription: "Secret containing the client key file for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"server_name": {
-														Description:         "Used to verify the hostname for the targets.",
-														MarkdownDescription: "Used to verify the hostname for the targets.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"authorization": {
-												Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-												MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"type": {
-														Description:         "Set the authentication type. Defaults to Bearer, Basic will cause an error",
-														MarkdownDescription: "Set the authentication type. Defaults to Bearer, Basic will cause an error",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"credentials": {
-														Description:         "The secret's key that contains the credentials of the request",
-														MarkdownDescription: "The secret's key that contains the credentials of the request",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"basic_auth": {
-												Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-												MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"password": {
-														Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-														MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"username": {
-														Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-														MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"bearer_token_secret": {
-												Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"key": {
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "Specify whether the Secret or its key must be defined",
-														MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-														Type: types.BoolType,
 
 														Required: false,
 														Optional: true,
@@ -9441,909 +9464,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Optional: true,
 										Computed: false,
 									},
-
-									"parse_mode": {
-										Description:         "Parse mode for telegram message",
-										MarkdownDescription: "Parse mode for telegram message",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"victorops_configs": {
-								Description:         "List of VictorOps configurations.",
-								MarkdownDescription: "List of VictorOps configurations.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"api_url": {
-										Description:         "The VictorOps API URL.",
-										MarkdownDescription: "The VictorOps API URL.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"custom_fields": {
-										Description:         "Additional custom fields for notification.",
-										MarkdownDescription: "Additional custom fields for notification.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"value": {
-												Description:         "Value of the tuple.",
-												MarkdownDescription: "Value of the tuple.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"key": {
-												Description:         "Key of the tuple.",
-												MarkdownDescription: "Key of the tuple.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"message_type": {
-										Description:         "Describes the behavior of the alert (CRITICAL, WARNING, INFO).",
-										MarkdownDescription: "Describes the behavior of the alert (CRITICAL, WARNING, INFO).",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"routing_key": {
-										Description:         "A key used to map the alert to a team.",
-										MarkdownDescription: "A key used to map the alert to a team.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"state_message": {
-										Description:         "Contains long explanation of the alerted problem.",
-										MarkdownDescription: "Contains long explanation of the alerted problem.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"api_key": {
-										Description:         "The secret's key that contains the API key to use when talking to the VictorOps API. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-										MarkdownDescription: "The secret's key that contains the API key to use when talking to the VictorOps API. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"entity_display_name": {
-										Description:         "Contains summary of the alerted problem.",
-										MarkdownDescription: "Contains summary of the alerted problem.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"http_config": {
-										Description:         "The HTTP client's configuration.",
-										MarkdownDescription: "The HTTP client's configuration.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"authorization": {
-												Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-												MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"credentials": {
-														Description:         "The secret's key that contains the credentials of the request",
-														MarkdownDescription: "The secret's key that contains the credentials of the request",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"type": {
-														Description:         "Set the authentication type. Defaults to Bearer, Basic will cause an error",
-														MarkdownDescription: "Set the authentication type. Defaults to Bearer, Basic will cause an error",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"basic_auth": {
-												Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-												MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"password": {
-														Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-														MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"username": {
-														Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-														MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"bearer_token_secret": {
-												Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"key": {
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "Specify whether the Secret or its key must be defined",
-														MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"follow_redirects": {
-												Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
-												MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"oauth2": {
-												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
-												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"client_id": {
-														Description:         "The secret or configmap containing the OAuth2 client id",
-														MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"client_secret": {
-														Description:         "The secret containing the OAuth2 client secret",
-														MarkdownDescription: "The secret containing the OAuth2 client secret",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"endpoint_params": {
-														Description:         "Parameters to append to the token URL",
-														MarkdownDescription: "Parameters to append to the token URL",
-
-														Type: types.MapType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"scopes": {
-														Description:         "OAuth2 scopes used for the token request",
-														MarkdownDescription: "OAuth2 scopes used for the token request",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"token_url": {
-														Description:         "The URL to fetch the token from",
-														MarkdownDescription: "The URL to fetch the token from",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"proxy_url": {
-												Description:         "Optional proxy URL.",
-												MarkdownDescription: "Optional proxy URL.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tls_config": {
-												Description:         "TLS configuration for the client.",
-												MarkdownDescription: "TLS configuration for the client.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"ca": {
-														Description:         "Struct containing the CA cert to use for the targets.",
-														MarkdownDescription: "Struct containing the CA cert to use for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"cert": {
-														Description:         "Struct containing the client cert file for the targets.",
-														MarkdownDescription: "Struct containing the client cert file for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"insecure_skip_verify": {
-														Description:         "Disable target certificate validation.",
-														MarkdownDescription: "Disable target certificate validation.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"key_secret": {
-														Description:         "Secret containing the client key file for the targets.",
-														MarkdownDescription: "Secret containing the client key file for the targets.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"server_name": {
-														Description:         "Used to verify the hostname for the targets.",
-														MarkdownDescription: "Used to verify the hostname for the targets.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"monitoring_tool": {
-										Description:         "The monitoring tool the state message is from.",
-										MarkdownDescription: "The monitoring tool the state message is from.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"send_resolved": {
-										Description:         "Whether or not to notify about resolved alerts.",
-										MarkdownDescription: "Whether or not to notify about resolved alerts.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -10356,17 +9476,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 								MarkdownDescription: "List of webhook configurations.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"url": {
-										Description:         "The URL to send HTTP POST requests to. 'urlSecret' takes precedence over 'url'. One of 'urlSecret' and 'url' should be defined.",
-										MarkdownDescription: "The URL to send HTTP POST requests to. 'urlSecret' takes precedence over 'url'. One of 'urlSecret' and 'url' should be defined.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"url_secret": {
 										Description:         "The secret's key that contains the webhook URL to send HTTP requests to. 'urlSecret' takes precedence over 'url'. One of 'urlSecret' and 'url' should be defined. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
@@ -10419,6 +9528,492 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+											"oauth2": {
+												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"client_id": {
+														Description:         "The secret or configmap containing the OAuth2 client id",
+														MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"client_secret": {
+														Description:         "The secret containing the OAuth2 client secret",
+														MarkdownDescription: "The secret containing the OAuth2 client secret",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"endpoint_params": {
+														Description:         "Parameters to append to the token URL",
+														MarkdownDescription: "Parameters to append to the token URL",
+
+														Type: types.MapType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"scopes": {
+														Description:         "OAuth2 scopes used for the token request",
+														MarkdownDescription: "OAuth2 scopes used for the token request",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"token_url": {
+														Description:         "The URL to fetch the token from",
+														MarkdownDescription: "The URL to fetch the token from",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"proxy_url": {
+												Description:         "Optional proxy URL.",
+												MarkdownDescription: "Optional proxy URL.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tls_config": {
+												Description:         "TLS configuration for the client.",
+												MarkdownDescription: "TLS configuration for the client.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"cert": {
+														Description:         "Struct containing the client cert file for the targets.",
+														MarkdownDescription: "Struct containing the client cert file for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"insecure_skip_verify": {
+														Description:         "Disable target certificate validation.",
+														MarkdownDescription: "Disable target certificate validation.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"key_secret": {
+														Description:         "Secret containing the client key file for the targets.",
+														MarkdownDescription: "Secret containing the client key file for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"server_name": {
+														Description:         "Used to verify the hostname for the targets.",
+														MarkdownDescription: "Used to verify the hostname for the targets.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"ca": {
+														Description:         "Struct containing the CA cert to use for the targets.",
+														MarkdownDescription: "Struct containing the CA cert to use for the targets.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"authorization": {
 												Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
 												MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
@@ -10499,17 +10094,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"key": {
 																Description:         "The key of the secret to select from.  Must be a valid secret key.",
 																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
@@ -10526,6 +10110,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 
 																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
 
 																Required: false,
 																Optional: true,
@@ -10644,198 +10239,74 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Optional: true,
 												Computed: false,
 											},
+										}),
 
-											"oauth2": {
-												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
-												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+									"max_alerts": {
+										Description:         "Maximum number of alerts to be sent per webhook message. When 0, all alerts are included.",
+										MarkdownDescription: "Maximum number of alerts to be sent per webhook message. When 0, all alerts are included.",
 
-													"endpoint_params": {
-														Description:         "Parameters to append to the token URL",
-														MarkdownDescription: "Parameters to append to the token URL",
+										Type: types.Int64Type,
 
-														Type: types.MapType{ElemType: types.StringType},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
+									"send_resolved": {
+										Description:         "Whether or not to notify about resolved alerts.",
+										MarkdownDescription: "Whether or not to notify about resolved alerts.",
 
-													"scopes": {
-														Description:         "OAuth2 scopes used for the token request",
-														MarkdownDescription: "OAuth2 scopes used for the token request",
+										Type: types.BoolType,
 
-														Type: types.ListType{ElemType: types.StringType},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
+									"url": {
+										Description:         "The URL to send HTTP POST requests to. 'urlSecret' takes precedence over 'url'. One of 'urlSecret' and 'url' should be defined.",
+										MarkdownDescription: "The URL to send HTTP POST requests to. 'urlSecret' takes precedence over 'url'. One of 'urlSecret' and 'url' should be defined.",
 
-													"token_url": {
-														Description:         "The URL to fetch the token from",
-														MarkdownDescription: "The URL to fetch the token from",
+										Type: types.StringType,
 
-														Type: types.StringType,
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
-													"client_id": {
-														Description:         "The secret or configmap containing the OAuth2 client id",
-														MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+							"wechat_configs": {
+								Description:         "List of WeChat configurations.",
+								MarkdownDescription: "List of WeChat configurations.",
 
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+									"corp_id": {
+										Description:         "The corp id for authentication.",
+										MarkdownDescription: "The corp id for authentication.",
 
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+										Type: types.StringType,
 
-																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
-																		Type: types.StringType,
+									"http_config": {
+										Description:         "HTTP client configuration.",
+										MarkdownDescription: "HTTP client configuration.",
 
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its key must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"client_secret": {
-														Description:         "The secret containing the OAuth2 client secret",
-														MarkdownDescription: "The secret containing the OAuth2 client secret",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 											"proxy_url": {
 												Description:         "Optional proxy URL.",
@@ -10962,26 +10433,15 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"config_map": {
-																Description:         "ConfigMap containing data to use for the targets.",
-																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its key must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
 																	"key": {
-																		Description:         "The key to select.",
-																		MarkdownDescription: "The key to select.",
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
 
 																		Type: types.StringType,
 
@@ -10989,29 +10449,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 																		Optional: false,
 																		Computed: false,
 																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"secret": {
-																Description:         "Secret containing data to use for the targets.",
-																MarkdownDescription: "Secret containing data to use for the targets.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 																	"name": {
 																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -11034,15 +10471,49 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 																		Optional: true,
 																		Computed: false,
 																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 																	"key": {
-																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
 
 																		Type: types.StringType,
 
 																		Required: true,
 																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
 																		Computed: false,
 																	},
 																}),
@@ -11130,6 +10601,424 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Optional: true,
 												Computed: false,
 											},
+
+											"authorization": {
+												Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+												MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"credentials": {
+														Description:         "The secret's key that contains the credentials of the request",
+														MarkdownDescription: "The secret's key that contains the credentials of the request",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"type": {
+														Description:         "Set the authentication type. Defaults to Bearer, Basic will cause an error",
+														MarkdownDescription: "Set the authentication type. Defaults to Bearer, Basic will cause an error",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"basic_auth": {
+												Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+												MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"username": {
+														Description:         "The secret in the service monitor namespace that contains the username for authentication.",
+														MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"password": {
+														Description:         "The secret in the service monitor namespace that contains the password for authentication.",
+														MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"bearer_token_secret": {
+												Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"optional": {
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"key": {
+														Description:         "The key of the secret to select from.  Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"follow_redirects": {
+												Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+												MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"oauth2": {
+												Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+												MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"scopes": {
+														Description:         "OAuth2 scopes used for the token request",
+														MarkdownDescription: "OAuth2 scopes used for the token request",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"token_url": {
+														Description:         "The URL to fetch the token from",
+														MarkdownDescription: "The URL to fetch the token from",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"client_id": {
+														Description:         "The secret or configmap containing the OAuth2 client id",
+														MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"secret": {
+																Description:         "Secret containing data to use for the targets.",
+																MarkdownDescription: "Secret containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"key": {
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"config_map": {
+																Description:         "ConfigMap containing data to use for the targets.",
+																MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The key to select.",
+																		MarkdownDescription: "The key to select.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its key must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"client_secret": {
+														Description:         "The secret containing the OAuth2 client secret",
+														MarkdownDescription: "The secret containing the OAuth2 client secret",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"endpoint_params": {
+														Description:         "Parameters to append to the token URL",
+														MarkdownDescription: "Parameters to append to the token URL",
+
+														Type: types.MapType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										}),
 
 										Required: false,
@@ -11137,11 +11026,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Computed: false,
 									},
 
-									"max_alerts": {
-										Description:         "Maximum number of alerts to be sent per webhook message. When 0, all alerts are included.",
-										MarkdownDescription: "Maximum number of alerts to be sent per webhook message. When 0, all alerts are included.",
+									"message_type": {
+										Description:         "",
+										MarkdownDescription: "",
 
-										Type: types.Int64Type,
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -11153,6 +11042,117 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										MarkdownDescription: "Whether or not to notify about resolved alerts.",
 
 										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"api_url": {
+										Description:         "The WeChat API URL.",
+										MarkdownDescription: "The WeChat API URL.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"api_secret": {
+										Description:         "The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+										MarkdownDescription: "The secret's key that contains the WeChat API key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"message": {
+										Description:         "API request data as defined by the WeChat API.",
+										MarkdownDescription: "API request data as defined by the WeChat API.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"to_party": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"to_tag": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"to_user": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"agent_id": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -11176,17 +11176,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 						MarkdownDescription: "The Alertmanager route definition for alerts matching the resource’s namespace. If present, it will be added to the generated Alertmanager configuration as a first-level route.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"routes": {
-								Description:         "Child routes.",
-								MarkdownDescription: "Child routes.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"group_interval": {
 								Description:         "How long to wait before sending an updated notification. Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$' Example: '5m'",
@@ -11266,17 +11255,6 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 								Computed: false,
 							},
 
-							"mute_time_intervals": {
-								Description:         "Note: this comment applies to the field definition above but appears below otherwise it gets included in the generated manifest. CRD schema doesn't support self-referential types for now (see https://github.com/kubernetes/kubernetes/issues/62872). We have to use an alternative type to circumvent the limitation. The downside is that the Kube API can't validate the data beyond the fact that it is a valid JSON representation. MuteTimeIntervals is a list of MuteTimeInterval names that will mute this route when matched,",
-								MarkdownDescription: "Note: this comment applies to the field definition above but appears below otherwise it gets included in the generated manifest. CRD schema doesn't support self-referential types for now (see https://github.com/kubernetes/kubernetes/issues/62872). We have to use an alternative type to circumvent the limitation. The downside is that the Kube API can't validate the data beyond the fact that it is a valid JSON representation. MuteTimeIntervals is a list of MuteTimeInterval names that will mute this route when matched,",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"receiver": {
 								Description:         "Name of the receiver for this route. If not empty, it should be listed in the 'receivers' field.",
 								MarkdownDescription: "Name of the receiver for this route. If not empty, it should be listed in the 'receivers' field.",
@@ -11288,11 +11266,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 								Computed: false,
 							},
 
-							"repeat_interval": {
-								Description:         "How long to wait before repeating the last notification. Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$' Example: '4h'",
-								MarkdownDescription: "How long to wait before repeating the last notification. Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$' Example: '4h'",
+							"routes": {
+								Description:         "Child routes.",
+								MarkdownDescription: "Child routes.",
 
-								Type: types.StringType,
+								Type: types.ListType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,
@@ -11315,6 +11293,28 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 								MarkdownDescription: "List of labels to group by. Labels must not be repeated (unique list). Special label '...' (aggregate by all possible labels), if provided, must be the only element in the list.",
 
 								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"mute_time_intervals": {
+								Description:         "Note: this comment applies to the field definition above but appears below otherwise it gets included in the generated manifest. CRD schema doesn't support self-referential types for now (see https://github.com/kubernetes/kubernetes/issues/62872). We have to use an alternative type to circumvent the limitation. The downside is that the Kube API can't validate the data beyond the fact that it is a valid JSON representation. MuteTimeIntervals is a list of MuteTimeInterval names that will mute this route when matched,",
+								MarkdownDescription: "Note: this comment applies to the field definition above but appears below otherwise it gets included in the generated manifest. CRD schema doesn't support self-referential types for now (see https://github.com/kubernetes/kubernetes/issues/62872). We have to use an alternative type to circumvent the limitation. The downside is that the Kube API can't validate the data beyond the fact that it is a valid JSON representation. MuteTimeIntervals is a list of MuteTimeInterval names that will mute this route when matched,",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"repeat_interval": {
+								Description:         "How long to wait before repeating the last notification. Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$' Example: '4h'",
+								MarkdownDescription: "How long to wait before repeating the last notification. Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$' Example: '4h'",
+
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,

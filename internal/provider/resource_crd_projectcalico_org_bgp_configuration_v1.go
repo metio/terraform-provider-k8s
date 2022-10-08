@@ -47,31 +47,11 @@ type CrdProjectcalicoOrgBGPConfigurationV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		ListenPort *int64 `tfsdk:"listen_port" yaml:"listenPort,omitempty"`
+
+		LogSeverityScreen *string `tfsdk:"log_severity_screen" yaml:"logSeverityScreen,omitempty"`
+
 		NodeToNodeMeshEnabled *bool `tfsdk:"node_to_node_mesh_enabled" yaml:"nodeToNodeMeshEnabled,omitempty"`
-
-		ServiceExternalIPs *[]struct {
-			Cidr *string `tfsdk:"cidr" yaml:"cidr,omitempty"`
-		} `tfsdk:"service_external_i_ps" yaml:"serviceExternalIPs,omitempty"`
-
-		AsNumber *int64 `tfsdk:"as_number" yaml:"asNumber,omitempty"`
-
-		BindMode *string `tfsdk:"bind_mode" yaml:"bindMode,omitempty"`
-
-		Communities *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Value *string `tfsdk:"value" yaml:"value,omitempty"`
-		} `tfsdk:"communities" yaml:"communities,omitempty"`
-
-		NodeMeshPassword *struct {
-			SecretKeyRef *struct {
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-			} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
-		} `tfsdk:"node_mesh_password" yaml:"nodeMeshPassword,omitempty"`
 
 		PrefixAdvertisements *[]struct {
 			Cidr *string `tfsdk:"cidr" yaml:"cidr,omitempty"`
@@ -87,11 +67,31 @@ type CrdProjectcalicoOrgBGPConfigurationV1GoModel struct {
 			Cidr *string `tfsdk:"cidr" yaml:"cidr,omitempty"`
 		} `tfsdk:"service_load_balancer_i_ps" yaml:"serviceLoadBalancerIPs,omitempty"`
 
-		ListenPort *int64 `tfsdk:"listen_port" yaml:"listenPort,omitempty"`
+		Communities *[]struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
-		LogSeverityScreen *string `tfsdk:"log_severity_screen" yaml:"logSeverityScreen,omitempty"`
+			Value *string `tfsdk:"value" yaml:"value,omitempty"`
+		} `tfsdk:"communities" yaml:"communities,omitempty"`
+
+		BindMode *string `tfsdk:"bind_mode" yaml:"bindMode,omitempty"`
 
 		NodeMeshMaxRestartTime *string `tfsdk:"node_mesh_max_restart_time" yaml:"nodeMeshMaxRestartTime,omitempty"`
+
+		NodeMeshPassword *struct {
+			SecretKeyRef *struct {
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+			} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
+		} `tfsdk:"node_mesh_password" yaml:"nodeMeshPassword,omitempty"`
+
+		ServiceExternalIPs *[]struct {
+			Cidr *string `tfsdk:"cidr" yaml:"cidr,omitempty"`
+		} `tfsdk:"service_external_i_ps" yaml:"serviceExternalIPs,omitempty"`
+
+		AsNumber *int64 `tfsdk:"as_number" yaml:"asNumber,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -185,43 +185,9 @@ func (r *CrdProjectcalicoOrgBGPConfigurationV1Resource) GetSchema(_ context.Cont
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"node_to_node_mesh_enabled": {
-						Description:         "NodeToNodeMeshEnabled sets whether full node to node BGP mesh is enabled. [Default: true]",
-						MarkdownDescription: "NodeToNodeMeshEnabled sets whether full node to node BGP mesh is enabled. [Default: true]",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"service_external_i_ps": {
-						Description:         "ServiceExternalIPs are the CIDR blocks for Kubernetes Service External IPs. Kubernetes Service ExternalIPs will only be advertised if they are within one of these blocks.",
-						MarkdownDescription: "ServiceExternalIPs are the CIDR blocks for Kubernetes Service External IPs. Kubernetes Service ExternalIPs will only be advertised if they are within one of these blocks.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"cidr": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"as_number": {
-						Description:         "ASNumber is the default AS number used by a node. [Default: 64512]",
-						MarkdownDescription: "ASNumber is the default AS number used by a node. [Default: 64512]",
+					"listen_port": {
+						Description:         "ListenPort is the port where BGP protocol should listen. Defaults to 179",
+						MarkdownDescription: "ListenPort is the port where BGP protocol should listen. Defaults to 179",
 
 						Type: types.Int64Type,
 
@@ -230,9 +196,9 @@ func (r *CrdProjectcalicoOrgBGPConfigurationV1Resource) GetSchema(_ context.Cont
 						Computed: false,
 					},
 
-					"bind_mode": {
-						Description:         "BindMode indicates whether to listen for BGP connections on all addresses (None) or only on the node's canonical IP address Node.Spec.BGP.IPvXAddress (NodeIP). Default behaviour is to listen for BGP connections on all addresses.",
-						MarkdownDescription: "BindMode indicates whether to listen for BGP connections on all addresses (None) or only on the node's canonical IP address Node.Spec.BGP.IPvXAddress (NodeIP). Default behaviour is to listen for BGP connections on all addresses.",
+					"log_severity_screen": {
+						Description:         "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: INFO]",
+						MarkdownDescription: "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: INFO]",
 
 						Type: types.StringType,
 
@@ -241,91 +207,11 @@ func (r *CrdProjectcalicoOrgBGPConfigurationV1Resource) GetSchema(_ context.Cont
 						Computed: false,
 					},
 
-					"communities": {
-						Description:         "Communities is a list of BGP community values and their arbitrary names for tagging routes.",
-						MarkdownDescription: "Communities is a list of BGP community values and their arbitrary names for tagging routes.",
+					"node_to_node_mesh_enabled": {
+						Description:         "NodeToNodeMeshEnabled sets whether full node to node BGP mesh is enabled. [Default: true]",
+						MarkdownDescription: "NodeToNodeMeshEnabled sets whether full node to node BGP mesh is enabled. [Default: true]",
 
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name given to community value.",
-								MarkdownDescription: "Name given to community value.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"value": {
-								Description:         "Value must be of format 'aa:nn' or 'aa:nn:mm'. For standard community use 'aa:nn' format, where 'aa' and 'nn' are 16 bit number. For large community use 'aa:nn:mm' format, where 'aa', 'nn' and 'mm' are 32 bit number. Where, 'aa' is an AS Number, 'nn' and 'mm' are per-AS identifier.",
-								MarkdownDescription: "Value must be of format 'aa:nn' or 'aa:nn:mm'. For standard community use 'aa:nn' format, where 'aa' and 'nn' are 16 bit number. For large community use 'aa:nn:mm' format, where 'aa', 'nn' and 'mm' are 32 bit number. Where, 'aa' is an AS Number, 'nn' and 'mm' are per-AS identifier.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"node_mesh_password": {
-						Description:         "Optional BGP password for full node-to-mesh peerings. This field can only be set on the default BGPConfiguration instance and requires that NodeMesh is enabled",
-						MarkdownDescription: "Optional BGP password for full node-to-mesh peerings. This field can only be set on the default BGPConfiguration instance and requires that NodeMesh is enabled",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"secret_key_ref": {
-								Description:         "Selects a key of a secret in the node pod's namespace.",
-								MarkdownDescription: "Selects a key of a secret in the node pod's namespace.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"key": {
-										Description:         "The key of the secret to select from.  Must be a valid secret key.",
-										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"optional": {
-										Description:         "Specify whether the Secret or its key must be defined",
-										MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
@@ -412,20 +298,43 @@ func (r *CrdProjectcalicoOrgBGPConfigurationV1Resource) GetSchema(_ context.Cont
 						Computed: false,
 					},
 
-					"listen_port": {
-						Description:         "ListenPort is the port where BGP protocol should listen. Defaults to 179",
-						MarkdownDescription: "ListenPort is the port where BGP protocol should listen. Defaults to 179",
+					"communities": {
+						Description:         "Communities is a list of BGP community values and their arbitrary names for tagging routes.",
+						MarkdownDescription: "Communities is a list of BGP community values and their arbitrary names for tagging routes.",
 
-						Type: types.Int64Type,
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name given to community value.",
+								MarkdownDescription: "Name given to community value.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"value": {
+								Description:         "Value must be of format 'aa:nn' or 'aa:nn:mm'. For standard community use 'aa:nn' format, where 'aa' and 'nn' are 16 bit number. For large community use 'aa:nn:mm' format, where 'aa', 'nn' and 'mm' are 32 bit number. Where, 'aa' is an AS Number, 'nn' and 'mm' are per-AS identifier.",
+								MarkdownDescription: "Value must be of format 'aa:nn' or 'aa:nn:mm'. For standard community use 'aa:nn' format, where 'aa' and 'nn' are 16 bit number. For large community use 'aa:nn:mm' format, where 'aa', 'nn' and 'mm' are 32 bit number. Where, 'aa' is an AS Number, 'nn' and 'mm' are per-AS identifier.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
 						Computed: false,
 					},
 
-					"log_severity_screen": {
-						Description:         "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: INFO]",
-						MarkdownDescription: "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: INFO]",
+					"bind_mode": {
+						Description:         "BindMode indicates whether to listen for BGP connections on all addresses (None) or only on the node's canonical IP address Node.Spec.BGP.IPvXAddress (NodeIP). Default behaviour is to listen for BGP connections on all addresses.",
+						MarkdownDescription: "BindMode indicates whether to listen for BGP connections on all addresses (None) or only on the node's canonical IP address Node.Spec.BGP.IPvXAddress (NodeIP). Default behaviour is to listen for BGP connections on all addresses.",
 
 						Type: types.StringType,
 
@@ -439,6 +348,97 @@ func (r *CrdProjectcalicoOrgBGPConfigurationV1Resource) GetSchema(_ context.Cont
 						MarkdownDescription: "Time to allow for software restart for node-to-mesh peerings.  When specified, this is configured as the graceful restart timeout.  When not specified, the BIRD default of 120s is used. This field can only be set on the default BGPConfiguration instance and requires that NodeMesh is enabled",
 
 						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"node_mesh_password": {
+						Description:         "Optional BGP password for full node-to-mesh peerings. This field can only be set on the default BGPConfiguration instance and requires that NodeMesh is enabled",
+						MarkdownDescription: "Optional BGP password for full node-to-mesh peerings. This field can only be set on the default BGPConfiguration instance and requires that NodeMesh is enabled",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"secret_key_ref": {
+								Description:         "Selects a key of a secret in the node pod's namespace.",
+								MarkdownDescription: "Selects a key of a secret in the node pod's namespace.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"key": {
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"optional": {
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"service_external_i_ps": {
+						Description:         "ServiceExternalIPs are the CIDR blocks for Kubernetes Service External IPs. Kubernetes Service ExternalIPs will only be advertised if they are within one of these blocks.",
+						MarkdownDescription: "ServiceExternalIPs are the CIDR blocks for Kubernetes Service External IPs. Kubernetes Service ExternalIPs will only be advertised if they are within one of these blocks.",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"cidr": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"as_number": {
+						Description:         "ASNumber is the default AS number used by a node. [Default: 64512]",
+						MarkdownDescription: "ASNumber is the default AS number used by a node. [Default: 64512]",
+
+						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,

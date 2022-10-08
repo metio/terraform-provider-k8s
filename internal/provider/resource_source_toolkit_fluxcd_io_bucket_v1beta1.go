@@ -49,17 +49,13 @@ type SourceToolkitFluxcdIoBucketV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Insecure *bool `tfsdk:"insecure" yaml:"insecure,omitempty"`
-
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
 		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
-
-		Region *string `tfsdk:"region" yaml:"region,omitempty"`
 
 		SecretRef *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 
 		AccessFrom *struct {
 			NamespaceSelectors *[]struct {
@@ -67,15 +63,19 @@ type SourceToolkitFluxcdIoBucketV1Beta1GoModel struct {
 			} `tfsdk:"namespace_selectors" yaml:"namespaceSelectors,omitempty"`
 		} `tfsdk:"access_from" yaml:"accessFrom,omitempty"`
 
-		BucketName *string `tfsdk:"bucket_name" yaml:"bucketName,omitempty"`
-
 		Endpoint *string `tfsdk:"endpoint" yaml:"endpoint,omitempty"`
+
+		Insecure *bool `tfsdk:"insecure" yaml:"insecure,omitempty"`
+
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+		BucketName *string `tfsdk:"bucket_name" yaml:"bucketName,omitempty"`
 
 		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
 
-		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+		Region *string `tfsdk:"region" yaml:"region,omitempty"`
 
-		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -176,42 +176,9 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta1Resource) GetSchema(_ context.Context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"insecure": {
-						Description:         "Insecure allows connecting to a non-TLS S3 HTTP endpoint.",
-						MarkdownDescription: "Insecure allows connecting to a non-TLS S3 HTTP endpoint.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"interval": {
-						Description:         "The interval at which to check for bucket updates.",
-						MarkdownDescription: "The interval at which to check for bucket updates.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
 					"provider": {
 						Description:         "The S3 compatible storage provider name, default ('generic').",
 						MarkdownDescription: "The S3 compatible storage provider name, default ('generic').",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"region": {
-						Description:         "The bucket region.",
-						MarkdownDescription: "The bucket region.",
 
 						Type: types.StringType,
 
@@ -237,6 +204,17 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta1Resource) GetSchema(_ context.Context
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"timeout": {
+						Description:         "The timeout for download operations, defaults to 60s.",
+						MarkdownDescription: "The timeout for download operations, defaults to 60s.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -278,9 +256,9 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta1Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
-					"bucket_name": {
-						Description:         "The bucket name.",
-						MarkdownDescription: "The bucket name.",
+					"endpoint": {
+						Description:         "The bucket endpoint address.",
+						MarkdownDescription: "The bucket endpoint address.",
 
 						Type: types.StringType,
 
@@ -289,9 +267,31 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta1Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
-					"endpoint": {
-						Description:         "The bucket endpoint address.",
-						MarkdownDescription: "The bucket endpoint address.",
+					"insecure": {
+						Description:         "Insecure allows connecting to a non-TLS S3 HTTP endpoint.",
+						MarkdownDescription: "Insecure allows connecting to a non-TLS S3 HTTP endpoint.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"interval": {
+						Description:         "The interval at which to check for bucket updates.",
+						MarkdownDescription: "The interval at which to check for bucket updates.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"bucket_name": {
+						Description:         "The bucket name.",
+						MarkdownDescription: "The bucket name.",
 
 						Type: types.StringType,
 
@@ -311,22 +311,22 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta1Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
-					"suspend": {
-						Description:         "This flag tells the controller to suspend the reconciliation of this source.",
-						MarkdownDescription: "This flag tells the controller to suspend the reconciliation of this source.",
+					"region": {
+						Description:         "The bucket region.",
+						MarkdownDescription: "The bucket region.",
 
-						Type: types.BoolType,
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
 					},
 
-					"timeout": {
-						Description:         "The timeout for download operations, defaults to 60s.",
-						MarkdownDescription: "The timeout for download operations, defaults to 60s.",
+					"suspend": {
+						Description:         "This flag tells the controller to suspend the reconciliation of this source.",
+						MarkdownDescription: "This flag tells the controller to suspend the reconciliation of this source.",
 
-						Type: types.StringType,
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,

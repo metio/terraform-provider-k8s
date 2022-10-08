@@ -49,6 +49,10 @@ type ImageToolkitFluxcdIoImageRepositoryV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
 		SecretRef *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
@@ -60,10 +64,6 @@ type ImageToolkitFluxcdIoImageRepositoryV1Alpha1GoModel struct {
 		CertSecretRef *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"cert_secret_ref" yaml:"certSecretRef,omitempty"`
-
-		Image *string `tfsdk:"image" yaml:"image,omitempty"`
-
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -164,6 +164,28 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Alpha1Resource) GetSchema(_ contex
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"image": {
+						Description:         "Image is the name of the image repository",
+						MarkdownDescription: "Image is the name of the image repository",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"interval": {
+						Description:         "Interval is the length of time to wait between scans of the image repository.",
+						MarkdownDescription: "Interval is the length of time to wait between scans of the image repository.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"secret_ref": {
 						Description:         "SecretRef can be given the name of a secret containing credentials to use for the image registry. The secret should be created with 'kubectl create secret docker-registry', or the equivalent.",
 						MarkdownDescription: "SecretRef can be given the name of a secret containing credentials to use for the image registry. The secret should be created with 'kubectl create secret docker-registry', or the equivalent.",
@@ -226,28 +248,6 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Alpha1Resource) GetSchema(_ contex
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"image": {
-						Description:         "Image is the name of the image repository",
-						MarkdownDescription: "Image is the name of the image repository",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"interval": {
-						Description:         "Interval is the length of time to wait between scans of the image repository.",
-						MarkdownDescription: "Interval is the length of time to wait between scans of the image repository.",
-
-						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

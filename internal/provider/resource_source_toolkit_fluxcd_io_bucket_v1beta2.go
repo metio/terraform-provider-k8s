@@ -49,15 +49,7 @@ type SourceToolkitFluxcdIoBucketV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Endpoint *string `tfsdk:"endpoint" yaml:"endpoint,omitempty"`
-
-		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
-
-		Insecure *bool `tfsdk:"insecure" yaml:"insecure,omitempty"`
-
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-		Region *string `tfsdk:"region" yaml:"region,omitempty"`
+		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 
 		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 
@@ -69,13 +61,21 @@ type SourceToolkitFluxcdIoBucketV1Beta2GoModel struct {
 
 		BucketName *string `tfsdk:"bucket_name" yaml:"bucketName,omitempty"`
 
+		Endpoint *string `tfsdk:"endpoint" yaml:"endpoint,omitempty"`
+
 		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
 
 		SecretRef *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
-		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
+
+		Insecure *bool `tfsdk:"insecure" yaml:"insecure,omitempty"`
+
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+		Region *string `tfsdk:"region" yaml:"region,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -176,55 +176,11 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Resource) GetSchema(_ context.Context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"endpoint": {
-						Description:         "Endpoint is the object storage address the BucketName is located at.",
-						MarkdownDescription: "Endpoint is the object storage address the BucketName is located at.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"ignore": {
-						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
-						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"insecure": {
-						Description:         "Insecure allows connecting to a non-TLS HTTP Endpoint.",
-						MarkdownDescription: "Insecure allows connecting to a non-TLS HTTP Endpoint.",
+					"suspend": {
+						Description:         "Suspend tells the controller to suspend the reconciliation of this Bucket.",
+						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this Bucket.",
 
 						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"interval": {
-						Description:         "Interval at which to check the Endpoint for updates.",
-						MarkdownDescription: "Interval at which to check the Endpoint for updates.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"region": {
-						Description:         "Region of the Endpoint where the BucketName is located in.",
-						MarkdownDescription: "Region of the Endpoint where the BucketName is located in.",
-
-						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -288,6 +244,17 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
+					"endpoint": {
+						Description:         "Endpoint is the object storage address the BucketName is located at.",
+						MarkdownDescription: "Endpoint is the object storage address the BucketName is located at.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
 					"provider": {
 						Description:         "Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.",
 						MarkdownDescription: "Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.",
@@ -322,11 +289,44 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
-					"suspend": {
-						Description:         "Suspend tells the controller to suspend the reconciliation of this Bucket.",
-						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this Bucket.",
+					"ignore": {
+						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"insecure": {
+						Description:         "Insecure allows connecting to a non-TLS HTTP Endpoint.",
+						MarkdownDescription: "Insecure allows connecting to a non-TLS HTTP Endpoint.",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"interval": {
+						Description:         "Interval at which to check the Endpoint for updates.",
+						MarkdownDescription: "Interval at which to check the Endpoint for updates.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"region": {
+						Description:         "Region of the Endpoint where the BucketName is located in.",
+						MarkdownDescription: "Region of the Endpoint where the BucketName is located in.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

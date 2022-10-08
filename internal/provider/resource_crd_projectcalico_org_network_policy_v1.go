@@ -50,18 +50,20 @@ type CrdProjectcalicoOrgNetworkPolicyV1GoModel struct {
 
 	Spec *struct {
 		Egress *[]struct {
-			Icmp *struct {
-				Type *int64 `tfsdk:"type" yaml:"type,omitempty"`
-
-				Code *int64 `tfsdk:"code" yaml:"code,omitempty"`
-			} `tfsdk:"icmp" yaml:"icmp,omitempty"`
-
-			IpVersion *int64 `tfsdk:"ip_version" yaml:"ipVersion,omitempty"`
-
 			Destination *struct {
-				Nets *[]string `tfsdk:"nets" yaml:"nets,omitempty"`
+				NotNets *[]string `tfsdk:"not_nets" yaml:"notNets,omitempty"`
 
 				NotPorts *[]string `tfsdk:"not_ports" yaml:"notPorts,omitempty"`
+
+				Services *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+				} `tfsdk:"services" yaml:"services,omitempty"`
+
+				NamespaceSelector *string `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
+				Nets *[]string `tfsdk:"nets" yaml:"nets,omitempty"`
 
 				NotSelector *string `tfsdk:"not_selector" yaml:"notSelector,omitempty"`
 
@@ -70,36 +72,22 @@ type CrdProjectcalicoOrgNetworkPolicyV1GoModel struct {
 				Selector *string `tfsdk:"selector" yaml:"selector,omitempty"`
 
 				ServiceAccounts *struct {
-					Selector *string `tfsdk:"selector" yaml:"selector,omitempty"`
-
 					Names *[]string `tfsdk:"names" yaml:"names,omitempty"`
+
+					Selector *string `tfsdk:"selector" yaml:"selector,omitempty"`
 				} `tfsdk:"service_accounts" yaml:"serviceAccounts,omitempty"`
-
-				NamespaceSelector *string `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-
-				NotNets *[]string `tfsdk:"not_nets" yaml:"notNets,omitempty"`
-
-				Services *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-				} `tfsdk:"services" yaml:"services,omitempty"`
 			} `tfsdk:"destination" yaml:"destination,omitempty"`
 
-			Http *struct {
-				Methods *[]string `tfsdk:"methods" yaml:"methods,omitempty"`
+			Icmp *struct {
+				Code *int64 `tfsdk:"code" yaml:"code,omitempty"`
 
-				Paths *[]struct {
-					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
-
-					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-				} `tfsdk:"paths" yaml:"paths,omitempty"`
-			} `tfsdk:"http" yaml:"http,omitempty"`
+				Type *int64 `tfsdk:"type" yaml:"type,omitempty"`
+			} `tfsdk:"icmp" yaml:"icmp,omitempty"`
 
 			NotICMP *struct {
-				Type *int64 `tfsdk:"type" yaml:"type,omitempty"`
-
 				Code *int64 `tfsdk:"code" yaml:"code,omitempty"`
+
+				Type *int64 `tfsdk:"type" yaml:"type,omitempty"`
 			} `tfsdk:"not_icmp" yaml:"notICMP,omitempty"`
 
 			NotProtocol *string `tfsdk:"not_protocol" yaml:"notProtocol,omitempty"`
@@ -107,6 +95,20 @@ type CrdProjectcalicoOrgNetworkPolicyV1GoModel struct {
 			Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
 
 			Source *struct {
+				NotNets *[]string `tfsdk:"not_nets" yaml:"notNets,omitempty"`
+
+				NotPorts *[]string `tfsdk:"not_ports" yaml:"notPorts,omitempty"`
+
+				NotSelector *string `tfsdk:"not_selector" yaml:"notSelector,omitempty"`
+
+				Ports *[]string `tfsdk:"ports" yaml:"ports,omitempty"`
+
+				NamespaceSelector *string `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
+				Nets *[]string `tfsdk:"nets" yaml:"nets,omitempty"`
+
+				Selector *string `tfsdk:"selector" yaml:"selector,omitempty"`
+
 				ServiceAccounts *struct {
 					Names *[]string `tfsdk:"names" yaml:"names,omitempty"`
 
@@ -118,23 +120,21 @@ type CrdProjectcalicoOrgNetworkPolicyV1GoModel struct {
 
 					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 				} `tfsdk:"services" yaml:"services,omitempty"`
-
-				NamespaceSelector *string `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-
-				Nets *[]string `tfsdk:"nets" yaml:"nets,omitempty"`
-
-				NotSelector *string `tfsdk:"not_selector" yaml:"notSelector,omitempty"`
-
-				Ports *[]string `tfsdk:"ports" yaml:"ports,omitempty"`
-
-				Selector *string `tfsdk:"selector" yaml:"selector,omitempty"`
-
-				NotNets *[]string `tfsdk:"not_nets" yaml:"notNets,omitempty"`
-
-				NotPorts *[]string `tfsdk:"not_ports" yaml:"notPorts,omitempty"`
 			} `tfsdk:"source" yaml:"source,omitempty"`
 
 			Action *string `tfsdk:"action" yaml:"action,omitempty"`
+
+			Http *struct {
+				Paths *[]struct {
+					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
+
+					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+				} `tfsdk:"paths" yaml:"paths,omitempty"`
+
+				Methods *[]string `tfsdk:"methods" yaml:"methods,omitempty"`
+			} `tfsdk:"http" yaml:"http,omitempty"`
+
+			IpVersion *int64 `tfsdk:"ip_version" yaml:"ipVersion,omitempty"`
 
 			Metadata *struct {
 				Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
@@ -142,12 +142,6 @@ type CrdProjectcalicoOrgNetworkPolicyV1GoModel struct {
 		} `tfsdk:"egress" yaml:"egress,omitempty"`
 
 		Ingress *[]struct {
-			NotICMP *struct {
-				Code *int64 `tfsdk:"code" yaml:"code,omitempty"`
-
-				Type *int64 `tfsdk:"type" yaml:"type,omitempty"`
-			} `tfsdk:"not_icmp" yaml:"notICMP,omitempty"`
-
 			Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
 
 			Http *struct {
@@ -160,26 +154,38 @@ type CrdProjectcalicoOrgNetworkPolicyV1GoModel struct {
 				} `tfsdk:"paths" yaml:"paths,omitempty"`
 			} `tfsdk:"http" yaml:"http,omitempty"`
 
-			Icmp *struct {
-				Code *int64 `tfsdk:"code" yaml:"code,omitempty"`
-
-				Type *int64 `tfsdk:"type" yaml:"type,omitempty"`
-			} `tfsdk:"icmp" yaml:"icmp,omitempty"`
-
 			IpVersion *int64 `tfsdk:"ip_version" yaml:"ipVersion,omitempty"`
+
+			Metadata *struct {
+				Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+			} `tfsdk:"metadata" yaml:"metadata,omitempty"`
+
+			NotICMP *struct {
+				Type *int64 `tfsdk:"type" yaml:"type,omitempty"`
+
+				Code *int64 `tfsdk:"code" yaml:"code,omitempty"`
+			} `tfsdk:"not_icmp" yaml:"notICMP,omitempty"`
 
 			NotProtocol *string `tfsdk:"not_protocol" yaml:"notProtocol,omitempty"`
 
 			Source *struct {
+				NotNets *[]string `tfsdk:"not_nets" yaml:"notNets,omitempty"`
+
+				NotPorts *[]string `tfsdk:"not_ports" yaml:"notPorts,omitempty"`
+
 				Ports *[]string `tfsdk:"ports" yaml:"ports,omitempty"`
 
 				Selector *string `tfsdk:"selector" yaml:"selector,omitempty"`
 
-				Nets *[]string `tfsdk:"nets" yaml:"nets,omitempty"`
+				ServiceAccounts *struct {
+					Names *[]string `tfsdk:"names" yaml:"names,omitempty"`
 
-				NotNets *[]string `tfsdk:"not_nets" yaml:"notNets,omitempty"`
+					Selector *string `tfsdk:"selector" yaml:"selector,omitempty"`
+				} `tfsdk:"service_accounts" yaml:"serviceAccounts,omitempty"`
 
-				NotPorts *[]string `tfsdk:"not_ports" yaml:"notPorts,omitempty"`
+				NamespaceSelector *string `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
+				NotSelector *string `tfsdk:"not_selector" yaml:"notSelector,omitempty"`
 
 				Services *struct {
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -187,35 +193,19 @@ type CrdProjectcalicoOrgNetworkPolicyV1GoModel struct {
 					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 				} `tfsdk:"services" yaml:"services,omitempty"`
 
-				NamespaceSelector *string `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-
-				NotSelector *string `tfsdk:"not_selector" yaml:"notSelector,omitempty"`
-
-				ServiceAccounts *struct {
-					Names *[]string `tfsdk:"names" yaml:"names,omitempty"`
-
-					Selector *string `tfsdk:"selector" yaml:"selector,omitempty"`
-				} `tfsdk:"service_accounts" yaml:"serviceAccounts,omitempty"`
+				Nets *[]string `tfsdk:"nets" yaml:"nets,omitempty"`
 			} `tfsdk:"source" yaml:"source,omitempty"`
 
 			Action *string `tfsdk:"action" yaml:"action,omitempty"`
 
 			Destination *struct {
-				Services *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-				} `tfsdk:"services" yaml:"services,omitempty"`
-
-				NotNets *[]string `tfsdk:"not_nets" yaml:"notNets,omitempty"`
-
-				Selector *string `tfsdk:"selector" yaml:"selector,omitempty"`
-
 				NotPorts *[]string `tfsdk:"not_ports" yaml:"notPorts,omitempty"`
 
 				NotSelector *string `tfsdk:"not_selector" yaml:"notSelector,omitempty"`
 
 				Ports *[]string `tfsdk:"ports" yaml:"ports,omitempty"`
+
+				Selector *string `tfsdk:"selector" yaml:"selector,omitempty"`
 
 				ServiceAccounts *struct {
 					Names *[]string `tfsdk:"names" yaml:"names,omitempty"`
@@ -223,14 +213,24 @@ type CrdProjectcalicoOrgNetworkPolicyV1GoModel struct {
 					Selector *string `tfsdk:"selector" yaml:"selector,omitempty"`
 				} `tfsdk:"service_accounts" yaml:"serviceAccounts,omitempty"`
 
+				Services *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+				} `tfsdk:"services" yaml:"services,omitempty"`
+
 				NamespaceSelector *string `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 				Nets *[]string `tfsdk:"nets" yaml:"nets,omitempty"`
+
+				NotNets *[]string `tfsdk:"not_nets" yaml:"notNets,omitempty"`
 			} `tfsdk:"destination" yaml:"destination,omitempty"`
 
-			Metadata *struct {
-				Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-			} `tfsdk:"metadata" yaml:"metadata,omitempty"`
+			Icmp *struct {
+				Type *int64 `tfsdk:"type" yaml:"type,omitempty"`
+
+				Code *int64 `tfsdk:"code" yaml:"code,omitempty"`
+			} `tfsdk:"icmp" yaml:"icmp,omitempty"`
 		} `tfsdk:"ingress" yaml:"ingress,omitempty"`
 
 		Order *float64 `tfsdk:"order" yaml:"order,omitempty"`
@@ -346,60 +346,15 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"icmp": {
-								Description:         "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic.  This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
-								MarkdownDescription: "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic.  This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"type": {
-										Description:         "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
-										MarkdownDescription: "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"code": {
-										Description:         "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
-										MarkdownDescription: "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"ip_version": {
-								Description:         "IPVersion is an optional field that restricts the rule to only match a specific IP version.",
-								MarkdownDescription: "IPVersion is an optional field that restricts the rule to only match a specific IP version.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"destination": {
 								Description:         "Destination contains the match criteria that apply to destination entity.",
 								MarkdownDescription: "Destination contains the match criteria that apply to destination entity.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"nets": {
-										Description:         "Nets is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) IP addresses in any of the given subnets.",
-										MarkdownDescription: "Nets is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) IP addresses in any of the given subnets.",
+									"not_nets": {
+										Description:         "NotNets is the negated version of the Nets field.",
+										MarkdownDescription: "NotNets is the negated version of the Nets field.",
 
 										Type: types.ListType{ElemType: types.StringType},
 
@@ -411,6 +366,62 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 									"not_ports": {
 										Description:         "NotPorts is the negated version of the Ports field. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
 										MarkdownDescription: "NotPorts is the negated version of the Ports field. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"services": {
+										Description:         "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
+										MarkdownDescription: "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "Name specifies the name of a Kubernetes Service to match.",
+												MarkdownDescription: "Name specifies the name of a Kubernetes Service to match.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"namespace": {
+												Description:         "Namespace specifies the namespace of the given Service. If left empty, the rule will match within this policy's namespace.",
+												MarkdownDescription: "Namespace specifies the namespace of the given Service. If left empty, the rule will match within this policy's namespace.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"namespace_selector": {
+										Description:         "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
+										MarkdownDescription: "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"nets": {
+										Description:         "Nets is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) IP addresses in any of the given subnets.",
+										MarkdownDescription: "Nets is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) IP addresses in any of the given subnets.",
 
 										Type: types.ListType{ElemType: types.StringType},
 
@@ -458,17 +469,6 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"selector": {
-												Description:         "Selector is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a service account that matches the given label selector. If both Names and Selector are specified then they are AND'ed.",
-												MarkdownDescription: "Selector is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a service account that matches the given label selector. If both Names and Selector are specified then they are AND'ed.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"names": {
 												Description:         "Names is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a service account whose name is in the list.",
 												MarkdownDescription: "Names is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a service account whose name is in the list.",
@@ -479,55 +479,10 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 												Optional: true,
 												Computed: false,
 											},
-										}),
 
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"namespace_selector": {
-										Description:         "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
-										MarkdownDescription: "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"not_nets": {
-										Description:         "NotNets is the negated version of the Nets field.",
-										MarkdownDescription: "NotNets is the negated version of the Nets field.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"services": {
-										Description:         "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
-										MarkdownDescription: "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "Name specifies the name of a Kubernetes Service to match.",
-												MarkdownDescription: "Name specifies the name of a Kubernetes Service to match.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"namespace": {
-												Description:         "Namespace specifies the namespace of the given Service. If left empty, the rule will match within this policy's namespace.",
-												MarkdownDescription: "Namespace specifies the namespace of the given Service. If left empty, the rule will match within this policy's namespace.",
+											"selector": {
+												Description:         "Selector is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a service account that matches the given label selector. If both Names and Selector are specified then they are AND'ed.",
+												MarkdownDescription: "Selector is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a service account that matches the given label selector. If both Names and Selector are specified then they are AND'ed.",
 
 												Type: types.StringType,
 
@@ -548,51 +503,28 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 								Computed: false,
 							},
 
-							"http": {
-								Description:         "HTTP contains match criteria that apply to HTTP requests.",
-								MarkdownDescription: "HTTP contains match criteria that apply to HTTP requests.",
+							"icmp": {
+								Description:         "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic.  This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
+								MarkdownDescription: "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic.  This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"methods": {
-										Description:         "Methods is an optional field that restricts the rule to apply only to HTTP requests that use one of the listed HTTP Methods (e.g. GET, PUT, etc.) Multiple methods are OR'd together.",
-										MarkdownDescription: "Methods is an optional field that restricts the rule to apply only to HTTP requests that use one of the listed HTTP Methods (e.g. GET, PUT, etc.) Multiple methods are OR'd together.",
+									"code": {
+										Description:         "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+										MarkdownDescription: "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
 
-										Type: types.ListType{ElemType: types.StringType},
+										Type: types.Int64Type,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"paths": {
-										Description:         "Paths is an optional field that restricts the rule to apply to HTTP requests that use one of the listed HTTP Paths. Multiple paths are OR'd together. e.g: - exact: /foo - prefix: /bar NOTE: Each entry may ONLY specify either a 'exact' or a 'prefix' match. The validator will check for it.",
-										MarkdownDescription: "Paths is an optional field that restricts the rule to apply to HTTP requests that use one of the listed HTTP Paths. Multiple paths are OR'd together. e.g: - exact: /foo - prefix: /bar NOTE: Each entry may ONLY specify either a 'exact' or a 'prefix' match. The validator will check for it.",
+									"type": {
+										Description:         "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
+										MarkdownDescription: "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
 
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"exact": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"prefix": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
+										Type: types.Int64Type,
 
 										Required: false,
 										Optional: true,
@@ -611,9 +543,9 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"type": {
-										Description:         "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
-										MarkdownDescription: "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
+									"code": {
+										Description:         "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+										MarkdownDescription: "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
 
 										Type: types.Int64Type,
 
@@ -622,9 +554,9 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 										Computed: false,
 									},
 
-									"code": {
-										Description:         "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
-										MarkdownDescription: "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+									"type": {
+										Description:         "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
+										MarkdownDescription: "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
 
 										Type: types.Int64Type,
 
@@ -667,6 +599,83 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+									"not_nets": {
+										Description:         "NotNets is the negated version of the Nets field.",
+										MarkdownDescription: "NotNets is the negated version of the Nets field.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"not_ports": {
+										Description:         "NotPorts is the negated version of the Ports field. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+										MarkdownDescription: "NotPorts is the negated version of the Ports field. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"not_selector": {
+										Description:         "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
+										MarkdownDescription: "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"ports": {
+										Description:         "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports.  Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+										MarkdownDescription: "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports.  Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"namespace_selector": {
+										Description:         "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
+										MarkdownDescription: "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"nets": {
+										Description:         "Nets is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) IP addresses in any of the given subnets.",
+										MarkdownDescription: "Nets is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) IP addresses in any of the given subnets.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"selector": {
+										Description:         "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
+										MarkdownDescription: "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"service_accounts": {
 										Description:         "ServiceAccounts is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a matching service account.",
 										MarkdownDescription: "ServiceAccounts is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a matching service account.",
@@ -734,83 +743,6 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 										Optional: true,
 										Computed: false,
 									},
-
-									"namespace_selector": {
-										Description:         "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
-										MarkdownDescription: "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"nets": {
-										Description:         "Nets is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) IP addresses in any of the given subnets.",
-										MarkdownDescription: "Nets is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) IP addresses in any of the given subnets.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"not_selector": {
-										Description:         "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
-										MarkdownDescription: "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"ports": {
-										Description:         "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports.  Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
-										MarkdownDescription: "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports.  Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"selector": {
-										Description:         "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
-										MarkdownDescription: "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"not_nets": {
-										Description:         "NotNets is the negated version of the Nets field.",
-										MarkdownDescription: "NotNets is the negated version of the Nets field.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"not_ports": {
-										Description:         "NotPorts is the negated version of the Ports field. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
-										MarkdownDescription: "NotPorts is the negated version of the Ports field. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -826,6 +758,74 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 
 								Required: true,
 								Optional: false,
+								Computed: false,
+							},
+
+							"http": {
+								Description:         "HTTP contains match criteria that apply to HTTP requests.",
+								MarkdownDescription: "HTTP contains match criteria that apply to HTTP requests.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"paths": {
+										Description:         "Paths is an optional field that restricts the rule to apply to HTTP requests that use one of the listed HTTP Paths. Multiple paths are OR'd together. e.g: - exact: /foo - prefix: /bar NOTE: Each entry may ONLY specify either a 'exact' or a 'prefix' match. The validator will check for it.",
+										MarkdownDescription: "Paths is an optional field that restricts the rule to apply to HTTP requests that use one of the listed HTTP Paths. Multiple paths are OR'd together. e.g: - exact: /foo - prefix: /bar NOTE: Each entry may ONLY specify either a 'exact' or a 'prefix' match. The validator will check for it.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"exact": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"prefix": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"methods": {
+										Description:         "Methods is an optional field that restricts the rule to apply only to HTTP requests that use one of the listed HTTP Methods (e.g. GET, PUT, etc.) Multiple methods are OR'd together.",
+										MarkdownDescription: "Methods is an optional field that restricts the rule to apply only to HTTP requests that use one of the listed HTTP Methods (e.g. GET, PUT, etc.) Multiple methods are OR'd together.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"ip_version": {
+								Description:         "IPVersion is an optional field that restricts the rule to only match a specific IP version.",
+								MarkdownDescription: "IPVersion is an optional field that restricts the rule to only match a specific IP version.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 
@@ -864,40 +864,6 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"not_icmp": {
-								Description:         "NotICMP is the negated version of the ICMP field.",
-								MarkdownDescription: "NotICMP is the negated version of the ICMP field.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"code": {
-										Description:         "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
-										MarkdownDescription: "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"type": {
-										Description:         "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
-										MarkdownDescription: "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"protocol": {
 								Description:         "Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols).  Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.",
 								MarkdownDescription: "Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols).  Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.",
@@ -966,28 +932,28 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 								Computed: false,
 							},
 
-							"icmp": {
-								Description:         "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic.  This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
-								MarkdownDescription: "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic.  This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
+							"ip_version": {
+								Description:         "IPVersion is an optional field that restricts the rule to only match a specific IP version.",
+								MarkdownDescription: "IPVersion is an optional field that restricts the rule to only match a specific IP version.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"metadata": {
+								Description:         "Metadata contains additional information for this rule",
+								MarkdownDescription: "Metadata contains additional information for this rule",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"code": {
-										Description:         "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
-										MarkdownDescription: "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+									"annotations": {
+										Description:         "Annotations is a set of key value pairs that give extra information about the rule",
+										MarkdownDescription: "Annotations is a set of key value pairs that give extra information about the rule",
 
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"type": {
-										Description:         "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
-										MarkdownDescription: "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
-
-										Type: types.Int64Type,
+										Type: types.MapType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
@@ -1000,11 +966,34 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 								Computed: false,
 							},
 
-							"ip_version": {
-								Description:         "IPVersion is an optional field that restricts the rule to only match a specific IP version.",
-								MarkdownDescription: "IPVersion is an optional field that restricts the rule to only match a specific IP version.",
+							"not_icmp": {
+								Description:         "NotICMP is the negated version of the ICMP field.",
+								MarkdownDescription: "NotICMP is the negated version of the ICMP field.",
 
-								Type: types.Int64Type,
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"type": {
+										Description:         "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
+										MarkdownDescription: "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"code": {
+										Description:         "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+										MarkdownDescription: "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,
@@ -1028,6 +1017,28 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+									"not_nets": {
+										Description:         "NotNets is the negated version of the Nets field.",
+										MarkdownDescription: "NotNets is the negated version of the Nets field.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"not_ports": {
+										Description:         "NotPorts is the negated version of the Ports field. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+										MarkdownDescription: "NotPorts is the negated version of the Ports field. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"ports": {
 										Description:         "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports.  Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
 										MarkdownDescription: "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports.  Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
@@ -1050,33 +1061,56 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 										Computed: false,
 									},
 
-									"nets": {
-										Description:         "Nets is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) IP addresses in any of the given subnets.",
-										MarkdownDescription: "Nets is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) IP addresses in any of the given subnets.",
+									"service_accounts": {
+										Description:         "ServiceAccounts is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a matching service account.",
+										MarkdownDescription: "ServiceAccounts is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a matching service account.",
 
-										Type: types.ListType{ElemType: types.StringType},
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"names": {
+												Description:         "Names is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a service account whose name is in the list.",
+												MarkdownDescription: "Names is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a service account whose name is in the list.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"selector": {
+												Description:         "Selector is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a service account that matches the given label selector. If both Names and Selector are specified then they are AND'ed.",
+												MarkdownDescription: "Selector is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a service account that matches the given label selector. If both Names and Selector are specified then they are AND'ed.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"not_nets": {
-										Description:         "NotNets is the negated version of the Nets field.",
-										MarkdownDescription: "NotNets is the negated version of the Nets field.",
+									"namespace_selector": {
+										Description:         "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
+										MarkdownDescription: "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
 
-										Type: types.ListType{ElemType: types.StringType},
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"not_ports": {
-										Description:         "NotPorts is the negated version of the Ports field. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
-										MarkdownDescription: "NotPorts is the negated version of the Ports field. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
+									"not_selector": {
+										Description:         "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
+										MarkdownDescription: "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
 
-										Type: types.ListType{ElemType: types.StringType},
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -1117,56 +1151,11 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 										Computed: false,
 									},
 
-									"namespace_selector": {
-										Description:         "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
-										MarkdownDescription: "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
+									"nets": {
+										Description:         "Nets is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) IP addresses in any of the given subnets.",
+										MarkdownDescription: "Nets is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) IP addresses in any of the given subnets.",
 
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"not_selector": {
-										Description:         "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
-										MarkdownDescription: "NotSelector is the negated version of the Selector field.  See Selector field for subtleties with negated selectors.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"service_accounts": {
-										Description:         "ServiceAccounts is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a matching service account.",
-										MarkdownDescription: "ServiceAccounts is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a matching service account.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"names": {
-												Description:         "Names is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a service account whose name is in the list.",
-												MarkdownDescription: "Names is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a service account whose name is in the list.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"selector": {
-												Description:         "Selector is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a service account that matches the given label selector. If both Names and Selector are specified then they are AND'ed.",
-												MarkdownDescription: "Selector is an optional field that restricts the rule to only apply to traffic that originates from (or terminates at) a pod running as a service account that matches the given label selector. If both Names and Selector are specified then they are AND'ed.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
+										Type: types.ListType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
@@ -1196,62 +1185,6 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"services": {
-										Description:         "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
-										MarkdownDescription: "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "Name specifies the name of a Kubernetes Service to match.",
-												MarkdownDescription: "Name specifies the name of a Kubernetes Service to match.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"namespace": {
-												Description:         "Namespace specifies the namespace of the given Service. If left empty, the rule will match within this policy's namespace.",
-												MarkdownDescription: "Namespace specifies the namespace of the given Service. If left empty, the rule will match within this policy's namespace.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"not_nets": {
-										Description:         "NotNets is the negated version of the Nets field.",
-										MarkdownDescription: "NotNets is the negated version of the Nets field.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"selector": {
-										Description:         "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
-										MarkdownDescription: "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"not_ports": {
 										Description:         "NotPorts is the negated version of the Ports field. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
 										MarkdownDescription: "NotPorts is the negated version of the Ports field. Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
@@ -1279,6 +1212,17 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 										MarkdownDescription: "Ports is an optional field that restricts the rule to only apply to traffic that has a source (destination) port that matches one of these ranges/values. This value is a list of integers or strings that represent ranges of ports.  Since only some protocols have ports, if any ports are specified it requires the Protocol match in the Rule to be set to 'TCP' or 'UDP'.",
 
 										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"selector": {
+										Description:         "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
+										MarkdownDescription: "Selector is an optional field that contains a selector expression (see Policy for sample syntax).  Only traffic that originates from (terminates at) endpoints matching the selector will be matched.  Note that: in addition to the negated version of the Selector (see NotSelector below), the selector expression syntax itself supports negation.  The two types of negation are subtly different. One negates the set of matched endpoints, the other negates the whole match:  	Selector = '!has(my_label)' matches packets that are from other Calico-controlled 	endpoints that do not have the label 'my_label'.  	NotSelector = 'has(my_label)' matches packets that are not from Calico-controlled 	endpoints that do have the label 'my_label'.  The effect is that the latter will accept packets from non-Calico sources whereas the former is limited to packets from Calico-controlled endpoints.",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -1319,6 +1263,40 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 										Computed: false,
 									},
 
+									"services": {
+										Description:         "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
+										MarkdownDescription: "Services is an optional field that contains options for matching Kubernetes Services. If specified, only traffic that originates from or terminates at endpoints within the selected service(s) will be matched, and only to/from each endpoint's port.  Services cannot be specified on the same rule as Selector, NotSelector, NamespaceSelector, Nets, NotNets or ServiceAccounts.  Ports and NotPorts can only be specified with Services on ingress rules.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "Name specifies the name of a Kubernetes Service to match.",
+												MarkdownDescription: "Name specifies the name of a Kubernetes Service to match.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"namespace": {
+												Description:         "Namespace specifies the namespace of the given Service. If left empty, the rule will match within this policy's namespace.",
+												MarkdownDescription: "Namespace specifies the namespace of the given Service. If left empty, the rule will match within this policy's namespace.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"namespace_selector": {
 										Description:         "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
 										MarkdownDescription: "NamespaceSelector is an optional field that contains a selector expression. Only traffic that originates from (or terminates at) endpoints within the selected namespaces will be matched. When both NamespaceSelector and another selector are defined on the same rule, then only workload endpoints that are matched by both selectors will be selected by the rule.  For NetworkPolicy, an empty NamespaceSelector implies that the Selector is limited to selecting only workload endpoints in the same namespace as the NetworkPolicy.  For NetworkPolicy, 'global()' NamespaceSelector implies that the Selector is limited to selecting only GlobalNetworkSet or HostEndpoint.  For GlobalNetworkPolicy, an empty NamespaceSelector implies the Selector applies to workload endpoints across all namespaces.",
@@ -1340,6 +1318,17 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 										Optional: true,
 										Computed: false,
 									},
+
+									"not_nets": {
+										Description:         "NotNets is the negated version of the Nets field.",
+										MarkdownDescription: "NotNets is the negated version of the Nets field.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -1347,17 +1336,28 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 								Computed: false,
 							},
 
-							"metadata": {
-								Description:         "Metadata contains additional information for this rule",
-								MarkdownDescription: "Metadata contains additional information for this rule",
+							"icmp": {
+								Description:         "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic.  This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
+								MarkdownDescription: "ICMP is an optional field that restricts the rule to apply to a specific type and code of ICMP traffic.  This should only be specified if the Protocol field is set to 'ICMP' or 'ICMPv6'.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"annotations": {
-										Description:         "Annotations is a set of key value pairs that give extra information about the rule",
-										MarkdownDescription: "Annotations is a set of key value pairs that give extra information about the rule",
+									"type": {
+										Description:         "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
+										MarkdownDescription: "Match on a specific ICMP type.  For example a value of 8 refers to ICMP Echo Request (i.e. pings).",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"code": {
+										Description:         "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+										MarkdownDescription: "Match on a specific ICMP code.  If specified, the Type value must also be specified. This is a technical limitation imposed by the kernel's iptables firewall, which Calico uses to enforce the rule.",
+
+										Type: types.Int64Type,
 
 										Required: false,
 										Optional: true,

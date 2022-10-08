@@ -49,27 +49,27 @@ type KafkaStrimziIoKafkaRebalanceV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Goals *[]string `tfsdk:"goals" yaml:"goals,omitempty"`
-
-		Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
-
 		Brokers *[]string `tfsdk:"brokers" yaml:"brokers,omitempty"`
+
+		ConcurrentIntraBrokerPartitionMovements *int64 `tfsdk:"concurrent_intra_broker_partition_movements" yaml:"concurrentIntraBrokerPartitionMovements,omitempty"`
 
 		ConcurrentLeaderMovements *int64 `tfsdk:"concurrent_leader_movements" yaml:"concurrentLeaderMovements,omitempty"`
 
 		ExcludedTopics *string `tfsdk:"excluded_topics" yaml:"excludedTopics,omitempty"`
 
-		RebalanceDisk *bool `tfsdk:"rebalance_disk" yaml:"rebalanceDisk,omitempty"`
-
-		ReplicaMovementStrategies *[]string `tfsdk:"replica_movement_strategies" yaml:"replicaMovementStrategies,omitempty"`
+		Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
 
 		ReplicationThrottle *int64 `tfsdk:"replication_throttle" yaml:"replicationThrottle,omitempty"`
 
 		SkipHardGoalCheck *bool `tfsdk:"skip_hard_goal_check" yaml:"skipHardGoalCheck,omitempty"`
 
-		ConcurrentIntraBrokerPartitionMovements *int64 `tfsdk:"concurrent_intra_broker_partition_movements" yaml:"concurrentIntraBrokerPartitionMovements,omitempty"`
-
 		ConcurrentPartitionMovementsPerBroker *int64 `tfsdk:"concurrent_partition_movements_per_broker" yaml:"concurrentPartitionMovementsPerBroker,omitempty"`
+
+		Goals *[]string `tfsdk:"goals" yaml:"goals,omitempty"`
+
+		RebalanceDisk *bool `tfsdk:"rebalance_disk" yaml:"rebalanceDisk,omitempty"`
+
+		ReplicaMovementStrategies *[]string `tfsdk:"replica_movement_strategies" yaml:"replicaMovementStrategies,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -170,33 +170,22 @@ func (r *KafkaStrimziIoKafkaRebalanceV1Beta2Resource) GetSchema(_ context.Contex
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"goals": {
-						Description:         "A list of goals, ordered by decreasing priority, to use for generating and executing the rebalance proposal. The supported goals are available at https://github.com/linkedin/cruise-control#goals. If an empty goals list is provided, the goals declared in the default.goals Cruise Control configuration parameter are used.",
-						MarkdownDescription: "A list of goals, ordered by decreasing priority, to use for generating and executing the rebalance proposal. The supported goals are available at https://github.com/linkedin/cruise-control#goals. If an empty goals list is provided, the goals declared in the default.goals Cruise Control configuration parameter are used.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"mode": {
-						Description:         "Mode to run the rebalancing. The supported modes are 'full', 'add-brokers', 'remove-brokers'.If not specified, the 'full' mode is used by default. * 'full' mode runs the rebalancing across all the brokers in the cluster.* 'add-brokers' mode can be used after scaling up the cluster to move some replicas to the newly added brokers.* 'remove-brokers' mode can be used before scaling down the cluster to move replicas out of the brokers to be removed.",
-						MarkdownDescription: "Mode to run the rebalancing. The supported modes are 'full', 'add-brokers', 'remove-brokers'.If not specified, the 'full' mode is used by default. * 'full' mode runs the rebalancing across all the brokers in the cluster.* 'add-brokers' mode can be used after scaling up the cluster to move some replicas to the newly added brokers.* 'remove-brokers' mode can be used before scaling down the cluster to move replicas out of the brokers to be removed.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"brokers": {
 						Description:         "The list of newly added brokers in case of scaling up or the ones to be removed in case of scaling down to use for rebalancing. This list can be used only with rebalancing mode 'add-brokers' and 'removed-brokers'. It is ignored with 'full' mode.",
 						MarkdownDescription: "The list of newly added brokers in case of scaling up or the ones to be removed in case of scaling down to use for rebalancing. This list can be used only with rebalancing mode 'add-brokers' and 'removed-brokers'. It is ignored with 'full' mode.",
 
 						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"concurrent_intra_broker_partition_movements": {
+						Description:         "The upper bound of ongoing partition replica movements between disks within each broker. Default is 2.",
+						MarkdownDescription: "The upper bound of ongoing partition replica movements between disks within each broker. Default is 2.",
+
+						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,
@@ -225,22 +214,11 @@ func (r *KafkaStrimziIoKafkaRebalanceV1Beta2Resource) GetSchema(_ context.Contex
 						Computed: false,
 					},
 
-					"rebalance_disk": {
-						Description:         "Enables intra-broker disk balancing, which balances disk space utilization between disks on the same broker. Only applies to Kafka deployments that use JBOD storage with multiple disks. When enabled, inter-broker balancing is disabled. Default is false.",
-						MarkdownDescription: "Enables intra-broker disk balancing, which balances disk space utilization between disks on the same broker. Only applies to Kafka deployments that use JBOD storage with multiple disks. When enabled, inter-broker balancing is disabled. Default is false.",
+					"mode": {
+						Description:         "Mode to run the rebalancing. The supported modes are 'full', 'add-brokers', 'remove-brokers'.If not specified, the 'full' mode is used by default. * 'full' mode runs the rebalancing across all the brokers in the cluster.* 'add-brokers' mode can be used after scaling up the cluster to move some replicas to the newly added brokers.* 'remove-brokers' mode can be used before scaling down the cluster to move replicas out of the brokers to be removed.",
+						MarkdownDescription: "Mode to run the rebalancing. The supported modes are 'full', 'add-brokers', 'remove-brokers'.If not specified, the 'full' mode is used by default. * 'full' mode runs the rebalancing across all the brokers in the cluster.* 'add-brokers' mode can be used after scaling up the cluster to move some replicas to the newly added brokers.* 'remove-brokers' mode can be used before scaling down the cluster to move replicas out of the brokers to be removed.",
 
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"replica_movement_strategies": {
-						Description:         "A list of strategy class names used to determine the execution order for the replica movements in the generated optimization proposal. By default BaseReplicaMovementStrategy is used, which will execute the replica movements in the order that they were generated.",
-						MarkdownDescription: "A list of strategy class names used to determine the execution order for the replica movements in the generated optimization proposal. By default BaseReplicaMovementStrategy is used, which will execute the replica movements in the order that they were generated.",
-
-						Type: types.ListType{ElemType: types.StringType},
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -269,9 +247,9 @@ func (r *KafkaStrimziIoKafkaRebalanceV1Beta2Resource) GetSchema(_ context.Contex
 						Computed: false,
 					},
 
-					"concurrent_intra_broker_partition_movements": {
-						Description:         "The upper bound of ongoing partition replica movements between disks within each broker. Default is 2.",
-						MarkdownDescription: "The upper bound of ongoing partition replica movements between disks within each broker. Default is 2.",
+					"concurrent_partition_movements_per_broker": {
+						Description:         "The upper bound of ongoing partition replica movements going into/out of each broker. Default is 5.",
+						MarkdownDescription: "The upper bound of ongoing partition replica movements going into/out of each broker. Default is 5.",
 
 						Type: types.Int64Type,
 
@@ -280,11 +258,33 @@ func (r *KafkaStrimziIoKafkaRebalanceV1Beta2Resource) GetSchema(_ context.Contex
 						Computed: false,
 					},
 
-					"concurrent_partition_movements_per_broker": {
-						Description:         "The upper bound of ongoing partition replica movements going into/out of each broker. Default is 5.",
-						MarkdownDescription: "The upper bound of ongoing partition replica movements going into/out of each broker. Default is 5.",
+					"goals": {
+						Description:         "A list of goals, ordered by decreasing priority, to use for generating and executing the rebalance proposal. The supported goals are available at https://github.com/linkedin/cruise-control#goals. If an empty goals list is provided, the goals declared in the default.goals Cruise Control configuration parameter are used.",
+						MarkdownDescription: "A list of goals, ordered by decreasing priority, to use for generating and executing the rebalance proposal. The supported goals are available at https://github.com/linkedin/cruise-control#goals. If an empty goals list is provided, the goals declared in the default.goals Cruise Control configuration parameter are used.",
 
-						Type: types.Int64Type,
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"rebalance_disk": {
+						Description:         "Enables intra-broker disk balancing, which balances disk space utilization between disks on the same broker. Only applies to Kafka deployments that use JBOD storage with multiple disks. When enabled, inter-broker balancing is disabled. Default is false.",
+						MarkdownDescription: "Enables intra-broker disk balancing, which balances disk space utilization between disks on the same broker. Only applies to Kafka deployments that use JBOD storage with multiple disks. When enabled, inter-broker balancing is disabled. Default is false.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"replica_movement_strategies": {
+						Description:         "A list of strategy class names used to determine the execution order for the replica movements in the generated optimization proposal. By default BaseReplicaMovementStrategy is used, which will execute the replica movements in the order that they were generated.",
+						MarkdownDescription: "A list of strategy class names used to determine the execution order for the replica movements in the generated optimization proposal. By default BaseReplicaMovementStrategy is used, which will execute the replica movements in the order that they were generated.",
+
+						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

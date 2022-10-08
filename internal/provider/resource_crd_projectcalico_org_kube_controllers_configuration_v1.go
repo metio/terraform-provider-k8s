@@ -47,13 +47,13 @@ type CrdProjectcalicoOrgKubeControllersConfigurationV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		HealthChecks *string `tfsdk:"health_checks" yaml:"healthChecks,omitempty"`
-
-		LogSeverityScreen *string `tfsdk:"log_severity_screen" yaml:"logSeverityScreen,omitempty"`
-
 		PrometheusMetricsPort *int64 `tfsdk:"prometheus_metrics_port" yaml:"prometheusMetricsPort,omitempty"`
 
 		Controllers *struct {
+			Policy *struct {
+				ReconcilerPeriod *string `tfsdk:"reconciler_period" yaml:"reconcilerPeriod,omitempty"`
+			} `tfsdk:"policy" yaml:"policy,omitempty"`
+
 			ServiceAccount *struct {
 				ReconcilerPeriod *string `tfsdk:"reconciler_period" yaml:"reconcilerPeriod,omitempty"`
 			} `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
@@ -67,25 +67,25 @@ type CrdProjectcalicoOrgKubeControllersConfigurationV1GoModel struct {
 			} `tfsdk:"namespace" yaml:"namespace,omitempty"`
 
 			Node *struct {
+				HostEndpoint *struct {
+					AutoCreate *string `tfsdk:"auto_create" yaml:"autoCreate,omitempty"`
+				} `tfsdk:"host_endpoint" yaml:"hostEndpoint,omitempty"`
+
 				LeakGracePeriod *string `tfsdk:"leak_grace_period" yaml:"leakGracePeriod,omitempty"`
 
 				ReconcilerPeriod *string `tfsdk:"reconciler_period" yaml:"reconcilerPeriod,omitempty"`
 
 				SyncLabels *string `tfsdk:"sync_labels" yaml:"syncLabels,omitempty"`
-
-				HostEndpoint *struct {
-					AutoCreate *string `tfsdk:"auto_create" yaml:"autoCreate,omitempty"`
-				} `tfsdk:"host_endpoint" yaml:"hostEndpoint,omitempty"`
 			} `tfsdk:"node" yaml:"node,omitempty"`
-
-			Policy *struct {
-				ReconcilerPeriod *string `tfsdk:"reconciler_period" yaml:"reconcilerPeriod,omitempty"`
-			} `tfsdk:"policy" yaml:"policy,omitempty"`
 		} `tfsdk:"controllers" yaml:"controllers,omitempty"`
 
 		DebugProfilePort *int64 `tfsdk:"debug_profile_port" yaml:"debugProfilePort,omitempty"`
 
 		EtcdV3CompactionPeriod *string `tfsdk:"etcd_v3_compaction_period" yaml:"etcdV3CompactionPeriod,omitempty"`
+
+		HealthChecks *string `tfsdk:"health_checks" yaml:"healthChecks,omitempty"`
+
+		LogSeverityScreen *string `tfsdk:"log_severity_screen" yaml:"logSeverityScreen,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -179,28 +179,6 @@ func (r *CrdProjectcalicoOrgKubeControllersConfigurationV1Resource) GetSchema(_ 
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"health_checks": {
-						Description:         "HealthChecks enables or disables support for health checks [Default: Enabled]",
-						MarkdownDescription: "HealthChecks enables or disables support for health checks [Default: Enabled]",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"log_severity_screen": {
-						Description:         "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: Info]",
-						MarkdownDescription: "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: Info]",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"prometheus_metrics_port": {
 						Description:         "PrometheusMetricsPort is the TCP port that the Prometheus metrics server should bind to. Set to 0 to disable. [Default: 9094]",
 						MarkdownDescription: "PrometheusMetricsPort is the TCP port that the Prometheus metrics server should bind to. Set to 0 to disable. [Default: 9094]",
@@ -217,6 +195,29 @@ func (r *CrdProjectcalicoOrgKubeControllersConfigurationV1Resource) GetSchema(_ 
 						MarkdownDescription: "Controllers enables and configures individual Kubernetes controllers",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"policy": {
+								Description:         "Policy enables and configures the policy controller. Enabled by default, set to nil to disable.",
+								MarkdownDescription: "Policy enables and configures the policy controller. Enabled by default, set to nil to disable.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"reconciler_period": {
+										Description:         "ReconcilerPeriod is the period to perform reconciliation with the Calico datastore. [Default: 5m]",
+										MarkdownDescription: "ReconcilerPeriod is the period to perform reconciliation with the Calico datastore. [Default: 5m]",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"service_account": {
 								Description:         "ServiceAccount enables and configures the service account controller. Enabled by default, set to nil to disable.",
@@ -293,6 +294,29 @@ func (r *CrdProjectcalicoOrgKubeControllersConfigurationV1Resource) GetSchema(_ 
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+									"host_endpoint": {
+										Description:         "HostEndpoint controls syncing nodes to host endpoints. Disabled by default, set to nil to disable.",
+										MarkdownDescription: "HostEndpoint controls syncing nodes to host endpoints. Disabled by default, set to nil to disable.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"auto_create": {
+												Description:         "AutoCreate enables automatic creation of host endpoints for every node. [Default: Disabled]",
+												MarkdownDescription: "AutoCreate enables automatic creation of host endpoints for every node. [Default: Disabled]",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"leak_grace_period": {
 										Description:         "LeakGracePeriod is the period used by the controller to determine if an IP address has been leaked. Set to 0 to disable IP garbage collection. [Default: 15m]",
 										MarkdownDescription: "LeakGracePeriod is the period used by the controller to determine if an IP address has been leaked. Set to 0 to disable IP garbage collection. [Default: 15m]",
@@ -318,52 +342,6 @@ func (r *CrdProjectcalicoOrgKubeControllersConfigurationV1Resource) GetSchema(_ 
 									"sync_labels": {
 										Description:         "SyncLabels controls whether to copy Kubernetes node labels to Calico nodes. [Default: Enabled]",
 										MarkdownDescription: "SyncLabels controls whether to copy Kubernetes node labels to Calico nodes. [Default: Enabled]",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"host_endpoint": {
-										Description:         "HostEndpoint controls syncing nodes to host endpoints. Disabled by default, set to nil to disable.",
-										MarkdownDescription: "HostEndpoint controls syncing nodes to host endpoints. Disabled by default, set to nil to disable.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"auto_create": {
-												Description:         "AutoCreate enables automatic creation of host endpoints for every node. [Default: Disabled]",
-												MarkdownDescription: "AutoCreate enables automatic creation of host endpoints for every node. [Default: Disabled]",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"policy": {
-								Description:         "Policy enables and configures the policy controller. Enabled by default, set to nil to disable.",
-								MarkdownDescription: "Policy enables and configures the policy controller. Enabled by default, set to nil to disable.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"reconciler_period": {
-										Description:         "ReconcilerPeriod is the period to perform reconciliation with the Calico datastore. [Default: 5m]",
-										MarkdownDescription: "ReconcilerPeriod is the period to perform reconciliation with the Calico datastore. [Default: 5m]",
 
 										Type: types.StringType,
 
@@ -398,6 +376,28 @@ func (r *CrdProjectcalicoOrgKubeControllersConfigurationV1Resource) GetSchema(_ 
 					"etcd_v3_compaction_period": {
 						Description:         "EtcdV3CompactionPeriod is the period between etcdv3 compaction requests. Set to 0 to disable. [Default: 10m]",
 						MarkdownDescription: "EtcdV3CompactionPeriod is the period between etcdv3 compaction requests. Set to 0 to disable. [Default: 10m]",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"health_checks": {
+						Description:         "HealthChecks enables or disables support for health checks [Default: Enabled]",
+						MarkdownDescription: "HealthChecks enables or disables support for health checks [Default: Enabled]",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"log_severity_screen": {
+						Description:         "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: Info]",
+						MarkdownDescription: "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: Info]",
 
 						Type: types.StringType,
 

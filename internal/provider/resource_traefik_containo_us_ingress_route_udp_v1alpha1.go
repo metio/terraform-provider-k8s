@@ -53,13 +53,13 @@ type TraefikContainoUsIngressRouteUDPV1Alpha1GoModel struct {
 
 		Routes *[]struct {
 			Services *[]struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
 				Port *string `tfsdk:"port" yaml:"port,omitempty"`
 
 				Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 			} `tfsdk:"services" yaml:"services,omitempty"`
 		} `tfsdk:"routes" yaml:"routes,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -185,28 +185,6 @@ func (r *TraefikContainoUsIngressRouteUDPV1Alpha1Resource) GetSchema(_ context.C
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"name": {
-										Description:         "Name defines the name of the referenced Kubernetes Service.",
-										MarkdownDescription: "Name defines the name of the referenced Kubernetes Service.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"namespace": {
-										Description:         "Namespace defines the namespace of the referenced Kubernetes Service.",
-										MarkdownDescription: "Namespace defines the namespace of the referenced Kubernetes Service.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"port": {
 										Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
 										MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
@@ -223,6 +201,28 @@ func (r *TraefikContainoUsIngressRouteUDPV1Alpha1Resource) GetSchema(_ context.C
 										MarkdownDescription: "Weight defines the weight used when balancing requests between multiple Kubernetes Service.",
 
 										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name defines the name of the referenced Kubernetes Service.",
+										MarkdownDescription: "Name defines the name of the referenced Kubernetes Service.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"namespace": {
+										Description:         "Namespace defines the namespace of the referenced Kubernetes Service.",
+										MarkdownDescription: "Namespace defines the namespace of the referenced Kubernetes Service.",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,

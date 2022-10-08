@@ -49,7 +49,9 @@ type NetworkingIstioIoServiceEntryV1Alpha3GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Resolution *string `tfsdk:"resolution" yaml:"resolution,omitempty"`
+		ExportTo *[]string `tfsdk:"export_to" yaml:"exportTo,omitempty"`
+
+		SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
 
 		WorkloadSelector *struct {
 			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
@@ -73,23 +75,21 @@ type NetworkingIstioIoServiceEntryV1Alpha3GoModel struct {
 			Ports *map[string]string `tfsdk:"ports" yaml:"ports,omitempty"`
 		} `tfsdk:"endpoints" yaml:"endpoints,omitempty"`
 
-		ExportTo *[]string `tfsdk:"export_to" yaml:"exportTo,omitempty"`
-
 		Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
 
 		Location *string `tfsdk:"location" yaml:"location,omitempty"`
 
 		Ports *[]struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
 			Number *int64 `tfsdk:"number" yaml:"number,omitempty"`
 
 			Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
 
 			TargetPort *int64 `tfsdk:"target_port" yaml:"targetPort,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"ports" yaml:"ports,omitempty"`
 
-		SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
+		Resolution *string `tfsdk:"resolution" yaml:"resolution,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -190,11 +190,22 @@ func (r *NetworkingIstioIoServiceEntryV1Alpha3Resource) GetSchema(_ context.Cont
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"resolution": {
-						Description:         "Service discovery mode for the hosts.",
-						MarkdownDescription: "Service discovery mode for the hosts.",
+					"export_to": {
+						Description:         "A list of namespaces to which this service is exported.",
+						MarkdownDescription: "A list of namespaces to which this service is exported.",
 
-						Type: types.StringType,
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"subject_alt_names": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,
@@ -324,17 +335,6 @@ func (r *NetworkingIstioIoServiceEntryV1Alpha3Resource) GetSchema(_ context.Cont
 						Computed: false,
 					},
 
-					"export_to": {
-						Description:         "A list of namespaces to which this service is exported.",
-						MarkdownDescription: "A list of namespaces to which this service is exported.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"hosts": {
 						Description:         "The hosts associated with the ServiceEntry.",
 						MarkdownDescription: "The hosts associated with the ServiceEntry.",
@@ -362,6 +362,17 @@ func (r *NetworkingIstioIoServiceEntryV1Alpha3Resource) GetSchema(_ context.Cont
 						MarkdownDescription: "The ports associated with the external service.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Label assigned to the port.",
+								MarkdownDescription: "Label assigned to the port.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"number": {
 								Description:         "A valid non-negative integer port number.",
@@ -395,17 +406,6 @@ func (r *NetworkingIstioIoServiceEntryV1Alpha3Resource) GetSchema(_ context.Cont
 								Optional: true,
 								Computed: false,
 							},
-
-							"name": {
-								Description:         "Label assigned to the port.",
-								MarkdownDescription: "Label assigned to the port.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
 
 						Required: false,
@@ -413,11 +413,11 @@ func (r *NetworkingIstioIoServiceEntryV1Alpha3Resource) GetSchema(_ context.Cont
 						Computed: false,
 					},
 
-					"subject_alt_names": {
-						Description:         "",
-						MarkdownDescription: "",
+					"resolution": {
+						Description:         "Service discovery mode for the hosts.",
+						MarkdownDescription: "Service discovery mode for the hosts.",
 
-						Type: types.ListType{ElemType: types.StringType},
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

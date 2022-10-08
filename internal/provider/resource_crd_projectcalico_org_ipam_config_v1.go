@@ -47,11 +47,11 @@ type CrdProjectcalicoOrgIPAMConfigV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		AutoAllocateBlocks *bool `tfsdk:"auto_allocate_blocks" yaml:"autoAllocateBlocks,omitempty"`
-
 		MaxBlocksPerHost *int64 `tfsdk:"max_blocks_per_host" yaml:"maxBlocksPerHost,omitempty"`
 
 		StrictAffinity *bool `tfsdk:"strict_affinity" yaml:"strictAffinity,omitempty"`
+
+		AutoAllocateBlocks *bool `tfsdk:"auto_allocate_blocks" yaml:"autoAllocateBlocks,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -145,17 +145,6 @@ func (r *CrdProjectcalicoOrgIPAMConfigV1Resource) GetSchema(_ context.Context) (
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"auto_allocate_blocks": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.BoolType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
 					"max_blocks_per_host": {
 						Description:         "MaxBlocksPerHost, if non-zero, is the max number of blocks that can be affine to each host.",
 						MarkdownDescription: "MaxBlocksPerHost, if non-zero, is the max number of blocks that can be affine to each host.",
@@ -168,6 +157,17 @@ func (r *CrdProjectcalicoOrgIPAMConfigV1Resource) GetSchema(_ context.Context) (
 					},
 
 					"strict_affinity": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.BoolType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"auto_allocate_blocks": {
 						Description:         "",
 						MarkdownDescription: "",
 

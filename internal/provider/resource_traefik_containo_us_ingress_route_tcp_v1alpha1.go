@@ -80,12 +80,18 @@ type TraefikContainoUsIngressRouteTCPV1Alpha1GoModel struct {
 		} `tfsdk:"routes" yaml:"routes,omitempty"`
 
 		Tls *struct {
+			Store *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+			} `tfsdk:"store" yaml:"store,omitempty"`
+
 			CertResolver *string `tfsdk:"cert_resolver" yaml:"certResolver,omitempty"`
 
 			Domains *[]struct {
-				Main *string `tfsdk:"main" yaml:"main,omitempty"`
-
 				Sans *[]string `tfsdk:"sans" yaml:"sans,omitempty"`
+
+				Main *string `tfsdk:"main" yaml:"main,omitempty"`
 			} `tfsdk:"domains" yaml:"domains,omitempty"`
 
 			Options *struct {
@@ -97,12 +103,6 @@ type TraefikContainoUsIngressRouteTCPV1Alpha1GoModel struct {
 			Passthrough *bool `tfsdk:"passthrough" yaml:"passthrough,omitempty"`
 
 			SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-
-			Store *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-			} `tfsdk:"store" yaml:"store,omitempty"`
 		} `tfsdk:"tls" yaml:"tls,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -379,6 +379,40 @@ func (r *TraefikContainoUsIngressRouteTCPV1Alpha1Resource) GetSchema(_ context.C
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+							"store": {
+								Description:         "Store defines the reference to the TLSStore, that will be used to store certificates. Please note that only 'default' TLSStore can be used.",
+								MarkdownDescription: "Store defines the reference to the TLSStore, that will be used to store certificates. Please note that only 'default' TLSStore can be used.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "Name defines the name of the referenced Traefik resource.",
+										MarkdownDescription: "Name defines the name of the referenced Traefik resource.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"namespace": {
+										Description:         "Namespace defines the namespace of the referenced Traefik resource.",
+										MarkdownDescription: "Namespace defines the namespace of the referenced Traefik resource.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"cert_resolver": {
 								Description:         "CertResolver defines the name of the certificate resolver to use. Cert resolvers have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v2.9/https/acme/#certificate-resolvers",
 								MarkdownDescription: "CertResolver defines the name of the certificate resolver to use. Cert resolvers have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v2.9/https/acme/#certificate-resolvers",
@@ -396,22 +430,22 @@ func (r *TraefikContainoUsIngressRouteTCPV1Alpha1Resource) GetSchema(_ context.C
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"main": {
-										Description:         "Main defines the main domain name.",
-										MarkdownDescription: "Main defines the main domain name.",
+									"sans": {
+										Description:         "SANs defines the subject alternative domain names.",
+										MarkdownDescription: "SANs defines the subject alternative domain names.",
 
-										Type: types.StringType,
+										Type: types.ListType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"sans": {
-										Description:         "SANs defines the subject alternative domain names.",
-										MarkdownDescription: "SANs defines the subject alternative domain names.",
+									"main": {
+										Description:         "Main defines the main domain name.",
+										MarkdownDescription: "Main defines the main domain name.",
 
-										Type: types.ListType{ElemType: types.StringType},
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -474,40 +508,6 @@ func (r *TraefikContainoUsIngressRouteTCPV1Alpha1Resource) GetSchema(_ context.C
 								MarkdownDescription: "SecretName is the name of the referenced Kubernetes Secret to specify the certificate details.",
 
 								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"store": {
-								Description:         "Store defines the reference to the TLSStore, that will be used to store certificates. Please note that only 'default' TLSStore can be used.",
-								MarkdownDescription: "Store defines the reference to the TLSStore, that will be used to store certificates. Please note that only 'default' TLSStore can be used.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name defines the name of the referenced Traefik resource.",
-										MarkdownDescription: "Name defines the name of the referenced Traefik resource.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"namespace": {
-										Description:         "Namespace defines the namespace of the referenced Traefik resource.",
-										MarkdownDescription: "Namespace defines the namespace of the referenced Traefik resource.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
 
 								Required: false,
 								Optional: true,
