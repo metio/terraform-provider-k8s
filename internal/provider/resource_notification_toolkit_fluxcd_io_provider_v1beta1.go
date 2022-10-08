@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,25 +50,25 @@ type NotificationToolkitFluxcdIoProviderV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Address *string `tfsdk:"address" yaml:"address,omitempty"`
+
 		CertSecretRef *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"cert_secret_ref" yaml:"certSecretRef,omitempty"`
 
+		Channel *string `tfsdk:"channel" yaml:"channel,omitempty"`
+
 		Proxy *string `tfsdk:"proxy" yaml:"proxy,omitempty"`
+
+		Username *string `tfsdk:"username" yaml:"username,omitempty"`
 
 		SecretRef *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
-		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
-		Username *string `tfsdk:"username" yaml:"username,omitempty"`
-
-		Address *string `tfsdk:"address" yaml:"address,omitempty"`
-
-		Channel *string `tfsdk:"channel" yaml:"channel,omitempty"`
-
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+
+		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 
 		Type *string `tfsdk:"type" yaml:"type,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -170,6 +171,17 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta1Resource) GetSchema(_ context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"address": {
+						Description:         "HTTP/S webhook address of this provider",
+						MarkdownDescription: "HTTP/S webhook address of this provider",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"cert_secret_ref": {
 						Description:         "CertSecretRef can be given the name of a secret containing a PEM-encoded CA certificate ('caFile')",
 						MarkdownDescription: "CertSecretRef can be given the name of a secret containing a PEM-encoded CA certificate ('caFile')",
@@ -193,9 +205,31 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta1Resource) GetSchema(_ context
 						Computed: false,
 					},
 
+					"channel": {
+						Description:         "Alert channel for this provider",
+						MarkdownDescription: "Alert channel for this provider",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"proxy": {
 						Description:         "HTTP/S address of the proxy",
 						MarkdownDescription: "HTTP/S address of the proxy",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"username": {
+						Description:         "Bot username for this provider",
+						MarkdownDescription: "Bot username for this provider",
 
 						Type: types.StringType,
 
@@ -227,55 +261,22 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta1Resource) GetSchema(_ context
 						Computed: false,
 					},
 
-					"timeout": {
-						Description:         "Timeout for sending alerts to the provider.",
-						MarkdownDescription: "Timeout for sending alerts to the provider.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"username": {
-						Description:         "Bot username for this provider",
-						MarkdownDescription: "Bot username for this provider",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"address": {
-						Description:         "HTTP/S webhook address of this provider",
-						MarkdownDescription: "HTTP/S webhook address of this provider",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"channel": {
-						Description:         "Alert channel for this provider",
-						MarkdownDescription: "Alert channel for this provider",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"suspend": {
 						Description:         "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
 						MarkdownDescription: "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"timeout": {
+						Description:         "Timeout for sending alerts to the provider.",
+						MarkdownDescription: "Timeout for sending alerts to the provider.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

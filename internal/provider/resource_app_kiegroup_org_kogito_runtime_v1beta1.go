@@ -7,6 +7,9 @@ package provider
 
 import (
 	"context"
+
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,7 +52,161 @@ type AppKiegroupOrgKogitoRuntimeV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		PropertiesConfigMap *string `tfsdk:"properties_config_map" yaml:"propertiesConfigMap,omitempty"`
+		Probes *struct {
+			StartupProbe *struct {
+				FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+				Grpc *struct {
+					Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+
+					Service *string `tfsdk:"service" yaml:"service,omitempty"`
+				} `tfsdk:"grpc" yaml:"grpc,omitempty"`
+
+				HttpGet *struct {
+					Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+					HttpHeaders *[]struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Value *string `tfsdk:"value" yaml:"value,omitempty"`
+					} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+					Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+					Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+				} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+				InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+				PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+
+				Exec *struct {
+					Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+				} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+				TcpSocket *struct {
+					Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+				} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+
+				SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+			} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
+
+			LivenessProbe *struct {
+				Exec *struct {
+					Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+				} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+				FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+				Grpc *struct {
+					Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+
+					Service *string `tfsdk:"service" yaml:"service,omitempty"`
+				} `tfsdk:"grpc" yaml:"grpc,omitempty"`
+
+				HttpGet *struct {
+					Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+					HttpHeaders *[]struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Value *string `tfsdk:"value" yaml:"value,omitempty"`
+					} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+					Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+					Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+				} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+				InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+				PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+				SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+				TcpSocket *struct {
+					Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+				} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+
+				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+			} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
+
+			ReadinessProbe *struct {
+				TcpSocket *struct {
+					Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+				} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+
+				FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+				Grpc *struct {
+					Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+
+					Service *string `tfsdk:"service" yaml:"service,omitempty"`
+				} `tfsdk:"grpc" yaml:"grpc,omitempty"`
+
+				InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+				PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+				Exec *struct {
+					Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+				} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+				HttpGet *struct {
+					Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+					Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+					Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+					HttpHeaders *[]struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Value *string `tfsdk:"value" yaml:"value,omitempty"`
+					} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+				} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+				SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+			} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
+		} `tfsdk:"probes" yaml:"probes,omitempty"`
+
+		Resources *struct {
+			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+
+			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+		} `tfsdk:"resources" yaml:"resources,omitempty"`
+
+		Infra *[]string `tfsdk:"infra" yaml:"infra,omitempty"`
+
+		InsecureImageRegistry *bool `tfsdk:"insecure_image_registry" yaml:"insecureImageRegistry,omitempty"`
+
+		ServiceLabels *map[string]string `tfsdk:"service_labels" yaml:"serviceLabels,omitempty"`
+
+		DeploymentLabels *map[string]string `tfsdk:"deployment_labels" yaml:"deploymentLabels,omitempty"`
+
+		DisableRoute *bool `tfsdk:"disable_route" yaml:"disableRoute,omitempty"`
 
 		Env *[]struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -58,11 +215,11 @@ type AppKiegroupOrgKogitoRuntimeV1Beta1GoModel struct {
 
 			ValueFrom *struct {
 				ConfigMapKeyRef *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 				} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
 
 				FieldRef *struct {
@@ -72,11 +229,11 @@ type AppKiegroupOrgKogitoRuntimeV1Beta1GoModel struct {
 				} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
 
 				ResourceFieldRef *struct {
+					ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
+
 					Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 					Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-
-					ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 				} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
 
 				SecretKeyRef *struct {
@@ -89,167 +246,13 @@ type AppKiegroupOrgKogitoRuntimeV1Beta1GoModel struct {
 			} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
 		} `tfsdk:"env" yaml:"env,omitempty"`
 
-		InsecureImageRegistry *bool `tfsdk:"insecure_image_registry" yaml:"insecureImageRegistry,omitempty"`
-
-		TrustStoreSecret *string `tfsdk:"trust_store_secret" yaml:"trustStoreSecret,omitempty"`
-
 		Image *string `tfsdk:"image" yaml:"image,omitempty"`
 
-		DeploymentLabels *map[string]string `tfsdk:"deployment_labels" yaml:"deploymentLabels,omitempty"`
-
-		DisableRoute *bool `tfsdk:"disable_route" yaml:"disableRoute,omitempty"`
-
-		EnableIstio *bool `tfsdk:"enable_istio" yaml:"enableIstio,omitempty"`
-
-		Probes *struct {
-			LivenessProbe *struct {
-				FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-				InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-				PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-				SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
-
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-				Exec *struct {
-					Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-				} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-				Grpc *struct {
-					Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-
-					Service *string `tfsdk:"service" yaml:"service,omitempty"`
-				} `tfsdk:"grpc" yaml:"grpc,omitempty"`
-
-				HttpGet *struct {
-					Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-					HttpHeaders *[]struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Value *string `tfsdk:"value" yaml:"value,omitempty"`
-					} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-					Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-					Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-				} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-				TcpSocket *struct {
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-					Host *string `tfsdk:"host" yaml:"host,omitempty"`
-				} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-			} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
-
-			ReadinessProbe *struct {
-				InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-				PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-				SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
-
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-				Exec *struct {
-					Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-				} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-				FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-				Grpc *struct {
-					Service *string `tfsdk:"service" yaml:"service,omitempty"`
-
-					Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-				} `tfsdk:"grpc" yaml:"grpc,omitempty"`
-
-				HttpGet *struct {
-					Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-					HttpHeaders *[]struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Value *string `tfsdk:"value" yaml:"value,omitempty"`
-					} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-					Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-					Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-				} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-				TcpSocket *struct {
-					Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
-				} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-			} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
-
-			StartupProbe *struct {
-				TcpSocket *struct {
-					Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
-				} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-				Exec *struct {
-					Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-				} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-				Grpc *struct {
-					Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-
-					Service *string `tfsdk:"service" yaml:"service,omitempty"`
-				} `tfsdk:"grpc" yaml:"grpc,omitempty"`
-
-				HttpGet *struct {
-					HttpHeaders *[]struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Value *string `tfsdk:"value" yaml:"value,omitempty"`
-					} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-					Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-					Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-					Host *string `tfsdk:"host" yaml:"host,omitempty"`
-				} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-				SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-				FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-				InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-				PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
-			} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
-		} `tfsdk:"probes" yaml:"probes,omitempty"`
-
-		Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
-
-		Resources *struct {
-			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
-
-			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
-		} `tfsdk:"resources" yaml:"resources,omitempty"`
+		Runtime *string `tfsdk:"runtime" yaml:"runtime,omitempty"`
 
 		Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+
+		EnableIstio *bool `tfsdk:"enable_istio" yaml:"enableIstio,omitempty"`
 
 		Monitoring *struct {
 			Path *string `tfsdk:"path" yaml:"path,omitempty"`
@@ -257,11 +260,11 @@ type AppKiegroupOrgKogitoRuntimeV1Beta1GoModel struct {
 			Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 		} `tfsdk:"monitoring" yaml:"monitoring,omitempty"`
 
-		Runtime *string `tfsdk:"runtime" yaml:"runtime,omitempty"`
+		PropertiesConfigMap *string `tfsdk:"properties_config_map" yaml:"propertiesConfigMap,omitempty"`
 
-		ServiceLabels *map[string]string `tfsdk:"service_labels" yaml:"serviceLabels,omitempty"`
+		Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
 
-		Infra *[]string `tfsdk:"infra" yaml:"infra,omitempty"`
+		TrustStoreSecret *string `tfsdk:"trust_store_secret" yaml:"trustStoreSecret,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -362,11 +365,878 @@ func (r *AppKiegroupOrgKogitoRuntimeV1Beta1Resource) GetSchema(_ context.Context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"properties_config_map": {
-						Description:         "Custom ConfigMap with application.properties file to be mounted for the Kogito service.  The ConfigMap must be created in the same namespace.  Use this property if you need custom properties to be mounted before the application deployment.  If left empty, one will be created for you. Later it can be updated to add any custom properties to apply to the service.",
-						MarkdownDescription: "Custom ConfigMap with application.properties file to be mounted for the Kogito service.  The ConfigMap must be created in the same namespace.  Use this property if you need custom properties to be mounted before the application deployment.  If left empty, one will be created for you. Later it can be updated to add any custom properties to apply to the service.",
+					"probes": {
+						Description:         "Configure liveness, readiness and startup probes for containers",
+						MarkdownDescription: "Configure liveness, readiness and startup probes for containers",
 
-						Type: types.StringType,
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"startup_probe": {
+								Description:         "StartupProbe describes how the Kogito container startup probe should work",
+								MarkdownDescription: "StartupProbe describes how the Kogito container startup probe should work",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"failure_threshold": {
+										Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"grpc": {
+										Description:         "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
+										MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"port": {
+												Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+												MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+
+												Type: types.Int64Type,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"service": {
+												Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
+												MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http_get": {
+										Description:         "HTTPGet specifies the http request to perform.",
+										MarkdownDescription: "HTTPGet specifies the http request to perform.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"host": {
+												Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+												MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_headers": {
+												Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+												MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "The header field name",
+														MarkdownDescription: "The header field name",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"value": {
+														Description:         "The header field value",
+														MarkdownDescription: "The header field value",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"path": {
+												Description:         "Path to access on the HTTP server.",
+												MarkdownDescription: "Path to access on the HTTP server.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"port": {
+												Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+												MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"scheme": {
+												Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+												MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"initial_delay_seconds": {
+										Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"period_seconds": {
+										Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+										MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"timeout_seconds": {
+										Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"exec": {
+										Description:         "Exec specifies the action to take.",
+										MarkdownDescription: "Exec specifies the action to take.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"command": {
+												Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+												MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"tcp_socket": {
+										Description:         "TCPSocket specifies an action involving a TCP port.",
+										MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"host": {
+												Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+												MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"port": {
+												Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+												MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_grace_period_seconds": {
+										Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+										MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"success_threshold": {
+										Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"liveness_probe": {
+								Description:         "LivenessProbe describes how the Kogito container liveness probe should work",
+								MarkdownDescription: "LivenessProbe describes how the Kogito container liveness probe should work",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"exec": {
+										Description:         "Exec specifies the action to take.",
+										MarkdownDescription: "Exec specifies the action to take.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"command": {
+												Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+												MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"failure_threshold": {
+										Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"grpc": {
+										Description:         "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
+										MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"port": {
+												Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+												MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+
+												Type: types.Int64Type,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"service": {
+												Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
+												MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http_get": {
+										Description:         "HTTPGet specifies the http request to perform.",
+										MarkdownDescription: "HTTPGet specifies the http request to perform.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"host": {
+												Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+												MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_headers": {
+												Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+												MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "The header field name",
+														MarkdownDescription: "The header field name",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"value": {
+														Description:         "The header field value",
+														MarkdownDescription: "The header field value",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"path": {
+												Description:         "Path to access on the HTTP server.",
+												MarkdownDescription: "Path to access on the HTTP server.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"port": {
+												Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+												MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"scheme": {
+												Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+												MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"initial_delay_seconds": {
+										Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"period_seconds": {
+										Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+										MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"success_threshold": {
+										Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"tcp_socket": {
+										Description:         "TCPSocket specifies an action involving a TCP port.",
+										MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"host": {
+												Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+												MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"port": {
+												Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+												MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_grace_period_seconds": {
+										Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+										MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"timeout_seconds": {
+										Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"readiness_probe": {
+								Description:         "ReadinessProbe describes how the Kogito container readiness probe should work",
+								MarkdownDescription: "ReadinessProbe describes how the Kogito container readiness probe should work",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"tcp_socket": {
+										Description:         "TCPSocket specifies an action involving a TCP port.",
+										MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"host": {
+												Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+												MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"port": {
+												Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+												MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_grace_period_seconds": {
+										Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+										MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"failure_threshold": {
+										Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"grpc": {
+										Description:         "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
+										MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"port": {
+												Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+												MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+
+												Type: types.Int64Type,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"service": {
+												Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
+												MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"initial_delay_seconds": {
+										Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"period_seconds": {
+										Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+										MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"exec": {
+										Description:         "Exec specifies the action to take.",
+										MarkdownDescription: "Exec specifies the action to take.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"command": {
+												Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+												MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http_get": {
+										Description:         "HTTPGet specifies the http request to perform.",
+										MarkdownDescription: "HTTPGet specifies the http request to perform.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"path": {
+												Description:         "Path to access on the HTTP server.",
+												MarkdownDescription: "Path to access on the HTTP server.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"port": {
+												Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+												MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"scheme": {
+												Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+												MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host": {
+												Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+												MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_headers": {
+												Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+												MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "The header field name",
+														MarkdownDescription: "The header field name",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"value": {
+														Description:         "The header field value",
+														MarkdownDescription: "The header field value",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"success_threshold": {
+										Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"timeout_seconds": {
+										Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"resources": {
+						Description:         "Defined compute resource requirements for the deployed service.",
+						MarkdownDescription: "Defined compute resource requirements for the deployed service.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"limits": {
+								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"requests": {
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"infra": {
+						Description:         "Infra provides list of dependent KogitoInfra objects.",
+						MarkdownDescription: "Infra provides list of dependent KogitoInfra objects.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"insecure_image_registry": {
+						Description:         "A flag indicating that image streams created by Kogito Operator should be configured to allow pulling from insecure registries. Usable just on OpenShift.  Defaults to 'false'.",
+						MarkdownDescription: "A flag indicating that image streams created by Kogito Operator should be configured to allow pulling from insecure registries. Usable just on OpenShift.  Defaults to 'false'.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"service_labels": {
+						Description:         "Additional labels to be added to the Service managed by the operator.",
+						MarkdownDescription: "Additional labels to be added to the Service managed by the operator.",
+
+						Type: types.MapType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"deployment_labels": {
+						Description:         "Additional labels to be added to the Deployment and Pods managed by the operator.",
+						MarkdownDescription: "Additional labels to be added to the Deployment and Pods managed by the operator.",
+
+						Type: types.MapType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"disable_route": {
+						Description:         "A flag indicating that routes are disabled. Usable just on OpenShift.  If not provided, defaults to 'false'.",
+						MarkdownDescription: "A flag indicating that routes are disabled. Usable just on OpenShift.  If not provided, defaults to 'false'.",
+
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
@@ -413,17 +1283,6 @@ func (r *AppKiegroupOrgKogitoRuntimeV1Beta1Resource) GetSchema(_ context.Context
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"key": {
-												Description:         "The key to select.",
-												MarkdownDescription: "The key to select.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
 											"name": {
 												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -443,6 +1302,17 @@ func (r *AppKiegroupOrgKogitoRuntimeV1Beta1Resource) GetSchema(_ context.Context
 
 												Required: false,
 												Optional: true,
+												Computed: false,
+											},
+
+											"key": {
+												Description:         "The key to select.",
+												MarkdownDescription: "The key to select.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
 												Computed: false,
 											},
 										}),
@@ -492,6 +1362,17 @@ func (r *AppKiegroupOrgKogitoRuntimeV1Beta1Resource) GetSchema(_ context.Context
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+											"container_name": {
+												Description:         "Container name: required for volumes, optional for env vars",
+												MarkdownDescription: "Container name: required for volumes, optional for env vars",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"divisor": {
 												Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 												MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
@@ -511,17 +1392,6 @@ func (r *AppKiegroupOrgKogitoRuntimeV1Beta1Resource) GetSchema(_ context.Context
 
 												Required: true,
 												Optional: false,
-												Computed: false,
-											},
-
-											"container_name": {
-												Description:         "Container name: required for volumes, optional for env vars",
-												MarkdownDescription: "Container name: required for volumes, optional for env vars",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
 												Computed: false,
 											},
 										}),
@@ -588,28 +1458,6 @@ func (r *AppKiegroupOrgKogitoRuntimeV1Beta1Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
-					"insecure_image_registry": {
-						Description:         "A flag indicating that image streams created by Kogito Operator should be configured to allow pulling from insecure registries. Usable just on OpenShift.  Defaults to 'false'.",
-						MarkdownDescription: "A flag indicating that image streams created by Kogito Operator should be configured to allow pulling from insecure registries. Usable just on OpenShift.  Defaults to 'false'.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"trust_store_secret": {
-						Description:         "Custom JKS TrustStore that will be used by this service to make calls to TLS endpoints.  It's expected that the secret has two keys: 'keyStorePassword' containing the password for the KeyStore and 'cacerts' containing the binary data of the given KeyStore.",
-						MarkdownDescription: "Custom JKS TrustStore that will be used by this service to make calls to TLS endpoints.  It's expected that the secret has two keys: 'keyStorePassword' containing the password for the KeyStore and 'cacerts' containing the binary data of the given KeyStore.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"image": {
 						Description:         "Image definition for the service. Example: 'quay.io/kiegroup/kogito-service:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
 						MarkdownDescription: "Image definition for the service. Example: 'quay.io/kiegroup/kogito-service:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
@@ -621,867 +1469,11 @@ func (r *AppKiegroupOrgKogitoRuntimeV1Beta1Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
-					"deployment_labels": {
-						Description:         "Additional labels to be added to the Deployment and Pods managed by the operator.",
-						MarkdownDescription: "Additional labels to be added to the Deployment and Pods managed by the operator.",
-
-						Type: types.MapType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"disable_route": {
-						Description:         "A flag indicating that routes are disabled. Usable just on OpenShift.  If not provided, defaults to 'false'.",
-						MarkdownDescription: "A flag indicating that routes are disabled. Usable just on OpenShift.  If not provided, defaults to 'false'.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"enable_istio": {
-						Description:         "Annotates the pods managed by the operator with the required metadata for Istio to setup its sidecars, enabling the mesh. Defaults to false.",
-						MarkdownDescription: "Annotates the pods managed by the operator with the required metadata for Istio to setup its sidecars, enabling the mesh. Defaults to false.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"probes": {
-						Description:         "Configure liveness, readiness and startup probes for containers",
-						MarkdownDescription: "Configure liveness, readiness and startup probes for containers",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"liveness_probe": {
-								Description:         "LivenessProbe describes how the Kogito container liveness probe should work",
-								MarkdownDescription: "LivenessProbe describes how the Kogito container liveness probe should work",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"failure_threshold": {
-										Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-										MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"initial_delay_seconds": {
-										Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-										MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"period_seconds": {
-										Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-										MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"success_threshold": {
-										Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-										MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"termination_grace_period_seconds": {
-										Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-										MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"timeout_seconds": {
-										Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-										MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"exec": {
-										Description:         "Exec specifies the action to take.",
-										MarkdownDescription: "Exec specifies the action to take.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"command": {
-												Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-												MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"grpc": {
-										Description:         "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
-										MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"port": {
-												Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
-												MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
-
-												Type: types.Int64Type,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"service": {
-												Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
-												MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"http_get": {
-										Description:         "HTTPGet specifies the http request to perform.",
-										MarkdownDescription: "HTTPGet specifies the http request to perform.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"host": {
-												Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-												MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http_headers": {
-												Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-												MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "The header field name",
-														MarkdownDescription: "The header field name",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"value": {
-														Description:         "The header field value",
-														MarkdownDescription: "The header field value",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"path": {
-												Description:         "Path to access on the HTTP server.",
-												MarkdownDescription: "Path to access on the HTTP server.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"port": {
-												Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-												MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"scheme": {
-												Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-												MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"tcp_socket": {
-										Description:         "TCPSocket specifies an action involving a TCP port.",
-										MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"port": {
-												Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-												MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"host": {
-												Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-												MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"readiness_probe": {
-								Description:         "ReadinessProbe describes how the Kogito container readiness probe should work",
-								MarkdownDescription: "ReadinessProbe describes how the Kogito container readiness probe should work",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"initial_delay_seconds": {
-										Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-										MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"period_seconds": {
-										Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-										MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"success_threshold": {
-										Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-										MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"termination_grace_period_seconds": {
-										Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-										MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"timeout_seconds": {
-										Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-										MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"exec": {
-										Description:         "Exec specifies the action to take.",
-										MarkdownDescription: "Exec specifies the action to take.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"command": {
-												Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-												MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"failure_threshold": {
-										Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-										MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"grpc": {
-										Description:         "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
-										MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"service": {
-												Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
-												MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"port": {
-												Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
-												MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
-
-												Type: types.Int64Type,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"http_get": {
-										Description:         "HTTPGet specifies the http request to perform.",
-										MarkdownDescription: "HTTPGet specifies the http request to perform.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"host": {
-												Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-												MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http_headers": {
-												Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-												MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "The header field name",
-														MarkdownDescription: "The header field name",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"value": {
-														Description:         "The header field value",
-														MarkdownDescription: "The header field value",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"path": {
-												Description:         "Path to access on the HTTP server.",
-												MarkdownDescription: "Path to access on the HTTP server.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"port": {
-												Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-												MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"scheme": {
-												Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-												MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"tcp_socket": {
-										Description:         "TCPSocket specifies an action involving a TCP port.",
-										MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"host": {
-												Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-												MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"port": {
-												Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-												MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"startup_probe": {
-								Description:         "StartupProbe describes how the Kogito container startup probe should work",
-								MarkdownDescription: "StartupProbe describes how the Kogito container startup probe should work",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"tcp_socket": {
-										Description:         "TCPSocket specifies an action involving a TCP port.",
-										MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"host": {
-												Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-												MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"port": {
-												Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-												MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"exec": {
-										Description:         "Exec specifies the action to take.",
-										MarkdownDescription: "Exec specifies the action to take.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"command": {
-												Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-												MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"grpc": {
-										Description:         "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
-										MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"port": {
-												Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
-												MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
-
-												Type: types.Int64Type,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"service": {
-												Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
-												MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"http_get": {
-										Description:         "HTTPGet specifies the http request to perform.",
-										MarkdownDescription: "HTTPGet specifies the http request to perform.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"http_headers": {
-												Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-												MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "The header field name",
-														MarkdownDescription: "The header field name",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"value": {
-														Description:         "The header field value",
-														MarkdownDescription: "The header field value",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"path": {
-												Description:         "Path to access on the HTTP server.",
-												MarkdownDescription: "Path to access on the HTTP server.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"port": {
-												Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-												MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"scheme": {
-												Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-												MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"host": {
-												Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-												MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"success_threshold": {
-										Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-										MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"timeout_seconds": {
-										Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-										MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"failure_threshold": {
-										Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-										MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"initial_delay_seconds": {
-										Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-										MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"period_seconds": {
-										Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-										MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"termination_grace_period_seconds": {
-										Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-										MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"replicas": {
-						Description:         "Number of replicas that the service will have deployed in the cluster.  Default value: 1.",
-						MarkdownDescription: "Number of replicas that the service will have deployed in the cluster.  Default value: 1.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"resources": {
-						Description:         "Defined compute resource requirements for the deployed service.",
-						MarkdownDescription: "Defined compute resource requirements for the deployed service.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"requests": {
-								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"limits": {
-								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
+					"runtime": {
+						Description:         "The name of the runtime used, either Quarkus or SpringBoot.  Default value: quarkus",
+						MarkdownDescription: "The name of the runtime used, either Quarkus or SpringBoot.  Default value: quarkus",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -1493,6 +1485,17 @@ func (r *AppKiegroupOrgKogitoRuntimeV1Beta1Resource) GetSchema(_ context.Context
 						MarkdownDescription: "Application properties that will be set to the service. For example 'MY_VAR: my_value'.",
 
 						Type: types.MapType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_istio": {
+						Description:         "Annotates the pods managed by the operator with the required metadata for Istio to setup its sidecars, enabling the mesh. Defaults to false.",
+						MarkdownDescription: "Annotates the pods managed by the operator with the required metadata for Istio to setup its sidecars, enabling the mesh. Defaults to false.",
+
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
@@ -1533,9 +1536,9 @@ func (r *AppKiegroupOrgKogitoRuntimeV1Beta1Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
-					"runtime": {
-						Description:         "The name of the runtime used, either Quarkus or SpringBoot.  Default value: quarkus",
-						MarkdownDescription: "The name of the runtime used, either Quarkus or SpringBoot.  Default value: quarkus",
+					"properties_config_map": {
+						Description:         "Custom ConfigMap with application.properties file to be mounted for the Kogito service.  The ConfigMap must be created in the same namespace.  Use this property if you need custom properties to be mounted before the application deployment.  If left empty, one will be created for you. Later it can be updated to add any custom properties to apply to the service.",
+						MarkdownDescription: "Custom ConfigMap with application.properties file to be mounted for the Kogito service.  The ConfigMap must be created in the same namespace.  Use this property if you need custom properties to be mounted before the application deployment.  If left empty, one will be created for you. Later it can be updated to add any custom properties to apply to the service.",
 
 						Type: types.StringType,
 
@@ -1544,22 +1547,27 @@ func (r *AppKiegroupOrgKogitoRuntimeV1Beta1Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
-					"service_labels": {
-						Description:         "Additional labels to be added to the Service managed by the operator.",
-						MarkdownDescription: "Additional labels to be added to the Service managed by the operator.",
+					"replicas": {
+						Description:         "Number of replicas that the service will have deployed in the cluster.  Default value: 1.",
+						MarkdownDescription: "Number of replicas that the service will have deployed in the cluster.  Default value: 1.",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(0),
+						},
 					},
 
-					"infra": {
-						Description:         "Infra provides list of dependent KogitoInfra objects.",
-						MarkdownDescription: "Infra provides list of dependent KogitoInfra objects.",
+					"trust_store_secret": {
+						Description:         "Custom JKS TrustStore that will be used by this service to make calls to TLS endpoints.  It's expected that the secret has two keys: 'keyStorePassword' containing the password for the KeyStore and 'cacerts' containing the binary data of the given KeyStore.",
+						MarkdownDescription: "Custom JKS TrustStore that will be used by this service to make calls to TLS endpoints.  It's expected that the secret has two keys: 'keyStorePassword' containing the password for the KeyStore and 'cacerts' containing the binary data of the given KeyStore.",
 
-						Type: types.ListType{ElemType: types.StringType},
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

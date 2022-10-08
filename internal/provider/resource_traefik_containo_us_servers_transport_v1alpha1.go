@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,24 +50,6 @@ type TraefikContainoUsServersTransportV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		ForwardingTimeouts *struct {
-			DialTimeout *string `tfsdk:"dial_timeout" yaml:"dialTimeout,omitempty"`
-
-			IdleConnTimeout *string `tfsdk:"idle_conn_timeout" yaml:"idleConnTimeout,omitempty"`
-
-			PingTimeout *string `tfsdk:"ping_timeout" yaml:"pingTimeout,omitempty"`
-
-			ReadIdleTimeout *string `tfsdk:"read_idle_timeout" yaml:"readIdleTimeout,omitempty"`
-
-			ResponseHeaderTimeout *string `tfsdk:"response_header_timeout" yaml:"responseHeaderTimeout,omitempty"`
-		} `tfsdk:"forwarding_timeouts" yaml:"forwardingTimeouts,omitempty"`
-
-		InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
-
-		MaxIdleConnsPerHost *int64 `tfsdk:"max_idle_conns_per_host" yaml:"maxIdleConnsPerHost,omitempty"`
-
-		PeerCertURI *string `tfsdk:"peer_cert_uri" yaml:"peerCertURI,omitempty"`
-
 		RootCAsSecrets *[]string `tfsdk:"root_c_as_secrets" yaml:"rootCAsSecrets,omitempty"`
 
 		ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
@@ -74,6 +57,24 @@ type TraefikContainoUsServersTransportV1Alpha1GoModel struct {
 		CertificatesSecrets *[]string `tfsdk:"certificates_secrets" yaml:"certificatesSecrets,omitempty"`
 
 		DisableHTTP2 *bool `tfsdk:"disable_http2" yaml:"disableHTTP2,omitempty"`
+
+		ForwardingTimeouts *struct {
+			PingTimeout *string `tfsdk:"ping_timeout" yaml:"pingTimeout,omitempty"`
+
+			ReadIdleTimeout *string `tfsdk:"read_idle_timeout" yaml:"readIdleTimeout,omitempty"`
+
+			ResponseHeaderTimeout *string `tfsdk:"response_header_timeout" yaml:"responseHeaderTimeout,omitempty"`
+
+			DialTimeout *string `tfsdk:"dial_timeout" yaml:"dialTimeout,omitempty"`
+
+			IdleConnTimeout *string `tfsdk:"idle_conn_timeout" yaml:"idleConnTimeout,omitempty"`
+		} `tfsdk:"forwarding_timeouts" yaml:"forwardingTimeouts,omitempty"`
+
+		InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
+
+		MaxIdleConnsPerHost *int64 `tfsdk:"max_idle_conns_per_host" yaml:"maxIdleConnsPerHost,omitempty"`
+
+		PeerCertURI *string `tfsdk:"peer_cert_uri" yaml:"peerCertURI,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -174,33 +175,55 @@ func (r *TraefikContainoUsServersTransportV1Alpha1Resource) GetSchema(_ context.
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"root_c_as_secrets": {
+						Description:         "RootCAsSecrets defines a list of CA secret used to validate self-signed certificate.",
+						MarkdownDescription: "RootCAsSecrets defines a list of CA secret used to validate self-signed certificate.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"server_name": {
+						Description:         "ServerName defines the server name used to contact the server.",
+						MarkdownDescription: "ServerName defines the server name used to contact the server.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"certificates_secrets": {
+						Description:         "CertificatesSecrets defines a list of secret storing client certificates for mTLS.",
+						MarkdownDescription: "CertificatesSecrets defines a list of secret storing client certificates for mTLS.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"disable_http2": {
+						Description:         "DisableHTTP2 disables HTTP/2 for connections with backend servers.",
+						MarkdownDescription: "DisableHTTP2 disables HTTP/2 for connections with backend servers.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"forwarding_timeouts": {
 						Description:         "ForwardingTimeouts defines the timeouts for requests forwarded to the backend servers.",
 						MarkdownDescription: "ForwardingTimeouts defines the timeouts for requests forwarded to the backend servers.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"dial_timeout": {
-								Description:         "DialTimeout is the amount of time to wait until a connection to a backend server can be established.",
-								MarkdownDescription: "DialTimeout is the amount of time to wait until a connection to a backend server can be established.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"idle_conn_timeout": {
-								Description:         "IdleConnTimeout is the maximum period for which an idle HTTP keep-alive connection will remain open before closing itself.",
-								MarkdownDescription: "IdleConnTimeout is the maximum period for which an idle HTTP keep-alive connection will remain open before closing itself.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"ping_timeout": {
 								Description:         "PingTimeout is the timeout after which the HTTP/2 connection will be closed if a response to ping is not received.",
@@ -227,6 +250,28 @@ func (r *TraefikContainoUsServersTransportV1Alpha1Resource) GetSchema(_ context.
 							"response_header_timeout": {
 								Description:         "ResponseHeaderTimeout is the amount of time to wait for a server's response headers after fully writing the request (including its body, if any).",
 								MarkdownDescription: "ResponseHeaderTimeout is the amount of time to wait for a server's response headers after fully writing the request (including its body, if any).",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"dial_timeout": {
+								Description:         "DialTimeout is the amount of time to wait until a connection to a backend server can be established.",
+								MarkdownDescription: "DialTimeout is the amount of time to wait until a connection to a backend server can be established.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"idle_conn_timeout": {
+								Description:         "IdleConnTimeout is the maximum period for which an idle HTTP keep-alive connection will remain open before closing itself.",
+								MarkdownDescription: "IdleConnTimeout is the maximum period for which an idle HTTP keep-alive connection will remain open before closing itself.",
 
 								Type: types.StringType,
 
@@ -268,50 +313,6 @@ func (r *TraefikContainoUsServersTransportV1Alpha1Resource) GetSchema(_ context.
 						MarkdownDescription: "PeerCertURI defines the peer cert URI used to match against SAN URI during the peer certificate verification.",
 
 						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"root_c_as_secrets": {
-						Description:         "RootCAsSecrets defines a list of CA secret used to validate self-signed certificate.",
-						MarkdownDescription: "RootCAsSecrets defines a list of CA secret used to validate self-signed certificate.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"server_name": {
-						Description:         "ServerName defines the server name used to contact the server.",
-						MarkdownDescription: "ServerName defines the server name used to contact the server.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"certificates_secrets": {
-						Description:         "CertificatesSecrets defines a list of secret storing client certificates for mTLS.",
-						MarkdownDescription: "CertificatesSecrets defines a list of secret storing client certificates for mTLS.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"disable_http2": {
-						Description:         "DisableHTTP2 disables HTTP/2 for connections with backend servers.",
-						MarkdownDescription: "DisableHTTP2 disables HTTP/2 for connections with backend servers.",
-
-						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,

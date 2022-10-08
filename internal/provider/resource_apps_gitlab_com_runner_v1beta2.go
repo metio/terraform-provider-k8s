@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,7 +50,23 @@ type AppsGitlabComRunnerV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		RunUntagged *bool `tfsdk:"run_untagged" yaml:"runUntagged,omitempty"`
+		BuildImage *string `tfsdk:"build_image" yaml:"buildImage,omitempty"`
+
+		Ca *string `tfsdk:"ca" yaml:"ca,omitempty"`
+
+		Env *string `tfsdk:"env" yaml:"env,omitempty"`
+
+		Azure *struct {
+			Credentials *string `tfsdk:"credentials" yaml:"credentials,omitempty"`
+
+			StorageDomain *string `tfsdk:"storage_domain" yaml:"storageDomain,omitempty"`
+
+			Container *string `tfsdk:"container" yaml:"container,omitempty"`
+		} `tfsdk:"azure" yaml:"azure,omitempty"`
+
+		CloneURL *string `tfsdk:"clone_url" yaml:"cloneURL,omitempty"`
+
+		Config *string `tfsdk:"config" yaml:"config,omitempty"`
 
 		Serviceaccount *string `tfsdk:"serviceaccount" yaml:"serviceaccount,omitempty"`
 
@@ -57,13 +74,15 @@ type AppsGitlabComRunnerV1Beta2GoModel struct {
 
 		CacheType *string `tfsdk:"cache_type" yaml:"cacheType,omitempty"`
 
-		HelperImage *string `tfsdk:"helper_image" yaml:"helperImage,omitempty"`
-
-		Interval *int64 `tfsdk:"interval" yaml:"interval,omitempty"`
+		GitlabUrl *string `tfsdk:"gitlab_url" yaml:"gitlabUrl,omitempty"`
 
 		ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
 
+		Interval *int64 `tfsdk:"interval" yaml:"interval,omitempty"`
+
 		Locked *bool `tfsdk:"locked" yaml:"locked,omitempty"`
+
+		RunnerImage *string `tfsdk:"runner_image" yaml:"runnerImage,omitempty"`
 
 		S3 *struct {
 			Bucket *string `tfsdk:"bucket" yaml:"bucket,omitempty"`
@@ -77,35 +96,9 @@ type AppsGitlabComRunnerV1Beta2GoModel struct {
 			Server *string `tfsdk:"server" yaml:"server,omitempty"`
 		} `tfsdk:"s3" yaml:"s3,omitempty"`
 
-		Tags *string `tfsdk:"tags" yaml:"tags,omitempty"`
-
-		Azure *struct {
-			StorageDomain *string `tfsdk:"storage_domain" yaml:"storageDomain,omitempty"`
-
-			Container *string `tfsdk:"container" yaml:"container,omitempty"`
-
-			Credentials *string `tfsdk:"credentials" yaml:"credentials,omitempty"`
-		} `tfsdk:"azure" yaml:"azure,omitempty"`
-
-		BuildImage *string `tfsdk:"build_image" yaml:"buildImage,omitempty"`
-
-		Ca *string `tfsdk:"ca" yaml:"ca,omitempty"`
-
-		Env *string `tfsdk:"env" yaml:"env,omitempty"`
-
-		Protected *bool `tfsdk:"protected" yaml:"protected,omitempty"`
-
-		RunnerImage *string `tfsdk:"runner_image" yaml:"runnerImage,omitempty"`
-
 		CachePath *string `tfsdk:"cache_path" yaml:"cachePath,omitempty"`
 
 		Concurrent *int64 `tfsdk:"concurrent" yaml:"concurrent,omitempty"`
-
-		Config *string `tfsdk:"config" yaml:"config,omitempty"`
-
-		GitlabUrl *string `tfsdk:"gitlab_url" yaml:"gitlabUrl,omitempty"`
-
-		CloneURL *string `tfsdk:"clone_url" yaml:"cloneURL,omitempty"`
 
 		Gcs *struct {
 			Bucket *string `tfsdk:"bucket" yaml:"bucket,omitempty"`
@@ -114,6 +107,14 @@ type AppsGitlabComRunnerV1Beta2GoModel struct {
 
 			CredentialsFile *string `tfsdk:"credentials_file" yaml:"credentialsFile,omitempty"`
 		} `tfsdk:"gcs" yaml:"gcs,omitempty"`
+
+		HelperImage *string `tfsdk:"helper_image" yaml:"helperImage,omitempty"`
+
+		Protected *bool `tfsdk:"protected" yaml:"protected,omitempty"`
+
+		RunUntagged *bool `tfsdk:"run_untagged" yaml:"runUntagged,omitempty"`
+
+		Tags *string `tfsdk:"tags" yaml:"tags,omitempty"`
 
 		Token *string `tfsdk:"token" yaml:"token,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -216,11 +217,100 @@ func (r *AppsGitlabComRunnerV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"run_untagged": {
-						Description:         "Specify if jobs without tags should be run. If not specified, runner will default to true if no tags were specified. In other case it will default to false.",
-						MarkdownDescription: "Specify if jobs without tags should be run. If not specified, runner will default to true if no tags were specified. In other case it will default to false.",
+					"build_image": {
+						Description:         "The name of the default image to use to run build jobs, when none is specified",
+						MarkdownDescription: "The name of the default image to use to run build jobs, when none is specified",
 
-						Type: types.BoolType,
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"ca": {
+						Description:         "Name of tls secret containing the custom certificate authority (CA) certificates",
+						MarkdownDescription: "Name of tls secret containing the custom certificate authority (CA) certificates",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"env": {
+						Description:         "Accepts configmap name. Provides user mechanism to inject environment variables in the GitLab Runner pod via the key value pairs in the ConfigMap",
+						MarkdownDescription: "Accepts configmap name. Provides user mechanism to inject environment variables in the GitLab Runner pod via the key value pairs in the ConfigMap",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"azure": {
+						Description:         "options used to setup Azure blob storage as GitLab Runner Cache",
+						MarkdownDescription: "options used to setup Azure blob storage as GitLab Runner Cache",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"credentials": {
+								Description:         "Credentials secret contains 'accountName' and 'privateKey' used to authenticate against Azure blob storage",
+								MarkdownDescription: "Credentials secret contains 'accountName' and 'privateKey' used to authenticate against Azure blob storage",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"storage_domain": {
+								Description:         "The domain name of the Azure blob storage e.g. blob.core.windows.net",
+								MarkdownDescription: "The domain name of the Azure blob storage e.g. blob.core.windows.net",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"container": {
+								Description:         "Name of the Azure container in which the cache will be stored",
+								MarkdownDescription: "Name of the Azure container in which the cache will be stored",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"clone_url": {
+						Description:         "If specified, overrides the default URL used to clone or fetch the Git ref",
+						MarkdownDescription: "If specified, overrides the default URL used to clone or fetch the Git ref",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"config": {
+						Description:         "allow user to provide configmap name containing the user provided config.toml",
+						MarkdownDescription: "allow user to provide configmap name containing the user provided config.toml",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -260,9 +350,20 @@ func (r *AppsGitlabComRunnerV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 						Computed: false,
 					},
 
-					"helper_image": {
-						Description:         "If specified, overrides the default GitLab Runner helper image",
-						MarkdownDescription: "If specified, overrides the default GitLab Runner helper image",
+					"gitlab_url": {
+						Description:         "The fully qualified domain name for the GitLab instance. For example, https://gitlab.example.com",
+						MarkdownDescription: "The fully qualified domain name for the GitLab instance. For example, https://gitlab.example.com",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"image_pull_policy": {
+						Description:         "ImagePullPolicy sets the Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+						MarkdownDescription: "ImagePullPolicy sets the Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
 
 						Type: types.StringType,
 
@@ -282,22 +383,22 @@ func (r *AppsGitlabComRunnerV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 						Computed: false,
 					},
 
-					"image_pull_policy": {
-						Description:         "ImagePullPolicy sets the Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
-						MarkdownDescription: "ImagePullPolicy sets the Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+					"locked": {
+						Description:         "Specify whether the runner should be locked to a specific project. Defaults to false.",
+						MarkdownDescription: "Specify whether the runner should be locked to a specific project. Defaults to false.",
 
-						Type: types.StringType,
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
 					},
 
-					"locked": {
-						Description:         "Specify whether the runner should be locked to a specific project. Defaults to false.",
-						MarkdownDescription: "Specify whether the runner should be locked to a specific project. Defaults to false.",
+					"runner_image": {
+						Description:         "If specified, overrides the default GitLab Runner image. Default is the Runner image the operator was bundled with.",
+						MarkdownDescription: "If specified, overrides the default GitLab Runner image. Default is the Runner image the operator was bundled with.",
 
-						Type: types.BoolType,
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -371,117 +472,6 @@ func (r *AppsGitlabComRunnerV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 						Computed: false,
 					},
 
-					"tags": {
-						Description:         "List of comma separated tags to be applied to the runner More info: https://docs.gitlab.com/ee/ci/runners/#use-tags-to-limit-the-number-of-jobs-using-the-runner",
-						MarkdownDescription: "List of comma separated tags to be applied to the runner More info: https://docs.gitlab.com/ee/ci/runners/#use-tags-to-limit-the-number-of-jobs-using-the-runner",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"azure": {
-						Description:         "options used to setup Azure blob storage as GitLab Runner Cache",
-						MarkdownDescription: "options used to setup Azure blob storage as GitLab Runner Cache",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"storage_domain": {
-								Description:         "The domain name of the Azure blob storage e.g. blob.core.windows.net",
-								MarkdownDescription: "The domain name of the Azure blob storage e.g. blob.core.windows.net",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"container": {
-								Description:         "Name of the Azure container in which the cache will be stored",
-								MarkdownDescription: "Name of the Azure container in which the cache will be stored",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"credentials": {
-								Description:         "Credentials secret contains 'accountName' and 'privateKey' used to authenticate against Azure blob storage",
-								MarkdownDescription: "Credentials secret contains 'accountName' and 'privateKey' used to authenticate against Azure blob storage",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"build_image": {
-						Description:         "The name of the default image to use to run build jobs, when none is specified",
-						MarkdownDescription: "The name of the default image to use to run build jobs, when none is specified",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"ca": {
-						Description:         "Name of tls secret containing the custom certificate authority (CA) certificates",
-						MarkdownDescription: "Name of tls secret containing the custom certificate authority (CA) certificates",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"env": {
-						Description:         "Accepts configmap name. Provides user mechanism to inject environment variables in the GitLab Runner pod via the key value pairs in the ConfigMap",
-						MarkdownDescription: "Accepts configmap name. Provides user mechanism to inject environment variables in the GitLab Runner pod via the key value pairs in the ConfigMap",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"protected": {
-						Description:         "Specify whether the runner should only run protected branches. Defaults to false.",
-						MarkdownDescription: "Specify whether the runner should only run protected branches. Defaults to false.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"runner_image": {
-						Description:         "If specified, overrides the default GitLab Runner image. Default is the Runner image the operator was bundled with.",
-						MarkdownDescription: "If specified, overrides the default GitLab Runner image. Default is the Runner image the operator was bundled with.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"cache_path": {
 						Description:         "Path defines the Runner Cache path",
 						MarkdownDescription: "Path defines the Runner Cache path",
@@ -498,39 +488,6 @@ func (r *AppsGitlabComRunnerV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 						MarkdownDescription: "Option to limit the number of jobs globally that can run concurrently. The operator sets this to 10, if not specified",
 
 						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"config": {
-						Description:         "allow user to provide configmap name containing the user provided config.toml",
-						MarkdownDescription: "allow user to provide configmap name containing the user provided config.toml",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"gitlab_url": {
-						Description:         "The fully qualified domain name for the GitLab instance. For example, https://gitlab.example.com",
-						MarkdownDescription: "The fully qualified domain name for the GitLab instance. For example, https://gitlab.example.com",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"clone_url": {
-						Description:         "If specified, overrides the default URL used to clone or fetch the Git ref",
-						MarkdownDescription: "If specified, overrides the default URL used to clone or fetch the Git ref",
-
-						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -576,6 +533,50 @@ func (r *AppsGitlabComRunnerV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"helper_image": {
+						Description:         "If specified, overrides the default GitLab Runner helper image",
+						MarkdownDescription: "If specified, overrides the default GitLab Runner helper image",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"protected": {
+						Description:         "Specify whether the runner should only run protected branches. Defaults to false.",
+						MarkdownDescription: "Specify whether the runner should only run protected branches. Defaults to false.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"run_untagged": {
+						Description:         "Specify if jobs without tags should be run. If not specified, runner will default to true if no tags were specified. In other case it will default to false.",
+						MarkdownDescription: "Specify if jobs without tags should be run. If not specified, runner will default to true if no tags were specified. In other case it will default to false.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"tags": {
+						Description:         "List of comma separated tags to be applied to the runner More info: https://docs.gitlab.com/ee/ci/runners/#use-tags-to-limit-the-number-of-jobs-using-the-runner",
+						MarkdownDescription: "List of comma separated tags to be applied to the runner More info: https://docs.gitlab.com/ee/ci/runners/#use-tags-to-limit-the-number-of-jobs-using-the-runner",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

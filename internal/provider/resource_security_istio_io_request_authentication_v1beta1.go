@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -50,8 +51,6 @@ type SecurityIstioIoRequestAuthenticationV1Beta1GoModel struct {
 
 	Spec *struct {
 		JwtRules *[]struct {
-			Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
-
 			ForwardOriginalToken *bool `tfsdk:"forward_original_token" yaml:"forwardOriginalToken,omitempty"`
 
 			FromHeaders *[]struct {
@@ -69,6 +68,8 @@ type SecurityIstioIoRequestAuthenticationV1Beta1GoModel struct {
 			JwksUri *string `tfsdk:"jwks_uri" yaml:"jwksUri,omitempty"`
 
 			OutputPayloadToHeader *string `tfsdk:"output_payload_to_header" yaml:"outputPayloadToHeader,omitempty"`
+
+			Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
 		} `tfsdk:"jwt_rules" yaml:"jwtRules,omitempty"`
 
 		Selector *struct {
@@ -180,17 +181,6 @@ func (r *SecurityIstioIoRequestAuthenticationV1Beta1Resource) GetSchema(_ contex
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"audiences": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"forward_original_token": {
 								Description:         "If set to true, the original token will be kept for the upstream request.",
 								MarkdownDescription: "If set to true, the original token will be kept for the upstream request.",
@@ -285,6 +275,17 @@ func (r *SecurityIstioIoRequestAuthenticationV1Beta1Resource) GetSchema(_ contex
 								MarkdownDescription: "",
 
 								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"audiences": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,

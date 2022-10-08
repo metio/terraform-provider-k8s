@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,8 +50,6 @@ type NetworkingIstioIoProxyConfigV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Concurrency *int64 `tfsdk:"concurrency" yaml:"concurrency,omitempty"`
-
 		EnvironmentVariables *map[string]string `tfsdk:"environment_variables" yaml:"environmentVariables,omitempty"`
 
 		Image *struct {
@@ -60,6 +59,8 @@ type NetworkingIstioIoProxyConfigV1Beta1GoModel struct {
 		Selector *struct {
 			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 		} `tfsdk:"selector" yaml:"selector,omitempty"`
+
+		Concurrency *int64 `tfsdk:"concurrency" yaml:"concurrency,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -160,17 +161,6 @@ func (r *NetworkingIstioIoProxyConfigV1Beta1Resource) GetSchema(_ context.Contex
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"concurrency": {
-						Description:         "The number of worker threads to run.",
-						MarkdownDescription: "The number of worker threads to run.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"environment_variables": {
 						Description:         "Additional environment variables for the proxy.",
 						MarkdownDescription: "Additional environment variables for the proxy.",
@@ -222,6 +212,17 @@ func (r *NetworkingIstioIoProxyConfigV1Beta1Resource) GetSchema(_ context.Contex
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"concurrency": {
+						Description:         "The number of worker threads to run.",
+						MarkdownDescription: "The number of worker threads to run.",
+
+						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,

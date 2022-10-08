@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,23 +50,23 @@ type AcmeCertManagerIoOrderV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		IpAddresses *[]string `tfsdk:"ip_addresses" yaml:"ipAddresses,omitempty"`
-
-		IssuerRef *struct {
-			Group *string `tfsdk:"group" yaml:"group,omitempty"`
-
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"issuer_ref" yaml:"issuerRef,omitempty"`
-
-		Request *string `tfsdk:"request" yaml:"request,omitempty"`
-
 		CommonName *string `tfsdk:"common_name" yaml:"commonName,omitempty"`
 
 		DnsNames *[]string `tfsdk:"dns_names" yaml:"dnsNames,omitempty"`
 
 		Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
+
+		IpAddresses *[]string `tfsdk:"ip_addresses" yaml:"ipAddresses,omitempty"`
+
+		IssuerRef *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Group *string `tfsdk:"group" yaml:"group,omitempty"`
+
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+		} `tfsdk:"issuer_ref" yaml:"issuerRef,omitempty"`
+
+		Request *string `tfsdk:"request" yaml:"request,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -166,73 +167,6 @@ func (r *AcmeCertManagerIoOrderV1Resource) GetSchema(_ context.Context) (tfsdk.S
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"ip_addresses": {
-						Description:         "IPAddresses is a list of IP addresses that should be included as part of the Order validation process. This field must match the corresponding field on the DER encoded CSR.",
-						MarkdownDescription: "IPAddresses is a list of IP addresses that should be included as part of the Order validation process. This field must match the corresponding field on the DER encoded CSR.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"issuer_ref": {
-						Description:         "IssuerRef references a properly configured ACME-type Issuer which should be used to create this Order. If the Issuer does not exist, processing will be retried. If the Issuer is not an 'ACME' Issuer, an error will be returned and the Order will be marked as failed.",
-						MarkdownDescription: "IssuerRef references a properly configured ACME-type Issuer which should be used to create this Order. If the Issuer does not exist, processing will be retried. If the Issuer is not an 'ACME' Issuer, an error will be returned and the Order will be marked as failed.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"group": {
-								Description:         "Group of the resource being referred to.",
-								MarkdownDescription: "Group of the resource being referred to.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"kind": {
-								Description:         "Kind of the resource being referred to.",
-								MarkdownDescription: "Kind of the resource being referred to.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "Name of the resource being referred to.",
-								MarkdownDescription: "Name of the resource being referred to.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"request": {
-						Description:         "Certificate signing request bytes in DER encoding. This will be used when finalizing the order. This field must be set on the order.",
-						MarkdownDescription: "Certificate signing request bytes in DER encoding. This will be used when finalizing the order. This field must be set on the order.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
 					"common_name": {
 						Description:         "CommonName is the common name as specified on the DER encoded CSR. If specified, this value must also be present in 'dnsNames' or 'ipAddresses'. This field must match the corresponding field on the DER encoded CSR.",
 						MarkdownDescription: "CommonName is the common name as specified on the DER encoded CSR. If specified, this value must also be present in 'dnsNames' or 'ipAddresses'. This field must match the corresponding field on the DER encoded CSR.",
@@ -263,6 +197,73 @@ func (r *AcmeCertManagerIoOrderV1Resource) GetSchema(_ context.Context) (tfsdk.S
 
 						Required: false,
 						Optional: true,
+						Computed: false,
+					},
+
+					"ip_addresses": {
+						Description:         "IPAddresses is a list of IP addresses that should be included as part of the Order validation process. This field must match the corresponding field on the DER encoded CSR.",
+						MarkdownDescription: "IPAddresses is a list of IP addresses that should be included as part of the Order validation process. This field must match the corresponding field on the DER encoded CSR.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"issuer_ref": {
+						Description:         "IssuerRef references a properly configured ACME-type Issuer which should be used to create this Order. If the Issuer does not exist, processing will be retried. If the Issuer is not an 'ACME' Issuer, an error will be returned and the Order will be marked as failed.",
+						MarkdownDescription: "IssuerRef references a properly configured ACME-type Issuer which should be used to create this Order. If the Issuer does not exist, processing will be retried. If the Issuer is not an 'ACME' Issuer, an error will be returned and the Order will be marked as failed.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the resource being referred to.",
+								MarkdownDescription: "Name of the resource being referred to.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"group": {
+								Description:         "Group of the resource being referred to.",
+								MarkdownDescription: "Group of the resource being referred to.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"kind": {
+								Description:         "Kind of the resource being referred to.",
+								MarkdownDescription: "Kind of the resource being referred to.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"request": {
+						Description:         "Certificate signing request bytes in DER encoding. This will be used when finalizing the order. This field must be set on the order.",
+						MarkdownDescription: "Certificate signing request bytes in DER encoding. This will be used when finalizing the order. This field must be set on the order.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 				}),

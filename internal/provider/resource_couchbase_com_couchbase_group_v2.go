@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,8 +50,6 @@ type CouchbaseComCouchbaseGroupV2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		LdapGroupRef *string `tfsdk:"ldap_group_ref" yaml:"ldapGroupRef,omitempty"`
-
 		Roles *[]struct {
 			Bucket *string `tfsdk:"bucket" yaml:"bucket,omitempty"`
 
@@ -63,11 +62,11 @@ type CouchbaseComCouchbaseGroupV2GoModel struct {
 
 				Selector *struct {
 					MatchExpressions *[]struct {
-						Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
 						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 						Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+						Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 					} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -83,11 +82,11 @@ type CouchbaseComCouchbaseGroupV2GoModel struct {
 
 				Selector *struct {
 					MatchExpressions *[]struct {
-						Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
 						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 						Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+						Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 					} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -104,6 +103,8 @@ type CouchbaseComCouchbaseGroupV2GoModel struct {
 				} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 				Selector *struct {
+					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+
 					MatchExpressions *[]struct {
 						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -111,11 +112,11 @@ type CouchbaseComCouchbaseGroupV2GoModel struct {
 
 						Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 					} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 				} `tfsdk:"selector" yaml:"selector,omitempty"`
 			} `tfsdk:"scopes" yaml:"scopes,omitempty"`
 		} `tfsdk:"roles" yaml:"roles,omitempty"`
+
+		LdapGroupRef *string `tfsdk:"ldap_group_ref" yaml:"ldapGroupRef,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -216,17 +217,6 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"ldap_group_ref": {
-						Description:         "LDAPGroupRef is a reference to an LDAP group.",
-						MarkdownDescription: "LDAPGroupRef is a reference to an LDAP group.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"roles": {
 						Description:         "Roles is a list of roles that this group is granted.",
 						MarkdownDescription: "Roles is a list of roles that this group is granted.",
@@ -296,17 +286,6 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-													"values": {
-														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
 													"key": {
 														Description:         "key is the label key that the selector applies to.",
 														MarkdownDescription: "key is the label key that the selector applies to.",
@@ -326,6 +305,17 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 
 														Required: true,
 														Optional: false,
+														Computed: false,
+													},
+
+													"values": {
+														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
 														Computed: false,
 													},
 												}),
@@ -410,17 +400,6 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-													"values": {
-														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
 													"key": {
 														Description:         "key is the label key that the selector applies to.",
 														MarkdownDescription: "key is the label key that the selector applies to.",
@@ -440,6 +419,17 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 
 														Required: true,
 														Optional: false,
+														Computed: false,
+													},
+
+													"values": {
+														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
 														Computed: false,
 													},
 												}),
@@ -529,6 +519,17 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+											"match_labels": {
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"match_expressions": {
 												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -573,17 +574,6 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 												Optional: true,
 												Computed: false,
 											},
-
-											"match_labels": {
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 										}),
 
 										Required: false,
@@ -600,6 +590,17 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"ldap_group_ref": {
+						Description:         "LDAPGroupRef is a reference to an LDAP group.",
+						MarkdownDescription: "LDAPGroupRef is a reference to an LDAP group.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 				}),

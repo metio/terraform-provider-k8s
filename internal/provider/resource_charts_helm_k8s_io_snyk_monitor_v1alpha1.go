@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,11 +50,29 @@ type ChartsHelmK8SIoSnykMonitorV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		IntegrationApi *string `tfsdk:"integration_api" yaml:"integrationApi,omitempty"`
-
 		NodeAffinity *struct {
 			DisableBetaArchNodeSelector *bool `tfsdk:"disable_beta_arch_node_selector" yaml:"disableBetaArchNodeSelector,omitempty"`
 		} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
+
+		Requests *struct {
+			Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
+		} `tfsdk:"requests" yaml:"requests,omitempty"`
+
+		ClusterName *string `tfsdk:"cluster_name" yaml:"clusterName,omitempty"`
+
+		InitContainerImage *struct {
+			Repository *string `tfsdk:"repository" yaml:"repository,omitempty"`
+
+			Tag *string `tfsdk:"tag" yaml:"tag,omitempty"`
+		} `tfsdk:"init_container_image" yaml:"initContainerImage,omitempty"`
+
+		IntegrationApi *string `tfsdk:"integration_api" yaml:"integrationApi,omitempty"`
+
+		Limits *struct {
+			Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
+		} `tfsdk:"limits" yaml:"limits,omitempty"`
+
+		MonitorSecrets *string `tfsdk:"monitor_secrets" yaml:"monitorSecrets,omitempty"`
 
 		Pvc *struct {
 			Create *bool `tfsdk:"create" yaml:"create,omitempty"`
@@ -65,9 +84,9 @@ type ChartsHelmK8SIoSnykMonitorV1Alpha1GoModel struct {
 			StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
 		} `tfsdk:"pvc" yaml:"pvc,omitempty"`
 
-		Requests *struct {
-			Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
-		} `tfsdk:"requests" yaml:"requests,omitempty"`
+		Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
+
+		TemporaryStorageSize *string `tfsdk:"temporary_storage_size" yaml:"temporaryStorageSize,omitempty"`
 
 		Image *struct {
 			PullPolicy *string `tfsdk:"pull_policy" yaml:"pullPolicy,omitempty"`
@@ -76,24 +95,6 @@ type ChartsHelmK8SIoSnykMonitorV1Alpha1GoModel struct {
 
 			Tag *string `tfsdk:"tag" yaml:"tag,omitempty"`
 		} `tfsdk:"image" yaml:"image,omitempty"`
-
-		InitContainerImage *struct {
-			Repository *string `tfsdk:"repository" yaml:"repository,omitempty"`
-
-			Tag *string `tfsdk:"tag" yaml:"tag,omitempty"`
-		} `tfsdk:"init_container_image" yaml:"initContainerImage,omitempty"`
-
-		Limits *struct {
-			Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
-		} `tfsdk:"limits" yaml:"limits,omitempty"`
-
-		MonitorSecrets *string `tfsdk:"monitor_secrets" yaml:"monitorSecrets,omitempty"`
-
-		Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
-
-		TemporaryStorageSize *string `tfsdk:"temporary_storage_size" yaml:"temporaryStorageSize,omitempty"`
-
-		ClusterName *string `tfsdk:"cluster_name" yaml:"clusterName,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -194,17 +195,6 @@ func (r *ChartsHelmK8SIoSnykMonitorV1Alpha1Resource) GetSchema(_ context.Context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"integration_api": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"node_affinity": {
 						Description:         "",
 						MarkdownDescription: "",
@@ -222,6 +212,119 @@ func (r *ChartsHelmK8SIoSnykMonitorV1Alpha1Resource) GetSchema(_ context.Context
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"requests": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"memory": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"cluster_name": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"init_container_image": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"repository": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tag": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"integration_api": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"limits": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"memory": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"monitor_secrets": {
+						Description:         "The name of the secret object that stores the Snyk controller secrets. The secret needs to contain the following data fields: - integrationId - dockercfg.json",
+						MarkdownDescription: "The name of the secret object that stores the Snyk controller secrets. The secret needs to contain the following data fields: - integrationId - dockercfg.json",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -284,23 +387,22 @@ func (r *ChartsHelmK8SIoSnykMonitorV1Alpha1Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
-					"requests": {
+					"scope": {
 						Description:         "",
 						MarkdownDescription: "",
 
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+						Type: types.StringType,
 
-							"memory": {
-								Description:         "",
-								MarkdownDescription: "",
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
 
-								Type: types.StringType,
+					"temporary_storage_size": {
+						Description:         "",
+						MarkdownDescription: "",
 
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -346,107 +448,6 @@ func (r *ChartsHelmK8SIoSnykMonitorV1Alpha1Resource) GetSchema(_ context.Context
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"init_container_image": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"repository": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"tag": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"limits": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"memory": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"monitor_secrets": {
-						Description:         "The name of the secret object that stores the Snyk controller secrets. The secret needs to contain the following data fields: - integrationId - dockercfg.json",
-						MarkdownDescription: "The name of the secret object that stores the Snyk controller secrets. The secret needs to contain the following data fields: - integrationId - dockercfg.json",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"scope": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"temporary_storage_size": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"cluster_name": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

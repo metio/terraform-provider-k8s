@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,27 +50,27 @@ type NotificationToolkitFluxcdIoReceiverV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
-
-		Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-		Events *[]string `tfsdk:"events" yaml:"events,omitempty"`
-
 		Resources *[]struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
 			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
 
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
 			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 		SecretRef *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+
+		Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+		Events *[]string `tfsdk:"events" yaml:"events,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -170,44 +171,33 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Resource) GetSchema(_ context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"suspend": {
-						Description:         "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
-						MarkdownDescription: "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"type": {
-						Description:         "Type of webhook sender, used to determine the validation procedure and payload deserialization.",
-						MarkdownDescription: "Type of webhook sender, used to determine the validation procedure and payload deserialization.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"events": {
-						Description:         "A list of events to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
-						MarkdownDescription: "A list of events to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"resources": {
 						Description:         "A list of resources to be notified about changes.",
 						MarkdownDescription: "A list of resources to be notified about changes.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the referent",
+								MarkdownDescription: "Name of the referent",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"namespace": {
+								Description:         "Namespace of the referent",
+								MarkdownDescription: "Namespace of the referent",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"api_version": {
 								Description:         "API version of the referent",
@@ -241,28 +231,6 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Resource) GetSchema(_ context
 								Optional: true,
 								Computed: false,
 							},
-
-							"name": {
-								Description:         "Name of the referent",
-								MarkdownDescription: "Name of the referent",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"namespace": {
-								Description:         "Namespace of the referent",
-								MarkdownDescription: "Namespace of the referent",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
 
 						Required: true,
@@ -287,6 +255,39 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Resource) GetSchema(_ context
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"suspend": {
+						Description:         "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
+						MarkdownDescription: "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"type": {
+						Description:         "Type of webhook sender, used to determine the validation procedure and payload deserialization.",
+						MarkdownDescription: "Type of webhook sender, used to determine the validation procedure and payload deserialization.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"events": {
+						Description:         "A list of events to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
+						MarkdownDescription: "A list of events to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
+
+						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

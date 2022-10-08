@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -53,10 +54,10 @@ type NetworkingIstioIoEnvoyFilterV1Alpha3GoModel struct {
 			ApplyTo *string `tfsdk:"apply_to" yaml:"applyTo,omitempty"`
 
 			Match *struct {
+				Context *string `tfsdk:"context" yaml:"context,omitempty"`
+
 				Listener *struct {
 					FilterChain *struct {
-						ApplicationProtocols *string `tfsdk:"application_protocols" yaml:"applicationProtocols,omitempty"`
-
 						DestinationPort *int64 `tfsdk:"destination_port" yaml:"destinationPort,omitempty"`
 
 						Filter *struct {
@@ -72,6 +73,8 @@ type NetworkingIstioIoEnvoyFilterV1Alpha3GoModel struct {
 						Sni *string `tfsdk:"sni" yaml:"sni,omitempty"`
 
 						TransportProtocol *string `tfsdk:"transport_protocol" yaml:"transportProtocol,omitempty"`
+
+						ApplicationProtocols *string `tfsdk:"application_protocols" yaml:"applicationProtocols,omitempty"`
 					} `tfsdk:"filter_chain" yaml:"filterChain,omitempty"`
 
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -82,14 +85,12 @@ type NetworkingIstioIoEnvoyFilterV1Alpha3GoModel struct {
 				} `tfsdk:"listener" yaml:"listener,omitempty"`
 
 				Proxy *struct {
-					ProxyVersion *string `tfsdk:"proxy_version" yaml:"proxyVersion,omitempty"`
-
 					Metadata *map[string]string `tfsdk:"metadata" yaml:"metadata,omitempty"`
+
+					ProxyVersion *string `tfsdk:"proxy_version" yaml:"proxyVersion,omitempty"`
 				} `tfsdk:"proxy" yaml:"proxy,omitempty"`
 
 				RouteConfiguration *struct {
-					Gateway *string `tfsdk:"gateway" yaml:"gateway,omitempty"`
-
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 					PortName *string `tfsdk:"port_name" yaml:"portName,omitempty"`
@@ -105,19 +106,19 @@ type NetworkingIstioIoEnvoyFilterV1Alpha3GoModel struct {
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
 						} `tfsdk:"route" yaml:"route,omitempty"`
 					} `tfsdk:"vhost" yaml:"vhost,omitempty"`
+
+					Gateway *string `tfsdk:"gateway" yaml:"gateway,omitempty"`
 				} `tfsdk:"route_configuration" yaml:"routeConfiguration,omitempty"`
 
 				Cluster *struct {
-					Service *string `tfsdk:"service" yaml:"service,omitempty"`
-
-					Subset *string `tfsdk:"subset" yaml:"subset,omitempty"`
-
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 					PortNumber *int64 `tfsdk:"port_number" yaml:"portNumber,omitempty"`
-				} `tfsdk:"cluster" yaml:"cluster,omitempty"`
 
-				Context *string `tfsdk:"context" yaml:"context,omitempty"`
+					Service *string `tfsdk:"service" yaml:"service,omitempty"`
+
+					Subset *string `tfsdk:"subset" yaml:"subset,omitempty"`
+				} `tfsdk:"cluster" yaml:"cluster,omitempty"`
 			} `tfsdk:"match" yaml:"match,omitempty"`
 
 			Patch *struct {
@@ -257,6 +258,17 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+									"context": {
+										Description:         "The specific config generation context to match on.",
+										MarkdownDescription: "The specific config generation context to match on.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"listener": {
 										Description:         "Match on envoy listener attributes.",
 										MarkdownDescription: "Match on envoy listener attributes.",
@@ -268,17 +280,6 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 												MarkdownDescription: "Match a specific filter chain in a listener.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"application_protocols": {
-														Description:         "Applies only to sidecars.",
-														MarkdownDescription: "Applies only to sidecars.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 
 													"destination_port": {
 														Description:         "The destination_port value used by a filter chain's match condition.",
@@ -369,6 +370,17 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 														Optional: true,
 														Computed: false,
 													},
+
+													"application_protocols": {
+														Description:         "Applies only to sidecars.",
+														MarkdownDescription: "Applies only to sidecars.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
 												}),
 
 												Required: false,
@@ -421,22 +433,22 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"proxy_version": {
+											"metadata": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.StringType,
+												Type: types.MapType{ElemType: types.StringType},
 
 												Required: false,
 												Optional: true,
 												Computed: false,
 											},
 
-											"metadata": {
+											"proxy_version": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
@@ -454,17 +466,6 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 										MarkdownDescription: "Match on envoy HTTP route configuration attributes.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"gateway": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
 											"name": {
 												Description:         "Route configuration name to match on.",
@@ -555,6 +556,17 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 												Optional: true,
 												Computed: false,
 											},
+
+											"gateway": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										}),
 
 										Required: false,
@@ -567,28 +579,6 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 										MarkdownDescription: "Match on envoy cluster attributes.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"service": {
-												Description:         "The fully qualified service name for this cluster.",
-												MarkdownDescription: "The fully qualified service name for this cluster.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"subset": {
-												Description:         "The subset associated with the service.",
-												MarkdownDescription: "The subset associated with the service.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
 											"name": {
 												Description:         "The exact name of the cluster to match.",
@@ -611,18 +601,29 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 												Optional: true,
 												Computed: false,
 											},
+
+											"service": {
+												Description:         "The fully qualified service name for this cluster.",
+												MarkdownDescription: "The fully qualified service name for this cluster.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"subset": {
+												Description:         "The subset associated with the service.",
+												MarkdownDescription: "The subset associated with the service.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"context": {
-										Description:         "The specific config generation context to match on.",
-										MarkdownDescription: "The specific config generation context to match on.",
-
-										Type: types.StringType,
 
 										Required: false,
 										Optional: true,

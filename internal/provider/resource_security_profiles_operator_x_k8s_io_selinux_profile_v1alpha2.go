@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,13 +50,13 @@ type SecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Inherit *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-		} `tfsdk:"inherit" yaml:"inherit,omitempty"`
-
 		Allow *map[string]string `tfsdk:"allow" yaml:"allow,omitempty"`
+
+		Inherit *[]struct {
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"inherit" yaml:"inherit,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -156,22 +157,22 @@ func (r *SecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2Resource) GetSchema
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"allow": {
+						Description:         "Defines the allow policy for the profile",
+						MarkdownDescription: "Defines the allow policy for the profile",
+
+						Type: types.MapType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"inherit": {
 						Description:         "A SELinuxProfile or set of profiles that this inherits from. Note that they need to be in the same namespace.",
 						MarkdownDescription: "A SELinuxProfile or set of profiles that this inherits from. Note that they need to be in the same namespace.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "The name of the policy that this inherits from.",
-								MarkdownDescription: "The name of the policy that this inherits from.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
 
 							"kind": {
 								Description:         "The Kind of the policy that this inherits from. Can be a SelinuxProfile object Or 'System' if an already installed policy will be used. The allowed 'System' policies are available in the SecurityProfilesOpertorDaemon instance.",
@@ -183,18 +184,18 @@ func (r *SecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2Resource) GetSchema
 								Optional: true,
 								Computed: false,
 							},
+
+							"name": {
+								Description:         "The name of the policy that this inherits from.",
+								MarkdownDescription: "The name of the policy that this inherits from.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"allow": {
-						Description:         "Defines the allow policy for the profile",
-						MarkdownDescription: "Defines the allow policy for the profile",
-
-						Type: types.MapType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

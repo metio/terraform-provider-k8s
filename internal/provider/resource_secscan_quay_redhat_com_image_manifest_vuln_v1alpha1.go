@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,10 +50,6 @@ type SecscanQuayRedhatComImageManifestVulnV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Manifest *string `tfsdk:"manifest" yaml:"manifest,omitempty"`
-
-		NamespaceName *string `tfsdk:"namespace_name" yaml:"namespaceName,omitempty"`
-
 		Features *[]struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
@@ -63,12 +60,6 @@ type SecscanQuayRedhatComImageManifestVulnV1Alpha1GoModel struct {
 			Versionformat *string `tfsdk:"versionformat" yaml:"versionformat,omitempty"`
 
 			Vulnerabilities *[]struct {
-				Link *string `tfsdk:"link" yaml:"link,omitempty"`
-
-				Metadata *string `tfsdk:"metadata" yaml:"metadata,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
 				NamespaceName *string `tfsdk:"namespace_name" yaml:"namespaceName,omitempty"`
 
 				Severity *string `tfsdk:"severity" yaml:"severity,omitempty"`
@@ -76,10 +67,20 @@ type SecscanQuayRedhatComImageManifestVulnV1Alpha1GoModel struct {
 				Description *string `tfsdk:"description" yaml:"description,omitempty"`
 
 				Fixedby *string `tfsdk:"fixedby" yaml:"fixedby,omitempty"`
+
+				Link *string `tfsdk:"link" yaml:"link,omitempty"`
+
+				Metadata *string `tfsdk:"metadata" yaml:"metadata,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 			} `tfsdk:"vulnerabilities" yaml:"vulnerabilities,omitempty"`
 		} `tfsdk:"features" yaml:"features,omitempty"`
 
 		Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+		Manifest *string `tfsdk:"manifest" yaml:"manifest,omitempty"`
+
+		NamespaceName *string `tfsdk:"namespace_name" yaml:"namespaceName,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -180,28 +181,6 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"manifest": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"namespace_name": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"features": {
 						Description:         "",
 						MarkdownDescription: "",
@@ -258,39 +237,6 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"link": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"metadata": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"namespace_name": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -334,6 +280,39 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 										Optional: true,
 										Computed: false,
 									},
+
+									"link": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"metadata": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -348,6 +327,28 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 					},
 
 					"image": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"manifest": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"namespace_name": {
 						Description:         "",
 						MarkdownDescription: "",
 

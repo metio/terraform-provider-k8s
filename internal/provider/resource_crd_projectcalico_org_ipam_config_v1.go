@@ -7,6 +7,9 @@ package provider
 
 import (
 	"context"
+
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -47,11 +50,11 @@ type CrdProjectcalicoOrgIPAMConfigV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		AutoAllocateBlocks *bool `tfsdk:"auto_allocate_blocks" yaml:"autoAllocateBlocks,omitempty"`
+
 		MaxBlocksPerHost *int64 `tfsdk:"max_blocks_per_host" yaml:"maxBlocksPerHost,omitempty"`
 
 		StrictAffinity *bool `tfsdk:"strict_affinity" yaml:"strictAffinity,omitempty"`
-
-		AutoAllocateBlocks *bool `tfsdk:"auto_allocate_blocks" yaml:"autoAllocateBlocks,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -145,18 +148,7 @@ func (r *CrdProjectcalicoOrgIPAMConfigV1Resource) GetSchema(_ context.Context) (
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"max_blocks_per_host": {
-						Description:         "MaxBlocksPerHost, if non-zero, is the max number of blocks that can be affine to each host.",
-						MarkdownDescription: "MaxBlocksPerHost, if non-zero, is the max number of blocks that can be affine to each host.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"strict_affinity": {
+					"auto_allocate_blocks": {
 						Description:         "",
 						MarkdownDescription: "",
 
@@ -167,7 +159,25 @@ func (r *CrdProjectcalicoOrgIPAMConfigV1Resource) GetSchema(_ context.Context) (
 						Computed: false,
 					},
 
-					"auto_allocate_blocks": {
+					"max_blocks_per_host": {
+						Description:         "MaxBlocksPerHost, if non-zero, is the max number of blocks that can be affine to each host.",
+						MarkdownDescription: "MaxBlocksPerHost, if non-zero, is the max number of blocks that can be affine to each host.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(0),
+
+							int64validator.AtMost(2.147483647e+09),
+						},
+					},
+
+					"strict_affinity": {
 						Description:         "",
 						MarkdownDescription: "",
 

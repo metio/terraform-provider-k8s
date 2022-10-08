@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -86,13 +87,13 @@ type ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1GoModel struct {
 		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 
 		SourceRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
 			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
 
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 		} `tfsdk:"source_ref" yaml:"sourceRef,omitempty"`
 
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
@@ -414,28 +415,6 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Resource) GetSchema(_ c
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"name": {
-								Description:         "Name of the referent.",
-								MarkdownDescription: "Name of the referent.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"namespace": {
-								Description:         "Namespace of the referent, defaults to the namespace of the Kubernetes resource object that contains the reference.",
-								MarkdownDescription: "Namespace of the referent, defaults to the namespace of the Kubernetes resource object that contains the reference.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"api_version": {
 								Description:         "API version of the referent.",
 								MarkdownDescription: "API version of the referent.",
@@ -455,6 +434,28 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Resource) GetSchema(_ c
 
 								Required: true,
 								Optional: false,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"namespace": {
+								Description:         "Namespace of the referent, defaults to the namespace of the Kubernetes resource object that contains the reference.",
+								MarkdownDescription: "Namespace of the referent, defaults to the namespace of the Kubernetes resource object that contains the reference.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 						}),

@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -62,10 +63,6 @@ type ImageToolkitFluxcdIoImagePolicyV1Beta1GoModel struct {
 		} `tfsdk:"image_repository_ref" yaml:"imageRepositoryRef,omitempty"`
 
 		Policy *struct {
-			Numerical *struct {
-				Order *string `tfsdk:"order" yaml:"order,omitempty"`
-			} `tfsdk:"numerical" yaml:"numerical,omitempty"`
-
 			Semver *struct {
 				Range *string `tfsdk:"range" yaml:"range,omitempty"`
 			} `tfsdk:"semver" yaml:"semver,omitempty"`
@@ -73,6 +70,10 @@ type ImageToolkitFluxcdIoImagePolicyV1Beta1GoModel struct {
 			Alphabetical *struct {
 				Order *string `tfsdk:"order" yaml:"order,omitempty"`
 			} `tfsdk:"alphabetical" yaml:"alphabetical,omitempty"`
+
+			Numerical *struct {
+				Order *string `tfsdk:"order" yaml:"order,omitempty"`
+			} `tfsdk:"numerical" yaml:"numerical,omitempty"`
 		} `tfsdk:"policy" yaml:"policy,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -248,29 +249,6 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Beta1Resource) GetSchema(_ context.Con
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"numerical": {
-								Description:         "Numerical set of rules to use for numerical ordering of the tags.",
-								MarkdownDescription: "Numerical set of rules to use for numerical ordering of the tags.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"order": {
-										Description:         "Order specifies the sorting order of the tags. Given the integer values from 0 to 9 as tags, ascending order would select 9, and descending order would select 0.",
-										MarkdownDescription: "Order specifies the sorting order of the tags. Given the integer values from 0 to 9 as tags, ascending order would select 9, and descending order would select 0.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"semver": {
 								Description:         "SemVer gives a semantic version range to check against the tags available.",
 								MarkdownDescription: "SemVer gives a semantic version range to check against the tags available.",
@@ -303,6 +281,29 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Beta1Resource) GetSchema(_ context.Con
 									"order": {
 										Description:         "Order specifies the sorting order of the tags. Given the letters of the alphabet as tags, ascending order would select Z, and descending order would select A.",
 										MarkdownDescription: "Order specifies the sorting order of the tags. Given the letters of the alphabet as tags, ascending order would select Z, and descending order would select A.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"numerical": {
+								Description:         "Numerical set of rules to use for numerical ordering of the tags.",
+								MarkdownDescription: "Numerical set of rules to use for numerical ordering of the tags.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"order": {
+										Description:         "Order specifies the sorting order of the tags. Given the integer values from 0 to 9 as tags, ascending order would select 9, and descending order would select 0.",
+										MarkdownDescription: "Order specifies the sorting order of the tags. Given the integer values from 0 to 9 as tags, ascending order would select 9, and descending order would select 0.",
 
 										Type: types.StringType,
 

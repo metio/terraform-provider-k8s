@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,6 +50,8 @@ type ExternalSecretsIoExternalSecretV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		RefreshInterval *string `tfsdk:"refresh_interval" yaml:"refreshInterval,omitempty"`
+
 		SecretStoreRef *struct {
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
@@ -56,11 +59,15 @@ type ExternalSecretsIoExternalSecretV1Beta1GoModel struct {
 		} `tfsdk:"secret_store_ref" yaml:"secretStoreRef,omitempty"`
 
 		Target *struct {
+			CreationPolicy *string `tfsdk:"creation_policy" yaml:"creationPolicy,omitempty"`
+
+			DeletionPolicy *string `tfsdk:"deletion_policy" yaml:"deletionPolicy,omitempty"`
+
+			Immutable *bool `tfsdk:"immutable" yaml:"immutable,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
 			Template *struct {
-				Data *map[string]string `tfsdk:"data" yaml:"data,omitempty"`
-
-				EngineVersion *string `tfsdk:"engine_version" yaml:"engineVersion,omitempty"`
-
 				Metadata *struct {
 					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
@@ -77,28 +84,26 @@ type ExternalSecretsIoExternalSecretV1Beta1GoModel struct {
 					} `tfsdk:"config_map" yaml:"configMap,omitempty"`
 
 					Secret *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
 						Items *[]struct {
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 						} `tfsdk:"items" yaml:"items,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
 					} `tfsdk:"secret" yaml:"secret,omitempty"`
 				} `tfsdk:"template_from" yaml:"templateFrom,omitempty"`
 
 				Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+				Data *map[string]string `tfsdk:"data" yaml:"data,omitempty"`
+
+				EngineVersion *string `tfsdk:"engine_version" yaml:"engineVersion,omitempty"`
 			} `tfsdk:"template" yaml:"template,omitempty"`
-
-			CreationPolicy *string `tfsdk:"creation_policy" yaml:"creationPolicy,omitempty"`
-
-			DeletionPolicy *string `tfsdk:"deletion_policy" yaml:"deletionPolicy,omitempty"`
-
-			Immutable *bool `tfsdk:"immutable" yaml:"immutable,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"target" yaml:"target,omitempty"`
 
 		Data *[]struct {
 			RemoteRef *struct {
+				DecodingStrategy *string `tfsdk:"decoding_strategy" yaml:"decodingStrategy,omitempty"`
+
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 				MetadataPolicy *string `tfsdk:"metadata_policy" yaml:"metadataPolicy,omitempty"`
@@ -108,8 +113,6 @@ type ExternalSecretsIoExternalSecretV1Beta1GoModel struct {
 				Version *string `tfsdk:"version" yaml:"version,omitempty"`
 
 				ConversionStrategy *string `tfsdk:"conversion_strategy" yaml:"conversionStrategy,omitempty"`
-
-				DecodingStrategy *string `tfsdk:"decoding_strategy" yaml:"decodingStrategy,omitempty"`
 			} `tfsdk:"remote_ref" yaml:"remoteRef,omitempty"`
 
 			SecretKey *string `tfsdk:"secret_key" yaml:"secretKey,omitempty"`
@@ -117,20 +120,22 @@ type ExternalSecretsIoExternalSecretV1Beta1GoModel struct {
 
 		DataFrom *[]struct {
 			Extract *struct {
-				MetadataPolicy *string `tfsdk:"metadata_policy" yaml:"metadataPolicy,omitempty"`
-
-				Property *string `tfsdk:"property" yaml:"property,omitempty"`
-
-				Version *string `tfsdk:"version" yaml:"version,omitempty"`
-
 				ConversionStrategy *string `tfsdk:"conversion_strategy" yaml:"conversionStrategy,omitempty"`
 
 				DecodingStrategy *string `tfsdk:"decoding_strategy" yaml:"decodingStrategy,omitempty"`
 
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+				MetadataPolicy *string `tfsdk:"metadata_policy" yaml:"metadataPolicy,omitempty"`
+
+				Property *string `tfsdk:"property" yaml:"property,omitempty"`
+
+				Version *string `tfsdk:"version" yaml:"version,omitempty"`
 			} `tfsdk:"extract" yaml:"extract,omitempty"`
 
 			Find *struct {
+				DecodingStrategy *string `tfsdk:"decoding_strategy" yaml:"decodingStrategy,omitempty"`
+
 				Name *struct {
 					Regexp *string `tfsdk:"regexp" yaml:"regexp,omitempty"`
 				} `tfsdk:"name" yaml:"name,omitempty"`
@@ -140,8 +145,6 @@ type ExternalSecretsIoExternalSecretV1Beta1GoModel struct {
 				Tags *map[string]string `tfsdk:"tags" yaml:"tags,omitempty"`
 
 				ConversionStrategy *string `tfsdk:"conversion_strategy" yaml:"conversionStrategy,omitempty"`
-
-				DecodingStrategy *string `tfsdk:"decoding_strategy" yaml:"decodingStrategy,omitempty"`
 			} `tfsdk:"find" yaml:"find,omitempty"`
 
 			Rewrite *[]struct {
@@ -152,8 +155,6 @@ type ExternalSecretsIoExternalSecretV1Beta1GoModel struct {
 				} `tfsdk:"regexp" yaml:"regexp,omitempty"`
 			} `tfsdk:"rewrite" yaml:"rewrite,omitempty"`
 		} `tfsdk:"data_from" yaml:"dataFrom,omitempty"`
-
-		RefreshInterval *string `tfsdk:"refresh_interval" yaml:"refreshInterval,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -254,6 +255,17 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"refresh_interval": {
+						Description:         "RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.",
+						MarkdownDescription: "RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"secret_store_ref": {
 						Description:         "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
 						MarkdownDescription: "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
@@ -294,33 +306,55 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+							"creation_policy": {
+								Description:         "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
+								MarkdownDescription: "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"deletion_policy": {
+								Description:         "DeletionPolicy defines rules on how to delete the resulting Secret Defaults to 'Retain'",
+								MarkdownDescription: "DeletionPolicy defines rules on how to delete the resulting Secret Defaults to 'Retain'",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"immutable": {
+								Description:         "Immutable defines if the final secret will be immutable",
+								MarkdownDescription: "Immutable defines if the final secret will be immutable",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
+								MarkdownDescription: "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"template": {
 								Description:         "Template defines a blueprint for the created Secret resource.",
 								MarkdownDescription: "Template defines a blueprint for the created Secret resource.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"data": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"engine_version": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"metadata": {
 										Description:         "ExternalSecretTemplateMetadata defines metadata fields for the Secret blueprint.",
@@ -414,6 +448,17 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
 													"items": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -431,17 +476,6 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 																Computed: false,
 															},
 														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
 
 														Required: true,
 														Optional: false,
@@ -470,51 +504,29 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 										Optional: true,
 										Computed: false,
 									},
+
+									"data": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"engine_version": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"creation_policy": {
-								Description:         "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
-								MarkdownDescription: "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"deletion_policy": {
-								Description:         "DeletionPolicy defines rules on how to delete the resulting Secret Defaults to 'Retain'",
-								MarkdownDescription: "DeletionPolicy defines rules on how to delete the resulting Secret Defaults to 'Retain'",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"immutable": {
-								Description:         "Immutable defines if the final secret will be immutable",
-								MarkdownDescription: "Immutable defines if the final secret will be immutable",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
-								MarkdownDescription: "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
-
-								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
@@ -538,6 +550,17 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 								MarkdownDescription: "ExternalSecretDataRemoteRef defines Provider data location.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"decoding_strategy": {
+										Description:         "Used to define a decoding Strategy",
+										MarkdownDescription: "Used to define a decoding Strategy",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"key": {
 										Description:         "Key is the key used in the Provider, mandatory",
@@ -586,17 +609,6 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 									"conversion_strategy": {
 										Description:         "Used to define a conversion Strategy",
 										MarkdownDescription: "Used to define a conversion Strategy",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"decoding_strategy": {
-										Description:         "Used to define a decoding Strategy",
-										MarkdownDescription: "Used to define a decoding Strategy",
 
 										Type: types.StringType,
 
@@ -640,39 +652,6 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"metadata_policy": {
-										Description:         "Policy for fetching tags/labels from provider secrets, possible options are Fetch, None. Defaults to None",
-										MarkdownDescription: "Policy for fetching tags/labels from provider secrets, possible options are Fetch, None. Defaults to None",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"property": {
-										Description:         "Used to select a specific property of the Provider value (if a map), if supported",
-										MarkdownDescription: "Used to select a specific property of the Provider value (if a map), if supported",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"version": {
-										Description:         "Used to select a specific version of the Provider value, if supported",
-										MarkdownDescription: "Used to select a specific version of the Provider value, if supported",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"conversion_strategy": {
 										Description:         "Used to define a conversion Strategy",
 										MarkdownDescription: "Used to define a conversion Strategy",
@@ -705,6 +684,39 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 										Optional: false,
 										Computed: false,
 									},
+
+									"metadata_policy": {
+										Description:         "Policy for fetching tags/labels from provider secrets, possible options are Fetch, None. Defaults to None",
+										MarkdownDescription: "Policy for fetching tags/labels from provider secrets, possible options are Fetch, None. Defaults to None",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"property": {
+										Description:         "Used to select a specific property of the Provider value (if a map), if supported",
+										MarkdownDescription: "Used to select a specific property of the Provider value (if a map), if supported",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"version": {
+										Description:         "Used to select a specific version of the Provider value, if supported",
+										MarkdownDescription: "Used to select a specific version of the Provider value, if supported",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -717,6 +729,17 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 								MarkdownDescription: "Used to find secrets based on tags or regular expressions",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"decoding_strategy": {
+										Description:         "Used to define a decoding Strategy",
+										MarkdownDescription: "Used to define a decoding Strategy",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"name": {
 										Description:         "Finds secrets based on the name.",
@@ -766,17 +789,6 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 									"conversion_strategy": {
 										Description:         "Used to define a conversion Strategy",
 										MarkdownDescription: "Used to define a conversion Strategy",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"decoding_strategy": {
-										Description:         "Used to define a decoding Strategy",
-										MarkdownDescription: "Used to define a decoding Strategy",
 
 										Type: types.StringType,
 
@@ -837,17 +849,6 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"refresh_interval": {
-						Description:         "RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.",
-						MarkdownDescription: "RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.",
-
-						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

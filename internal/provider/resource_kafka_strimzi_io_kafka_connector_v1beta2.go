@@ -7,6 +7,9 @@ package provider
 
 import (
 	"context"
+
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,13 +52,13 @@ type KafkaStrimziIoKafkaConnectorV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Pause *bool `tfsdk:"pause" yaml:"pause,omitempty"`
-
-		TasksMax *int64 `tfsdk:"tasks_max" yaml:"tasksMax,omitempty"`
-
 		Class *string `tfsdk:"class" yaml:"class,omitempty"`
 
 		Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+
+		Pause *bool `tfsdk:"pause" yaml:"pause,omitempty"`
+
+		TasksMax *int64 `tfsdk:"tasks_max" yaml:"tasksMax,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -156,28 +159,6 @@ func (r *KafkaStrimziIoKafkaConnectorV1Beta2Resource) GetSchema(_ context.Contex
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"pause": {
-						Description:         "Whether the connector should be paused. Defaults to false.",
-						MarkdownDescription: "Whether the connector should be paused. Defaults to false.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"tasks_max": {
-						Description:         "The maximum number of tasks for the Kafka Connector.",
-						MarkdownDescription: "The maximum number of tasks for the Kafka Connector.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"class": {
 						Description:         "The Class for the Kafka Connector.",
 						MarkdownDescription: "The Class for the Kafka Connector.",
@@ -198,6 +179,33 @@ func (r *KafkaStrimziIoKafkaConnectorV1Beta2Resource) GetSchema(_ context.Contex
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"pause": {
+						Description:         "Whether the connector should be paused. Defaults to false.",
+						MarkdownDescription: "Whether the connector should be paused. Defaults to false.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"tasks_max": {
+						Description:         "The maximum number of tasks for the Kafka Connector.",
+						MarkdownDescription: "The maximum number of tasks for the Kafka Connector.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(1),
+						},
 					},
 				}),
 

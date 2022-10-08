@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,25 +50,19 @@ type NetworkingIstioIoServiceEntryV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Ports *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		ExportTo *[]string `tfsdk:"export_to" yaml:"exportTo,omitempty"`
 
-			Number *int64 `tfsdk:"number" yaml:"number,omitempty"`
-
-			Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
-
-			TargetPort *int64 `tfsdk:"target_port" yaml:"targetPort,omitempty"`
-		} `tfsdk:"ports" yaml:"ports,omitempty"`
+		Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
 
 		Resolution *string `tfsdk:"resolution" yaml:"resolution,omitempty"`
 
-		SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
+		WorkloadSelector *struct {
+			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+		} `tfsdk:"workload_selector" yaml:"workloadSelector,omitempty"`
 
 		Addresses *[]string `tfsdk:"addresses" yaml:"addresses,omitempty"`
 
 		Endpoints *[]struct {
-			ServiceAccount *string `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
-
 			Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 
 			Address *string `tfsdk:"address" yaml:"address,omitempty"`
@@ -79,17 +74,23 @@ type NetworkingIstioIoServiceEntryV1Beta1GoModel struct {
 			Network *string `tfsdk:"network" yaml:"network,omitempty"`
 
 			Ports *map[string]string `tfsdk:"ports" yaml:"ports,omitempty"`
+
+			ServiceAccount *string `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
 		} `tfsdk:"endpoints" yaml:"endpoints,omitempty"`
-
-		ExportTo *[]string `tfsdk:"export_to" yaml:"exportTo,omitempty"`
-
-		Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
 
 		Location *string `tfsdk:"location" yaml:"location,omitempty"`
 
-		WorkloadSelector *struct {
-			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-		} `tfsdk:"workload_selector" yaml:"workloadSelector,omitempty"`
+		Ports *[]struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Number *int64 `tfsdk:"number" yaml:"number,omitempty"`
+
+			Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+
+			TargetPort *int64 `tfsdk:"target_port" yaml:"targetPort,omitempty"`
+		} `tfsdk:"ports" yaml:"ports,omitempty"`
+
+		SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -190,56 +191,22 @@ func (r *NetworkingIstioIoServiceEntryV1Beta1Resource) GetSchema(_ context.Conte
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"ports": {
-						Description:         "The ports associated with the external service.",
-						MarkdownDescription: "The ports associated with the external service.",
+					"export_to": {
+						Description:         "A list of namespaces to which this service is exported.",
+						MarkdownDescription: "A list of namespaces to which this service is exported.",
 
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+						Type: types.ListType{ElemType: types.StringType},
 
-							"name": {
-								Description:         "Label assigned to the port.",
-								MarkdownDescription: "Label assigned to the port.",
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
 
-								Type: types.StringType,
+					"hosts": {
+						Description:         "The hosts associated with the ServiceEntry.",
+						MarkdownDescription: "The hosts associated with the ServiceEntry.",
 
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"number": {
-								Description:         "A valid non-negative integer port number.",
-								MarkdownDescription: "A valid non-negative integer port number.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"protocol": {
-								Description:         "The protocol exposed on the port.",
-								MarkdownDescription: "The protocol exposed on the port.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"target_port": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
+						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,
@@ -257,11 +224,23 @@ func (r *NetworkingIstioIoServiceEntryV1Beta1Resource) GetSchema(_ context.Conte
 						Computed: false,
 					},
 
-					"subject_alt_names": {
-						Description:         "",
-						MarkdownDescription: "",
+					"workload_selector": {
+						Description:         "Applicable only for MESH_INTERNAL services.",
+						MarkdownDescription: "Applicable only for MESH_INTERNAL services.",
 
-						Type: types.ListType{ElemType: types.StringType},
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"labels": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
@@ -284,17 +263,6 @@ func (r *NetworkingIstioIoServiceEntryV1Beta1Resource) GetSchema(_ context.Conte
 						MarkdownDescription: "One or more endpoints associated with the service.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"service_account": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"weight": {
 								Description:         "The load balancing weight associated with the endpoint.",
@@ -361,29 +329,18 @@ func (r *NetworkingIstioIoServiceEntryV1Beta1Resource) GetSchema(_ context.Conte
 								Optional: true,
 								Computed: false,
 							},
+
+							"service_account": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"export_to": {
-						Description:         "A list of namespaces to which this service is exported.",
-						MarkdownDescription: "A list of namespaces to which this service is exported.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"hosts": {
-						Description:         "The hosts associated with the ServiceEntry.",
-						MarkdownDescription: "The hosts associated with the ServiceEntry.",
-
-						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,
@@ -401,23 +358,67 @@ func (r *NetworkingIstioIoServiceEntryV1Beta1Resource) GetSchema(_ context.Conte
 						Computed: false,
 					},
 
-					"workload_selector": {
-						Description:         "Applicable only for MESH_INTERNAL services.",
-						MarkdownDescription: "Applicable only for MESH_INTERNAL services.",
+					"ports": {
+						Description:         "The ports associated with the external service.",
+						MarkdownDescription: "The ports associated with the external service.",
 
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"labels": {
+							"name": {
+								Description:         "Label assigned to the port.",
+								MarkdownDescription: "Label assigned to the port.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"number": {
+								Description:         "A valid non-negative integer port number.",
+								MarkdownDescription: "A valid non-negative integer port number.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"protocol": {
+								Description:         "The protocol exposed on the port.",
+								MarkdownDescription: "The protocol exposed on the port.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"target_port": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"subject_alt_names": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

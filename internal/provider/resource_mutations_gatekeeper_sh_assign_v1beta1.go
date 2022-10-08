@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -58,15 +59,9 @@ type MutationsGatekeeperShAssignV1Beta1GoModel struct {
 		Location *string `tfsdk:"location" yaml:"location,omitempty"`
 
 		Match *struct {
-			ExcludedNamespaces *[]string `tfsdk:"excluded_namespaces" yaml:"excludedNamespaces,omitempty"`
-
-			Kinds *[]struct {
-				ApiGroups *[]string `tfsdk:"api_groups" yaml:"apiGroups,omitempty"`
-
-				Kinds *[]string `tfsdk:"kinds" yaml:"kinds,omitempty"`
-			} `tfsdk:"kinds" yaml:"kinds,omitempty"`
-
 			LabelSelector *struct {
+				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+
 				MatchExpressions *[]struct {
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -74,8 +69,6 @@ type MutationsGatekeeperShAssignV1Beta1GoModel struct {
 
 					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 				} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 			} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -95,10 +88,24 @@ type MutationsGatekeeperShAssignV1Beta1GoModel struct {
 			Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 			Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
+
+			ExcludedNamespaces *[]string `tfsdk:"excluded_namespaces" yaml:"excludedNamespaces,omitempty"`
+
+			Kinds *[]struct {
+				ApiGroups *[]string `tfsdk:"api_groups" yaml:"apiGroups,omitempty"`
+
+				Kinds *[]string `tfsdk:"kinds" yaml:"kinds,omitempty"`
+			} `tfsdk:"kinds" yaml:"kinds,omitempty"`
 		} `tfsdk:"match" yaml:"match,omitempty"`
 
 		Parameters *struct {
 			Assign *struct {
+				FromMetadata *struct {
+					Field *string `tfsdk:"field" yaml:"field,omitempty"`
+				} `tfsdk:"from_metadata" yaml:"fromMetadata,omitempty"`
+
+				Value *map[string]string `tfsdk:"value" yaml:"value,omitempty"`
+
 				ExternalData *struct {
 					DataSource *string `tfsdk:"data_source" yaml:"dataSource,omitempty"`
 
@@ -108,18 +115,12 @@ type MutationsGatekeeperShAssignV1Beta1GoModel struct {
 
 					Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
 				} `tfsdk:"external_data" yaml:"externalData,omitempty"`
-
-				FromMetadata *struct {
-					Field *string `tfsdk:"field" yaml:"field,omitempty"`
-				} `tfsdk:"from_metadata" yaml:"fromMetadata,omitempty"`
-
-				Value *map[string]string `tfsdk:"value" yaml:"value,omitempty"`
 			} `tfsdk:"assign" yaml:"assign,omitempty"`
 
 			PathTests *[]struct {
-				Condition *string `tfsdk:"condition" yaml:"condition,omitempty"`
-
 				SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
+
+				Condition *string `tfsdk:"condition" yaml:"condition,omitempty"`
 			} `tfsdk:"path_tests" yaml:"pathTests,omitempty"`
 		} `tfsdk:"parameters" yaml:"parameters,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -277,56 +278,22 @@ func (r *MutationsGatekeeperShAssignV1Beta1Resource) GetSchema(_ context.Context
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"excluded_namespaces": {
-								Description:         "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
-								MarkdownDescription: "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"kinds": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"api_groups": {
-										Description:         "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.",
-										MarkdownDescription: "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"kinds": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"label_selector": {
 								Description:         "LabelSelector is the combination of two optional fields: 'matchLabels' and 'matchExpressions'.  These two fields provide different methods of selecting or excluding k8s objects based on the label keys and values included in object metadata.  All selection expressions from both sections are ANDed to determine if an object meets the cumulative requirements of the selector.",
 								MarkdownDescription: "LabelSelector is the combination of two optional fields: 'matchLabels' and 'matchExpressions'.  These two fields provide different methods of selecting or excluding k8s objects based on the label keys and values included in object metadata.  All selection expressions from both sections are ANDed to determine if an object meets the cumulative requirements of the selector.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"match_labels": {
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"match_expressions": {
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -367,17 +334,6 @@ func (r *MutationsGatekeeperShAssignV1Beta1Resource) GetSchema(_ context.Context
 												Computed: false,
 											},
 										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"match_labels": {
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-										Type: types.MapType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
@@ -490,6 +446,51 @@ func (r *MutationsGatekeeperShAssignV1Beta1Resource) GetSchema(_ context.Context
 								Optional: true,
 								Computed: false,
 							},
+
+							"excluded_namespaces": {
+								Description:         "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
+								MarkdownDescription: "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"kinds": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"api_groups": {
+										Description:         "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.",
+										MarkdownDescription: "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"kinds": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						}),
 
 						Required: false,
@@ -508,6 +509,40 @@ func (r *MutationsGatekeeperShAssignV1Beta1Resource) GetSchema(_ context.Context
 								MarkdownDescription: "Assign.value holds the value to be assigned",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"from_metadata": {
+										Description:         "FromMetadata assigns a value from the specified metadata field.",
+										MarkdownDescription: "FromMetadata assigns a value from the specified metadata field.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"field": {
+												Description:         "Field specifies which metadata field provides the assigned value. Valid fields are 'namespace' and 'name'.",
+												MarkdownDescription: "Field specifies which metadata field provides the assigned value. Valid fields are 'namespace' and 'name'.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"value": {
+										Description:         "Value is a constant value that will be assigned to 'location'",
+										MarkdownDescription: "Value is a constant value that will be assigned to 'location'",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"external_data": {
 										Description:         "ExternalData describes the external data provider to be used for mutation.",
@@ -564,40 +599,6 @@ func (r *MutationsGatekeeperShAssignV1Beta1Resource) GetSchema(_ context.Context
 										Optional: true,
 										Computed: false,
 									},
-
-									"from_metadata": {
-										Description:         "FromMetadata assigns a value from the specified metadata field.",
-										MarkdownDescription: "FromMetadata assigns a value from the specified metadata field.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"field": {
-												Description:         "Field specifies which metadata field provides the assigned value. Valid fields are 'namespace' and 'name'.",
-												MarkdownDescription: "Field specifies which metadata field provides the assigned value. Valid fields are 'namespace' and 'name'.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"value": {
-										Description:         "Value is a constant value that will be assigned to 'location'",
-										MarkdownDescription: "Value is a constant value that will be assigned to 'location'",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -611,9 +612,9 @@ func (r *MutationsGatekeeperShAssignV1Beta1Resource) GetSchema(_ context.Context
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"condition": {
-										Description:         "Condition describes whether the path either MustExist or MustNotExist in the original object",
-										MarkdownDescription: "Condition describes whether the path either MustExist or MustNotExist in the original object",
+									"sub_path": {
+										Description:         "",
+										MarkdownDescription: "",
 
 										Type: types.StringType,
 
@@ -622,9 +623,9 @@ func (r *MutationsGatekeeperShAssignV1Beta1Resource) GetSchema(_ context.Context
 										Computed: false,
 									},
 
-									"sub_path": {
-										Description:         "",
-										MarkdownDescription: "",
+									"condition": {
+										Description:         "Condition describes whether the path either MustExist or MustNotExist in the original object",
+										MarkdownDescription: "Condition describes whether the path either MustExist or MustNotExist in the original object",
 
 										Type: types.StringType,
 

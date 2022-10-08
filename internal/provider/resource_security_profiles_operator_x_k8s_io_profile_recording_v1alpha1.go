@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,10 +50,6 @@ type SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Containers *[]string `tfsdk:"containers" yaml:"containers,omitempty"`
-
-		Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
 		PodSelector *struct {
 			MatchExpressions *[]struct {
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -66,6 +63,10 @@ type SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1GoModel struct {
 		} `tfsdk:"pod_selector" yaml:"podSelector,omitempty"`
 
 		Recorder *string `tfsdk:"recorder" yaml:"recorder,omitempty"`
+
+		Containers *[]string `tfsdk:"containers" yaml:"containers,omitempty"`
+
+		Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -166,28 +167,6 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Resource) GetSche
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"containers": {
-						Description:         "Containers is a set of containers to record. This allows to select only specific containers to record instead of all containers present in the pod.",
-						MarkdownDescription: "Containers is a set of containers to record. This allows to select only specific containers to record instead of all containers present in the pod.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"kind": {
-						Description:         "Kind of object to be recorded.",
-						MarkdownDescription: "Kind of object to be recorded.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
 					"pod_selector": {
 						Description:         "PodSelector selects the pods to record. This field follows standard label selector semantics. An empty podSelector matches all pods in this namespace.",
 						MarkdownDescription: "PodSelector selects the pods to record. This field follows standard label selector semantics. An empty podSelector matches all pods in this namespace.",
@@ -259,6 +238,28 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Resource) GetSche
 					"recorder": {
 						Description:         "Recorder to be used.",
 						MarkdownDescription: "Recorder to be used.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"containers": {
+						Description:         "Containers is a set of containers to record. This allows to select only specific containers to record instead of all containers present in the pod.",
+						MarkdownDescription: "Containers is a set of containers to record. This allows to select only specific containers to record instead of all containers present in the pod.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"kind": {
+						Description:         "Kind of object to be recorded.",
+						MarkdownDescription: "Kind of object to be recorded.",
 
 						Type: types.StringType,
 

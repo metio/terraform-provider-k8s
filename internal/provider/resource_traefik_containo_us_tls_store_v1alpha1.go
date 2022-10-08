@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -54,13 +55,13 @@ type TraefikContainoUsTLSStoreV1Alpha1GoModel struct {
 		} `tfsdk:"default_certificate" yaml:"defaultCertificate,omitempty"`
 
 		DefaultGeneratedCert *struct {
-			Resolver *string `tfsdk:"resolver" yaml:"resolver,omitempty"`
-
 			Domain *struct {
-				Main *string `tfsdk:"main" yaml:"main,omitempty"`
-
 				Sans *[]string `tfsdk:"sans" yaml:"sans,omitempty"`
+
+				Main *string `tfsdk:"main" yaml:"main,omitempty"`
 			} `tfsdk:"domain" yaml:"domain,omitempty"`
+
+			Resolver *string `tfsdk:"resolver" yaml:"resolver,omitempty"`
 		} `tfsdk:"default_generated_cert" yaml:"defaultGeneratedCert,omitempty"`
 
 		Certificates *[]struct {
@@ -195,33 +196,11 @@ func (r *TraefikContainoUsTLSStoreV1Alpha1Resource) GetSchema(_ context.Context)
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"resolver": {
-								Description:         "Resolver is the name of the resolver that will be used to issue the DefaultCertificate.",
-								MarkdownDescription: "Resolver is the name of the resolver that will be used to issue the DefaultCertificate.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"domain": {
 								Description:         "Domain is the domain definition for the DefaultCertificate.",
 								MarkdownDescription: "Domain is the domain definition for the DefaultCertificate.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"main": {
-										Description:         "Main defines the main domain name.",
-										MarkdownDescription: "Main defines the main domain name.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"sans": {
 										Description:         "SANs defines the subject alternative domain names.",
@@ -233,7 +212,29 @@ func (r *TraefikContainoUsTLSStoreV1Alpha1Resource) GetSchema(_ context.Context)
 										Optional: true,
 										Computed: false,
 									},
+
+									"main": {
+										Description:         "Main defines the main domain name.",
+										MarkdownDescription: "Main defines the main domain name.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"resolver": {
+								Description:         "Resolver is the name of the resolver that will be used to issue the DefaultCertificate.",
+								MarkdownDescription: "Resolver is the name of the resolver that will be used to issue the DefaultCertificate.",
+
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,

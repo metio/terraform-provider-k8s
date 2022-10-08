@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -89,9 +90,9 @@ type TraefikContainoUsIngressRouteTCPV1Alpha1GoModel struct {
 			CertResolver *string `tfsdk:"cert_resolver" yaml:"certResolver,omitempty"`
 
 			Domains *[]struct {
-				Sans *[]string `tfsdk:"sans" yaml:"sans,omitempty"`
-
 				Main *string `tfsdk:"main" yaml:"main,omitempty"`
+
+				Sans *[]string `tfsdk:"sans" yaml:"sans,omitempty"`
 			} `tfsdk:"domains" yaml:"domains,omitempty"`
 
 			Options *struct {
@@ -430,22 +431,22 @@ func (r *TraefikContainoUsIngressRouteTCPV1Alpha1Resource) GetSchema(_ context.C
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"sans": {
-										Description:         "SANs defines the subject alternative domain names.",
-										MarkdownDescription: "SANs defines the subject alternative domain names.",
+									"main": {
+										Description:         "Main defines the main domain name.",
+										MarkdownDescription: "Main defines the main domain name.",
 
-										Type: types.ListType{ElemType: types.StringType},
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"main": {
-										Description:         "Main defines the main domain name.",
-										MarkdownDescription: "Main defines the main domain name.",
+									"sans": {
+										Description:         "SANs defines the subject alternative domain names.",
+										MarkdownDescription: "SANs defines the subject alternative domain names.",
 
-										Type: types.StringType,
+										Type: types.ListType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,

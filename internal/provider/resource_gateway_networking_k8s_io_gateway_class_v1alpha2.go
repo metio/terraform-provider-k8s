@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -52,13 +53,13 @@ type GatewayNetworkingK8SIoGatewayClassV1Alpha2GoModel struct {
 		Description *string `tfsdk:"description" yaml:"description,omitempty"`
 
 		ParametersRef *struct {
-			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
 			Group *string `tfsdk:"group" yaml:"group,omitempty"`
 
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 		} `tfsdk:"parameters_ref" yaml:"parametersRef,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -181,17 +182,6 @@ func (r *GatewayNetworkingK8SIoGatewayClassV1Alpha2Resource) GetSchema(_ context
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"namespace": {
-								Description:         "Namespace is the namespace of the referent. This field is required when referring to a Namespace-scoped resource and MUST be unset when referring to a Cluster-scoped resource.",
-								MarkdownDescription: "Namespace is the namespace of the referent. This field is required when referring to a Namespace-scoped resource and MUST be unset when referring to a Cluster-scoped resource.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"group": {
 								Description:         "Group is the group of the referent.",
 								MarkdownDescription: "Group is the group of the referent.",
@@ -222,6 +212,17 @@ func (r *GatewayNetworkingK8SIoGatewayClassV1Alpha2Resource) GetSchema(_ context
 
 								Required: true,
 								Optional: false,
+								Computed: false,
+							},
+
+							"namespace": {
+								Description:         "Namespace is the namespace of the referent. This field is required when referring to a Namespace-scoped resource and MUST be unset when referring to a Cluster-scoped resource.",
+								MarkdownDescription: "Namespace is the namespace of the referent. This field is required when referring to a Namespace-scoped resource and MUST be unset when referring to a Cluster-scoped resource.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 						}),

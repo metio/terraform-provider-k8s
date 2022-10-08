@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -47,11 +48,11 @@ type CrdProjectcalicoOrgCalicoNodeStatusV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Classes *[]string `tfsdk:"classes" yaml:"classes,omitempty"`
-
 		Node *string `tfsdk:"node" yaml:"node,omitempty"`
 
 		UpdatePeriodSeconds *int64 `tfsdk:"update_period_seconds" yaml:"updatePeriodSeconds,omitempty"`
+
+		Classes *[]string `tfsdk:"classes" yaml:"classes,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -145,17 +146,6 @@ func (r *CrdProjectcalicoOrgCalicoNodeStatusV1Resource) GetSchema(_ context.Cont
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"classes": {
-						Description:         "Classes declares the types of information to monitor for this calico/node, and allows for selective status reporting about certain subsets of information.",
-						MarkdownDescription: "Classes declares the types of information to monitor for this calico/node, and allows for selective status reporting about certain subsets of information.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"node": {
 						Description:         "The node name identifies the Calico node instance for node status.",
 						MarkdownDescription: "The node name identifies the Calico node instance for node status.",
@@ -172,6 +162,17 @@ func (r *CrdProjectcalicoOrgCalicoNodeStatusV1Resource) GetSchema(_ context.Cont
 						MarkdownDescription: "UpdatePeriodSeconds is the period at which CalicoNodeStatus should be updated. Set to 0 to disable CalicoNodeStatus refresh. Maximum update period is one day.",
 
 						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"classes": {
+						Description:         "Classes declares the types of information to monitor for this calico/node, and allows for selective status reporting about certain subsets of information.",
+						MarkdownDescription: "Classes declares the types of information to monitor for this calico/node, and allows for selective status reporting about certain subsets of information.",
+
+						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

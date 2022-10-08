@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -52,70 +53,6 @@ type ExternalSecretsIoSecretStoreV1Alpha1GoModel struct {
 		Controller *string `tfsdk:"controller" yaml:"controller,omitempty"`
 
 		Provider *struct {
-			Alibaba *struct {
-				Endpoint *string `tfsdk:"endpoint" yaml:"endpoint,omitempty"`
-
-				RegionID *string `tfsdk:"region_id" yaml:"regionID,omitempty"`
-
-				Auth *struct {
-					SecretRef *struct {
-						AccessKeyIDSecretRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-						} `tfsdk:"access_key_id_secret_ref" yaml:"accessKeyIDSecretRef,omitempty"`
-
-						AccessKeySecretSecretRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-						} `tfsdk:"access_key_secret_secret_ref" yaml:"accessKeySecretSecretRef,omitempty"`
-					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-				} `tfsdk:"auth" yaml:"auth,omitempty"`
-			} `tfsdk:"alibaba" yaml:"alibaba,omitempty"`
-
-			Aws *struct {
-				Auth *struct {
-					Jwt *struct {
-						ServiceAccountRef *struct {
-							Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-						} `tfsdk:"service_account_ref" yaml:"serviceAccountRef,omitempty"`
-					} `tfsdk:"jwt" yaml:"jwt,omitempty"`
-
-					SecretRef *struct {
-						AccessKeyIDSecretRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-						} `tfsdk:"access_key_id_secret_ref" yaml:"accessKeyIDSecretRef,omitempty"`
-
-						SecretAccessKeySecretRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-						} `tfsdk:"secret_access_key_secret_ref" yaml:"secretAccessKeySecretRef,omitempty"`
-					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-				} `tfsdk:"auth" yaml:"auth,omitempty"`
-
-				Region *string `tfsdk:"region" yaml:"region,omitempty"`
-
-				Role *string `tfsdk:"role" yaml:"role,omitempty"`
-
-				Service *string `tfsdk:"service" yaml:"service,omitempty"`
-			} `tfsdk:"aws" yaml:"aws,omitempty"`
-
 			Gcpsm *struct {
 				Auth *struct {
 					SecretRef *struct {
@@ -129,42 +66,24 @@ type ExternalSecretsIoSecretStoreV1Alpha1GoModel struct {
 					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
 					WorkloadIdentity *struct {
-						ServiceAccountRef *struct {
-							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-							Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-						} `tfsdk:"service_account_ref" yaml:"serviceAccountRef,omitempty"`
-
 						ClusterLocation *string `tfsdk:"cluster_location" yaml:"clusterLocation,omitempty"`
 
 						ClusterName *string `tfsdk:"cluster_name" yaml:"clusterName,omitempty"`
 
 						ClusterProjectID *string `tfsdk:"cluster_project_id" yaml:"clusterProjectID,omitempty"`
+
+						ServiceAccountRef *struct {
+							Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"service_account_ref" yaml:"serviceAccountRef,omitempty"`
 					} `tfsdk:"workload_identity" yaml:"workloadIdentity,omitempty"`
 				} `tfsdk:"auth" yaml:"auth,omitempty"`
 
 				ProjectID *string `tfsdk:"project_id" yaml:"projectID,omitempty"`
 			} `tfsdk:"gcpsm" yaml:"gcpsm,omitempty"`
-
-			Gitlab *struct {
-				Auth *struct {
-					SecretRef *struct {
-						AccessToken *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-						} `tfsdk:"access_token" yaml:"accessToken,omitempty"`
-					} `tfsdk:"secret_ref" yaml:"SecretRef,omitempty"`
-				} `tfsdk:"auth" yaml:"auth,omitempty"`
-
-				ProjectID *string `tfsdk:"project_id" yaml:"projectID,omitempty"`
-
-				Url *string `tfsdk:"url" yaml:"url,omitempty"`
-			} `tfsdk:"gitlab" yaml:"gitlab,omitempty"`
 
 			Vault *struct {
 				CaProvider *struct {
@@ -177,21 +96,13 @@ type ExternalSecretsIoSecretStoreV1Alpha1GoModel struct {
 					Type *string `tfsdk:"type" yaml:"type,omitempty"`
 				} `tfsdk:"ca_provider" yaml:"caProvider,omitempty"`
 
-				ForwardInconsistent *bool `tfsdk:"forward_inconsistent" yaml:"forwardInconsistent,omitempty"`
-
 				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 
-				ReadYourWrites *bool `tfsdk:"read_your_writes" yaml:"readYourWrites,omitempty"`
+				Server *string `tfsdk:"server" yaml:"server,omitempty"`
+
+				Version *string `tfsdk:"version" yaml:"version,omitempty"`
 
 				Auth *struct {
-					TokenSecretRef *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-					} `tfsdk:"token_secret_ref" yaml:"tokenSecretRef,omitempty"`
-
 					AppRole *struct {
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
@@ -234,17 +145,17 @@ type ExternalSecretsIoSecretStoreV1Alpha1GoModel struct {
 						} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
 						KubernetesServiceAccountToken *struct {
+							Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
+
 							ExpirationSeconds *int64 `tfsdk:"expiration_seconds" yaml:"expirationSeconds,omitempty"`
 
 							ServiceAccountRef *struct {
-								Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
-
 								Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 								Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-							} `tfsdk:"service_account_ref" yaml:"serviceAccountRef,omitempty"`
 
-							Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
+								Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
+							} `tfsdk:"service_account_ref" yaml:"serviceAccountRef,omitempty"`
 						} `tfsdk:"kubernetes_service_account_token" yaml:"kubernetesServiceAccountToken,omitempty"`
 
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
@@ -253,8 +164,6 @@ type ExternalSecretsIoSecretStoreV1Alpha1GoModel struct {
 					} `tfsdk:"jwt" yaml:"jwt,omitempty"`
 
 					Kubernetes *struct {
-						MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-
 						Role *string `tfsdk:"role" yaml:"role,omitempty"`
 
 						SecretRef *struct {
@@ -266,39 +175,51 @@ type ExternalSecretsIoSecretStoreV1Alpha1GoModel struct {
 						} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
 						ServiceAccountRef *struct {
-							Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
-
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+							Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
 						} `tfsdk:"service_account_ref" yaml:"serviceAccountRef,omitempty"`
+
+						MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
 					} `tfsdk:"kubernetes" yaml:"kubernetes,omitempty"`
 
 					Ldap *struct {
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
 						SecretRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 						} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
 						Username *string `tfsdk:"username" yaml:"username,omitempty"`
 					} `tfsdk:"ldap" yaml:"ldap,omitempty"`
+
+					TokenSecretRef *struct {
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+					} `tfsdk:"token_secret_ref" yaml:"tokenSecretRef,omitempty"`
 				} `tfsdk:"auth" yaml:"auth,omitempty"`
 
 				CaBundle *string `tfsdk:"ca_bundle" yaml:"caBundle,omitempty"`
 
-				Version *string `tfsdk:"version" yaml:"version,omitempty"`
+				ForwardInconsistent *bool `tfsdk:"forward_inconsistent" yaml:"forwardInconsistent,omitempty"`
 
 				Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-				Server *string `tfsdk:"server" yaml:"server,omitempty"`
+				ReadYourWrites *bool `tfsdk:"read_your_writes" yaml:"readYourWrites,omitempty"`
 			} `tfsdk:"vault" yaml:"vault,omitempty"`
 
 			Webhook *struct {
+				Method *string `tfsdk:"method" yaml:"method,omitempty"`
+
 				Secrets *[]struct {
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
@@ -313,15 +234,9 @@ type ExternalSecretsIoSecretStoreV1Alpha1GoModel struct {
 
 				Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 
-				Body *string `tfsdk:"body" yaml:"body,omitempty"`
-
-				Headers *map[string]string `tfsdk:"headers" yaml:"headers,omitempty"`
-
-				Result *struct {
-					JsonPath *string `tfsdk:"json_path" yaml:"jsonPath,omitempty"`
-				} `tfsdk:"result" yaml:"result,omitempty"`
-
 				Url *string `tfsdk:"url" yaml:"url,omitempty"`
+
+				Body *string `tfsdk:"body" yaml:"body,omitempty"`
 
 				CaBundle *string `tfsdk:"ca_bundle" yaml:"caBundle,omitempty"`
 
@@ -335,186 +250,90 @@ type ExternalSecretsIoSecretStoreV1Alpha1GoModel struct {
 					Type *string `tfsdk:"type" yaml:"type,omitempty"`
 				} `tfsdk:"ca_provider" yaml:"caProvider,omitempty"`
 
-				Method *string `tfsdk:"method" yaml:"method,omitempty"`
+				Headers *map[string]string `tfsdk:"headers" yaml:"headers,omitempty"`
+
+				Result *struct {
+					JsonPath *string `tfsdk:"json_path" yaml:"jsonPath,omitempty"`
+				} `tfsdk:"result" yaml:"result,omitempty"`
 			} `tfsdk:"webhook" yaml:"webhook,omitempty"`
-
-			Akeyless *struct {
-				AkeylessGWApiURL *string `tfsdk:"akeyless_gw_api_url" yaml:"akeylessGWApiURL,omitempty"`
-
-				AuthSecretRef *struct {
-					SecretRef *struct {
-						AccessID *struct {
-							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-						} `tfsdk:"access_id" yaml:"accessID,omitempty"`
-
-						AccessType *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-						} `tfsdk:"access_type" yaml:"accessType,omitempty"`
-
-						AccessTypeParam *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-						} `tfsdk:"access_type_param" yaml:"accessTypeParam,omitempty"`
-					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-				} `tfsdk:"auth_secret_ref" yaml:"authSecretRef,omitempty"`
-			} `tfsdk:"akeyless" yaml:"akeyless,omitempty"`
 
 			Fake *struct {
 				Data *[]struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
 					Value *string `tfsdk:"value" yaml:"value,omitempty"`
 
 					ValueMap *map[string]string `tfsdk:"value_map" yaml:"valueMap,omitempty"`
 
 					Version *string `tfsdk:"version" yaml:"version,omitempty"`
+
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 				} `tfsdk:"data" yaml:"data,omitempty"`
 			} `tfsdk:"fake" yaml:"fake,omitempty"`
 
-			Ibm *struct {
+			Alibaba *struct {
 				Auth *struct {
 					SecretRef *struct {
-						SecretApiKeySecretRef *struct {
+						AccessKeySecretSecretRef *struct {
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-						} `tfsdk:"secret_api_key_secret_ref" yaml:"secretApiKeySecretRef,omitempty"`
+						} `tfsdk:"access_key_secret_secret_ref" yaml:"accessKeySecretSecretRef,omitempty"`
+
+						AccessKeyIDSecretRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"access_key_id_secret_ref" yaml:"accessKeyIDSecretRef,omitempty"`
 					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 				} `tfsdk:"auth" yaml:"auth,omitempty"`
 
-				ServiceUrl *string `tfsdk:"service_url" yaml:"serviceUrl,omitempty"`
-			} `tfsdk:"ibm" yaml:"ibm,omitempty"`
+				Endpoint *string `tfsdk:"endpoint" yaml:"endpoint,omitempty"`
 
-			Kubernetes *struct {
+				RegionID *string `tfsdk:"region_id" yaml:"regionID,omitempty"`
+			} `tfsdk:"alibaba" yaml:"alibaba,omitempty"`
+
+			Aws *struct {
 				Auth *struct {
-					Cert *struct {
-						ClientKey *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
+					Jwt *struct {
+						ServiceAccountRef *struct {
 							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-						} `tfsdk:"client_key" yaml:"clientKey,omitempty"`
 
-						ClientCert *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-						} `tfsdk:"client_cert" yaml:"clientCert,omitempty"`
-					} `tfsdk:"cert" yaml:"cert,omitempty"`
-
-					ServiceAccount *struct {
-						ServiceAccount *struct {
 							Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
 
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"service_account_ref" yaml:"serviceAccountRef,omitempty"`
+					} `tfsdk:"jwt" yaml:"jwt,omitempty"`
 
-							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-						} `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
-					} `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
-
-					Token *struct {
-						BearerToken *struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-						} `tfsdk:"bearer_token" yaml:"bearerToken,omitempty"`
-					} `tfsdk:"token" yaml:"token,omitempty"`
-				} `tfsdk:"auth" yaml:"auth,omitempty"`
-
-				RemoteNamespace *string `tfsdk:"remote_namespace" yaml:"remoteNamespace,omitempty"`
-
-				Server *struct {
-					CaBundle *string `tfsdk:"ca_bundle" yaml:"caBundle,omitempty"`
-
-					CaProvider *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-						Type *string `tfsdk:"type" yaml:"type,omitempty"`
-					} `tfsdk:"ca_provider" yaml:"caProvider,omitempty"`
-
-					Url *string `tfsdk:"url" yaml:"url,omitempty"`
-				} `tfsdk:"server" yaml:"server,omitempty"`
-			} `tfsdk:"kubernetes" yaml:"kubernetes,omitempty"`
-
-			Oracle *struct {
-				Auth *struct {
 					SecretRef *struct {
-						Fingerprint *struct {
+						AccessKeyIDSecretRef *struct {
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-						} `tfsdk:"fingerprint" yaml:"fingerprint,omitempty"`
+						} `tfsdk:"access_key_id_secret_ref" yaml:"accessKeyIDSecretRef,omitempty"`
 
-						Privatekey *struct {
+						SecretAccessKeySecretRef *struct {
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-						} `tfsdk:"privatekey" yaml:"privatekey,omitempty"`
+						} `tfsdk:"secret_access_key_secret_ref" yaml:"secretAccessKeySecretRef,omitempty"`
 					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-					Tenancy *string `tfsdk:"tenancy" yaml:"tenancy,omitempty"`
-
-					User *string `tfsdk:"user" yaml:"user,omitempty"`
 				} `tfsdk:"auth" yaml:"auth,omitempty"`
 
 				Region *string `tfsdk:"region" yaml:"region,omitempty"`
 
-				Vault *string `tfsdk:"vault" yaml:"vault,omitempty"`
-			} `tfsdk:"oracle" yaml:"oracle,omitempty"`
+				Role *string `tfsdk:"role" yaml:"role,omitempty"`
 
-			Yandexlockbox *struct {
-				ApiEndpoint *string `tfsdk:"api_endpoint" yaml:"apiEndpoint,omitempty"`
-
-				Auth *struct {
-					AuthorizedKeySecretRef *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-					} `tfsdk:"authorized_key_secret_ref" yaml:"authorizedKeySecretRef,omitempty"`
-				} `tfsdk:"auth" yaml:"auth,omitempty"`
-
-				CaProvider *struct {
-					CertSecretRef *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-					} `tfsdk:"cert_secret_ref" yaml:"certSecretRef,omitempty"`
-				} `tfsdk:"ca_provider" yaml:"caProvider,omitempty"`
-			} `tfsdk:"yandexlockbox" yaml:"yandexlockbox,omitempty"`
+				Service *string `tfsdk:"service" yaml:"service,omitempty"`
+			} `tfsdk:"aws" yaml:"aws,omitempty"`
 
 			Azurekv *struct {
-				VaultUrl *string `tfsdk:"vault_url" yaml:"vaultUrl,omitempty"`
-
 				AuthSecretRef *struct {
 					ClientId *struct {
 						Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -546,7 +365,189 @@ type ExternalSecretsIoSecretStoreV1Alpha1GoModel struct {
 				} `tfsdk:"service_account_ref" yaml:"serviceAccountRef,omitempty"`
 
 				TenantId *string `tfsdk:"tenant_id" yaml:"tenantId,omitempty"`
+
+				VaultUrl *string `tfsdk:"vault_url" yaml:"vaultUrl,omitempty"`
 			} `tfsdk:"azurekv" yaml:"azurekv,omitempty"`
+
+			Gitlab *struct {
+				Auth *struct {
+					SecretRef *struct {
+						AccessToken *struct {
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"access_token" yaml:"accessToken,omitempty"`
+					} `tfsdk:"secret_ref" yaml:"SecretRef,omitempty"`
+				} `tfsdk:"auth" yaml:"auth,omitempty"`
+
+				ProjectID *string `tfsdk:"project_id" yaml:"projectID,omitempty"`
+
+				Url *string `tfsdk:"url" yaml:"url,omitempty"`
+			} `tfsdk:"gitlab" yaml:"gitlab,omitempty"`
+
+			Ibm *struct {
+				Auth *struct {
+					SecretRef *struct {
+						SecretApiKeySecretRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"secret_api_key_secret_ref" yaml:"secretApiKeySecretRef,omitempty"`
+					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+				} `tfsdk:"auth" yaml:"auth,omitempty"`
+
+				ServiceUrl *string `tfsdk:"service_url" yaml:"serviceUrl,omitempty"`
+			} `tfsdk:"ibm" yaml:"ibm,omitempty"`
+
+			Kubernetes *struct {
+				Auth *struct {
+					Cert *struct {
+						ClientCert *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"client_cert" yaml:"clientCert,omitempty"`
+
+						ClientKey *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"client_key" yaml:"clientKey,omitempty"`
+					} `tfsdk:"cert" yaml:"cert,omitempty"`
+
+					ServiceAccount *struct {
+						ServiceAccount *struct {
+							Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
+					} `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
+
+					Token *struct {
+						BearerToken *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"bearer_token" yaml:"bearerToken,omitempty"`
+					} `tfsdk:"token" yaml:"token,omitempty"`
+				} `tfsdk:"auth" yaml:"auth,omitempty"`
+
+				RemoteNamespace *string `tfsdk:"remote_namespace" yaml:"remoteNamespace,omitempty"`
+
+				Server *struct {
+					CaBundle *string `tfsdk:"ca_bundle" yaml:"caBundle,omitempty"`
+
+					CaProvider *struct {
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+						Type *string `tfsdk:"type" yaml:"type,omitempty"`
+					} `tfsdk:"ca_provider" yaml:"caProvider,omitempty"`
+
+					Url *string `tfsdk:"url" yaml:"url,omitempty"`
+				} `tfsdk:"server" yaml:"server,omitempty"`
+			} `tfsdk:"kubernetes" yaml:"kubernetes,omitempty"`
+
+			Oracle *struct {
+				Auth *struct {
+					User *string `tfsdk:"user" yaml:"user,omitempty"`
+
+					SecretRef *struct {
+						Fingerprint *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"fingerprint" yaml:"fingerprint,omitempty"`
+
+						Privatekey *struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+						} `tfsdk:"privatekey" yaml:"privatekey,omitempty"`
+					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+					Tenancy *string `tfsdk:"tenancy" yaml:"tenancy,omitempty"`
+				} `tfsdk:"auth" yaml:"auth,omitempty"`
+
+				Region *string `tfsdk:"region" yaml:"region,omitempty"`
+
+				Vault *string `tfsdk:"vault" yaml:"vault,omitempty"`
+			} `tfsdk:"oracle" yaml:"oracle,omitempty"`
+
+			Akeyless *struct {
+				AkeylessGWApiURL *string `tfsdk:"akeyless_gw_api_url" yaml:"akeylessGWApiURL,omitempty"`
+
+				AuthSecretRef *struct {
+					SecretRef *struct {
+						AccessType *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"access_type" yaml:"accessType,omitempty"`
+
+						AccessTypeParam *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"access_type_param" yaml:"accessTypeParam,omitempty"`
+
+						AccessID *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"access_id" yaml:"accessID,omitempty"`
+					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+				} `tfsdk:"auth_secret_ref" yaml:"authSecretRef,omitempty"`
+			} `tfsdk:"akeyless" yaml:"akeyless,omitempty"`
+
+			Yandexlockbox *struct {
+				ApiEndpoint *string `tfsdk:"api_endpoint" yaml:"apiEndpoint,omitempty"`
+
+				Auth *struct {
+					AuthorizedKeySecretRef *struct {
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+					} `tfsdk:"authorized_key_secret_ref" yaml:"authorizedKeySecretRef,omitempty"`
+				} `tfsdk:"auth" yaml:"auth,omitempty"`
+
+				CaProvider *struct {
+					CertSecretRef *struct {
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+					} `tfsdk:"cert_secret_ref" yaml:"certSecretRef,omitempty"`
+				} `tfsdk:"ca_provider" yaml:"caProvider,omitempty"`
+			} `tfsdk:"yandexlockbox" yaml:"yandexlockbox,omitempty"`
 		} `tfsdk:"provider" yaml:"provider,omitempty"`
 
 		RetrySettings *struct {
@@ -671,370 +672,6 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"alibaba": {
-								Description:         "Alibaba configures this store to sync secrets using Alibaba Cloud provider",
-								MarkdownDescription: "Alibaba configures this store to sync secrets using Alibaba Cloud provider",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"endpoint": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"region_id": {
-										Description:         "Alibaba Region to be used for the provider",
-										MarkdownDescription: "Alibaba Region to be used for the provider",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"auth": {
-										Description:         "AlibabaAuth contains a secretRef for credentials.",
-										MarkdownDescription: "AlibabaAuth contains a secretRef for credentials.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"secret_ref": {
-												Description:         "AlibabaAuthSecretRef holds secret references for Alibaba credentials.",
-												MarkdownDescription: "AlibabaAuthSecretRef holds secret references for Alibaba credentials.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"access_key_id_secret_ref": {
-														Description:         "The AccessKeyID is used for authentication",
-														MarkdownDescription: "The AccessKeyID is used for authentication",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of the Secret resource being referred to.",
-																MarkdownDescription: "The name of the Secret resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"access_key_secret_secret_ref": {
-														Description:         "The AccessKeySecret is used for authentication",
-														MarkdownDescription: "The AccessKeySecret is used for authentication",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of the Secret resource being referred to.",
-																MarkdownDescription: "The name of the Secret resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"aws": {
-								Description:         "AWS configures this store to sync secrets using AWS Secret Manager provider",
-								MarkdownDescription: "AWS configures this store to sync secrets using AWS Secret Manager provider",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"auth": {
-										Description:         "Auth defines the information necessary to authenticate against AWS if not set aws sdk will infer credentials from your environment see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-										MarkdownDescription: "Auth defines the information necessary to authenticate against AWS if not set aws sdk will infer credentials from your environment see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"jwt": {
-												Description:         "Authenticate against AWS using service account tokens.",
-												MarkdownDescription: "Authenticate against AWS using service account tokens.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"service_account_ref": {
-														Description:         "A reference to a ServiceAccount resource.",
-														MarkdownDescription: "A reference to a ServiceAccount resource.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"audiences": {
-																Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
-																MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of the ServiceAccount resource being referred to.",
-																MarkdownDescription: "The name of the ServiceAccount resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"secret_ref": {
-												Description:         "AWSAuthSecretRef holds secret references for AWS credentials both AccessKeyID and SecretAccessKey must be defined in order to properly authenticate.",
-												MarkdownDescription: "AWSAuthSecretRef holds secret references for AWS credentials both AccessKeyID and SecretAccessKey must be defined in order to properly authenticate.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"access_key_id_secret_ref": {
-														Description:         "The AccessKeyID is used for authentication",
-														MarkdownDescription: "The AccessKeyID is used for authentication",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of the Secret resource being referred to.",
-																MarkdownDescription: "The name of the Secret resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"secret_access_key_secret_ref": {
-														Description:         "The SecretAccessKey is used for authentication",
-														MarkdownDescription: "The SecretAccessKey is used for authentication",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of the Secret resource being referred to.",
-																MarkdownDescription: "The name of the Secret resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"region": {
-										Description:         "AWS Region to be used for the provider",
-										MarkdownDescription: "AWS Region to be used for the provider",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"role": {
-										Description:         "Role is a Role ARN which the SecretManager provider will assume",
-										MarkdownDescription: "Role is a Role ARN which the SecretManager provider will assume",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"service": {
-										Description:         "Service defines which service should be used to fetch the secrets",
-										MarkdownDescription: "Service defines which service should be used to fetch the secrets",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"gcpsm": {
 								Description:         "GCPSM configures this store to sync secrets using Google Cloud Platform Secret Manager provider",
 								MarkdownDescription: "GCPSM configures this store to sync secrets using Google Cloud Platform Secret Manager provider",
@@ -1110,51 +747,6 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"service_account_ref": {
-														Description:         "A reference to a ServiceAccount resource.",
-														MarkdownDescription: "A reference to a ServiceAccount resource.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"audiences": {
-																Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
-																MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of the ServiceAccount resource being referred to.",
-																MarkdownDescription: "The name of the ServiceAccount resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
 													"cluster_location": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -1187,6 +779,51 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 														Optional: true,
 														Computed: false,
 													},
+
+													"service_account_ref": {
+														Description:         "A reference to a ServiceAccount resource.",
+														MarkdownDescription: "A reference to a ServiceAccount resource.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"audiences": {
+																Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+																MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the ServiceAccount resource being referred to.",
+																MarkdownDescription: "The name of the ServiceAccount resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
 												}),
 
 												Required: false,
@@ -1203,109 +840,6 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 									"project_id": {
 										Description:         "ProjectID project where secret is located",
 										MarkdownDescription: "ProjectID project where secret is located",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"gitlab": {
-								Description:         "Gitlab configures this store to sync secrets using Gitlab Variables provider",
-								MarkdownDescription: "Gitlab configures this store to sync secrets using Gitlab Variables provider",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"auth": {
-										Description:         "Auth configures how secret-manager authenticates with a GitLab instance.",
-										MarkdownDescription: "Auth configures how secret-manager authenticates with a GitLab instance.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"secret_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"access_token": {
-														Description:         "AccessToken is used for authentication.",
-														MarkdownDescription: "AccessToken is used for authentication.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of the Secret resource being referred to.",
-																MarkdownDescription: "The name of the Secret resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"project_id": {
-										Description:         "ProjectID specifies a project where secrets are located.",
-										MarkdownDescription: "ProjectID specifies a project where secrets are located.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"url": {
-										Description:         "URL configures the GitLab instance URL. Defaults to https://gitlab.com/.",
-										MarkdownDescription: "URL configures the GitLab instance URL. Defaults to https://gitlab.com/.",
 
 										Type: types.StringType,
 
@@ -1382,17 +916,6 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 										Computed: false,
 									},
 
-									"forward_inconsistent": {
-										Description:         "ForwardInconsistent tells Vault to forward read-after-write requests to the Vault leader instead of simply retrying within a loop. This can increase performance if the option is enabled serverside. https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header",
-										MarkdownDescription: "ForwardInconsistent tells Vault to forward read-after-write requests to the Vault leader instead of simply retrying within a loop. This can increase performance if the option is enabled serverside. https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"namespace": {
 										Description:         "Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: 'ns1'. More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces",
 										MarkdownDescription: "Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: 'ns1'. More about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces",
@@ -1404,11 +927,22 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 										Computed: false,
 									},
 
-									"read_your_writes": {
-										Description:         "ReadYourWrites ensures isolated read-after-write semantics by providing discovered cluster replication states in each request. More information about eventual consistency in Vault can be found here https://www.vaultproject.io/docs/enterprise/consistency",
-										MarkdownDescription: "ReadYourWrites ensures isolated read-after-write semantics by providing discovered cluster replication states in each request. More information about eventual consistency in Vault can be found here https://www.vaultproject.io/docs/enterprise/consistency",
+									"server": {
+										Description:         "Server is the connection address for the Vault server, e.g: 'https://vault.example.com:8200'.",
+										MarkdownDescription: "Server is the connection address for the Vault server, e.g: 'https://vault.example.com:8200'.",
 
-										Type: types.BoolType,
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"version": {
+										Description:         "Version is the Vault KV secret engine version. This can be either 'v1' or 'v2'. Version defaults to 'v2'.",
+										MarkdownDescription: "Version is the Vault KV secret engine version. This can be either 'v1' or 'v2'. Version defaults to 'v2'.",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -1420,51 +954,6 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 										MarkdownDescription: "Auth configures how secret-manager authenticates with the Vault server.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"token_secret_ref": {
-												Description:         "TokenSecretRef authenticates with Vault by presenting a token.",
-												MarkdownDescription: "TokenSecretRef authenticates with Vault by presenting a token.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"key": {
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "The name of the Secret resource being referred to.",
-														MarkdownDescription: "The name of the Secret resource being referred to.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"namespace": {
-														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
 											"app_role": {
 												Description:         "AppRole authenticates with Vault using the App Role auth mechanism, with the role and secret stored in a Kubernetes Secret resource.",
@@ -1704,6 +1193,17 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+															"audiences": {
+																Description:         "Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by 'serviceAccountRef'. Defaults to a single audience 'vault' it not specified.",
+																MarkdownDescription: "Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by 'serviceAccountRef'. Defaults to a single audience 'vault' it not specified.",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"expiration_seconds": {
 																Description:         "Optional expiration time in seconds that will be used to request a temporary Kubernetes service account token for the service account referenced by 'serviceAccountRef'. Defaults to 10 minutes.",
 																MarkdownDescription: "Optional expiration time in seconds that will be used to request a temporary Kubernetes service account token for the service account referenced by 'serviceAccountRef'. Defaults to 10 minutes.",
@@ -1720,17 +1220,6 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 																MarkdownDescription: "Service account field containing the name of a kubernetes ServiceAccount.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"audiences": {
-																		Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
-																		MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
 
 																	"name": {
 																		Description:         "The name of the ServiceAccount resource being referred to.",
@@ -1753,21 +1242,21 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 																		Optional: true,
 																		Computed: false,
 																	},
+
+																	"audiences": {
+																		Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+																		MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
 																}),
 
 																Required: true,
 																Optional: false,
-																Computed: false,
-															},
-
-															"audiences": {
-																Description:         "Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by 'serviceAccountRef'. Defaults to a single audience 'vault' it not specified.",
-																MarkdownDescription: "Optional audiences field that will be used to request a temporary Kubernetes service account token for the service account referenced by 'serviceAccountRef'. Defaults to a single audience 'vault' it not specified.",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
 																Computed: false,
 															},
 														}),
@@ -1810,17 +1299,6 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 												MarkdownDescription: "Kubernetes authenticates with Vault by passing the ServiceAccount token stored in the named Secret resource to the Vault server.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"mount_path": {
-														Description:         "Path where the Kubernetes authentication backend is mounted in Vault, e.g: 'kubernetes'",
-														MarkdownDescription: "Path where the Kubernetes authentication backend is mounted in Vault, e.g: 'kubernetes'",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
 
 													"role": {
 														Description:         "A required field containing the Vault Role to assume. A Role binds a Kubernetes ServiceAccount with a set of Vault policies.",
@@ -1884,17 +1362,6 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"audiences": {
-																Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
-																MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"name": {
 																Description:         "The name of the ServiceAccount resource being referred to.",
 																MarkdownDescription: "The name of the ServiceAccount resource being referred to.",
@@ -1916,10 +1383,32 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 																Optional: true,
 																Computed: false,
 															},
+
+															"audiences": {
+																Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+																MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
 														}),
 
 														Required: false,
 														Optional: true,
+														Computed: false,
+													},
+
+													"mount_path": {
+														Description:         "Path where the Kubernetes authentication backend is mounted in Vault, e.g: 'kubernetes'",
+														MarkdownDescription: "Path where the Kubernetes authentication backend is mounted in Vault, e.g: 'kubernetes'",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
 														Computed: false,
 													},
 												}),
@@ -1952,6 +1441,17 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"name": {
 																Description:         "The name of the Secret resource being referred to.",
 																MarkdownDescription: "The name of the Secret resource being referred to.",
@@ -1966,17 +1466,6 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 															"namespace": {
 																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
 																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
 
 																Type: types.StringType,
 
@@ -2007,6 +1496,51 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 												Optional: true,
 												Computed: false,
 											},
+
+											"token_secret_ref": {
+												Description:         "TokenSecretRef authenticates with Vault by presenting a token.",
+												MarkdownDescription: "TokenSecretRef authenticates with Vault by presenting a token.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"key": {
+														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "The name of the Secret resource being referred to.",
+														MarkdownDescription: "The name of the Secret resource being referred to.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespace": {
+														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										}),
 
 										Required: true,
@@ -2025,11 +1559,11 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 										Computed: false,
 									},
 
-									"version": {
-										Description:         "Version is the Vault KV secret engine version. This can be either 'v1' or 'v2'. Version defaults to 'v2'.",
-										MarkdownDescription: "Version is the Vault KV secret engine version. This can be either 'v1' or 'v2'. Version defaults to 'v2'.",
+									"forward_inconsistent": {
+										Description:         "ForwardInconsistent tells Vault to forward read-after-write requests to the Vault leader instead of simply retrying within a loop. This can increase performance if the option is enabled serverside. https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header",
+										MarkdownDescription: "ForwardInconsistent tells Vault to forward read-after-write requests to the Vault leader instead of simply retrying within a loop. This can increase performance if the option is enabled serverside. https://www.vaultproject.io/docs/configuration/replication#allow_forwarding_via_header",
 
-										Type: types.StringType,
+										Type: types.BoolType,
 
 										Required: false,
 										Optional: true,
@@ -2047,14 +1581,14 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 										Computed: false,
 									},
 
-									"server": {
-										Description:         "Server is the connection address for the Vault server, e.g: 'https://vault.example.com:8200'.",
-										MarkdownDescription: "Server is the connection address for the Vault server, e.g: 'https://vault.example.com:8200'.",
+									"read_your_writes": {
+										Description:         "ReadYourWrites ensures isolated read-after-write semantics by providing discovered cluster replication states in each request. More information about eventual consistency in Vault can be found here https://www.vaultproject.io/docs/enterprise/consistency",
+										MarkdownDescription: "ReadYourWrites ensures isolated read-after-write semantics by providing discovered cluster replication states in each request. More information about eventual consistency in Vault can be found here https://www.vaultproject.io/docs/enterprise/consistency",
 
-										Type: types.StringType,
+										Type: types.BoolType,
 
-										Required: true,
-										Optional: false,
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 								}),
@@ -2069,6 +1603,17 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 								MarkdownDescription: "Webhook configures this store to sync secrets using a generic templated webhook",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"method": {
+										Description:         "Webhook Method",
+										MarkdownDescription: "Webhook Method",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"secrets": {
 										Description:         "Secrets to fill in templates These secrets will be passed to the templating function as key value pairs under the given name",
@@ -2149,51 +1694,6 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 										Computed: false,
 									},
 
-									"body": {
-										Description:         "Body",
-										MarkdownDescription: "Body",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"headers": {
-										Description:         "Headers",
-										MarkdownDescription: "Headers",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"result": {
-										Description:         "Result formatting",
-										MarkdownDescription: "Result formatting",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"json_path": {
-												Description:         "Json path of return value",
-												MarkdownDescription: "Json path of return value",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
 									"url": {
 										Description:         "Webhook url to call",
 										MarkdownDescription: "Webhook url to call",
@@ -2202,6 +1702,17 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 
 										Required: true,
 										Optional: false,
+										Computed: false,
+									},
+
+									"body": {
+										Description:         "Body",
+										MarkdownDescription: "Body",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 
@@ -2272,190 +1783,31 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 										Computed: false,
 									},
 
-									"method": {
-										Description:         "Webhook Method",
-										MarkdownDescription: "Webhook Method",
+									"headers": {
+										Description:         "Headers",
+										MarkdownDescription: "Headers",
 
-										Type: types.StringType,
+										Type: types.MapType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
-								}),
 
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"akeyless": {
-								Description:         "Akeyless configures this store to sync secrets using Akeyless Vault provider",
-								MarkdownDescription: "Akeyless configures this store to sync secrets using Akeyless Vault provider",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"akeyless_gw_api_url": {
-										Description:         "Akeyless GW API Url from which the secrets to be fetched from.",
-										MarkdownDescription: "Akeyless GW API Url from which the secrets to be fetched from.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"auth_secret_ref": {
-										Description:         "Auth configures how the operator authenticates with Akeyless.",
-										MarkdownDescription: "Auth configures how the operator authenticates with Akeyless.",
+									"result": {
+										Description:         "Result formatting",
+										MarkdownDescription: "Result formatting",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"secret_ref": {
-												Description:         "AkeylessAuthSecretRef AKEYLESS_ACCESS_TYPE_PARAM: AZURE_OBJ_ID OR GCP_AUDIENCE OR ACCESS_KEY OR KUB_CONFIG_NAME.",
-												MarkdownDescription: "AkeylessAuthSecretRef AKEYLESS_ACCESS_TYPE_PARAM: AZURE_OBJ_ID OR GCP_AUDIENCE OR ACCESS_KEY OR KUB_CONFIG_NAME.",
+											"json_path": {
+												Description:         "Json path of return value",
+												MarkdownDescription: "Json path of return value",
 
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+												Type: types.StringType,
 
-													"access_id": {
-														Description:         "The SecretAccessID is used for authentication",
-														MarkdownDescription: "The SecretAccessID is used for authentication",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of the Secret resource being referred to.",
-																MarkdownDescription: "The name of the Secret resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"access_type": {
-														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of the Secret resource being referred to.",
-																MarkdownDescription: "The name of the Secret resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"access_type_param": {
-														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of the Secret resource being referred to.",
-																MarkdownDescription: "The name of the Secret resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: true,
-												Optional: false,
+												Required: false,
+												Optional: true,
 												Computed: false,
 											},
 										}),
@@ -2482,17 +1834,6 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 										MarkdownDescription: "",
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
 
 											"value": {
 												Description:         "",
@@ -2526,6 +1867,17 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 												Optional: true,
 												Computed: false,
 											},
+
+											"key": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
 										}),
 
 										Required: true,
@@ -2539,25 +1891,275 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 								Computed: false,
 							},
 
-							"ibm": {
-								Description:         "IBM configures this store to sync secrets using IBM Cloud provider",
-								MarkdownDescription: "IBM configures this store to sync secrets using IBM Cloud provider",
+							"alibaba": {
+								Description:         "Alibaba configures this store to sync secrets using Alibaba Cloud provider",
+								MarkdownDescription: "Alibaba configures this store to sync secrets using Alibaba Cloud provider",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 									"auth": {
-										Description:         "Auth configures how secret-manager authenticates with the IBM secrets manager.",
-										MarkdownDescription: "Auth configures how secret-manager authenticates with the IBM secrets manager.",
+										Description:         "AlibabaAuth contains a secretRef for credentials.",
+										MarkdownDescription: "AlibabaAuth contains a secretRef for credentials.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 											"secret_ref": {
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "AlibabaAuthSecretRef holds secret references for Alibaba credentials.",
+												MarkdownDescription: "AlibabaAuthSecretRef holds secret references for Alibaba credentials.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"secret_api_key_secret_ref": {
+													"access_key_secret_secret_ref": {
+														Description:         "The AccessKeySecret is used for authentication",
+														MarkdownDescription: "The AccessKeySecret is used for authentication",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"access_key_id_secret_ref": {
+														Description:         "The AccessKeyID is used for authentication",
+														MarkdownDescription: "The AccessKeyID is used for authentication",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"endpoint": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"region_id": {
+										Description:         "Alibaba Region to be used for the provider",
+										MarkdownDescription: "Alibaba Region to be used for the provider",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"aws": {
+								Description:         "AWS configures this store to sync secrets using AWS Secret Manager provider",
+								MarkdownDescription: "AWS configures this store to sync secrets using AWS Secret Manager provider",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"auth": {
+										Description:         "Auth defines the information necessary to authenticate against AWS if not set aws sdk will infer credentials from your environment see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+										MarkdownDescription: "Auth defines the information necessary to authenticate against AWS if not set aws sdk will infer credentials from your environment see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"jwt": {
+												Description:         "Authenticate against AWS using service account tokens.",
+												MarkdownDescription: "Authenticate against AWS using service account tokens.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"service_account_ref": {
+														Description:         "A reference to a ServiceAccount resource.",
+														MarkdownDescription: "A reference to a ServiceAccount resource.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"audiences": {
+																Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+																MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the ServiceAccount resource being referred to.",
+																MarkdownDescription: "The name of the ServiceAccount resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret_ref": {
+												Description:         "AWSAuthSecretRef holds secret references for AWS credentials both AccessKeyID and SecretAccessKey must be defined in order to properly authenticate.",
+												MarkdownDescription: "AWSAuthSecretRef holds secret references for AWS credentials both AccessKeyID and SecretAccessKey must be defined in order to properly authenticate.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"access_key_id_secret_ref": {
+														Description:         "The AccessKeyID is used for authentication",
+														MarkdownDescription: "The AccessKeyID is used for authentication",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"secret_access_key_secret_ref": {
 														Description:         "The SecretAccessKey is used for authentication",
 														MarkdownDescription: "The SecretAccessKey is used for authentication",
 
@@ -2603,508 +2205,8 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 													},
 												}),
 
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"service_url": {
-										Description:         "ServiceURL is the Endpoint URL that is specific to the Secrets Manager service instance",
-										MarkdownDescription: "ServiceURL is the Endpoint URL that is specific to the Secrets Manager service instance",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"kubernetes": {
-								Description:         "Kubernetes configures this store to sync secrets using a Kubernetes cluster provider",
-								MarkdownDescription: "Kubernetes configures this store to sync secrets using a Kubernetes cluster provider",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"auth": {
-										Description:         "Auth configures how secret-manager authenticates with a Kubernetes instance.",
-										MarkdownDescription: "Auth configures how secret-manager authenticates with a Kubernetes instance.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"cert": {
-												Description:         "has both clientCert and clientKey as secretKeySelector",
-												MarkdownDescription: "has both clientCert and clientKey as secretKeySelector",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"client_key": {
-														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of the Secret resource being referred to.",
-																MarkdownDescription: "The name of the Secret resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"client_cert": {
-														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of the Secret resource being referred to.",
-																MarkdownDescription: "The name of the Secret resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
 												Required: false,
 												Optional: true,
-												Computed: false,
-											},
-
-											"service_account": {
-												Description:         "points to a service account that should be used for authentication",
-												MarkdownDescription: "points to a service account that should be used for authentication",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"service_account": {
-														Description:         "A reference to a ServiceAccount resource.",
-														MarkdownDescription: "A reference to a ServiceAccount resource.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"audiences": {
-																Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
-																MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of the ServiceAccount resource being referred to.",
-																MarkdownDescription: "The name of the ServiceAccount resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"token": {
-												Description:         "use static token to authenticate with",
-												MarkdownDescription: "use static token to authenticate with",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"bearer_token": {
-														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "The name of the Secret resource being referred to.",
-																MarkdownDescription: "The name of the Secret resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"remote_namespace": {
-										Description:         "Remote namespace to fetch the secrets from",
-										MarkdownDescription: "Remote namespace to fetch the secrets from",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"server": {
-										Description:         "configures the Kubernetes server Address.",
-										MarkdownDescription: "configures the Kubernetes server Address.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"ca_bundle": {
-												Description:         "CABundle is a base64-encoded CA certificate",
-												MarkdownDescription: "CABundle is a base64-encoded CA certificate",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"ca_provider": {
-												Description:         "see: https://external-secrets.io/v0.4.1/spec/#external-secrets.io/v1alpha1.CAProvider",
-												MarkdownDescription: "see: https://external-secrets.io/v0.4.1/spec/#external-secrets.io/v1alpha1.CAProvider",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"key": {
-														Description:         "The key the value inside of the provider type to use, only used with 'Secret' type",
-														MarkdownDescription: "The key the value inside of the provider type to use, only used with 'Secret' type",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "The name of the object located at the provider type.",
-														MarkdownDescription: "The name of the object located at the provider type.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"namespace": {
-														Description:         "The namespace the Provider type is in.",
-														MarkdownDescription: "The namespace the Provider type is in.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"type": {
-														Description:         "The type of provider to use such as 'Secret', or 'ConfigMap'.",
-														MarkdownDescription: "The type of provider to use such as 'Secret', or 'ConfigMap'.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"url": {
-												Description:         "configures the Kubernetes server Address.",
-												MarkdownDescription: "configures the Kubernetes server Address.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"oracle": {
-								Description:         "Oracle configures this store to sync secrets using Oracle Vault provider",
-								MarkdownDescription: "Oracle configures this store to sync secrets using Oracle Vault provider",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"auth": {
-										Description:         "Auth configures how secret-manager authenticates with the Oracle Vault. If empty, use the instance principal, otherwise the user credentials specified in Auth.",
-										MarkdownDescription: "Auth configures how secret-manager authenticates with the Oracle Vault. If empty, use the instance principal, otherwise the user credentials specified in Auth.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"secret_ref": {
-												Description:         "SecretRef to pass through sensitive information.",
-												MarkdownDescription: "SecretRef to pass through sensitive information.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"fingerprint": {
-														Description:         "Fingerprint is the fingerprint of the API private key.",
-														MarkdownDescription: "Fingerprint is the fingerprint of the API private key.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of the Secret resource being referred to.",
-																MarkdownDescription: "The name of the Secret resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"privatekey": {
-														Description:         "PrivateKey is the user's API Signing Key in PEM format, used for authentication.",
-														MarkdownDescription: "PrivateKey is the user's API Signing Key in PEM format, used for authentication.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of the Secret resource being referred to.",
-																MarkdownDescription: "The name of the Secret resource being referred to.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespace": {
-																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"tenancy": {
-												Description:         "Tenancy is the tenancy OCID where user is located.",
-												MarkdownDescription: "Tenancy is the tenancy OCID where user is located.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"user": {
-												Description:         "User is an access OCID specific to the account.",
-												MarkdownDescription: "User is an access OCID specific to the account.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
 												Computed: false,
 											},
 										}),
@@ -3115,8 +2217,8 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 									},
 
 									"region": {
-										Description:         "Region is the region where vault is located.",
-										MarkdownDescription: "Region is the region where vault is located.",
+										Description:         "AWS Region to be used for the provider",
+										MarkdownDescription: "AWS Region to be used for the provider",
 
 										Type: types.StringType,
 
@@ -3125,32 +2227,9 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 										Computed: false,
 									},
 
-									"vault": {
-										Description:         "Vault is the vault's OCID of the specific vault where secret is located.",
-										MarkdownDescription: "Vault is the vault's OCID of the specific vault where secret is located.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"yandexlockbox": {
-								Description:         "YandexLockbox configures this store to sync secrets using Yandex Lockbox provider",
-								MarkdownDescription: "YandexLockbox configures this store to sync secrets using Yandex Lockbox provider",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"api_endpoint": {
-										Description:         "Yandex.Cloud API endpoint (e.g. 'api.cloud.yandex.net:443')",
-										MarkdownDescription: "Yandex.Cloud API endpoint (e.g. 'api.cloud.yandex.net:443')",
+									"role": {
+										Description:         "Role is a Role ARN which the SecretManager provider will assume",
+										MarkdownDescription: "Role is a Role ARN which the SecretManager provider will assume",
 
 										Type: types.StringType,
 
@@ -3159,117 +2238,14 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 										Computed: false,
 									},
 
-									"auth": {
-										Description:         "Auth defines the information necessary to authenticate against Yandex Lockbox",
-										MarkdownDescription: "Auth defines the information necessary to authenticate against Yandex Lockbox",
+									"service": {
+										Description:         "Service defines which service should be used to fetch the secrets",
+										MarkdownDescription: "Service defines which service should be used to fetch the secrets",
 
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"authorized_key_secret_ref": {
-												Description:         "The authorized key used for authentication",
-												MarkdownDescription: "The authorized key used for authentication",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"key": {
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "The name of the Secret resource being referred to.",
-														MarkdownDescription: "The name of the Secret resource being referred to.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"namespace": {
-														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
+										Type: types.StringType,
 
 										Required: true,
 										Optional: false,
-										Computed: false,
-									},
-
-									"ca_provider": {
-										Description:         "The provider for the CA bundle to use to validate Yandex.Cloud server certificate.",
-										MarkdownDescription: "The provider for the CA bundle to use to validate Yandex.Cloud server certificate.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"cert_secret_ref": {
-												Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-												MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"key": {
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "The name of the Secret resource being referred to.",
-														MarkdownDescription: "The name of the Secret resource being referred to.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"namespace": {
-														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
 										Computed: false,
 									},
 								}),
@@ -3284,17 +2260,6 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 								MarkdownDescription: "AzureKV configures this store to sync secrets using Azure Key Vault provider",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"vault_url": {
-										Description:         "Vault Url from which the secrets to be fetched from.",
-										MarkdownDescription: "Vault Url from which the secrets to be fetched from.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
 
 									"auth_secret_ref": {
 										Description:         "Auth configures how the operator authenticates with Azure. Required for ServicePrincipal auth type.",
@@ -3470,6 +2435,1042 @@ func (r *ExternalSecretsIoSecretStoreV1Alpha1Resource) GetSchema(_ context.Conte
 										MarkdownDescription: "TenantID configures the Azure Tenant to send requests to. Required for ServicePrincipal auth type.",
 
 										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"vault_url": {
+										Description:         "Vault Url from which the secrets to be fetched from.",
+										MarkdownDescription: "Vault Url from which the secrets to be fetched from.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"gitlab": {
+								Description:         "Gitlab configures this store to sync secrets using Gitlab Variables provider",
+								MarkdownDescription: "Gitlab configures this store to sync secrets using Gitlab Variables provider",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"auth": {
+										Description:         "Auth configures how secret-manager authenticates with a GitLab instance.",
+										MarkdownDescription: "Auth configures how secret-manager authenticates with a GitLab instance.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"secret_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"access_token": {
+														Description:         "AccessToken is used for authentication.",
+														MarkdownDescription: "AccessToken is used for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"project_id": {
+										Description:         "ProjectID specifies a project where secrets are located.",
+										MarkdownDescription: "ProjectID specifies a project where secrets are located.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"url": {
+										Description:         "URL configures the GitLab instance URL. Defaults to https://gitlab.com/.",
+										MarkdownDescription: "URL configures the GitLab instance URL. Defaults to https://gitlab.com/.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"ibm": {
+								Description:         "IBM configures this store to sync secrets using IBM Cloud provider",
+								MarkdownDescription: "IBM configures this store to sync secrets using IBM Cloud provider",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"auth": {
+										Description:         "Auth configures how secret-manager authenticates with the IBM secrets manager.",
+										MarkdownDescription: "Auth configures how secret-manager authenticates with the IBM secrets manager.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"secret_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"secret_api_key_secret_ref": {
+														Description:         "The SecretAccessKey is used for authentication",
+														MarkdownDescription: "The SecretAccessKey is used for authentication",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"service_url": {
+										Description:         "ServiceURL is the Endpoint URL that is specific to the Secrets Manager service instance",
+										MarkdownDescription: "ServiceURL is the Endpoint URL that is specific to the Secrets Manager service instance",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"kubernetes": {
+								Description:         "Kubernetes configures this store to sync secrets using a Kubernetes cluster provider",
+								MarkdownDescription: "Kubernetes configures this store to sync secrets using a Kubernetes cluster provider",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"auth": {
+										Description:         "Auth configures how secret-manager authenticates with a Kubernetes instance.",
+										MarkdownDescription: "Auth configures how secret-manager authenticates with a Kubernetes instance.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"cert": {
+												Description:         "has both clientCert and clientKey as secretKeySelector",
+												MarkdownDescription: "has both clientCert and clientKey as secretKeySelector",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"client_cert": {
+														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"client_key": {
+														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"service_account": {
+												Description:         "points to a service account that should be used for authentication",
+												MarkdownDescription: "points to a service account that should be used for authentication",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"service_account": {
+														Description:         "A reference to a ServiceAccount resource.",
+														MarkdownDescription: "A reference to a ServiceAccount resource.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"audiences": {
+																Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+																MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the ServiceAccount resource being referred to.",
+																MarkdownDescription: "The name of the ServiceAccount resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"token": {
+												Description:         "use static token to authenticate with",
+												MarkdownDescription: "use static token to authenticate with",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"bearer_token": {
+														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"remote_namespace": {
+										Description:         "Remote namespace to fetch the secrets from",
+										MarkdownDescription: "Remote namespace to fetch the secrets from",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"server": {
+										Description:         "configures the Kubernetes server Address.",
+										MarkdownDescription: "configures the Kubernetes server Address.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"ca_bundle": {
+												Description:         "CABundle is a base64-encoded CA certificate",
+												MarkdownDescription: "CABundle is a base64-encoded CA certificate",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"ca_provider": {
+												Description:         "see: https://external-secrets.io/v0.4.1/spec/#external-secrets.io/v1alpha1.CAProvider",
+												MarkdownDescription: "see: https://external-secrets.io/v0.4.1/spec/#external-secrets.io/v1alpha1.CAProvider",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"key": {
+														Description:         "The key the value inside of the provider type to use, only used with 'Secret' type",
+														MarkdownDescription: "The key the value inside of the provider type to use, only used with 'Secret' type",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "The name of the object located at the provider type.",
+														MarkdownDescription: "The name of the object located at the provider type.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"namespace": {
+														Description:         "The namespace the Provider type is in.",
+														MarkdownDescription: "The namespace the Provider type is in.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"type": {
+														Description:         "The type of provider to use such as 'Secret', or 'ConfigMap'.",
+														MarkdownDescription: "The type of provider to use such as 'Secret', or 'ConfigMap'.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"url": {
+												Description:         "configures the Kubernetes server Address.",
+												MarkdownDescription: "configures the Kubernetes server Address.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"oracle": {
+								Description:         "Oracle configures this store to sync secrets using Oracle Vault provider",
+								MarkdownDescription: "Oracle configures this store to sync secrets using Oracle Vault provider",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"auth": {
+										Description:         "Auth configures how secret-manager authenticates with the Oracle Vault. If empty, use the instance principal, otherwise the user credentials specified in Auth.",
+										MarkdownDescription: "Auth configures how secret-manager authenticates with the Oracle Vault. If empty, use the instance principal, otherwise the user credentials specified in Auth.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"user": {
+												Description:         "User is an access OCID specific to the account.",
+												MarkdownDescription: "User is an access OCID specific to the account.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"secret_ref": {
+												Description:         "SecretRef to pass through sensitive information.",
+												MarkdownDescription: "SecretRef to pass through sensitive information.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"fingerprint": {
+														Description:         "Fingerprint is the fingerprint of the API private key.",
+														MarkdownDescription: "Fingerprint is the fingerprint of the API private key.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"privatekey": {
+														Description:         "PrivateKey is the user's API Signing Key in PEM format, used for authentication.",
+														MarkdownDescription: "PrivateKey is the user's API Signing Key in PEM format, used for authentication.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"tenancy": {
+												Description:         "Tenancy is the tenancy OCID where user is located.",
+												MarkdownDescription: "Tenancy is the tenancy OCID where user is located.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"region": {
+										Description:         "Region is the region where vault is located.",
+										MarkdownDescription: "Region is the region where vault is located.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"vault": {
+										Description:         "Vault is the vault's OCID of the specific vault where secret is located.",
+										MarkdownDescription: "Vault is the vault's OCID of the specific vault where secret is located.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"akeyless": {
+								Description:         "Akeyless configures this store to sync secrets using Akeyless Vault provider",
+								MarkdownDescription: "Akeyless configures this store to sync secrets using Akeyless Vault provider",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"akeyless_gw_api_url": {
+										Description:         "Akeyless GW API Url from which the secrets to be fetched from.",
+										MarkdownDescription: "Akeyless GW API Url from which the secrets to be fetched from.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"auth_secret_ref": {
+										Description:         "Auth configures how the operator authenticates with Akeyless.",
+										MarkdownDescription: "Auth configures how the operator authenticates with Akeyless.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"secret_ref": {
+												Description:         "AkeylessAuthSecretRef AKEYLESS_ACCESS_TYPE_PARAM: AZURE_OBJ_ID OR GCP_AUDIENCE OR ACCESS_KEY OR KUB_CONFIG_NAME.",
+												MarkdownDescription: "AkeylessAuthSecretRef AKEYLESS_ACCESS_TYPE_PARAM: AZURE_OBJ_ID OR GCP_AUDIENCE OR ACCESS_KEY OR KUB_CONFIG_NAME.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"access_type": {
+														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"access_type_param": {
+														Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"access_id": {
+														Description:         "The SecretAccessID is used for authentication",
+														MarkdownDescription: "The SecretAccessID is used for authentication",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"yandexlockbox": {
+								Description:         "YandexLockbox configures this store to sync secrets using Yandex Lockbox provider",
+								MarkdownDescription: "YandexLockbox configures this store to sync secrets using Yandex Lockbox provider",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"api_endpoint": {
+										Description:         "Yandex.Cloud API endpoint (e.g. 'api.cloud.yandex.net:443')",
+										MarkdownDescription: "Yandex.Cloud API endpoint (e.g. 'api.cloud.yandex.net:443')",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"auth": {
+										Description:         "Auth defines the information necessary to authenticate against Yandex Lockbox",
+										MarkdownDescription: "Auth defines the information necessary to authenticate against Yandex Lockbox",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"authorized_key_secret_ref": {
+												Description:         "The authorized key used for authentication",
+												MarkdownDescription: "The authorized key used for authentication",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"key": {
+														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "The name of the Secret resource being referred to.",
+														MarkdownDescription: "The name of the Secret resource being referred to.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespace": {
+														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"ca_provider": {
+										Description:         "The provider for the CA bundle to use to validate Yandex.Cloud server certificate.",
+										MarkdownDescription: "The provider for the CA bundle to use to validate Yandex.Cloud server certificate.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"cert_secret_ref": {
+												Description:         "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+												MarkdownDescription: "A reference to a specific 'key' within a Secret resource, In some instances, 'key' is a required field.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"key": {
+														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "The name of the Secret resource being referred to.",
+														MarkdownDescription: "The name of the Secret resource being referred to.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespace": {
+														Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+														MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
 
 										Required: false,
 										Optional: true,

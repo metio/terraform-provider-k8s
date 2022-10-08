@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,11 +50,47 @@ type TelemetryIstioIoTelemetryV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		AccessLogging *[]struct {
+			Disabled *bool `tfsdk:"disabled" yaml:"disabled,omitempty"`
+
+			Filter *struct {
+				Expression *string `tfsdk:"expression" yaml:"expression,omitempty"`
+			} `tfsdk:"filter" yaml:"filter,omitempty"`
+
+			Match *struct {
+				Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
+			} `tfsdk:"match" yaml:"match,omitempty"`
+
+			Providers *[]struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"providers" yaml:"providers,omitempty"`
+		} `tfsdk:"access_logging" yaml:"accessLogging,omitempty"`
+
+		Metrics *[]struct {
+			Overrides *[]struct {
+				Match *struct {
+					CustomMetric *string `tfsdk:"custom_metric" yaml:"customMetric,omitempty"`
+
+					Metric *string `tfsdk:"metric" yaml:"metric,omitempty"`
+
+					Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
+				} `tfsdk:"match" yaml:"match,omitempty"`
+
+				TagOverrides *map[string]string `tfsdk:"tag_overrides" yaml:"tagOverrides,omitempty"`
+
+				Disabled *bool `tfsdk:"disabled" yaml:"disabled,omitempty"`
+			} `tfsdk:"overrides" yaml:"overrides,omitempty"`
+
+			Providers *[]struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"providers" yaml:"providers,omitempty"`
+		} `tfsdk:"metrics" yaml:"metrics,omitempty"`
+
+		Selector *struct {
+			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+		} `tfsdk:"selector" yaml:"selector,omitempty"`
+
 		Tracing *[]struct {
-			CustomTags *map[string]string `tfsdk:"custom_tags" yaml:"customTags,omitempty"`
-
-			DisableSpanReporting *bool `tfsdk:"disable_span_reporting" yaml:"disableSpanReporting,omitempty"`
-
 			Match *struct {
 				Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
 			} `tfsdk:"match" yaml:"match,omitempty"`
@@ -65,47 +102,11 @@ type TelemetryIstioIoTelemetryV1Alpha1GoModel struct {
 			RandomSamplingPercentage *float64 `tfsdk:"random_sampling_percentage" yaml:"randomSamplingPercentage,omitempty"`
 
 			UseRequestIdForTraceSampling *bool `tfsdk:"use_request_id_for_trace_sampling" yaml:"useRequestIdForTraceSampling,omitempty"`
+
+			CustomTags *map[string]string `tfsdk:"custom_tags" yaml:"customTags,omitempty"`
+
+			DisableSpanReporting *bool `tfsdk:"disable_span_reporting" yaml:"disableSpanReporting,omitempty"`
 		} `tfsdk:"tracing" yaml:"tracing,omitempty"`
-
-		AccessLogging *[]struct {
-			Providers *[]struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"providers" yaml:"providers,omitempty"`
-
-			Disabled *bool `tfsdk:"disabled" yaml:"disabled,omitempty"`
-
-			Filter *struct {
-				Expression *string `tfsdk:"expression" yaml:"expression,omitempty"`
-			} `tfsdk:"filter" yaml:"filter,omitempty"`
-
-			Match *struct {
-				Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
-			} `tfsdk:"match" yaml:"match,omitempty"`
-		} `tfsdk:"access_logging" yaml:"accessLogging,omitempty"`
-
-		Metrics *[]struct {
-			Overrides *[]struct {
-				Disabled *bool `tfsdk:"disabled" yaml:"disabled,omitempty"`
-
-				Match *struct {
-					Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
-
-					CustomMetric *string `tfsdk:"custom_metric" yaml:"customMetric,omitempty"`
-
-					Metric *string `tfsdk:"metric" yaml:"metric,omitempty"`
-				} `tfsdk:"match" yaml:"match,omitempty"`
-
-				TagOverrides *map[string]string `tfsdk:"tag_overrides" yaml:"tagOverrides,omitempty"`
-			} `tfsdk:"overrides" yaml:"overrides,omitempty"`
-
-			Providers *[]struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"providers" yaml:"providers,omitempty"`
-		} `tfsdk:"metrics" yaml:"metrics,omitempty"`
-
-		Selector *struct {
-			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-		} `tfsdk:"selector" yaml:"selector,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -206,26 +207,15 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Resource) GetSchema(_ context.Context)
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"tracing": {
+					"access_logging": {
 						Description:         "Optional.",
 						MarkdownDescription: "Optional.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"custom_tags": {
-								Description:         "Optional.",
-								MarkdownDescription: "Optional.",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"disable_span_reporting": {
-								Description:         "Controls span reporting.",
-								MarkdownDescription: "Controls span reporting.",
+							"disabled": {
+								Description:         "Controls logging.",
+								MarkdownDescription: "Controls logging.",
 
 								Type: types.BoolType,
 
@@ -233,6 +223,224 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Resource) GetSchema(_ context.Context)
 								Optional: true,
 								Computed: false,
 							},
+
+							"filter": {
+								Description:         "Optional.",
+								MarkdownDescription: "Optional.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"expression": {
+										Description:         "CEL expression for selecting when requests/connections should be logged.",
+										MarkdownDescription: "CEL expression for selecting when requests/connections should be logged.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"match": {
+								Description:         "Allows tailoring of logging behavior to specific conditions.",
+								MarkdownDescription: "Allows tailoring of logging behavior to specific conditions.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"mode": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"providers": {
+								Description:         "Optional.",
+								MarkdownDescription: "Optional.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "Required.",
+										MarkdownDescription: "Required.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"metrics": {
+						Description:         "Optional.",
+						MarkdownDescription: "Optional.",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"overrides": {
+								Description:         "Optional.",
+								MarkdownDescription: "Optional.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"match": {
+										Description:         "Match allows provides the scope of the override.",
+										MarkdownDescription: "Match allows provides the scope of the override.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"custom_metric": {
+												Description:         "Allows free-form specification of a metric.",
+												MarkdownDescription: "Allows free-form specification of a metric.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"metric": {
+												Description:         "One of the well-known Istio Standard Metrics.",
+												MarkdownDescription: "One of the well-known Istio Standard Metrics.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"mode": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"tag_overrides": {
+										Description:         "Optional.",
+										MarkdownDescription: "Optional.",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"disabled": {
+										Description:         "Optional.",
+										MarkdownDescription: "Optional.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"providers": {
+								Description:         "Optional.",
+								MarkdownDescription: "Optional.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "Required.",
+										MarkdownDescription: "Required.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"selector": {
+						Description:         "Optional.",
+						MarkdownDescription: "Optional.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"match_labels": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"tracing": {
+						Description:         "Optional.",
+						MarkdownDescription: "Optional.",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 							"match": {
 								Description:         "Allows tailoring of behavior to specific conditions.",
@@ -301,230 +509,23 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Resource) GetSchema(_ context.Context)
 								Optional: true,
 								Computed: false,
 							},
-						}),
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"access_logging": {
-						Description:         "Optional.",
-						MarkdownDescription: "Optional.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"providers": {
+							"custom_tags": {
 								Description:         "Optional.",
 								MarkdownDescription: "Optional.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Required.",
-										MarkdownDescription: "Required.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"disabled": {
-								Description:         "Controls logging.",
-								MarkdownDescription: "Controls logging.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"filter": {
-								Description:         "Optional.",
-								MarkdownDescription: "Optional.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"expression": {
-										Description:         "CEL expression for selecting when requests/connections should be logged.",
-										MarkdownDescription: "CEL expression for selecting when requests/connections should be logged.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"match": {
-								Description:         "Allows tailoring of logging behavior to specific conditions.",
-								MarkdownDescription: "Allows tailoring of logging behavior to specific conditions.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"mode": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"metrics": {
-						Description:         "Optional.",
-						MarkdownDescription: "Optional.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"overrides": {
-								Description:         "Optional.",
-								MarkdownDescription: "Optional.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"disabled": {
-										Description:         "Optional.",
-										MarkdownDescription: "Optional.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"match": {
-										Description:         "Match allows provides the scope of the override.",
-										MarkdownDescription: "Match allows provides the scope of the override.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"mode": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"custom_metric": {
-												Description:         "Allows free-form specification of a metric.",
-												MarkdownDescription: "Allows free-form specification of a metric.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"metric": {
-												Description:         "One of the well-known Istio Standard Metrics.",
-												MarkdownDescription: "One of the well-known Istio Standard Metrics.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"tag_overrides": {
-										Description:         "Optional.",
-										MarkdownDescription: "Optional.",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"providers": {
-								Description:         "Optional.",
-								MarkdownDescription: "Optional.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Required.",
-										MarkdownDescription: "Required.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"selector": {
-						Description:         "Optional.",
-						MarkdownDescription: "Optional.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"match_labels": {
-								Description:         "",
-								MarkdownDescription: "",
 
 								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"disable_span_reporting": {
+								Description:         "Controls span reporting.",
+								MarkdownDescription: "Controls span reporting.",
+
+								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,

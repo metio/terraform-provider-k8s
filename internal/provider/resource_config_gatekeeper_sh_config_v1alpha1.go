@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -50,9 +51,9 @@ type ConfigGatekeeperShConfigV1Alpha1GoModel struct {
 
 	Spec *struct {
 		Match *[]struct {
-			ExcludedNamespaces *[]string `tfsdk:"excluded_namespaces" yaml:"excludedNamespaces,omitempty"`
-
 			Processes *[]string `tfsdk:"processes" yaml:"processes,omitempty"`
+
+			ExcludedNamespaces *[]string `tfsdk:"excluded_namespaces" yaml:"excludedNamespaces,omitempty"`
 		} `tfsdk:"match" yaml:"match,omitempty"`
 
 		Readiness *struct {
@@ -190,7 +191,7 @@ func (r *ConfigGatekeeperShConfigV1Alpha1Resource) GetSchema(_ context.Context) 
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"excluded_namespaces": {
+							"processes": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -201,7 +202,7 @@ func (r *ConfigGatekeeperShConfigV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"processes": {
+							"excluded_namespaces": {
 								Description:         "",
 								MarkdownDescription: "",
 

@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,9 +50,13 @@ type SourceToolkitFluxcdIoOCIRepositoryV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		CertSecretRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"cert_secret_ref" yaml:"certSecretRef,omitempty"`
+		Verify *struct {
+			Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
+
+			SecretRef *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+		} `tfsdk:"verify" yaml:"verify,omitempty"`
 
 		Insecure *bool `tfsdk:"insecure" yaml:"insecure,omitempty"`
 
@@ -61,39 +66,35 @@ type SourceToolkitFluxcdIoOCIRepositoryV1Beta2GoModel struct {
 			Operation *string `tfsdk:"operation" yaml:"operation,omitempty"`
 		} `tfsdk:"layer_selector" yaml:"layerSelector,omitempty"`
 
+		Ref *struct {
+			Digest *string `tfsdk:"digest" yaml:"digest,omitempty"`
+
+			Semver *string `tfsdk:"semver" yaml:"semver,omitempty"`
+
+			Tag *string `tfsdk:"tag" yaml:"tag,omitempty"`
+		} `tfsdk:"ref" yaml:"ref,omitempty"`
+
+		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
+
+		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+
+		Url *string `tfsdk:"url" yaml:"url,omitempty"`
+
+		CertSecretRef *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"cert_secret_ref" yaml:"certSecretRef,omitempty"`
+
+		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
+
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
 		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
 
 		SecretRef *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
-		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
-
-		Url *string `tfsdk:"url" yaml:"url,omitempty"`
-
-		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
-
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-		Ref *struct {
-			Tag *string `tfsdk:"tag" yaml:"tag,omitempty"`
-
-			Digest *string `tfsdk:"digest" yaml:"digest,omitempty"`
-
-			Semver *string `tfsdk:"semver" yaml:"semver,omitempty"`
-		} `tfsdk:"ref" yaml:"ref,omitempty"`
-
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
-
-		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
-		Verify *struct {
-			Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
-
-			SecretRef *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-		} `tfsdk:"verify" yaml:"verify,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -194,20 +195,43 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) GetSchema(_ context.
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"cert_secret_ref": {
-						Description:         "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
-						MarkdownDescription: "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
+					"verify": {
+						Description:         "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic.",
+						MarkdownDescription: "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"name": {
-								Description:         "Name of the referent.",
-								MarkdownDescription: "Name of the referent.",
+							"provider": {
+								Description:         "Provider specifies the technology used to sign the OCI Artifact.",
+								MarkdownDescription: "Provider specifies the technology used to sign the OCI Artifact.",
 
 								Type: types.StringType,
 
 								Required: true,
 								Optional: false,
+								Computed: false,
+							},
+
+							"secret_ref": {
+								Description:         "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
+								MarkdownDescription: "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "Name of the referent.",
+										MarkdownDescription: "Name of the referent.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 						}),
@@ -262,6 +286,129 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
+					"ref": {
+						Description:         "The OCI reference to pull and monitor for changes, defaults to the latest tag.",
+						MarkdownDescription: "The OCI reference to pull and monitor for changes, defaults to the latest tag.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"digest": {
+								Description:         "Digest is the image digest to pull, takes precedence over SemVer. The value should be in the format 'sha256:<HASH>'.",
+								MarkdownDescription: "Digest is the image digest to pull, takes precedence over SemVer. The value should be in the format 'sha256:<HASH>'.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"semver": {
+								Description:         "SemVer is the range of tags to pull selecting the latest within the range, takes precedence over Tag.",
+								MarkdownDescription: "SemVer is the range of tags to pull selecting the latest within the range, takes precedence over Tag.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tag": {
+								Description:         "Tag is the image tag to pull, defaults to latest.",
+								MarkdownDescription: "Tag is the image tag to pull, defaults to latest.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"service_account_name": {
+						Description:         "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets. For more information: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account",
+						MarkdownDescription: "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets. For more information: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"timeout": {
+						Description:         "The timeout for remote OCI Repository operations like pulling, defaults to 60s.",
+						MarkdownDescription: "The timeout for remote OCI Repository operations like pulling, defaults to 60s.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"url": {
+						Description:         "URL is a reference to an OCI artifact repository hosted on a remote container registry.",
+						MarkdownDescription: "URL is a reference to an OCI artifact repository hosted on a remote container registry.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"cert_secret_ref": {
+						Description:         "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
+						MarkdownDescription: "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"ignore": {
+						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"interval": {
+						Description:         "The interval at which to check for image updates.",
+						MarkdownDescription: "The interval at which to check for image updates.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
 					"provider": {
 						Description:         "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. When not specified, defaults to 'generic'.",
 						MarkdownDescription: "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. When not specified, defaults to 'generic'.",
@@ -296,157 +443,11 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"service_account_name": {
-						Description:         "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets. For more information: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account",
-						MarkdownDescription: "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets. For more information: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"url": {
-						Description:         "URL is a reference to an OCI artifact repository hosted on a remote container registry.",
-						MarkdownDescription: "URL is a reference to an OCI artifact repository hosted on a remote container registry.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"ignore": {
-						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
-						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"interval": {
-						Description:         "The interval at which to check for image updates.",
-						MarkdownDescription: "The interval at which to check for image updates.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"ref": {
-						Description:         "The OCI reference to pull and monitor for changes, defaults to the latest tag.",
-						MarkdownDescription: "The OCI reference to pull and monitor for changes, defaults to the latest tag.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"tag": {
-								Description:         "Tag is the image tag to pull, defaults to latest.",
-								MarkdownDescription: "Tag is the image tag to pull, defaults to latest.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"digest": {
-								Description:         "Digest is the image digest to pull, takes precedence over SemVer. The value should be in the format 'sha256:<HASH>'.",
-								MarkdownDescription: "Digest is the image digest to pull, takes precedence over SemVer. The value should be in the format 'sha256:<HASH>'.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"semver": {
-								Description:         "SemVer is the range of tags to pull selecting the latest within the range, takes precedence over Tag.",
-								MarkdownDescription: "SemVer is the range of tags to pull selecting the latest within the range, takes precedence over Tag.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"suspend": {
 						Description:         "This flag tells the controller to suspend the reconciliation of this source.",
 						MarkdownDescription: "This flag tells the controller to suspend the reconciliation of this source.",
 
 						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"timeout": {
-						Description:         "The timeout for remote OCI Repository operations like pulling, defaults to 60s.",
-						MarkdownDescription: "The timeout for remote OCI Repository operations like pulling, defaults to 60s.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"verify": {
-						Description:         "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic.",
-						MarkdownDescription: "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"provider": {
-								Description:         "Provider specifies the technology used to sign the OCI Artifact.",
-								MarkdownDescription: "Provider specifies the technology used to sign the OCI Artifact.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"secret_ref": {
-								Description:         "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
-								MarkdownDescription: "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name of the referent.",
-										MarkdownDescription: "Name of the referent.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
 
 						Required: false,
 						Optional: true,

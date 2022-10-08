@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -51,56 +52,56 @@ type KeycloakOrgKeycloakUserV1Alpha1GoModel struct {
 	Spec *struct {
 		RealmSelector *struct {
 			MatchExpressions *[]struct {
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
 				Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 				Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
 			} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 		} `tfsdk:"realm_selector" yaml:"realmSelector,omitempty"`
 
 		User *struct {
-			RequiredActions *[]string `tfsdk:"required_actions" yaml:"requiredActions,omitempty"`
-
-			Username *string `tfsdk:"username" yaml:"username,omitempty"`
-
-			Attributes *map[string][]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
-
 			Credentials *[]struct {
+				Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
 				Temporary *bool `tfsdk:"temporary" yaml:"temporary,omitempty"`
 
 				Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-				Value *string `tfsdk:"value" yaml:"value,omitempty"`
 			} `tfsdk:"credentials" yaml:"credentials,omitempty"`
 
 			EmailVerified *bool `tfsdk:"email_verified" yaml:"emailVerified,omitempty"`
 
+			RequiredActions *[]string `tfsdk:"required_actions" yaml:"requiredActions,omitempty"`
+
+			Username *string `tfsdk:"username" yaml:"username,omitempty"`
+
+			ClientRoles *map[string][]string `tfsdk:"client_roles" yaml:"clientRoles,omitempty"`
+
 			RealmRoles *[]string `tfsdk:"realm_roles" yaml:"realmRoles,omitempty"`
-
-			FederatedIdentities *[]struct {
-				UserId *string `tfsdk:"user_id" yaml:"userId,omitempty"`
-
-				UserName *string `tfsdk:"user_name" yaml:"userName,omitempty"`
-
-				IdentityProvider *string `tfsdk:"identity_provider" yaml:"identityProvider,omitempty"`
-			} `tfsdk:"federated_identities" yaml:"federatedIdentities,omitempty"`
-
-			Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
-
-			Id *string `tfsdk:"id" yaml:"id,omitempty"`
 
 			LastName *string `tfsdk:"last_name" yaml:"lastName,omitempty"`
 
-			ClientRoles *map[string][]string `tfsdk:"client_roles" yaml:"clientRoles,omitempty"`
+			Attributes *map[string][]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
 
 			Email *string `tfsdk:"email" yaml:"email,omitempty"`
 
 			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
 
+			FederatedIdentities *[]struct {
+				IdentityProvider *string `tfsdk:"identity_provider" yaml:"identityProvider,omitempty"`
+
+				UserId *string `tfsdk:"user_id" yaml:"userId,omitempty"`
+
+				UserName *string `tfsdk:"user_name" yaml:"userName,omitempty"`
+			} `tfsdk:"federated_identities" yaml:"federatedIdentities,omitempty"`
+
 			FirstName *string `tfsdk:"first_name" yaml:"firstName,omitempty"`
+
+			Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
+
+			Id *string `tfsdk:"id" yaml:"id,omitempty"`
 		} `tfsdk:"user" yaml:"user,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -214,17 +215,6 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"key": {
-										Description:         "key is the label key that the selector applies to.",
-										MarkdownDescription: "key is the label key that the selector applies to.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
 									"operator": {
 										Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 										MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
@@ -244,6 +234,17 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 
 										Required: false,
 										Optional: true,
+										Computed: false,
+									},
+
+									"key": {
+										Description:         "key is the label key that the selector applies to.",
+										MarkdownDescription: "key is the label key that the selector applies to.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
 										Computed: false,
 									},
 								}),
@@ -276,44 +277,22 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"required_actions": {
-								Description:         "A set of Required Actions.",
-								MarkdownDescription: "A set of Required Actions.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"username": {
-								Description:         "User Name.",
-								MarkdownDescription: "User Name.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"attributes": {
-								Description:         "A set of Attributes.",
-								MarkdownDescription: "A set of Attributes.",
-
-								Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"credentials": {
 								Description:         "A set of Credentials.",
 								MarkdownDescription: "A set of Credentials.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"value": {
+										Description:         "Credential Value.",
+										MarkdownDescription: "Credential Value.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"temporary": {
 										Description:         "True if this credential object is temporary.",
@@ -329,17 +308,6 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 									"type": {
 										Description:         "Credential Type.",
 										MarkdownDescription: "Credential Type.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"value": {
-										Description:         "Credential Value.",
-										MarkdownDescription: "Credential Value.",
 
 										Type: types.StringType,
 
@@ -365,78 +333,44 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 
+							"required_actions": {
+								Description:         "A set of Required Actions.",
+								MarkdownDescription: "A set of Required Actions.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"username": {
+								Description:         "User Name.",
+								MarkdownDescription: "User Name.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"client_roles": {
+								Description:         "A set of Client Roles.",
+								MarkdownDescription: "A set of Client Roles.",
+
+								Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"realm_roles": {
 								Description:         "A set of Realm Roles.",
 								MarkdownDescription: "A set of Realm Roles.",
 
 								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"federated_identities": {
-								Description:         "A set of Federated Identities.",
-								MarkdownDescription: "A set of Federated Identities.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"user_id": {
-										Description:         "Federated Identity User ID.",
-										MarkdownDescription: "Federated Identity User ID.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"user_name": {
-										Description:         "Federated Identity User Name.",
-										MarkdownDescription: "Federated Identity User Name.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"identity_provider": {
-										Description:         "Federated Identity Provider.",
-										MarkdownDescription: "Federated Identity Provider.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"groups": {
-								Description:         "A set of Groups.",
-								MarkdownDescription: "A set of Groups.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"id": {
-								Description:         "User ID.",
-								MarkdownDescription: "User ID.",
-
-								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
@@ -454,9 +388,9 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 
-							"client_roles": {
-								Description:         "A set of Client Roles.",
-								MarkdownDescription: "A set of Client Roles.",
+							"attributes": {
+								Description:         "A set of Attributes.",
+								MarkdownDescription: "A set of Attributes.",
 
 								Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
 
@@ -487,9 +421,76 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 
+							"federated_identities": {
+								Description:         "A set of Federated Identities.",
+								MarkdownDescription: "A set of Federated Identities.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"identity_provider": {
+										Description:         "Federated Identity Provider.",
+										MarkdownDescription: "Federated Identity Provider.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"user_id": {
+										Description:         "Federated Identity User ID.",
+										MarkdownDescription: "Federated Identity User ID.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"user_name": {
+										Description:         "Federated Identity User Name.",
+										MarkdownDescription: "Federated Identity User Name.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"first_name": {
 								Description:         "First Name.",
 								MarkdownDescription: "First Name.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"groups": {
+								Description:         "A set of Groups.",
+								MarkdownDescription: "A set of Groups.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"id": {
+								Description:         "User ID.",
+								MarkdownDescription: "User ID.",
 
 								Type: types.StringType,
 

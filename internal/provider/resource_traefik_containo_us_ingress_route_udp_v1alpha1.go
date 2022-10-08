@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -53,13 +54,13 @@ type TraefikContainoUsIngressRouteUDPV1Alpha1GoModel struct {
 
 		Routes *[]struct {
 			Services *[]struct {
-				Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
 				Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+				Port *string `tfsdk:"port" yaml:"port,omitempty"`
 			} `tfsdk:"services" yaml:"services,omitempty"`
 		} `tfsdk:"routes" yaml:"routes,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -185,17 +186,6 @@ func (r *TraefikContainoUsIngressRouteUDPV1Alpha1Resource) GetSchema(_ context.C
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"port": {
-										Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
-										MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
 									"weight": {
 										Description:         "Weight defines the weight used when balancing requests between multiple Kubernetes Service.",
 										MarkdownDescription: "Weight defines the weight used when balancing requests between multiple Kubernetes Service.",
@@ -226,6 +216,17 @@ func (r *TraefikContainoUsIngressRouteUDPV1Alpha1Resource) GetSchema(_ context.C
 
 										Required: false,
 										Optional: true,
+										Computed: false,
+									},
+
+									"port": {
+										Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
+										MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
 										Computed: false,
 									},
 								}),

@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -50,9 +51,9 @@ type CouchbaseComCouchbaseRoleBindingV2GoModel struct {
 
 	Spec *struct {
 		RoleRef *struct {
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 		} `tfsdk:"role_ref" yaml:"roleRef,omitempty"`
 
 		Subjects *[]struct {
@@ -166,9 +167,9 @@ func (r *CouchbaseComCouchbaseRoleBindingV2Resource) GetSchema(_ context.Context
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"kind": {
-								Description:         "Kind of role to use for binding.",
-								MarkdownDescription: "Kind of role to use for binding.",
+							"name": {
+								Description:         "Name of role resource to use for binding.",
+								MarkdownDescription: "Name of role resource to use for binding.",
 
 								Type: types.StringType,
 
@@ -177,9 +178,9 @@ func (r *CouchbaseComCouchbaseRoleBindingV2Resource) GetSchema(_ context.Context
 								Computed: false,
 							},
 
-							"name": {
-								Description:         "Name of role resource to use for binding.",
-								MarkdownDescription: "Name of role resource to use for binding.",
+							"kind": {
+								Description:         "Kind of role to use for binding.",
+								MarkdownDescription: "Kind of role to use for binding.",
 
 								Type: types.StringType,
 

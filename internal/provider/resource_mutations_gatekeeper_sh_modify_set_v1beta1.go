@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -47,30 +48,22 @@ type MutationsGatekeeperShModifySetV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		ApplyTo *[]struct {
-			Kinds *[]string `tfsdk:"kinds" yaml:"kinds,omitempty"`
-
-			Versions *[]string `tfsdk:"versions" yaml:"versions,omitempty"`
-
-			Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
-		} `tfsdk:"apply_to" yaml:"applyTo,omitempty"`
-
-		Location *string `tfsdk:"location" yaml:"location,omitempty"`
-
 		Match *struct {
-			Kinds *[]struct {
-				Kinds *[]string `tfsdk:"kinds" yaml:"kinds,omitempty"`
+			ExcludedNamespaces *[]string `tfsdk:"excluded_namespaces" yaml:"excludedNamespaces,omitempty"`
 
+			Kinds *[]struct {
 				ApiGroups *[]string `tfsdk:"api_groups" yaml:"apiGroups,omitempty"`
+
+				Kinds *[]string `tfsdk:"kinds" yaml:"kinds,omitempty"`
 			} `tfsdk:"kinds" yaml:"kinds,omitempty"`
 
 			LabelSelector *struct {
 				MatchExpressions *[]struct {
-					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 					Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 				} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -93,8 +86,6 @@ type MutationsGatekeeperShModifySetV1Beta1GoModel struct {
 			Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 			Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
-
-			ExcludedNamespaces *[]string `tfsdk:"excluded_namespaces" yaml:"excludedNamespaces,omitempty"`
 		} `tfsdk:"match" yaml:"match,omitempty"`
 
 		Parameters *struct {
@@ -108,6 +99,16 @@ type MutationsGatekeeperShModifySetV1Beta1GoModel struct {
 
 			Values *map[string]string `tfsdk:"values" yaml:"values,omitempty"`
 		} `tfsdk:"parameters" yaml:"parameters,omitempty"`
+
+		ApplyTo *[]struct {
+			Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
+
+			Kinds *[]string `tfsdk:"kinds" yaml:"kinds,omitempty"`
+
+			Versions *[]string `tfsdk:"versions" yaml:"versions,omitempty"`
+		} `tfsdk:"apply_to" yaml:"applyTo,omitempty"`
+
+		Location *string `tfsdk:"location" yaml:"location,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -201,67 +202,22 @@ func (r *MutationsGatekeeperShModifySetV1Beta1Resource) GetSchema(_ context.Cont
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"apply_to": {
-						Description:         "ApplyTo lists the specific groups, versions and kinds a mutation will be applied to. This is necessary because every mutation implies part of an object schema and object schemas are associated with specific GVKs.",
-						MarkdownDescription: "ApplyTo lists the specific groups, versions and kinds a mutation will be applied to. This is necessary because every mutation implies part of an object schema and object schemas are associated with specific GVKs.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"kinds": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"versions": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"groups": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"location": {
-						Description:         "Location describes the path to be mutated, for example: 'spec.containers[name: main].args'.",
-						MarkdownDescription: "Location describes the path to be mutated, for example: 'spec.containers[name: main].args'.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"match": {
 						Description:         "Match allows the user to limit which resources get mutated. Individual match criteria are AND-ed together. An undefined match criteria matches everything.",
 						MarkdownDescription: "Match allows the user to limit which resources get mutated. Individual match criteria are AND-ed together. An undefined match criteria matches everything.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"excluded_namespaces": {
+								Description:         "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
+								MarkdownDescription: "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"kinds": {
 								Description:         "",
@@ -269,9 +225,9 @@ func (r *MutationsGatekeeperShModifySetV1Beta1Resource) GetSchema(_ context.Cont
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"kinds": {
-										Description:         "",
-										MarkdownDescription: "",
+									"api_groups": {
+										Description:         "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.",
+										MarkdownDescription: "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.",
 
 										Type: types.ListType{ElemType: types.StringType},
 
@@ -280,9 +236,9 @@ func (r *MutationsGatekeeperShModifySetV1Beta1Resource) GetSchema(_ context.Cont
 										Computed: false,
 									},
 
-									"api_groups": {
-										Description:         "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.",
-										MarkdownDescription: "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.",
+									"kinds": {
+										Description:         "",
+										MarkdownDescription: "",
 
 										Type: types.ListType{ElemType: types.StringType},
 
@@ -309,17 +265,6 @@ func (r *MutationsGatekeeperShModifySetV1Beta1Resource) GetSchema(_ context.Cont
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-											"values": {
-												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"key": {
 												Description:         "key is the label key that the selector applies to.",
 												MarkdownDescription: "key is the label key that the selector applies to.",
@@ -339,6 +284,17 @@ func (r *MutationsGatekeeperShModifySetV1Beta1Resource) GetSchema(_ context.Cont
 
 												Required: true,
 												Optional: false,
+												Computed: false,
+											},
+
+											"values": {
+												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
 												Computed: false,
 											},
 										}),
@@ -465,17 +421,6 @@ func (r *MutationsGatekeeperShModifySetV1Beta1Resource) GetSchema(_ context.Cont
 								Optional: true,
 								Computed: false,
 							},
-
-							"excluded_namespaces": {
-								Description:         "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
-								MarkdownDescription: "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
 
 						Required: false,
@@ -545,6 +490,62 @@ func (r *MutationsGatekeeperShModifySetV1Beta1Resource) GetSchema(_ context.Cont
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"apply_to": {
+						Description:         "ApplyTo lists the specific groups, versions and kinds a mutation will be applied to. This is necessary because every mutation implies part of an object schema and object schemas are associated with specific GVKs.",
+						MarkdownDescription: "ApplyTo lists the specific groups, versions and kinds a mutation will be applied to. This is necessary because every mutation implies part of an object schema and object schemas are associated with specific GVKs.",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"groups": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"kinds": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"versions": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"location": {
+						Description:         "Location describes the path to be mutated, for example: 'spec.containers[name: main].args'.",
+						MarkdownDescription: "Location describes the path to be mutated, for example: 'spec.containers[name: main].args'.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

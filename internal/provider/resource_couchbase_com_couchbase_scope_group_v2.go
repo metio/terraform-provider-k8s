@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -55,18 +56,18 @@ type CouchbaseComCouchbaseScopeGroupV2GoModel struct {
 			PreserveDefaultCollection *bool `tfsdk:"preserve_default_collection" yaml:"preserveDefaultCollection,omitempty"`
 
 			Resources *[]struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
 				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 			} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 			Selector *struct {
 				MatchExpressions *[]struct {
+					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 					Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 				} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -208,17 +209,6 @@ func (r *CouchbaseComCouchbaseScopeGroupV2Resource) GetSchema(_ context.Context)
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"name": {
-										Description:         "Name is the name of the Kubernetes resource name that is being referenced. Legal collection names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
-										MarkdownDescription: "Name is the name of the Kubernetes resource name that is being referenced. Legal collection names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
 									"kind": {
 										Description:         "Kind indicates the kind of resource that is being referenced.  A scope can only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource kinds.  This field defaults to 'CouchbaseCollection' if not specified.",
 										MarkdownDescription: "Kind indicates the kind of resource that is being referenced.  A scope can only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource kinds.  This field defaults to 'CouchbaseCollection' if not specified.",
@@ -227,6 +217,17 @@ func (r *CouchbaseComCouchbaseScopeGroupV2Resource) GetSchema(_ context.Context)
 
 										Required: false,
 										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name is the name of the Kubernetes resource name that is being referenced. Legal collection names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
+										MarkdownDescription: "Name is the name of the Kubernetes resource name that is being referenced. Legal collection names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
 										Computed: false,
 									},
 								}),
@@ -248,6 +249,17 @@ func (r *CouchbaseComCouchbaseScopeGroupV2Resource) GetSchema(_ context.Context)
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+											"values": {
+												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"key": {
 												Description:         "key is the label key that the selector applies to.",
 												MarkdownDescription: "key is the label key that the selector applies to.",
@@ -267,17 +279,6 @@ func (r *CouchbaseComCouchbaseScopeGroupV2Resource) GetSchema(_ context.Context)
 
 												Required: true,
 												Optional: false,
-												Computed: false,
-											},
-
-											"values": {
-												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
 												Computed: false,
 											},
 										}),

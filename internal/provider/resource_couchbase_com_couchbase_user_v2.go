@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,11 +50,11 @@ type CouchbaseComCouchbaseUserV2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		FullName *string `tfsdk:"full_name" yaml:"fullName,omitempty"`
-
 		AuthDomain *string `tfsdk:"auth_domain" yaml:"authDomain,omitempty"`
 
 		AuthSecret *string `tfsdk:"auth_secret" yaml:"authSecret,omitempty"`
+
+		FullName *string `tfsdk:"full_name" yaml:"fullName,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -154,17 +155,6 @@ func (r *CouchbaseComCouchbaseUserV2Resource) GetSchema(_ context.Context) (tfsd
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"full_name": {
-						Description:         "Full Name of Couchbase user.",
-						MarkdownDescription: "Full Name of Couchbase user.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"auth_domain": {
 						Description:         "The domain which provides user authentication.",
 						MarkdownDescription: "The domain which provides user authentication.",
@@ -179,6 +169,17 @@ func (r *CouchbaseComCouchbaseUserV2Resource) GetSchema(_ context.Context) (tfsd
 					"auth_secret": {
 						Description:         "Name of Kubernetes secret with password for Couchbase domain.",
 						MarkdownDescription: "Name of Kubernetes secret with password for Couchbase domain.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"full_name": {
+						Description:         "Full Name of Couchbase user.",
+						MarkdownDescription: "Full Name of Couchbase user.",
 
 						Type: types.StringType,
 

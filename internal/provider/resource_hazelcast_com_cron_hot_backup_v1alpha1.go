@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,6 +50,8 @@ type HazelcastComCronHotBackupV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		FailedHotBackupsHistoryLimit *int64 `tfsdk:"failed_hot_backups_history_limit" yaml:"failedHotBackupsHistoryLimit,omitempty"`
+
 		HotBackupTemplate *struct {
 			Metadata *map[string]string `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
@@ -66,8 +69,6 @@ type HazelcastComCronHotBackupV1Alpha1GoModel struct {
 		SuccessfulHotBackupsHistoryLimit *int64 `tfsdk:"successful_hot_backups_history_limit" yaml:"successfulHotBackupsHistoryLimit,omitempty"`
 
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
-
-		FailedHotBackupsHistoryLimit *int64 `tfsdk:"failed_hot_backups_history_limit" yaml:"failedHotBackupsHistoryLimit,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -168,6 +169,17 @@ func (r *HazelcastComCronHotBackupV1Alpha1Resource) GetSchema(_ context.Context)
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"failed_hot_backups_history_limit": {
+						Description:         "The number of failed finished hot backups to retain. This is a pointer to distinguish between explicit zero and not specified.",
+						MarkdownDescription: "The number of failed finished hot backups to retain. This is a pointer to distinguish between explicit zero and not specified.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"hot_backup_template": {
 						Description:         "Specifies the hot backup that will be created when executing a CronHotBackup.",
 						MarkdownDescription: "Specifies the hot backup that will be created when executing a CronHotBackup.",
@@ -263,17 +275,6 @@ func (r *HazelcastComCronHotBackupV1Alpha1Resource) GetSchema(_ context.Context)
 						MarkdownDescription: "When true, CronHotBackup will stop creating HotBackup CRs until it is disabled",
 
 						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"failed_hot_backups_history_limit": {
-						Description:         "The number of failed finished hot backups to retain. This is a pointer to distinguish between explicit zero and not specified.",
-						MarkdownDescription: "The number of failed finished hot backups to retain. This is a pointer to distinguish between explicit zero and not specified.",
-
-						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,

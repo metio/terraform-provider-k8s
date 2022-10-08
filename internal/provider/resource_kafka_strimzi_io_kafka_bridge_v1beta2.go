@@ -7,6 +7,9 @@ package provider
 
 import (
 	"context"
+
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,7 +52,25 @@ type KafkaStrimziIoKafkaBridgeV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Logging *struct {
+			Loggers *map[string]string `tfsdk:"loggers" yaml:"loggers,omitempty"`
+
+			Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+			ValueFrom *struct {
+				ConfigMapKeyRef *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+				} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
+			} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
+		} `tfsdk:"logging" yaml:"logging,omitempty"`
+
 		ReadinessProbe *struct {
+			FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
 			InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
 
 			PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
@@ -57,37 +78,85 @@ type KafkaStrimziIoKafkaBridgeV1Beta2GoModel struct {
 			SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
 
 			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-			FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
 		} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
 
-		Resources *struct {
-			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+		Tls *struct {
+			TrustedCertificates *[]struct {
+				Certificate *string `tfsdk:"certificate" yaml:"certificate,omitempty"`
 
+				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
+			} `tfsdk:"trusted_certificates" yaml:"trustedCertificates,omitempty"`
+		} `tfsdk:"tls" yaml:"tls,omitempty"`
+
+		AdminClient *struct {
+			Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+		} `tfsdk:"admin_client" yaml:"adminClient,omitempty"`
+
+		Http *struct {
+			Cors *struct {
+				AllowedMethods *[]string `tfsdk:"allowed_methods" yaml:"allowedMethods,omitempty"`
+
+				AllowedOrigins *[]string `tfsdk:"allowed_origins" yaml:"allowedOrigins,omitempty"`
+			} `tfsdk:"cors" yaml:"cors,omitempty"`
+
+			Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+		} `tfsdk:"http" yaml:"http,omitempty"`
+
+		JvmOptions *struct {
+			_XX *map[string]string `tfsdk:"__xx" yaml:"-XX,omitempty"`
+
+			_Xms *string `tfsdk:"___xms" yaml:"-Xms,omitempty"`
+
+			_Xmx *string `tfsdk:"___xmx" yaml:"-Xmx,omitempty"`
+
+			GcLoggingEnabled *bool `tfsdk:"gc_logging_enabled" yaml:"gcLoggingEnabled,omitempty"`
+
+			JavaSystemProperties *[]struct {
+				Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"java_system_properties" yaml:"javaSystemProperties,omitempty"`
+		} `tfsdk:"jvm_options" yaml:"jvmOptions,omitempty"`
+
+		Producer *struct {
+			Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+		} `tfsdk:"producer" yaml:"producer,omitempty"`
+
+		Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
+
+		Tracing *struct {
+			Type *string `tfsdk:"type" yaml:"type,omitempty"`
+		} `tfsdk:"tracing" yaml:"tracing,omitempty"`
+
+		EnableMetrics *bool `tfsdk:"enable_metrics" yaml:"enableMetrics,omitempty"`
+
+		BootstrapServers *string `tfsdk:"bootstrap_servers" yaml:"bootstrapServers,omitempty"`
+
+		Consumer *struct {
+			Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+		} `tfsdk:"consumer" yaml:"consumer,omitempty"`
+
+		Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+		LivenessProbe *struct {
+			FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+			InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+			PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+			SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+		} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
+
+		Resources *struct {
 			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+
+			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
 		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 		Template *struct {
-			ServiceAccount *struct {
-				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
-			} `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
-
-			ApiService *struct {
-				IpFamilies *[]string `tfsdk:"ip_families" yaml:"ipFamilies,omitempty"`
-
-				IpFamilyPolicy *string `tfsdk:"ip_family_policy" yaml:"ipFamilyPolicy,omitempty"`
-
-				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
-			} `tfsdk:"api_service" yaml:"apiService,omitempty"`
-
 			BridgeContainer *struct {
 				Env *[]struct {
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -96,25 +165,113 @@ type KafkaStrimziIoKafkaBridgeV1Beta2GoModel struct {
 				} `tfsdk:"env" yaml:"env,omitempty"`
 
 				SecurityContext *struct {
+					RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
+
+					SeLinuxOptions *struct {
+						Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+						User *string `tfsdk:"user" yaml:"user,omitempty"`
+
+						Level *string `tfsdk:"level" yaml:"level,omitempty"`
+
+						Role *string `tfsdk:"role" yaml:"role,omitempty"`
+					} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
+
+					SeccompProfile *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" yaml:"localhostProfile,omitempty"`
+
+						Type *string `tfsdk:"type" yaml:"type,omitempty"`
+					} `tfsdk:"seccomp_profile" yaml:"seccompProfile,omitempty"`
+
+					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
+
+					Capabilities *struct {
+						Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
+
+						Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
+					} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
+
+					RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
+
 					RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
 
 					WindowsOptions *struct {
+						GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
+
 						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
 
 						HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
 
 						RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
-
-						GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
 					} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
+
+					Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
 
 					ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
 
 					ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
+				} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
+			} `tfsdk:"bridge_container" yaml:"bridgeContainer,omitempty"`
 
-					RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
+			Deployment *struct {
+				DeploymentStrategy *string `tfsdk:"deployment_strategy" yaml:"deploymentStrategy,omitempty"`
+
+				Metadata *struct {
+					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+
+					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
+			} `tfsdk:"deployment" yaml:"deployment,omitempty"`
+
+			Pod *struct {
+				Tolerations *[]struct {
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+					Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
+
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+					TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
+				} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
+
+				SchedulerName *string `tfsdk:"scheduler_name" yaml:"schedulerName,omitempty"`
+
+				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+
+				HostAliases *[]struct {
+					Hostnames *[]string `tfsdk:"hostnames" yaml:"hostnames,omitempty"`
+
+					Ip *string `tfsdk:"ip" yaml:"ip,omitempty"`
+				} `tfsdk:"host_aliases" yaml:"hostAliases,omitempty"`
+
+				ImagePullSecrets *[]struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
+
+				Metadata *struct {
+					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+
+					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
+
+				PriorityClassName *string `tfsdk:"priority_class_name" yaml:"priorityClassName,omitempty"`
+
+				SecurityContext *struct {
+					RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
+
+					SupplementalGroups *[]string `tfsdk:"supplemental_groups" yaml:"supplementalGroups,omitempty"`
+
+					Sysctls *[]struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Value *string `tfsdk:"value" yaml:"value,omitempty"`
+					} `tfsdk:"sysctls" yaml:"sysctls,omitempty"`
 
 					RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
+
+					RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
 
 					SeLinuxOptions *struct {
 						Level *string `tfsdk:"level" yaml:"level,omitempty"`
@@ -132,132 +289,26 @@ type KafkaStrimziIoKafkaBridgeV1Beta2GoModel struct {
 						Type *string `tfsdk:"type" yaml:"type,omitempty"`
 					} `tfsdk:"seccomp_profile" yaml:"seccompProfile,omitempty"`
 
-					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
+					WindowsOptions *struct {
+						GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
 
-					Capabilities *struct {
-						Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
+						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
 
-						Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
-					} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
+						HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
 
-					Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
+						RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
+					} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
+
+					FsGroup *int64 `tfsdk:"fs_group" yaml:"fsGroup,omitempty"`
+
+					FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" yaml:"fsGroupChangePolicy,omitempty"`
 				} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
-			} `tfsdk:"bridge_container" yaml:"bridgeContainer,omitempty"`
-
-			Deployment *struct {
-				DeploymentStrategy *string `tfsdk:"deployment_strategy" yaml:"deploymentStrategy,omitempty"`
-
-				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
-			} `tfsdk:"deployment" yaml:"deployment,omitempty"`
-
-			Pod *struct {
-				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
-
-				SchedulerName *string `tfsdk:"scheduler_name" yaml:"schedulerName,omitempty"`
 
 				TmpDirSizeLimit *string `tfsdk:"tmp_dir_size_limit" yaml:"tmpDirSizeLimit,omitempty"`
 
-				TopologySpreadConstraints *[]struct {
-					LabelSelector *struct {
-						MatchExpressions *[]struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-							Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-						} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-						MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-					} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-					MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
-
-					MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
-
-					TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
-					WhenUnsatisfiable *string `tfsdk:"when_unsatisfiable" yaml:"whenUnsatisfiable,omitempty"`
-				} `tfsdk:"topology_spread_constraints" yaml:"topologySpreadConstraints,omitempty"`
-
 				Affinity *struct {
-					PodAntiAffinity *struct {
-						PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-							Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-
-							PodAffinityTerm *struct {
-								LabelSelector *struct {
-									MatchExpressions *[]struct {
-										Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-								} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-								NamespaceSelector *struct {
-									MatchExpressions *[]struct {
-										Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-								} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-
-								Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-								TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-							} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
-						} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
-
-						RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
-							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
-							LabelSelector *struct {
-								MatchExpressions *[]struct {
-									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-							NamespaceSelector *struct {
-								MatchExpressions *[]struct {
-									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-						} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
-					} `tfsdk:"pod_anti_affinity" yaml:"podAntiAffinity,omitempty"`
-
 					NodeAffinity *struct {
 						PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-							Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-
 							Preference *struct {
 								MatchExpressions *[]struct {
 									Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -275,25 +326,27 @@ type KafkaStrimziIoKafkaBridgeV1Beta2GoModel struct {
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 								} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
 							} `tfsdk:"preference" yaml:"preference,omitempty"`
+
+							Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 						} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
 
 						RequiredDuringSchedulingIgnoredDuringExecution *struct {
 							NodeSelectorTerms *[]struct {
-								MatchFields *[]struct {
-									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-								} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
-
 								MatchExpressions *[]struct {
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 
 									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchFields *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
 							} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
 						} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 					} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
@@ -315,6 +368,72 @@ type KafkaStrimziIoKafkaBridgeV1Beta2GoModel struct {
 
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
+										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+										Key *string `tfsdk:"key" yaml:"key,omitempty"`
+									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+								} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
+								Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+								TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+							} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
+
+							Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+						} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+
+						RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
+							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+
+							LabelSelector *struct {
+								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+						} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+					} `tfsdk:"pod_affinity" yaml:"podAffinity,omitempty"`
+
+					PodAntiAffinity *struct {
+						PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+							PodAffinityTerm *struct {
+								LabelSelector *struct {
+									MatchExpressions *[]struct {
+										Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+								} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+								NamespaceSelector *struct {
+									MatchExpressions *[]struct {
 										Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
@@ -347,8 +466,6 @@ type KafkaStrimziIoKafkaBridgeV1Beta2GoModel struct {
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 							NamespaceSelector *struct {
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-
 								MatchExpressions *[]struct {
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 
@@ -356,201 +473,81 @@ type KafkaStrimziIoKafkaBridgeV1Beta2GoModel struct {
 
 									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 						} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
-					} `tfsdk:"pod_affinity" yaml:"podAffinity,omitempty"`
+					} `tfsdk:"pod_anti_affinity" yaml:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" yaml:"affinity,omitempty"`
 
 				EnableServiceLinks *bool `tfsdk:"enable_service_links" yaml:"enableServiceLinks,omitempty"`
 
-				HostAliases *[]struct {
-					Hostnames *[]string `tfsdk:"hostnames" yaml:"hostnames,omitempty"`
+				TopologySpreadConstraints *[]struct {
+					LabelSelector *struct {
+						MatchExpressions *[]struct {
+							Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
-					Ip *string `tfsdk:"ip" yaml:"ip,omitempty"`
-				} `tfsdk:"host_aliases" yaml:"hostAliases,omitempty"`
+							Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 
-				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+						} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-				Tolerations *[]struct {
-					Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
+						MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+					} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+					MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
 
-					Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+					MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
 
-					TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
+					TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-				} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
-
-				ImagePullSecrets *[]struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
-
-				PriorityClassName *string `tfsdk:"priority_class_name" yaml:"priorityClassName,omitempty"`
-
-				SecurityContext *struct {
-					FsGroup *int64 `tfsdk:"fs_group" yaml:"fsGroup,omitempty"`
-
-					RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
-
-					SeLinuxOptions *struct {
-						User *string `tfsdk:"user" yaml:"user,omitempty"`
-
-						Level *string `tfsdk:"level" yaml:"level,omitempty"`
-
-						Role *string `tfsdk:"role" yaml:"role,omitempty"`
-
-						Type *string `tfsdk:"type" yaml:"type,omitempty"`
-					} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
-
-					SeccompProfile *struct {
-						LocalhostProfile *string `tfsdk:"localhost_profile" yaml:"localhostProfile,omitempty"`
-
-						Type *string `tfsdk:"type" yaml:"type,omitempty"`
-					} `tfsdk:"seccomp_profile" yaml:"seccompProfile,omitempty"`
-
-					WindowsOptions *struct {
-						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
-
-						HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
-
-						RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
-
-						GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
-					} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
-
-					FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" yaml:"fsGroupChangePolicy,omitempty"`
-
-					RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
-
-					RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
-
-					SupplementalGroups *[]string `tfsdk:"supplemental_groups" yaml:"supplementalGroups,omitempty"`
-
-					Sysctls *[]struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Value *string `tfsdk:"value" yaml:"value,omitempty"`
-					} `tfsdk:"sysctls" yaml:"sysctls,omitempty"`
-				} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
+					WhenUnsatisfiable *string `tfsdk:"when_unsatisfiable" yaml:"whenUnsatisfiable,omitempty"`
+				} `tfsdk:"topology_spread_constraints" yaml:"topologySpreadConstraints,omitempty"`
 			} `tfsdk:"pod" yaml:"pod,omitempty"`
 
 			PodDisruptionBudget *struct {
-				Metadata *struct {
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+				MaxUnavailable *int64 `tfsdk:"max_unavailable" yaml:"maxUnavailable,omitempty"`
 
+				Metadata *struct {
 					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+
+					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
+			} `tfsdk:"pod_disruption_budget" yaml:"podDisruptionBudget,omitempty"`
+
+			ServiceAccount *struct {
+				Metadata *struct {
+					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+
+					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
+			} `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
+
+			ApiService *struct {
+				IpFamilyPolicy *string `tfsdk:"ip_family_policy" yaml:"ipFamilyPolicy,omitempty"`
+
+				Metadata *struct {
+					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+
+					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
 				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
-				MaxUnavailable *int64 `tfsdk:"max_unavailable" yaml:"maxUnavailable,omitempty"`
-			} `tfsdk:"pod_disruption_budget" yaml:"podDisruptionBudget,omitempty"`
+				IpFamilies *[]string `tfsdk:"ip_families" yaml:"ipFamilies,omitempty"`
+			} `tfsdk:"api_service" yaml:"apiService,omitempty"`
 		} `tfsdk:"template" yaml:"template,omitempty"`
 
-		AdminClient *struct {
-			Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
-		} `tfsdk:"admin_client" yaml:"adminClient,omitempty"`
-
-		BootstrapServers *string `tfsdk:"bootstrap_servers" yaml:"bootstrapServers,omitempty"`
-
-		EnableMetrics *bool `tfsdk:"enable_metrics" yaml:"enableMetrics,omitempty"`
-
-		Http *struct {
-			Cors *struct {
-				AllowedOrigins *[]string `tfsdk:"allowed_origins" yaml:"allowedOrigins,omitempty"`
-
-				AllowedMethods *[]string `tfsdk:"allowed_methods" yaml:"allowedMethods,omitempty"`
-			} `tfsdk:"cors" yaml:"cors,omitempty"`
-
-			Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-		} `tfsdk:"http" yaml:"http,omitempty"`
-
-		Consumer *struct {
-			Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
-		} `tfsdk:"consumer" yaml:"consumer,omitempty"`
-
-		Image *string `tfsdk:"image" yaml:"image,omitempty"`
-
-		LivenessProbe *struct {
-			PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-			SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-			FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-			InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-		} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
-
-		Tls *struct {
-			TrustedCertificates *[]struct {
-				Certificate *string `tfsdk:"certificate" yaml:"certificate,omitempty"`
-
-				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-			} `tfsdk:"trusted_certificates" yaml:"trustedCertificates,omitempty"`
-		} `tfsdk:"tls" yaml:"tls,omitempty"`
-
-		Producer *struct {
-			Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
-		} `tfsdk:"producer" yaml:"producer,omitempty"`
-
-		Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
-
-		Tracing *struct {
-			Type *string `tfsdk:"type" yaml:"type,omitempty"`
-		} `tfsdk:"tracing" yaml:"tracing,omitempty"`
-
 		Authentication *struct {
-			CertificateAndKey *struct {
-				Certificate *string `tfsdk:"certificate" yaml:"certificate,omitempty"`
-
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-			} `tfsdk:"certificate_and_key" yaml:"certificateAndKey,omitempty"`
-
-			ConnectTimeoutSeconds *int64 `tfsdk:"connect_timeout_seconds" yaml:"connectTimeoutSeconds,omitempty"`
-
-			Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
-
-			AccessTokenIsJwt *bool `tfsdk:"access_token_is_jwt" yaml:"accessTokenIsJwt,omitempty"`
-
-			ClientSecret *struct {
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-			} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
-
-			DisableTlsHostnameVerification *bool `tfsdk:"disable_tls_hostname_verification" yaml:"disableTlsHostnameVerification,omitempty"`
-
-			ReadTimeoutSeconds *int64 `tfsdk:"read_timeout_seconds" yaml:"readTimeoutSeconds,omitempty"`
-
-			Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-			Username *string `tfsdk:"username" yaml:"username,omitempty"`
-
-			Audience *string `tfsdk:"audience" yaml:"audience,omitempty"`
-
-			MaxTokenExpirySeconds *int64 `tfsdk:"max_token_expiry_seconds" yaml:"maxTokenExpirySeconds,omitempty"`
-
-			PasswordSecret *struct {
-				Password *string `tfsdk:"password" yaml:"password,omitempty"`
-
-				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-			} `tfsdk:"password_secret" yaml:"passwordSecret,omitempty"`
-
 			TlsTrustedCertificates *[]struct {
 				Certificate *string `tfsdk:"certificate" yaml:"certificate,omitempty"`
 
 				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
 			} `tfsdk:"tls_trusted_certificates" yaml:"tlsTrustedCertificates,omitempty"`
 
-			TokenEndpointUri *string `tfsdk:"token_endpoint_uri" yaml:"tokenEndpointUri,omitempty"`
+			Username *string `tfsdk:"username" yaml:"username,omitempty"`
 
 			AccessToken *struct {
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -558,46 +555,52 @@ type KafkaStrimziIoKafkaBridgeV1Beta2GoModel struct {
 				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
 			} `tfsdk:"access_token" yaml:"accessToken,omitempty"`
 
-			ClientId *string `tfsdk:"client_id" yaml:"clientId,omitempty"`
+			CertificateAndKey *struct {
+				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
+
+				Certificate *string `tfsdk:"certificate" yaml:"certificate,omitempty"`
+
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+			} `tfsdk:"certificate_and_key" yaml:"certificateAndKey,omitempty"`
 
 			RefreshToken *struct {
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
 			} `tfsdk:"refresh_token" yaml:"refreshToken,omitempty"`
-		} `tfsdk:"authentication" yaml:"authentication,omitempty"`
 
-		JvmOptions *struct {
-			_XX *map[string]string `tfsdk:"__xx" yaml:"-XX,omitempty"`
+			Audience *string `tfsdk:"audience" yaml:"audience,omitempty"`
 
-			_Xms *string `tfsdk:"___xms" yaml:"-Xms,omitempty"`
+			PasswordSecret *struct {
+				Password *string `tfsdk:"password" yaml:"password,omitempty"`
 
-			_Xmx *string `tfsdk:"___xmx" yaml:"-Xmx,omitempty"`
+				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
+			} `tfsdk:"password_secret" yaml:"passwordSecret,omitempty"`
 
-			GcLoggingEnabled *bool `tfsdk:"gc_logging_enabled" yaml:"gcLoggingEnabled,omitempty"`
+			TokenEndpointUri *string `tfsdk:"token_endpoint_uri" yaml:"tokenEndpointUri,omitempty"`
 
-			JavaSystemProperties *[]struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			ClientSecret *struct {
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
-				Value *string `tfsdk:"value" yaml:"value,omitempty"`
-			} `tfsdk:"java_system_properties" yaml:"javaSystemProperties,omitempty"`
-		} `tfsdk:"jvm_options" yaml:"jvmOptions,omitempty"`
+				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
+			} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
 
-		Logging *struct {
-			Loggers *map[string]string `tfsdk:"loggers" yaml:"loggers,omitempty"`
+			ConnectTimeoutSeconds *int64 `tfsdk:"connect_timeout_seconds" yaml:"connectTimeoutSeconds,omitempty"`
 
 			Type *string `tfsdk:"type" yaml:"type,omitempty"`
 
-			ValueFrom *struct {
-				ConfigMapKeyRef *struct {
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+			MaxTokenExpirySeconds *int64 `tfsdk:"max_token_expiry_seconds" yaml:"maxTokenExpirySeconds,omitempty"`
 
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+			ReadTimeoutSeconds *int64 `tfsdk:"read_timeout_seconds" yaml:"readTimeoutSeconds,omitempty"`
 
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
-			} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
-		} `tfsdk:"logging" yaml:"logging,omitempty"`
+			Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
+
+			AccessTokenIsJwt *bool `tfsdk:"access_token_is_jwt" yaml:"accessTokenIsJwt,omitempty"`
+
+			ClientId *string `tfsdk:"client_id" yaml:"clientId,omitempty"`
+
+			DisableTlsHostnameVerification *bool `tfsdk:"disable_tls_hostname_verification" yaml:"disableTlsHostnameVerification,omitempty"`
+		} `tfsdk:"authentication" yaml:"authentication,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -698,11 +701,118 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"logging": {
+						Description:         "Logging configuration for Kafka Bridge.",
+						MarkdownDescription: "Logging configuration for Kafka Bridge.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"loggers": {
+								Description:         "A Map from logger name to logger level.",
+								MarkdownDescription: "A Map from logger name to logger level.",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"type": {
+								Description:         "Logging type, must be either 'inline' or 'external'.",
+								MarkdownDescription: "Logging type, must be either 'inline' or 'external'.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"value_from": {
+								Description:         "'ConfigMap' entry where the logging configuration is stored. ",
+								MarkdownDescription: "'ConfigMap' entry where the logging configuration is stored. ",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"config_map_key_ref": {
+										Description:         "Reference to the key in the ConfigMap containing the configuration.",
+										MarkdownDescription: "Reference to the key in the ConfigMap containing the configuration.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"key": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"readiness_probe": {
 						Description:         "Pod readiness checking.",
 						MarkdownDescription: "Pod readiness checking.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"failure_threshold": {
+								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
+							},
 
 							"initial_delay_seconds": {
 								Description:         "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0.",
@@ -713,6 +823,11 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(0),
+								},
 							},
 
 							"period_seconds": {
@@ -724,6 +839,11 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
 							},
 
 							"success_threshold": {
@@ -735,6 +855,11 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
 							},
 
 							"timeout_seconds": {
@@ -746,7 +871,363 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
 							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"tls": {
+						Description:         "TLS configuration for connecting Kafka Bridge to the cluster.",
+						MarkdownDescription: "TLS configuration for connecting Kafka Bridge to the cluster.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"trusted_certificates": {
+								Description:         "Trusted certificates for TLS connection.",
+								MarkdownDescription: "Trusted certificates for TLS connection.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"certificate": {
+										Description:         "The name of the file certificate in the Secret.",
+										MarkdownDescription: "The name of the file certificate in the Secret.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"secret_name": {
+										Description:         "The name of the Secret containing the certificate.",
+										MarkdownDescription: "The name of the Secret containing the certificate.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"admin_client": {
+						Description:         "Kafka AdminClient related configuration.",
+						MarkdownDescription: "Kafka AdminClient related configuration.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"config": {
+								Description:         "The Kafka AdminClient configuration used for AdminClient instances created by the bridge.",
+								MarkdownDescription: "The Kafka AdminClient configuration used for AdminClient instances created by the bridge.",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"http": {
+						Description:         "The HTTP related configuration.",
+						MarkdownDescription: "The HTTP related configuration.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"cors": {
+								Description:         "CORS configuration for the HTTP Bridge.",
+								MarkdownDescription: "CORS configuration for the HTTP Bridge.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"allowed_methods": {
+										Description:         "List of allowed HTTP methods.",
+										MarkdownDescription: "List of allowed HTTP methods.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"allowed_origins": {
+										Description:         "List of allowed origins. Java regular expressions can be used.",
+										MarkdownDescription: "List of allowed origins. Java regular expressions can be used.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"port": {
+								Description:         "The port which is the server listening on.",
+								MarkdownDescription: "The port which is the server listening on.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1023),
+								},
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"jvm_options": {
+						Description:         "**Currently not supported** JVM Options for pods.",
+						MarkdownDescription: "**Currently not supported** JVM Options for pods.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"__xx": {
+								Description:         "A map of -XX options to the JVM.",
+								MarkdownDescription: "A map of -XX options to the JVM.",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"___xms": {
+								Description:         "-Xms option to to the JVM.",
+								MarkdownDescription: "-Xms option to to the JVM.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"___xmx": {
+								Description:         "-Xmx option to to the JVM.",
+								MarkdownDescription: "-Xmx option to to the JVM.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"gc_logging_enabled": {
+								Description:         "Specifies whether the Garbage Collection logging is enabled. The default is false.",
+								MarkdownDescription: "Specifies whether the Garbage Collection logging is enabled. The default is false.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"java_system_properties": {
+								Description:         "A map of additional system properties which will be passed using the '-D' option to the JVM.",
+								MarkdownDescription: "A map of additional system properties which will be passed using the '-D' option to the JVM.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"value": {
+										Description:         "The system property value.",
+										MarkdownDescription: "The system property value.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "The system property name.",
+										MarkdownDescription: "The system property name.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"producer": {
+						Description:         "Kafka producer related configuration.",
+						MarkdownDescription: "Kafka producer related configuration.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"config": {
+								Description:         "The Kafka producer configuration used for producer instances created by the bridge. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, sasl., security. (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols).",
+								MarkdownDescription: "The Kafka producer configuration used for producer instances created by the bridge. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, sasl., security. (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols).",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"replicas": {
+						Description:         "The number of pods in the 'Deployment'.",
+						MarkdownDescription: "The number of pods in the 'Deployment'.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(0),
+						},
+					},
+
+					"tracing": {
+						Description:         "The configuration of tracing in Kafka Bridge.",
+						MarkdownDescription: "The configuration of tracing in Kafka Bridge.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"type": {
+								Description:         "Type of the tracing used. Currently the only supported type is 'jaeger' for Jaeger tracing. The Jaeger tracing is deprecated.",
+								MarkdownDescription: "Type of the tracing used. Currently the only supported type is 'jaeger' for Jaeger tracing. The Jaeger tracing is deprecated.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_metrics": {
+						Description:         "Enable the metrics for the Kafka Bridge. Default is false.",
+						MarkdownDescription: "Enable the metrics for the Kafka Bridge. Default is false.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"bootstrap_servers": {
+						Description:         "A list of host:port pairs for establishing the initial connection to the Kafka cluster.",
+						MarkdownDescription: "A list of host:port pairs for establishing the initial connection to the Kafka cluster.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"consumer": {
+						Description:         "Kafka consumer related configuration.",
+						MarkdownDescription: "Kafka consumer related configuration.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"config": {
+								Description:         "The Kafka consumer configuration used for consumer instances created by the bridge. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, group.id, sasl., security. (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols).",
+								MarkdownDescription: "The Kafka consumer configuration used for consumer instances created by the bridge. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, group.id, sasl., security. (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols).",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"image": {
+						Description:         "The docker image for the pods.",
+						MarkdownDescription: "The docker image for the pods.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"liveness_probe": {
+						Description:         "Pod liveness checking.",
+						MarkdownDescription: "Pod liveness checking.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 							"failure_threshold": {
 								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
@@ -757,6 +1238,75 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"initial_delay_seconds": {
+								Description:         "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0.",
+								MarkdownDescription: "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(0),
+								},
+							},
+
+							"period_seconds": {
+								Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+								MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"success_threshold": {
+								Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1.",
+								MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"timeout_seconds": {
+								Description:         "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1.",
+								MarkdownDescription: "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
 							},
 						}),
 
@@ -771,7 +1321,7 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"limits": {
+							"requests": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -782,7 +1332,7 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"requests": {
+							"limits": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -805,34 +1355,303 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"service_account": {
-								Description:         "Template for the Kafka Bridge service account.",
-								MarkdownDescription: "Template for the Kafka Bridge service account.",
+							"bridge_container": {
+								Description:         "Template for the Kafka Bridge container.",
+								MarkdownDescription: "Template for the Kafka Bridge container.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"metadata": {
-										Description:         "Metadata applied to the resource.",
-										MarkdownDescription: "Metadata applied to the resource.",
+									"env": {
+										Description:         "Environment variables which should be applied to the container.",
+										MarkdownDescription: "Environment variables which should be applied to the container.",
 
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-											"annotations": {
-												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
-												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
+											"name": {
+												Description:         "The environment variable key.",
+												MarkdownDescription: "The environment variable key.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
 												Computed: false,
 											},
 
-											"labels": {
-												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
-												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
+											"value": {
+												Description:         "The environment variable value.",
+												MarkdownDescription: "The environment variable value.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"security_context": {
+										Description:         "Security context for the container.",
+										MarkdownDescription: "Security context for the container.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"run_as_non_root": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"se_linux_options": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"type": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"user": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"level": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"role": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"seccomp_profile": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"localhost_profile": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"type": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"allow_privilege_escalation": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"capabilities": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"add": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"drop": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"run_as_group": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"run_as_user": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"windows_options": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"gmsa_credential_spec": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"gmsa_credential_spec_name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"host_process": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"run_as_user_name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"privileged": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"proc_mount": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"read_only_root_filesystem": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
 
 												Required: false,
 												Optional: true,
@@ -851,26 +1670,15 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"api_service": {
-								Description:         "Template for Kafka Bridge API 'Service'.",
-								MarkdownDescription: "Template for Kafka Bridge API 'Service'.",
+							"deployment": {
+								Description:         "Template for Kafka Bridge 'Deployment'.",
+								MarkdownDescription: "Template for Kafka Bridge 'Deployment'.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"ip_families": {
-										Description:         "Specifies the IP Families used by the service. Available options are 'IPv4' and 'IPv6. If unspecified, Kubernetes will choose the default value based on the 'ipFamilyPolicy' setting. Available on Kubernetes 1.20 and newer.",
-										MarkdownDescription: "Specifies the IP Families used by the service. Available options are 'IPv4' and 'IPv6. If unspecified, Kubernetes will choose the default value based on the 'ipFamilyPolicy' setting. Available on Kubernetes 1.20 and newer.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"ip_family_policy": {
-										Description:         "Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack'. 'SingleStack' is for a single IP family. 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters. If unspecified, Kubernetes will choose the default value based on the service type. Available on Kubernetes 1.20 and newer.",
-										MarkdownDescription: "Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack'. 'SingleStack' is for a single IP family. 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters. If unspecified, Kubernetes will choose the default value based on the service type. Available on Kubernetes 1.20 and newer.",
+									"deployment_strategy": {
+										Description:         "DeploymentStrategy which will be used for this Deployment. Valid values are 'RollingUpdate' and 'Recreate'. Defaults to 'RollingUpdate'.",
+										MarkdownDescription: "DeploymentStrategy which will be used for this Deployment. Valid values are 'RollingUpdate' and 'Recreate'. Defaults to 'RollingUpdate'.",
 
 										Type: types.StringType,
 
@@ -919,21 +1727,21 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"bridge_container": {
-								Description:         "Template for the Kafka Bridge container.",
-								MarkdownDescription: "Template for the Kafka Bridge container.",
+							"pod": {
+								Description:         "Template for Kafka Bridge 'Pods'.",
+								MarkdownDescription: "Template for Kafka Bridge 'Pods'.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"env": {
-										Description:         "Environment variables which should be applied to the container.",
-										MarkdownDescription: "Environment variables which should be applied to the container.",
+									"tolerations": {
+										Description:         "The pod's tolerations.",
+										MarkdownDescription: "The pod's tolerations.",
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-											"name": {
-												Description:         "The environment variable key.",
-												MarkdownDescription: "The environment variable key.",
+											"value": {
+												Description:         "",
+												MarkdownDescription: "",
 
 												Type: types.StringType,
 
@@ -942,9 +1750,103 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 												Computed: false,
 											},
 
-											"value": {
-												Description:         "The environment variable value.",
-												MarkdownDescription: "The environment variable value.",
+											"effect": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"key": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"operator": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"toleration_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"scheduler_name": {
+										Description:         "The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.",
+										MarkdownDescription: "The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_grace_period_seconds": {
+										Description:         "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.",
+										MarkdownDescription: "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											int64validator.AtLeast(0),
+										},
+									},
+
+									"host_aliases": {
+										Description:         "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified.",
+										MarkdownDescription: "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"hostnames": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"ip": {
+												Description:         "",
+												MarkdownDescription: "",
 
 												Type: types.StringType,
 
@@ -959,9 +1861,77 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
+									"image_pull_secrets": {
+										Description:         "List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored.",
+										MarkdownDescription: "List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"metadata": {
+										Description:         "Metadata applied to the resource.",
+										MarkdownDescription: "Metadata applied to the resource.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"labels": {
+												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
+												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"annotations": {
+												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
+												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"priority_class_name": {
+										Description:         "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
+										MarkdownDescription: "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"security_context": {
-										Description:         "Security context for the container.",
-										MarkdownDescription: "Security context for the container.",
+										Description:         "Configures pod-level security attributes and common container settings.",
+										MarkdownDescription: "Configures pod-level security attributes and common container settings.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -976,13 +1946,24 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 												Computed: false,
 											},
 
-											"windows_options": {
+											"supplemental_groups": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+												Type: types.ListType{ElemType: types.StringType},
 
-													"gmsa_credential_spec_name": {
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"sysctls": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -993,29 +1974,7 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 														Computed: false,
 													},
 
-													"host_process": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"run_as_user_name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"gmsa_credential_spec": {
+													"value": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -1032,22 +1991,11 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 												Computed: false,
 											},
 
-											"proc_mount": {
+											"run_as_group": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"read_only_root_filesystem": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
+												Type: types.Int64Type,
 
 												Required: false,
 												Optional: true,
@@ -1059,17 +2007,6 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 												MarkdownDescription: "",
 
 												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"run_as_group": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
 
 												Required: false,
 												Optional: true,
@@ -1166,39 +2103,50 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 												Computed: false,
 											},
 
-											"allow_privilege_escalation": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"capabilities": {
+											"windows_options": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"add": {
+													"gmsa_credential_spec": {
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.ListType{ElemType: types.StringType},
+														Type: types.StringType,
 
 														Required: false,
 														Optional: true,
 														Computed: false,
 													},
 
-													"drop": {
+													"gmsa_credential_spec_name": {
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.ListType{ElemType: types.StringType},
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"host_process": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"run_as_user_name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
 
 														Required: false,
 														Optional: true,
@@ -1211,131 +2159,28 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 												Computed: false,
 											},
 
-											"privileged": {
+											"fs_group": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.BoolType,
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"fs_group_change_policy": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
 												Computed: false,
 											},
 										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"deployment": {
-								Description:         "Template for Kafka Bridge 'Deployment'.",
-								MarkdownDescription: "Template for Kafka Bridge 'Deployment'.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"deployment_strategy": {
-										Description:         "DeploymentStrategy which will be used for this Deployment. Valid values are 'RollingUpdate' and 'Recreate'. Defaults to 'RollingUpdate'.",
-										MarkdownDescription: "DeploymentStrategy which will be used for this Deployment. Valid values are 'RollingUpdate' and 'Recreate'. Defaults to 'RollingUpdate'.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"metadata": {
-										Description:         "Metadata applied to the resource.",
-										MarkdownDescription: "Metadata applied to the resource.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"annotations": {
-												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
-												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"labels": {
-												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
-												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"pod": {
-								Description:         "Template for Kafka Bridge 'Pods'.",
-								MarkdownDescription: "Template for Kafka Bridge 'Pods'.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"metadata": {
-										Description:         "Metadata applied to the resource.",
-										MarkdownDescription: "Metadata applied to the resource.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"annotations": {
-												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
-												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"labels": {
-												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
-												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"scheduler_name": {
-										Description:         "The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.",
-										MarkdownDescription: "The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.",
-
-										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -1353,510 +2198,11 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
-									"topology_spread_constraints": {
-										Description:         "The pod's topology spread constraints.",
-										MarkdownDescription: "The pod's topology spread constraints.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"label_selector": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"match_expressions": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"operator": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"values": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"match_labels": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.MapType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"max_skew": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"min_domains": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"topology_key": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"when_unsatisfiable": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"affinity": {
 										Description:         "The pod's affinity rules.",
 										MarkdownDescription: "The pod's affinity rules.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"pod_anti_affinity": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"preferred_during_scheduling_ignored_during_execution": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"weight": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"pod_affinity_term": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"label_selector": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"match_expressions": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"key": {
-																						Description:         "",
-																						MarkdownDescription: "",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"operator": {
-																						Description:         "",
-																						MarkdownDescription: "",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"values": {
-																						Description:         "",
-																						MarkdownDescription: "",
-
-																						Type: types.ListType{ElemType: types.StringType},
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"match_labels": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.MapType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"namespace_selector": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"match_expressions": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"key": {
-																						Description:         "",
-																						MarkdownDescription: "",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"operator": {
-																						Description:         "",
-																						MarkdownDescription: "",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"values": {
-																						Description:         "",
-																						MarkdownDescription: "",
-
-																						Type: types.ListType{ElemType: types.StringType},
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"match_labels": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.MapType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"namespaces": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"topology_key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"required_during_scheduling_ignored_during_execution": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"namespaces": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"topology_key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"label_selector": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"match_expressions": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"values": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"key": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"operator": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_labels": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespace_selector": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"match_expressions": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"values": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"key": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"operator": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_labels": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
 											"node_affinity": {
 												Description:         "",
@@ -1869,17 +2215,6 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 														MarkdownDescription: "",
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"weight": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
 
 															"preference": {
 																Description:         "",
@@ -1982,6 +2317,17 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 																Optional: true,
 																Computed: false,
 															},
+
+															"weight": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
 														}),
 
 														Required: false,
@@ -2001,11 +2347,22 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 
 																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"match_fields": {
+																	"match_expressions": {
 																		Description:         "",
 																		MarkdownDescription: "",
 
 																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
 
 																			"values": {
 																				Description:         "",
@@ -2019,17 +2376,6 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 																			},
 
 																			"key": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"operator": {
 																				Description:         "",
 																				MarkdownDescription: "",
 
@@ -2046,22 +2392,11 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"match_expressions": {
+																	"match_fields": {
 																		Description:         "",
 																		MarkdownDescription: "",
 
 																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"values": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
 
 																			"key": {
 																				Description:         "",
@@ -2079,6 +2414,17 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 																				MarkdownDescription: "",
 
 																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
 
 																				Required: false,
 																				Optional: true,
@@ -2207,6 +2553,381 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 
 																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+																					"operator": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"values": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.ListType{ElemType: types.StringType},
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"key": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"match_labels": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.MapType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"namespaces": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"topology_key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"weight": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"required_during_scheduling_ignored_during_execution": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"namespace_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespaces": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"topology_key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"label_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"pod_anti_affinity": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"preferred_during_scheduling_ignored_during_execution": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"pod_affinity_term": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"label_selector": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"match_expressions": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"key": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"operator": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"values": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.ListType{ElemType: types.StringType},
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"match_labels": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.MapType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"namespace_selector": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"match_expressions": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
 																					"key": {
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -2388,17 +3109,6 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"match_labels": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
 																	"match_expressions": {
 																		Description:         "",
 																		MarkdownDescription: "",
@@ -2438,6 +3148,17 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 																				Computed: false,
 																			},
 																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
 
 																		Required: false,
 																		Optional: true,
@@ -2501,258 +3222,68 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
-									"host_aliases": {
-										Description:         "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified.",
-										MarkdownDescription: "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified.",
+									"topology_spread_constraints": {
+										Description:         "The pod's topology spread constraints.",
+										MarkdownDescription: "The pod's topology spread constraints.",
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-											"hostnames": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"ip": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"termination_grace_period_seconds": {
-										Description:         "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.",
-										MarkdownDescription: "The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"tolerations": {
-										Description:         "The pod's tolerations.",
-										MarkdownDescription: "The pod's tolerations.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"effect": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"key": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"operator": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"toleration_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"value": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"image_pull_secrets": {
-										Description:         "List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored.",
-										MarkdownDescription: "List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"priority_class_name": {
-										Description:         "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
-										MarkdownDescription: "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"security_context": {
-										Description:         "Configures pod-level security attributes and common container settings.",
-										MarkdownDescription: "Configures pod-level security attributes and common container settings.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"fs_group": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"run_as_user": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"se_linux_options": {
+											"label_selector": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"user": {
+													"match_expressions": {
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.StringType,
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"operator": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"values": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
 
 														Required: false,
 														Optional: true,
 														Computed: false,
 													},
 
-													"level": {
+													"match_labels": {
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"role": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"type": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"seccomp_profile": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"localhost_profile": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"type": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
+														Type: types.MapType{ElemType: types.StringType},
 
 														Required: false,
 														Optional: true,
@@ -2765,74 +3296,7 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 												Computed: false,
 											},
 
-											"windows_options": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"gmsa_credential_spec_name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"host_process": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"run_as_user_name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"gmsa_credential_spec": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"fs_group_change_policy": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"run_as_group": {
+											"max_skew": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -2843,56 +3307,33 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 												Computed: false,
 											},
 
-											"run_as_non_root": {
+											"min_domains": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.BoolType,
+												Type: types.Int64Type,
 
 												Required: false,
 												Optional: true,
 												Computed: false,
 											},
 
-											"supplemental_groups": {
+											"topology_key": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.ListType{ElemType: types.StringType},
+												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
 												Computed: false,
 											},
 
-											"sysctls": {
+											"when_unsatisfiable": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"value": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
+												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
@@ -2917,11 +3358,38 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+									"max_unavailable": {
+										Description:         "Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the 'maxUnavailable' number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1.",
+										MarkdownDescription: "Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the 'maxUnavailable' number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											int64validator.AtLeast(0),
+										},
+									},
+
 									"metadata": {
 										Description:         "Metadata to apply to the 'PodDisruptionBudgetTemplate' resource.",
 										MarkdownDescription: "Metadata to apply to the 'PodDisruptionBudgetTemplate' resource.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"annotations": {
+												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
+												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 
 											"labels": {
 												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
@@ -2933,10 +3401,102 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 												Optional: true,
 												Computed: false,
 											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"service_account": {
+								Description:         "Template for the Kafka Bridge service account.",
+								MarkdownDescription: "Template for the Kafka Bridge service account.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"metadata": {
+										Description:         "Metadata applied to the resource.",
+										MarkdownDescription: "Metadata applied to the resource.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 											"annotations": {
 												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"labels": {
+												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
+												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"api_service": {
+								Description:         "Template for Kafka Bridge API 'Service'.",
+								MarkdownDescription: "Template for Kafka Bridge API 'Service'.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"ip_family_policy": {
+										Description:         "Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack'. 'SingleStack' is for a single IP family. 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters. If unspecified, Kubernetes will choose the default value based on the service type. Available on Kubernetes 1.20 and newer.",
+										MarkdownDescription: "Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack'. 'SingleStack' is for a single IP family. 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters. If unspecified, Kubernetes will choose the default value based on the service type. Available on Kubernetes 1.20 and newer.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"metadata": {
+										Description:         "Metadata applied to the resource.",
+										MarkdownDescription: "Metadata applied to the resource.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"annotations": {
+												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
+												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"labels": {
+												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
+												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
 												Type: types.MapType{ElemType: types.StringType},
 
@@ -2951,11 +3511,11 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
-									"max_unavailable": {
-										Description:         "Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the 'maxUnavailable' number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1.",
-										MarkdownDescription: "Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the 'maxUnavailable' number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1.",
+									"ip_families": {
+										Description:         "Specifies the IP Families used by the service. Available options are 'IPv4' and 'IPv6. If unspecified, Kubernetes will choose the default value based on the 'ipFamilyPolicy' setting. Available on Kubernetes 1.20 and newer.",
+										MarkdownDescription: "Specifies the IP Families used by the service. Available options are 'IPv4' and 'IPv6. If unspecified, Kubernetes will choose the default value based on the 'ipFamilyPolicy' setting. Available on Kubernetes 1.20 and newer.",
 
-										Type: types.Int64Type,
+										Type: types.ListType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
@@ -2974,529 +3534,11 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 						Computed: false,
 					},
 
-					"admin_client": {
-						Description:         "Kafka AdminClient related configuration.",
-						MarkdownDescription: "Kafka AdminClient related configuration.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"config": {
-								Description:         "The Kafka AdminClient configuration used for AdminClient instances created by the bridge.",
-								MarkdownDescription: "The Kafka AdminClient configuration used for AdminClient instances created by the bridge.",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"bootstrap_servers": {
-						Description:         "A list of host:port pairs for establishing the initial connection to the Kafka cluster.",
-						MarkdownDescription: "A list of host:port pairs for establishing the initial connection to the Kafka cluster.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"enable_metrics": {
-						Description:         "Enable the metrics for the Kafka Bridge. Default is false.",
-						MarkdownDescription: "Enable the metrics for the Kafka Bridge. Default is false.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"http": {
-						Description:         "The HTTP related configuration.",
-						MarkdownDescription: "The HTTP related configuration.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"cors": {
-								Description:         "CORS configuration for the HTTP Bridge.",
-								MarkdownDescription: "CORS configuration for the HTTP Bridge.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"allowed_origins": {
-										Description:         "List of allowed origins. Java regular expressions can be used.",
-										MarkdownDescription: "List of allowed origins. Java regular expressions can be used.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"allowed_methods": {
-										Description:         "List of allowed HTTP methods.",
-										MarkdownDescription: "List of allowed HTTP methods.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"port": {
-								Description:         "The port which is the server listening on.",
-								MarkdownDescription: "The port which is the server listening on.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"consumer": {
-						Description:         "Kafka consumer related configuration.",
-						MarkdownDescription: "Kafka consumer related configuration.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"config": {
-								Description:         "The Kafka consumer configuration used for consumer instances created by the bridge. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, group.id, sasl., security. (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols).",
-								MarkdownDescription: "The Kafka consumer configuration used for consumer instances created by the bridge. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, group.id, sasl., security. (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols).",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"image": {
-						Description:         "The docker image for the pods.",
-						MarkdownDescription: "The docker image for the pods.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"liveness_probe": {
-						Description:         "Pod liveness checking.",
-						MarkdownDescription: "Pod liveness checking.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"period_seconds": {
-								Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-								MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"success_threshold": {
-								Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1.",
-								MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"timeout_seconds": {
-								Description:         "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1.",
-								MarkdownDescription: "The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"failure_threshold": {
-								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"initial_delay_seconds": {
-								Description:         "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0.",
-								MarkdownDescription: "The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"tls": {
-						Description:         "TLS configuration for connecting Kafka Bridge to the cluster.",
-						MarkdownDescription: "TLS configuration for connecting Kafka Bridge to the cluster.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"trusted_certificates": {
-								Description:         "Trusted certificates for TLS connection.",
-								MarkdownDescription: "Trusted certificates for TLS connection.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"certificate": {
-										Description:         "The name of the file certificate in the Secret.",
-										MarkdownDescription: "The name of the file certificate in the Secret.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"secret_name": {
-										Description:         "The name of the Secret containing the certificate.",
-										MarkdownDescription: "The name of the Secret containing the certificate.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"producer": {
-						Description:         "Kafka producer related configuration.",
-						MarkdownDescription: "Kafka producer related configuration.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"config": {
-								Description:         "The Kafka producer configuration used for producer instances created by the bridge. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, sasl., security. (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols).",
-								MarkdownDescription: "The Kafka producer configuration used for producer instances created by the bridge. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, sasl., security. (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols).",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"replicas": {
-						Description:         "The number of pods in the 'Deployment'.",
-						MarkdownDescription: "The number of pods in the 'Deployment'.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"tracing": {
-						Description:         "The configuration of tracing in Kafka Bridge.",
-						MarkdownDescription: "The configuration of tracing in Kafka Bridge.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"type": {
-								Description:         "Type of the tracing used. Currently the only supported type is 'jaeger' for Jaeger tracing. The Jaeger tracing is deprecated.",
-								MarkdownDescription: "Type of the tracing used. Currently the only supported type is 'jaeger' for Jaeger tracing. The Jaeger tracing is deprecated.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"authentication": {
 						Description:         "Authentication configuration for connecting to the cluster.",
 						MarkdownDescription: "Authentication configuration for connecting to the cluster.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"certificate_and_key": {
-								Description:         "Reference to the 'Secret' which holds the certificate and private key pair.",
-								MarkdownDescription: "Reference to the 'Secret' which holds the certificate and private key pair.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"certificate": {
-										Description:         "The name of the file certificate in the Secret.",
-										MarkdownDescription: "The name of the file certificate in the Secret.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"key": {
-										Description:         "The name of the private key in the Secret.",
-										MarkdownDescription: "The name of the private key in the Secret.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"secret_name": {
-										Description:         "The name of the Secret containing the certificate.",
-										MarkdownDescription: "The name of the Secret containing the certificate.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"connect_timeout_seconds": {
-								Description:         "The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds.",
-								MarkdownDescription: "The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"scope": {
-								Description:         "OAuth scope to use when authenticating against the authorization server. Some authorization servers require this to be set. The possible values depend on how authorization server is configured. By default 'scope' is not specified when doing the token endpoint request.",
-								MarkdownDescription: "OAuth scope to use when authenticating against the authorization server. Some authorization servers require this to be set. The possible values depend on how authorization server is configured. By default 'scope' is not specified when doing the token endpoint request.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"access_token_is_jwt": {
-								Description:         "Configure whether access token should be treated as JWT. This should be set to 'false' if the authorization server returns opaque tokens. Defaults to 'true'.",
-								MarkdownDescription: "Configure whether access token should be treated as JWT. This should be set to 'false' if the authorization server returns opaque tokens. Defaults to 'true'.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"client_secret": {
-								Description:         "Link to Kubernetes Secret containing the OAuth client secret which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI.",
-								MarkdownDescription: "Link to Kubernetes Secret containing the OAuth client secret which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"key": {
-										Description:         "The key under which the secret value is stored in the Kubernetes Secret.",
-										MarkdownDescription: "The key under which the secret value is stored in the Kubernetes Secret.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"secret_name": {
-										Description:         "The name of the Kubernetes Secret containing the secret value.",
-										MarkdownDescription: "The name of the Kubernetes Secret containing the secret value.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"disable_tls_hostname_verification": {
-								Description:         "Enable or disable TLS hostname verification. Default value is 'false'.",
-								MarkdownDescription: "Enable or disable TLS hostname verification. Default value is 'false'.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"read_timeout_seconds": {
-								Description:         "The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds.",
-								MarkdownDescription: "The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"type": {
-								Description:         "Authentication type. Currently the only supported types are 'tls', 'scram-sha-256', 'scram-sha-512', and 'plain'. 'scram-sha-256' and 'scram-sha-512' types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. 'plain' type uses SASL PLAIN Authentication. 'oauth' type uses SASL OAUTHBEARER Authentication. The 'tls' type uses TLS Client Authentication. The 'tls' type is supported only over TLS connections.",
-								MarkdownDescription: "Authentication type. Currently the only supported types are 'tls', 'scram-sha-256', 'scram-sha-512', and 'plain'. 'scram-sha-256' and 'scram-sha-512' types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. 'plain' type uses SASL PLAIN Authentication. 'oauth' type uses SASL OAUTHBEARER Authentication. The 'tls' type uses TLS Client Authentication. The 'tls' type is supported only over TLS connections.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"username": {
-								Description:         "Username used for the authentication.",
-								MarkdownDescription: "Username used for the authentication.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"audience": {
-								Description:         "OAuth audience to use when authenticating against the authorization server. Some authorization servers require the audience to be explicitly set. The possible values depend on how the authorization server is configured. By default, 'audience' is not specified when performing the token endpoint request.",
-								MarkdownDescription: "OAuth audience to use when authenticating against the authorization server. Some authorization servers require the audience to be explicitly set. The possible values depend on how the authorization server is configured. By default, 'audience' is not specified when performing the token endpoint request.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"max_token_expiry_seconds": {
-								Description:         "Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens.",
-								MarkdownDescription: "Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"password_secret": {
-								Description:         "Reference to the 'Secret' which holds the password.",
-								MarkdownDescription: "Reference to the 'Secret' which holds the password.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"password": {
-										Description:         "The name of the key in the Secret under which the password is stored.",
-										MarkdownDescription: "The name of the key in the Secret under which the password is stored.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"secret_name": {
-										Description:         "The name of the Secret containing the password.",
-										MarkdownDescription: "The name of the Secret containing the password.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"tls_trusted_certificates": {
 								Description:         "Trusted certificates for TLS connection to the OAuth server.",
@@ -3532,9 +3574,9 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"token_endpoint_uri": {
-								Description:         "Authorization server token endpoint URI.",
-								MarkdownDescription: "Authorization server token endpoint URI.",
+							"username": {
+								Description:         "Username used for the authentication.",
+								MarkdownDescription: "Username used for the authentication.",
 
 								Type: types.StringType,
 
@@ -3577,11 +3619,45 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"client_id": {
-								Description:         "OAuth Client ID which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI.",
-								MarkdownDescription: "OAuth Client ID which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI.",
+							"certificate_and_key": {
+								Description:         "Reference to the 'Secret' which holds the certificate and private key pair.",
+								MarkdownDescription: "Reference to the 'Secret' which holds the certificate and private key pair.",
 
-								Type: types.StringType,
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"secret_name": {
+										Description:         "The name of the Secret containing the certificate.",
+										MarkdownDescription: "The name of the Secret containing the certificate.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"certificate": {
+										Description:         "The name of the file certificate in the Secret.",
+										MarkdownDescription: "The name of the file certificate in the Secret.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"key": {
+										Description:         "The name of the private key in the Secret.",
+										MarkdownDescription: "The name of the private key in the Secret.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,
@@ -3621,33 +3697,10 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Optional: true,
 								Computed: false,
 							},
-						}),
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"jvm_options": {
-						Description:         "**Currently not supported** JVM Options for pods.",
-						MarkdownDescription: "**Currently not supported** JVM Options for pods.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"__xx": {
-								Description:         "A map of -XX options to the JVM.",
-								MarkdownDescription: "A map of -XX options to the JVM.",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"___xms": {
-								Description:         "-Xms option to to the JVM.",
-								MarkdownDescription: "-Xms option to to the JVM.",
+							"audience": {
+								Description:         "OAuth audience to use when authenticating against the authorization server. Some authorization servers require the audience to be explicitly set. The possible values depend on how the authorization server is configured. By default, 'audience' is not specified when performing the token endpoint request.",
+								MarkdownDescription: "OAuth audience to use when authenticating against the authorization server. Some authorization servers require the audience to be explicitly set. The possible values depend on how the authorization server is configured. By default, 'audience' is not specified when performing the token endpoint request.",
 
 								Type: types.StringType,
 
@@ -3656,53 +3709,31 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"___xmx": {
-								Description:         "-Xmx option to to the JVM.",
-								MarkdownDescription: "-Xmx option to to the JVM.",
+							"password_secret": {
+								Description:         "Reference to the 'Secret' which holds the password.",
+								MarkdownDescription: "Reference to the 'Secret' which holds the password.",
 
-								Type: types.StringType,
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"gc_logging_enabled": {
-								Description:         "Specifies whether the Garbage Collection logging is enabled. The default is false.",
-								MarkdownDescription: "Specifies whether the Garbage Collection logging is enabled. The default is false.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"java_system_properties": {
-								Description:         "A map of additional system properties which will be passed using the '-D' option to the JVM.",
-								MarkdownDescription: "A map of additional system properties which will be passed using the '-D' option to the JVM.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "The system property name.",
-										MarkdownDescription: "The system property name.",
+									"password": {
+										Description:         "The name of the key in the Secret under which the password is stored.",
+										MarkdownDescription: "The name of the key in the Secret under which the password is stored.",
 
 										Type: types.StringType,
 
-										Required: false,
-										Optional: true,
+										Required: true,
+										Optional: false,
 										Computed: false,
 									},
 
-									"value": {
-										Description:         "The system property value.",
-										MarkdownDescription: "The system property value.",
+									"secret_name": {
+										Description:         "The name of the Secret containing the password.",
+										MarkdownDescription: "The name of the Secret containing the password.",
 
 										Type: types.StringType,
 
-										Required: false,
-										Optional: true,
+										Required: true,
+										Optional: false,
 										Computed: false,
 									},
 								}),
@@ -3711,24 +3742,57 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Optional: true,
 								Computed: false,
 							},
-						}),
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
+							"token_endpoint_uri": {
+								Description:         "Authorization server token endpoint URI.",
+								MarkdownDescription: "Authorization server token endpoint URI.",
 
-					"logging": {
-						Description:         "Logging configuration for Kafka Bridge.",
-						MarkdownDescription: "Logging configuration for Kafka Bridge.",
+								Type: types.StringType,
 
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
-							"loggers": {
-								Description:         "A Map from logger name to logger level.",
-								MarkdownDescription: "A Map from logger name to logger level.",
+							"client_secret": {
+								Description:         "Link to Kubernetes Secret containing the OAuth client secret which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI.",
+								MarkdownDescription: "Link to Kubernetes Secret containing the OAuth client secret which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI.",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"key": {
+										Description:         "The key under which the secret value is stored in the Kubernetes Secret.",
+										MarkdownDescription: "The key under which the secret value is stored in the Kubernetes Secret.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"secret_name": {
+										Description:         "The name of the Kubernetes Secret containing the secret value.",
+										MarkdownDescription: "The name of the Kubernetes Secret containing the secret value.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"connect_timeout_seconds": {
+								Description:         "The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds.",
+								MarkdownDescription: "The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds.",
+
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
@@ -3736,8 +3800,8 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 							},
 
 							"type": {
-								Description:         "Logging type, must be either 'inline' or 'external'.",
-								MarkdownDescription: "Logging type, must be either 'inline' or 'external'.",
+								Description:         "Authentication type. Currently the only supported types are 'tls', 'scram-sha-256', 'scram-sha-512', and 'plain'. 'scram-sha-256' and 'scram-sha-512' types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. 'plain' type uses SASL PLAIN Authentication. 'oauth' type uses SASL OAUTHBEARER Authentication. The 'tls' type uses TLS Client Authentication. The 'tls' type is supported only over TLS connections.",
+								MarkdownDescription: "Authentication type. Currently the only supported types are 'tls', 'scram-sha-256', 'scram-sha-512', and 'plain'. 'scram-sha-256' and 'scram-sha-512' types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. 'plain' type uses SASL PLAIN Authentication. 'oauth' type uses SASL OAUTHBEARER Authentication. The 'tls' type uses TLS Client Authentication. The 'tls' type is supported only over TLS connections.",
 
 								Type: types.StringType,
 
@@ -3746,57 +3810,66 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"value_from": {
-								Description:         "'ConfigMap' entry where the logging configuration is stored. ",
-								MarkdownDescription: "'ConfigMap' entry where the logging configuration is stored. ",
+							"max_token_expiry_seconds": {
+								Description:         "Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens.",
+								MarkdownDescription: "Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens.",
 
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+								Type: types.Int64Type,
 
-									"config_map_key_ref": {
-										Description:         "Reference to the key in the ConfigMap containing the configuration.",
-										MarkdownDescription: "Reference to the key in the ConfigMap containing the configuration.",
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+							"read_timeout_seconds": {
+								Description:         "The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds.",
+								MarkdownDescription: "The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds.",
 
-											"optional": {
-												Description:         "",
-												MarkdownDescription: "",
+								Type: types.Int64Type,
 
-												Type: types.BoolType,
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
+							"scope": {
+								Description:         "OAuth scope to use when authenticating against the authorization server. Some authorization servers require this to be set. The possible values depend on how authorization server is configured. By default 'scope' is not specified when doing the token endpoint request.",
+								MarkdownDescription: "OAuth scope to use when authenticating against the authorization server. Some authorization servers require this to be set. The possible values depend on how authorization server is configured. By default 'scope' is not specified when doing the token endpoint request.",
 
-											"key": {
-												Description:         "",
-												MarkdownDescription: "",
+								Type: types.StringType,
 
-												Type: types.StringType,
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
+							"access_token_is_jwt": {
+								Description:         "Configure whether access token should be treated as JWT. This should be set to 'false' if the authorization server returns opaque tokens. Defaults to 'true'.",
+								MarkdownDescription: "Configure whether access token should be treated as JWT. This should be set to 'false' if the authorization server returns opaque tokens. Defaults to 'true'.",
 
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
+								Type: types.BoolType,
 
-												Type: types.StringType,
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
+							"client_id": {
+								Description:         "OAuth Client ID which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI.",
+								MarkdownDescription: "OAuth Client ID which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI.",
 
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"disable_tls_hostname_verification": {
+								Description:         "Enable or disable TLS hostname verification. Default value is 'false'.",
+								MarkdownDescription: "Enable or disable TLS hostname verification. Default value is 'false'.",
+
+								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,

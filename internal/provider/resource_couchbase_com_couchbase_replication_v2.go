@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -30,8 +31,8 @@ type CouchbaseComCouchbaseReplicationV2TerraformModel struct {
 	ApiVersion      types.String `tfsdk:"api_version"`
 	Kind            types.String `tfsdk:"kind"`
 	Metadata        types.Object `tfsdk:"metadata"`
-	ExplicitMapping types.Object `tfsdk:"explicit_mapping"`
 	Spec            types.Object `tfsdk:"spec"`
+	ExplicitMapping types.Object `tfsdk:"explicit_mapping"`
 }
 
 type CouchbaseComCouchbaseReplicationV2GoModel struct {
@@ -49,18 +50,30 @@ type CouchbaseComCouchbaseReplicationV2GoModel struct {
 		Annotations map[string]string `tfsdk:"annotations" yaml:",omitempty"`
 	} `tfsdk:"metadata" yaml:"metadata"`
 
+	Spec *struct {
+		Bucket *string `tfsdk:"bucket" yaml:"bucket,omitempty"`
+
+		CompressionType *string `tfsdk:"compression_type" yaml:"compressionType,omitempty"`
+
+		FilterExpression *string `tfsdk:"filter_expression" yaml:"filterExpression,omitempty"`
+
+		Paused *bool `tfsdk:"paused" yaml:"paused,omitempty"`
+
+		RemoteBucket *string `tfsdk:"remote_bucket" yaml:"remoteBucket,omitempty"`
+	} `tfsdk:"spec" yaml:"spec,omitempty"`
+
 	ExplicitMapping *struct {
 		AllowRules *[]struct {
 			SourceKeyspace *struct {
-				Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
-
 				Collection *string `tfsdk:"collection" yaml:"collection,omitempty"`
+
+				Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
 			} `tfsdk:"source_keyspace" yaml:"sourceKeyspace,omitempty"`
 
 			TargetKeyspace *struct {
-				Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
-
 				Collection *string `tfsdk:"collection" yaml:"collection,omitempty"`
+
+				Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
 			} `tfsdk:"target_keyspace" yaml:"targetKeyspace,omitempty"`
 		} `tfsdk:"allow_rules" yaml:"allowRules,omitempty"`
 
@@ -72,18 +85,6 @@ type CouchbaseComCouchbaseReplicationV2GoModel struct {
 			} `tfsdk:"source_keyspace" yaml:"sourceKeyspace,omitempty"`
 		} `tfsdk:"deny_rules" yaml:"denyRules,omitempty"`
 	} `tfsdk:"explicit_mapping" yaml:"explicitMapping,omitempty"`
-
-	Spec *struct {
-		FilterExpression *string `tfsdk:"filter_expression" yaml:"filterExpression,omitempty"`
-
-		Paused *bool `tfsdk:"paused" yaml:"paused,omitempty"`
-
-		RemoteBucket *string `tfsdk:"remote_bucket" yaml:"remoteBucket,omitempty"`
-
-		Bucket *string `tfsdk:"bucket" yaml:"bucket,omitempty"`
-
-		CompressionType *string `tfsdk:"compression_type" yaml:"compressionType,omitempty"`
-	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
 func NewCouchbaseComCouchbaseReplicationV2Resource() resource.Resource {
@@ -177,6 +178,73 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 				Optional:            false,
 			},
 
+			"spec": {
+				Description:         "CouchbaseReplicationSpec allows configuration of an XDCR replication.",
+				MarkdownDescription: "CouchbaseReplicationSpec allows configuration of an XDCR replication.",
+
+				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+					"bucket": {
+						Description:         "Bucket is the source bucket to replicate from.  This refers to the Couchbase bucket name, not the resource name of the bucket.  A bucket with this name must be defined on this cluster.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
+						MarkdownDescription: "Bucket is the source bucket to replicate from.  This refers to the Couchbase bucket name, not the resource name of the bucket.  A bucket with this name must be defined on this cluster.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"compression_type": {
+						Description:         "CompressionType is the type of compression to apply to the replication. When None, no compression will be applied to documents as they are transferred between clusters.  When Auto, Couchbase server will automatically compress documents as they are transferred to reduce bandwidth requirements. This field must be one of 'None' or 'Auto', defaulting to 'Auto'.",
+						MarkdownDescription: "CompressionType is the type of compression to apply to the replication. When None, no compression will be applied to documents as they are transferred between clusters.  When Auto, Couchbase server will automatically compress documents as they are transferred to reduce bandwidth requirements. This field must be one of 'None' or 'Auto', defaulting to 'Auto'.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"filter_expression": {
+						Description:         "FilterExpression allows certain documents to be filtered out of the replication.",
+						MarkdownDescription: "FilterExpression allows certain documents to be filtered out of the replication.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"paused": {
+						Description:         "Paused allows a replication to be stopped and restarted without having to restart the replication from the beginning.",
+						MarkdownDescription: "Paused allows a replication to be stopped and restarted without having to restart the replication from the beginning.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"remote_bucket": {
+						Description:         "RemoteBucket is the remote bucket name to synchronize to.  This refers to the Couchbase bucket name, not the resource name of the bucket.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
+						MarkdownDescription: "RemoteBucket is the remote bucket name to synchronize to.  This refers to the Couchbase bucket name, not the resource name of the bucket.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+				}),
+
+				Required: true,
+				Optional: false,
+				Computed: false,
+			},
+
 			"explicit_mapping": {
 				Description:         "The explicit mappings to use for replication which are optional. For Scopes and Collection replication support we can specify a set of implicit and explicit mappings to use. If none is specified then it is assumed to be existing bucket level replication. https://docs.couchbase.com/server/current/learn/clusters-and-availability/xdcr-with-scopes-and-collections.html#explicit-mapping",
 				MarkdownDescription: "The explicit mappings to use for replication which are optional. For Scopes and Collection replication support we can specify a set of implicit and explicit mappings to use. If none is specified then it is assumed to be existing bucket level replication. https://docs.couchbase.com/server/current/learn/clusters-and-availability/xdcr-with-scopes-and-collections.html#explicit-mapping",
@@ -195,17 +263,6 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"scope": {
-										Description:         "The scope to use.",
-										MarkdownDescription: "The scope to use.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
 									"collection": {
 										Description:         "The optional collection within the scope. May be empty to just work at scope level.",
 										MarkdownDescription: "The optional collection within the scope. May be empty to just work at scope level.",
@@ -214,6 +271,17 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 
 										Required: false,
 										Optional: true,
+										Computed: false,
+									},
+
+									"scope": {
+										Description:         "The scope to use.",
+										MarkdownDescription: "The scope to use.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
 										Computed: false,
 									},
 								}),
@@ -229,17 +297,6 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"scope": {
-										Description:         "The scope to use.",
-										MarkdownDescription: "The scope to use.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
 									"collection": {
 										Description:         "The optional collection within the scope. May be empty to just work at scope level.",
 										MarkdownDescription: "The optional collection within the scope. May be empty to just work at scope level.",
@@ -248,6 +305,17 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 
 										Required: false,
 										Optional: true,
+										Computed: false,
+									},
+
+									"scope": {
+										Description:         "The scope to use.",
+										MarkdownDescription: "The scope to use.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
 										Computed: false,
 									},
 								}),
@@ -312,73 +380,6 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 
 				Required: false,
 				Optional: true,
-				Computed: false,
-			},
-
-			"spec": {
-				Description:         "CouchbaseReplicationSpec allows configuration of an XDCR replication.",
-				MarkdownDescription: "CouchbaseReplicationSpec allows configuration of an XDCR replication.",
-
-				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-					"filter_expression": {
-						Description:         "FilterExpression allows certain documents to be filtered out of the replication.",
-						MarkdownDescription: "FilterExpression allows certain documents to be filtered out of the replication.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"paused": {
-						Description:         "Paused allows a replication to be stopped and restarted without having to restart the replication from the beginning.",
-						MarkdownDescription: "Paused allows a replication to be stopped and restarted without having to restart the replication from the beginning.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"remote_bucket": {
-						Description:         "RemoteBucket is the remote bucket name to synchronize to.  This refers to the Couchbase bucket name, not the resource name of the bucket.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
-						MarkdownDescription: "RemoteBucket is the remote bucket name to synchronize to.  This refers to the Couchbase bucket name, not the resource name of the bucket.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"bucket": {
-						Description:         "Bucket is the source bucket to replicate from.  This refers to the Couchbase bucket name, not the resource name of the bucket.  A bucket with this name must be defined on this cluster.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
-						MarkdownDescription: "Bucket is the source bucket to replicate from.  This refers to the Couchbase bucket name, not the resource name of the bucket.  A bucket with this name must be defined on this cluster.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"compression_type": {
-						Description:         "CompressionType is the type of compression to apply to the replication. When None, no compression will be applied to documents as they are transferred between clusters.  When Auto, Couchbase server will automatically compress documents as they are transferred to reduce bandwidth requirements. This field must be one of 'None' or 'Auto', defaulting to 'Auto'.",
-						MarkdownDescription: "CompressionType is the type of compression to apply to the replication. When None, no compression will be applied to documents as they are transferred between clusters.  When Auto, Couchbase server will automatically compress documents as they are transferred to reduce bandwidth requirements. This field must be one of 'None' or 'Auto', defaulting to 'Auto'.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-				}),
-
-				Required: true,
-				Optional: false,
 				Computed: false,
 			},
 		},

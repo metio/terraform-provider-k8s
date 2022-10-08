@@ -7,6 +7,9 @@ package provider
 
 import (
 	"context"
+
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,31 +52,17 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		EnvFrom *[]struct {
-			SecretRef *struct {
-				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+		Resources *struct {
+			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
 
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
-			ConfigMapRef *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		Secrets *[]string `tfsdk:"secrets" yaml:"secrets,omitempty"`
 
-				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-			} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
-
-			Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-		} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
-
-		Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
-
-		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
-
-		SessionAffinity *bool `tfsdk:"session_affinity" yaml:"sessionAffinity,omitempty"`
+		ApplicationImage *string `tfsdk:"application_image" yaml:"applicationImage,omitempty"`
 
 		BootableJar *bool `tfsdk:"bootable_jar" yaml:"bootableJar,omitempty"`
-
-		ConfigMaps *[]string `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
 
 		DisableHTTPRoute *bool `tfsdk:"disable_http_route" yaml:"disableHTTPRoute,omitempty"`
 
@@ -98,11 +87,11 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 				} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
 
 				ResourceFieldRef *struct {
-					Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-
 					ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
 					Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+
+					Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 				} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
 
 				SecretKeyRef *struct {
@@ -115,21 +104,35 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 			} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
 		} `tfsdk:"env" yaml:"env,omitempty"`
 
+		EnvFrom *[]struct {
+			ConfigMapRef *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+			} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
+
+			Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+			SecretRef *struct {
+				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+		} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
+
+		Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
+
+		ConfigMaps *[]string `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
+
+		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
+
+		SessionAffinity *bool `tfsdk:"session_affinity" yaml:"sessionAffinity,omitempty"`
+
 		StandaloneConfigMap *struct {
 			Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"standalone_config_map" yaml:"standaloneConfigMap,omitempty"`
-
-		ApplicationImage *string `tfsdk:"application_image" yaml:"applicationImage,omitempty"`
-
-		Resources *struct {
-			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
-
-			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
-		} `tfsdk:"resources" yaml:"resources,omitempty"`
-
-		Secrets *[]string `tfsdk:"secrets" yaml:"secrets,omitempty"`
 
 		Storage *struct {
 			EmptyDir *struct {
@@ -139,15 +142,11 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 			} `tfsdk:"empty_dir" yaml:"emptyDir,omitempty"`
 
 			VolumeClaimTemplate *struct {
+				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
 				Metadata *map[string]string `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
 				Spec *struct {
-					StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
-
-					VolumeMode *string `tfsdk:"volume_mode" yaml:"volumeMode,omitempty"`
-
-					VolumeName *string `tfsdk:"volume_name" yaml:"volumeName,omitempty"`
-
 					AccessModes *[]string `tfsdk:"access_modes" yaml:"accessModes,omitempty"`
 
 					DataSource *struct {
@@ -175,6 +174,12 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 
 						MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 					} `tfsdk:"selector" yaml:"selector,omitempty"`
+
+					StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
+
+					VolumeMode *string `tfsdk:"volume_mode" yaml:"volumeMode,omitempty"`
+
+					VolumeName *string `tfsdk:"volume_name" yaml:"volumeName,omitempty"`
 				} `tfsdk:"spec" yaml:"spec,omitempty"`
 
 				Status *struct {
@@ -183,25 +188,23 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 					Capacity *map[string]string `tfsdk:"capacity" yaml:"capacity,omitempty"`
 
 					Conditions *[]struct {
-						LastProbeTime *string `tfsdk:"last_probe_time" yaml:"lastProbeTime,omitempty"`
-
-						LastTransitionTime *string `tfsdk:"last_transition_time" yaml:"lastTransitionTime,omitempty"`
-
-						Message *string `tfsdk:"message" yaml:"message,omitempty"`
-
 						Reason *string `tfsdk:"reason" yaml:"reason,omitempty"`
 
 						Status *string `tfsdk:"status" yaml:"status,omitempty"`
 
 						Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+						LastProbeTime *string `tfsdk:"last_probe_time" yaml:"lastProbeTime,omitempty"`
+
+						LastTransitionTime *string `tfsdk:"last_transition_time" yaml:"lastTransitionTime,omitempty"`
+
+						Message *string `tfsdk:"message" yaml:"message,omitempty"`
 					} `tfsdk:"conditions" yaml:"conditions,omitempty"`
 
 					Phase *string `tfsdk:"phase" yaml:"phase,omitempty"`
 				} `tfsdk:"status" yaml:"status,omitempty"`
 
 				ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 			} `tfsdk:"volume_claim_template" yaml:"volumeClaimTemplate,omitempty"`
 		} `tfsdk:"storage" yaml:"storage,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -304,85 +307,28 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"env_from": {
-						Description:         "EnvFrom contains environment variables from a source such as a ConfigMap or a Secret",
-						MarkdownDescription: "EnvFrom contains environment variables from a source such as a ConfigMap or a Secret",
+					"resources": {
+						Description:         "ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements",
+						MarkdownDescription: "ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements",
 
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"secret_ref": {
-								Description:         "The Secret to select from",
-								MarkdownDescription: "The Secret to select from",
+							"limits": {
+								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
 
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"optional": {
-										Description:         "Specify whether the Secret must be defined",
-										MarkdownDescription: "Specify whether the Secret must be defined",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
+								Type: types.MapType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"config_map_ref": {
-								Description:         "The ConfigMap to select from",
-								MarkdownDescription: "The ConfigMap to select from",
+							"requests": {
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
 
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"optional": {
-										Description:         "Specify whether the ConfigMap must be defined",
-										MarkdownDescription: "Specify whether the ConfigMap must be defined",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"prefix": {
-								Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-								MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-
-								Type: types.StringType,
+								Type: types.MapType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,
@@ -395,36 +341,25 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 						Computed: false,
 					},
 
-					"replicas": {
-						Description:         "Replicas is the desired number of replicas for the application",
-						MarkdownDescription: "Replicas is the desired number of replicas for the application",
+					"secrets": {
+						Description:         "Secrets is a list of Secrets in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The Secrets are mounted into /etc/secrets/<secret-name>.",
+						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The Secrets are mounted into /etc/secrets/<secret-name>.",
 
-						Type: types.Int64Type,
+						Type: types.ListType{ElemType: types.StringType},
 
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
-					"service_account_name": {
-						Description:         "",
-						MarkdownDescription: "",
+					"application_image": {
+						Description:         "ApplicationImage is the name of the application image to be deployed",
+						MarkdownDescription: "ApplicationImage is the name of the application image to be deployed",
 
 						Type: types.StringType,
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"session_affinity": {
-						Description:         "SessionAffinity defines if connections from the same client ip are passed to the same WildFlyServer instance/pod each time (false if omitted)",
-						MarkdownDescription: "SessionAffinity defines if connections from the same client ip are passed to the same WildFlyServer instance/pod each time (false if omitted)",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 
@@ -433,17 +368,6 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 						MarkdownDescription: "BootableJar specifies whether the application image is using S2I Builder/Runtime images or Bootable Jar. If omitted, it defaults to false (application image is expected to use S2I Builder/Runtime images)",
 
 						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"config_maps": {
-						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The ConfigMaps are mounted into /etc/configmaps/<configmap-name>.",
-						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The ConfigMaps are mounted into /etc/configmaps/<configmap-name>.",
-
-						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,
@@ -580,17 +504,6 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"resource": {
-												Description:         "Required: resource to select",
-												MarkdownDescription: "Required: resource to select",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
 											"container_name": {
 												Description:         "Container name: required for volumes, optional for env vars",
 												MarkdownDescription: "Container name: required for volumes, optional for env vars",
@@ -610,6 +523,17 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 
 												Required: false,
 												Optional: true,
+												Computed: false,
+											},
+
+											"resource": {
+												Description:         "Required: resource to select",
+												MarkdownDescription: "Required: resource to select",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
 												Computed: false,
 											},
 										}),
@@ -676,6 +600,146 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 						Computed: false,
 					},
 
+					"env_from": {
+						Description:         "EnvFrom contains environment variables from a source such as a ConfigMap or a Secret",
+						MarkdownDescription: "EnvFrom contains environment variables from a source such as a ConfigMap or a Secret",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"config_map_ref": {
+								Description:         "The ConfigMap to select from",
+								MarkdownDescription: "The ConfigMap to select from",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"optional": {
+										Description:         "Specify whether the ConfigMap must be defined",
+										MarkdownDescription: "Specify whether the ConfigMap must be defined",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"prefix": {
+								Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+								MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"secret_ref": {
+								Description:         "The Secret to select from",
+								MarkdownDescription: "The Secret to select from",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"optional": {
+										Description:         "Specify whether the Secret must be defined",
+										MarkdownDescription: "Specify whether the Secret must be defined",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"replicas": {
+						Description:         "Replicas is the desired number of replicas for the application",
+						MarkdownDescription: "Replicas is the desired number of replicas for the application",
+
+						Type: types.Int64Type,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(0),
+						},
+					},
+
+					"config_maps": {
+						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The ConfigMaps are mounted into /etc/configmaps/<configmap-name>.",
+						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The ConfigMaps are mounted into /etc/configmaps/<configmap-name>.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"service_account_name": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"session_affinity": {
+						Description:         "SessionAffinity defines if connections from the same client ip are passed to the same WildFlyServer instance/pod each time (false if omitted)",
+						MarkdownDescription: "SessionAffinity defines if connections from the same client ip are passed to the same WildFlyServer instance/pod each time (false if omitted)",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"standalone_config_map": {
 						Description:         "StandaloneConfigMapSpec defines the desired configMap configuration to obtain the standalone configuration for WildFlyServer",
 						MarkdownDescription: "StandaloneConfigMapSpec defines the desired configMap configuration to obtain the standalone configuration for WildFlyServer",
@@ -704,62 +768,6 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"application_image": {
-						Description:         "ApplicationImage is the name of the application image to be deployed",
-						MarkdownDescription: "ApplicationImage is the name of the application image to be deployed",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"resources": {
-						Description:         "ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements",
-						MarkdownDescription: "ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"limits": {
-								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"requests": {
-								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"secrets": {
-						Description:         "Secrets is a list of Secrets in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The Secrets are mounted into /etc/secrets/<secret-name>.",
-						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The Secrets are mounted into /etc/secrets/<secret-name>.",
-
-						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,
@@ -812,6 +820,17 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+									"kind": {
+										Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+										MarkdownDescription: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"metadata": {
 										Description:         "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
 										MarkdownDescription: "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
@@ -828,39 +847,6 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 										MarkdownDescription: "Spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"storage_class_name": {
-												Description:         "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-												MarkdownDescription: "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"volume_mode": {
-												Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
-												MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"volume_name": {
-												Description:         "VolumeName is the binding reference to the PersistentVolume backing this claim.",
-												MarkdownDescription: "VolumeName is the binding reference to the PersistentVolume backing this claim.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
 											"access_modes": {
 												Description:         "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
@@ -1019,6 +1005,39 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 												Optional: true,
 												Computed: false,
 											},
+
+											"storage_class_name": {
+												Description:         "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+												MarkdownDescription: "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"volume_mode": {
+												Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
+												MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"volume_name": {
+												Description:         "VolumeName is the binding reference to the PersistentVolume backing this claim.",
+												MarkdownDescription: "VolumeName is the binding reference to the PersistentVolume backing this claim.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										}),
 
 										Required: false,
@@ -1060,39 +1079,6 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-													"last_probe_time": {
-														Description:         "Last time we probed the condition.",
-														MarkdownDescription: "Last time we probed the condition.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"last_transition_time": {
-														Description:         "Last time the condition transitioned from one status to another.",
-														MarkdownDescription: "Last time the condition transitioned from one status to another.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"message": {
-														Description:         "Human-readable message indicating details about last transition.",
-														MarkdownDescription: "Human-readable message indicating details about last transition.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
 													"reason": {
 														Description:         "Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
 														MarkdownDescription: "Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
@@ -1125,6 +1111,39 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 														Optional: false,
 														Computed: false,
 													},
+
+													"last_probe_time": {
+														Description:         "Last time we probed the condition.",
+														MarkdownDescription: "Last time we probed the condition.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"last_transition_time": {
+														Description:         "Last time the condition transitioned from one status to another.",
+														MarkdownDescription: "Last time the condition transitioned from one status to another.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"message": {
+														Description:         "Human-readable message indicating details about last transition.",
+														MarkdownDescription: "Human-readable message indicating details about last transition.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
 												}),
 
 												Required: false,
@@ -1152,17 +1171,6 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 									"api_version": {
 										Description:         "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
 										MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"kind": {
-										Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-										MarkdownDescription: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 
 										Type: types.StringType,
 
