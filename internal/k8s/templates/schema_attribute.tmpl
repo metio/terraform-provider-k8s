@@ -19,4 +19,11 @@
     Required:            {{ .Required }},
     Optional:            {{ .Optional }},
     Computed:            {{ .Computed }},
+    {{ if gt (len .Validators) 0 }}
+    Validators: []tfsdk.AttributeValidator{
+        {{ range $index, $validator := .Validators }}
+            {{  $validator }},
+        {{ end }}
+    },
+    {{ end }}
 },

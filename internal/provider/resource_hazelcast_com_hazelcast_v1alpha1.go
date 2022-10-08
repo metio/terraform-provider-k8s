@@ -7,6 +7,9 @@ package provider
 
 import (
 	"context"
+
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,71 +52,7 @@ type HazelcastComHazelcastV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Persistence *struct {
-			ClusterDataRecoveryPolicy *string `tfsdk:"cluster_data_recovery_policy" yaml:"clusterDataRecoveryPolicy,omitempty"`
-
-			DataRecoveryTimeout *int64 `tfsdk:"data_recovery_timeout" yaml:"dataRecoveryTimeout,omitempty"`
-
-			HostPath *string `tfsdk:"host_path" yaml:"hostPath,omitempty"`
-
-			Pvc *struct {
-				AccessModes *[]string `tfsdk:"access_modes" yaml:"accessModes,omitempty"`
-
-				RequestStorage *string `tfsdk:"request_storage" yaml:"requestStorage,omitempty"`
-
-				StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
-			} `tfsdk:"pvc" yaml:"pvc,omitempty"`
-
-			Restore *struct {
-				BucketURI *string `tfsdk:"bucket_uri" yaml:"bucketURI,omitempty"`
-
-				Secret *string `tfsdk:"secret" yaml:"secret,omitempty"`
-			} `tfsdk:"restore" yaml:"restore,omitempty"`
-
-			AutoForceStart *bool `tfsdk:"auto_force_start" yaml:"autoForceStart,omitempty"`
-
-			BackupType *string `tfsdk:"backup_type" yaml:"backupType,omitempty"`
-
-			BaseDir *string `tfsdk:"base_dir" yaml:"baseDir,omitempty"`
-		} `tfsdk:"persistence" yaml:"persistence,omitempty"`
-
-		Version *string `tfsdk:"version" yaml:"version,omitempty"`
-
-		Agent *struct {
-			Version *string `tfsdk:"version" yaml:"version,omitempty"`
-
-			Repository *string `tfsdk:"repository" yaml:"repository,omitempty"`
-		} `tfsdk:"agent" yaml:"agent,omitempty"`
-
-		DurableExecutorServices *[]struct {
-			Capacity *int64 `tfsdk:"capacity" yaml:"capacity,omitempty"`
-
-			Durability *int64 `tfsdk:"durability" yaml:"durability,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			PoolSize *int64 `tfsdk:"pool_size" yaml:"poolSize,omitempty"`
-		} `tfsdk:"durable_executor_services" yaml:"durableExecutorServices,omitempty"`
-
-		LoggingLevel *string `tfsdk:"logging_level" yaml:"loggingLevel,omitempty"`
-
-		LicenseKeySecret *string `tfsdk:"license_key_secret" yaml:"licenseKeySecret,omitempty"`
-
-		Repository *string `tfsdk:"repository" yaml:"repository,omitempty"`
-
-		UserCodeDeployment *struct {
-			BucketConfig *struct {
-				BucketURI *string `tfsdk:"bucket_uri" yaml:"bucketURI,omitempty"`
-
-				Secret *string `tfsdk:"secret" yaml:"secret,omitempty"`
-			} `tfsdk:"bucket_config" yaml:"bucketConfig,omitempty"`
-
-			ClientEnabled *bool `tfsdk:"client_enabled" yaml:"clientEnabled,omitempty"`
-
-			ConfigMaps *[]string `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
-
-			TriggerSequence *string `tfsdk:"trigger_sequence" yaml:"triggerSequence,omitempty"`
-		} `tfsdk:"user_code_deployment" yaml:"userCodeDeployment,omitempty"`
+		ClusterSize *int64 `tfsdk:"cluster_size" yaml:"clusterSize,omitempty"`
 
 		ExecutorServices *[]struct {
 			QueueCapacity *int64 `tfsdk:"queue_capacity" yaml:"queueCapacity,omitempty"`
@@ -123,16 +62,12 @@ type HazelcastComHazelcastV1Alpha1GoModel struct {
 			PoolSize *int64 `tfsdk:"pool_size" yaml:"poolSize,omitempty"`
 		} `tfsdk:"executor_services" yaml:"executorServices,omitempty"`
 
-		ImagePullSecrets *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
+		Properties *map[string]string `tfsdk:"properties" yaml:"properties,omitempty"`
 
 		Scheduling *struct {
 			NodeSelector *map[string]string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
 
 			Tolerations *[]struct {
-				Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
 				Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
 
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -140,52 +75,32 @@ type HazelcastComHazelcastV1Alpha1GoModel struct {
 				Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 				TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
+
+				Value *string `tfsdk:"value" yaml:"value,omitempty"`
 			} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
 
 			TopologySpreadConstraints *[]struct {
+				LabelSelector *struct {
+					MatchExpressions *[]struct {
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+						Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+						Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+					} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+				} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
 				MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
 
 				TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
 				WhenUnsatisfiable *string `tfsdk:"when_unsatisfiable" yaml:"whenUnsatisfiable,omitempty"`
-
-				LabelSelector *struct {
-					MatchExpressions *[]struct {
-						Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-					} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-				} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 			} `tfsdk:"topology_spread_constraints" yaml:"topologySpreadConstraints,omitempty"`
 
 			Affinity *struct {
 				NodeAffinity *struct {
-					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-						Preference *struct {
-							MatchExpressions *[]struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-							MatchFields *[]struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
-						} `tfsdk:"preference" yaml:"preference,omitempty"`
-
-						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
-
 					RequiredDuringSchedulingIgnoredDuringExecution *struct {
 						NodeSelectorTerms *[]struct {
 							MatchExpressions *[]struct {
@@ -205,32 +120,56 @@ type HazelcastComHazelcastV1Alpha1GoModel struct {
 							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
 						} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
 					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+
+					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+						Preference *struct {
+							MatchExpressions *[]struct {
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchFields *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
+						} `tfsdk:"preference" yaml:"preference,omitempty"`
+
+						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
 				} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
 
 				PodAffinity *struct {
 					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 						PodAffinityTerm *struct {
+							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+
 							LabelSelector *struct {
 								MatchExpressions *[]struct {
-									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
 									Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 						} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
 
 						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
 
 					RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
 						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
 						LabelSelector *struct {
@@ -244,8 +183,6 @@ type HazelcastComHazelcastV1Alpha1GoModel struct {
 
 							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 				} `tfsdk:"pod_affinity" yaml:"podAffinity,omitempty"`
 
@@ -254,11 +191,11 @@ type HazelcastComHazelcastV1Alpha1GoModel struct {
 						PodAffinityTerm *struct {
 							LabelSelector *struct {
 								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -293,9 +230,87 @@ type HazelcastComHazelcastV1Alpha1GoModel struct {
 			} `tfsdk:"affinity" yaml:"affinity,omitempty"`
 		} `tfsdk:"scheduling" yaml:"scheduling,omitempty"`
 
+		Version *string `tfsdk:"version" yaml:"version,omitempty"`
+
+		Agent *struct {
+			Repository *string `tfsdk:"repository" yaml:"repository,omitempty"`
+
+			Version *string `tfsdk:"version" yaml:"version,omitempty"`
+		} `tfsdk:"agent" yaml:"agent,omitempty"`
+
+		DurableExecutorServices *[]struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			PoolSize *int64 `tfsdk:"pool_size" yaml:"poolSize,omitempty"`
+
+			Capacity *int64 `tfsdk:"capacity" yaml:"capacity,omitempty"`
+
+			Durability *int64 `tfsdk:"durability" yaml:"durability,omitempty"`
+		} `tfsdk:"durable_executor_services" yaml:"durableExecutorServices,omitempty"`
+
+		ExposeExternally *struct {
+			DiscoveryServiceType *string `tfsdk:"discovery_service_type" yaml:"discoveryServiceType,omitempty"`
+
+			MemberAccess *string `tfsdk:"member_access" yaml:"memberAccess,omitempty"`
+
+			Type *string `tfsdk:"type" yaml:"type,omitempty"`
+		} `tfsdk:"expose_externally" yaml:"exposeExternally,omitempty"`
+
+		ImagePullSecrets *[]struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
+
+		LoggingLevel *string `tfsdk:"logging_level" yaml:"loggingLevel,omitempty"`
+
+		ClusterName *string `tfsdk:"cluster_name" yaml:"clusterName,omitempty"`
+
 		ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
 
-		Properties *map[string]string `tfsdk:"properties" yaml:"properties,omitempty"`
+		Repository *string `tfsdk:"repository" yaml:"repository,omitempty"`
+
+		UserCodeDeployment *struct {
+			ConfigMaps *[]string `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
+
+			TriggerSequence *string `tfsdk:"trigger_sequence" yaml:"triggerSequence,omitempty"`
+
+			BucketConfig *struct {
+				Secret *string `tfsdk:"secret" yaml:"secret,omitempty"`
+
+				BucketURI *string `tfsdk:"bucket_uri" yaml:"bucketURI,omitempty"`
+			} `tfsdk:"bucket_config" yaml:"bucketConfig,omitempty"`
+
+			ClientEnabled *bool `tfsdk:"client_enabled" yaml:"clientEnabled,omitempty"`
+		} `tfsdk:"user_code_deployment" yaml:"userCodeDeployment,omitempty"`
+
+		LicenseKeySecret *string `tfsdk:"license_key_secret" yaml:"licenseKeySecret,omitempty"`
+
+		Persistence *struct {
+			BackupType *string `tfsdk:"backup_type" yaml:"backupType,omitempty"`
+
+			BaseDir *string `tfsdk:"base_dir" yaml:"baseDir,omitempty"`
+
+			ClusterDataRecoveryPolicy *string `tfsdk:"cluster_data_recovery_policy" yaml:"clusterDataRecoveryPolicy,omitempty"`
+
+			DataRecoveryTimeout *int64 `tfsdk:"data_recovery_timeout" yaml:"dataRecoveryTimeout,omitempty"`
+
+			HostPath *string `tfsdk:"host_path" yaml:"hostPath,omitempty"`
+
+			Pvc *struct {
+				RequestStorage *string `tfsdk:"request_storage" yaml:"requestStorage,omitempty"`
+
+				StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
+
+				AccessModes *[]string `tfsdk:"access_modes" yaml:"accessModes,omitempty"`
+			} `tfsdk:"pvc" yaml:"pvc,omitempty"`
+
+			Restore *struct {
+				BucketURI *string `tfsdk:"bucket_uri" yaml:"bucketURI,omitempty"`
+
+				Secret *string `tfsdk:"secret" yaml:"secret,omitempty"`
+			} `tfsdk:"restore" yaml:"restore,omitempty"`
+
+			AutoForceStart *bool `tfsdk:"auto_force_start" yaml:"autoForceStart,omitempty"`
+		} `tfsdk:"persistence" yaml:"persistence,omitempty"`
 
 		Resources *struct {
 			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
@@ -314,18 +329,6 @@ type HazelcastComHazelcastV1Alpha1GoModel struct {
 
 			PoolSize *int64 `tfsdk:"pool_size" yaml:"poolSize,omitempty"`
 		} `tfsdk:"scheduled_executor_services" yaml:"scheduledExecutorServices,omitempty"`
-
-		ClusterName *string `tfsdk:"cluster_name" yaml:"clusterName,omitempty"`
-
-		ClusterSize *int64 `tfsdk:"cluster_size" yaml:"clusterSize,omitempty"`
-
-		ExposeExternally *struct {
-			DiscoveryServiceType *string `tfsdk:"discovery_service_type" yaml:"discoveryServiceType,omitempty"`
-
-			MemberAccess *string `tfsdk:"member_access" yaml:"memberAccess,omitempty"`
-
-			Type *string `tfsdk:"type" yaml:"type,omitempty"`
-		} `tfsdk:"expose_externally" yaml:"exposeExternally,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -426,374 +429,20 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"persistence": {
-						Description:         "Persistence configuration",
-						MarkdownDescription: "Persistence configuration",
+					"cluster_size": {
+						Description:         "Number of Hazelcast members in the cluster.",
+						MarkdownDescription: "Number of Hazelcast members in the cluster.",
 
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"cluster_data_recovery_policy": {
-								Description:         "Configuration of the cluster recovery strategy.",
-								MarkdownDescription: "Configuration of the cluster recovery strategy.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"data_recovery_timeout": {
-								Description:         "DataRecoveryTimeout is timeout for each step of data recovery in seconds. Maximum timeout is equal to DataRecoveryTimeout*2 (for each step: validation and data-load).",
-								MarkdownDescription: "DataRecoveryTimeout is timeout for each step of data recovery in seconds. Maximum timeout is equal to DataRecoveryTimeout*2 (for each step: validation and data-load).",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"host_path": {
-								Description:         "Host Path directory.",
-								MarkdownDescription: "Host Path directory.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"pvc": {
-								Description:         "Configuration of PersistenceVolumeClaim.",
-								MarkdownDescription: "Configuration of PersistenceVolumeClaim.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"access_modes": {
-										Description:         "AccessModes contains the actual access modes of the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-										MarkdownDescription: "AccessModes contains the actual access modes of the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"request_storage": {
-										Description:         "A description of the PVC request capacity.",
-										MarkdownDescription: "A description of the PVC request capacity.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"storage_class_name": {
-										Description:         "Name of StorageClass which this persistent volume belongs to.",
-										MarkdownDescription: "Name of StorageClass which this persistent volume belongs to.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"restore": {
-								Description:         "Restore configuration",
-								MarkdownDescription: "Restore configuration",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"bucket_uri": {
-										Description:         "Full path to blob storage bucket.",
-										MarkdownDescription: "Full path to blob storage bucket.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"secret": {
-										Description:         "Name of the secret with credentials for cloud providers.",
-										MarkdownDescription: "Name of the secret with credentials for cloud providers.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"auto_force_start": {
-								Description:         "AutoForceStart enables the detection of constantly failing cluster and trigger the Force Start action.",
-								MarkdownDescription: "AutoForceStart enables the detection of constantly failing cluster and trigger the Force Start action.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"backup_type": {
-								Description:         "BackupType represents the storage options for the HotBackup",
-								MarkdownDescription: "BackupType represents the storage options for the HotBackup",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"base_dir": {
-								Description:         "Persistence base directory.",
-								MarkdownDescription: "Persistence base directory.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
+						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
-					},
 
-					"version": {
-						Description:         "Version of Hazelcast Platform.",
-						MarkdownDescription: "Version of Hazelcast Platform.",
+						Validators: []tfsdk.AttributeValidator{
 
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"agent": {
-						Description:         "B&R Agent configurations",
-						MarkdownDescription: "B&R Agent configurations",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"version": {
-								Description:         "Version of Hazelcast Platform Operator Agent.",
-								MarkdownDescription: "Version of Hazelcast Platform Operator Agent.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"repository": {
-								Description:         "Repository to pull Hazelcast Platform Operator Agent(https://github.com/hazelcast/platform-operator-agent)",
-								MarkdownDescription: "Repository to pull Hazelcast Platform Operator Agent(https://github.com/hazelcast/platform-operator-agent)",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"durable_executor_services": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"capacity": {
-								Description:         "Capacity of the executor task per partition.",
-								MarkdownDescription: "Capacity of the executor task per partition.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"durability": {
-								Description:         "Durability of the executor.",
-								MarkdownDescription: "Durability of the executor.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "The name of the executor service",
-								MarkdownDescription: "The name of the executor service",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"pool_size": {
-								Description:         "The number of executor threads per member.",
-								MarkdownDescription: "The number of executor threads per member.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"logging_level": {
-						Description:         "LoggingLevel controlls log verbosity for Hazelcast.",
-						MarkdownDescription: "LoggingLevel controlls log verbosity for Hazelcast.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"license_key_secret": {
-						Description:         "Name of the secret with Hazelcast Enterprise License Key.",
-						MarkdownDescription: "Name of the secret with Hazelcast Enterprise License Key.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"repository": {
-						Description:         "Repository to pull the Hazelcast Platform image from.",
-						MarkdownDescription: "Repository to pull the Hazelcast Platform image from.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"user_code_deployment": {
-						Description:         "User Codes to Download into CLASSPATH",
-						MarkdownDescription: "User Codes to Download into CLASSPATH",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"bucket_config": {
-								Description:         "Jar files in the bucket will be put under CLASSPATH.",
-								MarkdownDescription: "Jar files in the bucket will be put under CLASSPATH.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"bucket_uri": {
-										Description:         "Full path to blob storage bucket.",
-										MarkdownDescription: "Full path to blob storage bucket.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"secret": {
-										Description:         "Name of the secret with credentials for cloud providers.",
-										MarkdownDescription: "Name of the secret with credentials for cloud providers.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"client_enabled": {
-								Description:         "When true, allows user code deployment from clients.",
-								MarkdownDescription: "When true, allows user code deployment from clients.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"config_maps": {
-								Description:         "Files in the ConfigMaps will be put under CLASSPATH.",
-								MarkdownDescription: "Files in the ConfigMaps will be put under CLASSPATH.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"trigger_sequence": {
-								Description:         "A string for triggering a rolling restart for re-downloading the user code.",
-								MarkdownDescription: "A string for triggering a rolling restart for re-downloading the user code.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
+							int64validator.AtLeast(0),
+						},
 					},
 
 					"executor_services": {
@@ -833,6 +482,11 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
 							},
 						}),
 
@@ -841,23 +495,11 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 						Computed: false,
 					},
 
-					"image_pull_secrets": {
-						Description:         "Image pull secrets for the Hazelcast Platform image",
-						MarkdownDescription: "Image pull secrets for the Hazelcast Platform image",
+					"properties": {
+						Description:         "",
+						MarkdownDescription: "",
 
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
+						Type: types.MapType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,
@@ -886,17 +528,6 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 								MarkdownDescription: "Tolerations",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"value": {
-										Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-										MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"effect": {
 										Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
@@ -941,6 +572,17 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 										Optional: true,
 										Computed: false,
 									},
+
+									"value": {
+										Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+										MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -953,6 +595,74 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 								MarkdownDescription: "TopologySpreadConstraints",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"label_selector": {
+										Description:         "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
+										MarkdownDescription: "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"match_expressions": {
+												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"key": {
+														Description:         "key is the label key that the selector applies to.",
+														MarkdownDescription: "key is the label key that the selector applies to.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"operator": {
+														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"values": {
+														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"match_labels": {
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"max_skew": {
 										Description:         "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
@@ -986,74 +696,6 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 										Optional: false,
 										Computed: false,
 									},
-
-									"label_selector": {
-										Description:         "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
-										MarkdownDescription: "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"match_expressions": {
-												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"values": {
-														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"key": {
-														Description:         "key is the label key that the selector applies to.",
-														MarkdownDescription: "key is the label key that the selector applies to.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"operator": {
-														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"match_labels": {
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -1072,131 +714,6 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 										MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"preferred_during_scheduling_ignored_during_execution": {
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"preference": {
-														Description:         "A node selector term, associated with the corresponding weight.",
-														MarkdownDescription: "A node selector term, associated with the corresponding weight.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"match_expressions": {
-																Description:         "A list of node selector requirements by node's labels.",
-																MarkdownDescription: "A list of node selector requirements by node's labels.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The label key that the selector applies to.",
-																		MarkdownDescription: "The label key that the selector applies to.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"values": {
-																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"match_fields": {
-																Description:         "A list of node selector requirements by node's fields.",
-																MarkdownDescription: "A list of node selector requirements by node's fields.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The label key that the selector applies to.",
-																		MarkdownDescription: "The label key that the selector applies to.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"values": {
-																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"weight": {
-														Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
-														MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
-
-														Type: types.Int64Type,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
 											"required_during_scheduling_ignored_during_execution": {
 												Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
@@ -1311,6 +828,131 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 												Optional: true,
 												Computed: false,
 											},
+
+											"preferred_during_scheduling_ignored_during_execution": {
+												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"preference": {
+														Description:         "A node selector term, associated with the corresponding weight.",
+														MarkdownDescription: "A node selector term, associated with the corresponding weight.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "A list of node selector requirements by node's labels.",
+																MarkdownDescription: "A list of node selector requirements by node's labels.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"values": {
+																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"key": {
+																		Description:         "The label key that the selector applies to.",
+																		MarkdownDescription: "The label key that the selector applies to.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_fields": {
+																Description:         "A list of node selector requirements by node's fields.",
+																MarkdownDescription: "A list of node selector requirements by node's fields.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The label key that the selector applies to.",
+																		MarkdownDescription: "The label key that the selector applies to.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"weight": {
+														Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+														MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+
+														Type: types.Int64Type,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										}),
 
 										Required: false,
@@ -1336,6 +978,28 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+															"namespaces": {
+																Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+																MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"topology_key": {
+																Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
 															"label_selector": {
 																Description:         "A label query over a set of resources, in this case pods.",
 																MarkdownDescription: "A label query over a set of resources, in this case pods.",
@@ -1347,17 +1011,6 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 																		MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 
 																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"values": {
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
 
 																			"key": {
 																				Description:         "key is the label key that the selector applies to.",
@@ -1378,6 +1031,17 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 																				Required: true,
 																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
 																				Computed: false,
 																			},
 																		}),
@@ -1401,28 +1065,6 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 																Required: false,
 																Optional: true,
-																Computed: false,
-															},
-
-															"namespaces": {
-																Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-																MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"topology_key": {
-																Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
 																Computed: false,
 															},
 														}),
@@ -1454,6 +1096,17 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 												MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"namespaces": {
+														Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+														MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
 
 													"topology_key": {
 														Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
@@ -1533,17 +1186,6 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 														Optional: true,
 														Computed: false,
 													},
-
-													"namespaces": {
-														Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-														MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 												}),
 
 												Required: false,
@@ -1587,6 +1229,17 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+																			"key": {
+																				Description:         "key is the label key that the selector applies to.",
+																				MarkdownDescription: "key is the label key that the selector applies to.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
 																			"operator": {
 																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
@@ -1606,17 +1259,6 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 																				Required: false,
 																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"key": {
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
 																				Computed: false,
 																			},
 																		}),
@@ -1808,6 +1450,207 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 						Computed: false,
 					},
 
+					"version": {
+						Description:         "Version of Hazelcast Platform.",
+						MarkdownDescription: "Version of Hazelcast Platform.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"agent": {
+						Description:         "B&R Agent configurations",
+						MarkdownDescription: "B&R Agent configurations",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"repository": {
+								Description:         "Repository to pull Hazelcast Platform Operator Agent(https://github.com/hazelcast/platform-operator-agent)",
+								MarkdownDescription: "Repository to pull Hazelcast Platform Operator Agent(https://github.com/hazelcast/platform-operator-agent)",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"version": {
+								Description:         "Version of Hazelcast Platform Operator Agent.",
+								MarkdownDescription: "Version of Hazelcast Platform Operator Agent.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"durable_executor_services": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "The name of the executor service",
+								MarkdownDescription: "The name of the executor service",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"pool_size": {
+								Description:         "The number of executor threads per member.",
+								MarkdownDescription: "The number of executor threads per member.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"capacity": {
+								Description:         "Capacity of the executor task per partition.",
+								MarkdownDescription: "Capacity of the executor task per partition.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"durability": {
+								Description:         "Durability of the executor.",
+								MarkdownDescription: "Durability of the executor.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"expose_externally": {
+						Description:         "Configuration to expose Hazelcast cluster to external clients.",
+						MarkdownDescription: "Configuration to expose Hazelcast cluster to external clients.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"discovery_service_type": {
+								Description:         "Type of the service used to discover Hazelcast cluster.",
+								MarkdownDescription: "Type of the service used to discover Hazelcast cluster.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"member_access": {
+								Description:         "How each member is accessed from the external client. Only available for 'Smart' client and valid values are: - 'NodePortExternalIP' (default): each member is accessed by the NodePort service and the node external IP/hostname - 'NodePortNodeName': each member is accessed by the NodePort service and the node name - 'LoadBalancer': each member is accessed by the LoadBalancer service external address",
+								MarkdownDescription: "How each member is accessed from the external client. Only available for 'Smart' client and valid values are: - 'NodePortExternalIP' (default): each member is accessed by the NodePort service and the node external IP/hostname - 'NodePortNodeName': each member is accessed by the NodePort service and the node name - 'LoadBalancer': each member is accessed by the LoadBalancer service external address",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"type": {
+								Description:         "Specifies how members are exposed. Valid values are: - 'Smart' (default): each member pod is exposed with a separate external address - 'Unisocket': all member pods are exposed with one external address",
+								MarkdownDescription: "Specifies how members are exposed. Valid values are: - 'Smart' (default): each member pod is exposed with a separate external address - 'Unisocket': all member pods are exposed with one external address",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"image_pull_secrets": {
+						Description:         "Image pull secrets for the Hazelcast Platform image",
+						MarkdownDescription: "Image pull secrets for the Hazelcast Platform image",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"logging_level": {
+						Description:         "LoggingLevel controlls log verbosity for Hazelcast.",
+						MarkdownDescription: "LoggingLevel controlls log verbosity for Hazelcast.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"cluster_name": {
+						Description:         "Name of the Hazelcast cluster.",
+						MarkdownDescription: "Name of the Hazelcast cluster.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"image_pull_policy": {
 						Description:         "Pull policy for the Hazelcast Platform image",
 						MarkdownDescription: "Pull policy for the Hazelcast Platform image",
@@ -1819,11 +1662,258 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 						Computed: false,
 					},
 
-					"properties": {
-						Description:         "",
-						MarkdownDescription: "",
+					"repository": {
+						Description:         "Repository to pull the Hazelcast Platform image from.",
+						MarkdownDescription: "Repository to pull the Hazelcast Platform image from.",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"user_code_deployment": {
+						Description:         "User Codes to Download into CLASSPATH",
+						MarkdownDescription: "User Codes to Download into CLASSPATH",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"config_maps": {
+								Description:         "Files in the ConfigMaps will be put under CLASSPATH.",
+								MarkdownDescription: "Files in the ConfigMaps will be put under CLASSPATH.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"trigger_sequence": {
+								Description:         "A string for triggering a rolling restart for re-downloading the user code.",
+								MarkdownDescription: "A string for triggering a rolling restart for re-downloading the user code.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"bucket_config": {
+								Description:         "Jar files in the bucket will be put under CLASSPATH.",
+								MarkdownDescription: "Jar files in the bucket will be put under CLASSPATH.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"secret": {
+										Description:         "Name of the secret with credentials for cloud providers.",
+										MarkdownDescription: "Name of the secret with credentials for cloud providers.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"bucket_uri": {
+										Description:         "Full path to blob storage bucket.",
+										MarkdownDescription: "Full path to blob storage bucket.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"client_enabled": {
+								Description:         "When true, allows user code deployment from clients.",
+								MarkdownDescription: "When true, allows user code deployment from clients.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"license_key_secret": {
+						Description:         "Name of the secret with Hazelcast Enterprise License Key.",
+						MarkdownDescription: "Name of the secret with Hazelcast Enterprise License Key.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"persistence": {
+						Description:         "Persistence configuration",
+						MarkdownDescription: "Persistence configuration",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"backup_type": {
+								Description:         "BackupType represents the storage options for the HotBackup",
+								MarkdownDescription: "BackupType represents the storage options for the HotBackup",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"base_dir": {
+								Description:         "Persistence base directory.",
+								MarkdownDescription: "Persistence base directory.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"cluster_data_recovery_policy": {
+								Description:         "Configuration of the cluster recovery strategy.",
+								MarkdownDescription: "Configuration of the cluster recovery strategy.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"data_recovery_timeout": {
+								Description:         "DataRecoveryTimeout is timeout for each step of data recovery in seconds. Maximum timeout is equal to DataRecoveryTimeout*2 (for each step: validation and data-load).",
+								MarkdownDescription: "DataRecoveryTimeout is timeout for each step of data recovery in seconds. Maximum timeout is equal to DataRecoveryTimeout*2 (for each step: validation and data-load).",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"host_path": {
+								Description:         "Host Path directory.",
+								MarkdownDescription: "Host Path directory.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"pvc": {
+								Description:         "Configuration of PersistenceVolumeClaim.",
+								MarkdownDescription: "Configuration of PersistenceVolumeClaim.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"request_storage": {
+										Description:         "A description of the PVC request capacity.",
+										MarkdownDescription: "A description of the PVC request capacity.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"storage_class_name": {
+										Description:         "Name of StorageClass which this persistent volume belongs to.",
+										MarkdownDescription: "Name of StorageClass which this persistent volume belongs to.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"access_modes": {
+										Description:         "AccessModes contains the actual access modes of the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+										MarkdownDescription: "AccessModes contains the actual access modes of the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"restore": {
+								Description:         "Restore configuration",
+								MarkdownDescription: "Restore configuration",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"bucket_uri": {
+										Description:         "Full path to blob storage bucket.",
+										MarkdownDescription: "Full path to blob storage bucket.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"secret": {
+										Description:         "Name of the secret with credentials for cloud providers.",
+										MarkdownDescription: "Name of the secret with credentials for cloud providers.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"auto_force_start": {
+								Description:         "AutoForceStart enables the detection of constantly failing cluster and trigger the Force Start action.",
+								MarkdownDescription: "AutoForceStart enables the detection of constantly failing cluster and trigger the Force Start action.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
@@ -1901,6 +1991,11 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
 							},
 
 							"name": {
@@ -1923,73 +2018,11 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 								Required: false,
 								Optional: true,
 								Computed: false,
-							},
-						}),
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
+								Validators: []tfsdk.AttributeValidator{
 
-					"cluster_name": {
-						Description:         "Name of the Hazelcast cluster.",
-						MarkdownDescription: "Name of the Hazelcast cluster.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"cluster_size": {
-						Description:         "Number of Hazelcast members in the cluster.",
-						MarkdownDescription: "Number of Hazelcast members in the cluster.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"expose_externally": {
-						Description:         "Configuration to expose Hazelcast cluster to external clients.",
-						MarkdownDescription: "Configuration to expose Hazelcast cluster to external clients.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"discovery_service_type": {
-								Description:         "Type of the service used to discover Hazelcast cluster.",
-								MarkdownDescription: "Type of the service used to discover Hazelcast cluster.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"member_access": {
-								Description:         "How each member is accessed from the external client. Only available for 'Smart' client and valid values are: - 'NodePortExternalIP' (default): each member is accessed by the NodePort service and the node external IP/hostname - 'NodePortNodeName': each member is accessed by the NodePort service and the node name - 'LoadBalancer': each member is accessed by the LoadBalancer service external address",
-								MarkdownDescription: "How each member is accessed from the external client. Only available for 'Smart' client and valid values are: - 'NodePortExternalIP' (default): each member is accessed by the NodePort service and the node external IP/hostname - 'NodePortNodeName': each member is accessed by the NodePort service and the node name - 'LoadBalancer': each member is accessed by the LoadBalancer service external address",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"type": {
-								Description:         "Specifies how members are exposed. Valid values are: - 'Smart' (default): each member pod is exposed with a separate external address - 'Unisocket': all member pods are exposed with one external address",
-								MarkdownDescription: "Specifies how members are exposed. Valid values are: - 'Smart' (default): each member pod is exposed with a separate external address - 'Unisocket': all member pods are exposed with one external address",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
+									int64validator.AtLeast(1),
+								},
 							},
 						}),
 

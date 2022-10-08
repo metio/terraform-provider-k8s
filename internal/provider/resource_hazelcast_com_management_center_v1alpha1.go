@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -55,13 +56,13 @@ type HazelcastComManagementCenterV1Alpha1GoModel struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"hazelcast_clusters" yaml:"hazelcastClusters,omitempty"`
 
+		ImagePullSecrets *[]struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
+
+		LicenseKeySecret *string `tfsdk:"license_key_secret" yaml:"licenseKeySecret,omitempty"`
+
 		Repository *string `tfsdk:"repository" yaml:"repository,omitempty"`
-
-		Resources *struct {
-			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
-
-			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
-		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 		Scheduling *struct {
 			Affinity *struct {
@@ -89,8 +90,6 @@ type HazelcastComManagementCenterV1Alpha1GoModel struct {
 					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
 
 					RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
-						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
 						LabelSelector *struct {
 							MatchExpressions *[]struct {
 								Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -104,6 +103,8 @@ type HazelcastComManagementCenterV1Alpha1GoModel struct {
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 				} `tfsdk:"pod_affinity" yaml:"podAffinity,omitempty"`
 
@@ -132,15 +133,15 @@ type HazelcastComManagementCenterV1Alpha1GoModel struct {
 
 					RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
 						LabelSelector *struct {
-							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-
 							MatchExpressions *[]struct {
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
 								Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
@@ -152,21 +153,21 @@ type HazelcastComManagementCenterV1Alpha1GoModel struct {
 				NodeAffinity *struct {
 					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 						Preference *struct {
-							MatchFields *[]struct {
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
-
 							MatchExpressions *[]struct {
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
 								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 
 								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchFields *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
 						} `tfsdk:"preference" yaml:"preference,omitempty"`
 
 						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
@@ -174,6 +175,14 @@ type HazelcastComManagementCenterV1Alpha1GoModel struct {
 
 					RequiredDuringSchedulingIgnoredDuringExecution *struct {
 						NodeSelectorTerms *[]struct {
+							MatchFields *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
+
 							MatchExpressions *[]struct {
 								Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -181,14 +190,6 @@ type HazelcastComManagementCenterV1Alpha1GoModel struct {
 
 								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-							MatchFields *[]struct {
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
 						} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
 					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 				} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
@@ -211,11 +212,11 @@ type HazelcastComManagementCenterV1Alpha1GoModel struct {
 			TopologySpreadConstraints *[]struct {
 				LabelSelector *struct {
 					MatchExpressions *[]struct {
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 						Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 						Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 					} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -233,21 +234,21 @@ type HazelcastComManagementCenterV1Alpha1GoModel struct {
 			Type *string `tfsdk:"type" yaml:"type,omitempty"`
 		} `tfsdk:"external_connectivity" yaml:"externalConnectivity,omitempty"`
 
-		ImagePullSecrets *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
-
-		LicenseKeySecret *string `tfsdk:"license_key_secret" yaml:"licenseKeySecret,omitempty"`
-
 		Persistence *struct {
+			StorageClass *string `tfsdk:"storage_class" yaml:"storageClass,omitempty"`
+
 			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
 
 			ExistingVolumeClaimName *string `tfsdk:"existing_volume_claim_name" yaml:"existingVolumeClaimName,omitempty"`
 
 			Size *string `tfsdk:"size" yaml:"size,omitempty"`
-
-			StorageClass *string `tfsdk:"storage_class" yaml:"storageClass,omitempty"`
 		} `tfsdk:"persistence" yaml:"persistence,omitempty"`
+
+		Resources *struct {
+			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+
+			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 		Version *string `tfsdk:"version" yaml:"version,omitempty"`
 
@@ -386,9 +387,32 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 						Computed: false,
 					},
 
-					"repository": {
-						Description:         "Repository to pull the Management Center image from.",
-						MarkdownDescription: "Repository to pull the Management Center image from.",
+					"image_pull_secrets": {
+						Description:         "Image pull secrets for the Management Center image",
+						MarkdownDescription: "Image pull secrets for the Management Center image",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"license_key_secret": {
+						Description:         "Name of the secret with Hazelcast Enterprise License Key.",
+						MarkdownDescription: "Name of the secret with Hazelcast Enterprise License Key.",
 
 						Type: types.StringType,
 
@@ -397,34 +421,11 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 						Computed: false,
 					},
 
-					"resources": {
-						Description:         "Compute Resources required by the MC container.",
-						MarkdownDescription: "Compute Resources required by the MC container.",
+					"repository": {
+						Description:         "Repository to pull the Management Center image from.",
+						MarkdownDescription: "Repository to pull the Management Center image from.",
 
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"limits": {
-								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"requests": {
-								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -580,17 +581,6 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-													"topology_key": {
-														Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-														MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
 													"label_selector": {
 														Description:         "A label query over a set of resources, in this case pods.",
 														MarkdownDescription: "A label query over a set of resources, in this case pods.",
@@ -667,6 +657,17 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 
 														Required: false,
 														Optional: true,
+														Computed: false,
+													},
+
+													"topology_key": {
+														Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+														MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
 														Computed: false,
 													},
 												}),
@@ -825,33 +826,11 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"match_labels": {
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																Type: types.MapType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"match_expressions": {
 																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 																MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 
 																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"values": {
-																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
 
 																	"key": {
 																		Description:         "key is the label key that the selector applies to.",
@@ -874,7 +853,29 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 																		Optional: false,
 																		Computed: false,
 																	},
+
+																	"values": {
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
 																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": {
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																Type: types.MapType{ElemType: types.StringType},
 
 																Required: false,
 																Optional: true,
@@ -939,9 +940,9 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"match_fields": {
-																Description:         "A list of node selector requirements by node's fields.",
-																MarkdownDescription: "A list of node selector requirements by node's fields.",
+															"match_expressions": {
+																Description:         "A list of node selector requirements by node's labels.",
+																MarkdownDescription: "A list of node selector requirements by node's labels.",
 
 																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -984,11 +985,22 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 																Computed: false,
 															},
 
-															"match_expressions": {
-																Description:         "A list of node selector requirements by node's labels.",
-																MarkdownDescription: "A list of node selector requirements by node's labels.",
+															"match_fields": {
+																Description:         "A list of node selector requirements by node's fields.",
+																MarkdownDescription: "A list of node selector requirements by node's fields.",
 
 																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The label key that the selector applies to.",
+																		MarkdownDescription: "The label key that the selector applies to.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
 
 																	"operator": {
 																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
@@ -1009,17 +1021,6 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 
 																		Required: false,
 																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "The label key that the selector applies to.",
-																		MarkdownDescription: "The label key that the selector applies to.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
 																		Computed: false,
 																	},
 																}),
@@ -1064,9 +1065,9 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-															"match_expressions": {
-																Description:         "A list of node selector requirements by node's labels.",
-																MarkdownDescription: "A list of node selector requirements by node's labels.",
+															"match_fields": {
+																Description:         "A list of node selector requirements by node's fields.",
+																MarkdownDescription: "A list of node selector requirements by node's fields.",
 
 																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -1109,11 +1110,22 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 																Computed: false,
 															},
 
-															"match_fields": {
-																Description:         "A list of node selector requirements by node's fields.",
-																MarkdownDescription: "A list of node selector requirements by node's fields.",
+															"match_expressions": {
+																Description:         "A list of node selector requirements by node's labels.",
+																MarkdownDescription: "A list of node selector requirements by node's labels.",
 
 																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The label key that the selector applies to.",
+																		MarkdownDescription: "The label key that the selector applies to.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
 
 																	"operator": {
 																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
@@ -1134,17 +1146,6 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 
 																		Required: false,
 																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "The label key that the selector applies to.",
-																		MarkdownDescription: "The label key that the selector applies to.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
 																		Computed: false,
 																	},
 																}),
@@ -1274,6 +1275,17 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+													"key": {
+														Description:         "key is the label key that the selector applies to.",
+														MarkdownDescription: "key is the label key that the selector applies to.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
 													"operator": {
 														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
@@ -1293,17 +1305,6 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 
 														Required: false,
 														Optional: true,
-														Computed: false,
-													},
-
-													"key": {
-														Description:         "key is the label key that the selector applies to.",
-														MarkdownDescription: "key is the label key that the selector applies to.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
 														Computed: false,
 													},
 												}),
@@ -1398,15 +1399,15 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 						Computed: false,
 					},
 
-					"image_pull_secrets": {
-						Description:         "Image pull secrets for the Management Center image",
-						MarkdownDescription: "Image pull secrets for the Management Center image",
+					"persistence": {
+						Description:         "Configuration for Management Center persistence.",
+						MarkdownDescription: "Configuration for Management Center persistence.",
 
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"name": {
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+							"storage_class": {
+								Description:         "StorageClass from which PersistentVolumeClaim will be created.",
+								MarkdownDescription: "StorageClass from which PersistentVolumeClaim will be created.",
 
 								Type: types.StringType,
 
@@ -1414,29 +1415,6 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 								Optional: true,
 								Computed: false,
 							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"license_key_secret": {
-						Description:         "Name of the secret with Hazelcast Enterprise License Key.",
-						MarkdownDescription: "Name of the secret with Hazelcast Enterprise License Key.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"persistence": {
-						Description:         "Configuration for Management Center persistence.",
-						MarkdownDescription: "Configuration for Management Center persistence.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 							"enabled": {
 								Description:         "When true, MC will use a PersistentVolumeClaim to store data.",
@@ -1470,12 +1448,35 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 								Optional: true,
 								Computed: false,
 							},
+						}),
 
-							"storage_class": {
-								Description:         "StorageClass from which PersistentVolumeClaim will be created.",
-								MarkdownDescription: "StorageClass from which PersistentVolumeClaim will be created.",
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
 
-								Type: types.StringType,
+					"resources": {
+						Description:         "Compute Resources required by the MC container.",
+						MarkdownDescription: "Compute Resources required by the MC container.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"requests": {
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"limits": {
+								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+
+								Type: types.MapType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,

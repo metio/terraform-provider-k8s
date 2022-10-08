@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -52,8 +53,6 @@ type NetworkingIstioIoGatewayV1Beta1GoModel struct {
 		Selector *map[string]string `tfsdk:"selector" yaml:"selector,omitempty"`
 
 		Servers *[]struct {
-			DefaultEndpoint *string `tfsdk:"default_endpoint" yaml:"defaultEndpoint,omitempty"`
-
 			Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -69,7 +68,9 @@ type NetworkingIstioIoGatewayV1Beta1GoModel struct {
 			} `tfsdk:"port" yaml:"port,omitempty"`
 
 			Tls *struct {
-				CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
+				VerifyCertificateHash *[]string `tfsdk:"verify_certificate_hash" yaml:"verifyCertificateHash,omitempty"`
+
+				VerifyCertificateSpki *[]string `tfsdk:"verify_certificate_spki" yaml:"verifyCertificateSpki,omitempty"`
 
 				HttpsRedirect *bool `tfsdk:"https_redirect" yaml:"httpsRedirect,omitempty"`
 
@@ -77,24 +78,24 @@ type NetworkingIstioIoGatewayV1Beta1GoModel struct {
 
 				PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
 
-				CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
-
-				MaxProtocolVersion *string `tfsdk:"max_protocol_version" yaml:"maxProtocolVersion,omitempty"`
+				SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
 
 				Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
 
 				ServerCertificate *string `tfsdk:"server_certificate" yaml:"serverCertificate,omitempty"`
 
-				SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
-
-				VerifyCertificateHash *[]string `tfsdk:"verify_certificate_hash" yaml:"verifyCertificateHash,omitempty"`
-
-				VerifyCertificateSpki *[]string `tfsdk:"verify_certificate_spki" yaml:"verifyCertificateSpki,omitempty"`
+				CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
 
 				CipherSuites *[]string `tfsdk:"cipher_suites" yaml:"cipherSuites,omitempty"`
+
+				CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
+
+				MaxProtocolVersion *string `tfsdk:"max_protocol_version" yaml:"maxProtocolVersion,omitempty"`
 			} `tfsdk:"tls" yaml:"tls,omitempty"`
 
 			Bind *string `tfsdk:"bind" yaml:"bind,omitempty"`
+
+			DefaultEndpoint *string `tfsdk:"default_endpoint" yaml:"defaultEndpoint,omitempty"`
 		} `tfsdk:"servers" yaml:"servers,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -213,17 +214,6 @@ func (r *NetworkingIstioIoGatewayV1Beta1Resource) GetSchema(_ context.Context) (
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"default_endpoint": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"hosts": {
 								Description:         "One or more hosts exposed by this gateway.",
 								MarkdownDescription: "One or more hosts exposed by this gateway.",
@@ -308,11 +298,22 @@ func (r *NetworkingIstioIoGatewayV1Beta1Resource) GetSchema(_ context.Context) (
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"credential_name": {
+									"verify_certificate_hash": {
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.StringType,
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"verify_certificate_spki": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
@@ -352,22 +353,11 @@ func (r *NetworkingIstioIoGatewayV1Beta1Resource) GetSchema(_ context.Context) (
 										Computed: false,
 									},
 
-									"ca_certificates": {
-										Description:         "REQUIRED if mode is 'MUTUAL'.",
-										MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
+									"subject_alt_names": {
+										Description:         "",
+										MarkdownDescription: "",
 
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"max_protocol_version": {
-										Description:         "Optional: Maximum TLS protocol version.",
-										MarkdownDescription: "Optional: Maximum TLS protocol version.",
-
-										Type: types.StringType,
+										Type: types.ListType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
@@ -396,33 +386,11 @@ func (r *NetworkingIstioIoGatewayV1Beta1Resource) GetSchema(_ context.Context) (
 										Computed: false,
 									},
 
-									"subject_alt_names": {
-										Description:         "",
-										MarkdownDescription: "",
+									"ca_certificates": {
+										Description:         "REQUIRED if mode is 'MUTUAL'.",
+										MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
 
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"verify_certificate_hash": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"verify_certificate_spki": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -439,6 +407,28 @@ func (r *NetworkingIstioIoGatewayV1Beta1Resource) GetSchema(_ context.Context) (
 										Optional: true,
 										Computed: false,
 									},
+
+									"credential_name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"max_protocol_version": {
+										Description:         "Optional: Maximum TLS protocol version.",
+										MarkdownDescription: "Optional: Maximum TLS protocol version.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -447,6 +437,17 @@ func (r *NetworkingIstioIoGatewayV1Beta1Resource) GetSchema(_ context.Context) (
 							},
 
 							"bind": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"default_endpoint": {
 								Description:         "",
 								MarkdownDescription: "",
 

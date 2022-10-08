@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,6 +50,40 @@ type IntegreatlyOrgGrafanaDashboardV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Datasources *[]struct {
+			InputName *string `tfsdk:"input_name" yaml:"inputName,omitempty"`
+
+			DatasourceName *string `tfsdk:"datasource_name" yaml:"datasourceName,omitempty"`
+		} `tfsdk:"datasources" yaml:"datasources,omitempty"`
+
+		GrafanaCom *struct {
+			Id *int64 `tfsdk:"id" yaml:"id,omitempty"`
+
+			Revision *int64 `tfsdk:"revision" yaml:"revision,omitempty"`
+		} `tfsdk:"grafana_com" yaml:"grafanaCom,omitempty"`
+
+		GzipConfigMapRef *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+			Key *string `tfsdk:"key" yaml:"key,omitempty"`
+		} `tfsdk:"gzip_config_map_ref" yaml:"gzipConfigMapRef,omitempty"`
+
+		GzipJson *string `tfsdk:"gzip_json" yaml:"gzipJson,omitempty"`
+
+		Json *string `tfsdk:"json" yaml:"json,omitempty"`
+
+		Plugins *[]struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Version *string `tfsdk:"version" yaml:"version,omitempty"`
+		} `tfsdk:"plugins" yaml:"plugins,omitempty"`
+
+		ContentCacheDuration *string `tfsdk:"content_cache_duration" yaml:"contentCacheDuration,omitempty"`
+
+		CustomFolderName *string `tfsdk:"custom_folder_name" yaml:"customFolderName,omitempty"`
+
 		Url *string `tfsdk:"url" yaml:"url,omitempty"`
 
 		ConfigMapRef *struct {
@@ -59,41 +94,7 @@ type IntegreatlyOrgGrafanaDashboardV1Alpha1GoModel struct {
 			Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 		} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
 
-		ContentCacheDuration *string `tfsdk:"content_cache_duration" yaml:"contentCacheDuration,omitempty"`
-
-		GzipJson *string `tfsdk:"gzip_json" yaml:"gzipJson,omitempty"`
-
-		GzipConfigMapRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-			Key *string `tfsdk:"key" yaml:"key,omitempty"`
-		} `tfsdk:"gzip_config_map_ref" yaml:"gzipConfigMapRef,omitempty"`
-
-		Json *string `tfsdk:"json" yaml:"json,omitempty"`
-
 		Jsonnet *string `tfsdk:"jsonnet" yaml:"jsonnet,omitempty"`
-
-		Plugins *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Version *string `tfsdk:"version" yaml:"version,omitempty"`
-		} `tfsdk:"plugins" yaml:"plugins,omitempty"`
-
-		CustomFolderName *string `tfsdk:"custom_folder_name" yaml:"customFolderName,omitempty"`
-
-		Datasources *[]struct {
-			DatasourceName *string `tfsdk:"datasource_name" yaml:"datasourceName,omitempty"`
-
-			InputName *string `tfsdk:"input_name" yaml:"inputName,omitempty"`
-		} `tfsdk:"datasources" yaml:"datasources,omitempty"`
-
-		GrafanaCom *struct {
-			Id *int64 `tfsdk:"id" yaml:"id,omitempty"`
-
-			Revision *int64 `tfsdk:"revision" yaml:"revision,omitempty"`
-		} `tfsdk:"grafana_com" yaml:"grafanaCom,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -194,6 +195,197 @@ func (r *IntegreatlyOrgGrafanaDashboardV1Alpha1Resource) GetSchema(_ context.Con
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"datasources": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"input_name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"datasource_name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"grafana_com": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"id": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"revision": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"gzip_config_map_ref": {
+						Description:         "GzipConfigMapRef is a reference to a ConfigMap binaryData field containing the dashboard's JSON, compressed with Gzip.",
+						MarkdownDescription: "GzipConfigMapRef is a reference to a ConfigMap binaryData field containing the dashboard's JSON, compressed with Gzip.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"optional": {
+								Description:         "Specify whether the ConfigMap or its key must be defined",
+								MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"key": {
+								Description:         "The key to select.",
+								MarkdownDescription: "The key to select.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"gzip_json": {
+						Description:         "GzipJson the dashboard's JSON compressed with Gzip. Base64-encoded when in YAML.",
+						MarkdownDescription: "GzipJson the dashboard's JSON compressed with Gzip. Base64-encoded when in YAML.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"json": {
+						Description:         "Json is the dashboard's JSON",
+						MarkdownDescription: "Json is the dashboard's JSON",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"plugins": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"version": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"content_cache_duration": {
+						Description:         "ContentCacheDuration sets how often the operator should resync with the external source when using the 'grafanaCom.id' or 'url' field to specify the source of the dashboard. The default value is decided by the 'dashboardContentCacheDuration' field in the 'Grafana' resource. The default is 0 which is interpreted as never refetching.",
+						MarkdownDescription: "ContentCacheDuration sets how often the operator should resync with the external source when using the 'grafanaCom.id' or 'url' field to specify the source of the dashboard. The default value is decided by the 'dashboardContentCacheDuration' field in the 'Grafana' resource. The default is 0 which is interpreted as never refetching.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"custom_folder_name": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"url": {
 						Description:         "",
 						MarkdownDescription: "",
@@ -250,202 +442,11 @@ func (r *IntegreatlyOrgGrafanaDashboardV1Alpha1Resource) GetSchema(_ context.Con
 						Computed: false,
 					},
 
-					"content_cache_duration": {
-						Description:         "ContentCacheDuration sets how often the operator should resync with the external source when using the 'grafanaCom.id' or 'url' field to specify the source of the dashboard. The default value is decided by the 'dashboardContentCacheDuration' field in the 'Grafana' resource. The default is 0 which is interpreted as never refetching.",
-						MarkdownDescription: "ContentCacheDuration sets how often the operator should resync with the external source when using the 'grafanaCom.id' or 'url' field to specify the source of the dashboard. The default value is decided by the 'dashboardContentCacheDuration' field in the 'Grafana' resource. The default is 0 which is interpreted as never refetching.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"gzip_json": {
-						Description:         "GzipJson the dashboard's JSON compressed with Gzip. Base64-encoded when in YAML.",
-						MarkdownDescription: "GzipJson the dashboard's JSON compressed with Gzip. Base64-encoded when in YAML.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"gzip_config_map_ref": {
-						Description:         "GzipConfigMapRef is a reference to a ConfigMap binaryData field containing the dashboard's JSON, compressed with Gzip.",
-						MarkdownDescription: "GzipConfigMapRef is a reference to a ConfigMap binaryData field containing the dashboard's JSON, compressed with Gzip.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"optional": {
-								Description:         "Specify whether the ConfigMap or its key must be defined",
-								MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"key": {
-								Description:         "The key to select.",
-								MarkdownDescription: "The key to select.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"json": {
-						Description:         "Json is the dashboard's JSON",
-						MarkdownDescription: "Json is the dashboard's JSON",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"jsonnet": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"plugins": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"version": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"custom_folder_name": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"datasources": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"datasource_name": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"input_name": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"grafana_com": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"id": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"revision": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
 
 						Required: false,
 						Optional: true,

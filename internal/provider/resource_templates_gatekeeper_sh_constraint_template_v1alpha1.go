@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,17 +50,17 @@ type TemplatesGatekeeperShConstraintTemplateV1Alpha1GoModel struct {
 	Spec *struct {
 		Crd *struct {
 			Spec *struct {
-				Validation *struct {
-					LegacySchema *bool `tfsdk:"legacy_schema" yaml:"legacySchema,omitempty"`
-
-					OpenAPIV3Schema *map[string]string `tfsdk:"open_apiv3_schema" yaml:"openAPIV3Schema,omitempty"`
-				} `tfsdk:"validation" yaml:"validation,omitempty"`
-
 				Names *struct {
 					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
 					ShortNames *[]string `tfsdk:"short_names" yaml:"shortNames,omitempty"`
 				} `tfsdk:"names" yaml:"names,omitempty"`
+
+				Validation *struct {
+					LegacySchema *bool `tfsdk:"legacy_schema" yaml:"legacySchema,omitempty"`
+
+					OpenAPIV3Schema *map[string]string `tfsdk:"open_apiv3_schema" yaml:"openAPIV3Schema,omitempty"`
+				} `tfsdk:"validation" yaml:"validation,omitempty"`
 			} `tfsdk:"spec" yaml:"spec,omitempty"`
 		} `tfsdk:"crd" yaml:"crd,omitempty"`
 
@@ -175,40 +176,6 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Alpha1Resource) GetSchema(_ co
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"validation": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"legacy_schema": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"open_apiv3_schema": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"names": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -231,6 +198,40 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Alpha1Resource) GetSchema(_ co
 												MarkdownDescription: "",
 
 												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"validation": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"legacy_schema": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"open_apiv3_schema": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
 
 												Required: false,
 												Optional: true,

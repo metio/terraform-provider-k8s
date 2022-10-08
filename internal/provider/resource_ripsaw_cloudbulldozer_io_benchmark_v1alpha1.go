@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -51,25 +52,87 @@ type RipsawCloudbulldozerIoBenchmarkV1Alpha1GoModel struct {
 	Spec *struct {
 		Cleanup *bool `tfsdk:"cleanup" yaml:"cleanup,omitempty"`
 
-		Clustername *string `tfsdk:"clustername" yaml:"clustername,omitempty"`
+		Test_user *string `tfsdk:"test_user" yaml:"test_user,omitempty"`
 
-		Drop_cache_rook_ceph *bool `tfsdk:"drop_cache_rook_ceph" yaml:"drop_cache_rook_ceph,omitempty"`
+		Uuid *string `tfsdk:"uuid" yaml:"uuid,omitempty"`
+
+		Prometheus *struct {
+			Prom_token *string `tfsdk:"prom_token" yaml:"prom_token,omitempty"`
+
+			Prom_url *string `tfsdk:"prom_url" yaml:"prom_url,omitempty"`
+
+			Es_parallel *bool `tfsdk:"es_parallel" yaml:"es_parallel,omitempty"`
+
+			Es_url *string `tfsdk:"es_url" yaml:"es_url,omitempty"`
+		} `tfsdk:"prometheus" yaml:"prometheus,omitempty"`
+
+		Global_overrides *[]string `tfsdk:"global_overrides" yaml:"global_overrides,omitempty"`
+
+		Hostpath *string `tfsdk:"hostpath" yaml:"hostpath,omitempty"`
 
 		Snappy *struct {
-			User *string `tfsdk:"user" yaml:"user,omitempty"`
-
 			Password *string `tfsdk:"password" yaml:"password,omitempty"`
 
 			Url *string `tfsdk:"url" yaml:"url,omitempty"`
+
+			User *string `tfsdk:"user" yaml:"user,omitempty"`
 		} `tfsdk:"snappy" yaml:"snappy,omitempty"`
 
-		Test_user *string `tfsdk:"test_user" yaml:"test_user,omitempty"`
+		Clustername *string `tfsdk:"clustername" yaml:"clustername,omitempty"`
 
 		Drop_cache_kernel *bool `tfsdk:"drop_cache_kernel" yaml:"drop_cache_kernel,omitempty"`
 
+		Drop_cache_rook_ceph *bool `tfsdk:"drop_cache_rook_ceph" yaml:"drop_cache_rook_ceph,omitempty"`
+
+		Elasticsearch *struct {
+			Index_name *string `tfsdk:"index_name" yaml:"index_name,omitempty"`
+
+			Parallel *bool `tfsdk:"parallel" yaml:"parallel,omitempty"`
+
+			Url *string `tfsdk:"url" yaml:"url,omitempty"`
+
+			Verify_cert *bool `tfsdk:"verify_cert" yaml:"verify_cert,omitempty"`
+		} `tfsdk:"elasticsearch" yaml:"elasticsearch,omitempty"`
+
 		Job_params *[]map[string]string `tfsdk:"job_params" yaml:"job_params,omitempty"`
 
-		Uuid *string `tfsdk:"uuid" yaml:"uuid,omitempty"`
+		Metadata *struct {
+			Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+			Ssl *bool `tfsdk:"ssl" yaml:"ssl,omitempty"`
+
+			StockpileTags *[]string `tfsdk:"stockpile_tags" yaml:"stockpileTags,omitempty"`
+
+			Collection *bool `tfsdk:"collection" yaml:"collection,omitempty"`
+
+			Force *bool `tfsdk:"force" yaml:"force,omitempty"`
+
+			Label *map[string]string `tfsdk:"label" yaml:"label,omitempty"`
+
+			Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
+
+			StockpileSkipTags *[]string `tfsdk:"stockpile_skip_tags" yaml:"stockpileSkipTags,omitempty"`
+
+			Targeted *bool `tfsdk:"targeted" yaml:"targeted,omitempty"`
+		} `tfsdk:"metadata" yaml:"metadata,omitempty"`
+
+		System_metrics *struct {
+			Metrics_profile *string `tfsdk:"metrics_profile" yaml:"metrics_profile,omitempty"`
+
+			Prom_token *string `tfsdk:"prom_token" yaml:"prom_token,omitempty"`
+
+			Prom_url *string `tfsdk:"prom_url" yaml:"prom_url,omitempty"`
+
+			Step *string `tfsdk:"step" yaml:"step,omitempty"`
+
+			Collection *bool `tfsdk:"collection" yaml:"collection,omitempty"`
+
+			Es_url *string `tfsdk:"es_url" yaml:"es_url,omitempty"`
+
+			Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+			Index_name *string `tfsdk:"index_name" yaml:"index_name,omitempty"`
+		} `tfsdk:"system_metrics" yaml:"system_metrics,omitempty"`
 
 		Workload *struct {
 			Args *struct {
@@ -80,68 +143,6 @@ type RipsawCloudbulldozerIoBenchmarkV1Alpha1GoModel struct {
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"workload" yaml:"workload,omitempty"`
-
-		Elasticsearch *struct {
-			Verify_cert *bool `tfsdk:"verify_cert" yaml:"verify_cert,omitempty"`
-
-			Index_name *string `tfsdk:"index_name" yaml:"index_name,omitempty"`
-
-			Parallel *bool `tfsdk:"parallel" yaml:"parallel,omitempty"`
-
-			Url *string `tfsdk:"url" yaml:"url,omitempty"`
-		} `tfsdk:"elasticsearch" yaml:"elasticsearch,omitempty"`
-
-		Hostpath *string `tfsdk:"hostpath" yaml:"hostpath,omitempty"`
-
-		Metadata *struct {
-			Image *string `tfsdk:"image" yaml:"image,omitempty"`
-
-			Label *map[string]string `tfsdk:"label" yaml:"label,omitempty"`
-
-			Ssl *bool `tfsdk:"ssl" yaml:"ssl,omitempty"`
-
-			StockpileTags *[]string `tfsdk:"stockpile_tags" yaml:"stockpileTags,omitempty"`
-
-			Collection *bool `tfsdk:"collection" yaml:"collection,omitempty"`
-
-			Force *bool `tfsdk:"force" yaml:"force,omitempty"`
-
-			Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
-
-			StockpileSkipTags *[]string `tfsdk:"stockpile_skip_tags" yaml:"stockpileSkipTags,omitempty"`
-
-			Targeted *bool `tfsdk:"targeted" yaml:"targeted,omitempty"`
-		} `tfsdk:"metadata" yaml:"metadata,omitempty"`
-
-		Prometheus *struct {
-			Es_parallel *bool `tfsdk:"es_parallel" yaml:"es_parallel,omitempty"`
-
-			Es_url *string `tfsdk:"es_url" yaml:"es_url,omitempty"`
-
-			Prom_token *string `tfsdk:"prom_token" yaml:"prom_token,omitempty"`
-
-			Prom_url *string `tfsdk:"prom_url" yaml:"prom_url,omitempty"`
-		} `tfsdk:"prometheus" yaml:"prometheus,omitempty"`
-
-		System_metrics *struct {
-			Collection *bool `tfsdk:"collection" yaml:"collection,omitempty"`
-
-			Es_url *string `tfsdk:"es_url" yaml:"es_url,omitempty"`
-
-			Image *string `tfsdk:"image" yaml:"image,omitempty"`
-
-			Index_name *string `tfsdk:"index_name" yaml:"index_name,omitempty"`
-
-			Metrics_profile *string `tfsdk:"metrics_profile" yaml:"metrics_profile,omitempty"`
-
-			Prom_token *string `tfsdk:"prom_token" yaml:"prom_token,omitempty"`
-
-			Prom_url *string `tfsdk:"prom_url" yaml:"prom_url,omitempty"`
-
-			Step *string `tfsdk:"step" yaml:"step,omitempty"`
-		} `tfsdk:"system_metrics" yaml:"system_metrics,omitempty"`
-
-		Global_overrides *[]string `tfsdk:"global_overrides" yaml:"global_overrides,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -253,7 +254,7 @@ func (r *RipsawCloudbulldozerIoBenchmarkV1Alpha1Resource) GetSchema(_ context.Co
 						Computed: false,
 					},
 
-					"clustername": {
+					"test_user": {
 						Description:         "",
 						MarkdownDescription: "",
 
@@ -264,11 +265,89 @@ func (r *RipsawCloudbulldozerIoBenchmarkV1Alpha1Resource) GetSchema(_ context.Co
 						Computed: false,
 					},
 
-					"drop_cache_rook_ceph": {
+					"uuid": {
 						Description:         "",
 						MarkdownDescription: "",
 
-						Type: types.BoolType,
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"prometheus": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"prom_token": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"prom_url": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"es_parallel": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"es_url": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"global_overrides": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"hostpath": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -280,17 +359,6 @@ func (r *RipsawCloudbulldozerIoBenchmarkV1Alpha1Resource) GetSchema(_ context.Co
 						MarkdownDescription: "",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"user": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"password": {
 								Description:         "",
@@ -313,6 +381,17 @@ func (r *RipsawCloudbulldozerIoBenchmarkV1Alpha1Resource) GetSchema(_ context.Co
 								Optional: true,
 								Computed: false,
 							},
+
+							"user": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						}),
 
 						Required: false,
@@ -320,7 +399,7 @@ func (r *RipsawCloudbulldozerIoBenchmarkV1Alpha1Resource) GetSchema(_ context.Co
 						Computed: false,
 					},
 
-					"test_user": {
+					"clustername": {
 						Description:         "",
 						MarkdownDescription: "",
 
@@ -342,6 +421,73 @@ func (r *RipsawCloudbulldozerIoBenchmarkV1Alpha1Resource) GetSchema(_ context.Co
 						Computed: false,
 					},
 
+					"drop_cache_rook_ceph": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"elasticsearch": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"index_name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"parallel": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"url": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"verify_cert": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"job_params": {
 						Description:         "",
 						MarkdownDescription: "",
@@ -353,11 +499,211 @@ func (r *RipsawCloudbulldozerIoBenchmarkV1Alpha1Resource) GetSchema(_ context.Co
 						Computed: false,
 					},
 
-					"uuid": {
+					"metadata": {
 						Description:         "",
 						MarkdownDescription: "",
 
-						Type: types.StringType,
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"image": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"ssl": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"stockpile_tags": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"collection": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"force": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"label": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"privileged": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"stockpile_skip_tags": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"targeted": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"system_metrics": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"metrics_profile": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"prom_token": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"prom_url": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"step": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"collection": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"es_url": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"image": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"index_name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
@@ -415,351 +761,6 @@ func (r *RipsawCloudbulldozerIoBenchmarkV1Alpha1Resource) GetSchema(_ context.Co
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"elasticsearch": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"verify_cert": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"index_name": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"parallel": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"url": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"hostpath": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"metadata": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"image": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"label": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"ssl": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"stockpile_tags": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"collection": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"force": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"privileged": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"stockpile_skip_tags": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"targeted": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"prometheus": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"es_parallel": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"es_url": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"prom_token": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"prom_url": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"system_metrics": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"collection": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"es_url": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"image": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"index_name": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"metrics_profile": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"prom_token": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"prom_url": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"step": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"global_overrides": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

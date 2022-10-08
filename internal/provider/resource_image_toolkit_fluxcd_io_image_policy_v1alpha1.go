@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,16 +50,6 @@ type ImageToolkitFluxcdIoImagePolicyV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		FilterTags *struct {
-			Extract *string `tfsdk:"extract" yaml:"extract,omitempty"`
-
-			Pattern *string `tfsdk:"pattern" yaml:"pattern,omitempty"`
-		} `tfsdk:"filter_tags" yaml:"filterTags,omitempty"`
-
-		ImageRepositoryRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"image_repository_ref" yaml:"imageRepositoryRef,omitempty"`
-
 		Policy *struct {
 			Alphabetical *struct {
 				Order *string `tfsdk:"order" yaml:"order,omitempty"`
@@ -72,6 +63,16 @@ type ImageToolkitFluxcdIoImagePolicyV1Alpha1GoModel struct {
 				Range *string `tfsdk:"range" yaml:"range,omitempty"`
 			} `tfsdk:"semver" yaml:"semver,omitempty"`
 		} `tfsdk:"policy" yaml:"policy,omitempty"`
+
+		FilterTags *struct {
+			Extract *string `tfsdk:"extract" yaml:"extract,omitempty"`
+
+			Pattern *string `tfsdk:"pattern" yaml:"pattern,omitempty"`
+		} `tfsdk:"filter_tags" yaml:"filterTags,omitempty"`
+
+		ImageRepositoryRef *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"image_repository_ref" yaml:"imageRepositoryRef,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -172,63 +173,6 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Alpha1Resource) GetSchema(_ context.Co
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"filter_tags": {
-						Description:         "FilterTags enables filtering for only a subset of tags based on a set of rules. If no rules are provided, all the tags from the repository will be ordered and compared.",
-						MarkdownDescription: "FilterTags enables filtering for only a subset of tags based on a set of rules. If no rules are provided, all the tags from the repository will be ordered and compared.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"extract": {
-								Description:         "Extract allows a capture group to be extracted from the specified regular expression pattern, useful before tag evaluation.",
-								MarkdownDescription: "Extract allows a capture group to be extracted from the specified regular expression pattern, useful before tag evaluation.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"pattern": {
-								Description:         "Pattern specifies a regular expression pattern used to filter for image tags.",
-								MarkdownDescription: "Pattern specifies a regular expression pattern used to filter for image tags.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"image_repository_ref": {
-						Description:         "ImageRepositoryRef points at the object specifying the image being scanned",
-						MarkdownDescription: "ImageRepositoryRef points at the object specifying the image being scanned",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the referent.",
-								MarkdownDescription: "Name of the referent.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
 					"policy": {
 						Description:         "Policy gives the particulars of the policy to be followed in selecting the most recent image",
 						MarkdownDescription: "Policy gives the particulars of the policy to be followed in selecting the most recent image",
@@ -301,6 +245,63 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Alpha1Resource) GetSchema(_ context.Co
 
 								Required: false,
 								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"filter_tags": {
+						Description:         "FilterTags enables filtering for only a subset of tags based on a set of rules. If no rules are provided, all the tags from the repository will be ordered and compared.",
+						MarkdownDescription: "FilterTags enables filtering for only a subset of tags based on a set of rules. If no rules are provided, all the tags from the repository will be ordered and compared.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"extract": {
+								Description:         "Extract allows a capture group to be extracted from the specified regular expression pattern, useful before tag evaluation.",
+								MarkdownDescription: "Extract allows a capture group to be extracted from the specified regular expression pattern, useful before tag evaluation.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"pattern": {
+								Description:         "Pattern specifies a regular expression pattern used to filter for image tags.",
+								MarkdownDescription: "Pattern specifies a regular expression pattern used to filter for image tags.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"image_repository_ref": {
+						Description:         "ImageRepositoryRef points at the object specifying the image being scanned",
+						MarkdownDescription: "ImageRepositoryRef points at the object specifying the image being scanned",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
 								Computed: false,
 							},
 						}),

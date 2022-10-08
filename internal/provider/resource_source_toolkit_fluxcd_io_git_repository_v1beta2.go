@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,9 +50,19 @@ type SourceToolkitFluxcdIoGitRepositoryV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
+		Include *[]struct {
+			FromPath *string `tfsdk:"from_path" yaml:"fromPath,omitempty"`
+
+			Repository *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"repository" yaml:"repository,omitempty"`
+
+			ToPath *string `tfsdk:"to_path" yaml:"toPath,omitempty"`
+		} `tfsdk:"include" yaml:"include,omitempty"`
 
 		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+		RecurseSubmodules *bool `tfsdk:"recurse_submodules" yaml:"recurseSubmodules,omitempty"`
 
 		Ref *struct {
 			Branch *string `tfsdk:"branch" yaml:"branch,omitempty"`
@@ -63,23 +74,11 @@ type SourceToolkitFluxcdIoGitRepositoryV1Beta2GoModel struct {
 			Tag *string `tfsdk:"tag" yaml:"tag,omitempty"`
 		} `tfsdk:"ref" yaml:"ref,omitempty"`
 
-		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
 		SecretRef *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
-		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
-
 		Url *string `tfsdk:"url" yaml:"url,omitempty"`
-
-		Verify *struct {
-			SecretRef *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-			Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
-		} `tfsdk:"verify" yaml:"verify,omitempty"`
 
 		AccessFrom *struct {
 			NamespaceSelectors *[]struct {
@@ -87,19 +86,21 @@ type SourceToolkitFluxcdIoGitRepositoryV1Beta2GoModel struct {
 			} `tfsdk:"namespace_selectors" yaml:"namespaceSelectors,omitempty"`
 		} `tfsdk:"access_from" yaml:"accessFrom,omitempty"`
 
+		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
+
+		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+
+		Verify *struct {
+			Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
+
+			SecretRef *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+		} `tfsdk:"verify" yaml:"verify,omitempty"`
+
 		GitImplementation *string `tfsdk:"git_implementation" yaml:"gitImplementation,omitempty"`
 
-		Include *[]struct {
-			FromPath *string `tfsdk:"from_path" yaml:"fromPath,omitempty"`
-
-			Repository *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"repository" yaml:"repository,omitempty"`
-
-			ToPath *string `tfsdk:"to_path" yaml:"toPath,omitempty"`
-		} `tfsdk:"include" yaml:"include,omitempty"`
-
-		RecurseSubmodules *bool `tfsdk:"recurse_submodules" yaml:"recurseSubmodules,omitempty"`
+		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -200,11 +201,57 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"ignore": {
-						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
-						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+					"include": {
+						Description:         "Include specifies a list of GitRepository resources which Artifacts should be included in the Artifact produced for this GitRepository.",
+						MarkdownDescription: "Include specifies a list of GitRepository resources which Artifacts should be included in the Artifact produced for this GitRepository.",
 
-						Type: types.StringType,
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"from_path": {
+								Description:         "FromPath specifies the path to copy contents from, defaults to the root of the Artifact.",
+								MarkdownDescription: "FromPath specifies the path to copy contents from, defaults to the root of the Artifact.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"repository": {
+								Description:         "GitRepositoryRef specifies the GitRepository which Artifact contents must be included.",
+								MarkdownDescription: "GitRepositoryRef specifies the GitRepository which Artifact contents must be included.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "Name of the referent.",
+										MarkdownDescription: "Name of the referent.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"to_path": {
+								Description:         "ToPath specifies the path to copy contents to, defaults to the name of the GitRepositoryRef.",
+								MarkdownDescription: "ToPath specifies the path to copy contents to, defaults to the name of the GitRepositoryRef.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
@@ -219,6 +266,17 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"recurse_submodules": {
+						Description:         "RecurseSubmodules enables the initialization of all submodules within the GitRepository as cloned from the URL, using their default settings. This option is available only when using the 'go-git' GitImplementation.",
+						MarkdownDescription: "RecurseSubmodules enables the initialization of all submodules within the GitRepository as cloned from the URL, using their default settings. This option is available only when using the 'go-git' GitImplementation.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
@@ -278,17 +336,6 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"timeout": {
-						Description:         "Timeout for Git operations like cloning, defaults to 60s.",
-						MarkdownDescription: "Timeout for Git operations like cloning, defaults to 60s.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"secret_ref": {
 						Description:         "SecretRef specifies the Secret containing authentication credentials for the GitRepository. For HTTPS repositories the Secret must contain 'username' and 'password' fields. For SSH repositories the Secret must contain 'identity' and 'known_hosts' fields.",
 						MarkdownDescription: "SecretRef specifies the Secret containing authentication credentials for the GitRepository. For HTTPS repositories the Secret must contain 'username' and 'password' fields. For SSH repositories the Secret must contain 'identity' and 'known_hosts' fields.",
@@ -312,17 +359,6 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"suspend": {
-						Description:         "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
-						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"url": {
 						Description:         "URL specifies the Git repository URL, it can be an HTTP/S or SSH address.",
 						MarkdownDescription: "URL specifies the Git repository URL, it can be an HTTP/S or SSH address.",
@@ -331,52 +367,6 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 
 						Required: true,
 						Optional: false,
-						Computed: false,
-					},
-
-					"verify": {
-						Description:         "Verification specifies the configuration to verify the Git commit signature(s).",
-						MarkdownDescription: "Verification specifies the configuration to verify the Git commit signature(s).",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"secret_ref": {
-								Description:         "SecretRef specifies the Secret containing the public keys of trusted Git authors.",
-								MarkdownDescription: "SecretRef specifies the Secret containing the public keys of trusted Git authors.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name of the referent.",
-										MarkdownDescription: "Name of the referent.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"mode": {
-								Description:         "Mode specifies what Git object should be verified, currently ('head').",
-								MarkdownDescription: "Mode specifies what Git object should be verified, currently ('head').",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
 						Computed: false,
 					},
 
@@ -415,9 +405,9 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"git_implementation": {
-						Description:         "GitImplementation specifies which Git client library implementation to use. Defaults to 'go-git', valid values are ('go-git', 'libgit2').",
-						MarkdownDescription: "GitImplementation specifies which Git client library implementation to use. Defaults to 'go-git', valid values are ('go-git', 'libgit2').",
+					"ignore": {
+						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
 
 						Type: types.StringType,
 
@@ -426,26 +416,37 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"include": {
-						Description:         "Include specifies a list of GitRepository resources which Artifacts should be included in the Artifact produced for this GitRepository.",
-						MarkdownDescription: "Include specifies a list of GitRepository resources which Artifacts should be included in the Artifact produced for this GitRepository.",
+					"timeout": {
+						Description:         "Timeout for Git operations like cloning, defaults to 60s.",
+						MarkdownDescription: "Timeout for Git operations like cloning, defaults to 60s.",
 
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+						Type: types.StringType,
 
-							"from_path": {
-								Description:         "FromPath specifies the path to copy contents from, defaults to the root of the Artifact.",
-								MarkdownDescription: "FromPath specifies the path to copy contents from, defaults to the root of the Artifact.",
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"verify": {
+						Description:         "Verification specifies the configuration to verify the Git commit signature(s).",
+						MarkdownDescription: "Verification specifies the configuration to verify the Git commit signature(s).",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"mode": {
+								Description:         "Mode specifies what Git object should be verified, currently ('head').",
+								MarkdownDescription: "Mode specifies what Git object should be verified, currently ('head').",
 
 								Type: types.StringType,
 
-								Required: false,
-								Optional: true,
+								Required: true,
+								Optional: false,
 								Computed: false,
 							},
 
-							"repository": {
-								Description:         "GitRepositoryRef specifies the GitRepository which Artifact contents must be included.",
-								MarkdownDescription: "GitRepositoryRef specifies the GitRepository which Artifact contents must be included.",
+							"secret_ref": {
+								Description:         "SecretRef specifies the Secret containing the public keys of trusted Git authors.",
+								MarkdownDescription: "SecretRef specifies the Secret containing the public keys of trusted Git authors.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -461,17 +462,6 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 									},
 								}),
 
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"to_path": {
-								Description:         "ToPath specifies the path to copy contents to, defaults to the name of the GitRepositoryRef.",
-								MarkdownDescription: "ToPath specifies the path to copy contents to, defaults to the name of the GitRepositoryRef.",
-
-								Type: types.StringType,
-
 								Required: false,
 								Optional: true,
 								Computed: false,
@@ -483,9 +473,20 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"recurse_submodules": {
-						Description:         "RecurseSubmodules enables the initialization of all submodules within the GitRepository as cloned from the URL, using their default settings. This option is available only when using the 'go-git' GitImplementation.",
-						MarkdownDescription: "RecurseSubmodules enables the initialization of all submodules within the GitRepository as cloned from the URL, using their default settings. This option is available only when using the 'go-git' GitImplementation.",
+					"git_implementation": {
+						Description:         "GitImplementation specifies which Git client library implementation to use. Defaults to 'go-git', valid values are ('go-git', 'libgit2').",
+						MarkdownDescription: "GitImplementation specifies which Git client library implementation to use. Defaults to 'go-git', valid values are ('go-git', 'libgit2').",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"suspend": {
+						Description:         "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
+						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
 
 						Type: types.BoolType,
 

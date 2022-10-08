@@ -31,6 +31,11 @@ type TemplateData struct {
 	GoModelType           string
 	TerraformResourceName string
 	Properties            []Property
+	UsedValidators        UsedValidators
+}
+
+type UsedValidators struct {
+	Int64validator bool
 }
 
 type Property struct {
@@ -46,6 +51,7 @@ type Property struct {
 	Optional               bool
 	Computed               bool
 	Properties             []Property
+	Validators             []string
 }
 
 func ConvertToTemplateData(crds []*apiextensionsv1.CustomResourceDefinition, pkg string) []*TemplateData {
@@ -71,6 +77,8 @@ func AsTemplateData(crd *apiextensionsv1.CustomResourceDefinition, pkg string) *
 		return nil
 	}
 
+	validators := UsedValidators{}
+
 	return &TemplateData{
 		BT:                    "`",
 		Package:               pkg,
@@ -84,19 +92,20 @@ func AsTemplateData(crd *apiextensionsv1.CustomResourceDefinition, pkg string) *
 		TerraformModelType:    TerraformModelType(&crd.Spec, &version),
 		GoModelType:           GoModelType(&crd.Spec, &version),
 		TerraformResourceName: TerraformResourceName(&crd.Spec),
-		Properties:            Properties(schema.Properties, schema.Required),
+		Properties:            Properties(schema.Properties, schema.Required, &validators),
+		UsedValidators:        validators,
 	}
 }
 
-func Properties(properties map[string]apiextensionsv1.JSONSchemaProps, required []string) []Property {
+func Properties(properties map[string]apiextensionsv1.JSONSchemaProps, required []string, uv *UsedValidators) []Property {
 	props := make([]Property, 0)
 
 	for name, prop := range properties {
 		var nestedProperties []Property
 		if prop.Type == "array" && prop.Items.Schema.Type == "object" {
-			nestedProperties = Properties(prop.Items.Schema.Properties, prop.Items.Schema.Required)
+			nestedProperties = Properties(prop.Items.Schema.Properties, prop.Items.Schema.Required, uv)
 		} else {
-			nestedProperties = Properties(prop.Properties, prop.Required)
+			nestedProperties = Properties(prop.Properties, prop.Required, uv)
 		}
 
 		props = append(props, Property{
@@ -112,6 +121,7 @@ func Properties(properties map[string]apiextensionsv1.JSONSchemaProps, required 
 			Optional:               !slices.Contains(required, name),
 			Computed:               false,
 			Properties:             nestedProperties,
+			Validators:             Validators(prop, uv),
 		})
 	}
 
@@ -314,4 +324,27 @@ func TerraformValueType(prop apiextensionsv1.JSONSchemaProps) string {
 		return "types.Map"
 	}
 	return "UNKNOWN"
+}
+
+func Validators(prop apiextensionsv1.JSONSchemaProps, uv *UsedValidators) []string {
+	validators := make([]string, 0)
+
+	if prop.Type == "integer" && prop.Minimum != nil {
+		min := *prop.Minimum
+		if prop.ExclusiveMinimum {
+			min = min + 1
+		}
+		validators = append(validators, fmt.Sprintf("int64validator.AtLeast(%v)", min))
+		uv.Int64validator = true
+	}
+	if prop.Type == "integer" && prop.Maximum != nil {
+		max := *prop.Maximum
+		if prop.ExclusiveMaximum {
+			max = max - 1
+		}
+		validators = append(validators, fmt.Sprintf("int64validator.AtMost(%v)", max))
+		uv.Int64validator = true
+	}
+
+	return validators
 }

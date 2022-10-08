@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,14 +50,6 @@ type SourceToolkitFluxcdIoBucketV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
-
-		SecretRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
 		AccessFrom *struct {
 			NamespaceSelectors *[]struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -65,15 +58,23 @@ type SourceToolkitFluxcdIoBucketV1Beta1GoModel struct {
 
 		Endpoint *string `tfsdk:"endpoint" yaml:"endpoint,omitempty"`
 
-		Insecure *bool `tfsdk:"insecure" yaml:"insecure,omitempty"`
-
 		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+		Region *string `tfsdk:"region" yaml:"region,omitempty"`
+
+		SecretRef *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 
 		BucketName *string `tfsdk:"bucket_name" yaml:"bucketName,omitempty"`
 
 		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
 
-		Region *string `tfsdk:"region" yaml:"region,omitempty"`
+		Insecure *bool `tfsdk:"insecure" yaml:"insecure,omitempty"`
+
+		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
 
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -176,51 +177,6 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta1Resource) GetSchema(_ context.Context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"provider": {
-						Description:         "The S3 compatible storage provider name, default ('generic').",
-						MarkdownDescription: "The S3 compatible storage provider name, default ('generic').",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"secret_ref": {
-						Description:         "The name of the secret containing authentication credentials for the Bucket.",
-						MarkdownDescription: "The name of the secret containing authentication credentials for the Bucket.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the referent.",
-								MarkdownDescription: "Name of the referent.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"timeout": {
-						Description:         "The timeout for download operations, defaults to 60s.",
-						MarkdownDescription: "The timeout for download operations, defaults to 60s.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"access_from": {
 						Description:         "AccessFrom defines an Access Control List for allowing cross-namespace references to this object.",
 						MarkdownDescription: "AccessFrom defines an Access Control List for allowing cross-namespace references to this object.",
@@ -267,17 +223,6 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta1Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
-					"insecure": {
-						Description:         "Insecure allows connecting to a non-TLS S3 HTTP endpoint.",
-						MarkdownDescription: "Insecure allows connecting to a non-TLS S3 HTTP endpoint.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"interval": {
 						Description:         "The interval at which to check for bucket updates.",
 						MarkdownDescription: "The interval at which to check for bucket updates.",
@@ -286,6 +231,51 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta1Resource) GetSchema(_ context.Context
 
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"region": {
+						Description:         "The bucket region.",
+						MarkdownDescription: "The bucket region.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"secret_ref": {
+						Description:         "The name of the secret containing authentication credentials for the Bucket.",
+						MarkdownDescription: "The name of the secret containing authentication credentials for the Bucket.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"timeout": {
+						Description:         "The timeout for download operations, defaults to 60s.",
+						MarkdownDescription: "The timeout for download operations, defaults to 60s.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
@@ -311,9 +301,20 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta1Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
-					"region": {
-						Description:         "The bucket region.",
-						MarkdownDescription: "The bucket region.",
+					"insecure": {
+						Description:         "Insecure allows connecting to a non-TLS S3 HTTP endpoint.",
+						MarkdownDescription: "Insecure allows connecting to a non-TLS S3 HTTP endpoint.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"provider": {
+						Description:         "The S3 compatible storage provider name, default ('generic').",
+						MarkdownDescription: "The S3 compatible storage provider name, default ('generic').",
 
 						Type: types.StringType,
 

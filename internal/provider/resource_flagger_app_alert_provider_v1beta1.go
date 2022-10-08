@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,12 +50,6 @@ type FlaggerAppAlertProviderV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Username *string `tfsdk:"username" yaml:"username,omitempty"`
-
-		Address *string `tfsdk:"address" yaml:"address,omitempty"`
-
-		Channel *string `tfsdk:"channel" yaml:"channel,omitempty"`
-
 		Proxy *string `tfsdk:"proxy" yaml:"proxy,omitempty"`
 
 		SecretRef *struct {
@@ -62,6 +57,12 @@ type FlaggerAppAlertProviderV1Beta1GoModel struct {
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
 		Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+		Username *string `tfsdk:"username" yaml:"username,omitempty"`
+
+		Address *string `tfsdk:"address" yaml:"address,omitempty"`
+
+		Channel *string `tfsdk:"channel" yaml:"channel,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -162,39 +163,6 @@ func (r *FlaggerAppAlertProviderV1Beta1Resource) GetSchema(_ context.Context) (t
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"username": {
-						Description:         "Bot username for this provider",
-						MarkdownDescription: "Bot username for this provider",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"address": {
-						Description:         "Hook URL address of this provider",
-						MarkdownDescription: "Hook URL address of this provider",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"channel": {
-						Description:         "Alert channel for this provider",
-						MarkdownDescription: "Alert channel for this provider",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"proxy": {
 						Description:         "Http/s proxy of this provider",
 						MarkdownDescription: "Http/s proxy of this provider",
@@ -232,6 +200,39 @@ func (r *FlaggerAppAlertProviderV1Beta1Resource) GetSchema(_ context.Context) (t
 					"type": {
 						Description:         "Type of this provider",
 						MarkdownDescription: "Type of this provider",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"username": {
+						Description:         "Bot username for this provider",
+						MarkdownDescription: "Bot username for this provider",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"address": {
+						Description:         "Hook URL address of this provider",
+						MarkdownDescription: "Hook URL address of this provider",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"channel": {
+						Description:         "Alert channel for this provider",
+						MarkdownDescription: "Alert channel for this provider",
 
 						Type: types.StringType,
 

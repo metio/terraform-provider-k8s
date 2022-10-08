@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,15 +50,15 @@ type IntegreatlyOrgGrafanaFolderV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Title *string `tfsdk:"title" yaml:"title,omitempty"`
+
 		Permissions *[]struct {
+			PermissionTargetType *string `tfsdk:"permission_target_type" yaml:"permissionTargetType,omitempty"`
+
 			PermissionLevel *int64 `tfsdk:"permission_level" yaml:"permissionLevel,omitempty"`
 
 			PermissionTarget *string `tfsdk:"permission_target" yaml:"permissionTarget,omitempty"`
-
-			PermissionTargetType *string `tfsdk:"permission_target_type" yaml:"permissionTargetType,omitempty"`
 		} `tfsdk:"permissions" yaml:"permissions,omitempty"`
-
-		Title *string `tfsdk:"title" yaml:"title,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -158,11 +159,33 @@ func (r *IntegreatlyOrgGrafanaFolderV1Alpha1Resource) GetSchema(_ context.Contex
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"title": {
+						Description:         "FolderName is the display-name of the folder and must match CustomFolderName of any GrafanaDashboard you want to put in",
+						MarkdownDescription: "FolderName is the display-name of the folder and must match CustomFolderName of any GrafanaDashboard you want to put in",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
 					"permissions": {
 						Description:         "FolderPermissions shall contain the _complete_ permissions for the folder. Any permission not listed here, will be removed from the folder.",
 						MarkdownDescription: "FolderPermissions shall contain the _complete_ permissions for the folder. Any permission not listed here, will be removed from the folder.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"permission_target_type": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
 
 							"permission_level": {
 								Description:         "",
@@ -185,32 +208,10 @@ func (r *IntegreatlyOrgGrafanaFolderV1Alpha1Resource) GetSchema(_ context.Contex
 								Optional: false,
 								Computed: false,
 							},
-
-							"permission_target_type": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
 						}),
 
 						Required: false,
 						Optional: true,
-						Computed: false,
-					},
-
-					"title": {
-						Description:         "FolderName is the display-name of the folder and must match CustomFolderName of any GrafanaDashboard you want to put in",
-						MarkdownDescription: "FolderName is the display-name of the folder and must match CustomFolderName of any GrafanaDashboard you want to put in",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
 						Computed: false,
 					},
 				}),

@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,13 +50,35 @@ type NetworkingIstioIoWorkloadGroupV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Metadata *struct {
-			Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+		Template *struct {
+			Network *string `tfsdk:"network" yaml:"network,omitempty"`
+
+			Ports *map[string]string `tfsdk:"ports" yaml:"ports,omitempty"`
+
+			ServiceAccount *string `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
+
+			Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+
+			Address *string `tfsdk:"address" yaml:"address,omitempty"`
 
 			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+
+			Locality *string `tfsdk:"locality" yaml:"locality,omitempty"`
+		} `tfsdk:"template" yaml:"template,omitempty"`
+
+		Metadata *struct {
+			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+
+			Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
 		} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
 		Probe *struct {
+			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+
+			Exec *struct {
+				Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+			} `tfsdk:"exec" yaml:"exec,omitempty"`
+
 			FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
 
 			HttpGet *struct {
@@ -85,29 +108,7 @@ type NetworkingIstioIoWorkloadGroupV1Beta1GoModel struct {
 
 				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 			} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-			Exec *struct {
-				Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-			} `tfsdk:"exec" yaml:"exec,omitempty"`
 		} `tfsdk:"probe" yaml:"probe,omitempty"`
-
-		Template *struct {
-			Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-
-			Address *string `tfsdk:"address" yaml:"address,omitempty"`
-
-			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-
-			Locality *string `tfsdk:"locality" yaml:"locality,omitempty"`
-
-			Network *string `tfsdk:"network" yaml:"network,omitempty"`
-
-			Ports *map[string]string `tfsdk:"ports" yaml:"ports,omitempty"`
-
-			ServiceAccount *string `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
-		} `tfsdk:"template" yaml:"template,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -208,13 +209,102 @@ func (r *NetworkingIstioIoWorkloadGroupV1Beta1Resource) GetSchema(_ context.Cont
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"template": {
+						Description:         "Template to be used for the generation of 'WorkloadEntry' resources that belong to this 'WorkloadGroup'.",
+						MarkdownDescription: "Template to be used for the generation of 'WorkloadEntry' resources that belong to this 'WorkloadGroup'.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"network": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"ports": {
+								Description:         "Set of ports associated with the endpoint.",
+								MarkdownDescription: "Set of ports associated with the endpoint.",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"service_account": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"weight": {
+								Description:         "The load balancing weight associated with the endpoint.",
+								MarkdownDescription: "The load balancing weight associated with the endpoint.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"address": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"labels": {
+								Description:         "One or more labels associated with the endpoint.",
+								MarkdownDescription: "One or more labels associated with the endpoint.",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"locality": {
+								Description:         "The locality associated with the endpoint.",
+								MarkdownDescription: "The locality associated with the endpoint.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"metadata": {
 						Description:         "Metadata that will be used for all corresponding 'WorkloadEntries'.",
 						MarkdownDescription: "Metadata that will be used for all corresponding 'WorkloadEntries'.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"annotations": {
+							"labels": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -225,7 +315,7 @@ func (r *NetworkingIstioIoWorkloadGroupV1Beta1Resource) GetSchema(_ context.Cont
 								Computed: false,
 							},
 
-							"labels": {
+							"annotations": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -247,6 +337,40 @@ func (r *NetworkingIstioIoWorkloadGroupV1Beta1Resource) GetSchema(_ context.Cont
 						MarkdownDescription: "'ReadinessProbe' describes the configuration the user must provide for healthchecking on their workload.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"timeout_seconds": {
+								Description:         "Number of seconds after which the probe times out.",
+								MarkdownDescription: "Number of seconds after which the probe times out.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"exec": {
+								Description:         "Health is determined by how the command that is executed exited.",
+								MarkdownDescription: "Health is determined by how the command that is executed exited.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"command": {
+										Description:         "Command to run.",
+										MarkdownDescription: "Command to run.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"failure_threshold": {
 								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.",
@@ -410,129 +534,6 @@ func (r *NetworkingIstioIoWorkloadGroupV1Beta1Resource) GetSchema(_ context.Cont
 										Computed: false,
 									},
 								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"timeout_seconds": {
-								Description:         "Number of seconds after which the probe times out.",
-								MarkdownDescription: "Number of seconds after which the probe times out.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"exec": {
-								Description:         "Health is determined by how the command that is executed exited.",
-								MarkdownDescription: "Health is determined by how the command that is executed exited.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"command": {
-										Description:         "Command to run.",
-										MarkdownDescription: "Command to run.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"template": {
-						Description:         "Template to be used for the generation of 'WorkloadEntry' resources that belong to this 'WorkloadGroup'.",
-						MarkdownDescription: "Template to be used for the generation of 'WorkloadEntry' resources that belong to this 'WorkloadGroup'.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"weight": {
-								Description:         "The load balancing weight associated with the endpoint.",
-								MarkdownDescription: "The load balancing weight associated with the endpoint.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"address": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"labels": {
-								Description:         "One or more labels associated with the endpoint.",
-								MarkdownDescription: "One or more labels associated with the endpoint.",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"locality": {
-								Description:         "The locality associated with the endpoint.",
-								MarkdownDescription: "The locality associated with the endpoint.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"network": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"ports": {
-								Description:         "Set of ports associated with the endpoint.",
-								MarkdownDescription: "Set of ports associated with the endpoint.",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"service_account": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
 
 								Required: false,
 								Optional: true,

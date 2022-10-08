@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,51 +50,41 @@ type SecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1GoModel
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		EnableSelinux *bool `tfsdk:"enable_selinux" yaml:"enableSelinux,omitempty"`
-
-		StaticWebhookConfig *bool `tfsdk:"static_webhook_config" yaml:"staticWebhookConfig,omitempty"`
-
-		SelinuxTypeTag *string `tfsdk:"selinux_type_tag" yaml:"selinuxTypeTag,omitempty"`
-
-		Verbosity *int64 `tfsdk:"verbosity" yaml:"verbosity,omitempty"`
-
-		AllowedSyscalls *[]string `tfsdk:"allowed_syscalls" yaml:"allowedSyscalls,omitempty"`
-
-		EnableLogEnricher *bool `tfsdk:"enable_log_enricher" yaml:"enableLogEnricher,omitempty"`
-
-		EnableProfiling *bool `tfsdk:"enable_profiling" yaml:"enableProfiling,omitempty"`
-
-		SelinuxOptions *struct {
-			AllowedSystemProfiles *[]string `tfsdk:"allowed_system_profiles" yaml:"allowedSystemProfiles,omitempty"`
-		} `tfsdk:"selinux_options" yaml:"selinuxOptions,omitempty"`
-
-		EnableAppArmor *bool `tfsdk:"enable_app_armor" yaml:"enableAppArmor,omitempty"`
-
-		HostProcVolumePath *string `tfsdk:"host_proc_volume_path" yaml:"hostProcVolumePath,omitempty"`
-
 		WebhookOptions *[]struct {
 			FailurePolicy *string `tfsdk:"failure_policy" yaml:"failurePolicy,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			NamespaceSelector *struct {
-				MatchExpressions *[]struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 
+				MatchExpressions *[]struct {
 					Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-				} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+				} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 			} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 		} `tfsdk:"webhook_options" yaml:"webhookOptions,omitempty"`
 
 		AllowedSeccompActions *[]string `tfsdk:"allowed_seccomp_actions" yaml:"allowedSeccompActions,omitempty"`
 
-		EnableBpfRecorder *bool `tfsdk:"enable_bpf_recorder" yaml:"enableBpfRecorder,omitempty"`
+		AllowedSyscalls *[]string `tfsdk:"allowed_syscalls" yaml:"allowedSyscalls,omitempty"`
+
+		EnableAppArmor *bool `tfsdk:"enable_app_armor" yaml:"enableAppArmor,omitempty"`
+
+		EnableSelinux *bool `tfsdk:"enable_selinux" yaml:"enableSelinux,omitempty"`
+
+		SelinuxOptions *struct {
+			AllowedSystemProfiles *[]string `tfsdk:"allowed_system_profiles" yaml:"allowedSystemProfiles,omitempty"`
+		} `tfsdk:"selinux_options" yaml:"selinuxOptions,omitempty"`
+
+		SelinuxTypeTag *string `tfsdk:"selinux_type_tag" yaml:"selinuxTypeTag,omitempty"`
 
 		Tolerations *[]struct {
+			TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
+
 			Value *string `tfsdk:"value" yaml:"value,omitempty"`
 
 			Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
@@ -101,9 +92,19 @@ type SecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1GoModel
 			Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 			Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-			TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
 		} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
+
+		EnableProfiling *bool `tfsdk:"enable_profiling" yaml:"enableProfiling,omitempty"`
+
+		Verbosity *int64 `tfsdk:"verbosity" yaml:"verbosity,omitempty"`
+
+		EnableBpfRecorder *bool `tfsdk:"enable_bpf_recorder" yaml:"enableBpfRecorder,omitempty"`
+
+		EnableLogEnricher *bool `tfsdk:"enable_log_enricher" yaml:"enableLogEnricher,omitempty"`
+
+		HostProcVolumePath *string `tfsdk:"host_proc_volume_path" yaml:"hostProcVolumePath,omitempty"`
+
+		StaticWebhookConfig *bool `tfsdk:"static_webhook_config" yaml:"staticWebhookConfig,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -204,128 +205,6 @@ func (r *SecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1Res
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"enable_selinux": {
-						Description:         "tells the operator whether or not to enable SELinux support for this SPOD instance.",
-						MarkdownDescription: "tells the operator whether or not to enable SELinux support for this SPOD instance.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"static_webhook_config": {
-						Description:         "StaticWebhookConfig indicates whether the webhook configuration and its related resources are statically deployed. In this case, the operator will not create or update the webhook configuration and its related resources.",
-						MarkdownDescription: "StaticWebhookConfig indicates whether the webhook configuration and its related resources are statically deployed. In this case, the operator will not create or update the webhook configuration and its related resources.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"selinux_type_tag": {
-						Description:         "If specified, the SELinux type tag applied to the security context of SPOD.",
-						MarkdownDescription: "If specified, the SELinux type tag applied to the security context of SPOD.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"verbosity": {
-						Description:         "Verbosity specifies the logging verbosity of the daemon.",
-						MarkdownDescription: "Verbosity specifies the logging verbosity of the daemon.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"allowed_syscalls": {
-						Description:         "AllowedSyscalls if specified, a list of system calls which are allowed in seccomp profiles.",
-						MarkdownDescription: "AllowedSyscalls if specified, a list of system calls which are allowed in seccomp profiles.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"enable_log_enricher": {
-						Description:         "tells the operator whether or not to enable log enrichment support for this SPOD instance.",
-						MarkdownDescription: "tells the operator whether or not to enable log enrichment support for this SPOD instance.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"enable_profiling": {
-						Description:         "EnableProfiling tells the operator whether or not to enable profiling support for this SPOD instance.",
-						MarkdownDescription: "EnableProfiling tells the operator whether or not to enable profiling support for this SPOD instance.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"selinux_options": {
-						Description:         "Defines options specific to the SELinux functionality of the SecurityProfilesOperator",
-						MarkdownDescription: "Defines options specific to the SELinux functionality of the SecurityProfilesOperator",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"allowed_system_profiles": {
-								Description:         "Lists the profiles coming from the system itself that are allowed to be inherited by workloads. Use this with care, as this might provide a lot of permissions depending on the policy.",
-								MarkdownDescription: "Lists the profiles coming from the system itself that are allowed to be inherited by workloads. Use this with care, as this might provide a lot of permissions depending on the policy.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"enable_app_armor": {
-						Description:         "tells the operator whether or not to enable AppArmor support for this SPOD instance.",
-						MarkdownDescription: "tells the operator whether or not to enable AppArmor support for this SPOD instance.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"host_proc_volume_path": {
-						Description:         "HostProcVolumePath is the path for specifying a custom host /proc volume, which is required for the log-enricher as well as bpf-recorder to retrieve the container ID for a process ID. This can be helpful for nested environments, for example when using 'kind'.",
-						MarkdownDescription: "HostProcVolumePath is the path for specifying a custom host /proc volume, which is required for the log-enricher as well as bpf-recorder to retrieve the container ID for a process ID. This can be helpful for nested environments, for example when using 'kind'.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"webhook_options": {
 						Description:         "WebhookOpts set custom namespace selectors and failure mode for SPO's webhooks",
 						MarkdownDescription: "WebhookOpts set custom namespace selectors and failure mode for SPO's webhooks",
@@ -360,22 +239,22 @@ func (r *SecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1Res
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+									"match_labels": {
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"match_expressions": {
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "key is the label key that the selector applies to.",
-												MarkdownDescription: "key is the label key that the selector applies to.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
 
 											"operator": {
 												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
@@ -398,18 +277,18 @@ func (r *SecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1Res
 												Optional: true,
 												Computed: false,
 											},
+
+											"key": {
+												Description:         "key is the label key that the selector applies to.",
+												MarkdownDescription: "key is the label key that the selector applies to.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
 										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"match_labels": {
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-										Type: types.MapType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
@@ -439,11 +318,67 @@ func (r *SecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1Res
 						Computed: false,
 					},
 
-					"enable_bpf_recorder": {
-						Description:         "tells the operator whether or not to enable bpf recorder support for this SPOD instance.",
-						MarkdownDescription: "tells the operator whether or not to enable bpf recorder support for this SPOD instance.",
+					"allowed_syscalls": {
+						Description:         "AllowedSyscalls if specified, a list of system calls which are allowed in seccomp profiles.",
+						MarkdownDescription: "AllowedSyscalls if specified, a list of system calls which are allowed in seccomp profiles.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_app_armor": {
+						Description:         "tells the operator whether or not to enable AppArmor support for this SPOD instance.",
+						MarkdownDescription: "tells the operator whether or not to enable AppArmor support for this SPOD instance.",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_selinux": {
+						Description:         "tells the operator whether or not to enable SELinux support for this SPOD instance.",
+						MarkdownDescription: "tells the operator whether or not to enable SELinux support for this SPOD instance.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"selinux_options": {
+						Description:         "Defines options specific to the SELinux functionality of the SecurityProfilesOperator",
+						MarkdownDescription: "Defines options specific to the SELinux functionality of the SecurityProfilesOperator",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"allowed_system_profiles": {
+								Description:         "Lists the profiles coming from the system itself that are allowed to be inherited by workloads. Use this with care, as this might provide a lot of permissions depending on the policy.",
+								MarkdownDescription: "Lists the profiles coming from the system itself that are allowed to be inherited by workloads. Use this with care, as this might provide a lot of permissions depending on the policy.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"selinux_type_tag": {
+						Description:         "If specified, the SELinux type tag applied to the security context of SPOD.",
+						MarkdownDescription: "If specified, the SELinux type tag applied to the security context of SPOD.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -455,6 +390,17 @@ func (r *SecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1Res
 						MarkdownDescription: "If specified, the SPOD's tolerations.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"toleration_seconds": {
+								Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+								MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"value": {
 								Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
@@ -499,18 +445,73 @@ func (r *SecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1Res
 								Optional: true,
 								Computed: false,
 							},
-
-							"toleration_seconds": {
-								Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-								MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_profiling": {
+						Description:         "EnableProfiling tells the operator whether or not to enable profiling support for this SPOD instance.",
+						MarkdownDescription: "EnableProfiling tells the operator whether or not to enable profiling support for this SPOD instance.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"verbosity": {
+						Description:         "Verbosity specifies the logging verbosity of the daemon.",
+						MarkdownDescription: "Verbosity specifies the logging verbosity of the daemon.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_bpf_recorder": {
+						Description:         "tells the operator whether or not to enable bpf recorder support for this SPOD instance.",
+						MarkdownDescription: "tells the operator whether or not to enable bpf recorder support for this SPOD instance.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_log_enricher": {
+						Description:         "tells the operator whether or not to enable log enrichment support for this SPOD instance.",
+						MarkdownDescription: "tells the operator whether or not to enable log enrichment support for this SPOD instance.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"host_proc_volume_path": {
+						Description:         "HostProcVolumePath is the path for specifying a custom host /proc volume, which is required for the log-enricher as well as bpf-recorder to retrieve the container ID for a process ID. This can be helpful for nested environments, for example when using 'kind'.",
+						MarkdownDescription: "HostProcVolumePath is the path for specifying a custom host /proc volume, which is required for the log-enricher as well as bpf-recorder to retrieve the container ID for a process ID. This can be helpful for nested environments, for example when using 'kind'.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"static_webhook_config": {
+						Description:         "StaticWebhookConfig indicates whether the webhook configuration and its related resources are statically deployed. In this case, the operator will not create or update the webhook configuration and its related resources.",
+						MarkdownDescription: "StaticWebhookConfig indicates whether the webhook configuration and its related resources are statically deployed. In this case, the operator will not create or update the webhook configuration and its related resources.",
+
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,

@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,11 +50,11 @@ type CouchbaseComCouchbaseMemcachedBucketV2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		EnableFlush *bool `tfsdk:"enable_flush" yaml:"enableFlush,omitempty"`
+
 		MemoryQuota *string `tfsdk:"memory_quota" yaml:"memoryQuota,omitempty"`
 
 		Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-		EnableFlush *bool `tfsdk:"enable_flush" yaml:"enableFlush,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -154,6 +155,17 @@ func (r *CouchbaseComCouchbaseMemcachedBucketV2Resource) GetSchema(_ context.Con
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"enable_flush": {
+						Description:         "EnableFlush defines whether a client can delete all documents in a bucket. This field defaults to false.",
+						MarkdownDescription: "EnableFlush defines whether a client can delete all documents in a bucket. This field defaults to false.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"memory_quota": {
 						Description:         "MemoryQuota is a memory limit to the size of a bucket. The memory quota is defined per Couchbase pod running the data service.  This field defaults to, and must be greater than or equal to 100Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 						MarkdownDescription: "MemoryQuota is a memory limit to the size of a bucket. The memory quota is defined per Couchbase pod running the data service.  This field defaults to, and must be greater than or equal to 100Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
@@ -170,17 +182,6 @@ func (r *CouchbaseComCouchbaseMemcachedBucketV2Resource) GetSchema(_ context.Con
 						MarkdownDescription: "Name is the name of the bucket within Couchbase server.  By default the Operator will use the 'metadata.name' field to define the bucket name.  The 'metadata.name' field only supports a subset of the supported character set.  When specified, this field overrides 'metadata.name'.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
 
 						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"enable_flush": {
-						Description:         "EnableFlush defines whether a client can delete all documents in a bucket. This field defaults to false.",
-						MarkdownDescription: "EnableFlush defines whether a client can delete all documents in a bucket. This field defaults to false.",
-
-						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,

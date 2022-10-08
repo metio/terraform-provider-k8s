@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,9 +50,15 @@ type ExtensionsIstioIoWasmPluginV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		PluginConfig *map[string]string `tfsdk:"plugin_config" yaml:"pluginConfig,omitempty"`
+		ImagePullSecret *string `tfsdk:"image_pull_secret" yaml:"imagePullSecret,omitempty"`
 
-		Phase *string `tfsdk:"phase" yaml:"phase,omitempty"`
+		Match *[]struct {
+			Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
+
+			Ports *[]struct {
+				Number *int64 `tfsdk:"number" yaml:"number,omitempty"`
+			} `tfsdk:"ports" yaml:"ports,omitempty"`
+		} `tfsdk:"match" yaml:"match,omitempty"`
 
 		PluginName *string `tfsdk:"plugin_name" yaml:"pluginName,omitempty"`
 
@@ -63,29 +70,23 @@ type ExtensionsIstioIoWasmPluginV1Alpha1GoModel struct {
 
 		Sha256 *string `tfsdk:"sha256" yaml:"sha256,omitempty"`
 
+		VerificationKey *string `tfsdk:"verification_key" yaml:"verificationKey,omitempty"`
+
 		ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
 
-		ImagePullSecret *string `tfsdk:"image_pull_secret" yaml:"imagePullSecret,omitempty"`
+		Phase *string `tfsdk:"phase" yaml:"phase,omitempty"`
 
-		Match *[]struct {
-			Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
-
-			Ports *[]struct {
-				Number *int64 `tfsdk:"number" yaml:"number,omitempty"`
-			} `tfsdk:"ports" yaml:"ports,omitempty"`
-		} `tfsdk:"match" yaml:"match,omitempty"`
+		PluginConfig *map[string]string `tfsdk:"plugin_config" yaml:"pluginConfig,omitempty"`
 
 		Url *string `tfsdk:"url" yaml:"url,omitempty"`
 
-		VerificationKey *string `tfsdk:"verification_key" yaml:"verificationKey,omitempty"`
-
 		VmConfig *struct {
 			Env *[]struct {
+				ValueFrom *string `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
+
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 				Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-				ValueFrom *string `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
 			} `tfsdk:"env" yaml:"env,omitempty"`
 		} `tfsdk:"vm_config" yaml:"vmConfig,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -188,22 +189,57 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"plugin_config": {
-						Description:         "The configuration that will be passed on to the plugin.",
-						MarkdownDescription: "The configuration that will be passed on to the plugin.",
+					"image_pull_secret": {
+						Description:         "Credentials to use for OCI image pulling.",
+						MarkdownDescription: "Credentials to use for OCI image pulling.",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
 					},
 
-					"phase": {
-						Description:         "Determines where in the filter chain this 'WasmPlugin' is to be injected.",
-						MarkdownDescription: "Determines where in the filter chain this 'WasmPlugin' is to be injected.",
+					"match": {
+						Description:         "",
+						MarkdownDescription: "",
 
-						Type: types.StringType,
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"mode": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"ports": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"number": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
@@ -266,6 +302,17 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 						Computed: false,
 					},
 
+					"verification_key": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"image_pull_policy": {
 						Description:         "",
 						MarkdownDescription: "",
@@ -277,9 +324,9 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 						Computed: false,
 					},
 
-					"image_pull_secret": {
-						Description:         "Credentials to use for OCI image pulling.",
-						MarkdownDescription: "Credentials to use for OCI image pulling.",
+					"phase": {
+						Description:         "Determines where in the filter chain this 'WasmPlugin' is to be injected.",
+						MarkdownDescription: "Determines where in the filter chain this 'WasmPlugin' is to be injected.",
 
 						Type: types.StringType,
 
@@ -288,46 +335,11 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 						Computed: false,
 					},
 
-					"match": {
-						Description:         "",
-						MarkdownDescription: "",
+					"plugin_config": {
+						Description:         "The configuration that will be passed on to the plugin.",
+						MarkdownDescription: "The configuration that will be passed on to the plugin.",
 
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"mode": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"ports": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"number": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
+						Type: types.MapType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,
@@ -337,17 +349,6 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 					"url": {
 						Description:         "URL of a Wasm module or OCI container.",
 						MarkdownDescription: "URL of a Wasm module or OCI container.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"verification_key": {
-						Description:         "",
-						MarkdownDescription: "",
 
 						Type: types.StringType,
 
@@ -368,6 +369,17 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+									"value_from": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"name": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -382,17 +394,6 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 									"value": {
 										Description:         "Value for the environment variable.",
 										MarkdownDescription: "Value for the environment variable.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"value_from": {
-										Description:         "",
-										MarkdownDescription: "",
 
 										Type: types.StringType,
 

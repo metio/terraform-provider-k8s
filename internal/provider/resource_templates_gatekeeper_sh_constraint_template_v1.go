@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -47,6 +48,22 @@ type TemplatesGatekeeperShConstraintTemplateV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Crd *struct {
+			Spec *struct {
+				Names *struct {
+					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+					ShortNames *[]string `tfsdk:"short_names" yaml:"shortNames,omitempty"`
+				} `tfsdk:"names" yaml:"names,omitempty"`
+
+				Validation *struct {
+					LegacySchema *bool `tfsdk:"legacy_schema" yaml:"legacySchema,omitempty"`
+
+					OpenAPIV3Schema *map[string]string `tfsdk:"open_apiv3_schema" yaml:"openAPIV3Schema,omitempty"`
+				} `tfsdk:"validation" yaml:"validation,omitempty"`
+			} `tfsdk:"spec" yaml:"spec,omitempty"`
+		} `tfsdk:"crd" yaml:"crd,omitempty"`
+
 		Targets *[]struct {
 			Libs *[]string `tfsdk:"libs" yaml:"libs,omitempty"`
 
@@ -54,22 +71,6 @@ type TemplatesGatekeeperShConstraintTemplateV1GoModel struct {
 
 			Target *string `tfsdk:"target" yaml:"target,omitempty"`
 		} `tfsdk:"targets" yaml:"targets,omitempty"`
-
-		Crd *struct {
-			Spec *struct {
-				Validation *struct {
-					LegacySchema *bool `tfsdk:"legacy_schema" yaml:"legacySchema,omitempty"`
-
-					OpenAPIV3Schema *map[string]string `tfsdk:"open_apiv3_schema" yaml:"openAPIV3Schema,omitempty"`
-				} `tfsdk:"validation" yaml:"validation,omitempty"`
-
-				Names *struct {
-					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-					ShortNames *[]string `tfsdk:"short_names" yaml:"shortNames,omitempty"`
-				} `tfsdk:"names" yaml:"names,omitempty"`
-			} `tfsdk:"spec" yaml:"spec,omitempty"`
-		} `tfsdk:"crd" yaml:"crd,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -163,51 +164,6 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Resource) GetSchema(_ context.
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"targets": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"libs": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"rego": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"target": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"crd": {
 						Description:         "",
 						MarkdownDescription: "",
@@ -219,40 +175,6 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Resource) GetSchema(_ context.
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"validation": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"legacy_schema": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"open_apiv3_schema": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"names": {
 										Description:         "",
@@ -287,7 +209,86 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Resource) GetSchema(_ context.
 										Optional: true,
 										Computed: false,
 									},
+
+									"validation": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"legacy_schema": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"open_apiv3_schema": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"targets": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"libs": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"rego": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"target": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,

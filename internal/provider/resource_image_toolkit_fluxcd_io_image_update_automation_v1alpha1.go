@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,6 +50,20 @@ type ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Update *struct {
+			Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+			Strategy *string `tfsdk:"strategy" yaml:"strategy,omitempty"`
+		} `tfsdk:"update" yaml:"update,omitempty"`
+
+		Checkout *struct {
+			Branch *string `tfsdk:"branch" yaml:"branch,omitempty"`
+
+			GitRepositoryRef *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"git_repository_ref" yaml:"gitRepositoryRef,omitempty"`
+		} `tfsdk:"checkout" yaml:"checkout,omitempty"`
+
 		Commit *struct {
 			AuthorEmail *string `tfsdk:"author_email" yaml:"authorEmail,omitempty"`
 
@@ -70,20 +85,6 @@ type ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha1GoModel struct {
 		} `tfsdk:"push" yaml:"push,omitempty"`
 
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
-
-		Update *struct {
-			Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-			Strategy *string `tfsdk:"strategy" yaml:"strategy,omitempty"`
-		} `tfsdk:"update" yaml:"update,omitempty"`
-
-		Checkout *struct {
-			Branch *string `tfsdk:"branch" yaml:"branch,omitempty"`
-
-			GitRepositoryRef *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"git_repository_ref" yaml:"gitRepositoryRef,omitempty"`
-		} `tfsdk:"checkout" yaml:"checkout,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -183,6 +184,86 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha1Resource) GetSchema(_ 
 				MarkdownDescription: "ImageUpdateAutomationSpec defines the desired state of ImageUpdateAutomation",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+					"update": {
+						Description:         "Update gives the specification for how to update the files in the repository. This can be left empty, to use the default value.",
+						MarkdownDescription: "Update gives the specification for how to update the files in the repository. This can be left empty, to use the default value.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"path": {
+								Description:         "Path to the directory containing the manifests to be updated. Defaults to 'None', which translates to the root path of the GitRepositoryRef.",
+								MarkdownDescription: "Path to the directory containing the manifests to be updated. Defaults to 'None', which translates to the root path of the GitRepositoryRef.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"strategy": {
+								Description:         "Strategy names the strategy to be used.",
+								MarkdownDescription: "Strategy names the strategy to be used.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"checkout": {
+						Description:         "Checkout gives the parameters for cloning the git repository, ready to make changes.",
+						MarkdownDescription: "Checkout gives the parameters for cloning the git repository, ready to make changes.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"branch": {
+								Description:         "Branch gives the branch to clone from the git repository. If '.spec.push' is not supplied, commits will also be pushed to this branch.",
+								MarkdownDescription: "Branch gives the branch to clone from the git repository. If '.spec.push' is not supplied, commits will also be pushed to this branch.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"git_repository_ref": {
+								Description:         "GitRepositoryRef refers to the resource giving access details to a git repository to update files in.",
+								MarkdownDescription: "GitRepositoryRef refers to the resource giving access details to a git repository to update files in.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "Name of the referent.",
+										MarkdownDescription: "Name of the referent.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
 
 					"commit": {
 						Description:         "Commit specifies how to commit to the git repository.",
@@ -306,86 +387,6 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha1Resource) GetSchema(_ 
 
 						Required: false,
 						Optional: true,
-						Computed: false,
-					},
-
-					"update": {
-						Description:         "Update gives the specification for how to update the files in the repository. This can be left empty, to use the default value.",
-						MarkdownDescription: "Update gives the specification for how to update the files in the repository. This can be left empty, to use the default value.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"path": {
-								Description:         "Path to the directory containing the manifests to be updated. Defaults to 'None', which translates to the root path of the GitRepositoryRef.",
-								MarkdownDescription: "Path to the directory containing the manifests to be updated. Defaults to 'None', which translates to the root path of the GitRepositoryRef.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"strategy": {
-								Description:         "Strategy names the strategy to be used.",
-								MarkdownDescription: "Strategy names the strategy to be used.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"checkout": {
-						Description:         "Checkout gives the parameters for cloning the git repository, ready to make changes.",
-						MarkdownDescription: "Checkout gives the parameters for cloning the git repository, ready to make changes.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"branch": {
-								Description:         "Branch gives the branch to clone from the git repository. If '.spec.push' is not supplied, commits will also be pushed to this branch.",
-								MarkdownDescription: "Branch gives the branch to clone from the git repository. If '.spec.push' is not supplied, commits will also be pushed to this branch.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"git_repository_ref": {
-								Description:         "GitRepositoryRef refers to the resource giving access details to a git repository to update files in.",
-								MarkdownDescription: "GitRepositoryRef refers to the resource giving access details to a git repository to update files in.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name of the referent.",
-										MarkdownDescription: "Name of the referent.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: true,
-						Optional: false,
 						Computed: false,
 					},
 				}),

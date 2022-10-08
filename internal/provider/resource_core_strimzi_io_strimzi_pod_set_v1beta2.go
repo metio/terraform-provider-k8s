@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,6 +50,8 @@ type CoreStrimziIoStrimziPodSetV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Pods *[]map[string]string `tfsdk:"pods" yaml:"pods,omitempty"`
+
 		Selector *struct {
 			MatchExpressions *[]struct {
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -60,8 +63,6 @@ type CoreStrimziIoStrimziPodSetV1Beta2GoModel struct {
 
 			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 		} `tfsdk:"selector" yaml:"selector,omitempty"`
-
-		Pods *[]map[string]string `tfsdk:"pods" yaml:"pods,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -162,6 +163,17 @@ func (r *CoreStrimziIoStrimziPodSetV1Beta2Resource) GetSchema(_ context.Context)
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"pods": {
+						Description:         "The Pods managed by this StrimziPodSet.",
+						MarkdownDescription: "The Pods managed by this StrimziPodSet.",
+
+						Type: types.ListType{ElemType: types.MapType{ElemType: types.StringType}},
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
 					"selector": {
 						Description:         "Selector is a label query which matches all the pods managed by this 'StrimziPodSet'. Only 'matchLabels' is supported. If 'matchExpressions' is set, it will be ignored.",
 						MarkdownDescription: "Selector is a label query which matches all the pods managed by this 'StrimziPodSet'. Only 'matchLabels' is supported. If 'matchExpressions' is set, it will be ignored.",
@@ -224,17 +236,6 @@ func (r *CoreStrimziIoStrimziPodSetV1Beta2Resource) GetSchema(_ context.Context)
 								Computed: false,
 							},
 						}),
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"pods": {
-						Description:         "The Pods managed by this StrimziPodSet.",
-						MarkdownDescription: "The Pods managed by this StrimziPodSet.",
-
-						Type: types.ListType{ElemType: types.MapType{ElemType: types.StringType}},
 
 						Required: true,
 						Optional: false,

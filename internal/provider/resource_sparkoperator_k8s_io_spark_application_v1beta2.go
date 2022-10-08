@@ -7,6 +7,9 @@ package provider
 
 import (
 	"context"
+
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,9 +52,17 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Monitoring *struct {
-			ExposeDriverMetrics *bool `tfsdk:"expose_driver_metrics" yaml:"exposeDriverMetrics,omitempty"`
+		ProxyUser *string `tfsdk:"proxy_user" yaml:"proxyUser,omitempty"`
 
+		SparkConf *map[string]string `tfsdk:"spark_conf" yaml:"sparkConf,omitempty"`
+
+		TimeToLiveSeconds *int64 `tfsdk:"time_to_live_seconds" yaml:"timeToLiveSeconds,omitempty"`
+
+		ImagePullSecrets *[]string `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
+
+		MainApplicationFile *string `tfsdk:"main_application_file" yaml:"mainApplicationFile,omitempty"`
+
+		Monitoring *struct {
 			ExposeExecutorMetrics *bool `tfsdk:"expose_executor_metrics" yaml:"exposeExecutorMetrics,omitempty"`
 
 			MetricsProperties *string `tfsdk:"metrics_properties" yaml:"metricsProperties,omitempty"`
@@ -59,6 +70,8 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 			MetricsPropertiesFile *string `tfsdk:"metrics_properties_file" yaml:"metricsPropertiesFile,omitempty"`
 
 			Prometheus *struct {
+				ConfigFile *string `tfsdk:"config_file" yaml:"configFile,omitempty"`
+
 				Configuration *string `tfsdk:"configuration" yaml:"configuration,omitempty"`
 
 				JmxExporterJar *string `tfsdk:"jmx_exporter_jar" yaml:"jmxExporterJar,omitempty"`
@@ -66,425 +79,31 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 
 				PortName *string `tfsdk:"port_name" yaml:"portName,omitempty"`
-
-				ConfigFile *string `tfsdk:"config_file" yaml:"configFile,omitempty"`
 			} `tfsdk:"prometheus" yaml:"prometheus,omitempty"`
+
+			ExposeDriverMetrics *bool `tfsdk:"expose_driver_metrics" yaml:"exposeDriverMetrics,omitempty"`
 		} `tfsdk:"monitoring" yaml:"monitoring,omitempty"`
-
-		ProxyUser *string `tfsdk:"proxy_user" yaml:"proxyUser,omitempty"`
-
-		PythonVersion *string `tfsdk:"python_version" yaml:"pythonVersion,omitempty"`
-
-		RetryInterval *int64 `tfsdk:"retry_interval" yaml:"retryInterval,omitempty"`
-
-		Image *string `tfsdk:"image" yaml:"image,omitempty"`
 
 		SparkVersion *string `tfsdk:"spark_version" yaml:"sparkVersion,omitempty"`
 
-		Driver *struct {
-			KubernetesMaster *string `tfsdk:"kubernetes_master" yaml:"kubernetesMaster,omitempty"`
+		Type *string `tfsdk:"type" yaml:"type,omitempty"`
 
-			SchedulerName *string `tfsdk:"scheduler_name" yaml:"schedulerName,omitempty"`
-
-			Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
-
-			PodName *string `tfsdk:"pod_name" yaml:"podName,omitempty"`
-
-			ServiceAnnotations *map[string]string `tfsdk:"service_annotations" yaml:"serviceAnnotations,omitempty"`
-
-			ShareProcessNamespace *bool `tfsdk:"share_process_namespace" yaml:"shareProcessNamespace,omitempty"`
-
-			Sidecars *[]struct {
-				VolumeDevices *[]struct {
-					DevicePath *string `tfsdk:"device_path" yaml:"devicePath,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"volume_devices" yaml:"volumeDevices,omitempty"`
-
-				Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
-
-				Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-
-				Tty *bool `tfsdk:"tty" yaml:"tty,omitempty"`
-
-				StartupProbe *struct {
-					HttpGet *struct {
-						HttpHeaders *[]struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-					TcpSocket *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-					Exec *struct {
-						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-					} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-				} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
-
-				Stdin *bool `tfsdk:"stdin" yaml:"stdin,omitempty"`
-
-				StdinOnce *bool `tfsdk:"stdin_once" yaml:"stdinOnce,omitempty"`
-
-				EnvFrom *[]struct {
-					ConfigMapRef *struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
-
-					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-
-					SecretRef *struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-				} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
-
-				Resources *struct {
-					Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
-
-					Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
-				} `tfsdk:"resources" yaml:"resources,omitempty"`
-
-				SecurityContext *struct {
-					ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
-
-					ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
-
-					RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
-
-					RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
-
-					WindowsOptions *struct {
-						GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
-
-						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
-
-						RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
-					} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
-
-					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
-
-					Capabilities *struct {
-						Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
-
-						Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
-					} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
-
-					Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
-
-					RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
-
-					SeLinuxOptions *struct {
-						Level *string `tfsdk:"level" yaml:"level,omitempty"`
-
-						Role *string `tfsdk:"role" yaml:"role,omitempty"`
-
-						Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-						User *string `tfsdk:"user" yaml:"user,omitempty"`
-					} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
-				} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
-
-				WorkingDir *string `tfsdk:"working_dir" yaml:"workingDir,omitempty"`
-
-				Env *[]struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-					ValueFrom *struct {
-						ConfigMapKeyRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
-
-						FieldRef *struct {
-							ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-							FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
-						} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
-
-						ResourceFieldRef *struct {
-							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
-
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
-
-							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
-
-						SecretKeyRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
-					} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
-				} `tfsdk:"env" yaml:"env,omitempty"`
-
-				ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
-
-				VolumeMounts *[]struct {
-					SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
-
-					SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
-
-					MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-
-					MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-				} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Ports *[]struct {
-					HostIP *string `tfsdk:"host_ip" yaml:"hostIP,omitempty"`
-
-					HostPort *int64 `tfsdk:"host_port" yaml:"hostPort,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
-
-					ContainerPort *int64 `tfsdk:"container_port" yaml:"containerPort,omitempty"`
-				} `tfsdk:"ports" yaml:"ports,omitempty"`
-
-				ReadinessProbe *struct {
-					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-					TcpSocket *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-					Exec *struct {
-						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-					} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-					HttpGet *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						HttpHeaders *[]struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-				} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
-
-				TerminationMessagePath *string `tfsdk:"termination_message_path" yaml:"terminationMessagePath,omitempty"`
-
-				TerminationMessagePolicy *string `tfsdk:"termination_message_policy" yaml:"terminationMessagePolicy,omitempty"`
-
-				Image *string `tfsdk:"image" yaml:"image,omitempty"`
-
-				Lifecycle *struct {
-					PostStart *struct {
-						Exec *struct {
-							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-						} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-						HttpGet *struct {
-							Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-							HttpHeaders *[]struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Value *string `tfsdk:"value" yaml:"value,omitempty"`
-							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-						TcpSocket *struct {
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-					} `tfsdk:"post_start" yaml:"postStart,omitempty"`
-
-					PreStop *struct {
-						TcpSocket *struct {
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-						Exec *struct {
-							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-						} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-						HttpGet *struct {
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-							HttpHeaders *[]struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Value *string `tfsdk:"value" yaml:"value,omitempty"`
-							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-							Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-					} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
-				} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
-
-				LivenessProbe *struct {
-					Exec *struct {
-						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-					} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-					HttpGet *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						HttpHeaders *[]struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-					TcpSocket *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-				} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
-			} `tfsdk:"sidecars" yaml:"sidecars,omitempty"`
-
-			MemoryOverhead *string `tfsdk:"memory_overhead" yaml:"memoryOverhead,omitempty"`
-
-			SecurityContext *struct {
-				ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
-
-				RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
-
-				RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
-
-				RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
-
-				WindowsOptions *struct {
-					GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
-
-					GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
-
-					RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
-				} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
-
-				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
-
-				Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
-
-				ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
-
-				SeLinuxOptions *struct {
-					Level *string `tfsdk:"level" yaml:"level,omitempty"`
-
-					Role *string `tfsdk:"role" yaml:"role,omitempty"`
-
-					Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-					User *string `tfsdk:"user" yaml:"user,omitempty"`
-				} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
-
-				Capabilities *struct {
-					Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
-
-					Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
-				} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
-			} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
+		Executor *struct {
+			CoreRequest *string `tfsdk:"core_request" yaml:"coreRequest,omitempty"`
 
 			Image *string `tfsdk:"image" yaml:"image,omitempty"`
 
-			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+			JavaOptions *string `tfsdk:"java_options" yaml:"javaOptions,omitempty"`
 
 			PodSecurityContext *struct {
-				FsGroup *int64 `tfsdk:"fs_group" yaml:"fsGroup,omitempty"`
-
-				RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
-
-				RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
-
-				RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
-
 				SeLinuxOptions *struct {
+					Role *string `tfsdk:"role" yaml:"role,omitempty"`
+
 					Type *string `tfsdk:"type" yaml:"type,omitempty"`
 
 					User *string `tfsdk:"user" yaml:"user,omitempty"`
 
 					Level *string `tfsdk:"level" yaml:"level,omitempty"`
-
-					Role *string `tfsdk:"role" yaml:"role,omitempty"`
 				} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
 
 				SupplementalGroups *[]string `tfsdk:"supplemental_groups" yaml:"supplementalGroups,omitempty"`
@@ -502,444 +121,20 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 
 					RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
 				} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
+
+				FsGroup *int64 `tfsdk:"fs_group" yaml:"fsGroup,omitempty"`
+
+				RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
+
+				RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
+
+				RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
 			} `tfsdk:"pod_security_context" yaml:"podSecurityContext,omitempty"`
 
-			VolumeMounts *[]struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-				SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
-
-				SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
-
-				MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-
-				MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
-			} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
-
-			ConfigMaps *[]struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Path *string `tfsdk:"path" yaml:"path,omitempty"`
-			} `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
-
-			HostAliases *[]struct {
-				Hostnames *[]string `tfsdk:"hostnames" yaml:"hostnames,omitempty"`
-
-				Ip *string `tfsdk:"ip" yaml:"ip,omitempty"`
-			} `tfsdk:"host_aliases" yaml:"hostAliases,omitempty"`
-
-			TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
-
-			Tolerations *[]struct {
-				Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-				TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
-
-				Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-				Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
-
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-			} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
-
-			EnvFrom *[]struct {
-				Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-
-				SecretRef *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-				ConfigMapRef *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-				} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
-			} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
-
-			ServiceAccount *string `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
-
-			EnvVars *map[string]string `tfsdk:"env_vars" yaml:"envVars,omitempty"`
-
-			InitContainers *[]struct {
-				Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-
-				ReadinessProbe *struct {
-					Exec *struct {
-						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-					} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-					HttpGet *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						HttpHeaders *[]struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-					TcpSocket *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-				} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
-
-				SecurityContext *struct {
-					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
-
-					ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
-
-					ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
-
-					RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
-
-					RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
-
-					RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
-
-					Capabilities *struct {
-						Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
-
-						Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
-					} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
-
-					Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
-
-					SeLinuxOptions *struct {
-						Level *string `tfsdk:"level" yaml:"level,omitempty"`
-
-						Role *string `tfsdk:"role" yaml:"role,omitempty"`
-
-						Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-						User *string `tfsdk:"user" yaml:"user,omitempty"`
-					} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
-
-					WindowsOptions *struct {
-						GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
-
-						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
-
-						RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
-					} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
-				} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
-
-				StdinOnce *bool `tfsdk:"stdin_once" yaml:"stdinOnce,omitempty"`
-
-				Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Tty *bool `tfsdk:"tty" yaml:"tty,omitempty"`
-
-				VolumeMounts *[]struct {
-					MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-
-					MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-					SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
-
-					SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
-				} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
-
-				TerminationMessagePolicy *string `tfsdk:"termination_message_policy" yaml:"terminationMessagePolicy,omitempty"`
-
-				WorkingDir *string `tfsdk:"working_dir" yaml:"workingDir,omitempty"`
-
-				EnvFrom *[]struct {
-					SecretRef *struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-					ConfigMapRef *struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
-
-					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-				} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
-
-				ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
-
-				Lifecycle *struct {
-					PreStop *struct {
-						Exec *struct {
-							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-						} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-						HttpGet *struct {
-							HttpHeaders *[]struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Value *string `tfsdk:"value" yaml:"value,omitempty"`
-							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-							Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-						TcpSocket *struct {
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-					} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
-
-					PostStart *struct {
-						TcpSocket *struct {
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-						Exec *struct {
-							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-						} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-						HttpGet *struct {
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-							HttpHeaders *[]struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Value *string `tfsdk:"value" yaml:"value,omitempty"`
-							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-							Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-					} `tfsdk:"post_start" yaml:"postStart,omitempty"`
-				} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
-
-				Ports *[]struct {
-					HostPort *int64 `tfsdk:"host_port" yaml:"hostPort,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
-
-					ContainerPort *int64 `tfsdk:"container_port" yaml:"containerPort,omitempty"`
-
-					HostIP *string `tfsdk:"host_ip" yaml:"hostIP,omitempty"`
-				} `tfsdk:"ports" yaml:"ports,omitempty"`
-
-				StartupProbe *struct {
-					HttpGet *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						HttpHeaders *[]struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-					TcpSocket *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-					Exec *struct {
-						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-					} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-				} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
-
-				TerminationMessagePath *string `tfsdk:"termination_message_path" yaml:"terminationMessagePath,omitempty"`
-
-				VolumeDevices *[]struct {
-					DevicePath *string `tfsdk:"device_path" yaml:"devicePath,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"volume_devices" yaml:"volumeDevices,omitempty"`
-
-				Env *[]struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-					ValueFrom *struct {
-						SecretKeyRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
-
-						ConfigMapKeyRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
-
-						FieldRef *struct {
-							ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-							FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
-						} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
-
-						ResourceFieldRef *struct {
-							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
-
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
-
-							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
-					} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
-				} `tfsdk:"env" yaml:"env,omitempty"`
-
-				Image *string `tfsdk:"image" yaml:"image,omitempty"`
-
-				LivenessProbe *struct {
-					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-					TcpSocket *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-					Exec *struct {
-						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-					} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-					HttpGet *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						HttpHeaders *[]struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-				} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
-
-				Resources *struct {
-					Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
-
-					Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
-				} `tfsdk:"resources" yaml:"resources,omitempty"`
-
-				Stdin *bool `tfsdk:"stdin" yaml:"stdin,omitempty"`
-			} `tfsdk:"init_containers" yaml:"initContainers,omitempty"`
-
-			CoreLimit *string `tfsdk:"core_limit" yaml:"coreLimit,omitempty"`
-
-			DnsConfig *struct {
-				Nameservers *[]string `tfsdk:"nameservers" yaml:"nameservers,omitempty"`
-
-				Options *[]struct {
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"options" yaml:"options,omitempty"`
-
-				Searches *[]string `tfsdk:"searches" yaml:"searches,omitempty"`
-			} `tfsdk:"dns_config" yaml:"dnsConfig,omitempty"`
-
-			HostNetwork *bool `tfsdk:"host_network" yaml:"hostNetwork,omitempty"`
-
-			JavaOptions *string `tfsdk:"java_options" yaml:"javaOptions,omitempty"`
-
-			NodeSelector *map[string]string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
-
 			Affinity *struct {
-				PodAffinity *struct {
+				NodeAffinity *struct {
 					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-						PodAffinityTerm *struct {
-							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
-							LabelSelector *struct {
-								MatchExpressions *[]struct {
-									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
-								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-						} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
-
-						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
-
-					RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
-						LabelSelector *struct {
-							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-
+						Preference *struct {
 							MatchExpressions *[]struct {
 								Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -947,18 +142,84 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 
 								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchFields *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
+						} `tfsdk:"preference" yaml:"preference,omitempty"`
+
+						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+
+					RequiredDuringSchedulingIgnoredDuringExecution *struct {
+						NodeSelectorTerms *[]struct {
+							MatchExpressions *[]struct {
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchFields *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
+						} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
+					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+				} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
+
+				PodAffinity *struct {
+					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+						PodAffinityTerm *struct {
+							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+
+							LabelSelector *struct {
+								MatchExpressions *[]struct {
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+						} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
+
+						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+
+					RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+
+						LabelSelector *struct {
+							MatchExpressions *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 				} `tfsdk:"pod_affinity" yaml:"podAffinity,omitempty"`
 
 				PodAntiAffinity *struct {
 					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-
 						PodAffinityTerm *struct {
 							LabelSelector *struct {
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -976,6 +237,8 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 
 							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 						} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
+
+						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
 
 					RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
@@ -996,53 +259,1407 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 				} `tfsdk:"pod_anti_affinity" yaml:"podAntiAffinity,omitempty"`
-
-				NodeAffinity *struct {
-					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-						Preference *struct {
-							MatchFields *[]struct {
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
-
-							MatchExpressions *[]struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-						} `tfsdk:"preference" yaml:"preference,omitempty"`
-
-						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
-
-					RequiredDuringSchedulingIgnoredDuringExecution *struct {
-						NodeSelectorTerms *[]struct {
-							MatchFields *[]struct {
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
-
-							MatchExpressions *[]struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-						} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
-					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
-				} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
 			} `tfsdk:"affinity" yaml:"affinity,omitempty"`
 
-			CoreRequest *string `tfsdk:"core_request" yaml:"coreRequest,omitempty"`
+			EnvVars *map[string]string `tfsdk:"env_vars" yaml:"envVars,omitempty"`
+
+			Gpu *struct {
+				Quantity *int64 `tfsdk:"quantity" yaml:"quantity,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"gpu" yaml:"gpu,omitempty"`
+
+			HostAliases *[]struct {
+				Ip *string `tfsdk:"ip" yaml:"ip,omitempty"`
+
+				Hostnames *[]string `tfsdk:"hostnames" yaml:"hostnames,omitempty"`
+			} `tfsdk:"host_aliases" yaml:"hostAliases,omitempty"`
+
+			Sidecars *[]struct {
+				Stdin *bool `tfsdk:"stdin" yaml:"stdin,omitempty"`
+
+				Ports *[]struct {
+					ContainerPort *int64 `tfsdk:"container_port" yaml:"containerPort,omitempty"`
+
+					HostIP *string `tfsdk:"host_ip" yaml:"hostIP,omitempty"`
+
+					HostPort *int64 `tfsdk:"host_port" yaml:"hostPort,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+				} `tfsdk:"ports" yaml:"ports,omitempty"`
+
+				Tty *bool `tfsdk:"tty" yaml:"tty,omitempty"`
+
+				WorkingDir *string `tfsdk:"working_dir" yaml:"workingDir,omitempty"`
+
+				Resources *struct {
+					Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+
+					Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+				} `tfsdk:"resources" yaml:"resources,omitempty"`
+
+				SecurityContext *struct {
+					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
+
+					Capabilities *struct {
+						Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
+
+						Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
+					} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
+
+					ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
+
+					ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
+
+					RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
+
+					WindowsOptions *struct {
+						GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
+
+						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
+
+						RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
+					} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
+
+					Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
+
+					RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
+
+					RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
+
+					SeLinuxOptions *struct {
+						Level *string `tfsdk:"level" yaml:"level,omitempty"`
+
+						Role *string `tfsdk:"role" yaml:"role,omitempty"`
+
+						Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+						User *string `tfsdk:"user" yaml:"user,omitempty"`
+					} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
+				} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
+
+				StartupProbe *struct {
+					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+					TcpSocket *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+
+					Exec *struct {
+						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+					} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+					HttpGet *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						HttpHeaders *[]struct {
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+				} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
+
+				StdinOnce *bool `tfsdk:"stdin_once" yaml:"stdinOnce,omitempty"`
+
+				Env *[]struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
+
+						FieldRef *struct {
+							ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+							FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
+						} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
+
+						ResourceFieldRef *struct {
+							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
+
+							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+
+							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
+						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
+
+						SecretKeyRef *struct {
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
+				} `tfsdk:"env" yaml:"env,omitempty"`
+
+				Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+				ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				VolumeDevices *[]struct {
+					DevicePath *string `tfsdk:"device_path" yaml:"devicePath,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"volume_devices" yaml:"volumeDevices,omitempty"`
+
+				VolumeMounts *[]struct {
+					MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+					MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+					SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
+
+					SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
+				} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
+
+				LivenessProbe *struct {
+					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+					TcpSocket *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+
+					Exec *struct {
+						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+					} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+					HttpGet *struct {
+						HttpHeaders *[]struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
+						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+				} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
+
+				ReadinessProbe *struct {
+					TcpSocket *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+
+					Exec *struct {
+						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+					} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+					HttpGet *struct {
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						HttpHeaders *[]struct {
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+				} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
+
+				TerminationMessagePath *string `tfsdk:"termination_message_path" yaml:"terminationMessagePath,omitempty"`
+
+				TerminationMessagePolicy *string `tfsdk:"termination_message_policy" yaml:"terminationMessagePolicy,omitempty"`
+
+				Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
+
+				Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+
+				EnvFrom *[]struct {
+					ConfigMapRef *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
+
+					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+					SecretRef *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+				} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
+
+				Lifecycle *struct {
+					PostStart *struct {
+						Exec *struct {
+							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+						} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+						HttpGet *struct {
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+							HttpHeaders *[]struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Value *string `tfsdk:"value" yaml:"value,omitempty"`
+							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+							Path *string `tfsdk:"path" yaml:"path,omitempty"`
+						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+						TcpSocket *struct {
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+					} `tfsdk:"post_start" yaml:"postStart,omitempty"`
+
+					PreStop *struct {
+						HttpGet *struct {
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+							HttpHeaders *[]struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Value *string `tfsdk:"value" yaml:"value,omitempty"`
+							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+							Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+						TcpSocket *struct {
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+						Exec *struct {
+							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+						} `tfsdk:"exec" yaml:"exec,omitempty"`
+					} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
+				} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
+			} `tfsdk:"sidecars" yaml:"sidecars,omitempty"`
+
+			CoreLimit *string `tfsdk:"core_limit" yaml:"coreLimit,omitempty"`
+
+			Secrets *[]struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+				SecretType *string `tfsdk:"secret_type" yaml:"secretType,omitempty"`
+			} `tfsdk:"secrets" yaml:"secrets,omitempty"`
+
+			Env *[]struct {
+				Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+				ValueFrom *struct {
+					FieldRef *struct {
+						ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+						FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
+					} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
+
+					ResourceFieldRef *struct {
+						ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
+
+						Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+
+						Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
+					} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
+
+					SecretKeyRef *struct {
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
+
+					ConfigMapKeyRef *struct {
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+					} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
+				} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"env" yaml:"env,omitempty"`
+
+			Instances *int64 `tfsdk:"instances" yaml:"instances,omitempty"`
+
+			ShareProcessNamespace *bool `tfsdk:"share_process_namespace" yaml:"shareProcessNamespace,omitempty"`
+
+			Tolerations *[]struct {
+				Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+				Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
+
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+				Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+				TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
+			} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
+
+			VolumeMounts *[]struct {
+				MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+				MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+				SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
+
+				SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
+			} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
+
+			Cores *int64 `tfsdk:"cores" yaml:"cores,omitempty"`
+
+			EnvSecretKeyRefs *map[string]string `tfsdk:"env_secret_key_refs" yaml:"envSecretKeyRefs,omitempty"`
+
+			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+
+			EnvFrom *[]struct {
+				ConfigMapRef *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
+
+				Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+				SecretRef *struct {
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+			} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
+
+			DnsConfig *struct {
+				Options *[]struct {
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"options" yaml:"options,omitempty"`
+
+				Searches *[]string `tfsdk:"searches" yaml:"searches,omitempty"`
+
+				Nameservers *[]string `tfsdk:"nameservers" yaml:"nameservers,omitempty"`
+			} `tfsdk:"dns_config" yaml:"dnsConfig,omitempty"`
+
+			HostNetwork *bool `tfsdk:"host_network" yaml:"hostNetwork,omitempty"`
+
+			InitContainers *[]struct {
+				VolumeMounts *[]struct {
+					MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+					MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+					SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
+
+					SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
+				} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
+
+				Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+
+				Env *[]struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
+
+						FieldRef *struct {
+							ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+							FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
+						} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
+
+						ResourceFieldRef *struct {
+							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
+
+							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
+
+							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
+
+						SecretKeyRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
+				} `tfsdk:"env" yaml:"env,omitempty"`
+
+				Lifecycle *struct {
+					PostStart *struct {
+						TcpSocket *struct {
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+						Exec *struct {
+							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+						} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+						HttpGet *struct {
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+							HttpHeaders *[]struct {
+								Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+							Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+					} `tfsdk:"post_start" yaml:"postStart,omitempty"`
+
+					PreStop *struct {
+						Exec *struct {
+							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+						} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+						HttpGet *struct {
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+							HttpHeaders *[]struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Value *string `tfsdk:"value" yaml:"value,omitempty"`
+							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+							Path *string `tfsdk:"path" yaml:"path,omitempty"`
+						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+						TcpSocket *struct {
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+					} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
+				} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
+
+				LivenessProbe *struct {
+					Exec *struct {
+						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+					} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+					HttpGet *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						HttpHeaders *[]struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
+						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+					TcpSocket *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+				} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
+
+				Stdin *bool `tfsdk:"stdin" yaml:"stdin,omitempty"`
+
+				Tty *bool `tfsdk:"tty" yaml:"tty,omitempty"`
+
+				TerminationMessagePath *string `tfsdk:"termination_message_path" yaml:"terminationMessagePath,omitempty"`
+
+				WorkingDir *string `tfsdk:"working_dir" yaml:"workingDir,omitempty"`
+
+				Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
+
+				ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Ports *[]struct {
+					ContainerPort *int64 `tfsdk:"container_port" yaml:"containerPort,omitempty"`
+
+					HostIP *string `tfsdk:"host_ip" yaml:"hostIP,omitempty"`
+
+					HostPort *int64 `tfsdk:"host_port" yaml:"hostPort,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+				} `tfsdk:"ports" yaml:"ports,omitempty"`
+
+				SecurityContext *struct {
+					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
+
+					Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
+
+					ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
+
+					RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
+
+					RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
+
+					Capabilities *struct {
+						Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
+
+						Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
+					} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
+
+					ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
+
+					RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
+
+					SeLinuxOptions *struct {
+						Level *string `tfsdk:"level" yaml:"level,omitempty"`
+
+						Role *string `tfsdk:"role" yaml:"role,omitempty"`
+
+						Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+						User *string `tfsdk:"user" yaml:"user,omitempty"`
+					} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
+
+					WindowsOptions *struct {
+						RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
+
+						GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
+
+						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
+					} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
+				} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
+
+				StartupProbe *struct {
+					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+					TcpSocket *struct {
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+
+					Exec *struct {
+						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+					} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+					HttpGet *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						HttpHeaders *[]struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
+						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+				} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
+
+				Resources *struct {
+					Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+
+					Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+				} `tfsdk:"resources" yaml:"resources,omitempty"`
+
+				TerminationMessagePolicy *string `tfsdk:"termination_message_policy" yaml:"terminationMessagePolicy,omitempty"`
+
+				EnvFrom *[]struct {
+					ConfigMapRef *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
+
+					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+					SecretRef *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+				} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
+
+				Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+				ReadinessProbe *struct {
+					TcpSocket *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+
+					Exec *struct {
+						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+					} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+					HttpGet *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						HttpHeaders *[]struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
+						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+				} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
+
+				StdinOnce *bool `tfsdk:"stdin_once" yaml:"stdinOnce,omitempty"`
+
+				VolumeDevices *[]struct {
+					DevicePath *string `tfsdk:"device_path" yaml:"devicePath,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"volume_devices" yaml:"volumeDevices,omitempty"`
+			} `tfsdk:"init_containers" yaml:"initContainers,omitempty"`
+
+			Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
+
+			SecurityContext *struct {
+				WindowsOptions *struct {
+					GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
+
+					GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
+
+					RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
+				} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
+
+				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
+
+				ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
+
+				ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
+
+				SeLinuxOptions *struct {
+					Level *string `tfsdk:"level" yaml:"level,omitempty"`
+
+					Role *string `tfsdk:"role" yaml:"role,omitempty"`
+
+					Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+					User *string `tfsdk:"user" yaml:"user,omitempty"`
+				} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
+
+				RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
+
+				Capabilities *struct {
+					Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
+
+					Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
+				} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
+
+				Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
+
+				RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
+
+				RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
+			} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
+
+			ServiceAccount *string `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
+
+			TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+
+			DeleteOnTermination *bool `tfsdk:"delete_on_termination" yaml:"deleteOnTermination,omitempty"`
+
+			NodeSelector *map[string]string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
+
+			SchedulerName *string `tfsdk:"scheduler_name" yaml:"schedulerName,omitempty"`
+
+			Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+
+			MemoryOverhead *string `tfsdk:"memory_overhead" yaml:"memoryOverhead,omitempty"`
+
+			ConfigMaps *[]struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Path *string `tfsdk:"path" yaml:"path,omitempty"`
+			} `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
+		} `tfsdk:"executor" yaml:"executor,omitempty"`
+
+		RestartPolicy *struct {
+			OnFailureRetries *int64 `tfsdk:"on_failure_retries" yaml:"onFailureRetries,omitempty"`
+
+			OnFailureRetryInterval *int64 `tfsdk:"on_failure_retry_interval" yaml:"onFailureRetryInterval,omitempty"`
+
+			OnSubmissionFailureRetries *int64 `tfsdk:"on_submission_failure_retries" yaml:"onSubmissionFailureRetries,omitempty"`
+
+			OnSubmissionFailureRetryInterval *int64 `tfsdk:"on_submission_failure_retry_interval" yaml:"onSubmissionFailureRetryInterval,omitempty"`
+
+			Type *string `tfsdk:"type" yaml:"type,omitempty"`
+		} `tfsdk:"restart_policy" yaml:"restartPolicy,omitempty"`
+
+		RetryInterval *int64 `tfsdk:"retry_interval" yaml:"retryInterval,omitempty"`
+
+		Deps *struct {
+			Repositories *[]string `tfsdk:"repositories" yaml:"repositories,omitempty"`
+
+			ExcludePackages *[]string `tfsdk:"exclude_packages" yaml:"excludePackages,omitempty"`
+
+			Files *[]string `tfsdk:"files" yaml:"files,omitempty"`
+
+			Jars *[]string `tfsdk:"jars" yaml:"jars,omitempty"`
+
+			Packages *[]string `tfsdk:"packages" yaml:"packages,omitempty"`
+
+			PyFiles *[]string `tfsdk:"py_files" yaml:"pyFiles,omitempty"`
+		} `tfsdk:"deps" yaml:"deps,omitempty"`
+
+		HadoopConf *map[string]string `tfsdk:"hadoop_conf" yaml:"hadoopConf,omitempty"`
+
+		BatchSchedulerOptions *struct {
+			Resources *map[string]string `tfsdk:"resources" yaml:"resources,omitempty"`
+
+			PriorityClassName *string `tfsdk:"priority_class_name" yaml:"priorityClassName,omitempty"`
+
+			Queue *string `tfsdk:"queue" yaml:"queue,omitempty"`
+		} `tfsdk:"batch_scheduler_options" yaml:"batchSchedulerOptions,omitempty"`
+
+		SparkConfigMap *string `tfsdk:"spark_config_map" yaml:"sparkConfigMap,omitempty"`
+
+		Driver *struct {
+			KubernetesMaster *string `tfsdk:"kubernetes_master" yaml:"kubernetesMaster,omitempty"`
+
+			Lifecycle *struct {
+				PostStart *struct {
+					Exec *struct {
+						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+					} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+					HttpGet *struct {
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						HttpHeaders *[]struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
+						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+					TcpSocket *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+				} `tfsdk:"post_start" yaml:"postStart,omitempty"`
+
+				PreStop *struct {
+					Exec *struct {
+						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+					} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+					HttpGet *struct {
+						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						HttpHeaders *[]struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
+						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+					TcpSocket *struct {
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+				} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
+			} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
+
+			PodSecurityContext *struct {
+				Sysctls *[]struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+				} `tfsdk:"sysctls" yaml:"sysctls,omitempty"`
+
+				WindowsOptions *struct {
+					GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
+
+					GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
+
+					RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
+				} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
+
+				FsGroup *int64 `tfsdk:"fs_group" yaml:"fsGroup,omitempty"`
+
+				RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
+
+				RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
+
+				RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
+
+				SeLinuxOptions *struct {
+					Level *string `tfsdk:"level" yaml:"level,omitempty"`
+
+					Role *string `tfsdk:"role" yaml:"role,omitempty"`
+
+					Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+					User *string `tfsdk:"user" yaml:"user,omitempty"`
+				} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
+
+				SupplementalGroups *[]string `tfsdk:"supplemental_groups" yaml:"supplementalGroups,omitempty"`
+			} `tfsdk:"pod_security_context" yaml:"podSecurityContext,omitempty"`
+
+			EnvVars *map[string]string `tfsdk:"env_vars" yaml:"envVars,omitempty"`
+
+			InitContainers *[]struct {
+				VolumeMounts *[]struct {
+					SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
+
+					SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
+
+					MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+					MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+				} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
+
+				WorkingDir *string `tfsdk:"working_dir" yaml:"workingDir,omitempty"`
+
+				Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
+
+				ReadinessProbe *struct {
+					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+					HttpGet *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						HttpHeaders *[]struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
+						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+					TcpSocket *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+
+					Exec *struct {
+						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+					} `tfsdk:"exec" yaml:"exec,omitempty"`
+				} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
+
+				Stdin *bool `tfsdk:"stdin" yaml:"stdin,omitempty"`
+
+				Tty *bool `tfsdk:"tty" yaml:"tty,omitempty"`
+
+				SecurityContext *struct {
+					RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
+
+					RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
+
+					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
+
+					ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
+
+					RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
+
+					SeLinuxOptions *struct {
+						Level *string `tfsdk:"level" yaml:"level,omitempty"`
+
+						Role *string `tfsdk:"role" yaml:"role,omitempty"`
+
+						Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+						User *string `tfsdk:"user" yaml:"user,omitempty"`
+					} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
+
+					WindowsOptions *struct {
+						GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
+
+						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
+
+						RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
+					} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
+
+					Capabilities *struct {
+						Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
+
+						Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
+					} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
+
+					Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
+
+					ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
+				} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
+
+				StartupProbe *struct {
+					HttpGet *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						HttpHeaders *[]struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
+						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+					TcpSocket *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+
+					Exec *struct {
+						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+					} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+				} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
+
+				Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+				ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
+
+				Lifecycle *struct {
+					PostStart *struct {
+						Exec *struct {
+							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+						} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+						HttpGet *struct {
+							HttpHeaders *[]struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Value *string `tfsdk:"value" yaml:"value,omitempty"`
+							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+							Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+						TcpSocket *struct {
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+					} `tfsdk:"post_start" yaml:"postStart,omitempty"`
+
+					PreStop *struct {
+						TcpSocket *struct {
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+						Exec *struct {
+							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+						} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+						HttpGet *struct {
+							HttpHeaders *[]struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Value *string `tfsdk:"value" yaml:"value,omitempty"`
+							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+							Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+					} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
+				} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
+
+				LivenessProbe *struct {
+					Exec *struct {
+						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+					} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+					HttpGet *struct {
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						HttpHeaders *[]struct {
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+					TcpSocket *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+				} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Ports *[]struct {
+					HostPort *int64 `tfsdk:"host_port" yaml:"hostPort,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+
+					ContainerPort *int64 `tfsdk:"container_port" yaml:"containerPort,omitempty"`
+
+					HostIP *string `tfsdk:"host_ip" yaml:"hostIP,omitempty"`
+				} `tfsdk:"ports" yaml:"ports,omitempty"`
+
+				Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+
+				EnvFrom *[]struct {
+					ConfigMapRef *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
+
+					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+					SecretRef *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+				} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
+
+				TerminationMessagePolicy *string `tfsdk:"termination_message_policy" yaml:"terminationMessagePolicy,omitempty"`
+
+				Resources *struct {
+					Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+
+					Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+				} `tfsdk:"resources" yaml:"resources,omitempty"`
+
+				TerminationMessagePath *string `tfsdk:"termination_message_path" yaml:"terminationMessagePath,omitempty"`
+
+				VolumeDevices *[]struct {
+					DevicePath *string `tfsdk:"device_path" yaml:"devicePath,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"volume_devices" yaml:"volumeDevices,omitempty"`
+
+				Env *[]struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
+
+						FieldRef *struct {
+							ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+							FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
+						} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
+
+						ResourceFieldRef *struct {
+							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
+
+							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+
+							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
+						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
+
+						SecretKeyRef *struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+						} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
+				} `tfsdk:"env" yaml:"env,omitempty"`
+
+				StdinOnce *bool `tfsdk:"stdin_once" yaml:"stdinOnce,omitempty"`
+			} `tfsdk:"init_containers" yaml:"initContainers,omitempty"`
+
+			MemoryOverhead *string `tfsdk:"memory_overhead" yaml:"memoryOverhead,omitempty"`
+
+			NodeSelector *map[string]string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
+
+			PodName *string `tfsdk:"pod_name" yaml:"podName,omitempty"`
+
+			ServiceAccount *string `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
+
+			VolumeMounts *[]struct {
+				SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
+
+				MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+				MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+				SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
+			} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
+
+			CoreLimit *string `tfsdk:"core_limit" yaml:"coreLimit,omitempty"`
+
+			EnvSecretKeyRefs *map[string]string `tfsdk:"env_secret_key_refs" yaml:"envSecretKeyRefs,omitempty"`
+
+			HostAliases *[]struct {
+				Hostnames *[]string `tfsdk:"hostnames" yaml:"hostnames,omitempty"`
+
+				Ip *string `tfsdk:"ip" yaml:"ip,omitempty"`
+			} `tfsdk:"host_aliases" yaml:"hostAliases,omitempty"`
+
+			JavaOptions *string `tfsdk:"java_options" yaml:"javaOptions,omitempty"`
+
+			TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+
+			DnsConfig *struct {
+				Nameservers *[]string `tfsdk:"nameservers" yaml:"nameservers,omitempty"`
+
+				Options *[]struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+				} `tfsdk:"options" yaml:"options,omitempty"`
+
+				Searches *[]string `tfsdk:"searches" yaml:"searches,omitempty"`
+			} `tfsdk:"dns_config" yaml:"dnsConfig,omitempty"`
+
+			HostNetwork *bool `tfsdk:"host_network" yaml:"hostNetwork,omitempty"`
+
+			Tolerations *[]struct {
+				Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+				TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
+
+				Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+				Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
+
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+			} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
+
+			EnvFrom *[]struct {
+				ConfigMapRef *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
+
+				Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+				SecretRef *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+			} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
+
+			ConfigMaps *[]struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Path *string `tfsdk:"path" yaml:"path,omitempty"`
+			} `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
+
+			Cores *int64 `tfsdk:"cores" yaml:"cores,omitempty"`
 
 			Env *[]struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -1051,11 +1668,11 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 
 				ValueFrom *struct {
 					SecretKeyRef *struct {
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
 						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 					} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
 
 					ConfigMapKeyRef *struct {
@@ -1082,71 +1699,9 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 				} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
 			} `tfsdk:"env" yaml:"env,omitempty"`
 
-			EnvSecretKeyRefs *map[string]string `tfsdk:"env_secret_key_refs" yaml:"envSecretKeyRefs,omitempty"`
+			Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
 
-			Gpu *struct {
-				Quantity *int64 `tfsdk:"quantity" yaml:"quantity,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"gpu" yaml:"gpu,omitempty"`
-
-			Lifecycle *struct {
-				PostStart *struct {
-					Exec *struct {
-						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-					} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-					HttpGet *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						HttpHeaders *[]struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-					TcpSocket *struct {
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-				} `tfsdk:"post_start" yaml:"postStart,omitempty"`
-
-				PreStop *struct {
-					Exec *struct {
-						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-					} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-					HttpGet *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						HttpHeaders *[]struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-					TcpSocket *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-				} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
-			} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
+			Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
 			Secrets *[]struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -1156,83 +1711,555 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 				SecretType *string `tfsdk:"secret_type" yaml:"secretType,omitempty"`
 			} `tfsdk:"secrets" yaml:"secrets,omitempty"`
 
-			Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+			ShareProcessNamespace *bool `tfsdk:"share_process_namespace" yaml:"shareProcessNamespace,omitempty"`
 
-			Cores *int64 `tfsdk:"cores" yaml:"cores,omitempty"`
+			Sidecars *[]struct {
+				SecurityContext *struct {
+					ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
+
+					RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
+
+					RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
+
+					WindowsOptions *struct {
+						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
+
+						RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
+
+						GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
+					} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
+
+					Capabilities *struct {
+						Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
+
+						Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
+					} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
+
+					ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
+
+					RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
+
+					SeLinuxOptions *struct {
+						Level *string `tfsdk:"level" yaml:"level,omitempty"`
+
+						Role *string `tfsdk:"role" yaml:"role,omitempty"`
+
+						Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+						User *string `tfsdk:"user" yaml:"user,omitempty"`
+					} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
+
+					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
+
+					Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
+				} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
+
+				EnvFrom *[]struct {
+					ConfigMapRef *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
+
+					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+					SecretRef *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+				} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
+
+				Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+				ReadinessProbe *struct {
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+
+					Exec *struct {
+						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+					} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+					HttpGet *struct {
+						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						HttpHeaders *[]struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
+						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+					TcpSocket *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+				} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
+
+				StartupProbe *struct {
+					HttpGet *struct {
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						HttpHeaders *[]struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
+						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+					TcpSocket *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+
+					Exec *struct {
+						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+					} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+				} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
+
+				TerminationMessagePath *string `tfsdk:"termination_message_path" yaml:"terminationMessagePath,omitempty"`
+
+				TerminationMessagePolicy *string `tfsdk:"termination_message_policy" yaml:"terminationMessagePolicy,omitempty"`
+
+				VolumeDevices *[]struct {
+					DevicePath *string `tfsdk:"device_path" yaml:"devicePath,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"volume_devices" yaml:"volumeDevices,omitempty"`
+
+				Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+
+				Env *[]struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+						} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
+
+						FieldRef *struct {
+							ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+							FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
+						} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
+
+						ResourceFieldRef *struct {
+							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
+
+							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+
+							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
+						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
+
+						SecretKeyRef *struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+						} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
+				} `tfsdk:"env" yaml:"env,omitempty"`
+
+				Ports *[]struct {
+					HostIP *string `tfsdk:"host_ip" yaml:"hostIP,omitempty"`
+
+					HostPort *int64 `tfsdk:"host_port" yaml:"hostPort,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+
+					ContainerPort *int64 `tfsdk:"container_port" yaml:"containerPort,omitempty"`
+				} `tfsdk:"ports" yaml:"ports,omitempty"`
+
+				WorkingDir *string `tfsdk:"working_dir" yaml:"workingDir,omitempty"`
+
+				Lifecycle *struct {
+					PostStart *struct {
+						Exec *struct {
+							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+						} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+						HttpGet *struct {
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+							HttpHeaders *[]struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Value *string `tfsdk:"value" yaml:"value,omitempty"`
+							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+							Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+						TcpSocket *struct {
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+					} `tfsdk:"post_start" yaml:"postStart,omitempty"`
+
+					PreStop *struct {
+						Exec *struct {
+							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+						} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+						HttpGet *struct {
+							HttpHeaders *[]struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Value *string `tfsdk:"value" yaml:"value,omitempty"`
+							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+							Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+						TcpSocket *struct {
+							Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+					} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
+				} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
+
+				LivenessProbe *struct {
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+
+					Exec *struct {
+						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+					} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+					HttpGet *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						HttpHeaders *[]struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
+						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+					TcpSocket *struct {
+						Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+				} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Stdin *bool `tfsdk:"stdin" yaml:"stdin,omitempty"`
+
+				StdinOnce *bool `tfsdk:"stdin_once" yaml:"stdinOnce,omitempty"`
+
+				Tty *bool `tfsdk:"tty" yaml:"tty,omitempty"`
+
+				VolumeMounts *[]struct {
+					MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+					MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+					SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
+
+					SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
+				} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
+
+				Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
+
+				ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
+
+				Resources *struct {
+					Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+
+					Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+				} `tfsdk:"resources" yaml:"resources,omitempty"`
+			} `tfsdk:"sidecars" yaml:"sidecars,omitempty"`
+
+			SchedulerName *string `tfsdk:"scheduler_name" yaml:"schedulerName,omitempty"`
+
+			Gpu *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Quantity *int64 `tfsdk:"quantity" yaml:"quantity,omitempty"`
+			} `tfsdk:"gpu" yaml:"gpu,omitempty"`
+
+			Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+			ServiceAnnotations *map[string]string `tfsdk:"service_annotations" yaml:"serviceAnnotations,omitempty"`
+
+			Affinity *struct {
+				PodAffinity *struct {
+					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+						PodAffinityTerm *struct {
+							LabelSelector *struct {
+								MatchExpressions *[]struct {
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+						} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
+
+						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+
+					RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+						LabelSelector *struct {
+							MatchExpressions *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+				} `tfsdk:"pod_affinity" yaml:"podAffinity,omitempty"`
+
+				PodAntiAffinity *struct {
+					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+						PodAffinityTerm *struct {
+							LabelSelector *struct {
+								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+						} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
+
+						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+
+					RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+
+						LabelSelector *struct {
+							MatchExpressions *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+				} `tfsdk:"pod_anti_affinity" yaml:"podAntiAffinity,omitempty"`
+
+				NodeAffinity *struct {
+					RequiredDuringSchedulingIgnoredDuringExecution *struct {
+						NodeSelectorTerms *[]struct {
+							MatchExpressions *[]struct {
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchFields *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
+						} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
+					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+
+					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+						Preference *struct {
+							MatchExpressions *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchFields *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
+						} `tfsdk:"preference" yaml:"preference,omitempty"`
+
+						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+				} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
+			} `tfsdk:"affinity" yaml:"affinity,omitempty"`
+
+			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+
+			SecurityContext *struct {
+				Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
+
+				ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
+
+				ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
+
+				RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
+
+				RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
+
+				SeLinuxOptions *struct {
+					Role *string `tfsdk:"role" yaml:"role,omitempty"`
+
+					Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+					User *string `tfsdk:"user" yaml:"user,omitempty"`
+
+					Level *string `tfsdk:"level" yaml:"level,omitempty"`
+				} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
+
+				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
+
+				RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
+
+				WindowsOptions *struct {
+					GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
+
+					GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
+
+					RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
+				} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
+
+				Capabilities *struct {
+					Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
+
+					Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
+				} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
+			} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
+
+			CoreRequest *string `tfsdk:"core_request" yaml:"coreRequest,omitempty"`
 		} `tfsdk:"driver" yaml:"driver,omitempty"`
 
-		ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
+		HadoopConfigMap *string `tfsdk:"hadoop_config_map" yaml:"hadoopConfigMap,omitempty"`
 
 		MemoryOverheadFactor *string `tfsdk:"memory_overhead_factor" yaml:"memoryOverheadFactor,omitempty"`
 
 		Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
 
-		NodeSelector *map[string]string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
+		PythonVersion *string `tfsdk:"python_version" yaml:"pythonVersion,omitempty"`
 
-		BatchSchedulerOptions *struct {
-			Queue *string `tfsdk:"queue" yaml:"queue,omitempty"`
+		SparkUIOptions *struct {
+			ServiceAnnotations *map[string]string `tfsdk:"service_annotations" yaml:"serviceAnnotations,omitempty"`
 
-			Resources *map[string]string `tfsdk:"resources" yaml:"resources,omitempty"`
+			ServicePort *int64 `tfsdk:"service_port" yaml:"servicePort,omitempty"`
 
-			PriorityClassName *string `tfsdk:"priority_class_name" yaml:"priorityClassName,omitempty"`
-		} `tfsdk:"batch_scheduler_options" yaml:"batchSchedulerOptions,omitempty"`
+			ServicePortName *string `tfsdk:"service_port_name" yaml:"servicePortName,omitempty"`
 
-		DynamicAllocation *struct {
-			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+			ServiceType *string `tfsdk:"service_type" yaml:"serviceType,omitempty"`
 
-			InitialExecutors *int64 `tfsdk:"initial_executors" yaml:"initialExecutors,omitempty"`
+			IngressAnnotations *map[string]string `tfsdk:"ingress_annotations" yaml:"ingressAnnotations,omitempty"`
 
-			MaxExecutors *int64 `tfsdk:"max_executors" yaml:"maxExecutors,omitempty"`
+			IngressTLS *[]struct {
+				Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
 
-			MinExecutors *int64 `tfsdk:"min_executors" yaml:"minExecutors,omitempty"`
-
-			ShuffleTrackingTimeout *int64 `tfsdk:"shuffle_tracking_timeout" yaml:"shuffleTrackingTimeout,omitempty"`
-		} `tfsdk:"dynamic_allocation" yaml:"dynamicAllocation,omitempty"`
+				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
+			} `tfsdk:"ingress_tls" yaml:"ingressTLS,omitempty"`
+		} `tfsdk:"spark_ui_options" yaml:"sparkUIOptions,omitempty"`
 
 		Volumes *[]struct {
-			GcePersistentDisk *struct {
-				Partition *int64 `tfsdk:"partition" yaml:"partition,omitempty"`
+			EmptyDir *struct {
+				Medium *string `tfsdk:"medium" yaml:"medium,omitempty"`
 
-				PdName *string `tfsdk:"pd_name" yaml:"pdName,omitempty"`
-
-				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
-			} `tfsdk:"gce_persistent_disk" yaml:"gcePersistentDisk,omitempty"`
-
-			HostPath *struct {
-				Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-				Type *string `tfsdk:"type" yaml:"type,omitempty"`
-			} `tfsdk:"host_path" yaml:"hostPath,omitempty"`
-
-			Cephfs *struct {
-				Monitors *[]string `tfsdk:"monitors" yaml:"monitors,omitempty"`
-
-				Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-				SecretFile *string `tfsdk:"secret_file" yaml:"secretFile,omitempty"`
-
-				SecretRef *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-				User *string `tfsdk:"user" yaml:"user,omitempty"`
-			} `tfsdk:"cephfs" yaml:"cephfs,omitempty"`
-
-			Cinder *struct {
-				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
-
-				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-				SecretRef *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-				VolumeID *string `tfsdk:"volume_id" yaml:"volumeID,omitempty"`
-			} `tfsdk:"cinder" yaml:"cinder,omitempty"`
+				SizeLimit *string `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
+			} `tfsdk:"empty_dir" yaml:"emptyDir,omitempty"`
 
 			Fc *struct {
 				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
@@ -1246,59 +2273,17 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 				Wwids *[]string `tfsdk:"wwids" yaml:"wwids,omitempty"`
 			} `tfsdk:"fc" yaml:"fc,omitempty"`
 
-			PhotonPersistentDisk *struct {
-				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
-
-				PdID *string `tfsdk:"pd_id" yaml:"pdID,omitempty"`
-			} `tfsdk:"photon_persistent_disk" yaml:"photonPersistentDisk,omitempty"`
-
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
-			Nfs *struct {
-				Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-				Server *string `tfsdk:"server" yaml:"server,omitempty"`
-			} `tfsdk:"nfs" yaml:"nfs,omitempty"`
-
-			Iscsi *struct {
+			PortworxVolume *struct {
 				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
 
-				InitiatorName *string `tfsdk:"initiator_name" yaml:"initiatorName,omitempty"`
-
-				Iqn *string `tfsdk:"iqn" yaml:"iqn,omitempty"`
-
-				IscsiInterface *string `tfsdk:"iscsi_interface" yaml:"iscsiInterface,omitempty"`
-
-				Portals *[]string `tfsdk:"portals" yaml:"portals,omitempty"`
-
-				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-				SecretRef *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-				ChapAuthDiscovery *bool `tfsdk:"chap_auth_discovery" yaml:"chapAuthDiscovery,omitempty"`
-
-				TargetPortal *string `tfsdk:"target_portal" yaml:"targetPortal,omitempty"`
-
-				Lun *int64 `tfsdk:"lun" yaml:"lun,omitempty"`
-
-				ChapAuthSession *bool `tfsdk:"chap_auth_session" yaml:"chapAuthSession,omitempty"`
-			} `tfsdk:"iscsi" yaml:"iscsi,omitempty"`
-
-			PortworxVolume *struct {
 				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
 
 				VolumeID *string `tfsdk:"volume_id" yaml:"volumeID,omitempty"`
-
-				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
 			} `tfsdk:"portworx_volume" yaml:"portworxVolume,omitempty"`
 
 			Secret *struct {
-				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-
 				DefaultMode *int64 `tfsdk:"default_mode" yaml:"defaultMode,omitempty"`
 
 				Items *[]struct {
@@ -1310,7 +2295,43 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 				} `tfsdk:"items" yaml:"items,omitempty"`
 
 				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
 			} `tfsdk:"secret" yaml:"secret,omitempty"`
+
+			VsphereVolume *struct {
+				StoragePolicyName *string `tfsdk:"storage_policy_name" yaml:"storagePolicyName,omitempty"`
+
+				VolumePath *string `tfsdk:"volume_path" yaml:"volumePath,omitempty"`
+
+				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+
+				StoragePolicyID *string `tfsdk:"storage_policy_id" yaml:"storagePolicyID,omitempty"`
+			} `tfsdk:"vsphere_volume" yaml:"vsphereVolume,omitempty"`
+
+			AwsElasticBlockStore *struct {
+				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+				VolumeID *string `tfsdk:"volume_id" yaml:"volumeID,omitempty"`
+
+				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+
+				Partition *int64 `tfsdk:"partition" yaml:"partition,omitempty"`
+			} `tfsdk:"aws_elastic_block_store" yaml:"awsElasticBlockStore,omitempty"`
+
+			AzureDisk *struct {
+				DiskName *string `tfsdk:"disk_name" yaml:"diskName,omitempty"`
+
+				DiskURI *string `tfsdk:"disk_uri" yaml:"diskURI,omitempty"`
+
+				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+
+				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+				CachingMode *string `tfsdk:"caching_mode" yaml:"cachingMode,omitempty"`
+			} `tfsdk:"azure_disk" yaml:"azureDisk,omitempty"`
 
 			Csi *struct {
 				Driver *string `tfsdk:"driver" yaml:"driver,omitempty"`
@@ -1326,14 +2347,50 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 				VolumeAttributes *map[string]string `tfsdk:"volume_attributes" yaml:"volumeAttributes,omitempty"`
 			} `tfsdk:"csi" yaml:"csi,omitempty"`
 
-			EmptyDir *struct {
-				Medium *string `tfsdk:"medium" yaml:"medium,omitempty"`
+			GitRepo *struct {
+				Directory *string `tfsdk:"directory" yaml:"directory,omitempty"`
 
-				SizeLimit *string `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
-			} `tfsdk:"empty_dir" yaml:"emptyDir,omitempty"`
+				Repository *string `tfsdk:"repository" yaml:"repository,omitempty"`
 
-			Rbd *struct {
-				Pool *string `tfsdk:"pool" yaml:"pool,omitempty"`
+				Revision *string `tfsdk:"revision" yaml:"revision,omitempty"`
+			} `tfsdk:"git_repo" yaml:"gitRepo,omitempty"`
+
+			PersistentVolumeClaim *struct {
+				ClaimName *string `tfsdk:"claim_name" yaml:"claimName,omitempty"`
+
+				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+			} `tfsdk:"persistent_volume_claim" yaml:"persistentVolumeClaim,omitempty"`
+
+			GcePersistentDisk *struct {
+				PdName *string `tfsdk:"pd_name" yaml:"pdName,omitempty"`
+
+				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+
+				Partition *int64 `tfsdk:"partition" yaml:"partition,omitempty"`
+			} `tfsdk:"gce_persistent_disk" yaml:"gcePersistentDisk,omitempty"`
+
+			Glusterfs *struct {
+				Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+				Endpoints *string `tfsdk:"endpoints" yaml:"endpoints,omitempty"`
+			} `tfsdk:"glusterfs" yaml:"glusterfs,omitempty"`
+
+			HostPath *struct {
+				Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+				Type *string `tfsdk:"type" yaml:"type,omitempty"`
+			} `tfsdk:"host_path" yaml:"hostPath,omitempty"`
+
+			Iscsi *struct {
+				InitiatorName *string `tfsdk:"initiator_name" yaml:"initiatorName,omitempty"`
+
+				Iqn *string `tfsdk:"iqn" yaml:"iqn,omitempty"`
+
+				IscsiInterface *string `tfsdk:"iscsi_interface" yaml:"iscsiInterface,omitempty"`
 
 				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
 
@@ -1341,40 +2398,172 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
-				User *string `tfsdk:"user" yaml:"user,omitempty"`
+				TargetPortal *string `tfsdk:"target_portal" yaml:"targetPortal,omitempty"`
+
+				ChapAuthDiscovery *bool `tfsdk:"chap_auth_discovery" yaml:"chapAuthDiscovery,omitempty"`
+
+				ChapAuthSession *bool `tfsdk:"chap_auth_session" yaml:"chapAuthSession,omitempty"`
 
 				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
 
-				Image *string `tfsdk:"image" yaml:"image,omitempty"`
+				Lun *int64 `tfsdk:"lun" yaml:"lun,omitempty"`
 
-				Keyring *string `tfsdk:"keyring" yaml:"keyring,omitempty"`
+				Portals *[]string `tfsdk:"portals" yaml:"portals,omitempty"`
+			} `tfsdk:"iscsi" yaml:"iscsi,omitempty"`
 
-				Monitors *[]string `tfsdk:"monitors" yaml:"monitors,omitempty"`
-			} `tfsdk:"rbd" yaml:"rbd,omitempty"`
+			Projected *struct {
+				DefaultMode *int64 `tfsdk:"default_mode" yaml:"defaultMode,omitempty"`
 
-			VsphereVolume *struct {
+				Sources *[]struct {
+					ServiceAccountToken *struct {
+						Audience *string `tfsdk:"audience" yaml:"audience,omitempty"`
+
+						ExpirationSeconds *int64 `tfsdk:"expiration_seconds" yaml:"expirationSeconds,omitempty"`
+
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+					} `tfsdk:"service_account_token" yaml:"serviceAccountToken,omitempty"`
+
+					ConfigMap *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+						Items *[]struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
+
+							Path *string `tfsdk:"path" yaml:"path,omitempty"`
+						} `tfsdk:"items" yaml:"items,omitempty"`
+					} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+					DownwardAPI *struct {
+						Items *[]struct {
+							Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+							ResourceFieldRef *struct {
+								ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
+
+								Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+
+								Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
+							} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
+
+							FieldRef *struct {
+								ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+								FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
+							} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
+
+							Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
+						} `tfsdk:"items" yaml:"items,omitempty"`
+					} `tfsdk:"downward_api" yaml:"downwardAPI,omitempty"`
+
+					Secret *struct {
+						Items *[]struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
+
+							Path *string `tfsdk:"path" yaml:"path,omitempty"`
+						} `tfsdk:"items" yaml:"items,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"secret" yaml:"secret,omitempty"`
+				} `tfsdk:"sources" yaml:"sources,omitempty"`
+			} `tfsdk:"projected" yaml:"projected,omitempty"`
+
+			AzureFile *struct {
+				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
+
+				ShareName *string `tfsdk:"share_name" yaml:"shareName,omitempty"`
+			} `tfsdk:"azure_file" yaml:"azureFile,omitempty"`
+
+			DownwardAPI *struct {
+				DefaultMode *int64 `tfsdk:"default_mode" yaml:"defaultMode,omitempty"`
+
+				Items *[]struct {
+					FieldRef *struct {
+						ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+						FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
+					} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
+
+					Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
+
+					Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+					ResourceFieldRef *struct {
+						ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
+
+						Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+
+						Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
+					} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
+				} `tfsdk:"items" yaml:"items,omitempty"`
+			} `tfsdk:"downward_api" yaml:"downwardAPI,omitempty"`
+
+			PhotonPersistentDisk *struct {
 				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
 
-				StoragePolicyID *string `tfsdk:"storage_policy_id" yaml:"storagePolicyID,omitempty"`
+				PdID *string `tfsdk:"pd_id" yaml:"pdID,omitempty"`
+			} `tfsdk:"photon_persistent_disk" yaml:"photonPersistentDisk,omitempty"`
 
-				StoragePolicyName *string `tfsdk:"storage_policy_name" yaml:"storagePolicyName,omitempty"`
-
-				VolumePath *string `tfsdk:"volume_path" yaml:"volumePath,omitempty"`
-			} `tfsdk:"vsphere_volume" yaml:"vsphereVolume,omitempty"`
-
-			AwsElasticBlockStore *struct {
-				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
-
-				Partition *int64 `tfsdk:"partition" yaml:"partition,omitempty"`
+			Quobyte *struct {
+				Group *string `tfsdk:"group" yaml:"group,omitempty"`
 
 				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
 
+				Registry *string `tfsdk:"registry" yaml:"registry,omitempty"`
+
+				Tenant *string `tfsdk:"tenant" yaml:"tenant,omitempty"`
+
+				User *string `tfsdk:"user" yaml:"user,omitempty"`
+
+				Volume *string `tfsdk:"volume" yaml:"volume,omitempty"`
+			} `tfsdk:"quobyte" yaml:"quobyte,omitempty"`
+
+			ScaleIO *struct {
+				StoragePool *string `tfsdk:"storage_pool" yaml:"storagePool,omitempty"`
+
+				VolumeName *string `tfsdk:"volume_name" yaml:"volumeName,omitempty"`
+
+				ProtectionDomain *string `tfsdk:"protection_domain" yaml:"protectionDomain,omitempty"`
+
+				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+				SslEnabled *bool `tfsdk:"ssl_enabled" yaml:"sslEnabled,omitempty"`
+
+				StorageMode *string `tfsdk:"storage_mode" yaml:"storageMode,omitempty"`
+
+				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+
+				Gateway *string `tfsdk:"gateway" yaml:"gateway,omitempty"`
+
+				SecretRef *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+				System *string `tfsdk:"system" yaml:"system,omitempty"`
+			} `tfsdk:"scale_io" yaml:"scaleIO,omitempty"`
+
+			Cinder *struct {
+				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+				SecretRef *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
 				VolumeID *string `tfsdk:"volume_id" yaml:"volumeID,omitempty"`
-			} `tfsdk:"aws_elastic_block_store" yaml:"awsElasticBlockStore,omitempty"`
+
+				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+			} `tfsdk:"cinder" yaml:"cinder,omitempty"`
 
 			ConfigMap *struct {
-				DefaultMode *int64 `tfsdk:"default_mode" yaml:"defaultMode,omitempty"`
-
 				Items *[]struct {
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -1386,83 +2575,15 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-			} `tfsdk:"config_map" yaml:"configMap,omitempty"`
 
-			DownwardAPI *struct {
 				DefaultMode *int64 `tfsdk:"default_mode" yaml:"defaultMode,omitempty"`
-
-				Items *[]struct {
-					ResourceFieldRef *struct {
-						ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
-
-						Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
-
-						Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-					} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
-
-					FieldRef *struct {
-						ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-						FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
-					} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
-
-					Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
-
-					Path *string `tfsdk:"path" yaml:"path,omitempty"`
-				} `tfsdk:"items" yaml:"items,omitempty"`
-			} `tfsdk:"downward_api" yaml:"downwardAPI,omitempty"`
-
-			FlexVolume *struct {
-				SecretRef *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-				Driver *string `tfsdk:"driver" yaml:"driver,omitempty"`
-
-				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
-
-				Options *map[string]string `tfsdk:"options" yaml:"options,omitempty"`
-
-				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-			} `tfsdk:"flex_volume" yaml:"flexVolume,omitempty"`
+			} `tfsdk:"config_map" yaml:"configMap,omitempty"`
 
 			Flocker *struct {
 				DatasetName *string `tfsdk:"dataset_name" yaml:"datasetName,omitempty"`
 
 				DatasetUUID *string `tfsdk:"dataset_uuid" yaml:"datasetUUID,omitempty"`
 			} `tfsdk:"flocker" yaml:"flocker,omitempty"`
-
-			Glusterfs *struct {
-				Endpoints *string `tfsdk:"endpoints" yaml:"endpoints,omitempty"`
-
-				Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-			} `tfsdk:"glusterfs" yaml:"glusterfs,omitempty"`
-
-			ScaleIO *struct {
-				ProtectionDomain *string `tfsdk:"protection_domain" yaml:"protectionDomain,omitempty"`
-
-				SslEnabled *bool `tfsdk:"ssl_enabled" yaml:"sslEnabled,omitempty"`
-
-				StorageMode *string `tfsdk:"storage_mode" yaml:"storageMode,omitempty"`
-
-				System *string `tfsdk:"system" yaml:"system,omitempty"`
-
-				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
-
-				Gateway *string `tfsdk:"gateway" yaml:"gateway,omitempty"`
-
-				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-				SecretRef *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-				StoragePool *string `tfsdk:"storage_pool" yaml:"storagePool,omitempty"`
-
-				VolumeName *string `tfsdk:"volume_name" yaml:"volumeName,omitempty"`
-			} `tfsdk:"scale_io" yaml:"scaleIO,omitempty"`
 
 			Storageos *struct {
 				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
@@ -1478,1208 +2599,90 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2GoModel struct {
 				VolumeNamespace *string `tfsdk:"volume_namespace" yaml:"volumeNamespace,omitempty"`
 			} `tfsdk:"storageos" yaml:"storageos,omitempty"`
 
-			AzureDisk *struct {
-				DiskURI *string `tfsdk:"disk_uri" yaml:"diskURI,omitempty"`
-
-				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
-
-				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-				CachingMode *string `tfsdk:"caching_mode" yaml:"cachingMode,omitempty"`
-
-				DiskName *string `tfsdk:"disk_name" yaml:"diskName,omitempty"`
-			} `tfsdk:"azure_disk" yaml:"azureDisk,omitempty"`
-
-			AzureFile *struct {
-				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-
-				ShareName *string `tfsdk:"share_name" yaml:"shareName,omitempty"`
-			} `tfsdk:"azure_file" yaml:"azureFile,omitempty"`
-
-			GitRepo *struct {
-				Directory *string `tfsdk:"directory" yaml:"directory,omitempty"`
-
-				Repository *string `tfsdk:"repository" yaml:"repository,omitempty"`
-
-				Revision *string `tfsdk:"revision" yaml:"revision,omitempty"`
-			} `tfsdk:"git_repo" yaml:"gitRepo,omitempty"`
-
-			Projected *struct {
-				Sources *[]struct {
-					ServiceAccountToken *struct {
-						Audience *string `tfsdk:"audience" yaml:"audience,omitempty"`
-
-						ExpirationSeconds *int64 `tfsdk:"expiration_seconds" yaml:"expirationSeconds,omitempty"`
-
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
-					} `tfsdk:"service_account_token" yaml:"serviceAccountToken,omitempty"`
-
-					ConfigMap *struct {
-						Items *[]struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
-
-							Path *string `tfsdk:"path" yaml:"path,omitempty"`
-						} `tfsdk:"items" yaml:"items,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-					DownwardAPI *struct {
-						Items *[]struct {
-							FieldRef *struct {
-								ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-								FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
-							} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
-
-							Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
-
-							Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-							ResourceFieldRef *struct {
-								ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
-
-								Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
-
-								Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-							} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
-						} `tfsdk:"items" yaml:"items,omitempty"`
-					} `tfsdk:"downward_api" yaml:"downwardAPI,omitempty"`
-
-					Secret *struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-						Items *[]struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
-
-							Path *string `tfsdk:"path" yaml:"path,omitempty"`
-						} `tfsdk:"items" yaml:"items,omitempty"`
-					} `tfsdk:"secret" yaml:"secret,omitempty"`
-				} `tfsdk:"sources" yaml:"sources,omitempty"`
-
-				DefaultMode *int64 `tfsdk:"default_mode" yaml:"defaultMode,omitempty"`
-			} `tfsdk:"projected" yaml:"projected,omitempty"`
-
-			PersistentVolumeClaim *struct {
-				ClaimName *string `tfsdk:"claim_name" yaml:"claimName,omitempty"`
-
-				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-			} `tfsdk:"persistent_volume_claim" yaml:"persistentVolumeClaim,omitempty"`
-
-			Quobyte *struct {
-				Group *string `tfsdk:"group" yaml:"group,omitempty"`
-
-				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-				Registry *string `tfsdk:"registry" yaml:"registry,omitempty"`
-
-				Tenant *string `tfsdk:"tenant" yaml:"tenant,omitempty"`
-
+			Cephfs *struct {
 				User *string `tfsdk:"user" yaml:"user,omitempty"`
 
-				Volume *string `tfsdk:"volume" yaml:"volume,omitempty"`
-			} `tfsdk:"quobyte" yaml:"quobyte,omitempty"`
-		} `tfsdk:"volumes" yaml:"volumes,omitempty"`
-
-		Deps *struct {
-			Jars *[]string `tfsdk:"jars" yaml:"jars,omitempty"`
-
-			Packages *[]string `tfsdk:"packages" yaml:"packages,omitempty"`
-
-			PyFiles *[]string `tfsdk:"py_files" yaml:"pyFiles,omitempty"`
-
-			Repositories *[]string `tfsdk:"repositories" yaml:"repositories,omitempty"`
-
-			ExcludePackages *[]string `tfsdk:"exclude_packages" yaml:"excludePackages,omitempty"`
-
-			Files *[]string `tfsdk:"files" yaml:"files,omitempty"`
-		} `tfsdk:"deps" yaml:"deps,omitempty"`
-
-		Arguments *[]string `tfsdk:"arguments" yaml:"arguments,omitempty"`
-
-		Executor *struct {
-			EnvVars *map[string]string `tfsdk:"env_vars" yaml:"envVars,omitempty"`
-
-			Instances *int64 `tfsdk:"instances" yaml:"instances,omitempty"`
-
-			CoreLimit *string `tfsdk:"core_limit" yaml:"coreLimit,omitempty"`
-
-			DeleteOnTermination *bool `tfsdk:"delete_on_termination" yaml:"deleteOnTermination,omitempty"`
-
-			NodeSelector *map[string]string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
-
-			Secrets *[]struct {
-				SecretType *string `tfsdk:"secret_type" yaml:"secretType,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				Monitors *[]string `tfsdk:"monitors" yaml:"monitors,omitempty"`
 
 				Path *string `tfsdk:"path" yaml:"path,omitempty"`
-			} `tfsdk:"secrets" yaml:"secrets,omitempty"`
 
-			ShareProcessNamespace *bool `tfsdk:"share_process_namespace" yaml:"shareProcessNamespace,omitempty"`
-
-			DnsConfig *struct {
-				Nameservers *[]string `tfsdk:"nameservers" yaml:"nameservers,omitempty"`
-
-				Options *[]struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-				} `tfsdk:"options" yaml:"options,omitempty"`
-
-				Searches *[]string `tfsdk:"searches" yaml:"searches,omitempty"`
-			} `tfsdk:"dns_config" yaml:"dnsConfig,omitempty"`
-
-			Env *[]struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-				ValueFrom *struct {
-					ConfigMapKeyRef *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
-
-					FieldRef *struct {
-						ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-						FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
-					} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
-
-					ResourceFieldRef *struct {
-						ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
-
-						Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
-
-						Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-					} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
-
-					SecretKeyRef *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
-				} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
-			} `tfsdk:"env" yaml:"env,omitempty"`
-
-			HostNetwork *bool `tfsdk:"host_network" yaml:"hostNetwork,omitempty"`
-
-			Tolerations *[]struct {
-				Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-				TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
-
-				Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-				Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
-
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-			} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
-
-			VolumeMounts *[]struct {
 				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
 
-				SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
-
-				SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
-
-				MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-
-				MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
-
-			Affinity *struct {
-				PodAntiAffinity *struct {
-					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-						PodAffinityTerm *struct {
-							LabelSelector *struct {
-								MatchExpressions *[]struct {
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-						} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
-
-						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
-
-					RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
-						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
-						LabelSelector *struct {
-							MatchExpressions *[]struct {
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
-				} `tfsdk:"pod_anti_affinity" yaml:"podAntiAffinity,omitempty"`
-
-				NodeAffinity *struct {
-					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-						Preference *struct {
-							MatchExpressions *[]struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-							MatchFields *[]struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
-						} `tfsdk:"preference" yaml:"preference,omitempty"`
-
-						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
-
-					RequiredDuringSchedulingIgnoredDuringExecution *struct {
-						NodeSelectorTerms *[]struct {
-							MatchExpressions *[]struct {
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-							MatchFields *[]struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
-						} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
-					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
-				} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
-
-				PodAffinity *struct {
-					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-						PodAffinityTerm *struct {
-							LabelSelector *struct {
-								MatchExpressions *[]struct {
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-						} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
-
-						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
-
-					RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
-						LabelSelector *struct {
-							MatchExpressions *[]struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
-				} `tfsdk:"pod_affinity" yaml:"podAffinity,omitempty"`
-			} `tfsdk:"affinity" yaml:"affinity,omitempty"`
-
-			JavaOptions *string `tfsdk:"java_options" yaml:"javaOptions,omitempty"`
-
-			MemoryOverhead *string `tfsdk:"memory_overhead" yaml:"memoryOverhead,omitempty"`
-
-			ServiceAccount *string `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
-
-			ConfigMaps *[]struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Path *string `tfsdk:"path" yaml:"path,omitempty"`
-			} `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
-
-			Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
-
-			Sidecars *[]struct {
-				EnvFrom *[]struct {
-					ConfigMapRef *struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
-
-					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-
-					SecretRef *struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-				} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
-
-				Ports *[]struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
-
-					ContainerPort *int64 `tfsdk:"container_port" yaml:"containerPort,omitempty"`
-
-					HostIP *string `tfsdk:"host_ip" yaml:"hostIP,omitempty"`
-
-					HostPort *int64 `tfsdk:"host_port" yaml:"hostPort,omitempty"`
-				} `tfsdk:"ports" yaml:"ports,omitempty"`
-
-				Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
-
-				Env *[]struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-					ValueFrom *struct {
-						ConfigMapKeyRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
-
-						FieldRef *struct {
-							ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-							FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
-						} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
-
-						ResourceFieldRef *struct {
-							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
-
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
-
-							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
-
-						SecretKeyRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
-					} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
-				} `tfsdk:"env" yaml:"env,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				ReadinessProbe *struct {
-					Exec *struct {
-						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-					} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-					HttpGet *struct {
-						HttpHeaders *[]struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-					TcpSocket *struct {
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-				} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
-
-				SecurityContext *struct {
-					Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
-
-					SeLinuxOptions *struct {
-						Level *string `tfsdk:"level" yaml:"level,omitempty"`
-
-						Role *string `tfsdk:"role" yaml:"role,omitempty"`
-
-						Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-						User *string `tfsdk:"user" yaml:"user,omitempty"`
-					} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
-
-					WindowsOptions *struct {
-						GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
-
-						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
-
-						RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
-					} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
-
-					ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
-
-					RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
-
-					RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
-
-					RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
-
-					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
-
-					Capabilities *struct {
-						Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
-
-						Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
-					} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
-
-					ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
-				} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
-
-				StartupProbe *struct {
-					HttpGet *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						HttpHeaders *[]struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-					TcpSocket *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-					Exec *struct {
-						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-					} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-				} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
-
-				StdinOnce *bool `tfsdk:"stdin_once" yaml:"stdinOnce,omitempty"`
-
-				Tty *bool `tfsdk:"tty" yaml:"tty,omitempty"`
-
-				WorkingDir *string `tfsdk:"working_dir" yaml:"workingDir,omitempty"`
-
-				Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-
-				ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
-
-				Lifecycle *struct {
-					PostStart *struct {
-						Exec *struct {
-							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-						} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-						HttpGet *struct {
-							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-							HttpHeaders *[]struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Value *string `tfsdk:"value" yaml:"value,omitempty"`
-							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-							Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-						TcpSocket *struct {
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-					} `tfsdk:"post_start" yaml:"postStart,omitempty"`
-
-					PreStop *struct {
-						Exec *struct {
-							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-						} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-						HttpGet *struct {
-							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-							HttpHeaders *[]struct {
-								Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-							Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-						TcpSocket *struct {
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-					} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
-				} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
-
-				LivenessProbe *struct {
-					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-					TcpSocket *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-					Exec *struct {
-						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-					} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-					HttpGet *struct {
-						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						HttpHeaders *[]struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-				} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
-
-				Stdin *bool `tfsdk:"stdin" yaml:"stdin,omitempty"`
-
-				TerminationMessagePath *string `tfsdk:"termination_message_path" yaml:"terminationMessagePath,omitempty"`
-
-				TerminationMessagePolicy *string `tfsdk:"termination_message_policy" yaml:"terminationMessagePolicy,omitempty"`
-
-				VolumeDevices *[]struct {
-					DevicePath *string `tfsdk:"device_path" yaml:"devicePath,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"volume_devices" yaml:"volumeDevices,omitempty"`
-
-				VolumeMounts *[]struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-					SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
-
-					SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
-
-					MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-
-					MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
-				} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
-
-				Image *string `tfsdk:"image" yaml:"image,omitempty"`
-
-				Resources *struct {
-					Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
-
-					Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
-				} `tfsdk:"resources" yaml:"resources,omitempty"`
-			} `tfsdk:"sidecars" yaml:"sidecars,omitempty"`
-
-			Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-			EnvFrom *[]struct {
-				ConfigMapRef *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-				} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
-
-				Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+				SecretFile *string `tfsdk:"secret_file" yaml:"secretFile,omitempty"`
 
 				SecretRef *struct {
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-			} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
+			} `tfsdk:"cephfs" yaml:"cephfs,omitempty"`
 
-			EnvSecretKeyRefs *map[string]string `tfsdk:"env_secret_key_refs" yaml:"envSecretKeyRefs,omitempty"`
+			FlexVolume *struct {
+				Driver *string `tfsdk:"driver" yaml:"driver,omitempty"`
 
-			Gpu *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
 
-				Quantity *int64 `tfsdk:"quantity" yaml:"quantity,omitempty"`
-			} `tfsdk:"gpu" yaml:"gpu,omitempty"`
+				Options *map[string]string `tfsdk:"options" yaml:"options,omitempty"`
 
-			Image *string `tfsdk:"image" yaml:"image,omitempty"`
+				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
 
-			SchedulerName *string `tfsdk:"scheduler_name" yaml:"schedulerName,omitempty"`
-
-			CoreRequest *string `tfsdk:"core_request" yaml:"coreRequest,omitempty"`
-
-			Cores *int64 `tfsdk:"cores" yaml:"cores,omitempty"`
-
-			HostAliases *[]struct {
-				Hostnames *[]string `tfsdk:"hostnames" yaml:"hostnames,omitempty"`
-
-				Ip *string `tfsdk:"ip" yaml:"ip,omitempty"`
-			} `tfsdk:"host_aliases" yaml:"hostAliases,omitempty"`
-
-			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-
-			PodSecurityContext *struct {
-				RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
-
-				RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
-
-				RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
-
-				SeLinuxOptions *struct {
-					Level *string `tfsdk:"level" yaml:"level,omitempty"`
-
-					Role *string `tfsdk:"role" yaml:"role,omitempty"`
-
-					Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-					User *string `tfsdk:"user" yaml:"user,omitempty"`
-				} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
-
-				SupplementalGroups *[]string `tfsdk:"supplemental_groups" yaml:"supplementalGroups,omitempty"`
-
-				Sysctls *[]struct {
+				SecretRef *struct {
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+			} `tfsdk:"flex_volume" yaml:"flexVolume,omitempty"`
 
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-				} `tfsdk:"sysctls" yaml:"sysctls,omitempty"`
+			Nfs *struct {
+				Server *string `tfsdk:"server" yaml:"server,omitempty"`
 
-				WindowsOptions *struct {
-					GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
+				Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-					GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
+				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+			} `tfsdk:"nfs" yaml:"nfs,omitempty"`
 
-					RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
-				} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
-
-				FsGroup *int64 `tfsdk:"fs_group" yaml:"fsGroup,omitempty"`
-			} `tfsdk:"pod_security_context" yaml:"podSecurityContext,omitempty"`
-
-			InitContainers *[]struct {
-				Env *[]struct {
+			Rbd *struct {
+				SecretRef *struct {
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+				User *string `tfsdk:"user" yaml:"user,omitempty"`
 
-					ValueFrom *struct {
-						ConfigMapKeyRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
-
-						FieldRef *struct {
-							ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-							FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
-						} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
-
-						ResourceFieldRef *struct {
-							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
-
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
-
-							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
-
-						SecretKeyRef *struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-						} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
-					} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
-				} `tfsdk:"env" yaml:"env,omitempty"`
-
-				EnvFrom *[]struct {
-					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-
-					SecretRef *struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-					ConfigMapRef *struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
-				} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
-
-				Ports *[]struct {
-					ContainerPort *int64 `tfsdk:"container_port" yaml:"containerPort,omitempty"`
-
-					HostIP *string `tfsdk:"host_ip" yaml:"hostIP,omitempty"`
-
-					HostPort *int64 `tfsdk:"host_port" yaml:"hostPort,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
-				} `tfsdk:"ports" yaml:"ports,omitempty"`
-
-				StartupProbe *struct {
-					HttpGet *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						HttpHeaders *[]struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-					TcpSocket *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-					Exec *struct {
-						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-					} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-				} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
-
-				Stdin *bool `tfsdk:"stdin" yaml:"stdin,omitempty"`
-
-				TerminationMessagePolicy *string `tfsdk:"termination_message_policy" yaml:"terminationMessagePolicy,omitempty"`
-
-				VolumeDevices *[]struct {
-					DevicePath *string `tfsdk:"device_path" yaml:"devicePath,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"volume_devices" yaml:"volumeDevices,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				TerminationMessagePath *string `tfsdk:"termination_message_path" yaml:"terminationMessagePath,omitempty"`
-
-				Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-
-				ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
-
-				Lifecycle *struct {
-					PostStart *struct {
-						TcpSocket *struct {
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-						Exec *struct {
-							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-						} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-						HttpGet *struct {
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-							HttpHeaders *[]struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Value *string `tfsdk:"value" yaml:"value,omitempty"`
-							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-							Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-					} `tfsdk:"post_start" yaml:"postStart,omitempty"`
-
-					PreStop *struct {
-						TcpSocket *struct {
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-						Exec *struct {
-							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-						} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-						HttpGet *struct {
-							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-							Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-							HttpHeaders *[]struct {
-								Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-							} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-							Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
-						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-					} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
-				} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
-
-				Resources *struct {
-					Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
-
-					Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
-				} `tfsdk:"resources" yaml:"resources,omitempty"`
-
-				StdinOnce *bool `tfsdk:"stdin_once" yaml:"stdinOnce,omitempty"`
-
-				VolumeMounts *[]struct {
-					MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-
-					MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-					SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
-
-					SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
-				} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
-
-				WorkingDir *string `tfsdk:"working_dir" yaml:"workingDir,omitempty"`
-
-				Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
+				FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
 
 				Image *string `tfsdk:"image" yaml:"image,omitempty"`
 
-				LivenessProbe *struct {
-					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+				Keyring *string `tfsdk:"keyring" yaml:"keyring,omitempty"`
 
-					HttpGet *struct {
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+				Monitors *[]string `tfsdk:"monitors" yaml:"monitors,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+				Pool *string `tfsdk:"pool" yaml:"pool,omitempty"`
 
-						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+				ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+			} `tfsdk:"rbd" yaml:"rbd,omitempty"`
+		} `tfsdk:"volumes" yaml:"volumes,omitempty"`
 
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						HttpHeaders *[]struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-					TcpSocket *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-					Exec *struct {
-						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-					} `tfsdk:"exec" yaml:"exec,omitempty"`
-				} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
-
-				ReadinessProbe *struct {
-					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-					Exec *struct {
-						Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-					} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-					HttpGet *struct {
-						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						HttpHeaders *[]struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-						} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-					PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-					SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-					TcpSocket *struct {
-						Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-				} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
-
-				SecurityContext *struct {
-					RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
-
-					SeLinuxOptions *struct {
-						Level *string `tfsdk:"level" yaml:"level,omitempty"`
-
-						Role *string `tfsdk:"role" yaml:"role,omitempty"`
-
-						Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-						User *string `tfsdk:"user" yaml:"user,omitempty"`
-					} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
-
-					WindowsOptions *struct {
-						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
-
-						RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
-
-						GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
-					} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
-
-					Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
-
-					ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
-
-					RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
-
-					RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
-
-					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
-
-					Capabilities *struct {
-						Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
-
-						Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
-					} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
-
-					ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
-				} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
-
-				Tty *bool `tfsdk:"tty" yaml:"tty,omitempty"`
-			} `tfsdk:"init_containers" yaml:"initContainers,omitempty"`
-
-			SecurityContext *struct {
-				Capabilities *struct {
-					Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
-
-					Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
-				} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
-
-				Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
-
-				ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
-
-				ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
-
-				RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
-
-				RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
-
-				SeLinuxOptions *struct {
-					Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-					User *string `tfsdk:"user" yaml:"user,omitempty"`
-
-					Level *string `tfsdk:"level" yaml:"level,omitempty"`
-
-					Role *string `tfsdk:"role" yaml:"role,omitempty"`
-				} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
-
-				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
-
-				RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
-
-				WindowsOptions *struct {
-					GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
-
-					GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
-
-					RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
-				} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
-			} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
-
-			TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
-		} `tfsdk:"executor" yaml:"executor,omitempty"`
-
-		ImagePullSecrets *[]string `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
-
-		SparkUIOptions *struct {
-			IngressAnnotations *map[string]string `tfsdk:"ingress_annotations" yaml:"ingressAnnotations,omitempty"`
-
-			IngressTLS *[]struct {
-				Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
-
-				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-			} `tfsdk:"ingress_tls" yaml:"ingressTLS,omitempty"`
-
-			ServiceAnnotations *map[string]string `tfsdk:"service_annotations" yaml:"serviceAnnotations,omitempty"`
-
-			ServicePort *int64 `tfsdk:"service_port" yaml:"servicePort,omitempty"`
-
-			ServicePortName *string `tfsdk:"service_port_name" yaml:"servicePortName,omitempty"`
-
-			ServiceType *string `tfsdk:"service_type" yaml:"serviceType,omitempty"`
-		} `tfsdk:"spark_ui_options" yaml:"sparkUIOptions,omitempty"`
-
-		HadoopConfigMap *string `tfsdk:"hadoop_config_map" yaml:"hadoopConfigMap,omitempty"`
-
-		MainApplicationFile *string `tfsdk:"main_application_file" yaml:"mainApplicationFile,omitempty"`
-
-		MainClass *string `tfsdk:"main_class" yaml:"mainClass,omitempty"`
-
-		RestartPolicy *struct {
-			Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-			OnFailureRetries *int64 `tfsdk:"on_failure_retries" yaml:"onFailureRetries,omitempty"`
-
-			OnFailureRetryInterval *int64 `tfsdk:"on_failure_retry_interval" yaml:"onFailureRetryInterval,omitempty"`
-
-			OnSubmissionFailureRetries *int64 `tfsdk:"on_submission_failure_retries" yaml:"onSubmissionFailureRetries,omitempty"`
-
-			OnSubmissionFailureRetryInterval *int64 `tfsdk:"on_submission_failure_retry_interval" yaml:"onSubmissionFailureRetryInterval,omitempty"`
-		} `tfsdk:"restart_policy" yaml:"restartPolicy,omitempty"`
-
-		SparkConf *map[string]string `tfsdk:"spark_conf" yaml:"sparkConf,omitempty"`
+		Arguments *[]string `tfsdk:"arguments" yaml:"arguments,omitempty"`
 
 		BatchScheduler *string `tfsdk:"batch_scheduler" yaml:"batchScheduler,omitempty"`
 
+		DynamicAllocation *struct {
+			MinExecutors *int64 `tfsdk:"min_executors" yaml:"minExecutors,omitempty"`
+
+			ShuffleTrackingTimeout *int64 `tfsdk:"shuffle_tracking_timeout" yaml:"shuffleTrackingTimeout,omitempty"`
+
+			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+
+			InitialExecutors *int64 `tfsdk:"initial_executors" yaml:"initialExecutors,omitempty"`
+
+			MaxExecutors *int64 `tfsdk:"max_executors" yaml:"maxExecutors,omitempty"`
+		} `tfsdk:"dynamic_allocation" yaml:"dynamicAllocation,omitempty"`
+
+		Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+		ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
+
+		MainClass *string `tfsdk:"main_class" yaml:"mainClass,omitempty"`
+
+		NodeSelector *map[string]string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
+
 		FailureRetries *int64 `tfsdk:"failure_retries" yaml:"failureRetries,omitempty"`
-
-		HadoopConf *map[string]string `tfsdk:"hadoop_conf" yaml:"hadoopConf,omitempty"`
-
-		SparkConfigMap *string `tfsdk:"spark_config_map" yaml:"sparkConfigMap,omitempty"`
-
-		TimeToLiveSeconds *int64 `tfsdk:"time_to_live_seconds" yaml:"timeToLiveSeconds,omitempty"`
-
-		Type *string `tfsdk:"type" yaml:"type,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -2780,22 +2783,66 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"proxy_user": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"spark_conf": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.MapType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"time_to_live_seconds": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"image_pull_secrets": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"main_application_file": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"monitoring": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"expose_driver_metrics": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
 
 							"expose_executor_metrics": {
 								Description:         "",
@@ -2836,6 +2883,17 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+									"config_file": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"configuration": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -2867,20 +2925,16 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											int64validator.AtLeast(1024),
+
+											int64validator.AtMost(49151),
+										},
 									},
 
 									"port_name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"config_file": {
 										Description:         "",
 										MarkdownDescription: "",
 
@@ -2896,51 +2950,18 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Optional: true,
 								Computed: false,
 							},
+
+							"expose_driver_metrics": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"proxy_user": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"python_version": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"retry_interval": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"image": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -2958,2155 +2979,28 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"driver": {
+					"type": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"executor": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"kubernetes_master": {
+							"core_request": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"scheduler_name": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"memory": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"pod_name": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"service_annotations": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"share_process_namespace": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"sidecars": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"volume_devices": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"device_path": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"args": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"command": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"tty": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"startup_probe": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"http_get": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"http_headers": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"value": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"path": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"scheme": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"initial_delay_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"period_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"success_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tcp_socket": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"timeout_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"exec": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"command": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"failure_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"stdin": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"stdin_once": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"env_from": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"config_map_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"prefix": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"secret_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"resources": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"limits": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"requests": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"security_context": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"proc_mount": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"read_only_root_filesystem": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"run_as_non_root": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"run_as_user": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"windows_options": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"gmsa_credential_spec": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"gmsa_credential_spec_name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"run_as_user_name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"allow_privilege_escalation": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"capabilities": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"drop": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"add": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"privileged": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"run_as_group": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"se_linux_options": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"level": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"role": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"type": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"user": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"working_dir": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"env": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"value": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"value_from": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"config_map_key_ref": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"field_ref": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"api_version": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"field_path": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"resource_field_ref": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"container_name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"divisor": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"resource": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"secret_key_ref": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"image_pull_policy": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"volume_mounts": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"sub_path": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"sub_path_expr": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"mount_path": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"mount_propagation": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"read_only": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"ports": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"host_ip": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"host_port": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"protocol": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"container_port": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"readiness_probe": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"period_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"success_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tcp_socket": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"timeout_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"exec": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"command": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"failure_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http_get": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_headers": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"value": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"path": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"scheme": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"initial_delay_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"termination_message_path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"termination_message_policy": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"image": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"lifecycle": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"post_start": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"exec": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"command": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_get": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"path": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"scheme": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"http_headers": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"value": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"tcp_socket": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"pre_stop": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"tcp_socket": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"exec": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"command": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_get": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"http_headers": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"value": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"path": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"scheme": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"liveness_probe": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"exec": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"command": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"failure_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http_get": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_headers": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"value": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"path": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"scheme": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"initial_delay_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"period_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"success_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tcp_socket": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"timeout_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"memory_overhead": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"security_context": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"read_only_root_filesystem": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"run_as_group": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"run_as_non_root": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"run_as_user": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"windows_options": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"gmsa_credential_spec": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"gmsa_credential_spec_name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"run_as_user_name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"allow_privilege_escalation": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"privileged": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"proc_mount": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"se_linux_options": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"level": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"role": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"type": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"user": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"capabilities": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"add": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"drop": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
 
 								Required: false,
 								Optional: true,
@@ -5124,11 +3018,11 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"labels": {
+							"java_options": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
@@ -5141,55 +3035,22 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"fs_group": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"run_as_group": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"run_as_non_root": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"run_as_user": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"se_linux_options": {
 										Description:         "",
 										MarkdownDescription: "",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"role": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 
 											"type": {
 												Description:         "",
@@ -5214,17 +3075,6 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 											},
 
 											"level": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"role": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -5330,6 +3180,3083 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Optional: true,
 										Computed: false,
 									},
+
+									"fs_group": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"run_as_group": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"run_as_non_root": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"run_as_user": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"affinity": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"node_affinity": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"preferred_during_scheduling_ignored_during_execution": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"preference": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_fields": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"weight": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"required_during_scheduling_ignored_during_execution": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"node_selector_terms": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_fields": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"pod_affinity": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"preferred_during_scheduling_ignored_during_execution": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"pod_affinity_term": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"topology_key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"label_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespaces": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"weight": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"required_during_scheduling_ignored_during_execution": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"topology_key": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"label_selector": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.MapType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespaces": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"pod_anti_affinity": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"preferred_during_scheduling_ignored_during_execution": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"pod_affinity_term": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"label_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespaces": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"topology_key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"weight": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"required_during_scheduling_ignored_during_execution": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"label_selector": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.MapType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespaces": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"topology_key": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"env_vars": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"gpu": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"quantity": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"host_aliases": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"ip": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"hostnames": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"sidecars": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"stdin": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"ports": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"container_port": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"host_ip": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host_port": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"protocol": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"tty": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"working_dir": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"resources": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"limits": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"requests": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"security_context": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"allow_privilege_escalation": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"capabilities": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"add": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"drop": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"proc_mount": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"read_only_root_filesystem": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"run_as_non_root": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"windows_options": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"gmsa_credential_spec": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"gmsa_credential_spec_name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"run_as_user_name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"privileged": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"run_as_group": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"run_as_user": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"se_linux_options": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"level": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"role": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"type": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"user": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"startup_probe": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"period_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"success_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tcp_socket": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"timeout_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"exec": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"command": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"failure_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_get": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_headers": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"value": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"scheme": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"initial_delay_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"stdin_once": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"env": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"value": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"value_from": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"config_map_key_ref": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"field_ref": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"api_version": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"field_path": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"resource_field_ref": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"container_name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"divisor": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"resource": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"secret_key_ref": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"optional": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"image": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"image_pull_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"volume_devices": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"device_path": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volume_mounts": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"mount_path": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"mount_propagation": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"read_only": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"sub_path": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"sub_path_expr": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"liveness_probe": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"success_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tcp_socket": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"timeout_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"exec": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"command": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"failure_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_get": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"http_headers": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"value": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"scheme": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"initial_delay_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"period_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"readiness_probe": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"tcp_socket": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"timeout_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"exec": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"command": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"failure_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_get": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"path": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"scheme": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_headers": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"value": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"initial_delay_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"period_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"success_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_message_path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_message_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"args": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"command": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"env_from": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"config_map_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"prefix": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"lifecycle": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"post_start": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"exec": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"command": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_get": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"scheme": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"http_headers": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"value": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"path": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"tcp_socket": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"pre_stop": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"http_get": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"http_headers": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"value": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"path": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"scheme": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"tcp_socket": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"exec": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"command": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"core_limit": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"secrets": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"secret_type": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"env": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"value": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"value_from": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"field_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"api_version": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"field_path": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"resource_field_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"container_name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"divisor": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"resource": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret_key_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"key": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"config_map_key_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"optional": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"key": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"instances": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"share_process_namespace": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tolerations": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"value": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"effect": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"key": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"operator": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"toleration_seconds": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -5342,6 +6269,28 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"mount_path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"mount_propagation": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"name": {
 										Description:         "",
@@ -5386,28 +6335,6 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Optional: true,
 										Computed: false,
 									},
-
-									"mount_path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"mount_propagation": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -5415,75 +6342,7 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"config_maps": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"host_aliases": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"hostnames": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"ip": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"termination_grace_period_seconds": {
+							"cores": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -5492,69 +6351,29 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
 							},
 
-							"tolerations": {
+							"env_secret_key_refs": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+								Type: types.MapType{ElemType: types.StringType},
 
-									"operator": {
-										Description:         "",
-										MarkdownDescription: "",
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
-										Type: types.StringType,
+							"labels": {
+								Description:         "",
+								MarkdownDescription: "",
 
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"toleration_seconds": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"value": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"effect": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"key": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
+								Type: types.MapType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,
@@ -5566,51 +6385,6 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"prefix": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"secret_ref": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"config_map_ref": {
 										Description:         "",
@@ -5645,6 +6419,51 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Optional: true,
 										Computed: false,
 									},
+
+									"prefix": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"secret_ref": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"optional": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -5652,22 +6471,79 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"service_account": {
+							"dns_config": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.StringType,
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"options": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"value": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"searches": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"nameservers": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"env_vars": {
+							"host_network": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,
@@ -5680,6 +6556,84 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+									"volume_mounts": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"mount_path": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"mount_propagation": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"read_only": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"sub_path": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"sub_path_expr": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"command": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -5691,7 +6645,552 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
-									"readiness_probe": {
+									"env": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"value": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"value_from": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"config_map_key_ref": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"field_ref": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"api_version": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"field_path": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"resource_field_ref": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"resource": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"container_name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"divisor": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"secret_key_ref": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"lifecycle": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"post_start": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"tcp_socket": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"exec": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"command": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_get": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"http_headers": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"value": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"path": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"scheme": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"pre_stop": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"exec": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"command": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_get": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"scheme": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"http_headers": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"value": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"path": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"tcp_socket": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"liveness_probe": {
 										Description:         "",
 										MarkdownDescription: "",
 
@@ -5905,6 +7404,150 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
+									"stdin": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"tty": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_message_path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"working_dir": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"args": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"image_pull_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"ports": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"container_port": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"host_ip": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host_port": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"protocol": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"security_context": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -5912,6 +7555,17 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 											"allow_privilege_escalation": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"privileged": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -5933,33 +7587,11 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 												Computed: false,
 											},
 
-											"read_only_root_filesystem": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"run_as_group": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"run_as_non_root": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
 
 												Required: false,
 												Optional: true,
@@ -6011,11 +7643,2313 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 												Computed: false,
 											},
 
-											"privileged": {
+											"read_only_root_filesystem": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"run_as_non_root": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"se_linux_options": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"level": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"role": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"type": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"user": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"windows_options": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"run_as_user_name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"gmsa_credential_spec": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"gmsa_credential_spec_name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"startup_probe": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"period_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"success_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tcp_socket": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"timeout_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"exec": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"command": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"failure_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_get": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_headers": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"value": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"scheme": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"initial_delay_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"resources": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"limits": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"requests": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_message_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"env_from": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"config_map_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"prefix": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"image": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"readiness_probe": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"tcp_socket": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"timeout_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"exec": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"command": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"failure_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_get": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_headers": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"value": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"scheme": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"initial_delay_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"period_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"success_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"stdin_once": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volume_devices": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"device_path": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"memory": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"security_context": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"windows_options": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"gmsa_credential_spec": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"gmsa_credential_spec_name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"run_as_user_name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"allow_privilege_escalation": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"proc_mount": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"read_only_root_filesystem": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"se_linux_options": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"level": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"role": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"type": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"user": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"run_as_user": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"capabilities": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"add": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"drop": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"privileged": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"run_as_group": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"run_as_non_root": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"service_account": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"termination_grace_period_seconds": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"delete_on_termination": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"node_selector": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"scheduler_name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"annotations": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"memory_overhead": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"config_maps": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"restart_policy": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"on_failure_retries": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(0),
+								},
+							},
+
+							"on_failure_retry_interval": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"on_submission_failure_retries": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(0),
+								},
+							},
+
+							"on_submission_failure_retry_interval": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"type": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"retry_interval": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"deps": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"repositories": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"exclude_packages": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"files": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"jars": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"packages": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"py_files": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"hadoop_conf": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.MapType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"batch_scheduler_options": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"resources": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"priority_class_name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"queue": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"spark_config_map": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"driver": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"kubernetes_master": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"lifecycle": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"post_start": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"exec": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"command": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_get": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"path": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"scheme": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_headers": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"value": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tcp_socket": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"pre_stop": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"exec": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"command": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_get": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"scheme": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_headers": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"value": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tcp_socket": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"pod_security_context": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"sysctls": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"value": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"windows_options": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"gmsa_credential_spec": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"gmsa_credential_spec_name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"run_as_user_name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"fs_group": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"run_as_group": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"run_as_non_root": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"run_as_user": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"se_linux_options": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"level": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"role": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"type": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"user": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"supplemental_groups": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"env_vars": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"init_containers": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"volume_mounts": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"sub_path": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"sub_path_expr": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"mount_path": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"mount_propagation": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"read_only": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"working_dir": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"args": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"readiness_probe": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"failure_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_get": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_headers": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"value": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"scheme": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"initial_delay_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"period_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"success_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tcp_socket": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"timeout_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"exec": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"command": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"stdin": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"tty": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"security_context": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"run_as_non_root": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"run_as_user": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"allow_privilege_escalation": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"read_only_root_filesystem": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"run_as_group": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
 
 												Required: false,
 												Optional: true,
@@ -6122,97 +10056,42 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 												Optional: true,
 												Computed: false,
 											},
-										}),
 
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"stdin_once": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"args": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"tty": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"volume_mounts": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"mount_path": {
+											"capabilities": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.StringType,
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
+													"add": {
+														Description:         "",
+														MarkdownDescription: "",
 
-											"mount_propagation": {
-												Description:         "",
-												MarkdownDescription: "",
+														Type: types.ListType{ElemType: types.StringType},
 
-												Type: types.StringType,
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"drop": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
 
 												Required: false,
 												Optional: true,
 												Computed: false,
 											},
 
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"read_only": {
+											"privileged": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -6223,539 +10102,7 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 												Computed: false,
 											},
 
-											"sub_path": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"sub_path_expr": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"termination_message_policy": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"working_dir": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"env_from": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"secret_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"config_map_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"prefix": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"image_pull_policy": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"lifecycle": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"pre_stop": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"exec": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"command": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_get": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"http_headers": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"value": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"path": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"scheme": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"tcp_socket": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"post_start": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"tcp_socket": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"exec": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"command": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_get": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"http_headers": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"value": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"path": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"scheme": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"ports": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"host_port": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"protocol": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"container_port": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"host_ip": {
+											"proc_mount": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -6986,6 +10333,797 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
+									"image": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"image_pull_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"lifecycle": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"post_start": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"exec": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"command": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_get": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"http_headers": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"value": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"path": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"scheme": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"tcp_socket": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"pre_stop": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"tcp_socket": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"exec": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"command": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_get": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"http_headers": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"value": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"path": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"scheme": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"liveness_probe": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"exec": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"command": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"failure_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_get": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"scheme": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_headers": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"value": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"initial_delay_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"period_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"success_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tcp_socket": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"timeout_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"ports": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"host_port": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"protocol": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"container_port": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"host_ip": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"command": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"env_from": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"config_map_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"prefix": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_message_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"resources": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"limits": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"requests": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"termination_message_path": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -7064,51 +11202,6 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 												MarkdownDescription: "",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"secret_key_ref": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 
 													"config_map_key_ref": {
 														Description:         "",
@@ -7233,148 +11326,12 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 														Optional: true,
 														Computed: false,
 													},
-												}),
 
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"image": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"liveness_probe": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"success_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tcp_socket": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
+													"secret_key_ref": {
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"timeout_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"exec": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"command": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"failure_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http_get": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_headers": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"name": {
 																Description:         "",
@@ -7382,12 +11339,23 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 
 																Type: types.StringType,
 
-																Required: true,
-																Optional: false,
+																Required: false,
+																Optional: true,
 																Computed: false,
 															},
 
-															"value": {
+															"optional": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"key": {
 																Description:         "",
 																MarkdownDescription: "",
 
@@ -7403,67 +11371,12 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 														Optional: true,
 														Computed: false,
 													},
-
-													"path": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"scheme": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 												}),
 
 												Required: false,
 												Optional: true,
 												Computed: false,
 											},
-
-											"initial_delay_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"period_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 										}),
 
 										Required: false,
@@ -7471,45 +11384,133 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
-									"resources": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"limits": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"requests": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"stdin": {
+									"stdin_once": {
 										Description:         "",
 										MarkdownDescription: "",
 
 										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"memory_overhead": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"node_selector": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"pod_name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"service_account": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"volume_mounts": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"sub_path_expr": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"mount_path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"mount_propagation": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"read_only": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"sub_path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -7527,6 +11528,73 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								MarkdownDescription: "",
 
 								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"env_secret_key_refs": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"host_aliases": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"hostnames": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"ip": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"java_options": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"termination_grace_period_seconds": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
@@ -7556,7 +11624,7 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-											"value": {
+											"name": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -7567,7 +11635,7 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 												Computed: false,
 											},
 
-											"name": {
+											"value": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -7612,261 +11680,101 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"java_options": {
+							"tolerations": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.StringType,
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"operator": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"toleration_seconds": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"value": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"effect": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"key": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"node_selector": {
+							"env_from": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"affinity": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"pod_affinity": {
+									"config_map_ref": {
 										Description:         "",
 										MarkdownDescription: "",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"preferred_during_scheduling_ignored_during_execution": {
+											"name": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"pod_affinity_term": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"namespaces": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"topology_key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"label_selector": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"match_expressions": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"operator": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"values": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"key": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_labels": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"weight": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
+												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
 												Computed: false,
 											},
 
-											"required_during_scheduling_ignored_during_execution": {
+											"optional": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"label_selector": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"match_labels": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.MapType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"match_expressions": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"values": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"namespaces": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"topology_key": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
+												Type: types.BoolType,
 
 												Required: false,
 												Optional: true,
@@ -7879,484 +11787,39 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
-									"pod_anti_affinity": {
+									"prefix": {
 										Description:         "",
 										MarkdownDescription: "",
 
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"preferred_during_scheduling_ignored_during_execution": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"weight": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"pod_affinity_term": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"label_selector": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"match_labels": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_expressions": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"key": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"operator": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"values": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespaces": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"topology_key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"required_during_scheduling_ignored_during_execution": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"label_selector": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"match_expressions": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"values": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"match_labels": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.MapType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"namespaces": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"topology_key": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"node_affinity": {
+									"secret_ref": {
 										Description:         "",
 										MarkdownDescription: "",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"preferred_during_scheduling_ignored_during_execution": {
+											"name": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"preference": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"match_fields": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"values": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"match_expressions": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"values": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"weight": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
+												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
 												Computed: false,
 											},
 
-											"required_during_scheduling_ignored_during_execution": {
+											"optional": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"node_selector_terms": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"match_fields": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"operator": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"values": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"match_expressions": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"values": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
+												Type: types.BoolType,
 
 												Required: false,
 												Optional: true,
@@ -8375,15 +11838,54 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"core_request": {
+							"config_maps": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.StringType,
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"cores": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
 							},
 
 							"env": {
@@ -8426,6 +11928,17 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+													"optional": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"key": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -8442,17 +11955,6 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 														MarkdownDescription: "",
 
 														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
 
 														Required: false,
 														Optional: true,
@@ -8601,375 +12103,22 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"env_secret_key_refs": {
+							"memory": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"annotations": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"gpu": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"quantity": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"lifecycle": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"post_start": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"exec": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"command": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http_get": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_headers": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"value": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"path": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"scheme": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tcp_socket": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"pre_stop": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"exec": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"command": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http_get": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_headers": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"value": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"path": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"scheme": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tcp_socket": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
 
 								Required: false,
 								Optional: true,
@@ -9021,7 +12170,1922 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"annotations": {
+							"share_process_namespace": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"sidecars": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"security_context": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"read_only_root_filesystem": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"run_as_group": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"run_as_user": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"windows_options": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"gmsa_credential_spec_name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"run_as_user_name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"gmsa_credential_spec": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"capabilities": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"add": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"drop": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"proc_mount": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"run_as_non_root": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"se_linux_options": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"level": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"role": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"type": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"user": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"allow_privilege_escalation": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"privileged": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"env_from": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"config_map_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"prefix": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"image": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"readiness_probe": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"timeout_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"exec": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"command": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"failure_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_get": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"scheme": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_headers": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"value": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"initial_delay_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"period_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"success_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tcp_socket": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"startup_probe": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"http_get": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"scheme": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_headers": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"value": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"initial_delay_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"period_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"success_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tcp_socket": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"timeout_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"exec": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"command": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"failure_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_message_path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_message_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volume_devices": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"device_path": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"command": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"env": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"value": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"value_from": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"config_map_key_ref": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"field_ref": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"api_version": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"field_path": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"resource_field_ref": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"container_name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"divisor": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"resource": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"secret_key_ref": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"ports": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"host_ip": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host_port": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"protocol": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"container_port": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"working_dir": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"lifecycle": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"post_start": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"exec": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"command": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_get": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"http_headers": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"value": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"path": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"scheme": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"tcp_socket": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"pre_stop": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"exec": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"command": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_get": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"http_headers": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"value": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"path": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"scheme": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"tcp_socket": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"host": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"port": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"liveness_probe": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"timeout_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"exec": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"command": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"failure_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_get": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_headers": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"value": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"scheme": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"initial_delay_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"period_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"success_threshold": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tcp_socket": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"host": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"stdin": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"stdin_once": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"tty": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volume_mounts": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"mount_path": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"mount_propagation": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"read_only": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"sub_path": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"sub_path_expr": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"args": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"image_pull_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"resources": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"limits": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"requests": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"scheduler_name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"gpu": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"quantity": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"image": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"service_annotations": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -9032,11 +14096,987 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"cores": {
+							"affinity": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.Int64Type,
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"pod_affinity": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"preferred_during_scheduling_ignored_during_execution": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"pod_affinity_term": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"label_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespaces": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"topology_key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"weight": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"required_during_scheduling_ignored_during_execution": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"label_selector": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.MapType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespaces": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"topology_key": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"pod_anti_affinity": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"preferred_during_scheduling_ignored_during_execution": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"pod_affinity_term": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"label_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespaces": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"topology_key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"weight": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"required_during_scheduling_ignored_during_execution": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"topology_key": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"label_selector": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.MapType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespaces": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"node_affinity": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"required_during_scheduling_ignored_during_execution": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"node_selector_terms": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_fields": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"preferred_during_scheduling_ignored_during_execution": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"preference": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_fields": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"weight": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"labels": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"security_context": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"privileged": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"proc_mount": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"read_only_root_filesystem": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"run_as_group": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"run_as_user": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"se_linux_options": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"role": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"type": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"user": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"level": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"allow_privilege_escalation": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"run_as_non_root": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"windows_options": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"gmsa_credential_spec": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"gmsa_credential_spec_name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"run_as_user_name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"capabilities": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"add": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"drop": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"core_request": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
@@ -9049,7 +15089,7 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"image_pull_policy": {
+					"hadoop_config_map": {
 						Description:         "",
 						MarkdownDescription: "",
 
@@ -9082,35 +15122,24 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"node_selector": {
+					"python_version": {
 						Description:         "",
 						MarkdownDescription: "",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
 					},
 
-					"batch_scheduler_options": {
+					"spark_ui_options": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"queue": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"resources": {
+							"service_annotations": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -9121,7 +15150,18 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"priority_class_name": {
+							"service_port": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"service_port_name": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -9131,68 +15171,57 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Optional: true,
 								Computed: false,
 							},
-						}),
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"dynamic_allocation": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"enabled": {
+							"service_type": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.BoolType,
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"initial_executors": {
+							"ingress_annotations": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.Int64Type,
+								Type: types.MapType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"max_executors": {
+							"ingress_tls": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.Int64Type,
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
+									"hosts": {
+										Description:         "",
+										MarkdownDescription: "",
 
-							"min_executors": {
-								Description:         "",
-								MarkdownDescription: "",
+										Type: types.ListType{ElemType: types.StringType},
 
-								Type: types.Int64Type,
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
+									"secret_name": {
+										Description:         "",
+										MarkdownDescription: "",
 
-							"shuffle_tracking_timeout": {
-								Description:         "",
-								MarkdownDescription: "",
+										Type: types.StringType,
 
-								Type: types.Int64Type,
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,
@@ -9211,114 +15240,13 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"gce_persistent_disk": {
+							"empty_dir": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"partition": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"pd_name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"read_only": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"fs_type": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"host_path": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"type": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"cephfs": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"monitors": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"path": {
+									"medium": {
 										Description:         "",
 										MarkdownDescription: "",
 
@@ -9329,18 +15257,7 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
-									"read_only": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"secret_file": {
+									"size_limit": {
 										Description:         "",
 										MarkdownDescription: "",
 
@@ -9348,108 +15265,6 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 
 										Required: false,
 										Optional: true,
-										Computed: false,
-									},
-
-									"secret_ref": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"user": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"cinder": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"fs_type": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"read_only": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"secret_ref": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"volume_id": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
 										Computed: false,
 									},
 								}),
@@ -9526,40 +15341,6 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"photon_persistent_disk": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"fs_type": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"pd_id": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"name": {
 								Description:         "",
 								MarkdownDescription: "",
@@ -9571,52 +15352,7 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"nfs": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"read_only": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"server": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"iscsi": {
+							"portworx_volume": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -9632,140 +15368,6 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Optional: true,
 										Computed: false,
 									},
-
-									"initiator_name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"iqn": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"iscsi_interface": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"portals": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"read_only": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"secret_ref": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"chap_auth_discovery": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"target_portal": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"lun": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"chap_auth_session": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"portworx_volume": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 									"read_only": {
 										Description:         "",
@@ -9788,17 +15390,6 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Optional: false,
 										Computed: false,
 									},
-
-									"fs_type": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -9811,17 +15402,6 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"secret_name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"default_mode": {
 										Description:         "",
@@ -9884,6 +15464,207 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										MarkdownDescription: "",
 
 										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"secret_name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"vsphere_volume": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"storage_policy_name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volume_path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"fs_type": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"storage_policy_id": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"aws_elastic_block_store": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"read_only": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volume_id": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"fs_type": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"partition": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"azure_disk": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"disk_name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"disk_uri": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"fs_type": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"kind": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"read_only": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"caching_mode": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -9975,13 +15756,13 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"empty_dir": {
+							"git_repo": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"medium": {
+									"directory": {
 										Description:         "",
 										MarkdownDescription: "",
 
@@ -9992,7 +15773,18 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
-									"size_limit": {
+									"repository": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"revision": {
 										Description:         "",
 										MarkdownDescription: "",
 
@@ -10009,13 +15801,204 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"rbd": {
+							"persistent_volume_claim": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"pool": {
+									"claim_name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"read_only": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"gce_persistent_disk": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"pd_name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"read_only": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"fs_type": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"partition": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"glusterfs": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"read_only": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"endpoints": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"host_path": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"type": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"iscsi": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"initiator_name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"iqn": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"iscsi_interface": {
 										Description:         "",
 										MarkdownDescription: "",
 
@@ -10060,11 +16043,33 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
-									"user": {
+									"target_portal": {
 										Description:         "",
 										MarkdownDescription: "",
 
 										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"chap_auth_discovery": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"chap_auth_session": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
 
 										Required: false,
 										Optional: true,
@@ -10082,36 +16087,25 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
-									"image": {
+									"lun": {
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.StringType,
+										Type: types.Int64Type,
 
 										Required: true,
 										Optional: false,
 										Computed: false,
 									},
 
-									"keyring": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"monitors": {
+									"portals": {
 										Description:         "",
 										MarkdownDescription: "",
 
 										Type: types.ListType{ElemType: types.StringType},
 
-										Required: true,
-										Optional: false,
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 								}),
@@ -10121,84 +16115,595 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"vsphere_volume": {
+							"projected": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"fs_type": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"storage_policy_id": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"storage_policy_name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"volume_path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"aws_elastic_block_store": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"fs_type": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"partition": {
+									"default_mode": {
 										Description:         "",
 										MarkdownDescription: "",
 
 										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"sources": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"service_account_token": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"audience": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"expiration_seconds": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"config_map": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"items": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"mode": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"path": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"downward_api": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"items": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"path": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"resource_field_ref": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"container_name": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"divisor": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"resource": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"field_ref": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"api_version": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"field_path": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"mode": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"items": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"mode": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"path": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"azure_file": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"read_only": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"secret_name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"share_name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"downward_api": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"default_mode": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"items": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"field_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"api_version": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"field_path": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"mode": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"path": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"resource_field_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"container_name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"divisor": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"resource": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"photon_persistent_disk": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"fs_type": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"pd_id": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"quobyte": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"group": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -10216,7 +16721,40 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
-									"volume_id": {
+									"registry": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"tenant": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"user": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volume": {
 										Description:         "",
 										MarkdownDescription: "",
 
@@ -10233,22 +16771,213 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"config_map": {
+							"scale_io": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"default_mode": {
+									"storage_pool": {
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.Int64Type,
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
+
+									"volume_name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"protection_domain": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"read_only": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"ssl_enabled": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"storage_mode": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"fs_type": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"gateway": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"secret_ref": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"system": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"cinder": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"read_only": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"secret_ref": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volume_id": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"fs_type": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"config_map": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 									"items": {
 										Description:         "",
@@ -10316,216 +17045,12 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Optional: true,
 										Computed: false,
 									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"downward_api": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 									"default_mode": {
 										Description:         "",
 										MarkdownDescription: "",
 
 										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"items": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"resource_field_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"container_name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"divisor": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"resource": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"field_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"api_version": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"field_path": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"mode": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"path": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"flex_volume": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"secret_ref": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"driver": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"fs_type": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"options": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"read_only": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
 
 										Required: false,
 										Optional: true,
@@ -10556,185 +17081,6 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 									},
 
 									"dataset_uuid": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"glusterfs": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"endpoints": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"read_only": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"scale_io": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"protection_domain": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"ssl_enabled": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"storage_mode": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"system": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"fs_type": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"gateway": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"read_only": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"secret_ref": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"storage_pool": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"volume_name": {
 										Description:         "",
 										MarkdownDescription: "",
 
@@ -10830,620 +17176,11 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"azure_disk": {
+							"cephfs": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"disk_uri": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"fs_type": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"kind": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"read_only": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"caching_mode": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"disk_name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"azure_file": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"read_only": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"secret_name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"share_name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"git_repo": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"directory": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"repository": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"revision": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"projected": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"sources": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"service_account_token": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"audience": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"expiration_seconds": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"path": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"config_map": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"items": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"mode": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"path": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"downward_api": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"items": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"field_ref": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"api_version": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"field_path": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"mode": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"path": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"resource_field_ref": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"container_name": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"divisor": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"resource": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"secret": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"items": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"mode": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"path": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"default_mode": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"persistent_volume_claim": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"claim_name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"read_only": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"quobyte": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"group": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"read_only": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"registry": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"tenant": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"user": {
 										Description:         "",
@@ -11456,201 +17193,11 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
-									"volume": {
+									"monitors": {
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"deps": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"jars": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"packages": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"py_files": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"repositories": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"exclude_packages": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"files": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"arguments": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"executor": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"env_vars": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"instances": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"core_limit": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"delete_on_termination": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"node_selector": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"secrets": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"secret_type": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
+										Type: types.ListType{ElemType: types.StringType},
 
 										Required: true,
 										Optional: false,
@@ -11663,394 +17210,10 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 
 										Type: types.StringType,
 
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"share_process_namespace": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"dns_config": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"nameservers": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
-
-									"options": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"value": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"searches": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"env": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"value": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"value_from": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"config_map_key_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"key": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"field_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"api_version": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"field_path": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"resource_field_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"container_name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"divisor": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"resource": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"secret_key_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"key": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"host_network": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"tolerations": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"operator": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"toleration_seconds": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"value": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"effect": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"key": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"volume_mounts": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 									"read_only": {
 										Description:         "",
@@ -12063,2786 +17226,7 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
-									"sub_path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"sub_path_expr": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"mount_path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"mount_propagation": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"affinity": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"pod_anti_affinity": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"preferred_during_scheduling_ignored_during_execution": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"pod_affinity_term": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"label_selector": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"match_expressions": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"key": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"operator": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"values": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_labels": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespaces": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"topology_key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"weight": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"required_during_scheduling_ignored_during_execution": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"namespaces": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"topology_key": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"label_selector": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"match_expressions": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"values": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"match_labels": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.MapType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"node_affinity": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"preferred_during_scheduling_ignored_during_execution": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"preference": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"match_expressions": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"values": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"match_fields": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"values": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"weight": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"required_during_scheduling_ignored_during_execution": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"node_selector_terms": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"match_expressions": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"values": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"match_fields": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"values": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"pod_affinity": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"preferred_during_scheduling_ignored_during_execution": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"pod_affinity_term": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"label_selector": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"match_expressions": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"key": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"operator": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"values": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_labels": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"namespaces": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"topology_key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"weight": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"required_during_scheduling_ignored_during_execution": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"label_selector": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"match_expressions": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"values": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"match_labels": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.MapType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"namespaces": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"topology_key": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"java_options": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"memory_overhead": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"service_account": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"config_maps": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"memory": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"sidecars": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"env_from": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"config_map_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"prefix": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"secret_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"ports": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"protocol": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"container_port": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"host_ip": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"host_port": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"args": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"env": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"value": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"value_from": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"config_map_key_ref": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"field_ref": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"api_version": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"field_path": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"resource_field_ref": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"container_name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"divisor": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"resource": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"secret_key_ref": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"readiness_probe": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"exec": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"command": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"failure_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http_get": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"http_headers": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"value": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"path": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"scheme": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"initial_delay_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"period_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"success_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tcp_socket": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"timeout_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"security_context": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"privileged": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"se_linux_options": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"level": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"role": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"type": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"user": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"windows_options": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"gmsa_credential_spec": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"gmsa_credential_spec_name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"run_as_user_name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"read_only_root_filesystem": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"run_as_group": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"run_as_non_root": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"run_as_user": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"allow_privilege_escalation": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"capabilities": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"add": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"drop": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"proc_mount": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"startup_probe": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"http_get": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_headers": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"value": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"path": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"scheme": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"initial_delay_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"period_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"success_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tcp_socket": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"timeout_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"exec": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"command": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"failure_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"stdin_once": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"tty": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"working_dir": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"command": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"image_pull_policy": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"lifecycle": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"post_start": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"exec": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"command": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_get": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"scheme": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"http_headers": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"value": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"path": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"tcp_socket": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"pre_stop": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"exec": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"command": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_get": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"scheme": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"http_headers": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"value": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"path": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"tcp_socket": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"liveness_probe": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"period_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"success_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tcp_socket": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"timeout_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"exec": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"command": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"failure_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http_get": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"scheme": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_headers": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"value": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"path": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"initial_delay_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"stdin": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"termination_message_path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"termination_message_policy": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"volume_devices": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"device_path": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"volume_mounts": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"read_only": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"sub_path": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"sub_path_expr": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"mount_path": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"mount_propagation": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"image": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"resources": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"limits": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"requests": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"annotations": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"env_from": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"config_map_ref": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"prefix": {
+									"secret_file": {
 										Description:         "",
 										MarkdownDescription: "",
 
@@ -14869,17 +17253,6 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 												Optional: true,
 												Computed: false,
 											},
-
-											"optional": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 										}),
 
 										Required: false,
@@ -14893,24 +17266,13 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"env_secret_key_refs": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"gpu": {
+							"flex_volume": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"name": {
+									"driver": {
 										Description:         "",
 										MarkdownDescription: "",
 
@@ -14921,89 +17283,56 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
-									"quantity": {
+									"fs_type": {
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.Int64Type,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"image": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"scheduler_name": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"core_request": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"cores": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"host_aliases": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"hostnames": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"ip": {
+									"options": {
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.StringType,
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"read_only": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"secret_ref": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
 
 										Required: false,
 										Optional: true,
@@ -15016,207 +17345,39 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"labels": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"pod_security_context": {
+							"nfs": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"run_as_group": {
+									"server": {
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.Int64Type,
+										Type: types.StringType,
 
-										Required: false,
-										Optional: true,
+										Required: true,
+										Optional: false,
 										Computed: false,
 									},
 
-									"run_as_non_root": {
+									"path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"read_only": {
 										Description:         "",
 										MarkdownDescription: "",
 
 										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"run_as_user": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"se_linux_options": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"level": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"role": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"type": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"user": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"supplemental_groups": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"sysctls": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"value": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"windows_options": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"gmsa_credential_spec": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"gmsa_credential_spec_name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"run_as_user_name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"fs_group": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
 
 										Required: false,
 										Optional: true,
@@ -15229,1018 +17390,24 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"init_containers": {
+							"rbd": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"env": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"value": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"value_from": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"config_map_key_ref": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"field_ref": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"api_version": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"field_path": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"resource_field_ref": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"container_name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"divisor": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"resource": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"secret_key_ref": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"env_from": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"prefix": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"secret_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"config_map_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"ports": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"container_port": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"host_ip": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"host_port": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"protocol": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"startup_probe": {
+									"secret_ref": {
 										Description:         "",
 										MarkdownDescription: "",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"http_get": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_headers": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"value": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"path": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"scheme": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"initial_delay_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"period_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"success_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tcp_socket": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"timeout_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"exec": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"command": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"failure_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"stdin": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"termination_message_policy": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"volume_devices": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"device_path": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
 											"name": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Type: types.StringType,
 
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"termination_message_path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"command": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"image_pull_policy": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"lifecycle": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"post_start": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"tcp_socket": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"exec": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"command": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_get": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"http_headers": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"value": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"path": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"scheme": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"pre_stop": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"tcp_socket": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"exec": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"command": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_get": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"scheme": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"host": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"http_headers": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"value": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"path": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"port": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
 												Required: false,
 												Optional: true,
 												Computed: false,
@@ -16252,130 +17419,7 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
-									"resources": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"limits": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"requests": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"stdin_once": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"volume_mounts": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"mount_path": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"mount_propagation": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"read_only": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"sub_path": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"sub_path_expr": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"working_dir": {
+									"user": {
 										Description:         "",
 										MarkdownDescription: "",
 
@@ -16386,11 +17430,11 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
-									"args": {
+									"fs_type": {
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.ListType{ElemType: types.StringType},
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -16403,732 +17447,12 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 
 										Type: types.StringType,
 
-										Required: false,
-										Optional: true,
+										Required: true,
+										Optional: false,
 										Computed: false,
 									},
 
-									"liveness_probe": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"failure_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http_get": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"path": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"scheme": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_headers": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"value": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"initial_delay_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"period_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"success_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tcp_socket": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"timeout_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"exec": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"command": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"readiness_probe": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"timeout_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"exec": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"command": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"failure_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http_get": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"scheme": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_headers": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"value": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"path": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"initial_delay_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"period_seconds": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"success_threshold": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tcp_socket": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"host": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"port": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"security_context": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"run_as_user": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"se_linux_options": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"level": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"role": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"type": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"user": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"windows_options": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"gmsa_credential_spec_name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"run_as_user_name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"gmsa_credential_spec": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"privileged": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"read_only_root_filesystem": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"run_as_group": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"run_as_non_root": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"allow_privilege_escalation": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"capabilities": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"drop": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"add": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"proc_mount": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"tty": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"security_context": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"capabilities": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"add": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"drop": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"privileged": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"proc_mount": {
+									"keyring": {
 										Description:         "",
 										MarkdownDescription: "",
 
@@ -17139,156 +17463,33 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 										Computed: false,
 									},
 
-									"read_only_root_filesystem": {
+									"monitors": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"pool": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"read_only": {
 										Description:         "",
 										MarkdownDescription: "",
 
 										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"run_as_group": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"run_as_user": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"se_linux_options": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"type": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"user": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"level": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"role": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"allow_privilege_escalation": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"run_as_non_root": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"windows_options": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"gmsa_credential_spec": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"gmsa_credential_spec_name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"run_as_user_name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
 
 										Required: false,
 										Optional: true,
@@ -17300,25 +17501,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Optional: true,
 								Computed: false,
 							},
-
-							"termination_grace_period_seconds": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
 
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
-					"image_pull_secrets": {
+					"arguments": {
 						Description:         "",
 						MarkdownDescription: "",
 
@@ -17329,69 +17519,24 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"spark_ui_options": {
+					"batch_scheduler": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"dynamic_allocation": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"ingress_annotations": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"ingress_tls": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"hosts": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"secret_name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"service_annotations": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"service_port": {
+							"min_executors": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -17402,22 +17547,44 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 
-							"service_port_name": {
+							"shuffle_tracking_timeout": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.StringType,
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"service_type": {
+							"enabled": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.StringType,
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"initial_executors": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"max_executors": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
@@ -17430,7 +17597,7 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"hadoop_config_map": {
+					"image": {
 						Description:         "",
 						MarkdownDescription: "",
 
@@ -17441,7 +17608,7 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"main_application_file": {
+					"image_pull_policy": {
 						Description:         "",
 						MarkdownDescription: "",
 
@@ -17463,89 +17630,11 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"restart_policy": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"type": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"on_failure_retries": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"on_failure_retry_interval": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"on_submission_failure_retries": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"on_submission_failure_retry_interval": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"spark_conf": {
+					"node_selector": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Type: types.MapType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"batch_scheduler": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -17560,50 +17649,6 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 
 						Required: false,
 						Optional: true,
-						Computed: false,
-					},
-
-					"hadoop_conf": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.MapType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"spark_config_map": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"time_to_live_seconds": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"type": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
 						Computed: false,
 					},
 				}),

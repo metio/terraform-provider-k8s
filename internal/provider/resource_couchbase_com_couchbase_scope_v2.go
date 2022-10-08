@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -61,6 +62,8 @@ type CouchbaseComCouchbaseScopeV2GoModel struct {
 			} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 			Selector *struct {
+				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+
 				MatchExpressions *[]struct {
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -68,8 +71,6 @@ type CouchbaseComCouchbaseScopeV2GoModel struct {
 
 					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 				} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 			} `tfsdk:"selector" yaml:"selector,omitempty"`
 		} `tfsdk:"collections" yaml:"collections,omitempty"`
 
@@ -244,6 +245,17 @@ func (r *CouchbaseComCouchbaseScopeV2Resource) GetSchema(_ context.Context) (tfs
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+									"match_labels": {
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"match_expressions": {
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -283,17 +295,6 @@ func (r *CouchbaseComCouchbaseScopeV2Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"match_labels": {
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-										Type: types.MapType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,

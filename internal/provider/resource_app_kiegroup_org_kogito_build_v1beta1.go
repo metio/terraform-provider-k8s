@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,38 +50,14 @@ type AppKiegroupOrgKogitoBuildV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Artifact *struct {
-			ArtifactId *string `tfsdk:"artifact_id" yaml:"artifactId,omitempty"`
-
-			GroupId *string `tfsdk:"group_id" yaml:"groupId,omitempty"`
-
-			Version *string `tfsdk:"version" yaml:"version,omitempty"`
-		} `tfsdk:"artifact" yaml:"artifact,omitempty"`
-
-		Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-		EnableMavenDownloadOutput *bool `tfsdk:"enable_maven_download_output" yaml:"enableMavenDownloadOutput,omitempty"`
-
 		Env *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
 			ValueFrom *struct {
-				SecretKeyRef *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-				} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
-
 				ConfigMapKeyRef *struct {
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 				} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
 
 				FieldRef *struct {
@@ -96,10 +73,24 @@ type AppKiegroupOrgKogitoBuildV1Beta1GoModel struct {
 
 					Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 				} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
+
+				SecretKeyRef *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
 			} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Value *string `tfsdk:"value" yaml:"value,omitempty"`
 		} `tfsdk:"env" yaml:"env,omitempty"`
 
 		Runtime *string `tfsdk:"runtime" yaml:"runtime,omitempty"`
+
+		RuntimeImage *string `tfsdk:"runtime_image" yaml:"runtimeImage,omitempty"`
 
 		WebHooks *[]struct {
 			Secret *string `tfsdk:"secret" yaml:"secret,omitempty"`
@@ -107,13 +98,9 @@ type AppKiegroupOrgKogitoBuildV1Beta1GoModel struct {
 			Type *string `tfsdk:"type" yaml:"type,omitempty"`
 		} `tfsdk:"web_hooks" yaml:"webHooks,omitempty"`
 
-		GitSource *struct {
-			ContextDir *string `tfsdk:"context_dir" yaml:"contextDir,omitempty"`
+		BuildImage *string `tfsdk:"build_image" yaml:"buildImage,omitempty"`
 
-			Reference *string `tfsdk:"reference" yaml:"reference,omitempty"`
-
-			Uri *string `tfsdk:"uri" yaml:"uri,omitempty"`
-		} `tfsdk:"git_source" yaml:"gitSource,omitempty"`
+		DisableIncremental *bool `tfsdk:"disable_incremental" yaml:"disableIncremental,omitempty"`
 
 		Native *bool `tfsdk:"native" yaml:"native,omitempty"`
 
@@ -123,15 +110,29 @@ type AppKiegroupOrgKogitoBuildV1Beta1GoModel struct {
 			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
 		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
-		RuntimeImage *string `tfsdk:"runtime_image" yaml:"runtimeImage,omitempty"`
-
-		BuildImage *string `tfsdk:"build_image" yaml:"buildImage,omitempty"`
-
-		DisableIncremental *bool `tfsdk:"disable_incremental" yaml:"disableIncremental,omitempty"`
+		EnableMavenDownloadOutput *bool `tfsdk:"enable_maven_download_output" yaml:"enableMavenDownloadOutput,omitempty"`
 
 		MavenMirrorURL *string `tfsdk:"maven_mirror_url" yaml:"mavenMirrorURL,omitempty"`
 
+		Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+		GitSource *struct {
+			Uri *string `tfsdk:"uri" yaml:"uri,omitempty"`
+
+			ContextDir *string `tfsdk:"context_dir" yaml:"contextDir,omitempty"`
+
+			Reference *string `tfsdk:"reference" yaml:"reference,omitempty"`
+		} `tfsdk:"git_source" yaml:"gitSource,omitempty"`
+
 		TargetKogitoRuntime *string `tfsdk:"target_kogito_runtime" yaml:"targetKogitoRuntime,omitempty"`
+
+		Artifact *struct {
+			Version *string `tfsdk:"version" yaml:"version,omitempty"`
+
+			ArtifactId *string `tfsdk:"artifact_id" yaml:"artifactId,omitempty"`
+
+			GroupId *string `tfsdk:"group_id" yaml:"groupId,omitempty"`
+		} `tfsdk:"artifact" yaml:"artifact,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -232,100 +233,11 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"artifact": {
-						Description:         "Artifact contains override information for building the Maven artifact (used for Local Source builds).  You might want to override this information when building from decisions, rules or process files. In this scenario the Kogito Images will generate a new Java project for you underneath. This information will be used to generate this project.",
-						MarkdownDescription: "Artifact contains override information for building the Maven artifact (used for Local Source builds).  You might want to override this information when building from decisions, rules or process files. In this scenario the Kogito Images will generate a new Java project for you underneath. This information will be used to generate this project.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"artifact_id": {
-								Description:         "Indicates the unique base name of the primary artifact being generated.",
-								MarkdownDescription: "Indicates the unique base name of the primary artifact being generated.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"group_id": {
-								Description:         "Indicates the unique identifier of the organization or group that created the project.",
-								MarkdownDescription: "Indicates the unique identifier of the organization or group that created the project.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"version": {
-								Description:         "Indicates the version of the artifact generated by the project.",
-								MarkdownDescription: "Indicates the version of the artifact generated by the project.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"type": {
-						Description:         "Sets the type of build that this instance will handle:  Binary - takes an uploaded binary file already compiled and creates a Kogito service image from it.  RemoteSource - pulls the source code from a Git repository, builds the binary and then the final Kogito service image.  LocalSource - takes an uploaded resource file such as DRL (rules), DMN (decision) or BPMN (process), builds the binary and the final Kogito service image.",
-						MarkdownDescription: "Sets the type of build that this instance will handle:  Binary - takes an uploaded binary file already compiled and creates a Kogito service image from it.  RemoteSource - pulls the source code from a Git repository, builds the binary and then the final Kogito service image.  LocalSource - takes an uploaded resource file such as DRL (rules), DMN (decision) or BPMN (process), builds the binary and the final Kogito service image.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"enable_maven_download_output": {
-						Description:         "If set to true will print the logs for downloading/uploading of maven dependencies. Defaults to false.",
-						MarkdownDescription: "If set to true will print the logs for downloading/uploading of maven dependencies. Defaults to false.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"env": {
 						Description:         "Environment variables used during build time.",
 						MarkdownDescription: "Environment variables used during build time.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-								MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"value": {
-								Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-								MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"value_from": {
 								Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
@@ -333,67 +245,11 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"secret_key_ref": {
-										Description:         "Selects a key of a secret in the pod's namespace",
-										MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"config_map_key_ref": {
 										Description:         "Selects a key of a ConfigMap.",
 										MarkdownDescription: "Selects a key of a ConfigMap.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"optional": {
-												Description:         "Specify whether the ConfigMap or its key must be defined",
-												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
 											"key": {
 												Description:         "The key to select.",
@@ -411,6 +267,17 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 
 												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the ConfigMap or its key must be defined",
+												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+												Type: types.BoolType,
 
 												Required: false,
 												Optional: true,
@@ -501,7 +368,74 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 										Optional: true,
 										Computed: false,
 									},
+
+									"secret_key_ref": {
+										Description:         "Selects a key of a secret in the pod's namespace",
+										MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+								MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"value": {
+								Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+								MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
@@ -517,6 +451,17 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 					"runtime": {
 						Description:         "Which runtime Kogito service base image to use when building the Kogito service. If 'BuildImage' is set, this value is ignored by the operator. Default value: quarkus.",
 						MarkdownDescription: "Which runtime Kogito service base image to use when building the Kogito service. If 'BuildImage' is set, this value is ignored by the operator. Default value: quarkus.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"runtime_image": {
+						Description:         "Image used as the base image for the final Kogito service. This image only has the required packages to run the application.  For example: quarkus based services will have only JVM installed, native services only the packages required by the OS.  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
+						MarkdownDescription: "Image used as the base image for the final Kogito service. This image only has the required packages to run the application.  For example: quarkus based services will have only JVM installed, native services only the packages required by the OS.  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
 
 						Type: types.StringType,
 
@@ -559,45 +504,22 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 						Computed: false,
 					},
 
-					"git_source": {
-						Description:         "Information about the git repository where the Kogito Service source code resides.  Ignored for binary builds.",
-						MarkdownDescription: "Information about the git repository where the Kogito Service source code resides.  Ignored for binary builds.",
+					"build_image": {
+						Description:         "Image used to build the Kogito Service from source (Local and Remote).  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
+						MarkdownDescription: "Image used to build the Kogito Service from source (Local and Remote).  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
 
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+						Type: types.StringType,
 
-							"context_dir": {
-								Description:         "Context/subdirectory where the code is located, relative to the repo root.",
-								MarkdownDescription: "Context/subdirectory where the code is located, relative to the repo root.",
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
 
-								Type: types.StringType,
+					"disable_incremental": {
+						Description:         "DisableIncremental indicates that source to image builds should NOT be incremental. Defaults to false.",
+						MarkdownDescription: "DisableIncremental indicates that source to image builds should NOT be incremental. Defaults to false.",
 
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"reference": {
-								Description:         "Branch to use in the Git repository.",
-								MarkdownDescription: "Branch to use in the Git repository.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"uri": {
-								Description:         "Git URI for the s2i source.",
-								MarkdownDescription: "Git URI for the s2i source.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
@@ -649,31 +571,9 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 						Computed: false,
 					},
 
-					"runtime_image": {
-						Description:         "Image used as the base image for the final Kogito service. This image only has the required packages to run the application.  For example: quarkus based services will have only JVM installed, native services only the packages required by the OS.  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
-						MarkdownDescription: "Image used as the base image for the final Kogito service. This image only has the required packages to run the application.  For example: quarkus based services will have only JVM installed, native services only the packages required by the OS.  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"build_image": {
-						Description:         "Image used to build the Kogito Service from source (Local and Remote).  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
-						MarkdownDescription: "Image used to build the Kogito Service from source (Local and Remote).  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"disable_incremental": {
-						Description:         "DisableIncremental indicates that source to image builds should NOT be incremental. Defaults to false.",
-						MarkdownDescription: "DisableIncremental indicates that source to image builds should NOT be incremental. Defaults to false.",
+					"enable_maven_download_output": {
+						Description:         "If set to true will print the logs for downloading/uploading of maven dependencies. Defaults to false.",
+						MarkdownDescription: "If set to true will print the logs for downloading/uploading of maven dependencies. Defaults to false.",
 
 						Type: types.BoolType,
 
@@ -693,11 +593,112 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 						Computed: false,
 					},
 
+					"type": {
+						Description:         "Sets the type of build that this instance will handle:  Binary - takes an uploaded binary file already compiled and creates a Kogito service image from it.  RemoteSource - pulls the source code from a Git repository, builds the binary and then the final Kogito service image.  LocalSource - takes an uploaded resource file such as DRL (rules), DMN (decision) or BPMN (process), builds the binary and the final Kogito service image.",
+						MarkdownDescription: "Sets the type of build that this instance will handle:  Binary - takes an uploaded binary file already compiled and creates a Kogito service image from it.  RemoteSource - pulls the source code from a Git repository, builds the binary and then the final Kogito service image.  LocalSource - takes an uploaded resource file such as DRL (rules), DMN (decision) or BPMN (process), builds the binary and the final Kogito service image.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"git_source": {
+						Description:         "Information about the git repository where the Kogito Service source code resides.  Ignored for binary builds.",
+						MarkdownDescription: "Information about the git repository where the Kogito Service source code resides.  Ignored for binary builds.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"uri": {
+								Description:         "Git URI for the s2i source.",
+								MarkdownDescription: "Git URI for the s2i source.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"context_dir": {
+								Description:         "Context/subdirectory where the code is located, relative to the repo root.",
+								MarkdownDescription: "Context/subdirectory where the code is located, relative to the repo root.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"reference": {
+								Description:         "Branch to use in the Git repository.",
+								MarkdownDescription: "Branch to use in the Git repository.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"target_kogito_runtime": {
 						Description:         "Set this field targeting the desired KogitoRuntime when this KogitoBuild instance has a different name than the KogitoRuntime.  By default this KogitoBuild instance will generate a final image named after its own name (.metadata.name).  On OpenShift, an ImageStream will be created causing a redeployment on any KogitoRuntime with the same name. On Kubernetes, the final image will be pushed to the KogitoRuntime deployment.  If you have multiple KogitoBuild instances (let's say BinaryBuildType and Remote Source), you might need that both target the same KogitoRuntime. Both KogitoBuilds will update the same ImageStream or generate a final image to the same KogitoRuntime deployment.",
 						MarkdownDescription: "Set this field targeting the desired KogitoRuntime when this KogitoBuild instance has a different name than the KogitoRuntime.  By default this KogitoBuild instance will generate a final image named after its own name (.metadata.name).  On OpenShift, an ImageStream will be created causing a redeployment on any KogitoRuntime with the same name. On Kubernetes, the final image will be pushed to the KogitoRuntime deployment.  If you have multiple KogitoBuild instances (let's say BinaryBuildType and Remote Source), you might need that both target the same KogitoRuntime. Both KogitoBuilds will update the same ImageStream or generate a final image to the same KogitoRuntime deployment.",
 
 						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"artifact": {
+						Description:         "Artifact contains override information for building the Maven artifact (used for Local Source builds).  You might want to override this information when building from decisions, rules or process files. In this scenario the Kogito Images will generate a new Java project for you underneath. This information will be used to generate this project.",
+						MarkdownDescription: "Artifact contains override information for building the Maven artifact (used for Local Source builds).  You might want to override this information when building from decisions, rules or process files. In this scenario the Kogito Images will generate a new Java project for you underneath. This information will be used to generate this project.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"version": {
+								Description:         "Indicates the version of the artifact generated by the project.",
+								MarkdownDescription: "Indicates the version of the artifact generated by the project.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"artifact_id": {
+								Description:         "Indicates the unique base name of the primary artifact being generated.",
+								MarkdownDescription: "Indicates the unique base name of the primary artifact being generated.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"group_id": {
+								Description:         "Indicates the unique identifier of the organization or group that created the project.",
+								MarkdownDescription: "Indicates the unique identifier of the organization or group that created the project.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

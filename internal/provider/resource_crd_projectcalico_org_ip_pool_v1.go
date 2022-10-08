@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -47,10 +48,14 @@ type CrdProjectcalicoOrgIPPoolV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Ipip *struct {
-			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+		Cidr *string `tfsdk:"cidr" yaml:"cidr,omitempty"`
 
+		DisableBGPExport *bool `tfsdk:"disable_bgp_export" yaml:"disableBGPExport,omitempty"`
+
+		Ipip *struct {
 			Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
+
+			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
 		} `tfsdk:"ipip" yaml:"ipip,omitempty"`
 
 		IpipMode *string `tfsdk:"ipip_mode" yaml:"ipipMode,omitempty"`
@@ -59,19 +64,15 @@ type CrdProjectcalicoOrgIPPoolV1GoModel struct {
 
 		NodeSelector *string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
 
-		Disabled *bool `tfsdk:"disabled" yaml:"disabled,omitempty"`
-
-		NatOutgoing *bool `tfsdk:"nat_outgoing" yaml:"natOutgoing,omitempty"`
-
-		VxlanMode *string `tfsdk:"vxlan_mode" yaml:"vxlanMode,omitempty"`
-
 		AllowedUses *[]string `tfsdk:"allowed_uses" yaml:"allowedUses,omitempty"`
 
 		BlockSize *int64 `tfsdk:"block_size" yaml:"blockSize,omitempty"`
 
-		Cidr *string `tfsdk:"cidr" yaml:"cidr,omitempty"`
+		VxlanMode *string `tfsdk:"vxlan_mode" yaml:"vxlanMode,omitempty"`
 
-		DisableBGPExport *bool `tfsdk:"disable_bgp_export" yaml:"disableBGPExport,omitempty"`
+		Disabled *bool `tfsdk:"disabled" yaml:"disabled,omitempty"`
+
+		NatOutgoing *bool `tfsdk:"nat_outgoing" yaml:"natOutgoing,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -165,28 +166,50 @@ func (r *CrdProjectcalicoOrgIPPoolV1Resource) GetSchema(_ context.Context) (tfsd
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"cidr": {
+						Description:         "The pool CIDR.",
+						MarkdownDescription: "The pool CIDR.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"disable_bgp_export": {
+						Description:         "Disable exporting routes from this IP Pool's CIDR over BGP. [Default: false]",
+						MarkdownDescription: "Disable exporting routes from this IP Pool's CIDR over BGP. [Default: false]",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"ipip": {
 						Description:         "Deprecated: this field is only used for APIv1 backwards compatibility. Setting this field is not allowed, this field is for internal use only.",
 						MarkdownDescription: "Deprecated: this field is only used for APIv1 backwards compatibility. Setting this field is not allowed, this field is for internal use only.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"enabled": {
-								Description:         "When enabled is true, ipip tunneling will be used to deliver packets to destinations within this pool.",
-								MarkdownDescription: "When enabled is true, ipip tunneling will be used to deliver packets to destinations within this pool.",
+							"mode": {
+								Description:         "The IPIP mode.  This can be one of 'always' or 'cross-subnet'.  A mode of 'always' will also use IPIP tunneling for routing to destination IP addresses within this pool.  A mode of 'cross-subnet' will only use IPIP tunneling when the destination node is on a different subnet to the originating node.  The default value (if not specified) is 'always'.",
+								MarkdownDescription: "The IPIP mode.  This can be one of 'always' or 'cross-subnet'.  A mode of 'always' will also use IPIP tunneling for routing to destination IP addresses within this pool.  A mode of 'cross-subnet' will only use IPIP tunneling when the destination node is on a different subnet to the originating node.  The default value (if not specified) is 'always'.",
 
-								Type: types.BoolType,
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"mode": {
-								Description:         "The IPIP mode.  This can be one of 'always' or 'cross-subnet'.  A mode of 'always' will also use IPIP tunneling for routing to destination IP addresses within this pool.  A mode of 'cross-subnet' will only use IPIP tunneling when the destination node is on a different subnet to the originating node.  The default value (if not specified) is 'always'.",
-								MarkdownDescription: "The IPIP mode.  This can be one of 'always' or 'cross-subnet'.  A mode of 'always' will also use IPIP tunneling for routing to destination IP addresses within this pool.  A mode of 'cross-subnet' will only use IPIP tunneling when the destination node is on a different subnet to the originating node.  The default value (if not specified) is 'always'.",
+							"enabled": {
+								Description:         "When enabled is true, ipip tunneling will be used to deliver packets to destinations within this pool.",
+								MarkdownDescription: "When enabled is true, ipip tunneling will be used to deliver packets to destinations within this pool.",
 
-								Type: types.StringType,
+								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,
@@ -232,39 +255,6 @@ func (r *CrdProjectcalicoOrgIPPoolV1Resource) GetSchema(_ context.Context) (tfsd
 						Computed: false,
 					},
 
-					"disabled": {
-						Description:         "When disabled is true, Calico IPAM will not assign addresses from this pool.",
-						MarkdownDescription: "When disabled is true, Calico IPAM will not assign addresses from this pool.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"nat_outgoing": {
-						Description:         "When nat-outgoing is true, packets sent from Calico networked containers in this pool to destinations outside of this pool will be masqueraded.",
-						MarkdownDescription: "When nat-outgoing is true, packets sent from Calico networked containers in this pool to destinations outside of this pool will be masqueraded.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"vxlan_mode": {
-						Description:         "Contains configuration for VXLAN tunneling for this pool. If not specified, then this is defaulted to 'Never' (i.e. VXLAN tunneling is disabled).",
-						MarkdownDescription: "Contains configuration for VXLAN tunneling for this pool. If not specified, then this is defaulted to 'Never' (i.e. VXLAN tunneling is disabled).",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"allowed_uses": {
 						Description:         "AllowedUse controls what the IP pool will be used for.  If not specified or empty, defaults to ['Tunnel', 'Workload'] for back-compatibility",
 						MarkdownDescription: "AllowedUse controls what the IP pool will be used for.  If not specified or empty, defaults to ['Tunnel', 'Workload'] for back-compatibility",
@@ -287,20 +277,31 @@ func (r *CrdProjectcalicoOrgIPPoolV1Resource) GetSchema(_ context.Context) (tfsd
 						Computed: false,
 					},
 
-					"cidr": {
-						Description:         "The pool CIDR.",
-						MarkdownDescription: "The pool CIDR.",
+					"vxlan_mode": {
+						Description:         "Contains configuration for VXLAN tunneling for this pool. If not specified, then this is defaulted to 'Never' (i.e. VXLAN tunneling is disabled).",
+						MarkdownDescription: "Contains configuration for VXLAN tunneling for this pool. If not specified, then this is defaulted to 'Never' (i.e. VXLAN tunneling is disabled).",
 
 						Type: types.StringType,
 
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
-					"disable_bgp_export": {
-						Description:         "Disable exporting routes from this IP Pool's CIDR over BGP. [Default: false]",
-						MarkdownDescription: "Disable exporting routes from this IP Pool's CIDR over BGP. [Default: false]",
+					"disabled": {
+						Description:         "When disabled is true, Calico IPAM will not assign addresses from this pool.",
+						MarkdownDescription: "When disabled is true, Calico IPAM will not assign addresses from this pool.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"nat_outgoing": {
+						Description:         "When nat-outgoing is true, packets sent from Calico networked containers in this pool to destinations outside of this pool will be masqueraded.",
+						MarkdownDescription: "When nat-outgoing is true, packets sent from Calico networked containers in this pool to destinations outside of this pool will be masqueraded.",
 
 						Type: types.BoolType,
 

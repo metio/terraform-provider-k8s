@@ -7,6 +7,9 @@ package provider
 
 import (
 	"context"
+
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,31 +52,7 @@ type CouchbaseComCouchbaseBackupRestoreV2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		BackoffLimit *int64 `tfsdk:"backoff_limit" yaml:"backoffLimit,omitempty"`
-
-		Data *struct {
-			Map *[]struct {
-				Source *string `tfsdk:"source" yaml:"source,omitempty"`
-
-				Target *string `tfsdk:"target" yaml:"target,omitempty"`
-			} `tfsdk:"map" yaml:"map,omitempty"`
-
-			Exclude *[]string `tfsdk:"exclude" yaml:"exclude,omitempty"`
-
-			FilterKeys *string `tfsdk:"filter_keys" yaml:"filterKeys,omitempty"`
-
-			FilterValues *string `tfsdk:"filter_values" yaml:"filterValues,omitempty"`
-
-			Include *[]string `tfsdk:"include" yaml:"include,omitempty"`
-		} `tfsdk:"data" yaml:"data,omitempty"`
-
-		ForceUpdates *bool `tfsdk:"force_updates" yaml:"forceUpdates,omitempty"`
-
-		Threads *int64 `tfsdk:"threads" yaml:"threads,omitempty"`
-
 		Backup *string `tfsdk:"backup" yaml:"backup,omitempty"`
-
-		Buckets *map[string]string `tfsdk:"buckets" yaml:"buckets,omitempty"`
 
 		End *struct {
 			Int *int64 `tfsdk:"int" yaml:"int,omitempty"`
@@ -85,30 +64,28 @@ type CouchbaseComCouchbaseBackupRestoreV2GoModel struct {
 
 		Repo *string `tfsdk:"repo" yaml:"repo,omitempty"`
 
-		S3bucket *string `tfsdk:"s3bucket" yaml:"s3bucket,omitempty"`
-
 		Services *struct {
-			FtIndex *bool `tfsdk:"ft_index" yaml:"ftIndex,omitempty"`
-
-			GsiIndex *bool `tfsdk:"gsi_index" yaml:"gsiIndex,omitempty"`
-
-			BucketQuery *bool `tfsdk:"bucket_query" yaml:"bucketQuery,omitempty"`
-
-			ClusterAnalytics *bool `tfsdk:"cluster_analytics" yaml:"clusterAnalytics,omitempty"`
+			BucketConfig *bool `tfsdk:"bucket_config" yaml:"bucketConfig,omitempty"`
 
 			ClusterQuery *bool `tfsdk:"cluster_query" yaml:"clusterQuery,omitempty"`
 
 			Data *bool `tfsdk:"data" yaml:"data,omitempty"`
 
-			Eventing *bool `tfsdk:"eventing" yaml:"eventing,omitempty"`
+			FtIndex *bool `tfsdk:"ft_index" yaml:"ftIndex,omitempty"`
+
+			GsiIndex *bool `tfsdk:"gsi_index" yaml:"gsiIndex,omitempty"`
+
+			Views *bool `tfsdk:"views" yaml:"views,omitempty"`
 
 			Analytics *bool `tfsdk:"analytics" yaml:"analytics,omitempty"`
 
-			BucketConfig *bool `tfsdk:"bucket_config" yaml:"bucketConfig,omitempty"`
+			BucketQuery *bool `tfsdk:"bucket_query" yaml:"bucketQuery,omitempty"`
+
+			ClusterAnalytics *bool `tfsdk:"cluster_analytics" yaml:"clusterAnalytics,omitempty"`
+
+			Eventing *bool `tfsdk:"eventing" yaml:"eventing,omitempty"`
 
 			FtAlias *bool `tfsdk:"ft_alias" yaml:"ftAlias,omitempty"`
-
-			Views *bool `tfsdk:"views" yaml:"views,omitempty"`
 		} `tfsdk:"services" yaml:"services,omitempty"`
 
 		Start *struct {
@@ -116,6 +93,32 @@ type CouchbaseComCouchbaseBackupRestoreV2GoModel struct {
 
 			Str *string `tfsdk:"str" yaml:"str,omitempty"`
 		} `tfsdk:"start" yaml:"start,omitempty"`
+
+		BackoffLimit *int64 `tfsdk:"backoff_limit" yaml:"backoffLimit,omitempty"`
+
+		Buckets *map[string]string `tfsdk:"buckets" yaml:"buckets,omitempty"`
+
+		Data *struct {
+			Exclude *[]string `tfsdk:"exclude" yaml:"exclude,omitempty"`
+
+			FilterKeys *string `tfsdk:"filter_keys" yaml:"filterKeys,omitempty"`
+
+			FilterValues *string `tfsdk:"filter_values" yaml:"filterValues,omitempty"`
+
+			Include *[]string `tfsdk:"include" yaml:"include,omitempty"`
+
+			Map *[]struct {
+				Source *string `tfsdk:"source" yaml:"source,omitempty"`
+
+				Target *string `tfsdk:"target" yaml:"target,omitempty"`
+			} `tfsdk:"map" yaml:"map,omitempty"`
+		} `tfsdk:"data" yaml:"data,omitempty"`
+
+		ForceUpdates *bool `tfsdk:"force_updates" yaml:"forceUpdates,omitempty"`
+
+		S3bucket *string `tfsdk:"s3bucket" yaml:"s3bucket,omitempty"`
+
+		Threads *int64 `tfsdk:"threads" yaml:"threads,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -216,6 +219,250 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Resource) GetSchema(_ context.Conte
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"backup": {
+						Description:         "The backup resource name associated with this restore, or the backup PVC name to restore from.",
+						MarkdownDescription: "The backup resource name associated with this restore, or the backup PVC name to restore from.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"end": {
+						Description:         "End denotes the last backup to restore from.  Omitting this field will only restore the backup referenced by start.  This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
+						MarkdownDescription: "End denotes the last backup to restore from.  Omitting this field will only restore the backup referenced by start.  This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"int": {
+								Description:         "Int references a relative backup by index.",
+								MarkdownDescription: "Int references a relative backup by index.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"str": {
+								Description:         "Str references an absolute backup by name.",
+								MarkdownDescription: "Str references an absolute backup by name.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"log_retention": {
+						Description:         "Number of hours to hold restore script logs for, everything older will be deleted. More info: https://golang.org/pkg/time/#ParseDuration",
+						MarkdownDescription: "Number of hours to hold restore script logs for, everything older will be deleted. More info: https://golang.org/pkg/time/#ParseDuration",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"repo": {
+						Description:         "Repo is the backup folder to restore from.  If no repository is specified, the backup container will choose the latest.",
+						MarkdownDescription: "Repo is the backup folder to restore from.  If no repository is specified, the backup container will choose the latest.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"services": {
+						Description:         "This list accepts a certain set of parameters that will disable that data and prevent it being restored.",
+						MarkdownDescription: "This list accepts a certain set of parameters that will disable that data and prevent it being restored.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"bucket_config": {
+								Description:         "BucketConfig restores all bucket configuration settings. If you are restoring to cluster with managed buckets, then this option may conflict with existing bucket settings, and the results are undefined, so avoid use.  This option is intended for use with unmanaged buckets.  Note that bucket durability settings are not restored in versions less than and equal to 1.1.0, and will need to be manually applied.  This field defaults to false.",
+								MarkdownDescription: "BucketConfig restores all bucket configuration settings. If you are restoring to cluster with managed buckets, then this option may conflict with existing bucket settings, and the results are undefined, so avoid use.  This option is intended for use with unmanaged buckets.  Note that bucket durability settings are not restored in versions less than and equal to 1.1.0, and will need to be manually applied.  This field defaults to false.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"cluster_query": {
+								Description:         "ClusterQuery enables the backup of cluster level query metadata. This field defaults to 'true'.",
+								MarkdownDescription: "ClusterQuery enables the backup of cluster level query metadata. This field defaults to 'true'.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"data": {
+								Description:         "Data restores document data from the backup.  This field defaults to true.",
+								MarkdownDescription: "Data restores document data from the backup.  This field defaults to true.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"ft_index": {
+								Description:         "FTIndex restores full-text search indexes from the backup.  This field defaults to true.",
+								MarkdownDescription: "FTIndex restores full-text search indexes from the backup.  This field defaults to true.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"gsi_index": {
+								Description:         "GSIIndex restores document indexes from the backup.  This field defaults to true.",
+								MarkdownDescription: "GSIIndex restores document indexes from the backup.  This field defaults to true.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"views": {
+								Description:         "Views restores views from the backup.  This field defaults to true.",
+								MarkdownDescription: "Views restores views from the backup.  This field defaults to true.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"analytics": {
+								Description:         "Analytics restores analytics datasets from the backup.  This field defaults to true.",
+								MarkdownDescription: "Analytics restores analytics datasets from the backup.  This field defaults to true.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"bucket_query": {
+								Description:         "BucketQuery enables the backup of query metadata for all buckets. This field defaults to 'true'.",
+								MarkdownDescription: "BucketQuery enables the backup of query metadata for all buckets. This field defaults to 'true'.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"cluster_analytics": {
+								Description:         "ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms. This field defaults to 'true'.",
+								MarkdownDescription: "ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms. This field defaults to 'true'.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"eventing": {
+								Description:         "Eventing restores eventing functions from the backup.  This field defaults to true.",
+								MarkdownDescription: "Eventing restores eventing functions from the backup.  This field defaults to true.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"ft_alias": {
+								Description:         "FTAlias restores full-text search aliases from the backup.  This field defaults to true.",
+								MarkdownDescription: "FTAlias restores full-text search aliases from the backup.  This field defaults to true.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"start": {
+						Description:         "Start denotes the first backup to restore from.  This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
+						MarkdownDescription: "Start denotes the first backup to restore from.  This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"int": {
+								Description:         "Int references a relative backup by index.",
+								MarkdownDescription: "Int references a relative backup by index.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"str": {
+								Description:         "Str references an absolute backup by name.",
+								MarkdownDescription: "Str references an absolute backup by name.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"backoff_limit": {
 						Description:         "Number of times the restore job should try to execute.",
 						MarkdownDescription: "Number of times the restore job should try to execute.",
@@ -227,45 +474,22 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Resource) GetSchema(_ context.Conte
 						Computed: false,
 					},
 
+					"buckets": {
+						Description:         "DEPRECATED - by spec.data. Specific buckets can be explicitly included or excluded in the restore, as well as bucket mappings.  This field is now ignored.",
+						MarkdownDescription: "DEPRECATED - by spec.data. Specific buckets can be explicitly included or excluded in the restore, as well as bucket mappings.  This field is now ignored.",
+
+						Type: types.MapType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"data": {
 						Description:         "Data allows control over what key-value/document data is included in the restore.  By default, all data is included.",
 						MarkdownDescription: "Data allows control over what key-value/document data is included in the restore.  By default, all data is included.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"map": {
-								Description:         "Map allows data items in the restore to be remapped to a different named container. Buckets can be remapped to other buckets e.g. 'source=target', scopes and collections can be remapped to other scopes and collections within the same bucket only e.g. 'bucket.scope=bucket.other' or 'bucket.scope.collection=bucket.scope.other'.  Map sources may only be specified once, and may not overlap.",
-								MarkdownDescription: "Map allows data items in the restore to be remapped to a different named container. Buckets can be remapped to other buckets e.g. 'source=target', scopes and collections can be remapped to other scopes and collections within the same bucket only e.g. 'bucket.scope=bucket.other' or 'bucket.scope.collection=bucket.scope.other'.  Map sources may only be specified once, and may not overlap.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"source": {
-										Description:         "Source defines the data source of the mapping, this may be either a bucket, scope or collection.",
-										MarkdownDescription: "Source defines the data source of the mapping, this may be either a bucket, scope or collection.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"target": {
-										Description:         "Target defines the data target of the mapping, this may be either a bucket, scope or collection, and must refer to the same type as the restore source.",
-										MarkdownDescription: "Target defines the data target of the mapping, this may be either a bucket, scope or collection, and must refer to the same type as the restore source.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"exclude": {
 								Description:         "Exclude defines the buckets, scopes or collections that are excluded from the backup. When this field is set, it implies that by default everything will be backed up, and data items can be explicitly excluded.  You may define an exclusion as a bucket -- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'. Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', as period is the separator used to delimit scopes and collections.  Excluded data cannot overlap e.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannot be used at the same time as included items.",
@@ -310,6 +534,40 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Resource) GetSchema(_ context.Conte
 								Optional: true,
 								Computed: false,
 							},
+
+							"map": {
+								Description:         "Map allows data items in the restore to be remapped to a different named container. Buckets can be remapped to other buckets e.g. 'source=target', scopes and collections can be remapped to other scopes and collections within the same bucket only e.g. 'bucket.scope=bucket.other' or 'bucket.scope.collection=bucket.scope.other'.  Map sources may only be specified once, and may not overlap.",
+								MarkdownDescription: "Map allows data items in the restore to be remapped to a different named container. Buckets can be remapped to other buckets e.g. 'source=target', scopes and collections can be remapped to other scopes and collections within the same bucket only e.g. 'bucket.scope=bucket.other' or 'bucket.scope.collection=bucket.scope.other'.  Map sources may only be specified once, and may not overlap.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"source": {
+										Description:         "Source defines the data source of the mapping, this may be either a bucket, scope or collection.",
+										MarkdownDescription: "Source defines the data source of the mapping, this may be either a bucket, scope or collection.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"target": {
+										Description:         "Target defines the data target of the mapping, this may be either a bucket, scope or collection, and must refer to the same type as the restore source.",
+										MarkdownDescription: "Target defines the data target of the mapping, this may be either a bucket, scope or collection, and must refer to the same type as the restore source.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						}),
 
 						Required: false,
@@ -328,95 +586,6 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Resource) GetSchema(_ context.Conte
 						Computed: false,
 					},
 
-					"threads": {
-						Description:         "How many threads to use during the restore.",
-						MarkdownDescription: "How many threads to use during the restore.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"backup": {
-						Description:         "The backup resource name associated with this restore, or the backup PVC name to restore from.",
-						MarkdownDescription: "The backup resource name associated with this restore, or the backup PVC name to restore from.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"buckets": {
-						Description:         "DEPRECATED - by spec.data. Specific buckets can be explicitly included or excluded in the restore, as well as bucket mappings.  This field is now ignored.",
-						MarkdownDescription: "DEPRECATED - by spec.data. Specific buckets can be explicitly included or excluded in the restore, as well as bucket mappings.  This field is now ignored.",
-
-						Type: types.MapType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"end": {
-						Description:         "End denotes the last backup to restore from.  Omitting this field will only restore the backup referenced by start.  This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
-						MarkdownDescription: "End denotes the last backup to restore from.  Omitting this field will only restore the backup referenced by start.  This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"int": {
-								Description:         "Int references a relative backup by index.",
-								MarkdownDescription: "Int references a relative backup by index.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"str": {
-								Description:         "Str references an absolute backup by name.",
-								MarkdownDescription: "Str references an absolute backup by name.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"log_retention": {
-						Description:         "Number of hours to hold restore script logs for, everything older will be deleted. More info: https://golang.org/pkg/time/#ParseDuration",
-						MarkdownDescription: "Number of hours to hold restore script logs for, everything older will be deleted. More info: https://golang.org/pkg/time/#ParseDuration",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"repo": {
-						Description:         "Repo is the backup folder to restore from.  If no repository is specified, the backup container will choose the latest.",
-						MarkdownDescription: "Repo is the backup folder to restore from.  If no repository is specified, the backup container will choose the latest.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
 					"s3bucket": {
 						Description:         "Name of S3 bucket to restore from. If non-empty this overrides local backup.",
 						MarkdownDescription: "Name of S3 bucket to restore from. If non-empty this overrides local backup.",
@@ -428,171 +597,20 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Resource) GetSchema(_ context.Conte
 						Computed: false,
 					},
 
-					"services": {
-						Description:         "This list accepts a certain set of parameters that will disable that data and prevent it being restored.",
-						MarkdownDescription: "This list accepts a certain set of parameters that will disable that data and prevent it being restored.",
+					"threads": {
+						Description:         "How many threads to use during the restore.",
+						MarkdownDescription: "How many threads to use during the restore.",
 
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"ft_index": {
-								Description:         "FTIndex restores full-text search indexes from the backup.  This field defaults to true.",
-								MarkdownDescription: "FTIndex restores full-text search indexes from the backup.  This field defaults to true.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"gsi_index": {
-								Description:         "GSIIndex restores document indexes from the backup.  This field defaults to true.",
-								MarkdownDescription: "GSIIndex restores document indexes from the backup.  This field defaults to true.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"bucket_query": {
-								Description:         "BucketQuery enables the backup of query metadata for all buckets. This field defaults to 'true'.",
-								MarkdownDescription: "BucketQuery enables the backup of query metadata for all buckets. This field defaults to 'true'.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"cluster_analytics": {
-								Description:         "ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms. This field defaults to 'true'.",
-								MarkdownDescription: "ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms. This field defaults to 'true'.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"cluster_query": {
-								Description:         "ClusterQuery enables the backup of cluster level query metadata. This field defaults to 'true'.",
-								MarkdownDescription: "ClusterQuery enables the backup of cluster level query metadata. This field defaults to 'true'.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"data": {
-								Description:         "Data restores document data from the backup.  This field defaults to true.",
-								MarkdownDescription: "Data restores document data from the backup.  This field defaults to true.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"eventing": {
-								Description:         "Eventing restores eventing functions from the backup.  This field defaults to true.",
-								MarkdownDescription: "Eventing restores eventing functions from the backup.  This field defaults to true.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"analytics": {
-								Description:         "Analytics restores analytics datasets from the backup.  This field defaults to true.",
-								MarkdownDescription: "Analytics restores analytics datasets from the backup.  This field defaults to true.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"bucket_config": {
-								Description:         "BucketConfig restores all bucket configuration settings. If you are restoring to cluster with managed buckets, then this option may conflict with existing bucket settings, and the results are undefined, so avoid use.  This option is intended for use with unmanaged buckets.  Note that bucket durability settings are not restored in versions less than and equal to 1.1.0, and will need to be manually applied.  This field defaults to false.",
-								MarkdownDescription: "BucketConfig restores all bucket configuration settings. If you are restoring to cluster with managed buckets, then this option may conflict with existing bucket settings, and the results are undefined, so avoid use.  This option is intended for use with unmanaged buckets.  Note that bucket durability settings are not restored in versions less than and equal to 1.1.0, and will need to be manually applied.  This field defaults to false.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"ft_alias": {
-								Description:         "FTAlias restores full-text search aliases from the backup.  This field defaults to true.",
-								MarkdownDescription: "FTAlias restores full-text search aliases from the backup.  This field defaults to true.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"views": {
-								Description:         "Views restores views from the backup.  This field defaults to true.",
-								MarkdownDescription: "Views restores views from the backup.  This field defaults to true.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
+						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
-					},
 
-					"start": {
-						Description:         "Start denotes the first backup to restore from.  This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
-						MarkdownDescription: "Start denotes the first backup to restore from.  This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
+						Validators: []tfsdk.AttributeValidator{
 
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"int": {
-								Description:         "Int references a relative backup by index.",
-								MarkdownDescription: "Int references a relative backup by index.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"str": {
-								Description:         "Str references an absolute backup by name.",
-								MarkdownDescription: "Str references an absolute backup by name.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
+							int64validator.AtLeast(1),
+						},
 					},
 				}),
 

@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,8 +50,6 @@ type MattermostComMattermostRestoreDBV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		MattermostDBPassword *string `tfsdk:"mattermost_db_password" yaml:"mattermostDBPassword,omitempty"`
-
 		MattermostDBUser *string `tfsdk:"mattermost_db_user" yaml:"mattermostDBUser,omitempty"`
 
 		RestoreSecret *string `tfsdk:"restore_secret" yaml:"restoreSecret,omitempty"`
@@ -60,6 +59,8 @@ type MattermostComMattermostRestoreDBV1Alpha1GoModel struct {
 		MattermostClusterName *string `tfsdk:"mattermost_cluster_name" yaml:"mattermostClusterName,omitempty"`
 
 		MattermostDBName *string `tfsdk:"mattermost_db_name" yaml:"mattermostDBName,omitempty"`
+
+		MattermostDBPassword *string `tfsdk:"mattermost_db_password" yaml:"mattermostDBPassword,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -160,17 +161,6 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) GetSchema(_ context.C
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"mattermost_db_password": {
-						Description:         "MattermostDBPassword defines the user password to access the database. Need to set if the user is different from the one created by the operator.",
-						MarkdownDescription: "MattermostDBPassword defines the user password to access the database. Need to set if the user is different from the one created by the operator.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"mattermost_db_user": {
 						Description:         "MattermostDBUser defines the user to access the database. Need to set if the user is different from 'mmuser'.",
 						MarkdownDescription: "MattermostDBUser defines the user to access the database. Need to set if the user is different from 'mmuser'.",
@@ -218,6 +208,17 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) GetSchema(_ context.C
 					"mattermost_db_name": {
 						Description:         "MattermostDBName defines the database name. Need to set if different from 'mattermost'.",
 						MarkdownDescription: "MattermostDBName defines the database name. Need to set if different from 'mattermost'.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"mattermost_db_password": {
+						Description:         "MattermostDBPassword defines the user password to access the database. Need to set if the user is different from the one created by the operator.",
+						MarkdownDescription: "MattermostDBPassword defines the user password to access the database. Need to set if the user is different from the one created by the operator.",
 
 						Type: types.StringType,
 

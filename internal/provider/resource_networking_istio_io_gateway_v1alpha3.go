@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,9 +50,13 @@ type NetworkingIstioIoGatewayV1Alpha3GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Selector *map[string]string `tfsdk:"selector" yaml:"selector,omitempty"`
-
 		Servers *[]struct {
+			Bind *string `tfsdk:"bind" yaml:"bind,omitempty"`
+
+			DefaultEndpoint *string `tfsdk:"default_endpoint" yaml:"defaultEndpoint,omitempty"`
+
+			Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
+
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Port *struct {
@@ -65,6 +70,8 @@ type NetworkingIstioIoGatewayV1Alpha3GoModel struct {
 			} `tfsdk:"port" yaml:"port,omitempty"`
 
 			Tls *struct {
+				CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
+
 				ServerCertificate *string `tfsdk:"server_certificate" yaml:"serverCertificate,omitempty"`
 
 				SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
@@ -73,29 +80,23 @@ type NetworkingIstioIoGatewayV1Alpha3GoModel struct {
 
 				CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
 
-				CipherSuites *[]string `tfsdk:"cipher_suites" yaml:"cipherSuites,omitempty"`
-
-				CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
+				HttpsRedirect *bool `tfsdk:"https_redirect" yaml:"httpsRedirect,omitempty"`
 
 				MaxProtocolVersion *string `tfsdk:"max_protocol_version" yaml:"maxProtocolVersion,omitempty"`
-
-				PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
-
-				HttpsRedirect *bool `tfsdk:"https_redirect" yaml:"httpsRedirect,omitempty"`
 
 				MinProtocolVersion *string `tfsdk:"min_protocol_version" yaml:"minProtocolVersion,omitempty"`
 
 				Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
 
+				PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
+
 				VerifyCertificateHash *[]string `tfsdk:"verify_certificate_hash" yaml:"verifyCertificateHash,omitempty"`
+
+				CipherSuites *[]string `tfsdk:"cipher_suites" yaml:"cipherSuites,omitempty"`
 			} `tfsdk:"tls" yaml:"tls,omitempty"`
-
-			Bind *string `tfsdk:"bind" yaml:"bind,omitempty"`
-
-			DefaultEndpoint *string `tfsdk:"default_endpoint" yaml:"defaultEndpoint,omitempty"`
-
-			Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
 		} `tfsdk:"servers" yaml:"servers,omitempty"`
+
+		Selector *map[string]string `tfsdk:"selector" yaml:"selector,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -196,22 +197,44 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"selector": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.MapType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"servers": {
 						Description:         "A list of server specifications.",
 						MarkdownDescription: "A list of server specifications.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"bind": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"default_endpoint": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"hosts": {
+								Description:         "One or more hosts exposed by this gateway.",
+								MarkdownDescription: "One or more hosts exposed by this gateway.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"name": {
 								Description:         "An optional name of the server, when set must be unique across all servers.",
@@ -286,6 +309,17 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+									"credential_name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"server_certificate": {
 										Description:         "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
 										MarkdownDescription: "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
@@ -330,22 +364,11 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
-									"cipher_suites": {
-										Description:         "Optional: If specified, only support the specified cipher list.",
-										MarkdownDescription: "Optional: If specified, only support the specified cipher list.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"credential_name": {
+									"https_redirect": {
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.StringType,
+										Type: types.BoolType,
 
 										Required: false,
 										Optional: true,
@@ -357,28 +380,6 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 										MarkdownDescription: "Optional: Maximum TLS protocol version.",
 
 										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"private_key": {
-										Description:         "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
-										MarkdownDescription: "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"https_redirect": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
 
 										Required: false,
 										Optional: true,
@@ -407,9 +408,31 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
+									"private_key": {
+										Description:         "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
+										MarkdownDescription: "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"verify_certificate_hash": {
 										Description:         "",
 										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"cipher_suites": {
+										Description:         "Optional: If specified, only support the specified cipher list.",
+										MarkdownDescription: "Optional: If specified, only support the specified cipher list.",
 
 										Type: types.ListType{ElemType: types.StringType},
 
@@ -423,40 +446,18 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 								Optional: true,
 								Computed: false,
 							},
-
-							"bind": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"default_endpoint": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"hosts": {
-								Description:         "One or more hosts exposed by this gateway.",
-								MarkdownDescription: "One or more hosts exposed by this gateway.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"selector": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.MapType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

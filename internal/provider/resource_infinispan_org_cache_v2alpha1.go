@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,11 +50,15 @@ type InfinispanOrgCacheV2Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Template *string `tfsdk:"template" yaml:"template,omitempty"`
-
-		TemplateName *string `tfsdk:"template_name" yaml:"templateName,omitempty"`
-
 		AdminAuth *struct {
+			Username *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+			} `tfsdk:"username" yaml:"username,omitempty"`
+
 			Password *struct {
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -63,19 +68,15 @@ type InfinispanOrgCacheV2Alpha1GoModel struct {
 			} `tfsdk:"password" yaml:"password,omitempty"`
 
 			SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-
-			Username *struct {
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-			} `tfsdk:"username" yaml:"username,omitempty"`
 		} `tfsdk:"admin_auth" yaml:"adminAuth,omitempty"`
 
 		ClusterName *string `tfsdk:"cluster_name" yaml:"clusterName,omitempty"`
 
 		Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+		Template *string `tfsdk:"template" yaml:"template,omitempty"`
+
+		TemplateName *string `tfsdk:"template_name" yaml:"templateName,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -176,33 +177,56 @@ func (r *InfinispanOrgCacheV2Alpha1Resource) GetSchema(_ context.Context) (tfsdk
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"template": {
-						Description:         "Cache template in XML format",
-						MarkdownDescription: "Cache template in XML format",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"template_name": {
-						Description:         "Name of the template to be used to create this cache",
-						MarkdownDescription: "Name of the template to be used to create this cache",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"admin_auth": {
 						Description:         "Deprecated. This no longer has any effect. The operator's admin credentials are now used to perform cache operations",
 						MarkdownDescription: "Deprecated. This no longer has any effect. The operator's admin credentials are now used to perform cache operations",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"username": {
+								Description:         "Secret and key containing the admin username for authentication.",
+								MarkdownDescription: "Secret and key containing the admin username for authentication.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"optional": {
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"key": {
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"password": {
 								Description:         "Secret and key containing the admin password for authentication.",
@@ -259,51 +283,6 @@ func (r *InfinispanOrgCacheV2Alpha1Resource) GetSchema(_ context.Context) (tfsdk
 								Optional: true,
 								Computed: false,
 							},
-
-							"username": {
-								Description:         "Secret and key containing the admin username for authentication.",
-								MarkdownDescription: "Secret and key containing the admin username for authentication.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"key": {
-										Description:         "The key of the secret to select from.  Must be a valid secret key.",
-										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"optional": {
-										Description:         "Specify whether the Secret or its key must be defined",
-										MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
 
 						Required: false,
@@ -325,6 +304,28 @@ func (r *InfinispanOrgCacheV2Alpha1Resource) GetSchema(_ context.Context) (tfsdk
 					"name": {
 						Description:         "Name of the cache to be created. If empty ObjectMeta.Name will be used",
 						MarkdownDescription: "Name of the cache to be created. If empty ObjectMeta.Name will be used",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"template": {
+						Description:         "Cache template in XML format",
+						MarkdownDescription: "Cache template in XML format",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"template_name": {
+						Description:         "Name of the template to be used to create this cache",
+						MarkdownDescription: "Name of the template to be used to create this cache",
 
 						Type: types.StringType,
 

@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -50,29 +51,11 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 
 	Spec *struct {
 		Components *[]struct {
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-			Managed *bool `tfsdk:"managed" yaml:"managed,omitempty"`
-
 			Overrides *struct {
 				Affinity *struct {
 					PodAntiAffinity *struct {
 						PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-							Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-
 							PodAffinityTerm *struct {
-								LabelSelector *struct {
-									MatchExpressions *[]struct {
-										Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-								} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -88,12 +71,24 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 								Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 								TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+
+								LabelSelector *struct {
+									MatchExpressions *[]struct {
+										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+										Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+								} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 							} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
+
+							Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 						} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
 
 						RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
-							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
 							LabelSelector *struct {
 								MatchExpressions *[]struct {
 									Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -108,17 +103,19 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 						} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 					} `tfsdk:"pod_anti_affinity" yaml:"podAntiAffinity,omitempty"`
 
@@ -126,19 +123,19 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 						RequiredDuringSchedulingIgnoredDuringExecution *struct {
 							NodeSelectorTerms *[]struct {
 								MatchExpressions *[]struct {
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
 									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 								MatchFields *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
 								} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
 							} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
 						} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
@@ -168,18 +165,16 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 
 					PodAffinity *struct {
 						PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-							Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-
 							PodAffinityTerm *struct {
 								LabelSelector *struct {
 									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 
 									MatchExpressions *[]struct {
-										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
 										Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 								} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
@@ -199,13 +194,11 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 
 								TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 							} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
+
+							Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 						} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
 
 						RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
-							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
 							LabelSelector *struct {
 								MatchExpressions *[]struct {
 									Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -229,6 +222,10 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
+							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 						} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 					} `tfsdk:"pod_affinity" yaml:"podAffinity,omitempty"`
 				} `tfsdk:"affinity" yaml:"affinity,omitempty"`
@@ -236,8 +233,6 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 				Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
 				Env *[]struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
 					Value *string `tfsdk:"value" yaml:"value,omitempty"`
 
 					ValueFrom *struct {
@@ -250,17 +245,17 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 						} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
 
 						FieldRef *struct {
-							ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
 							FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
+
+							ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
 						} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
 
 						ResourceFieldRef *struct {
-							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-
 							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
 							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+
+							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
 
 						SecretKeyRef *struct {
@@ -271,6 +266,8 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 						} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 				} `tfsdk:"env" yaml:"env,omitempty"`
 
 				Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
@@ -279,6 +276,10 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 
 				VolumeSize *string `tfsdk:"volume_size" yaml:"volumeSize,omitempty"`
 			} `tfsdk:"overrides" yaml:"overrides,omitempty"`
+
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			Managed *bool `tfsdk:"managed" yaml:"managed,omitempty"`
 		} `tfsdk:"components" yaml:"components,omitempty"`
 
 		ConfigBundleSecret *string `tfsdk:"config_bundle_secret" yaml:"configBundleSecret,omitempty"`
@@ -388,28 +389,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"kind": {
-								Description:         "Kind is the unique name of this type of component.",
-								MarkdownDescription: "Kind is the unique name of this type of component.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"managed": {
-								Description:         "Managed indicates whether or not the Operator is responsible for the lifecycle of this component. Default is true.",
-								MarkdownDescription: "Managed indicates whether or not the Operator is responsible for the lifecycle of this component. Default is true.",
-
-								Type: types.BoolType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
 							"overrides": {
 								Description:         "Overrides holds information regarding component specific configurations.",
 								MarkdownDescription: "Overrides holds information regarding component specific configurations.",
@@ -434,90 +413,11 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-															"weight": {
-																Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-																MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-
-																Type: types.Int64Type,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
 															"pod_affinity_term": {
 																Description:         "Required. A pod affinity term, associated with the corresponding weight.",
 																MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"label_selector": {
-																		Description:         "A label query over a set of resources, in this case pods.",
-																		MarkdownDescription: "A label query over a set of resources, in this case pods.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"match_expressions": {
-																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																				MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"key": {
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"operator": {
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"values": {
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																						Type: types.ListType{ElemType: types.StringType},
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"match_labels": {
-																				Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																				MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																				Type: types.MapType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
 
 																	"namespace_selector": {
 																		Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
@@ -608,7 +508,86 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 																		Optional: false,
 																		Computed: false,
 																	},
+
+																	"label_selector": {
+																		Description:         "A label query over a set of resources, in this case pods.",
+																		MarkdownDescription: "A label query over a set of resources, in this case pods.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"match_expressions": {
+																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																				MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"values": {
+																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																						Type: types.ListType{ElemType: types.StringType},
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"key": {
+																						Description:         "key is the label key that the selector applies to.",
+																						MarkdownDescription: "key is the label key that the selector applies to.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"operator": {
+																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"match_labels": {
+																				Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																				MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																				Type: types.MapType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
 																}),
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"weight": {
+																Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+
+																Type: types.Int64Type,
 
 																Required: true,
 																Optional: false,
@@ -626,17 +605,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 														MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"topology_key": {
-																Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
 
 															"label_selector": {
 																Description:         "A label query over a set of resources, in this case pods.",
@@ -718,6 +686,17 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+																			"key": {
+																				Description:         "key is the label key that the selector applies to.",
+																				MarkdownDescription: "key is the label key that the selector applies to.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
 																			"operator": {
 																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
@@ -737,17 +716,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 																				Required: false,
 																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"key": {
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
 																				Computed: false,
 																			},
 																		}),
@@ -782,6 +750,17 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 																Required: false,
 																Optional: true,
+																Computed: false,
+															},
+
+															"topology_key": {
+																Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
 																Computed: false,
 															},
 														}),
@@ -821,17 +800,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																			"key": {
-																				Description:         "The label key that the selector applies to.",
-																				MarkdownDescription: "The label key that the selector applies to.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
 																			"operator": {
 																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
@@ -851,6 +819,17 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 																				Required: false,
 																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"key": {
+																				Description:         "The label key that the selector applies to.",
+																				MarkdownDescription: "The label key that the selector applies to.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
 																				Computed: false,
 																			},
 																		}),
@@ -866,6 +845,17 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+																			"key": {
+																				Description:         "The label key that the selector applies to.",
+																				MarkdownDescription: "The label key that the selector applies to.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
 																			"operator": {
 																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
@@ -885,17 +875,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 																				Required: false,
 																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"key": {
-																				Description:         "The label key that the selector applies to.",
-																				MarkdownDescription: "The label key that the selector applies to.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
 																				Computed: false,
 																			},
 																		}),
@@ -1060,17 +1039,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-															"weight": {
-																Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-																MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-
-																Type: types.Int64Type,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
 															"pod_affinity_term": {
 																Description:         "Required. A pod affinity term, associated with the corresponding weight.",
 																MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
@@ -1100,17 +1068,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																					"values": {
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																						Type: types.ListType{ElemType: types.StringType},
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
 																					"key": {
 																						Description:         "key is the label key that the selector applies to.",
 																						MarkdownDescription: "key is the label key that the selector applies to.",
@@ -1130,6 +1087,17 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 																						Required: true,
 																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"values": {
+																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																						Type: types.ListType{ElemType: types.StringType},
+
+																						Required: false,
+																						Optional: true,
 																						Computed: false,
 																					},
 																				}),
@@ -1240,6 +1208,17 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 																Optional: false,
 																Computed: false,
 															},
+
+															"weight": {
+																Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+
+																Type: types.Int64Type,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
 														}),
 
 														Required: false,
@@ -1252,28 +1231,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 														MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"namespaces": {
-																Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"topology_key": {
-																Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
 
 															"label_selector": {
 																Description:         "A label query over a set of resources, in this case pods.",
@@ -1410,6 +1367,28 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 																Optional: true,
 																Computed: false,
 															},
+
+															"namespaces": {
+																Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"topology_key": {
+																Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
 														}),
 
 														Required: false,
@@ -1445,17 +1424,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 										MarkdownDescription: "",
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-												MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
 
 											"value": {
 												Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
@@ -1525,17 +1493,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"api_version": {
-																Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"field_path": {
 																Description:         "Path of the field to select in the specified API version.",
 																MarkdownDescription: "Path of the field to select in the specified API version.",
@@ -1544,6 +1501,17 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 																Required: true,
 																Optional: false,
+																Computed: false,
+															},
+
+															"api_version": {
+																Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
 																Computed: false,
 															},
 														}),
@@ -1558,17 +1526,6 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 														MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"resource": {
-																Description:         "Required: resource to select",
-																MarkdownDescription: "Required: resource to select",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
 
 															"container_name": {
 																Description:         "Container name: required for volumes, optional for env vars",
@@ -1589,6 +1546,17 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 																Required: false,
 																Optional: true,
+																Computed: false,
+															},
+
+															"resource": {
+																Description:         "Required: resource to select",
+																MarkdownDescription: "Required: resource to select",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
 																Computed: false,
 															},
 														}),
@@ -1648,6 +1616,17 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 												Optional: true,
 												Computed: false,
 											},
+
+											"name": {
+												Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+												MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
 										}),
 
 										Required: false,
@@ -1691,6 +1670,28 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 
 								Required: false,
 								Optional: true,
+								Computed: false,
+							},
+
+							"kind": {
+								Description:         "Kind is the unique name of this type of component.",
+								MarkdownDescription: "Kind is the unique name of this type of component.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"managed": {
+								Description:         "Managed indicates whether or not the Operator is responsible for the lifecycle of this component. Default is true.",
+								MarkdownDescription: "Managed indicates whether or not the Operator is responsible for the lifecycle of this component. Default is true.",
+
+								Type: types.BoolType,
+
+								Required: true,
+								Optional: false,
 								Computed: false,
 							},
 						}),

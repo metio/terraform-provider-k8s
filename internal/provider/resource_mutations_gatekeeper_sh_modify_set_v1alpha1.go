@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -58,12 +59,6 @@ type MutationsGatekeeperShModifySetV1Alpha1GoModel struct {
 		Location *string `tfsdk:"location" yaml:"location,omitempty"`
 
 		Match *struct {
-			Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-			Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
-
-			ExcludedNamespaces *[]string `tfsdk:"excluded_namespaces" yaml:"excludedNamespaces,omitempty"`
-
 			Kinds *[]struct {
 				ApiGroups *[]string `tfsdk:"api_groups" yaml:"apiGroups,omitempty"`
 
@@ -95,9 +90,17 @@ type MutationsGatekeeperShModifySetV1Alpha1GoModel struct {
 
 				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 			} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
+			Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+			Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
+
+			ExcludedNamespaces *[]string `tfsdk:"excluded_namespaces" yaml:"excludedNamespaces,omitempty"`
 		} `tfsdk:"match" yaml:"match,omitempty"`
 
 		Parameters *struct {
+			Operation *string `tfsdk:"operation" yaml:"operation,omitempty"`
+
 			PathTests *[]struct {
 				Condition *string `tfsdk:"condition" yaml:"condition,omitempty"`
 
@@ -105,8 +108,6 @@ type MutationsGatekeeperShModifySetV1Alpha1GoModel struct {
 			} `tfsdk:"path_tests" yaml:"pathTests,omitempty"`
 
 			Values *map[string]string `tfsdk:"values" yaml:"values,omitempty"`
-
-			Operation *string `tfsdk:"operation" yaml:"operation,omitempty"`
 		} `tfsdk:"parameters" yaml:"parameters,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -262,39 +263,6 @@ func (r *MutationsGatekeeperShModifySetV1Alpha1Resource) GetSchema(_ context.Con
 						MarkdownDescription: "Match allows the user to limit which resources get mutated. Individual match criteria are AND-ed together. An undefined match criteria matches everything.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"namespaces": {
-								Description:         "Namespaces is a list of namespace names. If defined, a constraint only applies to resources in a listed namespace.  Namespaces also supports a prefix or suffix based glob.  For example, 'namespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'namespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
-								MarkdownDescription: "Namespaces is a list of namespace names. If defined, a constraint only applies to resources in a listed namespace.  Namespaces also supports a prefix or suffix based glob.  For example, 'namespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'namespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"scope": {
-								Description:         "Scope determines if cluster-scoped and/or namespaced-scoped resources are matched.  Accepts '*', 'Cluster', or 'Namespaced'. (defaults to '*')",
-								MarkdownDescription: "Scope determines if cluster-scoped and/or namespaced-scoped resources are matched.  Accepts '*', 'Cluster', or 'Namespaced'. (defaults to '*')",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"excluded_namespaces": {
-								Description:         "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
-								MarkdownDescription: "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"kinds": {
 								Description:         "",
@@ -476,6 +444,39 @@ func (r *MutationsGatekeeperShModifySetV1Alpha1Resource) GetSchema(_ context.Con
 								Optional: true,
 								Computed: false,
 							},
+
+							"namespaces": {
+								Description:         "Namespaces is a list of namespace names. If defined, a constraint only applies to resources in a listed namespace.  Namespaces also supports a prefix or suffix based glob.  For example, 'namespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'namespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
+								MarkdownDescription: "Namespaces is a list of namespace names. If defined, a constraint only applies to resources in a listed namespace.  Namespaces also supports a prefix or suffix based glob.  For example, 'namespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'namespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"scope": {
+								Description:         "Scope determines if cluster-scoped and/or namespaced-scoped resources are matched.  Accepts '*', 'Cluster', or 'Namespaced'. (defaults to '*')",
+								MarkdownDescription: "Scope determines if cluster-scoped and/or namespaced-scoped resources are matched.  Accepts '*', 'Cluster', or 'Namespaced'. (defaults to '*')",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"excluded_namespaces": {
+								Description:         "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
+								MarkdownDescription: "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						}),
 
 						Required: false,
@@ -488,6 +489,17 @@ func (r *MutationsGatekeeperShModifySetV1Alpha1Resource) GetSchema(_ context.Con
 						MarkdownDescription: "Parameters define the behavior of the mutator.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"operation": {
+								Description:         "Operation describes whether values should be merged in ('merge'), or pruned ('prune'). Default value is 'merge'",
+								MarkdownDescription: "Operation describes whether values should be merged in ('merge'), or pruned ('prune'). Default value is 'merge'",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"path_tests": {
 								Description:         "PathTests are a series of existence tests that can be checked before a mutation is applied",
@@ -528,17 +540,6 @@ func (r *MutationsGatekeeperShModifySetV1Alpha1Resource) GetSchema(_ context.Con
 								MarkdownDescription: "Values describes the values provided to the operation as 'values.fromList'.",
 
 								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"operation": {
-								Description:         "Operation describes whether values should be merged in ('merge'), or pruned ('prune'). Default value is 'merge'",
-								MarkdownDescription: "Operation describes whether values should be merged in ('merge'), or pruned ('prune'). Default value is 'merge'",
-
-								Type: types.StringType,
 
 								Required: false,
 								Optional: true,

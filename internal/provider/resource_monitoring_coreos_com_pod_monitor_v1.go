@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,87 +50,27 @@ type MonitoringCoreosComPodMonitorV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		SampleLimit *int64 `tfsdk:"sample_limit" yaml:"sampleLimit,omitempty"`
-
-		Selector *struct {
-			MatchExpressions *[]struct {
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-				Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-				Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-			} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-		} `tfsdk:"selector" yaml:"selector,omitempty"`
-
-		AttachMetadata *struct {
-			Node *bool `tfsdk:"node" yaml:"node,omitempty"`
-		} `tfsdk:"attach_metadata" yaml:"attachMetadata,omitempty"`
-
-		LabelNameLengthLimit *int64 `tfsdk:"label_name_length_limit" yaml:"labelNameLengthLimit,omitempty"`
-
-		NamespaceSelector *struct {
-			Any *bool `tfsdk:"any" yaml:"any,omitempty"`
-
-			MatchNames *[]string `tfsdk:"match_names" yaml:"matchNames,omitempty"`
-		} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-
-		PodTargetLabels *[]string `tfsdk:"pod_target_labels" yaml:"podTargetLabels,omitempty"`
-
-		TargetLimit *int64 `tfsdk:"target_limit" yaml:"targetLimit,omitempty"`
-
-		JobLabel *string `tfsdk:"job_label" yaml:"jobLabel,omitempty"`
-
-		LabelLimit *int64 `tfsdk:"label_limit" yaml:"labelLimit,omitempty"`
-
-		LabelValueLengthLimit *int64 `tfsdk:"label_value_length_limit" yaml:"labelValueLengthLimit,omitempty"`
-
 		PodMetricsEndpoints *[]struct {
 			Authorization *struct {
 				Credentials *struct {
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 				} `tfsdk:"credentials" yaml:"credentials,omitempty"`
 
 				Type *string `tfsdk:"type" yaml:"type,omitempty"`
 			} `tfsdk:"authorization" yaml:"authorization,omitempty"`
 
-			HonorLabels *bool `tfsdk:"honor_labels" yaml:"honorLabels,omitempty"`
+			FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
 
-			MetricRelabelings *[]struct {
-				Separator *string `tfsdk:"separator" yaml:"separator,omitempty"`
-
-				SourceLabels *[]string `tfsdk:"source_labels" yaml:"sourceLabels,omitempty"`
-
-				TargetLabel *string `tfsdk:"target_label" yaml:"targetLabel,omitempty"`
-
-				Action *string `tfsdk:"action" yaml:"action,omitempty"`
-
-				Modulus *int64 `tfsdk:"modulus" yaml:"modulus,omitempty"`
-
-				Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
-
-				Replacement *string `tfsdk:"replacement" yaml:"replacement,omitempty"`
-			} `tfsdk:"metric_relabelings" yaml:"metricRelabelings,omitempty"`
+			HonorTimestamps *bool `tfsdk:"honor_timestamps" yaml:"honorTimestamps,omitempty"`
 
 			Port *string `tfsdk:"port" yaml:"port,omitempty"`
 
-			TargetPort *string `tfsdk:"target_port" yaml:"targetPort,omitempty"`
-
 			TlsConfig *struct {
 				Ca *struct {
-					Secret *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"secret" yaml:"secret,omitempty"`
-
 					ConfigMap *struct {
 						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -137,17 +78,17 @@ type MonitoringCoreosComPodMonitorV1GoModel struct {
 
 						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 					} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+					Secret *struct {
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"secret" yaml:"secret,omitempty"`
 				} `tfsdk:"ca" yaml:"ca,omitempty"`
 
 				Cert *struct {
-					ConfigMap *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-					} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
 					Secret *struct {
 						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -155,6 +96,14 @@ type MonitoringCoreosComPodMonitorV1GoModel struct {
 
 						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 					} `tfsdk:"secret" yaml:"secret,omitempty"`
+
+					ConfigMap *struct {
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"config_map" yaml:"configMap,omitempty"`
 				} `tfsdk:"cert" yaml:"cert,omitempty"`
 
 				InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
@@ -170,19 +119,11 @@ type MonitoringCoreosComPodMonitorV1GoModel struct {
 				ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
 			} `tfsdk:"tls_config" yaml:"tlsConfig,omitempty"`
 
-			BearerTokenSecret *struct {
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+			EnableHttp2 *bool `tfsdk:"enable_http2" yaml:"enableHttp2,omitempty"`
 
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			MetricRelabelings *[]struct {
+				Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
 
-				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-			} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
-
-			FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
-
-			HonorTimestamps *bool `tfsdk:"honor_timestamps" yaml:"honorTimestamps,omitempty"`
-
-			Relabelings *[]struct {
 				Replacement *string `tfsdk:"replacement" yaml:"replacement,omitempty"`
 
 				Separator *string `tfsdk:"separator" yaml:"separator,omitempty"`
@@ -194,21 +135,45 @@ type MonitoringCoreosComPodMonitorV1GoModel struct {
 				Action *string `tfsdk:"action" yaml:"action,omitempty"`
 
 				Modulus *int64 `tfsdk:"modulus" yaml:"modulus,omitempty"`
+			} `tfsdk:"metric_relabelings" yaml:"metricRelabelings,omitempty"`
+
+			Relabelings *[]struct {
+				Action *string `tfsdk:"action" yaml:"action,omitempty"`
+
+				Modulus *int64 `tfsdk:"modulus" yaml:"modulus,omitempty"`
 
 				Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
+
+				Replacement *string `tfsdk:"replacement" yaml:"replacement,omitempty"`
+
+				Separator *string `tfsdk:"separator" yaml:"separator,omitempty"`
+
+				SourceLabels *[]string `tfsdk:"source_labels" yaml:"sourceLabels,omitempty"`
+
+				TargetLabel *string `tfsdk:"target_label" yaml:"targetLabel,omitempty"`
 			} `tfsdk:"relabelings" yaml:"relabelings,omitempty"`
 
 			ScrapeTimeout *string `tfsdk:"scrape_timeout" yaml:"scrapeTimeout,omitempty"`
 
+			Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+			ProxyUrl *string `tfsdk:"proxy_url" yaml:"proxyUrl,omitempty"`
+
+			BearerTokenSecret *struct {
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+			} `tfsdk:"bearer_token_secret" yaml:"bearerTokenSecret,omitempty"`
+
+			HonorLabels *bool `tfsdk:"honor_labels" yaml:"honorLabels,omitempty"`
+
+			Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+			Params *map[string][]string `tfsdk:"params" yaml:"params,omitempty"`
+
 			BasicAuth *struct {
-				Password *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-				} `tfsdk:"password" yaml:"password,omitempty"`
-
 				Username *struct {
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -216,13 +181,15 @@ type MonitoringCoreosComPodMonitorV1GoModel struct {
 
 					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 				} `tfsdk:"username" yaml:"username,omitempty"`
+
+				Password *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"password" yaml:"password,omitempty"`
 			} `tfsdk:"basic_auth" yaml:"basicAuth,omitempty"`
-
-			EnableHttp2 *bool `tfsdk:"enable_http2" yaml:"enableHttp2,omitempty"`
-
-			Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-			Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
 			Oauth2 *struct {
 				TokenUrl *string `tfsdk:"token_url" yaml:"tokenUrl,omitempty"`
@@ -246,11 +213,11 @@ type MonitoringCoreosComPodMonitorV1GoModel struct {
 				} `tfsdk:"client_id" yaml:"clientId,omitempty"`
 
 				ClientSecret *struct {
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 				} `tfsdk:"client_secret" yaml:"clientSecret,omitempty"`
 
 				EndpointParams *map[string]string `tfsdk:"endpoint_params" yaml:"endpointParams,omitempty"`
@@ -258,12 +225,46 @@ type MonitoringCoreosComPodMonitorV1GoModel struct {
 				Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
 			} `tfsdk:"oauth2" yaml:"oauth2,omitempty"`
 
-			Params *map[string][]string `tfsdk:"params" yaml:"params,omitempty"`
-
-			ProxyUrl *string `tfsdk:"proxy_url" yaml:"proxyUrl,omitempty"`
-
 			Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+			TargetPort *string `tfsdk:"target_port" yaml:"targetPort,omitempty"`
 		} `tfsdk:"pod_metrics_endpoints" yaml:"podMetricsEndpoints,omitempty"`
+
+		PodTargetLabels *[]string `tfsdk:"pod_target_labels" yaml:"podTargetLabels,omitempty"`
+
+		TargetLimit *int64 `tfsdk:"target_limit" yaml:"targetLimit,omitempty"`
+
+		LabelNameLengthLimit *int64 `tfsdk:"label_name_length_limit" yaml:"labelNameLengthLimit,omitempty"`
+
+		LabelValueLengthLimit *int64 `tfsdk:"label_value_length_limit" yaml:"labelValueLengthLimit,omitempty"`
+
+		LabelLimit *int64 `tfsdk:"label_limit" yaml:"labelLimit,omitempty"`
+
+		NamespaceSelector *struct {
+			Any *bool `tfsdk:"any" yaml:"any,omitempty"`
+
+			MatchNames *[]string `tfsdk:"match_names" yaml:"matchNames,omitempty"`
+		} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
+		SampleLimit *int64 `tfsdk:"sample_limit" yaml:"sampleLimit,omitempty"`
+
+		Selector *struct {
+			MatchExpressions *[]struct {
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+				Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+				Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+			} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+		} `tfsdk:"selector" yaml:"selector,omitempty"`
+
+		AttachMetadata *struct {
+			Node *bool `tfsdk:"node" yaml:"node,omitempty"`
+		} `tfsdk:"attach_metadata" yaml:"attachMetadata,omitempty"`
+
+		JobLabel *string `tfsdk:"job_label" yaml:"jobLabel,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -364,208 +365,6 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"sample_limit": {
-						Description:         "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.",
-						MarkdownDescription: "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"selector": {
-						Description:         "Selector to select Pod objects.",
-						MarkdownDescription: "Selector to select Pod objects.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"match_expressions": {
-								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"key": {
-										Description:         "key is the label key that the selector applies to.",
-										MarkdownDescription: "key is the label key that the selector applies to.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"operator": {
-										Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-										MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"values": {
-										Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"match_labels": {
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"attach_metadata": {
-						Description:         "Attaches node metadata to discovered targets. Only valid for role: pod. Only valid in Prometheus versions 2.35.0 and newer.",
-						MarkdownDescription: "Attaches node metadata to discovered targets. Only valid for role: pod. Only valid in Prometheus versions 2.35.0 and newer.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"node": {
-								Description:         "When set to true, Prometheus must have permissions to get Nodes.",
-								MarkdownDescription: "When set to true, Prometheus must have permissions to get Nodes.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"label_name_length_limit": {
-						Description:         "Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"namespace_selector": {
-						Description:         "Selector to select which namespaces the Endpoints objects are discovered from.",
-						MarkdownDescription: "Selector to select which namespaces the Endpoints objects are discovered from.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"any": {
-								Description:         "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
-								MarkdownDescription: "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"match_names": {
-								Description:         "List of namespace names to select from.",
-								MarkdownDescription: "List of namespace names to select from.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"pod_target_labels": {
-						Description:         "PodTargetLabels transfers labels on the Kubernetes Pod onto the target.",
-						MarkdownDescription: "PodTargetLabels transfers labels on the Kubernetes Pod onto the target.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"target_limit": {
-						Description:         "TargetLimit defines a limit on the number of scraped targets that will be accepted.",
-						MarkdownDescription: "TargetLimit defines a limit on the number of scraped targets that will be accepted.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"job_label": {
-						Description:         "The label to use to retrieve the job name from.",
-						MarkdownDescription: "The label to use to retrieve the job name from.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"label_limit": {
-						Description:         "Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"label_value_length_limit": {
-						Description:         "Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"pod_metrics_endpoints": {
 						Description:         "A list of endpoints allowed as part of this PodMonitor.",
 						MarkdownDescription: "A list of endpoints allowed as part of this PodMonitor.",
@@ -584,6 +383,17 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+											"optional": {
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"key": {
 												Description:         "The key of the secret to select from.  Must be a valid secret key.",
 												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
@@ -600,17 +410,6 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 
 												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-												Type: types.BoolType,
 
 												Required: false,
 												Optional: true,
@@ -640,9 +439,9 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 
-							"honor_labels": {
-								Description:         "HonorLabels chooses the metric's labels on collisions with target labels.",
-								MarkdownDescription: "HonorLabels chooses the metric's labels on collisions with target labels.",
+							"follow_redirects": {
+								Description:         "FollowRedirects configures whether scrape requests follow HTTP 3xx redirects.",
+								MarkdownDescription: "FollowRedirects configures whether scrape requests follow HTTP 3xx redirects.",
 
 								Type: types.BoolType,
 
@@ -651,89 +450,11 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 
-							"metric_relabelings": {
-								Description:         "MetricRelabelConfigs to apply to samples before ingestion.",
-								MarkdownDescription: "MetricRelabelConfigs to apply to samples before ingestion.",
+							"honor_timestamps": {
+								Description:         "HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.",
+								MarkdownDescription: "HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.",
 
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"separator": {
-										Description:         "Separator placed between concatenated source label values. default is ';'.",
-										MarkdownDescription: "Separator placed between concatenated source label values. default is ';'.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"source_labels": {
-										Description:         "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
-										MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"target_label": {
-										Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
-										MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"action": {
-										Description:         "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
-										MarkdownDescription: "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"modulus": {
-										Description:         "Modulus to take of the hash of the source label values.",
-										MarkdownDescription: "Modulus to take of the hash of the source label values.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"regex": {
-										Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-										MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"replacement": {
-										Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
-										MarkdownDescription: "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
+								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,
@@ -743,17 +464,6 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 							"port": {
 								Description:         "Name of the pod port this endpoint refers to. Mutually exclusive with targetPort.",
 								MarkdownDescription: "Name of the pod port this endpoint refers to. Mutually exclusive with targetPort.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"target_port": {
-								Description:         "Deprecated: Use 'port' instead.",
-								MarkdownDescription: "Deprecated: Use 'port' instead.",
 
 								Type: types.StringType,
 
@@ -773,51 +483,6 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 										MarkdownDescription: "Struct containing the CA cert to use for the targets.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"secret": {
-												Description:         "Secret containing data to use for the targets.",
-												MarkdownDescription: "Secret containing data to use for the targets.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"key": {
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "Specify whether the Secret or its key must be defined",
-														MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
 											"config_map": {
 												Description:         "ConfigMap containing data to use for the targets.",
@@ -850,6 +515,51 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 													"optional": {
 														Description:         "Specify whether the ConfigMap or its key must be defined",
 														MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret": {
+												Description:         "Secret containing data to use for the targets.",
+												MarkdownDescription: "Secret containing data to use for the targets.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"key": {
+														Description:         "The key of the secret to select from.  Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
 
 														Type: types.BoolType,
 
@@ -876,51 +586,6 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"config_map": {
-												Description:         "ConfigMap containing data to use for the targets.",
-												MarkdownDescription: "ConfigMap containing data to use for the targets.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"key": {
-														Description:         "The key to select.",
-														MarkdownDescription: "The key to select.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"optional": {
-														Description:         "Specify whether the ConfigMap or its key must be defined",
-														MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"secret": {
 												Description:         "Secret containing data to use for the targets.",
 												MarkdownDescription: "Secret containing data to use for the targets.",
@@ -952,6 +617,51 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 													"optional": {
 														Description:         "Specify whether the Secret or its key must be defined",
 														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"config_map": {
+												Description:         "ConfigMap containing data to use for the targets.",
+												MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"key": {
+														Description:         "The key to select.",
+														MarkdownDescription: "The key to select.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "Specify whether the ConfigMap or its key must be defined",
+														MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
 
 														Type: types.BoolType,
 
@@ -1045,54 +755,9 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 
-							"bearer_token_secret": {
-								Description:         "Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the pod monitor and accessible by the Prometheus Operator.",
-								MarkdownDescription: "Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the pod monitor and accessible by the Prometheus Operator.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"key": {
-										Description:         "The key of the secret to select from.  Must be a valid secret key.",
-										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"optional": {
-										Description:         "Specify whether the Secret or its key must be defined",
-										MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"follow_redirects": {
-								Description:         "FollowRedirects configures whether scrape requests follow HTTP 3xx redirects.",
-								MarkdownDescription: "FollowRedirects configures whether scrape requests follow HTTP 3xx redirects.",
+							"enable_http2": {
+								Description:         "Whether to enable HTTP2.",
+								MarkdownDescription: "Whether to enable HTTP2.",
 
 								Type: types.BoolType,
 
@@ -1101,22 +766,22 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 
-							"honor_timestamps": {
-								Description:         "HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.",
-								MarkdownDescription: "HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"relabelings": {
-								Description:         "RelabelConfigs to apply to samples before scraping. Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
-								MarkdownDescription: "RelabelConfigs to apply to samples before scraping. Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+							"metric_relabelings": {
+								Description:         "MetricRelabelConfigs to apply to samples before ingestion.",
+								MarkdownDescription: "MetricRelabelConfigs to apply to samples before ingestion.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"regex": {
+										Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
+										MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"replacement": {
 										Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
@@ -1183,10 +848,88 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 										Optional: true,
 										Computed: false,
 									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"relabelings": {
+								Description:         "RelabelConfigs to apply to samples before scraping. Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+								MarkdownDescription: "RelabelConfigs to apply to samples before scraping. Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"action": {
+										Description:         "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
+										MarkdownDescription: "Action to perform based on regex matching. Default is 'replace'. uppercase and lowercase actions require Prometheus >= 2.36.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"modulus": {
+										Description:         "Modulus to take of the hash of the source label values.",
+										MarkdownDescription: "Modulus to take of the hash of the source label values.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"regex": {
 										Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
 										MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"replacement": {
+										Description:         "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
+										MarkdownDescription: "Replacement value against which a regex replace is performed if the regular expression matches. Regex capture groups are available. Default is '$1'",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"separator": {
+										Description:         "Separator placed between concatenated source label values. default is ';'.",
+										MarkdownDescription: "Separator placed between concatenated source label values. default is ';'.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"source_labels": {
+										Description:         "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
+										MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"target_label": {
+										Description:         "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
+										MarkdownDescription: "Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.",
 
 										Type: types.StringType,
 
@@ -1212,56 +955,111 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 
-							"basic_auth": {
-								Description:         "BasicAuth allow an endpoint to authenticate over basic authentication. More info: https://prometheus.io/docs/operating/configuration/#endpoint",
-								MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authentication. More info: https://prometheus.io/docs/operating/configuration/#endpoint",
+							"path": {
+								Description:         "HTTP path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
+								MarkdownDescription: "HTTP path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"proxy_url": {
+								Description:         "ProxyURL eg http://proxyserver:2195 Directs scrapes to proxy through this endpoint.",
+								MarkdownDescription: "ProxyURL eg http://proxyserver:2195 Directs scrapes to proxy through this endpoint.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"bearer_token_secret": {
+								Description:         "Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the pod monitor and accessible by the Prometheus Operator.",
+								MarkdownDescription: "Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the pod monitor and accessible by the Prometheus Operator.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"password": {
-										Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-										MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+									"key": {
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
 
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+										Type: types.StringType,
 
-											"key": {
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
 
-												Type: types.StringType,
+									"name": {
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
+
+									"optional": {
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"honor_labels": {
+								Description:         "HonorLabels chooses the metric's labels on collisions with target labels.",
+								MarkdownDescription: "HonorLabels chooses the metric's labels on collisions with target labels.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"interval": {
+								Description:         "Interval at which metrics should be scraped If not specified Prometheus' global scrape interval is used.",
+								MarkdownDescription: "Interval at which metrics should be scraped If not specified Prometheus' global scrape interval is used.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"params": {
+								Description:         "Optional HTTP URL parameters",
+								MarkdownDescription: "Optional HTTP URL parameters",
+
+								Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"basic_auth": {
+								Description:         "BasicAuth allow an endpoint to authenticate over basic authentication. More info: https://prometheus.io/docs/operating/configuration/#endpoint",
+								MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authentication. More info: https://prometheus.io/docs/operating/configuration/#endpoint",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 									"username": {
 										Description:         "The secret in the service monitor namespace that contains the username for authentication.",
@@ -1307,40 +1105,52 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 										Optional: true,
 										Computed: false,
 									},
+
+									"password": {
+										Description:         "The secret in the service monitor namespace that contains the password for authentication.",
+										MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"enable_http2": {
-								Description:         "Whether to enable HTTP2.",
-								MarkdownDescription: "Whether to enable HTTP2.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"interval": {
-								Description:         "Interval at which metrics should be scraped If not specified Prometheus' global scrape interval is used.",
-								MarkdownDescription: "Interval at which metrics should be scraped If not specified Prometheus' global scrape interval is used.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"path": {
-								Description:         "HTTP path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
-								MarkdownDescription: "HTTP path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
-
-								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
@@ -1472,17 +1282,6 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"optional": {
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"key": {
 												Description:         "The key of the secret to select from.  Must be a valid secret key.",
 												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
@@ -1499,6 +1298,17 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 
 												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+												Type: types.BoolType,
 
 												Required: false,
 												Optional: true,
@@ -1539,20 +1349,9 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 
-							"params": {
-								Description:         "Optional HTTP URL parameters",
-								MarkdownDescription: "Optional HTTP URL parameters",
-
-								Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"proxy_url": {
-								Description:         "ProxyURL eg http://proxyserver:2195 Directs scrapes to proxy through this endpoint.",
-								MarkdownDescription: "ProxyURL eg http://proxyserver:2195 Directs scrapes to proxy through this endpoint.",
+							"scheme": {
+								Description:         "HTTP scheme to use for scraping.",
+								MarkdownDescription: "HTTP scheme to use for scraping.",
 
 								Type: types.StringType,
 
@@ -1561,9 +1360,9 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 
-							"scheme": {
-								Description:         "HTTP scheme to use for scraping.",
-								MarkdownDescription: "HTTP scheme to use for scraping.",
+							"target_port": {
+								Description:         "Deprecated: Use 'port' instead.",
+								MarkdownDescription: "Deprecated: Use 'port' instead.",
 
 								Type: types.StringType,
 
@@ -1575,6 +1374,208 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"pod_target_labels": {
+						Description:         "PodTargetLabels transfers labels on the Kubernetes Pod onto the target.",
+						MarkdownDescription: "PodTargetLabels transfers labels on the Kubernetes Pod onto the target.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"target_limit": {
+						Description:         "TargetLimit defines a limit on the number of scraped targets that will be accepted.",
+						MarkdownDescription: "TargetLimit defines a limit on the number of scraped targets that will be accepted.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"label_name_length_limit": {
+						Description:         "Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+						MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"label_value_length_limit": {
+						Description:         "Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+						MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"label_limit": {
+						Description:         "Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+						MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"namespace_selector": {
+						Description:         "Selector to select which namespaces the Endpoints objects are discovered from.",
+						MarkdownDescription: "Selector to select which namespaces the Endpoints objects are discovered from.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"any": {
+								Description:         "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
+								MarkdownDescription: "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"match_names": {
+								Description:         "List of namespace names to select from.",
+								MarkdownDescription: "List of namespace names to select from.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"sample_limit": {
+						Description:         "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.",
+						MarkdownDescription: "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"selector": {
+						Description:         "Selector to select Pod objects.",
+						MarkdownDescription: "Selector to select Pod objects.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"match_expressions": {
+								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"key": {
+										Description:         "key is the label key that the selector applies to.",
+										MarkdownDescription: "key is the label key that the selector applies to.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"operator": {
+										Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+										MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"values": {
+										Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"match_labels": {
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"attach_metadata": {
+						Description:         "Attaches node metadata to discovered targets. Only valid for role: pod. Only valid in Prometheus versions 2.35.0 and newer.",
+						MarkdownDescription: "Attaches node metadata to discovered targets. Only valid for role: pod. Only valid in Prometheus versions 2.35.0 and newer.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"node": {
+								Description:         "When set to true, Prometheus must have permissions to get Nodes.",
+								MarkdownDescription: "When set to true, Prometheus must have permissions to get Nodes.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"job_label": {
+						Description:         "The label to use to retrieve the job name from.",
+						MarkdownDescription: "The label to use to retrieve the job name from.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 				}),

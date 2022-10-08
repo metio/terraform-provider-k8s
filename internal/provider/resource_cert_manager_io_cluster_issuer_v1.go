@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -47,39 +48,59 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Venafi *struct {
+			Cloud *struct {
+				ApiTokenSecretRef *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+				} `tfsdk:"api_token_secret_ref" yaml:"apiTokenSecretRef,omitempty"`
+
+				Url *string `tfsdk:"url" yaml:"url,omitempty"`
+			} `tfsdk:"cloud" yaml:"cloud,omitempty"`
+
+			Tpp *struct {
+				CaBundle *string `tfsdk:"ca_bundle" yaml:"caBundle,omitempty"`
+
+				CredentialsRef *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"credentials_ref" yaml:"credentialsRef,omitempty"`
+
+				Url *string `tfsdk:"url" yaml:"url,omitempty"`
+			} `tfsdk:"tpp" yaml:"tpp,omitempty"`
+
+			Zone *string `tfsdk:"zone" yaml:"zone,omitempty"`
+		} `tfsdk:"venafi" yaml:"venafi,omitempty"`
+
 		Acme *struct {
 			DisableAccountKeyGeneration *bool `tfsdk:"disable_account_key_generation" yaml:"disableAccountKeyGeneration,omitempty"`
 
 			EnableDurationFeature *bool `tfsdk:"enable_duration_feature" yaml:"enableDurationFeature,omitempty"`
 
 			ExternalAccountBinding *struct {
+				KeyAlgorithm *string `tfsdk:"key_algorithm" yaml:"keyAlgorithm,omitempty"`
+
+				KeyID *string `tfsdk:"key_id" yaml:"keyID,omitempty"`
+
 				KeySecretRef *struct {
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 				} `tfsdk:"key_secret_ref" yaml:"keySecretRef,omitempty"`
-
-				KeyAlgorithm *string `tfsdk:"key_algorithm" yaml:"keyAlgorithm,omitempty"`
-
-				KeyID *string `tfsdk:"key_id" yaml:"keyID,omitempty"`
 			} `tfsdk:"external_account_binding" yaml:"externalAccountBinding,omitempty"`
 
 			SkipTLSVerify *bool `tfsdk:"skip_tls_verify" yaml:"skipTLSVerify,omitempty"`
 
-			Email *string `tfsdk:"email" yaml:"email,omitempty"`
-
-			PreferredChain *string `tfsdk:"preferred_chain" yaml:"preferredChain,omitempty"`
-
-			PrivateKeySecretRef *struct {
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"private_key_secret_ref" yaml:"privateKeySecretRef,omitempty"`
-
-			Server *string `tfsdk:"server" yaml:"server,omitempty"`
-
 			Solvers *[]struct {
 				Dns01 *struct {
+					Webhook *struct {
+						Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+
+						GroupName *string `tfsdk:"group_name" yaml:"groupName,omitempty"`
+
+						SolverName *string `tfsdk:"solver_name" yaml:"solverName,omitempty"`
+					} `tfsdk:"webhook" yaml:"webhook,omitempty"`
+
 					AcmeDNS *struct {
 						AccountSecretRef *struct {
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -90,15 +111,57 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 					} `tfsdk:"acme_dns" yaml:"acmeDNS,omitempty"`
 
-					Akamai *struct {
-						ClientTokenSecretRef *struct {
+					CloudDNS *struct {
+						HostedZoneName *string `tfsdk:"hosted_zone_name" yaml:"hostedZoneName,omitempty"`
+
+						Project *string `tfsdk:"project" yaml:"project,omitempty"`
+
+						ServiceAccountSecretRef *struct {
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-						} `tfsdk:"client_token_secret_ref" yaml:"clientTokenSecretRef,omitempty"`
+						} `tfsdk:"service_account_secret_ref" yaml:"serviceAccountSecretRef,omitempty"`
+					} `tfsdk:"cloud_dns" yaml:"cloudDNS,omitempty"`
 
-						ServiceConsumerDomain *string `tfsdk:"service_consumer_domain" yaml:"serviceConsumerDomain,omitempty"`
+					CnameStrategy *string `tfsdk:"cname_strategy" yaml:"cnameStrategy,omitempty"`
 
+					Rfc2136 *struct {
+						Nameserver *string `tfsdk:"nameserver" yaml:"nameserver,omitempty"`
+
+						TsigAlgorithm *string `tfsdk:"tsig_algorithm" yaml:"tsigAlgorithm,omitempty"`
+
+						TsigKeyName *string `tfsdk:"tsig_key_name" yaml:"tsigKeyName,omitempty"`
+
+						TsigSecretSecretRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"tsig_secret_secret_ref" yaml:"tsigSecretSecretRef,omitempty"`
+					} `tfsdk:"rfc2136" yaml:"rfc2136,omitempty"`
+
+					Route53 *struct {
+						SecretAccessKeySecretRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"secret_access_key_secret_ref" yaml:"secretAccessKeySecretRef,omitempty"`
+
+						AccessKeyID *string `tfsdk:"access_key_id" yaml:"accessKeyID,omitempty"`
+
+						AccessKeyIDSecretRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"access_key_id_secret_ref" yaml:"accessKeyIDSecretRef,omitempty"`
+
+						HostedZoneID *string `tfsdk:"hosted_zone_id" yaml:"hostedZoneID,omitempty"`
+
+						Region *string `tfsdk:"region" yaml:"region,omitempty"`
+
+						Role *string `tfsdk:"role" yaml:"role,omitempty"`
+					} `tfsdk:"route53" yaml:"route53,omitempty"`
+
+					Akamai *struct {
 						AccessTokenSecretRef *struct {
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -110,9 +173,23 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
 						} `tfsdk:"client_secret_secret_ref" yaml:"clientSecretSecretRef,omitempty"`
+
+						ClientTokenSecretRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"client_token_secret_ref" yaml:"clientTokenSecretRef,omitempty"`
+
+						ServiceConsumerDomain *string `tfsdk:"service_consumer_domain" yaml:"serviceConsumerDomain,omitempty"`
 					} `tfsdk:"akamai" yaml:"akamai,omitempty"`
 
 					AzureDNS *struct {
+						ClientSecretSecretRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"client_secret_secret_ref" yaml:"clientSecretSecretRef,omitempty"`
+
 						Environment *string `tfsdk:"environment" yaml:"environment,omitempty"`
 
 						HostedZoneName *string `tfsdk:"hosted_zone_name" yaml:"hostedZoneName,omitempty"`
@@ -130,57 +207,7 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 						TenantID *string `tfsdk:"tenant_id" yaml:"tenantID,omitempty"`
 
 						ClientID *string `tfsdk:"client_id" yaml:"clientID,omitempty"`
-
-						ClientSecretSecretRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-						} `tfsdk:"client_secret_secret_ref" yaml:"clientSecretSecretRef,omitempty"`
 					} `tfsdk:"azure_dns" yaml:"azureDNS,omitempty"`
-
-					CnameStrategy *string `tfsdk:"cname_strategy" yaml:"cnameStrategy,omitempty"`
-
-					Route53 *struct {
-						AccessKeyIDSecretRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-						} `tfsdk:"access_key_id_secret_ref" yaml:"accessKeyIDSecretRef,omitempty"`
-
-						HostedZoneID *string `tfsdk:"hosted_zone_id" yaml:"hostedZoneID,omitempty"`
-
-						Region *string `tfsdk:"region" yaml:"region,omitempty"`
-
-						Role *string `tfsdk:"role" yaml:"role,omitempty"`
-
-						SecretAccessKeySecretRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-						} `tfsdk:"secret_access_key_secret_ref" yaml:"secretAccessKeySecretRef,omitempty"`
-
-						AccessKeyID *string `tfsdk:"access_key_id" yaml:"accessKeyID,omitempty"`
-					} `tfsdk:"route53" yaml:"route53,omitempty"`
-
-					Webhook *struct {
-						Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
-
-						GroupName *string `tfsdk:"group_name" yaml:"groupName,omitempty"`
-
-						SolverName *string `tfsdk:"solver_name" yaml:"solverName,omitempty"`
-					} `tfsdk:"webhook" yaml:"webhook,omitempty"`
-
-					CloudDNS *struct {
-						HostedZoneName *string `tfsdk:"hosted_zone_name" yaml:"hostedZoneName,omitempty"`
-
-						Project *string `tfsdk:"project" yaml:"project,omitempty"`
-
-						ServiceAccountSecretRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-						} `tfsdk:"service_account_secret_ref" yaml:"serviceAccountSecretRef,omitempty"`
-					} `tfsdk:"cloud_dns" yaml:"cloudDNS,omitempty"`
 
 					Cloudflare *struct {
 						ApiKeySecretRef *struct {
@@ -205,24 +232,12 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
 						} `tfsdk:"token_secret_ref" yaml:"tokenSecretRef,omitempty"`
 					} `tfsdk:"digitalocean" yaml:"digitalocean,omitempty"`
-
-					Rfc2136 *struct {
-						Nameserver *string `tfsdk:"nameserver" yaml:"nameserver,omitempty"`
-
-						TsigAlgorithm *string `tfsdk:"tsig_algorithm" yaml:"tsigAlgorithm,omitempty"`
-
-						TsigKeyName *string `tfsdk:"tsig_key_name" yaml:"tsigKeyName,omitempty"`
-
-						TsigSecretSecretRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-						} `tfsdk:"tsig_secret_secret_ref" yaml:"tsigSecretSecretRef,omitempty"`
-					} `tfsdk:"rfc2136" yaml:"rfc2136,omitempty"`
 				} `tfsdk:"dns01" yaml:"dns01,omitempty"`
 
 				Http01 *struct {
 					GatewayHTTPRoute *struct {
+						Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+
 						ParentRefs *[]struct {
 							Group *string `tfsdk:"group" yaml:"group,omitempty"`
 
@@ -236,16 +251,16 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 						} `tfsdk:"parent_refs" yaml:"parentRefs,omitempty"`
 
 						ServiceType *string `tfsdk:"service_type" yaml:"serviceType,omitempty"`
-
-						Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
 					} `tfsdk:"gateway_http_route" yaml:"gatewayHTTPRoute,omitempty"`
 
 					Ingress *struct {
+						Class *string `tfsdk:"class" yaml:"class,omitempty"`
+
 						IngressTemplate *struct {
 							Metadata *struct {
-								Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-
 								Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+
+								Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
 							} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 						} `tfsdk:"ingress_template" yaml:"ingressTemplate,omitempty"`
 
@@ -261,26 +276,6 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 							Spec *struct {
 								Affinity *struct {
 									NodeAffinity *struct {
-										RequiredDuringSchedulingIgnoredDuringExecution *struct {
-											NodeSelectorTerms *[]struct {
-												MatchExpressions *[]struct {
-													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-													Key *string `tfsdk:"key" yaml:"key,omitempty"`
-												} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-												MatchFields *[]struct {
-													Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-												} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
-											} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
-										} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
-
 										PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 											Preference *struct {
 												MatchExpressions *[]struct {
@@ -292,28 +287,50 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 												} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 												MatchFields *[]struct {
-													Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
 													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+													Key *string `tfsdk:"key" yaml:"key,omitempty"`
 												} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
 											} `tfsdk:"preference" yaml:"preference,omitempty"`
 
 											Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 										} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+
+										RequiredDuringSchedulingIgnoredDuringExecution *struct {
+											NodeSelectorTerms *[]struct {
+												MatchExpressions *[]struct {
+													Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+												} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+												MatchFields *[]struct {
+													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+													Key *string `tfsdk:"key" yaml:"key,omitempty"`
+												} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
+											} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
+										} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 									} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
 
 									PodAffinity *struct {
 										PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+											Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+
 											PodAffinityTerm *struct {
 												LabelSelector *struct {
 													MatchExpressions *[]struct {
+														Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 														Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 														Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-														Key *string `tfsdk:"key" yaml:"key,omitempty"`
 													} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 													MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -335,11 +352,13 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 
 												TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 											} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
-
-											Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 										} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
 
 										RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+											Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+											TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+
 											LabelSelector *struct {
 												MatchExpressions *[]struct {
 													Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -354,34 +373,28 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 
 											NamespaceSelector *struct {
 												MatchExpressions *[]struct {
-													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
 													Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 													Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 												} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 												MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 											} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-
-											Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-											TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 										} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 									} `tfsdk:"pod_affinity" yaml:"podAffinity,omitempty"`
 
 									PodAntiAffinity *struct {
 										PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 											PodAffinityTerm *struct {
-												TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
 												LabelSelector *struct {
 													MatchExpressions *[]struct {
+														Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
 														Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 
 														Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-														Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 													} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 													MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -400,6 +413,8 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 												} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 												Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+												TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 											} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
 
 											Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
@@ -419,8 +434,6 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 											} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 											NamespaceSelector *struct {
-												MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-
 												MatchExpressions *[]struct {
 													Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -428,6 +441,8 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 
 													Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 												} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+												MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 											} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 											Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
@@ -444,22 +459,20 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 								ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
 
 								Tolerations *[]struct {
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
+
 									Value *string `tfsdk:"value" yaml:"value,omitempty"`
 
 									Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
 
 									Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-									TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
 								} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
 							} `tfsdk:"spec" yaml:"spec,omitempty"`
 						} `tfsdk:"pod_template" yaml:"podTemplate,omitempty"`
 
 						ServiceType *string `tfsdk:"service_type" yaml:"serviceType,omitempty"`
-
-						Class *string `tfsdk:"class" yaml:"class,omitempty"`
 					} `tfsdk:"ingress" yaml:"ingress,omitempty"`
 				} `tfsdk:"http01" yaml:"http01,omitempty"`
 
@@ -471,6 +484,18 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 				} `tfsdk:"selector" yaml:"selector,omitempty"`
 			} `tfsdk:"solvers" yaml:"solvers,omitempty"`
+
+			Email *string `tfsdk:"email" yaml:"email,omitempty"`
+
+			PreferredChain *string `tfsdk:"preferred_chain" yaml:"preferredChain,omitempty"`
+
+			PrivateKeySecretRef *struct {
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"private_key_secret_ref" yaml:"privateKeySecretRef,omitempty"`
+
+			Server *string `tfsdk:"server" yaml:"server,omitempty"`
 		} `tfsdk:"acme" yaml:"acme,omitempty"`
 
 		Ca *struct {
@@ -499,9 +524,9 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 					RoleId *string `tfsdk:"role_id" yaml:"roleId,omitempty"`
 
 					SecretRef *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 				} `tfsdk:"app_role" yaml:"appRole,omitempty"`
 
@@ -526,30 +551,6 @@ type CertManagerIoClusterIssuerV1GoModel struct {
 
 			Server *string `tfsdk:"server" yaml:"server,omitempty"`
 		} `tfsdk:"vault" yaml:"vault,omitempty"`
-
-		Venafi *struct {
-			Cloud *struct {
-				ApiTokenSecretRef *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"api_token_secret_ref" yaml:"apiTokenSecretRef,omitempty"`
-
-				Url *string `tfsdk:"url" yaml:"url,omitempty"`
-			} `tfsdk:"cloud" yaml:"cloud,omitempty"`
-
-			Tpp *struct {
-				CaBundle *string `tfsdk:"ca_bundle" yaml:"caBundle,omitempty"`
-
-				CredentialsRef *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"credentials_ref" yaml:"credentialsRef,omitempty"`
-
-				Url *string `tfsdk:"url" yaml:"url,omitempty"`
-			} `tfsdk:"tpp" yaml:"tpp,omitempty"`
-
-			Zone *string `tfsdk:"zone" yaml:"zone,omitempty"`
-		} `tfsdk:"venafi" yaml:"venafi,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -643,6 +644,143 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"venafi": {
+						Description:         "Venafi configures this issuer to sign certificates using a Venafi TPP or Venafi Cloud policy zone.",
+						MarkdownDescription: "Venafi configures this issuer to sign certificates using a Venafi TPP or Venafi Cloud policy zone.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"cloud": {
+								Description:         "Cloud specifies the Venafi cloud configuration settings. Only one of TPP or Cloud may be specified.",
+								MarkdownDescription: "Cloud specifies the Venafi cloud configuration settings. Only one of TPP or Cloud may be specified.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"api_token_secret_ref": {
+										Description:         "APITokenSecretRef is a secret key selector for the Venafi Cloud API token.",
+										MarkdownDescription: "APITokenSecretRef is a secret key selector for the Venafi Cloud API token.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"key": {
+												Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+												MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"url": {
+										Description:         "URL is the base URL for Venafi Cloud. Defaults to 'https://api.venafi.cloud/v1'.",
+										MarkdownDescription: "URL is the base URL for Venafi Cloud. Defaults to 'https://api.venafi.cloud/v1'.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tpp": {
+								Description:         "TPP specifies Trust Protection Platform configuration settings. Only one of TPP or Cloud may be specified.",
+								MarkdownDescription: "TPP specifies Trust Protection Platform configuration settings. Only one of TPP or Cloud may be specified.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"ca_bundle": {
+										Description:         "CABundle is a PEM encoded TLS certificate to use to verify connections to the TPP instance. If specified, system roots will not be used and the issuing CA for the TPP instance must be verifiable using the provided root. If not specified, the connection will be verified using the cert-manager system root certificates.",
+										MarkdownDescription: "CABundle is a PEM encoded TLS certificate to use to verify connections to the TPP instance. If specified, system roots will not be used and the issuing CA for the TPP instance must be verifiable using the provided root. If not specified, the connection will be verified using the cert-manager system root certificates.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"credentials_ref": {
+										Description:         "CredentialsRef is a reference to a Secret containing the username and password for the TPP server. The secret must contain two keys, 'username' and 'password'.",
+										MarkdownDescription: "CredentialsRef is a reference to a Secret containing the username and password for the TPP server. The secret must contain two keys, 'username' and 'password'.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"url": {
+										Description:         "URL is the base URL for the vedsdk endpoint of the Venafi TPP instance, for example: 'https://tpp.example.com/vedsdk'.",
+										MarkdownDescription: "URL is the base URL for the vedsdk endpoint of the Venafi TPP instance, for example: 'https://tpp.example.com/vedsdk'.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"zone": {
+								Description:         "Zone is the Venafi Policy Zone to use for this issuer. All requests made to the Venafi platform will be restricted by the named zone policy. This field is required.",
+								MarkdownDescription: "Zone is the Venafi Policy Zone to use for this issuer. All requests made to the Venafi platform will be restricted by the named zone policy. This field is required.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"acme": {
 						Description:         "ACME configures this issuer to communicate with a RFC8555 (ACME) server to obtain signed x509 certificates.",
 						MarkdownDescription: "ACME configures this issuer to communicate with a RFC8555 (ACME) server to obtain signed x509 certificates.",
@@ -677,6 +815,28 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+									"key_algorithm": {
+										Description:         "Deprecated: keyAlgorithm field exists for historical compatibility reasons and should not be used. The algorithm is now hardcoded to HS256 in golang/x/crypto/acme.",
+										MarkdownDescription: "Deprecated: keyAlgorithm field exists for historical compatibility reasons and should not be used. The algorithm is now hardcoded to HS256 in golang/x/crypto/acme.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"key_id": {
+										Description:         "keyID is the ID of the CA key that the External Account is bound to.",
+										MarkdownDescription: "keyID is the ID of the CA key that the External Account is bound to.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
 									"key_secret_ref": {
 										Description:         "keySecretRef is a Secret Key Selector referencing a data item in a Kubernetes Secret which holds the symmetric MAC key of the External Account Binding. The 'key' is the index string that is paired with the key data in the Secret and should not be confused with the key data itself, or indeed with the External Account Binding keyID above. The secret key stored in the Secret **must** be un-padded, base64 URL encoded data.",
 										MarkdownDescription: "keySecretRef is a Secret Key Selector referencing a data item in a Kubernetes Secret which holds the symmetric MAC key of the External Account Binding. The 'key' is the index string that is paired with the key data in the Secret and should not be confused with the key data itself, or indeed with the External Account Binding keyID above. The secret key stored in the Secret **must** be un-padded, base64 URL encoded data.",
@@ -710,28 +870,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 										Optional: false,
 										Computed: false,
 									},
-
-									"key_algorithm": {
-										Description:         "Deprecated: keyAlgorithm field exists for historical compatibility reasons and should not be used. The algorithm is now hardcoded to HS256 in golang/x/crypto/acme.",
-										MarkdownDescription: "Deprecated: keyAlgorithm field exists for historical compatibility reasons and should not be used. The algorithm is now hardcoded to HS256 in golang/x/crypto/acme.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"key_id": {
-										Description:         "keyID is the ID of the CA key that the External Account is bound to.",
-										MarkdownDescription: "keyID is the ID of the CA key that the External Account is bound to.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -750,73 +888,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"email": {
-								Description:         "Email is the email address to be associated with the ACME account. This field is optional, but it is strongly recommended to be set. It will be used to contact you in case of issues with your account or certificates, including expiry notification emails. This field may be updated after the account is initially registered.",
-								MarkdownDescription: "Email is the email address to be associated with the ACME account. This field is optional, but it is strongly recommended to be set. It will be used to contact you in case of issues with your account or certificates, including expiry notification emails. This field may be updated after the account is initially registered.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"preferred_chain": {
-								Description:         "PreferredChain is the chain to use if the ACME server outputs multiple. PreferredChain is no guarantee that this one gets delivered by the ACME endpoint. For example, for Let's Encrypt's DST crosssign you would use: 'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA. This value picks the first certificate bundle in the ACME alternative chains that has a certificate with this value as its issuer's CN",
-								MarkdownDescription: "PreferredChain is the chain to use if the ACME server outputs multiple. PreferredChain is no guarantee that this one gets delivered by the ACME endpoint. For example, for Let's Encrypt's DST crosssign you would use: 'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA. This value picks the first certificate bundle in the ACME alternative chains that has a certificate with this value as its issuer's CN",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"private_key_secret_ref": {
-								Description:         "PrivateKey is the name of a Kubernetes Secret resource that will be used to store the automatically generated ACME account private key. Optionally, a 'key' may be specified to select a specific entry within the named Secret resource. If 'key' is not specified, a default of 'tls.key' will be used.",
-								MarkdownDescription: "PrivateKey is the name of a Kubernetes Secret resource that will be used to store the automatically generated ACME account private key. Optionally, a 'key' may be specified to select a specific entry within the named Secret resource. If 'key' is not specified, a default of 'tls.key' will be used.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"key": {
-										Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-										MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-										MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"server": {
-								Description:         "Server is the URL used to access the ACME server's 'directory' endpoint. For example, for Let's Encrypt's staging endpoint, you would use: 'https://acme-staging-v02.api.letsencrypt.org/directory'. Only ACME v2 endpoints (i.e. RFC 8555) are supported.",
-								MarkdownDescription: "Server is the URL used to access the ACME server's 'directory' endpoint. For example, for Let's Encrypt's staging endpoint, you would use: 'https://acme-staging-v02.api.letsencrypt.org/directory'. Only ACME v2 endpoints (i.e. RFC 8555) are supported.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
 							"solvers": {
 								Description:         "Solvers is a list of challenge solvers that will be used to solve ACME challenges for the matching domains. Solver configurations must be provided in order to obtain certificates from an ACME server. For more information, see: https://cert-manager.io/docs/configuration/acme/",
 								MarkdownDescription: "Solvers is a list of challenge solvers that will be used to solve ACME challenges for the matching domains. Solver configurations must be provided in order to obtain certificates from an ACME server. For more information, see: https://cert-manager.io/docs/configuration/acme/",
@@ -828,6 +899,51 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 										MarkdownDescription: "Configures cert-manager to attempt to complete authorizations by performing the DNS01 challenge flow.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"webhook": {
+												Description:         "Configure an external webhook based DNS01 challenge solver to manage DNS01 challenge records.",
+												MarkdownDescription: "Configure an external webhook based DNS01 challenge solver to manage DNS01 challenge records.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"config": {
+														Description:         "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
+														MarkdownDescription: "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
+
+														Type: types.MapType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"group_name": {
+														Description:         "The API group name that should be used when POSTing ChallengePayload resources to the webhook apiserver. This should be the same as the GroupName specified in the webhook provider implementation.",
+														MarkdownDescription: "The API group name that should be used when POSTing ChallengePayload resources to the webhook apiserver. This should be the same as the GroupName specified in the webhook provider implementation.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"solver_name": {
+														Description:         "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g. 'cloudflare'.",
+														MarkdownDescription: "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g. 'cloudflare'.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 
 											"acme_dns": {
 												Description:         "Use the 'ACME DNS' (https://github.com/joohoi/acme-dns) API to manage DNS01 challenge records.",
@@ -886,13 +1002,35 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"akamai": {
-												Description:         "Use the Akamai DNS zone management API to manage DNS01 challenge records.",
-												MarkdownDescription: "Use the Akamai DNS zone management API to manage DNS01 challenge records.",
+											"cloud_dns": {
+												Description:         "Use the Google Cloud DNS API to manage DNS01 challenge records.",
+												MarkdownDescription: "Use the Google Cloud DNS API to manage DNS01 challenge records.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"client_token_secret_ref": {
+													"hosted_zone_name": {
+														Description:         "HostedZoneName is an optional field that tells cert-manager in which Cloud DNS zone the challenge record has to be created. If left empty cert-manager will automatically choose a zone.",
+														MarkdownDescription: "HostedZoneName is an optional field that tells cert-manager in which Cloud DNS zone the challenge record has to be created. If left empty cert-manager will automatically choose a zone.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"project": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"service_account_secret_ref": {
 														Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
 														MarkdownDescription: "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
 
@@ -921,14 +1059,37 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 															},
 														}),
 
-														Required: true,
-														Optional: false,
+														Required: false,
+														Optional: true,
 														Computed: false,
 													},
+												}),
 
-													"service_consumer_domain": {
-														Description:         "",
-														MarkdownDescription: "",
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"cname_strategy": {
+												Description:         "CNAMEStrategy configures how the DNS01 provider should handle CNAME records when found in DNS zones.",
+												MarkdownDescription: "CNAMEStrategy configures how the DNS01 provider should handle CNAME records when found in DNS zones.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"rfc2136": {
+												Description:         "Use RFC2136 ('Dynamic Updates in the Domain Name System') (https://datatracker.ietf.org/doc/rfc2136/) to manage DNS01 challenge records.",
+												MarkdownDescription: "Use RFC2136 ('Dynamic Updates in the Domain Name System') (https://datatracker.ietf.org/doc/rfc2136/) to manage DNS01 challenge records.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"nameserver": {
+														Description:         "The IP address or hostname of an authoritative DNS server supporting RFC2136 in the form host:port. If the host is an IPv6 address it must be enclosed in square brackets (e.g [2001:db8::1]) ; port is optional. This field is required.",
+														MarkdownDescription: "The IP address or hostname of an authoritative DNS server supporting RFC2136 in the form host:port. If the host is an IPv6 address it must be enclosed in square brackets (e.g [2001:db8::1]) ; port is optional. This field is required.",
 
 														Type: types.StringType,
 
@@ -936,6 +1097,198 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 														Optional: false,
 														Computed: false,
 													},
+
+													"tsig_algorithm": {
+														Description:         "The TSIG Algorithm configured in the DNS supporting RFC2136. Used only when ''tsigSecretSecretRef'' and ''tsigKeyName'' are defined. Supported values are (case-insensitive): ''HMACMD5'' (default), ''HMACSHA1'', ''HMACSHA256'' or ''HMACSHA512''.",
+														MarkdownDescription: "The TSIG Algorithm configured in the DNS supporting RFC2136. Used only when ''tsigSecretSecretRef'' and ''tsigKeyName'' are defined. Supported values are (case-insensitive): ''HMACMD5'' (default), ''HMACSHA1'', ''HMACSHA256'' or ''HMACSHA512''.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"tsig_key_name": {
+														Description:         "The TSIG Key name configured in the DNS. If ''tsigSecretSecretRef'' is defined, this field is required.",
+														MarkdownDescription: "The TSIG Key name configured in the DNS. If ''tsigSecretSecretRef'' is defined, this field is required.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"tsig_secret_secret_ref": {
+														Description:         "The name of the secret containing the TSIG value. If ''tsigKeyName'' is defined, this field is required.",
+														MarkdownDescription: "The name of the secret containing the TSIG value. If ''tsigKeyName'' is defined, this field is required.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"route53": {
+												Description:         "Use the AWS Route53 API to manage DNS01 challenge records.",
+												MarkdownDescription: "Use the AWS Route53 API to manage DNS01 challenge records.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"secret_access_key_secret_ref": {
+														Description:         "The SecretAccessKey is used for authentication. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+														MarkdownDescription: "The SecretAccessKey is used for authentication. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"access_key_id": {
+														Description:         "The AccessKeyID is used for authentication. Cannot be set when SecretAccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+														MarkdownDescription: "The AccessKeyID is used for authentication. Cannot be set when SecretAccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"access_key_id_secret_ref": {
+														Description:         "The SecretAccessKey is used for authentication. If set, pull the AWS access key ID from a key within a Kubernetes Secret. Cannot be set when AccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+														MarkdownDescription: "The SecretAccessKey is used for authentication. If set, pull the AWS access key ID from a key within a Kubernetes Secret. Cannot be set when AccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"hosted_zone_id": {
+														Description:         "If set, the provider will manage only this zone in Route53 and will not do an lookup using the route53:ListHostedZonesByName api call.",
+														MarkdownDescription: "If set, the provider will manage only this zone in Route53 and will not do an lookup using the route53:ListHostedZonesByName api call.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"region": {
+														Description:         "Always set the region when using AccessKeyID and SecretAccessKey",
+														MarkdownDescription: "Always set the region when using AccessKeyID and SecretAccessKey",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"role": {
+														Description:         "Role is a Role ARN which the Route53 provider will assume using either the explicit credentials AccessKeyID/SecretAccessKey or the inferred credentials from environment variables, shared credentials file or AWS Instance metadata",
+														MarkdownDescription: "Role is a Role ARN which the Route53 provider will assume using either the explicit credentials AccessKeyID/SecretAccessKey or the inferred credentials from environment variables, shared credentials file or AWS Instance metadata",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"akamai": {
+												Description:         "Use the Akamai DNS zone management API to manage DNS01 challenge records.",
+												MarkdownDescription: "Use the Akamai DNS zone management API to manage DNS01 challenge records.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 													"access_token_secret_ref": {
 														Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
@@ -1004,6 +1357,51 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 														Optional: false,
 														Computed: false,
 													},
+
+													"client_token_secret_ref": {
+														Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
+														MarkdownDescription: "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"service_consumer_domain": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
 												}),
 
 												Required: false,
@@ -1016,6 +1414,40 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 												MarkdownDescription: "Use the Microsoft Azure DNS API to manage DNS01 challenge records.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"client_secret_secret_ref": {
+														Description:         "if both this and ClientID are left unset MSI will be used",
+														MarkdownDescription: "if both this and ClientID are left unset MSI will be used",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
 
 													"environment": {
 														Description:         "name of the Azure environment (default AzurePublicCloud)",
@@ -1111,288 +1543,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 														MarkdownDescription: "if both this and ClientSecret are left unset MSI will be used",
 
 														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"client_secret_secret_ref": {
-														Description:         "if both this and ClientID are left unset MSI will be used",
-														MarkdownDescription: "if both this and ClientID are left unset MSI will be used",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"cname_strategy": {
-												Description:         "CNAMEStrategy configures how the DNS01 provider should handle CNAME records when found in DNS zones.",
-												MarkdownDescription: "CNAMEStrategy configures how the DNS01 provider should handle CNAME records when found in DNS zones.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"route53": {
-												Description:         "Use the AWS Route53 API to manage DNS01 challenge records.",
-												MarkdownDescription: "Use the AWS Route53 API to manage DNS01 challenge records.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"access_key_id_secret_ref": {
-														Description:         "The SecretAccessKey is used for authentication. If set, pull the AWS access key ID from a key within a Kubernetes Secret. Cannot be set when AccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-														MarkdownDescription: "The SecretAccessKey is used for authentication. If set, pull the AWS access key ID from a key within a Kubernetes Secret. Cannot be set when AccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"hosted_zone_id": {
-														Description:         "If set, the provider will manage only this zone in Route53 and will not do an lookup using the route53:ListHostedZonesByName api call.",
-														MarkdownDescription: "If set, the provider will manage only this zone in Route53 and will not do an lookup using the route53:ListHostedZonesByName api call.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"region": {
-														Description:         "Always set the region when using AccessKeyID and SecretAccessKey",
-														MarkdownDescription: "Always set the region when using AccessKeyID and SecretAccessKey",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"role": {
-														Description:         "Role is a Role ARN which the Route53 provider will assume using either the explicit credentials AccessKeyID/SecretAccessKey or the inferred credentials from environment variables, shared credentials file or AWS Instance metadata",
-														MarkdownDescription: "Role is a Role ARN which the Route53 provider will assume using either the explicit credentials AccessKeyID/SecretAccessKey or the inferred credentials from environment variables, shared credentials file or AWS Instance metadata",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"secret_access_key_secret_ref": {
-														Description:         "The SecretAccessKey is used for authentication. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-														MarkdownDescription: "The SecretAccessKey is used for authentication. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"access_key_id": {
-														Description:         "The AccessKeyID is used for authentication. Cannot be set when SecretAccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-														MarkdownDescription: "The AccessKeyID is used for authentication. Cannot be set when SecretAccessKeyID is set. If neither the Access Key nor Key ID are set, we fall-back to using env vars, shared credentials file or AWS Instance metadata, see: https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"webhook": {
-												Description:         "Configure an external webhook based DNS01 challenge solver to manage DNS01 challenge records.",
-												MarkdownDescription: "Configure an external webhook based DNS01 challenge solver to manage DNS01 challenge records.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"config": {
-														Description:         "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
-														MarkdownDescription: "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
-
-														Type: types.MapType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"group_name": {
-														Description:         "The API group name that should be used when POSTing ChallengePayload resources to the webhook apiserver. This should be the same as the GroupName specified in the webhook provider implementation.",
-														MarkdownDescription: "The API group name that should be used when POSTing ChallengePayload resources to the webhook apiserver. This should be the same as the GroupName specified in the webhook provider implementation.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"solver_name": {
-														Description:         "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g. 'cloudflare'.",
-														MarkdownDescription: "The name of the solver to use, as defined in the webhook provider implementation. This will typically be the name of the provider, e.g. 'cloudflare'.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"cloud_dns": {
-												Description:         "Use the Google Cloud DNS API to manage DNS01 challenge records.",
-												MarkdownDescription: "Use the Google Cloud DNS API to manage DNS01 challenge records.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"hosted_zone_name": {
-														Description:         "HostedZoneName is an optional field that tells cert-manager in which Cloud DNS zone the challenge record has to be created. If left empty cert-manager will automatically choose a zone.",
-														MarkdownDescription: "HostedZoneName is an optional field that tells cert-manager in which Cloud DNS zone the challenge record has to be created. If left empty cert-manager will automatically choose a zone.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"project": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"service_account_secret_ref": {
-														Description:         "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
-														MarkdownDescription: "A reference to a specific 'key' within a Secret resource. In some instances, 'key' is a required field.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
 
 														Required: false,
 														Optional: true,
@@ -1541,85 +1691,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 												Optional: true,
 												Computed: false,
 											},
-
-											"rfc2136": {
-												Description:         "Use RFC2136 ('Dynamic Updates in the Domain Name System') (https://datatracker.ietf.org/doc/rfc2136/) to manage DNS01 challenge records.",
-												MarkdownDescription: "Use RFC2136 ('Dynamic Updates in the Domain Name System') (https://datatracker.ietf.org/doc/rfc2136/) to manage DNS01 challenge records.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"nameserver": {
-														Description:         "The IP address or hostname of an authoritative DNS server supporting RFC2136 in the form host:port. If the host is an IPv6 address it must be enclosed in square brackets (e.g [2001:db8::1]) ; port is optional. This field is required.",
-														MarkdownDescription: "The IP address or hostname of an authoritative DNS server supporting RFC2136 in the form host:port. If the host is an IPv6 address it must be enclosed in square brackets (e.g [2001:db8::1]) ; port is optional. This field is required.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"tsig_algorithm": {
-														Description:         "The TSIG Algorithm configured in the DNS supporting RFC2136. Used only when ''tsigSecretSecretRef'' and ''tsigKeyName'' are defined. Supported values are (case-insensitive): ''HMACMD5'' (default), ''HMACSHA1'', ''HMACSHA256'' or ''HMACSHA512''.",
-														MarkdownDescription: "The TSIG Algorithm configured in the DNS supporting RFC2136. Used only when ''tsigSecretSecretRef'' and ''tsigKeyName'' are defined. Supported values are (case-insensitive): ''HMACMD5'' (default), ''HMACSHA1'', ''HMACSHA256'' or ''HMACSHA512''.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"tsig_key_name": {
-														Description:         "The TSIG Key name configured in the DNS. If ''tsigSecretSecretRef'' is defined, this field is required.",
-														MarkdownDescription: "The TSIG Key name configured in the DNS. If ''tsigSecretSecretRef'' is defined, this field is required.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"tsig_secret_secret_ref": {
-														Description:         "The name of the secret containing the TSIG value. If ''tsigKeyName'' is defined, this field is required.",
-														MarkdownDescription: "The name of the secret containing the TSIG value. If ''tsigKeyName'' is defined, this field is required.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 										}),
 
 										Required: false,
@@ -1638,6 +1709,17 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 												MarkdownDescription: "The Gateway API is a sig-network community API that models service networking in Kubernetes (https://gateway-api.sigs.k8s.io/). The Gateway solver will create HTTPRoutes with the specified labels in the same namespace as the challenge. This solver is experimental, and fields / behaviour may change in the future.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"labels": {
+														Description:         "Custom labels that will be applied to HTTPRoutes created by cert-manager while solving HTTP-01 challenges.",
+														MarkdownDescription: "Custom labels that will be applied to HTTPRoutes created by cert-manager while solving HTTP-01 challenges.",
+
+														Type: types.MapType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
 
 													"parent_refs": {
 														Description:         "When solving an HTTP-01 challenge, cert-manager creates an HTTPRoute. cert-manager needs to know which parentRefs should be used when creating the HTTPRoute. Usually, the parentRef references a Gateway. See: https://gateway-api.sigs.k8s.io/v1alpha2/api-types/httproute/#attaching-to-gateways",
@@ -1716,17 +1798,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 														Optional: true,
 														Computed: false,
 													},
-
-													"labels": {
-														Description:         "Custom labels that will be applied to HTTPRoutes created by cert-manager while solving HTTP-01 challenges.",
-														MarkdownDescription: "Custom labels that will be applied to HTTPRoutes created by cert-manager while solving HTTP-01 challenges.",
-
-														Type: types.MapType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 												}),
 
 												Required: false,
@@ -1740,6 +1811,17 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+													"class": {
+														Description:         "The ingress class to use when creating Ingress resources to solve ACME challenges that use this challenge solver. Only one of 'class' or 'name' may be specified.",
+														MarkdownDescription: "The ingress class to use when creating Ingress resources to solve ACME challenges that use this challenge solver. Only one of 'class' or 'name' may be specified.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"ingress_template": {
 														Description:         "Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.",
 														MarkdownDescription: "Optional ingress template used to configure the ACME challenge solver ingress used for HTTP01 challenges.",
@@ -1752,9 +1834,9 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"labels": {
-																		Description:         "Labels that should be added to the created ACME HTTP01 solver ingress.",
-																		MarkdownDescription: "Labels that should be added to the created ACME HTTP01 solver ingress.",
+																	"annotations": {
+																		Description:         "Annotations that should be added to the created ACME HTTP01 solver ingress.",
+																		MarkdownDescription: "Annotations that should be added to the created ACME HTTP01 solver ingress.",
 
 																		Type: types.MapType{ElemType: types.StringType},
 
@@ -1763,9 +1845,9 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 																		Computed: false,
 																	},
 
-																	"annotations": {
-																		Description:         "Annotations that should be added to the created ACME HTTP01 solver ingress.",
-																		MarkdownDescription: "Annotations that should be added to the created ACME HTTP01 solver ingress.",
+																	"labels": {
+																		Description:         "Labels that should be added to the created ACME HTTP01 solver ingress.",
+																		MarkdownDescription: "Labels that should be added to the created ACME HTTP01 solver ingress.",
 
 																		Type: types.MapType{ElemType: types.StringType},
 
@@ -1855,120 +1937,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																					"required_during_scheduling_ignored_during_execution": {
-																						Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
-																						MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
-
-																						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																							"node_selector_terms": {
-																								Description:         "Required. A list of node selector terms. The terms are ORed.",
-																								MarkdownDescription: "Required. A list of node selector terms. The terms are ORed.",
-
-																								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																									"match_expressions": {
-																										Description:         "A list of node selector requirements by node's labels.",
-																										MarkdownDescription: "A list of node selector requirements by node's labels.",
-
-																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																											"operator": {
-																												Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																												MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-
-																												Type: types.StringType,
-
-																												Required: true,
-																												Optional: false,
-																												Computed: false,
-																											},
-
-																											"values": {
-																												Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																												MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-
-																												Type: types.ListType{ElemType: types.StringType},
-
-																												Required: false,
-																												Optional: true,
-																												Computed: false,
-																											},
-
-																											"key": {
-																												Description:         "The label key that the selector applies to.",
-																												MarkdownDescription: "The label key that the selector applies to.",
-
-																												Type: types.StringType,
-
-																												Required: true,
-																												Optional: false,
-																												Computed: false,
-																											},
-																										}),
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-
-																									"match_fields": {
-																										Description:         "A list of node selector requirements by node's fields.",
-																										MarkdownDescription: "A list of node selector requirements by node's fields.",
-
-																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																											"key": {
-																												Description:         "The label key that the selector applies to.",
-																												MarkdownDescription: "The label key that the selector applies to.",
-
-																												Type: types.StringType,
-
-																												Required: true,
-																												Optional: false,
-																												Computed: false,
-																											},
-
-																											"operator": {
-																												Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																												MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-
-																												Type: types.StringType,
-
-																												Required: true,
-																												Optional: false,
-																												Computed: false,
-																											},
-
-																											"values": {
-																												Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																												MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-
-																												Type: types.ListType{ElemType: types.StringType},
-
-																												Required: false,
-																												Optional: true,
-																												Computed: false,
-																											},
-																										}),
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-																								}),
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-																						}),
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
 																					"preferred_during_scheduling_ignored_during_execution": {
 																						Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
 																						MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
@@ -2032,6 +2000,86 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+																											"operator": {
+																												Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																												MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+
+																												Type: types.StringType,
+
+																												Required: true,
+																												Optional: false,
+																												Computed: false,
+																											},
+
+																											"values": {
+																												Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																												MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+
+																												Type: types.ListType{ElemType: types.StringType},
+
+																												Required: false,
+																												Optional: true,
+																												Computed: false,
+																											},
+
+																											"key": {
+																												Description:         "The label key that the selector applies to.",
+																												MarkdownDescription: "The label key that the selector applies to.",
+
+																												Type: types.StringType,
+
+																												Required: true,
+																												Optional: false,
+																												Computed: false,
+																											},
+																										}),
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								}),
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+
+																							"weight": {
+																								Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+																								MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+
+																								Type: types.Int64Type,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+																						}),
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"required_during_scheduling_ignored_during_execution": {
+																						Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
+																						MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
+
+																						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																							"node_selector_terms": {
+																								Description:         "Required. A list of node selector terms. The terms are ORed.",
+																								MarkdownDescription: "Required. A list of node selector terms. The terms are ORed.",
+
+																								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																									"match_expressions": {
+																										Description:         "A list of node selector requirements by node's labels.",
+																										MarkdownDescription: "A list of node selector requirements by node's labels.",
+
+																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
 																											"key": {
 																												Description:         "The label key that the selector applies to.",
 																												MarkdownDescription: "The label key that the selector applies to.",
@@ -2070,18 +2118,52 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 																										Optional: true,
 																										Computed: false,
 																									},
+
+																									"match_fields": {
+																										Description:         "A list of node selector requirements by node's fields.",
+																										MarkdownDescription: "A list of node selector requirements by node's fields.",
+
+																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																											"operator": {
+																												Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																												MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+
+																												Type: types.StringType,
+
+																												Required: true,
+																												Optional: false,
+																												Computed: false,
+																											},
+
+																											"values": {
+																												Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																												MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+
+																												Type: types.ListType{ElemType: types.StringType},
+
+																												Required: false,
+																												Optional: true,
+																												Computed: false,
+																											},
+
+																											"key": {
+																												Description:         "The label key that the selector applies to.",
+																												MarkdownDescription: "The label key that the selector applies to.",
+
+																												Type: types.StringType,
+
+																												Required: true,
+																												Optional: false,
+																												Computed: false,
+																											},
+																										}),
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
 																								}),
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-
-																							"weight": {
-																								Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
-																								MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
-
-																								Type: types.Int64Type,
 
 																								Required: true,
 																								Optional: false,
@@ -2112,6 +2194,17 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+																							"weight": {
+																								Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																								MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+
+																								Type: types.Int64Type,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+
 																							"pod_affinity_term": {
 																								Description:         "Required. A pod affinity term, associated with the corresponding weight.",
 																								MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
@@ -2129,6 +2222,17 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 																												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 
 																												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																													"key": {
+																														Description:         "key is the label key that the selector applies to.",
+																														MarkdownDescription: "key is the label key that the selector applies to.",
+
+																														Type: types.StringType,
+
+																														Required: true,
+																														Optional: false,
+																														Computed: false,
+																													},
 
 																													"operator": {
 																														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
@@ -2149,17 +2253,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 																														Required: false,
 																														Optional: true,
-																														Computed: false,
-																													},
-
-																													"key": {
-																														Description:         "key is the label key that the selector applies to.",
-																														MarkdownDescription: "key is the label key that the selector applies to.",
-
-																														Type: types.StringType,
-
-																														Required: true,
-																														Optional: false,
 																														Computed: false,
 																													},
 																												}),
@@ -2281,17 +2374,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 																								Optional: false,
 																								Computed: false,
 																							},
-
-																							"weight": {
-																								Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-																								MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-
-																								Type: types.Int64Type,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
 																						}),
 
 																						Required: false,
@@ -2304,6 +2386,28 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 																						MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
 
 																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																							"namespaces": {
+																								Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																								MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+
+																								Type: types.ListType{ElemType: types.StringType},
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"topology_key": {
+																								Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																								MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
 
 																							"label_selector": {
 																								Description:         "A label query over a set of resources, in this case pods.",
@@ -2385,17 +2489,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 																										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																											"values": {
-																												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																												Type: types.ListType{ElemType: types.StringType},
-
-																												Required: false,
-																												Optional: true,
-																												Computed: false,
-																											},
-
 																											"key": {
 																												Description:         "key is the label key that the selector applies to.",
 																												MarkdownDescription: "key is the label key that the selector applies to.",
@@ -2415,6 +2508,17 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 																												Required: true,
 																												Optional: false,
+																												Computed: false,
+																											},
+
+																											"values": {
+																												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																												Type: types.ListType{ElemType: types.StringType},
+
+																												Required: false,
+																												Optional: true,
 																												Computed: false,
 																											},
 																										}),
@@ -2438,28 +2542,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 																								Required: false,
 																								Optional: true,
-																								Computed: false,
-																							},
-
-																							"namespaces": {
-																								Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																								MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-
-																								Type: types.ListType{ElemType: types.StringType},
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-
-																							"topology_key": {
-																								Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																								MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
 																								Computed: false,
 																							},
 																						}),
@@ -2493,17 +2575,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 																								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																									"topology_key": {
-																										Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																										MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-
-																										Type: types.StringType,
-
-																										Required: true,
-																										Optional: false,
-																										Computed: false,
-																									},
-
 																									"label_selector": {
 																										Description:         "A label query over a set of resources, in this case pods.",
 																										MarkdownDescription: "A label query over a set of resources, in this case pods.",
@@ -2515,6 +2586,17 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 																												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 
 																												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																													"operator": {
+																														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																														Type: types.StringType,
+
+																														Required: true,
+																														Optional: false,
+																														Computed: false,
+																													},
 
 																													"values": {
 																														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
@@ -2530,17 +2612,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 																													"key": {
 																														Description:         "key is the label key that the selector applies to.",
 																														MarkdownDescription: "key is the label key that the selector applies to.",
-
-																														Type: types.StringType,
-
-																														Required: true,
-																														Optional: false,
-																														Computed: false,
-																													},
-
-																													"operator": {
-																														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 
 																														Type: types.StringType,
 
@@ -2648,6 +2719,17 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 																										Required: false,
 																										Optional: true,
+																										Computed: false,
+																									},
+
+																									"topology_key": {
+																										Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																										MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+
+																										Type: types.StringType,
+
+																										Required: true,
+																										Optional: false,
 																										Computed: false,
 																									},
 																								}),
@@ -2754,17 +2836,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 																								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																									"match_labels": {
-																										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																										Type: types.MapType{ElemType: types.StringType},
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-
 																									"match_expressions": {
 																										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 																										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2804,6 +2875,17 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 																												Computed: false,
 																											},
 																										}),
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+
+																									"match_labels": {
+																										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																										Type: types.MapType{ElemType: types.StringType},
 
 																										Required: false,
 																										Optional: true,
@@ -2895,6 +2977,28 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+																			"operator": {
+																				Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+																				MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"toleration_seconds": {
+																				Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+																				MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+
+																				Type: types.Int64Type,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
 																			"value": {
 																				Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
 																				MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
@@ -2927,28 +3031,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 																				Optional: true,
 																				Computed: false,
 																			},
-
-																			"operator": {
-																				Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-																				MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"toleration_seconds": {
-																				Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-																				MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-
-																				Type: types.Int64Type,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
 																		}),
 
 																		Required: false,
@@ -2971,17 +3053,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 													"service_type": {
 														Description:         "Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.",
 														MarkdownDescription: "Optional service type for Kubernetes solver service. Supported values are NodePort or ClusterIP. If unset, defaults to NodePort.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"class": {
-														Description:         "The ingress class to use when creating Ingress resources to solve ACME challenges that use this challenge solver. Only one of 'class' or 'name' may be specified.",
-														MarkdownDescription: "The ingress class to use when creating Ingress resources to solve ACME challenges that use this challenge solver. Only one of 'class' or 'name' may be specified.",
 
 														Type: types.StringType,
 
@@ -3050,6 +3121,73 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 								Required: false,
 								Optional: true,
+								Computed: false,
+							},
+
+							"email": {
+								Description:         "Email is the email address to be associated with the ACME account. This field is optional, but it is strongly recommended to be set. It will be used to contact you in case of issues with your account or certificates, including expiry notification emails. This field may be updated after the account is initially registered.",
+								MarkdownDescription: "Email is the email address to be associated with the ACME account. This field is optional, but it is strongly recommended to be set. It will be used to contact you in case of issues with your account or certificates, including expiry notification emails. This field may be updated after the account is initially registered.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"preferred_chain": {
+								Description:         "PreferredChain is the chain to use if the ACME server outputs multiple. PreferredChain is no guarantee that this one gets delivered by the ACME endpoint. For example, for Let's Encrypt's DST crosssign you would use: 'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA. This value picks the first certificate bundle in the ACME alternative chains that has a certificate with this value as its issuer's CN",
+								MarkdownDescription: "PreferredChain is the chain to use if the ACME server outputs multiple. PreferredChain is no guarantee that this one gets delivered by the ACME endpoint. For example, for Let's Encrypt's DST crosssign you would use: 'DST Root CA X3' or 'ISRG Root X1' for the newer Let's Encrypt root CA. This value picks the first certificate bundle in the ACME alternative chains that has a certificate with this value as its issuer's CN",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"private_key_secret_ref": {
+								Description:         "PrivateKey is the name of a Kubernetes Secret resource that will be used to store the automatically generated ACME account private key. Optionally, a 'key' may be specified to select a specific entry within the named Secret resource. If 'key' is not specified, a default of 'tls.key' will be used.",
+								MarkdownDescription: "PrivateKey is the name of a Kubernetes Secret resource that will be used to store the automatically generated ACME account private key. Optionally, a 'key' may be specified to select a specific entry within the named Secret resource. If 'key' is not specified, a default of 'tls.key' will be used.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"key": {
+										Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+										MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"server": {
+								Description:         "Server is the URL used to access the ACME server's 'directory' endpoint. For example, for Let's Encrypt's staging endpoint, you would use: 'https://acme-staging-v02.api.letsencrypt.org/directory'. Only ACME v2 endpoints (i.e. RFC 8555) are supported.",
+								MarkdownDescription: "Server is the URL used to access the ACME server's 'directory' endpoint. For example, for Let's Encrypt's staging endpoint, you would use: 'https://acme-staging-v02.api.letsencrypt.org/directory'. Only ACME v2 endpoints (i.e. RFC 8555) are supported.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
 								Computed: false,
 							},
 						}),
@@ -3207,17 +3345,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"key": {
-														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
 													"name": {
 														Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
@@ -3226,6 +3353,17 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 
 														Required: true,
 														Optional: false,
+														Computed: false,
+													},
+
+													"key": {
+														Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+														MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
 														Computed: false,
 													},
 												}),
@@ -3351,143 +3489,6 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 							"server": {
 								Description:         "Server is the connection address for the Vault server, e.g: 'https://vault.example.com:8200'.",
 								MarkdownDescription: "Server is the connection address for the Vault server, e.g: 'https://vault.example.com:8200'.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"venafi": {
-						Description:         "Venafi configures this issuer to sign certificates using a Venafi TPP or Venafi Cloud policy zone.",
-						MarkdownDescription: "Venafi configures this issuer to sign certificates using a Venafi TPP or Venafi Cloud policy zone.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"cloud": {
-								Description:         "Cloud specifies the Venafi cloud configuration settings. Only one of TPP or Cloud may be specified.",
-								MarkdownDescription: "Cloud specifies the Venafi cloud configuration settings. Only one of TPP or Cloud may be specified.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"api_token_secret_ref": {
-										Description:         "APITokenSecretRef is a secret key selector for the Venafi Cloud API token.",
-										MarkdownDescription: "APITokenSecretRef is a secret key selector for the Venafi Cloud API token.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-												MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"url": {
-										Description:         "URL is the base URL for Venafi Cloud. Defaults to 'https://api.venafi.cloud/v1'.",
-										MarkdownDescription: "URL is the base URL for Venafi Cloud. Defaults to 'https://api.venafi.cloud/v1'.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"tpp": {
-								Description:         "TPP specifies Trust Protection Platform configuration settings. Only one of TPP or Cloud may be specified.",
-								MarkdownDescription: "TPP specifies Trust Protection Platform configuration settings. Only one of TPP or Cloud may be specified.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"ca_bundle": {
-										Description:         "CABundle is a PEM encoded TLS certificate to use to verify connections to the TPP instance. If specified, system roots will not be used and the issuing CA for the TPP instance must be verifiable using the provided root. If not specified, the connection will be verified using the cert-manager system root certificates.",
-										MarkdownDescription: "CABundle is a PEM encoded TLS certificate to use to verify connections to the TPP instance. If specified, system roots will not be used and the issuing CA for the TPP instance must be verifiable using the provided root. If not specified, the connection will be verified using the cert-manager system root certificates.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"credentials_ref": {
-										Description:         "CredentialsRef is a reference to a Secret containing the username and password for the TPP server. The secret must contain two keys, 'username' and 'password'.",
-										MarkdownDescription: "CredentialsRef is a reference to a Secret containing the username and password for the TPP server. The secret must contain two keys, 'username' and 'password'.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the resource being referred to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"url": {
-										Description:         "URL is the base URL for the vedsdk endpoint of the Venafi TPP instance, for example: 'https://tpp.example.com/vedsdk'.",
-										MarkdownDescription: "URL is the base URL for the vedsdk endpoint of the Venafi TPP instance, for example: 'https://tpp.example.com/vedsdk'.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"zone": {
-								Description:         "Zone is the Venafi Policy Zone to use for this issuer. All requests made to the Venafi platform will be restricted by the named zone policy. This field is required.",
-								MarkdownDescription: "Zone is the Venafi Policy Zone to use for this issuer. All requests made to the Venafi platform will be restricted by the named zone policy. This field is required.",
 
 								Type: types.StringType,
 

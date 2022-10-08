@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,53 +50,19 @@ type ArgoprojIoAppProjectV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Description *string `tfsdk:"description" yaml:"description,omitempty"`
-
 		NamespaceResourceWhitelist *[]struct {
 			Group *string `tfsdk:"group" yaml:"group,omitempty"`
 
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 		} `tfsdk:"namespace_resource_whitelist" yaml:"namespaceResourceWhitelist,omitempty"`
 
-		OrphanedResources *struct {
-			Ignore *[]struct {
-				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Group *string `tfsdk:"group" yaml:"group,omitempty"`
-			} `tfsdk:"ignore" yaml:"ignore,omitempty"`
-
-			Warn *bool `tfsdk:"warn" yaml:"warn,omitempty"`
-		} `tfsdk:"orphaned_resources" yaml:"orphanedResources,omitempty"`
-
-		Roles *[]struct {
-			Policies *[]string `tfsdk:"policies" yaml:"policies,omitempty"`
-
-			Description *string `tfsdk:"description" yaml:"description,omitempty"`
-
-			Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
-
-			JwtTokens *[]struct {
-				Id *string `tfsdk:"id" yaml:"id,omitempty"`
-
-				Exp *int64 `tfsdk:"exp" yaml:"exp,omitempty"`
-
-				Iat *int64 `tfsdk:"iat" yaml:"iat,omitempty"`
-			} `tfsdk:"jwt_tokens" yaml:"jwtTokens,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"roles" yaml:"roles,omitempty"`
+		SignatureKeys *[]struct {
+			KeyID *string `tfsdk:"key_id" yaml:"keyID,omitempty"`
+		} `tfsdk:"signature_keys" yaml:"signatureKeys,omitempty"`
 
 		SourceRepos *[]string `tfsdk:"source_repos" yaml:"sourceRepos,omitempty"`
 
 		SyncWindows *[]struct {
-			Schedule *string `tfsdk:"schedule" yaml:"schedule,omitempty"`
-
-			TimeZone *string `tfsdk:"time_zone" yaml:"timeZone,omitempty"`
-
-			Applications *[]string `tfsdk:"applications" yaml:"applications,omitempty"`
-
 			Clusters *[]string `tfsdk:"clusters" yaml:"clusters,omitempty"`
 
 			Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
@@ -105,9 +72,31 @@ type ArgoprojIoAppProjectV1Alpha1GoModel struct {
 			ManualSync *bool `tfsdk:"manual_sync" yaml:"manualSync,omitempty"`
 
 			Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+			Schedule *string `tfsdk:"schedule" yaml:"schedule,omitempty"`
+
+			TimeZone *string `tfsdk:"time_zone" yaml:"timeZone,omitempty"`
+
+			Applications *[]string `tfsdk:"applications" yaml:"applications,omitempty"`
 		} `tfsdk:"sync_windows" yaml:"syncWindows,omitempty"`
 
-		SourceNamespaces *[]string `tfsdk:"source_namespaces" yaml:"sourceNamespaces,omitempty"`
+		Roles *[]struct {
+			Policies *[]string `tfsdk:"policies" yaml:"policies,omitempty"`
+
+			Description *string `tfsdk:"description" yaml:"description,omitempty"`
+
+			Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
+
+			JwtTokens *[]struct {
+				Exp *int64 `tfsdk:"exp" yaml:"exp,omitempty"`
+
+				Iat *int64 `tfsdk:"iat" yaml:"iat,omitempty"`
+
+				Id *string `tfsdk:"id" yaml:"id,omitempty"`
+			} `tfsdk:"jwt_tokens" yaml:"jwtTokens,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"roles" yaml:"roles,omitempty"`
 
 		ClusterResourceBlacklist *[]struct {
 			Group *string `tfsdk:"group" yaml:"group,omitempty"`
@@ -116,17 +105,19 @@ type ArgoprojIoAppProjectV1Alpha1GoModel struct {
 		} `tfsdk:"cluster_resource_blacklist" yaml:"clusterResourceBlacklist,omitempty"`
 
 		ClusterResourceWhitelist *[]struct {
-			Group *string `tfsdk:"group" yaml:"group,omitempty"`
-
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			Group *string `tfsdk:"group" yaml:"group,omitempty"`
 		} `tfsdk:"cluster_resource_whitelist" yaml:"clusterResourceWhitelist,omitempty"`
 
+		Description *string `tfsdk:"description" yaml:"description,omitempty"`
+
 		Destinations *[]struct {
+			Server *string `tfsdk:"server" yaml:"server,omitempty"`
+
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-			Server *string `tfsdk:"server" yaml:"server,omitempty"`
 		} `tfsdk:"destinations" yaml:"destinations,omitempty"`
 
 		NamespaceResourceBlacklist *[]struct {
@@ -135,11 +126,21 @@ type ArgoprojIoAppProjectV1Alpha1GoModel struct {
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 		} `tfsdk:"namespace_resource_blacklist" yaml:"namespaceResourceBlacklist,omitempty"`
 
+		OrphanedResources *struct {
+			Ignore *[]struct {
+				Group *string `tfsdk:"group" yaml:"group,omitempty"`
+
+				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"ignore" yaml:"ignore,omitempty"`
+
+			Warn *bool `tfsdk:"warn" yaml:"warn,omitempty"`
+		} `tfsdk:"orphaned_resources" yaml:"orphanedResources,omitempty"`
+
 		PermitOnlyProjectScopedClusters *bool `tfsdk:"permit_only_project_scoped_clusters" yaml:"permitOnlyProjectScopedClusters,omitempty"`
 
-		SignatureKeys *[]struct {
-			KeyID *string `tfsdk:"key_id" yaml:"keyID,omitempty"`
-		} `tfsdk:"signature_keys" yaml:"signatureKeys,omitempty"`
+		SourceNamespaces *[]string `tfsdk:"source_namespaces" yaml:"sourceNamespaces,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -240,17 +241,6 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"description": {
-						Description:         "Description contains optional project description",
-						MarkdownDescription: "Description contains optional project description",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"namespace_resource_whitelist": {
 						Description:         "NamespaceResourceWhitelist contains list of whitelisted namespace level resources",
 						MarkdownDescription: "NamespaceResourceWhitelist contains list of whitelisted namespace level resources",
@@ -285,62 +275,128 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 						Computed: false,
 					},
 
-					"orphaned_resources": {
-						Description:         "OrphanedResources specifies if controller should monitor orphaned resources of apps in this project",
-						MarkdownDescription: "OrphanedResources specifies if controller should monitor orphaned resources of apps in this project",
+					"signature_keys": {
+						Description:         "SignatureKeys contains a list of PGP key IDs that commits in Git must be signed with in order to be allowed for sync",
+						MarkdownDescription: "SignatureKeys contains a list of PGP key IDs that commits in Git must be signed with in order to be allowed for sync",
 
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"ignore": {
-								Description:         "Ignore contains a list of resources that are to be excluded from orphaned resources monitoring",
-								MarkdownDescription: "Ignore contains a list of resources that are to be excluded from orphaned resources monitoring",
+							"key_id": {
+								Description:         "The ID of the key in hexadecimal notation",
+								MarkdownDescription: "The ID of the key in hexadecimal notation",
 
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+								Type: types.StringType,
 
-									"kind": {
-										Description:         "",
-										MarkdownDescription: "",
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
 
-										Type: types.StringType,
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
 
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
+					"source_repos": {
+						Description:         "SourceRepos contains list of repository URLs which can be used for deployment",
+						MarkdownDescription: "SourceRepos contains list of repository URLs which can be used for deployment",
 
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
+						Type: types.ListType{ElemType: types.StringType},
 
-										Type: types.StringType,
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
 
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
+					"sync_windows": {
+						Description:         "SyncWindows controls when syncs can be run for apps in this project",
+						MarkdownDescription: "SyncWindows controls when syncs can be run for apps in this project",
 
-									"group": {
-										Description:         "",
-										MarkdownDescription: "",
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-										Type: types.StringType,
+							"clusters": {
+								Description:         "Clusters contains a list of clusters that the window will apply to",
+								MarkdownDescription: "Clusters contains a list of clusters that the window will apply to",
 
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
+								Type: types.ListType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"warn": {
-								Description:         "Warn indicates if warning condition should be created for apps which have orphaned resources",
-								MarkdownDescription: "Warn indicates if warning condition should be created for apps which have orphaned resources",
+							"duration": {
+								Description:         "Duration is the amount of time the sync window will be open",
+								MarkdownDescription: "Duration is the amount of time the sync window will be open",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"kind": {
+								Description:         "Kind defines if the window allows or blocks syncs",
+								MarkdownDescription: "Kind defines if the window allows or blocks syncs",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"manual_sync": {
+								Description:         "ManualSync enables manual syncs when they would otherwise be blocked",
+								MarkdownDescription: "ManualSync enables manual syncs when they would otherwise be blocked",
 
 								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"namespaces": {
+								Description:         "Namespaces contains a list of namespaces that the window will apply to",
+								MarkdownDescription: "Namespaces contains a list of namespaces that the window will apply to",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"schedule": {
+								Description:         "Schedule is the time the window will begin, specified in cron format",
+								MarkdownDescription: "Schedule is the time the window will begin, specified in cron format",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"time_zone": {
+								Description:         "TimeZone of the sync that will be applied to the schedule",
+								MarkdownDescription: "TimeZone of the sync that will be applied to the schedule",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"applications": {
+								Description:         "Applications contains a list of applications that the window will apply to",
+								MarkdownDescription: "Applications contains a list of applications that the window will apply to",
+
+								Type: types.ListType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,
@@ -398,17 +454,6 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"id": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"exp": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -430,6 +475,17 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Optional: false,
 										Computed: false,
 									},
+
+									"id": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -448,128 +504,6 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"source_repos": {
-						Description:         "SourceRepos contains list of repository URLs which can be used for deployment",
-						MarkdownDescription: "SourceRepos contains list of repository URLs which can be used for deployment",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"sync_windows": {
-						Description:         "SyncWindows controls when syncs can be run for apps in this project",
-						MarkdownDescription: "SyncWindows controls when syncs can be run for apps in this project",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"schedule": {
-								Description:         "Schedule is the time the window will begin, specified in cron format",
-								MarkdownDescription: "Schedule is the time the window will begin, specified in cron format",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"time_zone": {
-								Description:         "TimeZone of the sync that will be applied to the schedule",
-								MarkdownDescription: "TimeZone of the sync that will be applied to the schedule",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"applications": {
-								Description:         "Applications contains a list of applications that the window will apply to",
-								MarkdownDescription: "Applications contains a list of applications that the window will apply to",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"clusters": {
-								Description:         "Clusters contains a list of clusters that the window will apply to",
-								MarkdownDescription: "Clusters contains a list of clusters that the window will apply to",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"duration": {
-								Description:         "Duration is the amount of time the sync window will be open",
-								MarkdownDescription: "Duration is the amount of time the sync window will be open",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"kind": {
-								Description:         "Kind defines if the window allows or blocks syncs",
-								MarkdownDescription: "Kind defines if the window allows or blocks syncs",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"manual_sync": {
-								Description:         "ManualSync enables manual syncs when they would otherwise be blocked",
-								MarkdownDescription: "ManualSync enables manual syncs when they would otherwise be blocked",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"namespaces": {
-								Description:         "Namespaces contains a list of namespaces that the window will apply to",
-								MarkdownDescription: "Namespaces contains a list of namespaces that the window will apply to",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"source_namespaces": {
-						Description:         "SourceNamespaces defines the namespaces application resources are allowed to be created in",
-						MarkdownDescription: "SourceNamespaces defines the namespaces application resources are allowed to be created in",
-
-						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,
@@ -616,7 +550,7 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"group": {
+							"kind": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -627,7 +561,7 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"kind": {
+							"group": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -644,11 +578,33 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 						Computed: false,
 					},
 
+					"description": {
+						Description:         "Description contains optional project description",
+						MarkdownDescription: "Description contains optional project description",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"destinations": {
 						Description:         "Destinations contains list of destinations available for deployment",
 						MarkdownDescription: "Destinations contains list of destinations available for deployment",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"server": {
+								Description:         "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
+								MarkdownDescription: "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"name": {
 								Description:         "Name is an alternate way of specifying the target cluster by its symbolic name",
@@ -664,17 +620,6 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 							"namespace": {
 								Description:         "Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace",
 								MarkdownDescription: "Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"server": {
-								Description:         "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
-								MarkdownDescription: "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
 
 								Type: types.StringType,
 
@@ -723,6 +668,74 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 						Computed: false,
 					},
 
+					"orphaned_resources": {
+						Description:         "OrphanedResources specifies if controller should monitor orphaned resources of apps in this project",
+						MarkdownDescription: "OrphanedResources specifies if controller should monitor orphaned resources of apps in this project",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"ignore": {
+								Description:         "Ignore contains a list of resources that are to be excluded from orphaned resources monitoring",
+								MarkdownDescription: "Ignore contains a list of resources that are to be excluded from orphaned resources monitoring",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"group": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"kind": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"warn": {
+								Description:         "Warn indicates if warning condition should be created for apps which have orphaned resources",
+								MarkdownDescription: "Warn indicates if warning condition should be created for apps which have orphaned resources",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"permit_only_project_scoped_clusters": {
 						Description:         "PermitOnlyProjectScopedClusters determines whether destinations can only reference clusters which are project-scoped",
 						MarkdownDescription: "PermitOnlyProjectScopedClusters determines whether destinations can only reference clusters which are project-scoped",
@@ -734,23 +747,11 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 						Computed: false,
 					},
 
-					"signature_keys": {
-						Description:         "SignatureKeys contains a list of PGP key IDs that commits in Git must be signed with in order to be allowed for sync",
-						MarkdownDescription: "SignatureKeys contains a list of PGP key IDs that commits in Git must be signed with in order to be allowed for sync",
+					"source_namespaces": {
+						Description:         "SourceNamespaces defines the namespaces application resources are allowed to be created in",
+						MarkdownDescription: "SourceNamespaces defines the namespaces application resources are allowed to be created in",
 
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"key_id": {
-								Description:         "The ID of the key in hexadecimal notation",
-								MarkdownDescription: "The ID of the key in hexadecimal notation",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
+						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

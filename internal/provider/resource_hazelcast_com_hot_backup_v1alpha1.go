@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,11 +50,11 @@ type HazelcastComHotBackupV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		HazelcastResourceName *string `tfsdk:"hazelcast_resource_name" yaml:"hazelcastResourceName,omitempty"`
-
 		Secret *string `tfsdk:"secret" yaml:"secret,omitempty"`
 
 		BucketURI *string `tfsdk:"bucket_uri" yaml:"bucketURI,omitempty"`
+
+		HazelcastResourceName *string `tfsdk:"hazelcast_resource_name" yaml:"hazelcastResourceName,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -154,17 +155,6 @@ func (r *HazelcastComHotBackupV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"hazelcast_resource_name": {
-						Description:         "HazelcastResourceName defines the name of the Hazelcast resource",
-						MarkdownDescription: "HazelcastResourceName defines the name of the Hazelcast resource",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
 					"secret": {
 						Description:         "Name of the secret with credentials for cloud providers.",
 						MarkdownDescription: "Name of the secret with credentials for cloud providers.",
@@ -184,6 +174,17 @@ func (r *HazelcastComHotBackupV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 						Required: false,
 						Optional: true,
+						Computed: false,
+					},
+
+					"hazelcast_resource_name": {
+						Description:         "HazelcastResourceName defines the name of the Hazelcast resource",
+						MarkdownDescription: "HazelcastResourceName defines the name of the Hazelcast resource",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 				}),

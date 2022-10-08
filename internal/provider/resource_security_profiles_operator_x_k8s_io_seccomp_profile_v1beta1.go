@@ -7,6 +7,9 @@ package provider
 
 import (
 	"context"
+
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,6 +52,26 @@ type SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		ListenerPath *string `tfsdk:"listener_path" yaml:"listenerPath,omitempty"`
+
+		Syscalls *[]struct {
+			Action *string `tfsdk:"action" yaml:"action,omitempty"`
+
+			Args *[]struct {
+				Index *int64 `tfsdk:"index" yaml:"index,omitempty"`
+
+				Op *string `tfsdk:"op" yaml:"op,omitempty"`
+
+				Value *int64 `tfsdk:"value" yaml:"value,omitempty"`
+
+				ValueTwo *int64 `tfsdk:"value_two" yaml:"valueTwo,omitempty"`
+			} `tfsdk:"args" yaml:"args,omitempty"`
+
+			ErrnoRet *string `tfsdk:"errno_ret" yaml:"errnoRet,omitempty"`
+
+			Names *[]string `tfsdk:"names" yaml:"names,omitempty"`
+		} `tfsdk:"syscalls" yaml:"syscalls,omitempty"`
+
 		Architectures *[]string `tfsdk:"architectures" yaml:"architectures,omitempty"`
 
 		BaseProfileName *string `tfsdk:"base_profile_name" yaml:"baseProfileName,omitempty"`
@@ -58,26 +81,6 @@ type SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1GoModel struct {
 		Flags *[]string `tfsdk:"flags" yaml:"flags,omitempty"`
 
 		ListenerMetadata *string `tfsdk:"listener_metadata" yaml:"listenerMetadata,omitempty"`
-
-		ListenerPath *string `tfsdk:"listener_path" yaml:"listenerPath,omitempty"`
-
-		Syscalls *[]struct {
-			Action *string `tfsdk:"action" yaml:"action,omitempty"`
-
-			Args *[]struct {
-				Op *string `tfsdk:"op" yaml:"op,omitempty"`
-
-				Value *int64 `tfsdk:"value" yaml:"value,omitempty"`
-
-				ValueTwo *int64 `tfsdk:"value_two" yaml:"valueTwo,omitempty"`
-
-				Index *int64 `tfsdk:"index" yaml:"index,omitempty"`
-			} `tfsdk:"args" yaml:"args,omitempty"`
-
-			ErrnoRet *string `tfsdk:"errno_ret" yaml:"errnoRet,omitempty"`
-
-			Names *[]string `tfsdk:"names" yaml:"names,omitempty"`
-		} `tfsdk:"syscalls" yaml:"syscalls,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -178,6 +181,133 @@ func (r *SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Resource) GetSchema(
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"listener_path": {
+						Description:         "path of UNIX domain socket to contact a seccomp agent for SCMP_ACT_NOTIFY",
+						MarkdownDescription: "path of UNIX domain socket to contact a seccomp agent for SCMP_ACT_NOTIFY",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"syscalls": {
+						Description:         "match a syscall in seccomp. While this property is OPTIONAL, some values of defaultAction are not useful without syscalls entries. For example, if defaultAction is SCMP_ACT_KILL and syscalls is empty or unset, the kernel will kill the container process on its first syscall",
+						MarkdownDescription: "match a syscall in seccomp. While this property is OPTIONAL, some values of defaultAction are not useful without syscalls entries. For example, if defaultAction is SCMP_ACT_KILL and syscalls is empty or unset, the kernel will kill the container process on its first syscall",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"action": {
+								Description:         "the action for seccomp rules",
+								MarkdownDescription: "the action for seccomp rules",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"args": {
+								Description:         "the specific syscall in seccomp",
+								MarkdownDescription: "the specific syscall in seccomp",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"index": {
+										Description:         "the index for syscall arguments in seccomp",
+										MarkdownDescription: "the index for syscall arguments in seccomp",
+
+										Type: types.Int64Type,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											int64validator.AtLeast(0),
+										},
+									},
+
+									"op": {
+										Description:         "the operator for syscall arguments in seccomp",
+										MarkdownDescription: "the operator for syscall arguments in seccomp",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"value": {
+										Description:         "the value for syscall arguments in seccomp",
+										MarkdownDescription: "the value for syscall arguments in seccomp",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											int64validator.AtLeast(0),
+										},
+									},
+
+									"value_two": {
+										Description:         "the value for syscall arguments in seccomp",
+										MarkdownDescription: "the value for syscall arguments in seccomp",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											int64validator.AtLeast(0),
+										},
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"errno_ret": {
+								Description:         "the errno return code to use. Some actions like SCMP_ACT_ERRNO and SCMP_ACT_TRACE allow to specify the errno code to return",
+								MarkdownDescription: "the errno return code to use. Some actions like SCMP_ACT_ERRNO and SCMP_ACT_TRACE allow to specify the errno code to return",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"names": {
+								Description:         "the names of the syscalls",
+								MarkdownDescription: "the names of the syscalls",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"architectures": {
 						Description:         "the architecture used for system calls",
 						MarkdownDescription: "the architecture used for system calls",
@@ -227,118 +357,6 @@ func (r *SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Resource) GetSchema(
 						MarkdownDescription: "opaque data to pass to the seccomp agent",
 
 						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"listener_path": {
-						Description:         "path of UNIX domain socket to contact a seccomp agent for SCMP_ACT_NOTIFY",
-						MarkdownDescription: "path of UNIX domain socket to contact a seccomp agent for SCMP_ACT_NOTIFY",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"syscalls": {
-						Description:         "match a syscall in seccomp. While this property is OPTIONAL, some values of defaultAction are not useful without syscalls entries. For example, if defaultAction is SCMP_ACT_KILL and syscalls is empty or unset, the kernel will kill the container process on its first syscall",
-						MarkdownDescription: "match a syscall in seccomp. While this property is OPTIONAL, some values of defaultAction are not useful without syscalls entries. For example, if defaultAction is SCMP_ACT_KILL and syscalls is empty or unset, the kernel will kill the container process on its first syscall",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"action": {
-								Description:         "the action for seccomp rules",
-								MarkdownDescription: "the action for seccomp rules",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"args": {
-								Description:         "the specific syscall in seccomp",
-								MarkdownDescription: "the specific syscall in seccomp",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"op": {
-										Description:         "the operator for syscall arguments in seccomp",
-										MarkdownDescription: "the operator for syscall arguments in seccomp",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"value": {
-										Description:         "the value for syscall arguments in seccomp",
-										MarkdownDescription: "the value for syscall arguments in seccomp",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"value_two": {
-										Description:         "the value for syscall arguments in seccomp",
-										MarkdownDescription: "the value for syscall arguments in seccomp",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"index": {
-										Description:         "the index for syscall arguments in seccomp",
-										MarkdownDescription: "the index for syscall arguments in seccomp",
-
-										Type: types.Int64Type,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"errno_ret": {
-								Description:         "the errno return code to use. Some actions like SCMP_ACT_ERRNO and SCMP_ACT_TRACE allow to specify the errno code to return",
-								MarkdownDescription: "the errno return code to use. Some actions like SCMP_ACT_ERRNO and SCMP_ACT_TRACE allow to specify the errno code to return",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"names": {
-								Description:         "the names of the syscalls",
-								MarkdownDescription: "the names of the syscalls",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
 
 						Required: false,
 						Optional: true,

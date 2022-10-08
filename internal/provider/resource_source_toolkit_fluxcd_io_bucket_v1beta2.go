@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,9 +50,15 @@ type SourceToolkitFluxcdIoBucketV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+		Region *string `tfsdk:"region" yaml:"region,omitempty"`
 
-		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
+
+		SecretRef *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
 		AccessFrom *struct {
 			NamespaceSelectors *[]struct {
@@ -63,19 +70,13 @@ type SourceToolkitFluxcdIoBucketV1Beta2GoModel struct {
 
 		Endpoint *string `tfsdk:"endpoint" yaml:"endpoint,omitempty"`
 
-		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
-
-		SecretRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
 		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
 
 		Insecure *bool `tfsdk:"insecure" yaml:"insecure,omitempty"`
 
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 
-		Region *string `tfsdk:"region" yaml:"region,omitempty"`
+		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -176,22 +177,56 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Resource) GetSchema(_ context.Context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"suspend": {
-						Description:         "Suspend tells the controller to suspend the reconciliation of this Bucket.",
-						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this Bucket.",
+					"region": {
+						Description:         "Region of the Endpoint where the BucketName is located in.",
+						MarkdownDescription: "Region of the Endpoint where the BucketName is located in.",
 
-						Type: types.BoolType,
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
 					},
 
-					"timeout": {
-						Description:         "Timeout for fetch operations, defaults to 60s.",
-						MarkdownDescription: "Timeout for fetch operations, defaults to 60s.",
+					"interval": {
+						Description:         "Interval at which to check the Endpoint for updates.",
+						MarkdownDescription: "Interval at which to check the Endpoint for updates.",
 
 						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"provider": {
+						Description:         "Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.",
+						MarkdownDescription: "Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"secret_ref": {
+						Description:         "SecretRef specifies the Secret containing authentication credentials for the Bucket.",
+						MarkdownDescription: "SecretRef specifies the Secret containing authentication credentials for the Bucket.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
@@ -255,40 +290,6 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
-					"provider": {
-						Description:         "Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.",
-						MarkdownDescription: "Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"secret_ref": {
-						Description:         "SecretRef specifies the Secret containing authentication credentials for the Bucket.",
-						MarkdownDescription: "SecretRef specifies the Secret containing authentication credentials for the Bucket.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the referent.",
-								MarkdownDescription: "Name of the referent.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"ignore": {
 						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
 						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
@@ -311,20 +312,20 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
-					"interval": {
-						Description:         "Interval at which to check the Endpoint for updates.",
-						MarkdownDescription: "Interval at which to check the Endpoint for updates.",
+					"suspend": {
+						Description:         "Suspend tells the controller to suspend the reconciliation of this Bucket.",
+						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this Bucket.",
 
-						Type: types.StringType,
+						Type: types.BoolType,
 
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
-					"region": {
-						Description:         "Region of the Endpoint where the BucketName is located in.",
-						MarkdownDescription: "Region of the Endpoint where the BucketName is located in.",
+					"timeout": {
+						Description:         "Timeout for fetch operations, defaults to 60s.",
+						MarkdownDescription: "Timeout for fetch operations, defaults to 60s.",
 
 						Type: types.StringType,
 

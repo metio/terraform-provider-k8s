@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -58,9 +59,9 @@ type HazelcastComWanReplicationV1Alpha1GoModel struct {
 		Endpoints *string `tfsdk:"endpoints" yaml:"endpoints,omitempty"`
 
 		Queue *struct {
-			Capacity *int64 `tfsdk:"capacity" yaml:"capacity,omitempty"`
-
 			FullBehavior *string `tfsdk:"full_behavior" yaml:"fullBehavior,omitempty"`
+
+			Capacity *int64 `tfsdk:"capacity" yaml:"capacity,omitempty"`
 		} `tfsdk:"queue" yaml:"queue,omitempty"`
 
 		Resources *[]struct {
@@ -227,22 +228,22 @@ func (r *HazelcastComWanReplicationV1Alpha1Resource) GetSchema(_ context.Context
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"capacity": {
-								Description:         "Capacity is the total capacity of WAN queue.",
-								MarkdownDescription: "Capacity is the total capacity of WAN queue.",
+							"full_behavior": {
+								Description:         "FullBehavior represents the behavior of the new arrival when the queue is full.",
+								MarkdownDescription: "FullBehavior represents the behavior of the new arrival when the queue is full.",
 
-								Type: types.Int64Type,
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"full_behavior": {
-								Description:         "FullBehavior represents the behavior of the new arrival when the queue is full.",
-								MarkdownDescription: "FullBehavior represents the behavior of the new arrival when the queue is full.",
+							"capacity": {
+								Description:         "Capacity is the total capacity of WAN queue.",
+								MarkdownDescription: "Capacity is the total capacity of WAN queue.",
 
-								Type: types.StringType,
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,

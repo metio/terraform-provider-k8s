@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -58,15 +59,15 @@ type KeycloakOrgKeycloakBackupV1Alpha1GoModel struct {
 		} `tfsdk:"aws" yaml:"aws,omitempty"`
 
 		InstanceSelector *struct {
-			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-
 			MatchExpressions *[]struct {
-				Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 				Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+				Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 			} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 		} `tfsdk:"instance_selector" yaml:"instanceSelector,omitempty"`
 
 		Restore *bool `tfsdk:"restore" yaml:"restore,omitempty"`
@@ -223,33 +224,11 @@ func (r *KeycloakOrgKeycloakBackupV1Alpha1Resource) GetSchema(_ context.Context)
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"match_labels": {
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"match_expressions": {
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"values": {
-										Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"key": {
 										Description:         "key is the label key that the selector applies to.",
@@ -272,7 +251,29 @@ func (r *KeycloakOrgKeycloakBackupV1Alpha1Resource) GetSchema(_ context.Context)
 										Optional: false,
 										Computed: false,
 									},
+
+									"values": {
+										Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"match_labels": {
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+								Type: types.MapType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,

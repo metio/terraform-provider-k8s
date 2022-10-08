@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -51,13 +52,13 @@ type CouchbaseComCouchbaseMigrationReplicationV2GoModel struct {
 
 	MigrationMapping *struct {
 		Mappings *[]struct {
-			Filter *string `tfsdk:"filter" yaml:"filter,omitempty"`
-
 			TargetKeyspace *struct {
-				Collection *string `tfsdk:"collection" yaml:"collection,omitempty"`
-
 				Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
+
+				Collection *string `tfsdk:"collection" yaml:"collection,omitempty"`
 			} `tfsdk:"target_keyspace" yaml:"targetKeyspace,omitempty"`
+
+			Filter *string `tfsdk:"filter" yaml:"filter,omitempty"`
 		} `tfsdk:"mappings" yaml:"mappings,omitempty"`
 	} `tfsdk:"migration_mapping" yaml:"migrationMapping,omitempty"`
 
@@ -177,33 +178,11 @@ func (r *CouchbaseComCouchbaseMigrationReplicationV2Resource) GetSchema(_ contex
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"filter": {
-								Description:         "A filter to select from the source default scope and collection. Defaults to select everything in the default scope and collection.",
-								MarkdownDescription: "A filter to select from the source default scope and collection. Defaults to select everything in the default scope and collection.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"target_keyspace": {
 								Description:         "The destination of our migration, must be a scope and collection.",
 								MarkdownDescription: "The destination of our migration, must be a scope and collection.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"collection": {
-										Description:         "The optional collection within the scope. May be empty to just work at scope level.",
-										MarkdownDescription: "The optional collection within the scope. May be empty to just work at scope level.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"scope": {
 										Description:         "The scope to use.",
@@ -215,10 +194,32 @@ func (r *CouchbaseComCouchbaseMigrationReplicationV2Resource) GetSchema(_ contex
 										Optional: false,
 										Computed: false,
 									},
+
+									"collection": {
+										Description:         "The optional collection within the scope. May be empty to just work at scope level.",
+										MarkdownDescription: "The optional collection within the scope. May be empty to just work at scope level.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: true,
 								Optional: false,
+								Computed: false,
+							},
+
+							"filter": {
+								Description:         "A filter to select from the source default scope and collection. Defaults to select everything in the default scope and collection.",
+								MarkdownDescription: "A filter to select from the source default scope and collection. Defaults to select everything in the default scope and collection.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 						}),

@@ -7,6 +7,9 @@ package provider
 
 import (
 	"context"
+
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,55 +52,59 @@ type CouchbaseComCouchbaseBackupV2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		S3bucket *string `tfsdk:"s3bucket" yaml:"s3bucket,omitempty"`
+
+		Size *string `tfsdk:"size" yaml:"size,omitempty"`
+
+		BackupRetention *string `tfsdk:"backup_retention" yaml:"backupRetention,omitempty"`
+
+		FailedJobsHistoryLimit *int64 `tfsdk:"failed_jobs_history_limit" yaml:"failedJobsHistoryLimit,omitempty"`
+
+		LogRetention *string `tfsdk:"log_retention" yaml:"logRetention,omitempty"`
+
+		StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
+
+		Strategy *string `tfsdk:"strategy" yaml:"strategy,omitempty"`
+
 		Data *struct {
 			Exclude *[]string `tfsdk:"exclude" yaml:"exclude,omitempty"`
 
 			Include *[]string `tfsdk:"include" yaml:"include,omitempty"`
 		} `tfsdk:"data" yaml:"data,omitempty"`
 
-		FailedJobsHistoryLimit *int64 `tfsdk:"failed_jobs_history_limit" yaml:"failedJobsHistoryLimit,omitempty"`
-
 		Full *struct {
 			Schedule *string `tfsdk:"schedule" yaml:"schedule,omitempty"`
 		} `tfsdk:"full" yaml:"full,omitempty"`
 
-		LogRetention *string `tfsdk:"log_retention" yaml:"logRetention,omitempty"`
-
-		Size *string `tfsdk:"size" yaml:"size,omitempty"`
-
-		SuccessfulJobsHistoryLimit *int64 `tfsdk:"successful_jobs_history_limit" yaml:"successfulJobsHistoryLimit,omitempty"`
-
 		BackoffLimit *int64 `tfsdk:"backoff_limit" yaml:"backoffLimit,omitempty"`
 
-		Incremental *struct {
-			Schedule *string `tfsdk:"schedule" yaml:"schedule,omitempty"`
-		} `tfsdk:"incremental" yaml:"incremental,omitempty"`
-
 		Services *struct {
-			Data *bool `tfsdk:"data" yaml:"data,omitempty"`
-
-			FtsIndexes *bool `tfsdk:"fts_indexes" yaml:"ftsIndexes,omitempty"`
-
-			GsIndexes *bool `tfsdk:"gs_indexes" yaml:"gsIndexes,omitempty"`
-
-			Views *bool `tfsdk:"views" yaml:"views,omitempty"`
-
-			Analytics *bool `tfsdk:"analytics" yaml:"analytics,omitempty"`
-
-			BucketConfig *bool `tfsdk:"bucket_config" yaml:"bucketConfig,omitempty"`
-
-			BucketQuery *bool `tfsdk:"bucket_query" yaml:"bucketQuery,omitempty"`
-
-			FtsAliases *bool `tfsdk:"fts_aliases" yaml:"ftsAliases,omitempty"`
-
 			ClusterAnalytics *bool `tfsdk:"cluster_analytics" yaml:"clusterAnalytics,omitempty"`
 
 			ClusterQuery *bool `tfsdk:"cluster_query" yaml:"clusterQuery,omitempty"`
 
+			Data *bool `tfsdk:"data" yaml:"data,omitempty"`
+
+			GsIndexes *bool `tfsdk:"gs_indexes" yaml:"gsIndexes,omitempty"`
+
+			Analytics *bool `tfsdk:"analytics" yaml:"analytics,omitempty"`
+
+			BucketQuery *bool `tfsdk:"bucket_query" yaml:"bucketQuery,omitempty"`
+
 			Eventing *bool `tfsdk:"eventing" yaml:"eventing,omitempty"`
+
+			FtsAliases *bool `tfsdk:"fts_aliases" yaml:"ftsAliases,omitempty"`
+
+			FtsIndexes *bool `tfsdk:"fts_indexes" yaml:"ftsIndexes,omitempty"`
+
+			Views *bool `tfsdk:"views" yaml:"views,omitempty"`
+
+			BucketConfig *bool `tfsdk:"bucket_config" yaml:"bucketConfig,omitempty"`
 		} `tfsdk:"services" yaml:"services,omitempty"`
 
-		StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
+		SuccessfulJobsHistoryLimit *int64 `tfsdk:"successful_jobs_history_limit" yaml:"successfulJobsHistoryLimit,omitempty"`
+
+		Threads *int64 `tfsdk:"threads" yaml:"threads,omitempty"`
 
 		AutoScaling *struct {
 			IncrementPercent *int64 `tfsdk:"increment_percent" yaml:"incrementPercent,omitempty"`
@@ -107,13 +114,9 @@ type CouchbaseComCouchbaseBackupV2GoModel struct {
 			ThresholdPercent *int64 `tfsdk:"threshold_percent" yaml:"thresholdPercent,omitempty"`
 		} `tfsdk:"auto_scaling" yaml:"autoScaling,omitempty"`
 
-		Strategy *string `tfsdk:"strategy" yaml:"strategy,omitempty"`
-
-		Threads *int64 `tfsdk:"threads" yaml:"threads,omitempty"`
-
-		BackupRetention *string `tfsdk:"backup_retention" yaml:"backupRetention,omitempty"`
-
-		S3bucket *string `tfsdk:"s3bucket" yaml:"s3bucket,omitempty"`
+		Incremental *struct {
+			Schedule *string `tfsdk:"schedule" yaml:"schedule,omitempty"`
+		} `tfsdk:"incremental" yaml:"incremental,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -214,6 +217,88 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) GetSchema(_ context.Context) (tf
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"s3bucket": {
+						Description:         "Name of S3 bucket to backup to. If non-empty this overrides local backup.",
+						MarkdownDescription: "Name of S3 bucket to backup to. If non-empty this overrides local backup.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"size": {
+						Description:         "Size allows the specification of a backup persistent volume, when using volume based backup. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+						MarkdownDescription: "Size allows the specification of a backup persistent volume, when using volume based backup. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"backup_retention": {
+						Description:         "Number of hours to hold backups for, everything older will be deleted.  More info: https://golang.org/pkg/time/#ParseDuration",
+						MarkdownDescription: "Number of hours to hold backups for, everything older will be deleted.  More info: https://golang.org/pkg/time/#ParseDuration",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"failed_jobs_history_limit": {
+						Description:         "Amount of failed jobs to keep.",
+						MarkdownDescription: "Amount of failed jobs to keep.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(0),
+						},
+					},
+
+					"log_retention": {
+						Description:         "Number of hours to hold script logs for, everything older will be deleted.  More info: https://golang.org/pkg/time/#ParseDuration",
+						MarkdownDescription: "Number of hours to hold script logs for, everything older will be deleted.  More info: https://golang.org/pkg/time/#ParseDuration",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"storage_class_name": {
+						Description:         "Name of StorageClass to use.",
+						MarkdownDescription: "Name of StorageClass to use.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"strategy": {
+						Description:         "Strategy defines how to perform backups.  'full_only' will only perform full backups, and you must define a schedule in the 'spec.full' field.  'full_incremental' will perform periodic full backups, and incremental backups in between.  You must define full and incremental schedules in the 'spec.full' and 'spec.incremental' fields respectively.  Care should be taken to ensure full and incremental schedules do not overlap, taking into account the backup time, as this will cause failures as the jobs attempt to mount the same backup volume. This field default to 'full_incremental'. Info: https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html",
+						MarkdownDescription: "Strategy defines how to perform backups.  'full_only' will only perform full backups, and you must define a schedule in the 'spec.full' field.  'full_incremental' will perform periodic full backups, and incremental backups in between.  You must define full and incremental schedules in the 'spec.full' and 'spec.incremental' fields respectively.  Care should be taken to ensure full and incremental schedules do not overlap, taking into account the backup time, as this will cause failures as the jobs attempt to mount the same backup volume. This field default to 'full_incremental'. Info: https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
 					"data": {
 						Description:         "Data allows control over what key-value/document data is included in the backup.  By default, all data is included.  Modifications to this field will only take effect on the next full backup.",
 						MarkdownDescription: "Data allows control over what key-value/document data is included in the backup.  By default, all data is included.  Modifications to this field will only take effect on the next full backup.",
@@ -248,17 +333,6 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) GetSchema(_ context.Context) (tf
 						Computed: false,
 					},
 
-					"failed_jobs_history_limit": {
-						Description:         "Amount of failed jobs to keep.",
-						MarkdownDescription: "Amount of failed jobs to keep.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"full": {
 						Description:         "Full is the schedule on when to take full backups. Used in Full/Incremental and FullOnly backup strategies.",
 						MarkdownDescription: "Full is the schedule on when to take full backups. Used in Full/Incremental and FullOnly backup strategies.",
@@ -282,39 +356,6 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) GetSchema(_ context.Context) (tf
 						Computed: false,
 					},
 
-					"log_retention": {
-						Description:         "Number of hours to hold script logs for, everything older will be deleted.  More info: https://golang.org/pkg/time/#ParseDuration",
-						MarkdownDescription: "Number of hours to hold script logs for, everything older will be deleted.  More info: https://golang.org/pkg/time/#ParseDuration",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"size": {
-						Description:         "Size allows the specification of a backup persistent volume, when using volume based backup. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-						MarkdownDescription: "Size allows the specification of a backup persistent volume, when using volume based backup. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"successful_jobs_history_limit": {
-						Description:         "Amount of successful jobs to keep.",
-						MarkdownDescription: "Amount of successful jobs to keep.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"backoff_limit": {
 						Description:         "Number of times a backup job should try to execute. Once it hits the BackoffLimit it will not run until the next scheduled job.",
 						MarkdownDescription: "Number of times a backup job should try to execute. Once it hits the BackoffLimit it will not run until the next scheduled job.",
@@ -326,122 +367,11 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) GetSchema(_ context.Context) (tf
 						Computed: false,
 					},
 
-					"incremental": {
-						Description:         "Incremental is the schedule on when to take incremental backups. Used in Full/Incremental backup strategies.",
-						MarkdownDescription: "Incremental is the schedule on when to take incremental backups. Used in Full/Incremental backup strategies.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"schedule": {
-								Description:         "Schedule takes a cron schedule in string format.",
-								MarkdownDescription: "Schedule takes a cron schedule in string format.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"services": {
 						Description:         "Services allows control over what services are included in the backup. By default, all service data and metadata are included.  Modifications to this field will only take effect on the next full backup.",
 						MarkdownDescription: "Services allows control over what services are included in the backup. By default, all service data and metadata are included.  Modifications to this field will only take effect on the next full backup.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"data": {
-								Description:         "Data enables the backup of key-value data/documents for all buckets. This can be further refined with the couchbasebackups.spec.data configuration. This field defaults to 'true'.",
-								MarkdownDescription: "Data enables the backup of key-value data/documents for all buckets. This can be further refined with the couchbasebackups.spec.data configuration. This field defaults to 'true'.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"fts_indexes": {
-								Description:         "FTSIndexes enables the backup of full-text search index definitions for all buckets. This field defaults to 'true'.",
-								MarkdownDescription: "FTSIndexes enables the backup of full-text search index definitions for all buckets. This field defaults to 'true'.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"gs_indexes": {
-								Description:         "GSIndexes enables the backup of global secondary index definitions for all buckets. This field defaults to 'true'.",
-								MarkdownDescription: "GSIndexes enables the backup of global secondary index definitions for all buckets. This field defaults to 'true'.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"views": {
-								Description:         "Views enables the backup of view definitions for all buckets. This field defaults to 'true'.",
-								MarkdownDescription: "Views enables the backup of view definitions for all buckets. This field defaults to 'true'.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"analytics": {
-								Description:         "Analytics enables the backup of analytics data. This field defaults to 'true'.",
-								MarkdownDescription: "Analytics enables the backup of analytics data. This field defaults to 'true'.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"bucket_config": {
-								Description:         "BucketConfig enables the backup of bucket configuration. This field defaults to 'true'.",
-								MarkdownDescription: "BucketConfig enables the backup of bucket configuration. This field defaults to 'true'.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"bucket_query": {
-								Description:         "BucketQuery enables the backup of query metadata for all buckets. This field defaults to 'true'.",
-								MarkdownDescription: "BucketQuery enables the backup of query metadata for all buckets. This field defaults to 'true'.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"fts_aliases": {
-								Description:         "FTSAliases enables the backup of full-text search alias definitions. This field defaults to 'true'.",
-								MarkdownDescription: "FTSAliases enables the backup of full-text search alias definitions. This field defaults to 'true'.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"cluster_analytics": {
 								Description:         "ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms. This field defaults to 'true'.",
@@ -465,9 +395,97 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) GetSchema(_ context.Context) (tf
 								Computed: false,
 							},
 
+							"data": {
+								Description:         "Data enables the backup of key-value data/documents for all buckets. This can be further refined with the couchbasebackups.spec.data configuration. This field defaults to 'true'.",
+								MarkdownDescription: "Data enables the backup of key-value data/documents for all buckets. This can be further refined with the couchbasebackups.spec.data configuration. This field defaults to 'true'.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"gs_indexes": {
+								Description:         "GSIndexes enables the backup of global secondary index definitions for all buckets. This field defaults to 'true'.",
+								MarkdownDescription: "GSIndexes enables the backup of global secondary index definitions for all buckets. This field defaults to 'true'.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"analytics": {
+								Description:         "Analytics enables the backup of analytics data. This field defaults to 'true'.",
+								MarkdownDescription: "Analytics enables the backup of analytics data. This field defaults to 'true'.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"bucket_query": {
+								Description:         "BucketQuery enables the backup of query metadata for all buckets. This field defaults to 'true'.",
+								MarkdownDescription: "BucketQuery enables the backup of query metadata for all buckets. This field defaults to 'true'.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"eventing": {
 								Description:         "Eventing enables the backup of eventing service metadata. This field defaults to 'true'.",
 								MarkdownDescription: "Eventing enables the backup of eventing service metadata. This field defaults to 'true'.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"fts_aliases": {
+								Description:         "FTSAliases enables the backup of full-text search alias definitions. This field defaults to 'true'.",
+								MarkdownDescription: "FTSAliases enables the backup of full-text search alias definitions. This field defaults to 'true'.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"fts_indexes": {
+								Description:         "FTSIndexes enables the backup of full-text search index definitions for all buckets. This field defaults to 'true'.",
+								MarkdownDescription: "FTSIndexes enables the backup of full-text search index definitions for all buckets. This field defaults to 'true'.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"views": {
+								Description:         "Views enables the backup of view definitions for all buckets. This field defaults to 'true'.",
+								MarkdownDescription: "Views enables the backup of view definitions for all buckets. This field defaults to 'true'.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"bucket_config": {
+								Description:         "BucketConfig enables the backup of bucket configuration. This field defaults to 'true'.",
+								MarkdownDescription: "BucketConfig enables the backup of bucket configuration. This field defaults to 'true'.",
 
 								Type: types.BoolType,
 
@@ -482,15 +500,36 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) GetSchema(_ context.Context) (tf
 						Computed: false,
 					},
 
-					"storage_class_name": {
-						Description:         "Name of StorageClass to use.",
-						MarkdownDescription: "Name of StorageClass to use.",
+					"successful_jobs_history_limit": {
+						Description:         "Amount of successful jobs to keep.",
+						MarkdownDescription: "Amount of successful jobs to keep.",
 
-						Type: types.StringType,
+						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(0),
+						},
+					},
+
+					"threads": {
+						Description:         "How many threads to use during the backup.  This field defaults to 1.",
+						MarkdownDescription: "How many threads to use during the backup.  This field defaults to 1.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(1),
+						},
 					},
 
 					"auto_scaling": {
@@ -508,6 +547,11 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) GetSchema(_ context.Context) (tf
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(0),
+								},
 							},
 
 							"limit": {
@@ -530,6 +574,13 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) GetSchema(_ context.Context) (tf
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(0),
+
+									int64validator.AtMost(99),
+								},
 							},
 						}),
 
@@ -538,44 +589,23 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) GetSchema(_ context.Context) (tf
 						Computed: false,
 					},
 
-					"strategy": {
-						Description:         "Strategy defines how to perform backups.  'full_only' will only perform full backups, and you must define a schedule in the 'spec.full' field.  'full_incremental' will perform periodic full backups, and incremental backups in between.  You must define full and incremental schedules in the 'spec.full' and 'spec.incremental' fields respectively.  Care should be taken to ensure full and incremental schedules do not overlap, taking into account the backup time, as this will cause failures as the jobs attempt to mount the same backup volume. This field default to 'full_incremental'. Info: https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html",
-						MarkdownDescription: "Strategy defines how to perform backups.  'full_only' will only perform full backups, and you must define a schedule in the 'spec.full' field.  'full_incremental' will perform periodic full backups, and incremental backups in between.  You must define full and incremental schedules in the 'spec.full' and 'spec.incremental' fields respectively.  Care should be taken to ensure full and incremental schedules do not overlap, taking into account the backup time, as this will cause failures as the jobs attempt to mount the same backup volume. This field default to 'full_incremental'. Info: https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-strategies.html",
+					"incremental": {
+						Description:         "Incremental is the schedule on when to take incremental backups. Used in Full/Incremental backup strategies.",
+						MarkdownDescription: "Incremental is the schedule on when to take incremental backups. Used in Full/Incremental backup strategies.",
 
-						Type: types.StringType,
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
+							"schedule": {
+								Description:         "Schedule takes a cron schedule in string format.",
+								MarkdownDescription: "Schedule takes a cron schedule in string format.",
 
-					"threads": {
-						Description:         "How many threads to use during the backup.  This field defaults to 1.",
-						MarkdownDescription: "How many threads to use during the backup.  This field defaults to 1.",
+								Type: types.StringType,
 
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"backup_retention": {
-						Description:         "Number of hours to hold backups for, everything older will be deleted.  More info: https://golang.org/pkg/time/#ParseDuration",
-						MarkdownDescription: "Number of hours to hold backups for, everything older will be deleted.  More info: https://golang.org/pkg/time/#ParseDuration",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"s3bucket": {
-						Description:         "Name of S3 bucket to backup to. If non-empty this overrides local backup.",
-						MarkdownDescription: "Name of S3 bucket to backup to. If non-empty this overrides local backup.",
-
-						Type: types.StringType,
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

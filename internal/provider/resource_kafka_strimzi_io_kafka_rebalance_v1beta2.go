@@ -7,6 +7,9 @@ package provider
 
 import (
 	"context"
+
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,27 +52,27 @@ type KafkaStrimziIoKafkaRebalanceV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Brokers *[]string `tfsdk:"brokers" yaml:"brokers,omitempty"`
-
 		ConcurrentIntraBrokerPartitionMovements *int64 `tfsdk:"concurrent_intra_broker_partition_movements" yaml:"concurrentIntraBrokerPartitionMovements,omitempty"`
 
-		ConcurrentLeaderMovements *int64 `tfsdk:"concurrent_leader_movements" yaml:"concurrentLeaderMovements,omitempty"`
+		ConcurrentPartitionMovementsPerBroker *int64 `tfsdk:"concurrent_partition_movements_per_broker" yaml:"concurrentPartitionMovementsPerBroker,omitempty"`
 
 		ExcludedTopics *string `tfsdk:"excluded_topics" yaml:"excludedTopics,omitempty"`
 
 		Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
 
+		ReplicaMovementStrategies *[]string `tfsdk:"replica_movement_strategies" yaml:"replicaMovementStrategies,omitempty"`
+
 		ReplicationThrottle *int64 `tfsdk:"replication_throttle" yaml:"replicationThrottle,omitempty"`
 
 		SkipHardGoalCheck *bool `tfsdk:"skip_hard_goal_check" yaml:"skipHardGoalCheck,omitempty"`
 
-		ConcurrentPartitionMovementsPerBroker *int64 `tfsdk:"concurrent_partition_movements_per_broker" yaml:"concurrentPartitionMovementsPerBroker,omitempty"`
+		Brokers *[]string `tfsdk:"brokers" yaml:"brokers,omitempty"`
+
+		ConcurrentLeaderMovements *int64 `tfsdk:"concurrent_leader_movements" yaml:"concurrentLeaderMovements,omitempty"`
 
 		Goals *[]string `tfsdk:"goals" yaml:"goals,omitempty"`
 
 		RebalanceDisk *bool `tfsdk:"rebalance_disk" yaml:"rebalanceDisk,omitempty"`
-
-		ReplicaMovementStrategies *[]string `tfsdk:"replica_movement_strategies" yaml:"replicaMovementStrategies,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -170,17 +173,6 @@ func (r *KafkaStrimziIoKafkaRebalanceV1Beta2Resource) GetSchema(_ context.Contex
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"brokers": {
-						Description:         "The list of newly added brokers in case of scaling up or the ones to be removed in case of scaling down to use for rebalancing. This list can be used only with rebalancing mode 'add-brokers' and 'removed-brokers'. It is ignored with 'full' mode.",
-						MarkdownDescription: "The list of newly added brokers in case of scaling up or the ones to be removed in case of scaling down to use for rebalancing. This list can be used only with rebalancing mode 'add-brokers' and 'removed-brokers'. It is ignored with 'full' mode.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"concurrent_intra_broker_partition_movements": {
 						Description:         "The upper bound of ongoing partition replica movements between disks within each broker. Default is 2.",
 						MarkdownDescription: "The upper bound of ongoing partition replica movements between disks within each broker. Default is 2.",
@@ -190,17 +182,27 @@ func (r *KafkaStrimziIoKafkaRebalanceV1Beta2Resource) GetSchema(_ context.Contex
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(0),
+						},
 					},
 
-					"concurrent_leader_movements": {
-						Description:         "The upper bound of ongoing partition leadership movements. Default is 1000.",
-						MarkdownDescription: "The upper bound of ongoing partition leadership movements. Default is 1000.",
+					"concurrent_partition_movements_per_broker": {
+						Description:         "The upper bound of ongoing partition replica movements going into/out of each broker. Default is 5.",
+						MarkdownDescription: "The upper bound of ongoing partition replica movements going into/out of each broker. Default is 5.",
 
 						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(0),
+						},
 					},
 
 					"excluded_topics": {
@@ -225,6 +227,17 @@ func (r *KafkaStrimziIoKafkaRebalanceV1Beta2Resource) GetSchema(_ context.Contex
 						Computed: false,
 					},
 
+					"replica_movement_strategies": {
+						Description:         "A list of strategy class names used to determine the execution order for the replica movements in the generated optimization proposal. By default BaseReplicaMovementStrategy is used, which will execute the replica movements in the order that they were generated.",
+						MarkdownDescription: "A list of strategy class names used to determine the execution order for the replica movements in the generated optimization proposal. By default BaseReplicaMovementStrategy is used, which will execute the replica movements in the order that they were generated.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"replication_throttle": {
 						Description:         "The upper bound, in bytes per second, on the bandwidth used to move replicas. There is no limit by default.",
 						MarkdownDescription: "The upper bound, in bytes per second, on the bandwidth used to move replicas. There is no limit by default.",
@@ -234,6 +247,11 @@ func (r *KafkaStrimziIoKafkaRebalanceV1Beta2Resource) GetSchema(_ context.Contex
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(0),
+						},
 					},
 
 					"skip_hard_goal_check": {
@@ -247,15 +265,31 @@ func (r *KafkaStrimziIoKafkaRebalanceV1Beta2Resource) GetSchema(_ context.Contex
 						Computed: false,
 					},
 
-					"concurrent_partition_movements_per_broker": {
-						Description:         "The upper bound of ongoing partition replica movements going into/out of each broker. Default is 5.",
-						MarkdownDescription: "The upper bound of ongoing partition replica movements going into/out of each broker. Default is 5.",
+					"brokers": {
+						Description:         "The list of newly added brokers in case of scaling up or the ones to be removed in case of scaling down to use for rebalancing. This list can be used only with rebalancing mode 'add-brokers' and 'removed-brokers'. It is ignored with 'full' mode.",
+						MarkdownDescription: "The list of newly added brokers in case of scaling up or the ones to be removed in case of scaling down to use for rebalancing. This list can be used only with rebalancing mode 'add-brokers' and 'removed-brokers'. It is ignored with 'full' mode.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"concurrent_leader_movements": {
+						Description:         "The upper bound of ongoing partition leadership movements. Default is 1000.",
+						MarkdownDescription: "The upper bound of ongoing partition leadership movements. Default is 1000.",
 
 						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(0),
+						},
 					},
 
 					"goals": {
@@ -274,17 +308,6 @@ func (r *KafkaStrimziIoKafkaRebalanceV1Beta2Resource) GetSchema(_ context.Contex
 						MarkdownDescription: "Enables intra-broker disk balancing, which balances disk space utilization between disks on the same broker. Only applies to Kafka deployments that use JBOD storage with multiple disks. When enabled, inter-broker balancing is disabled. Default is false.",
 
 						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"replica_movement_strategies": {
-						Description:         "A list of strategy class names used to determine the execution order for the replica movements in the generated optimization proposal. By default BaseReplicaMovementStrategy is used, which will execute the replica movements in the order that they were generated.",
-						MarkdownDescription: "A list of strategy class names used to determine the execution order for the replica movements in the generated optimization proposal. By default BaseReplicaMovementStrategy is used, which will execute the replica movements in the order that they were generated.",
-
-						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

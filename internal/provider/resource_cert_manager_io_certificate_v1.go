@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,25 +50,47 @@ type CertManagerIoCertificateV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		IssuerRef *struct {
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Group *string `tfsdk:"group" yaml:"group,omitempty"`
+		} `tfsdk:"issuer_ref" yaml:"issuerRef,omitempty"`
+
+		SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
+
+		EmailAddresses *[]string `tfsdk:"email_addresses" yaml:"emailAddresses,omitempty"`
+
+		Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
+
 		EncodeUsagesInRequest *bool `tfsdk:"encode_usages_in_request" yaml:"encodeUsagesInRequest,omitempty"`
 
-		Subject *struct {
-			PostalCodes *[]string `tfsdk:"postal_codes" yaml:"postalCodes,omitempty"`
+		IsCA *bool `tfsdk:"is_ca" yaml:"isCA,omitempty"`
 
-			Provinces *[]string `tfsdk:"provinces" yaml:"provinces,omitempty"`
+		LiteralSubject *string `tfsdk:"literal_subject" yaml:"literalSubject,omitempty"`
 
-			SerialNumber *string `tfsdk:"serial_number" yaml:"serialNumber,omitempty"`
+		PrivateKey *struct {
+			Algorithm *string `tfsdk:"algorithm" yaml:"algorithm,omitempty"`
 
-			StreetAddresses *[]string `tfsdk:"street_addresses" yaml:"streetAddresses,omitempty"`
+			Encoding *string `tfsdk:"encoding" yaml:"encoding,omitempty"`
 
-			Countries *[]string `tfsdk:"countries" yaml:"countries,omitempty"`
+			RotationPolicy *string `tfsdk:"rotation_policy" yaml:"rotationPolicy,omitempty"`
 
-			Localities *[]string `tfsdk:"localities" yaml:"localities,omitempty"`
+			Size *int64 `tfsdk:"size" yaml:"size,omitempty"`
+		} `tfsdk:"private_key" yaml:"privateKey,omitempty"`
 
-			OrganizationalUnits *[]string `tfsdk:"organizational_units" yaml:"organizationalUnits,omitempty"`
+		RenewBefore *string `tfsdk:"renew_before" yaml:"renewBefore,omitempty"`
 
-			Organizations *[]string `tfsdk:"organizations" yaml:"organizations,omitempty"`
-		} `tfsdk:"subject" yaml:"subject,omitempty"`
+		AdditionalOutputFormats *[]struct {
+			Type *string `tfsdk:"type" yaml:"type,omitempty"`
+		} `tfsdk:"additional_output_formats" yaml:"additionalOutputFormats,omitempty"`
+
+		Uris *[]string `tfsdk:"uris" yaml:"uris,omitempty"`
+
+		DnsNames *[]string `tfsdk:"dns_names" yaml:"dnsNames,omitempty"`
+
+		IpAddresses *[]string `tfsdk:"ip_addresses" yaml:"ipAddresses,omitempty"`
 
 		Keystores *struct {
 			Jks *struct {
@@ -93,55 +116,33 @@ type CertManagerIoCertificateV1GoModel struct {
 
 		RevisionHistoryLimit *int64 `tfsdk:"revision_history_limit" yaml:"revisionHistoryLimit,omitempty"`
 
-		SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-
-		Usages *[]string `tfsdk:"usages" yaml:"usages,omitempty"`
-
-		Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
-
-		EmailAddresses *[]string `tfsdk:"email_addresses" yaml:"emailAddresses,omitempty"`
-
-		IssuerRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Group *string `tfsdk:"group" yaml:"group,omitempty"`
-
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-		} `tfsdk:"issuer_ref" yaml:"issuerRef,omitempty"`
-
-		AdditionalOutputFormats *[]struct {
-			Type *string `tfsdk:"type" yaml:"type,omitempty"`
-		} `tfsdk:"additional_output_formats" yaml:"additionalOutputFormats,omitempty"`
-
-		IsCA *bool `tfsdk:"is_ca" yaml:"isCA,omitempty"`
-
-		PrivateKey *struct {
-			Algorithm *string `tfsdk:"algorithm" yaml:"algorithm,omitempty"`
-
-			Encoding *string `tfsdk:"encoding" yaml:"encoding,omitempty"`
-
-			RotationPolicy *string `tfsdk:"rotation_policy" yaml:"rotationPolicy,omitempty"`
-
-			Size *int64 `tfsdk:"size" yaml:"size,omitempty"`
-		} `tfsdk:"private_key" yaml:"privateKey,omitempty"`
-
-		LiteralSubject *string `tfsdk:"literal_subject" yaml:"literalSubject,omitempty"`
-
-		RenewBefore *string `tfsdk:"renew_before" yaml:"renewBefore,omitempty"`
-
 		SecretTemplate *struct {
 			Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
 			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
 		} `tfsdk:"secret_template" yaml:"secretTemplate,omitempty"`
 
-		Uris *[]string `tfsdk:"uris" yaml:"uris,omitempty"`
+		Subject *struct {
+			OrganizationalUnits *[]string `tfsdk:"organizational_units" yaml:"organizationalUnits,omitempty"`
+
+			Organizations *[]string `tfsdk:"organizations" yaml:"organizations,omitempty"`
+
+			PostalCodes *[]string `tfsdk:"postal_codes" yaml:"postalCodes,omitempty"`
+
+			Provinces *[]string `tfsdk:"provinces" yaml:"provinces,omitempty"`
+
+			SerialNumber *string `tfsdk:"serial_number" yaml:"serialNumber,omitempty"`
+
+			StreetAddresses *[]string `tfsdk:"street_addresses" yaml:"streetAddresses,omitempty"`
+
+			Countries *[]string `tfsdk:"countries" yaml:"countries,omitempty"`
+
+			Localities *[]string `tfsdk:"localities" yaml:"localities,omitempty"`
+		} `tfsdk:"subject" yaml:"subject,omitempty"`
+
+		Usages *[]string `tfsdk:"usages" yaml:"usages,omitempty"`
 
 		CommonName *string `tfsdk:"common_name" yaml:"commonName,omitempty"`
-
-		DnsNames *[]string `tfsdk:"dns_names" yaml:"dnsNames,omitempty"`
-
-		IpAddresses *[]string `tfsdk:"ip_addresses" yaml:"ipAddresses,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -242,6 +243,84 @@ func (r *CertManagerIoCertificateV1Resource) GetSchema(_ context.Context) (tfsdk
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"issuer_ref": {
+						Description:         "IssuerRef is a reference to the issuer for this certificate. If the 'kind' field is not set, or set to 'Issuer', an Issuer resource with the given name in the same namespace as the Certificate will be used. If the 'kind' field is set to 'ClusterIssuer', a ClusterIssuer with the provided name will be used. The 'name' field in this stanza is required at all times.",
+						MarkdownDescription: "IssuerRef is a reference to the issuer for this certificate. If the 'kind' field is not set, or set to 'Issuer', an Issuer resource with the given name in the same namespace as the Certificate will be used. If the 'kind' field is set to 'ClusterIssuer', a ClusterIssuer with the provided name will be used. The 'name' field in this stanza is required at all times.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"kind": {
+								Description:         "Kind of the resource being referred to.",
+								MarkdownDescription: "Kind of the resource being referred to.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name of the resource being referred to.",
+								MarkdownDescription: "Name of the resource being referred to.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"group": {
+								Description:         "Group of the resource being referred to.",
+								MarkdownDescription: "Group of the resource being referred to.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"secret_name": {
+						Description:         "SecretName is the name of the secret resource that will be automatically created and managed by this Certificate resource. It will be populated with a private key and certificate, signed by the denoted issuer.",
+						MarkdownDescription: "SecretName is the name of the secret resource that will be automatically created and managed by this Certificate resource. It will be populated with a private key and certificate, signed by the denoted issuer.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"email_addresses": {
+						Description:         "EmailAddresses is a list of email subjectAltNames to be set on the Certificate.",
+						MarkdownDescription: "EmailAddresses is a list of email subjectAltNames to be set on the Certificate.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"duration": {
+						Description:         "The requested 'duration' (i.e. lifetime) of the Certificate. This option may be ignored/overridden by some issuer types. If unset this defaults to 90 days. Certificate will be renewed either 2/3 through its duration or 'renewBefore' period before its expiry, whichever is later. Minimum accepted duration is 1 hour. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration",
+						MarkdownDescription: "The requested 'duration' (i.e. lifetime) of the Certificate. This option may be ignored/overridden by some issuer types. If unset this defaults to 90 days. Certificate will be renewed either 2/3 through its duration or 'renewBefore' period before its expiry, whichever is later. Minimum accepted duration is 1 hour. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"encode_usages_in_request": {
 						Description:         "EncodeUsagesInRequest controls whether key usages should be present in the CertificateRequest",
 						MarkdownDescription: "EncodeUsagesInRequest controls whether key usages should be present in the CertificateRequest",
@@ -253,37 +332,37 @@ func (r *CertManagerIoCertificateV1Resource) GetSchema(_ context.Context) (tfsdk
 						Computed: false,
 					},
 
-					"subject": {
-						Description:         "Full X509 name specification (https://golang.org/pkg/crypto/x509/pkix/#Name).",
-						MarkdownDescription: "Full X509 name specification (https://golang.org/pkg/crypto/x509/pkix/#Name).",
+					"is_ca": {
+						Description:         "IsCA will mark this Certificate as valid for certificate signing. This will automatically add the 'cert sign' usage to the list of 'usages'.",
+						MarkdownDescription: "IsCA will mark this Certificate as valid for certificate signing. This will automatically add the 'cert sign' usage to the list of 'usages'.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"literal_subject": {
+						Description:         "LiteralSubject is an LDAP formatted string that represents the [X.509 Subject field](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6). Use this *instead* of the Subject field if you need to ensure the correct ordering of the RDN sequence, such as when issuing certs for LDAP authentication. See https://github.com/cert-manager/cert-manager/issues/3203, https://github.com/cert-manager/cert-manager/issues/4424. This field is alpha level and is only supported by cert-manager installations where LiteralCertificateSubject feature gate is enabled on both cert-manager controller and webhook.",
+						MarkdownDescription: "LiteralSubject is an LDAP formatted string that represents the [X.509 Subject field](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6). Use this *instead* of the Subject field if you need to ensure the correct ordering of the RDN sequence, such as when issuing certs for LDAP authentication. See https://github.com/cert-manager/cert-manager/issues/3203, https://github.com/cert-manager/cert-manager/issues/4424. This field is alpha level and is only supported by cert-manager installations where LiteralCertificateSubject feature gate is enabled on both cert-manager controller and webhook.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"private_key": {
+						Description:         "Options to control private keys used for the Certificate.",
+						MarkdownDescription: "Options to control private keys used for the Certificate.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"postal_codes": {
-								Description:         "Postal codes to be used on the Certificate.",
-								MarkdownDescription: "Postal codes to be used on the Certificate.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"provinces": {
-								Description:         "State/Provinces to be used on the Certificate.",
-								MarkdownDescription: "State/Provinces to be used on the Certificate.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"serial_number": {
-								Description:         "Serial number to be used on the Certificate.",
-								MarkdownDescription: "Serial number to be used on the Certificate.",
+							"algorithm": {
+								Description:         "Algorithm is the private key algorithm of the corresponding private key for this certificate. If provided, allowed values are either 'RSA','Ed25519' or 'ECDSA' If 'algorithm' is specified and 'size' is not provided, key size of 256 will be used for 'ECDSA' key algorithm and key size of 2048 will be used for 'RSA' key algorithm. key size is ignored when using the 'Ed25519' key algorithm.",
+								MarkdownDescription: "Algorithm is the private key algorithm of the corresponding private key for this certificate. If provided, allowed values are either 'RSA','Ed25519' or 'ECDSA' If 'algorithm' is specified and 'size' is not provided, key size of 256 will be used for 'ECDSA' key algorithm and key size of 2048 will be used for 'RSA' key algorithm. key size is ignored when using the 'Ed25519' key algorithm.",
 
 								Type: types.StringType,
 
@@ -292,61 +371,106 @@ func (r *CertManagerIoCertificateV1Resource) GetSchema(_ context.Context) (tfsdk
 								Computed: false,
 							},
 
-							"street_addresses": {
-								Description:         "Street addresses to be used on the Certificate.",
-								MarkdownDescription: "Street addresses to be used on the Certificate.",
+							"encoding": {
+								Description:         "The private key cryptography standards (PKCS) encoding for this certificate's private key to be encoded in. If provided, allowed values are 'PKCS1' and 'PKCS8' standing for PKCS#1 and PKCS#8, respectively. Defaults to 'PKCS1' if not specified.",
+								MarkdownDescription: "The private key cryptography standards (PKCS) encoding for this certificate's private key to be encoded in. If provided, allowed values are 'PKCS1' and 'PKCS8' standing for PKCS#1 and PKCS#8, respectively. Defaults to 'PKCS1' if not specified.",
 
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"countries": {
-								Description:         "Countries to be used on the Certificate.",
-								MarkdownDescription: "Countries to be used on the Certificate.",
-
-								Type: types.ListType{ElemType: types.StringType},
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"localities": {
-								Description:         "Cities to be used on the Certificate.",
-								MarkdownDescription: "Cities to be used on the Certificate.",
+							"rotation_policy": {
+								Description:         "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to Never, a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exists but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to Always, a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.",
+								MarkdownDescription: "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to Never, a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exists but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to Always, a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.",
 
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"organizational_units": {
-								Description:         "Organizational Units to be used on the Certificate.",
-								MarkdownDescription: "Organizational Units to be used on the Certificate.",
-
-								Type: types.ListType{ElemType: types.StringType},
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"organizations": {
-								Description:         "Organizations to be used on the Certificate.",
-								MarkdownDescription: "Organizations to be used on the Certificate.",
+							"size": {
+								Description:         "Size is the key bit size of the corresponding private key for this certificate. If 'algorithm' is set to 'RSA', valid values are '2048', '4096' or '8192', and will default to '2048' if not specified. If 'algorithm' is set to 'ECDSA', valid values are '256', '384' or '521', and will default to '256' if not specified. If 'algorithm' is set to 'Ed25519', Size is ignored. No other values are allowed.",
+								MarkdownDescription: "Size is the key bit size of the corresponding private key for this certificate. If 'algorithm' is set to 'RSA', valid values are '2048', '4096' or '8192', and will default to '2048' if not specified. If 'algorithm' is set to 'ECDSA', valid values are '256', '384' or '521', and will default to '256' if not specified. If 'algorithm' is set to 'Ed25519', Size is ignored. No other values are allowed.",
 
-								Type: types.ListType{ElemType: types.StringType},
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"renew_before": {
+						Description:         "How long before the currently issued certificate's expiry cert-manager should renew the certificate. The default is 2/3 of the issued certificate's duration. Minimum accepted value is 5 minutes. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration",
+						MarkdownDescription: "How long before the currently issued certificate's expiry cert-manager should renew the certificate. The default is 2/3 of the issued certificate's duration. Minimum accepted value is 5 minutes. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"additional_output_formats": {
+						Description:         "AdditionalOutputFormats defines extra output formats of the private key and signed certificate chain to be written to this Certificate's target Secret. This is an Alpha Feature and is only enabled with the '--feature-gates=AdditionalCertificateOutputFormats=true' option on both the controller and webhook components.",
+						MarkdownDescription: "AdditionalOutputFormats defines extra output formats of the private key and signed certificate chain to be written to this Certificate's target Secret. This is an Alpha Feature and is only enabled with the '--feature-gates=AdditionalCertificateOutputFormats=true' option on both the controller and webhook components.",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"type": {
+								Description:         "Type is the name of the format type that should be written to the Certificate's target Secret.",
+								MarkdownDescription: "Type is the name of the format type that should be written to the Certificate's target Secret.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"uris": {
+						Description:         "URIs is a list of URI subjectAltNames to be set on the Certificate.",
+						MarkdownDescription: "URIs is a list of URI subjectAltNames to be set on the Certificate.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"dns_names": {
+						Description:         "DNSNames is a list of DNS subjectAltNames to be set on the Certificate.",
+						MarkdownDescription: "DNSNames is a list of DNS subjectAltNames to be set on the Certificate.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"ip_addresses": {
+						Description:         "IPAddresses is a list of IP address subjectAltNames to be set on the Certificate.",
+						MarkdownDescription: "IPAddresses is a list of IP address subjectAltNames to be set on the Certificate.",
+
+						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,
@@ -490,207 +614,6 @@ func (r *CertManagerIoCertificateV1Resource) GetSchema(_ context.Context) (tfsdk
 						Computed: false,
 					},
 
-					"secret_name": {
-						Description:         "SecretName is the name of the secret resource that will be automatically created and managed by this Certificate resource. It will be populated with a private key and certificate, signed by the denoted issuer.",
-						MarkdownDescription: "SecretName is the name of the secret resource that will be automatically created and managed by this Certificate resource. It will be populated with a private key and certificate, signed by the denoted issuer.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"usages": {
-						Description:         "Usages is the set of x509 usages that are requested for the certificate. Defaults to 'digital signature' and 'key encipherment' if not specified.",
-						MarkdownDescription: "Usages is the set of x509 usages that are requested for the certificate. Defaults to 'digital signature' and 'key encipherment' if not specified.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"duration": {
-						Description:         "The requested 'duration' (i.e. lifetime) of the Certificate. This option may be ignored/overridden by some issuer types. If unset this defaults to 90 days. Certificate will be renewed either 2/3 through its duration or 'renewBefore' period before its expiry, whichever is later. Minimum accepted duration is 1 hour. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration",
-						MarkdownDescription: "The requested 'duration' (i.e. lifetime) of the Certificate. This option may be ignored/overridden by some issuer types. If unset this defaults to 90 days. Certificate will be renewed either 2/3 through its duration or 'renewBefore' period before its expiry, whichever is later. Minimum accepted duration is 1 hour. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"email_addresses": {
-						Description:         "EmailAddresses is a list of email subjectAltNames to be set on the Certificate.",
-						MarkdownDescription: "EmailAddresses is a list of email subjectAltNames to be set on the Certificate.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"issuer_ref": {
-						Description:         "IssuerRef is a reference to the issuer for this certificate. If the 'kind' field is not set, or set to 'Issuer', an Issuer resource with the given name in the same namespace as the Certificate will be used. If the 'kind' field is set to 'ClusterIssuer', a ClusterIssuer with the provided name will be used. The 'name' field in this stanza is required at all times.",
-						MarkdownDescription: "IssuerRef is a reference to the issuer for this certificate. If the 'kind' field is not set, or set to 'Issuer', an Issuer resource with the given name in the same namespace as the Certificate will be used. If the 'kind' field is set to 'ClusterIssuer', a ClusterIssuer with the provided name will be used. The 'name' field in this stanza is required at all times.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the resource being referred to.",
-								MarkdownDescription: "Name of the resource being referred to.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"group": {
-								Description:         "Group of the resource being referred to.",
-								MarkdownDescription: "Group of the resource being referred to.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"kind": {
-								Description:         "Kind of the resource being referred to.",
-								MarkdownDescription: "Kind of the resource being referred to.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"additional_output_formats": {
-						Description:         "AdditionalOutputFormats defines extra output formats of the private key and signed certificate chain to be written to this Certificate's target Secret. This is an Alpha Feature and is only enabled with the '--feature-gates=AdditionalCertificateOutputFormats=true' option on both the controller and webhook components.",
-						MarkdownDescription: "AdditionalOutputFormats defines extra output formats of the private key and signed certificate chain to be written to this Certificate's target Secret. This is an Alpha Feature and is only enabled with the '--feature-gates=AdditionalCertificateOutputFormats=true' option on both the controller and webhook components.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"type": {
-								Description:         "Type is the name of the format type that should be written to the Certificate's target Secret.",
-								MarkdownDescription: "Type is the name of the format type that should be written to the Certificate's target Secret.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"is_ca": {
-						Description:         "IsCA will mark this Certificate as valid for certificate signing. This will automatically add the 'cert sign' usage to the list of 'usages'.",
-						MarkdownDescription: "IsCA will mark this Certificate as valid for certificate signing. This will automatically add the 'cert sign' usage to the list of 'usages'.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"private_key": {
-						Description:         "Options to control private keys used for the Certificate.",
-						MarkdownDescription: "Options to control private keys used for the Certificate.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"algorithm": {
-								Description:         "Algorithm is the private key algorithm of the corresponding private key for this certificate. If provided, allowed values are either 'RSA','Ed25519' or 'ECDSA' If 'algorithm' is specified and 'size' is not provided, key size of 256 will be used for 'ECDSA' key algorithm and key size of 2048 will be used for 'RSA' key algorithm. key size is ignored when using the 'Ed25519' key algorithm.",
-								MarkdownDescription: "Algorithm is the private key algorithm of the corresponding private key for this certificate. If provided, allowed values are either 'RSA','Ed25519' or 'ECDSA' If 'algorithm' is specified and 'size' is not provided, key size of 256 will be used for 'ECDSA' key algorithm and key size of 2048 will be used for 'RSA' key algorithm. key size is ignored when using the 'Ed25519' key algorithm.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"encoding": {
-								Description:         "The private key cryptography standards (PKCS) encoding for this certificate's private key to be encoded in. If provided, allowed values are 'PKCS1' and 'PKCS8' standing for PKCS#1 and PKCS#8, respectively. Defaults to 'PKCS1' if not specified.",
-								MarkdownDescription: "The private key cryptography standards (PKCS) encoding for this certificate's private key to be encoded in. If provided, allowed values are 'PKCS1' and 'PKCS8' standing for PKCS#1 and PKCS#8, respectively. Defaults to 'PKCS1' if not specified.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"rotation_policy": {
-								Description:         "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to Never, a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exists but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to Always, a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.",
-								MarkdownDescription: "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to Never, a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exists but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to Always, a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"size": {
-								Description:         "Size is the key bit size of the corresponding private key for this certificate. If 'algorithm' is set to 'RSA', valid values are '2048', '4096' or '8192', and will default to '2048' if not specified. If 'algorithm' is set to 'ECDSA', valid values are '256', '384' or '521', and will default to '256' if not specified. If 'algorithm' is set to 'Ed25519', Size is ignored. No other values are allowed.",
-								MarkdownDescription: "Size is the key bit size of the corresponding private key for this certificate. If 'algorithm' is set to 'RSA', valid values are '2048', '4096' or '8192', and will default to '2048' if not specified. If 'algorithm' is set to 'ECDSA', valid values are '256', '384' or '521', and will default to '256' if not specified. If 'algorithm' is set to 'Ed25519', Size is ignored. No other values are allowed.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"literal_subject": {
-						Description:         "LiteralSubject is an LDAP formatted string that represents the [X.509 Subject field](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6). Use this *instead* of the Subject field if you need to ensure the correct ordering of the RDN sequence, such as when issuing certs for LDAP authentication. See https://github.com/cert-manager/cert-manager/issues/3203, https://github.com/cert-manager/cert-manager/issues/4424. This field is alpha level and is only supported by cert-manager installations where LiteralCertificateSubject feature gate is enabled on both cert-manager controller and webhook.",
-						MarkdownDescription: "LiteralSubject is an LDAP formatted string that represents the [X.509 Subject field](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6). Use this *instead* of the Subject field if you need to ensure the correct ordering of the RDN sequence, such as when issuing certs for LDAP authentication. See https://github.com/cert-manager/cert-manager/issues/3203, https://github.com/cert-manager/cert-manager/issues/4424. This field is alpha level and is only supported by cert-manager installations where LiteralCertificateSubject feature gate is enabled on both cert-manager controller and webhook.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"renew_before": {
-						Description:         "How long before the currently issued certificate's expiry cert-manager should renew the certificate. The default is 2/3 of the issued certificate's duration. Minimum accepted value is 5 minutes. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration",
-						MarkdownDescription: "How long before the currently issued certificate's expiry cert-manager should renew the certificate. The default is 2/3 of the issued certificate's duration. Minimum accepted value is 5 minutes. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"secret_template": {
 						Description:         "SecretTemplate defines annotations and labels to be copied to the Certificate's Secret. Labels and annotations on the Secret will be changed as they appear on the SecretTemplate when added or removed. SecretTemplate annotations are added in conjunction with, and cannot overwrite, the base set of annotations cert-manager sets on the Certificate's Secret.",
 						MarkdownDescription: "SecretTemplate defines annotations and labels to be copied to the Certificate's Secret. Labels and annotations on the Secret will be changed as they appear on the SecretTemplate when added or removed. SecretTemplate annotations are added in conjunction with, and cannot overwrite, the base set of annotations cert-manager sets on the Certificate's Secret.",
@@ -725,9 +648,109 @@ func (r *CertManagerIoCertificateV1Resource) GetSchema(_ context.Context) (tfsdk
 						Computed: false,
 					},
 
-					"uris": {
-						Description:         "URIs is a list of URI subjectAltNames to be set on the Certificate.",
-						MarkdownDescription: "URIs is a list of URI subjectAltNames to be set on the Certificate.",
+					"subject": {
+						Description:         "Full X509 name specification (https://golang.org/pkg/crypto/x509/pkix/#Name).",
+						MarkdownDescription: "Full X509 name specification (https://golang.org/pkg/crypto/x509/pkix/#Name).",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"organizational_units": {
+								Description:         "Organizational Units to be used on the Certificate.",
+								MarkdownDescription: "Organizational Units to be used on the Certificate.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"organizations": {
+								Description:         "Organizations to be used on the Certificate.",
+								MarkdownDescription: "Organizations to be used on the Certificate.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"postal_codes": {
+								Description:         "Postal codes to be used on the Certificate.",
+								MarkdownDescription: "Postal codes to be used on the Certificate.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"provinces": {
+								Description:         "State/Provinces to be used on the Certificate.",
+								MarkdownDescription: "State/Provinces to be used on the Certificate.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"serial_number": {
+								Description:         "Serial number to be used on the Certificate.",
+								MarkdownDescription: "Serial number to be used on the Certificate.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"street_addresses": {
+								Description:         "Street addresses to be used on the Certificate.",
+								MarkdownDescription: "Street addresses to be used on the Certificate.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"countries": {
+								Description:         "Countries to be used on the Certificate.",
+								MarkdownDescription: "Countries to be used on the Certificate.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"localities": {
+								Description:         "Cities to be used on the Certificate.",
+								MarkdownDescription: "Cities to be used on the Certificate.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"usages": {
+						Description:         "Usages is the set of x509 usages that are requested for the certificate. Defaults to 'digital signature' and 'key encipherment' if not specified.",
+						MarkdownDescription: "Usages is the set of x509 usages that are requested for the certificate. Defaults to 'digital signature' and 'key encipherment' if not specified.",
 
 						Type: types.ListType{ElemType: types.StringType},
 
@@ -741,28 +764,6 @@ func (r *CertManagerIoCertificateV1Resource) GetSchema(_ context.Context) (tfsdk
 						MarkdownDescription: "CommonName is a common name to be used on the Certificate. The CommonName should have a length of 64 characters or fewer to avoid generating invalid CSRs. This value is ignored by TLS clients when any subject alt name is set. This is x509 behaviour: https://tools.ietf.org/html/rfc6125#section-6.4.4",
 
 						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"dns_names": {
-						Description:         "DNSNames is a list of DNS subjectAltNames to be set on the Certificate.",
-						MarkdownDescription: "DNSNames is a list of DNS subjectAltNames to be set on the Certificate.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"ip_addresses": {
-						Description:         "IPAddresses is a list of IP address subjectAltNames to be set on the Certificate.",
-						MarkdownDescription: "IPAddresses is a list of IP address subjectAltNames to be set on the Certificate.",
-
-						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

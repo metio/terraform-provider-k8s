@@ -7,6 +7,9 @@ package provider
 
 import (
 	"context"
+
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -58,21 +61,17 @@ type GatewayNetworkingK8SIoGatewayV1Alpha2GoModel struct {
 		GatewayClassName *string `tfsdk:"gateway_class_name" yaml:"gatewayClassName,omitempty"`
 
 		Listeners *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-
 			Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
 
 			Tls *struct {
 				CertificateRefs *[]struct {
-					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
 					Group *string `tfsdk:"group" yaml:"group,omitempty"`
 
 					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 				} `tfsdk:"certificate_refs" yaml:"certificateRefs,omitempty"`
 
 				Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
@@ -92,11 +91,11 @@ type GatewayNetworkingK8SIoGatewayV1Alpha2GoModel struct {
 
 					Selector *struct {
 						MatchExpressions *[]struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 							Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 							Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 						} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 						MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -105,6 +104,10 @@ type GatewayNetworkingK8SIoGatewayV1Alpha2GoModel struct {
 			} `tfsdk:"allowed_routes" yaml:"allowedRoutes,omitempty"`
 
 			Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 		} `tfsdk:"listeners" yaml:"listeners,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -257,28 +260,6 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"name": {
-								Description:         "Name is the name of the Listener.  Support: Core",
-								MarkdownDescription: "Name is the name of the Listener.  Support: Core",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"port": {
-								Description:         "Port is the network port. Multiple listeners may use the same port, subject to the Listener compatibility rules.  Support: Core",
-								MarkdownDescription: "Port is the network port. Multiple listeners may use the same port, subject to the Listener compatibility rules.  Support: Core",
-
-								Type: types.Int64Type,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
 							"protocol": {
 								Description:         "Protocol specifies the network protocol this listener expects to receive.  Support: Core",
 								MarkdownDescription: "Protocol specifies the network protocol this listener expects to receive.  Support: Core",
@@ -301,17 +282,6 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 										MarkdownDescription: "CertificateRefs contains a series of references to Kubernetes objects that contains TLS certificates and private keys. These certificates are used to establish a TLS handshake for requests that match the hostname of the associated listener.  A single CertificateRef to a Kubernetes Secret has 'Core' support. Implementations MAY choose to support attaching multiple certificates to a Listener, but this behavior is implementation-specific.  References to a resource in different namespace are invalid UNLESS there is a ReferencePolicy in the target namespace that allows the certificate to be attached. If a ReferencePolicy does not allow this reference, the 'ResolvedRefs' condition MUST be set to False for this listener with the 'InvalidCertificateRef' reason.  This field is required to have at least one element when the mode is set to 'Terminate' (default) and is optional otherwise.  CertificateRefs can reference to standard Kubernetes resources, i.e. Secret, or implementation-specific custom resources.  Support: Core - A single reference to a Kubernetes Secret  Support: Implementation-specific (More than one reference or other resource types)",
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"namespace": {
-												Description:         "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
-												MarkdownDescription: "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
 											"group": {
 												Description:         "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
@@ -343,6 +313,17 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 
 												Required: true,
 												Optional: false,
+												Computed: false,
+											},
+
+											"namespace": {
+												Description:         "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
+												MarkdownDescription: "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
 												Computed: false,
 											},
 										}),
@@ -449,6 +430,17 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+															"key": {
+																Description:         "key is the label key that the selector applies to.",
+																MarkdownDescription: "key is the label key that the selector applies to.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
 															"operator": {
 																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
@@ -468,17 +460,6 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 
 																Required: false,
 																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "key is the label key that the selector applies to.",
-																MarkdownDescription: "key is the label key that the selector applies to.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
 																Computed: false,
 															},
 														}),
@@ -526,6 +507,35 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name is the name of the Listener.  Support: Core",
+								MarkdownDescription: "Name is the name of the Listener.  Support: Core",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"port": {
+								Description:         "Port is the network port. Multiple listeners may use the same port, subject to the Listener compatibility rules.  Support: Core",
+								MarkdownDescription: "Port is the network port. Multiple listeners may use the same port, subject to the Listener compatibility rules.  Support: Core",
+
+								Type: types.Int64Type,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+
+									int64validator.AtMost(65535),
+								},
 							},
 						}),
 

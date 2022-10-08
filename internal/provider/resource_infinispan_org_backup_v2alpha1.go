@@ -7,6 +7,7 @@ package provider
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,21 +50,23 @@ type InfinispanOrgBackupV2Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Cluster *string `tfsdk:"cluster" yaml:"cluster,omitempty"`
-
 		Container *struct {
-			Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
-
-			RouterExtraJvmOpts *string `tfsdk:"router_extra_jvm_opts" yaml:"routerExtraJvmOpts,omitempty"`
-
 			CliExtraJvmOpts *string `tfsdk:"cli_extra_jvm_opts" yaml:"cliExtraJvmOpts,omitempty"`
 
 			Cpu *string `tfsdk:"cpu" yaml:"cpu,omitempty"`
 
 			ExtraJvmOpts *string `tfsdk:"extra_jvm_opts" yaml:"extraJvmOpts,omitempty"`
+
+			Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
+
+			RouterExtraJvmOpts *string `tfsdk:"router_extra_jvm_opts" yaml:"routerExtraJvmOpts,omitempty"`
 		} `tfsdk:"container" yaml:"container,omitempty"`
 
 		Resources *struct {
+			ProtoSchemas *[]string `tfsdk:"proto_schemas" yaml:"protoSchemas,omitempty"`
+
+			Scripts *[]string `tfsdk:"scripts" yaml:"scripts,omitempty"`
+
 			Tasks *[]string `tfsdk:"tasks" yaml:"tasks,omitempty"`
 
 			Templates *[]string `tfsdk:"templates" yaml:"templates,omitempty"`
@@ -73,10 +76,6 @@ type InfinispanOrgBackupV2Alpha1GoModel struct {
 			Caches *[]string `tfsdk:"caches" yaml:"caches,omitempty"`
 
 			Counters *[]string `tfsdk:"counters" yaml:"counters,omitempty"`
-
-			ProtoSchemas *[]string `tfsdk:"proto_schemas" yaml:"protoSchemas,omitempty"`
-
-			Scripts *[]string `tfsdk:"scripts" yaml:"scripts,omitempty"`
 		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 		Volume *struct {
@@ -84,6 +83,8 @@ type InfinispanOrgBackupV2Alpha1GoModel struct {
 
 			StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
 		} `tfsdk:"volume" yaml:"volume,omitempty"`
+
+		Cluster *string `tfsdk:"cluster" yaml:"cluster,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -184,44 +185,11 @@ func (r *InfinispanOrgBackupV2Alpha1Resource) GetSchema(_ context.Context) (tfsd
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"cluster": {
-						Description:         "Infinispan cluster name",
-						MarkdownDescription: "Infinispan cluster name",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
 					"container": {
 						Description:         "InfinispanContainerSpec specify resource requirements per container",
 						MarkdownDescription: "InfinispanContainerSpec specify resource requirements per container",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"memory": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"router_extra_jvm_opts": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"cli_extra_jvm_opts": {
 								Description:         "",
@@ -255,6 +223,28 @@ func (r *InfinispanOrgBackupV2Alpha1Resource) GetSchema(_ context.Context) (tfsd
 								Optional: true,
 								Computed: false,
 							},
+
+							"memory": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"router_extra_jvm_opts": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						}),
 
 						Required: false,
@@ -267,6 +257,28 @@ func (r *InfinispanOrgBackupV2Alpha1Resource) GetSchema(_ context.Context) (tfsd
 						MarkdownDescription: "",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"proto_schemas": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"scripts": {
+								Description:         "Deprecated and to be removed on subsequent release. Use .Tasks instead.",
+								MarkdownDescription: "Deprecated and to be removed on subsequent release. Use .Tasks instead.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"tasks": {
 								Description:         "",
@@ -322,28 +334,6 @@ func (r *InfinispanOrgBackupV2Alpha1Resource) GetSchema(_ context.Context) (tfsd
 								Optional: true,
 								Computed: false,
 							},
-
-							"proto_schemas": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"scripts": {
-								Description:         "Deprecated and to be removed on subsequent release. Use .Tasks instead.",
-								MarkdownDescription: "Deprecated and to be removed on subsequent release. Use .Tasks instead.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
 
 						Required: false,
@@ -382,6 +372,17 @@ func (r *InfinispanOrgBackupV2Alpha1Resource) GetSchema(_ context.Context) (tfsd
 
 						Required: false,
 						Optional: true,
+						Computed: false,
+					},
+
+					"cluster": {
+						Description:         "Infinispan cluster name",
+						MarkdownDescription: "Infinispan cluster name",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 				}),

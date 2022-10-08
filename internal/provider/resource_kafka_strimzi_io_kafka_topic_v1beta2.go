@@ -7,6 +7,9 @@ package provider
 
 import (
 	"context"
+
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -49,13 +52,13 @@ type KafkaStrimziIoKafkaTopicV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		TopicName *string `tfsdk:"topic_name" yaml:"topicName,omitempty"`
-
 		Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
 
 		Partitions *int64 `tfsdk:"partitions" yaml:"partitions,omitempty"`
 
 		Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
+
+		TopicName *string `tfsdk:"topic_name" yaml:"topicName,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -156,17 +159,6 @@ func (r *KafkaStrimziIoKafkaTopicV1Beta2Resource) GetSchema(_ context.Context) (
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"topic_name": {
-						Description:         "The name of the topic. When absent this will default to the metadata.name of the topic. It is recommended to not set this unless the topic name is not a valid Kubernetes resource name.",
-						MarkdownDescription: "The name of the topic. When absent this will default to the metadata.name of the topic. It is recommended to not set this unless the topic name is not a valid Kubernetes resource name.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"config": {
 						Description:         "The topic configuration.",
 						MarkdownDescription: "The topic configuration.",
@@ -187,6 +179,11 @@ func (r *KafkaStrimziIoKafkaTopicV1Beta2Resource) GetSchema(_ context.Context) (
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(1),
+						},
 					},
 
 					"replicas": {
@@ -194,6 +191,24 @@ func (r *KafkaStrimziIoKafkaTopicV1Beta2Resource) GetSchema(_ context.Context) (
 						MarkdownDescription: "The number of replicas the topic should have. When absent this will default to the broker configuration for 'default.replication.factor'.",
 
 						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(1),
+
+							int64validator.AtMost(32767),
+						},
+					},
+
+					"topic_name": {
+						Description:         "The name of the topic. When absent this will default to the metadata.name of the topic. It is recommended to not set this unless the topic name is not a valid Kubernetes resource name.",
+						MarkdownDescription: "The name of the topic. When absent this will default to the metadata.name of the topic. It is recommended to not set this unless the topic name is not a valid Kubernetes resource name.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
