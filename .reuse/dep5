@@ -22,3 +22,239 @@ License: 0BSD
 Files: internal/k8s/templates/*.tmpl
 Copyright: The terraform-provider-k8s Authors
 License: 0BSD
+
+Files: custom-resource-definitions/acid.zalan.do/*
+Copyright: The Postgres Operator Authors
+License: MIT
+
+Files: custom-resource-definitions/app.kiegroup.org/*
+Copyright: The Kogito Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/app.lightbend.com/*
+Copyright: The Akka Cluster Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/apps.gitlab.com/*
+Copyright: The GitLab Runner Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/apps.m88i.io/*
+Copyright: The Nexus Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/aquasecurity.github.io/*
+Copyright: The Aqua Security Operator Authors
+License: LicenseRef-Aqua
+
+Files: custom-resource-definitions/argoproj.io/*
+Copyright: The Argo CD Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/cert-manager.io/*
+Copyright: The cert-manager Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/charts.helm.k8s.io/*
+Copyright: Snyk Ldt.
+License: Apache-2.0
+
+Files: custom-resource-definitions/charts.opdev.io/*
+Copyright: The Synapse Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/che.eclipse.org/*
+Copyright: The Kubernetes Image Puller Operator Authors
+License: EPL-2.0
+
+Files: custom-resource-definitions/config.gatekeeper.sh/*
+Copyright: The Gatekeeper Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/core.strimzi.io/*
+Copyright: The Strimzi Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/couchbase.com/*
+Copyright: The Couchbase Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/crd.projectcalico.org/*
+Copyright: The Calico Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/extensions.istio.io/*
+Copyright: The Istio Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/external-secrets.io/*
+Copyright: The External Secrets Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/externaldata.gatekeeper.sh/*
+Copyright: The Gatekeeper Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/flagger.app/*
+Copyright: The Flagger Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/flink.apache.org/*
+Copyright: The Apache Flink Kubernetes Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/gateway.networking.k8s.io/*
+Copyright: The Traefik Authors
+License: MIT
+
+Files: custom-resource-definitions/hazelcast.com/*
+Copyright: The Hazelcast Platform Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/helm.sigstore.dev/*
+Copyright: The Sigstore Helm Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/helm.toolkit.fluxcd.io/*
+Copyright: The Flux2 Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/image.toolkit.fluxcd.io/*
+Copyright: The Flux2 Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/infinispan.org/*
+Copyright: The Infinispan Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/installation.mattermost.com/*
+Copyright: The Mattermost Operator for Kubernetes Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/integreatly.org/*
+Copyright: The Grafana Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/jaegertracing.io/*
+Copyright: The Jaeger Operator for Kubernetes Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/kafka.strimzi.io/*
+Copyright: The Strimzi Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/keycloak.org/*
+Copyright: The Keycloak Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/kiali.io/*
+Copyright: The Kiali Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/kustomize.toolkit.fluxcd.io/*
+Copyright: The Flux2 Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/litmuschaos.io/*
+Copyright: The Litmus Chaos Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/mattermost.com/*
+Copyright: The Mattermost Operator for Kubernetes Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/microcks.github.io/*
+Copyright: The Microcks Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/minio.min.io/*
+Copyright: The MinIO Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/monitoring.coreos.com/*
+Copyright: The Prometheus Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/mutations.gatekeeper.sh/*
+Copyright: The Gatekeeper Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/networking.istio.io/*
+Copyright: The Istio Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/notification.toolkit.fluxcd.io/*
+Copyright: The Flux2 Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/opentelemetry.io/*
+Copyright: The OpenTelemetry Operator for Kubernetes Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/operator.aquasec.com/*
+Copyright: The Aqua Security Operator Authors
+License: LicenseRef-Aqua
+
+Files: custom-resource-definitions/operator.knative.dev/*
+Copyright: The Knative Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/operator.tekton.dev/*
+Copyright: The Tektoncd Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/operator.tigera.io/*
+Copyright: The Calico Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/postgres-operator.crunchydata.com/*
+Copyright: The PGO Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/quay.redhat.com/*
+Copyright: The Quay Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/redhatcop.redhat.io/*
+Copyright: The Quay Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/ripsaw.cloudbulldozer.io/*
+Copyright: The Benchmark Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/rocketmq.apache.org/*
+Copyright: The RocketMQ Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/secscan.quay.redhat.com/*
+Copyright: The Container Security Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/security-profiles-operator.x-k8s.io/*
+Copyright: The Kubernetes Security Profiles Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/source.toolkit.fluxcd.io/*
+Copyright: The Flux2 Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/sparkoperator.k8s.io/*
+Copyright: The Spark Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/status.gatekeeper.sh/*
+Copyright: The Gatekeeper Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/templates.gatekeeper.sh/*
+Copyright: The Gatekeeper Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/traefik.containo.us/*
+Copyright: The Traefik Authors
+License: MIT
+
+Files: custom-resource-definitions/wildfly.org/*
+Copyright: The WildFly Operator for Kubernetes/OpenShift Authors
+License: Apache-2.0
