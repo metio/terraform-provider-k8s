@@ -14,3 +14,11 @@ License: 0BSD
 Files: examples/*
 Copyright: The terraform-provider-k8s Authors
 License: 0BSD
+
+Files: templates/*
+Copyright: The terraform-provider-k8s Authors
+License: 0BSD
+
+Files: internal/k8s/templates/*.tmpl
+Copyright: The terraform-provider-k8s Authors
+License: 0BSD
