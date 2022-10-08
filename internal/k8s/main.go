@@ -7,12 +7,12 @@
 
 package k8s
 
-import "flag"
-
-func main() {
-	var input string
-	var output string
-	flag.StringVar(&input, "input", "", "")
-	flag.StringVar(&output, "output", "", "")
-	flag.Parse()
-}
+//import "flag"
+//
+//func main() {
+//	var input string
+//	var output string
+//	flag.StringVar(&input, "input", "", "")
+//	flag.StringVar(&output, "output", "", "")
+//	flag.Parse()
+//}
