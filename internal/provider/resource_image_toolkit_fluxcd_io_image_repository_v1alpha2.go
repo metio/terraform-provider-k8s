@@ -49,10 +49,6 @@ type ImageToolkitFluxcdIoImageRepositoryV1Alpha2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		SecretRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 
 		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
@@ -64,6 +60,10 @@ type ImageToolkitFluxcdIoImageRepositoryV1Alpha2GoModel struct {
 		Image *string `tfsdk:"image" yaml:"image,omitempty"`
 
 		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+		SecretRef *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -164,29 +164,6 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Alpha2Resource) GetSchema(_ contex
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"secret_ref": {
-						Description:         "SecretRef can be given the name of a secret containing credentials to use for the image registry. The secret should be created with 'kubectl create secret docker-registry', or the equivalent.",
-						MarkdownDescription: "SecretRef can be given the name of a secret containing credentials to use for the image registry. The secret should be created with 'kubectl create secret docker-registry', or the equivalent.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the referent.",
-								MarkdownDescription: "Name of the referent.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"suspend": {
 						Description:         "This flag tells the controller to suspend subsequent image scans. It does not apply to already started scans. Defaults to false.",
 						MarkdownDescription: "This flag tells the controller to suspend subsequent image scans. It does not apply to already started scans. Defaults to false.",
@@ -248,6 +225,29 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Alpha2Resource) GetSchema(_ contex
 						MarkdownDescription: "Interval is the length of time to wait between scans of the image repository.",
 
 						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"secret_ref": {
+						Description:         "SecretRef can be given the name of a secret containing credentials to use for the image registry. The secret should be created with 'kubectl create secret docker-registry', or the equivalent.",
+						MarkdownDescription: "SecretRef can be given the name of a secret containing credentials to use for the image registry. The secret should be created with 'kubectl create secret docker-registry', or the equivalent.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

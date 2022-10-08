@@ -49,11 +49,11 @@ type RocketmqApacheOrgTopicTransferV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Topic *string `tfsdk:"topic" yaml:"topic,omitempty"`
-
 		SourceCluster *string `tfsdk:"source_cluster" yaml:"sourceCluster,omitempty"`
 
 		TargetCluster *string `tfsdk:"target_cluster" yaml:"targetCluster,omitempty"`
+
+		Topic *string `tfsdk:"topic" yaml:"topic,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -154,17 +154,6 @@ func (r *RocketmqApacheOrgTopicTransferV1Alpha1Resource) GetSchema(_ context.Con
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"topic": {
-						Description:         "Topic name",
-						MarkdownDescription: "Topic name",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"source_cluster": {
 						Description:         "The cluster where the transferred topic from",
 						MarkdownDescription: "The cluster where the transferred topic from",
@@ -179,6 +168,17 @@ func (r *RocketmqApacheOrgTopicTransferV1Alpha1Resource) GetSchema(_ context.Con
 					"target_cluster": {
 						Description:         "The cluster where the topic will be transferred to",
 						MarkdownDescription: "The cluster where the topic will be transferred to",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"topic": {
+						Description:         "Topic name",
+						MarkdownDescription: "Topic name",
 
 						Type: types.StringType,
 

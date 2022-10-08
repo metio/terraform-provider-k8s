@@ -50,8 +50,6 @@ type SecurityIstioIoRequestAuthenticationV1Beta1GoModel struct {
 
 	Spec *struct {
 		JwtRules *[]struct {
-			OutputPayloadToHeader *string `tfsdk:"output_payload_to_header" yaml:"outputPayloadToHeader,omitempty"`
-
 			Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
 
 			ForwardOriginalToken *bool `tfsdk:"forward_original_token" yaml:"forwardOriginalToken,omitempty"`
@@ -69,6 +67,8 @@ type SecurityIstioIoRequestAuthenticationV1Beta1GoModel struct {
 			Jwks *string `tfsdk:"jwks" yaml:"jwks,omitempty"`
 
 			JwksUri *string `tfsdk:"jwks_uri" yaml:"jwksUri,omitempty"`
+
+			OutputPayloadToHeader *string `tfsdk:"output_payload_to_header" yaml:"outputPayloadToHeader,omitempty"`
 		} `tfsdk:"jwt_rules" yaml:"jwtRules,omitempty"`
 
 		Selector *struct {
@@ -180,17 +180,6 @@ func (r *SecurityIstioIoRequestAuthenticationV1Beta1Resource) GetSchema(_ contex
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"output_payload_to_header": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"audiences": {
 								Description:         "",
 								MarkdownDescription: "",
@@ -281,6 +270,17 @@ func (r *SecurityIstioIoRequestAuthenticationV1Beta1Resource) GetSchema(_ contex
 							},
 
 							"jwks_uri": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"output_payload_to_header": {
 								Description:         "",
 								MarkdownDescription: "",
 

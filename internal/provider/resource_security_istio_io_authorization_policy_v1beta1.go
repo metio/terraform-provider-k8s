@@ -49,33 +49,7 @@ type SecurityIstioIoAuthorizationPolicyV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Action *string `tfsdk:"action" yaml:"action,omitempty"`
-
-		Provider *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"provider" yaml:"provider,omitempty"`
-
 		Rules *[]struct {
-			To *[]struct {
-				Operation *struct {
-					Paths *[]string `tfsdk:"paths" yaml:"paths,omitempty"`
-
-					Ports *[]string `tfsdk:"ports" yaml:"ports,omitempty"`
-
-					Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
-
-					Methods *[]string `tfsdk:"methods" yaml:"methods,omitempty"`
-
-					NotHosts *[]string `tfsdk:"not_hosts" yaml:"notHosts,omitempty"`
-
-					NotMethods *[]string `tfsdk:"not_methods" yaml:"notMethods,omitempty"`
-
-					NotPaths *[]string `tfsdk:"not_paths" yaml:"notPaths,omitempty"`
-
-					NotPorts *[]string `tfsdk:"not_ports" yaml:"notPorts,omitempty"`
-				} `tfsdk:"operation" yaml:"operation,omitempty"`
-			} `tfsdk:"to" yaml:"to,omitempty"`
-
 			When *[]struct {
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -86,17 +60,13 @@ type SecurityIstioIoAuthorizationPolicyV1Beta1GoModel struct {
 
 			From *[]struct {
 				Source *struct {
-					NotNamespaces *[]string `tfsdk:"not_namespaces" yaml:"notNamespaces,omitempty"`
-
-					Principals *[]string `tfsdk:"principals" yaml:"principals,omitempty"`
-
-					RemoteIpBlocks *[]string `tfsdk:"remote_ip_blocks" yaml:"remoteIpBlocks,omitempty"`
-
-					NotPrincipals *[]string `tfsdk:"not_principals" yaml:"notPrincipals,omitempty"`
+					NotIpBlocks *[]string `tfsdk:"not_ip_blocks" yaml:"notIpBlocks,omitempty"`
 
 					NotRemoteIpBlocks *[]string `tfsdk:"not_remote_ip_blocks" yaml:"notRemoteIpBlocks,omitempty"`
 
 					NotRequestPrincipals *[]string `tfsdk:"not_request_principals" yaml:"notRequestPrincipals,omitempty"`
+
+					RemoteIpBlocks *[]string `tfsdk:"remote_ip_blocks" yaml:"remoteIpBlocks,omitempty"`
 
 					RequestPrincipals *[]string `tfsdk:"request_principals" yaml:"requestPrincipals,omitempty"`
 
@@ -104,14 +74,44 @@ type SecurityIstioIoAuthorizationPolicyV1Beta1GoModel struct {
 
 					Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
-					NotIpBlocks *[]string `tfsdk:"not_ip_blocks" yaml:"notIpBlocks,omitempty"`
+					NotNamespaces *[]string `tfsdk:"not_namespaces" yaml:"notNamespaces,omitempty"`
+
+					NotPrincipals *[]string `tfsdk:"not_principals" yaml:"notPrincipals,omitempty"`
+
+					Principals *[]string `tfsdk:"principals" yaml:"principals,omitempty"`
 				} `tfsdk:"source" yaml:"source,omitempty"`
 			} `tfsdk:"from" yaml:"from,omitempty"`
+
+			To *[]struct {
+				Operation *struct {
+					Methods *[]string `tfsdk:"methods" yaml:"methods,omitempty"`
+
+					NotHosts *[]string `tfsdk:"not_hosts" yaml:"notHosts,omitempty"`
+
+					NotMethods *[]string `tfsdk:"not_methods" yaml:"notMethods,omitempty"`
+
+					NotPaths *[]string `tfsdk:"not_paths" yaml:"notPaths,omitempty"`
+
+					NotPorts *[]string `tfsdk:"not_ports" yaml:"notPorts,omitempty"`
+
+					Paths *[]string `tfsdk:"paths" yaml:"paths,omitempty"`
+
+					Ports *[]string `tfsdk:"ports" yaml:"ports,omitempty"`
+
+					Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
+				} `tfsdk:"operation" yaml:"operation,omitempty"`
+			} `tfsdk:"to" yaml:"to,omitempty"`
 		} `tfsdk:"rules" yaml:"rules,omitempty"`
 
 		Selector *struct {
 			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 		} `tfsdk:"selector" yaml:"selector,omitempty"`
+
+		Action *string `tfsdk:"action" yaml:"action,omitempty"`
+
+		Provider *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"provider" yaml:"provider,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -212,157 +212,11 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Resource) GetSchema(_ context.
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"action": {
-						Description:         "Optional.",
-						MarkdownDescription: "Optional.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"provider": {
-						Description:         "Specifies detailed configuration of the CUSTOM action.",
-						MarkdownDescription: "Specifies detailed configuration of the CUSTOM action.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Specifies the name of the extension provider.",
-								MarkdownDescription: "Specifies the name of the extension provider.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"rules": {
 						Description:         "Optional.",
 						MarkdownDescription: "Optional.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"to": {
-								Description:         "Optional.",
-								MarkdownDescription: "Optional.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"operation": {
-										Description:         "Operation specifies the operation of a request.",
-										MarkdownDescription: "Operation specifies the operation of a request.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"paths": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"ports": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"hosts": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"methods": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"not_hosts": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"not_methods": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"not_paths": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"not_ports": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"when": {
 								Description:         "Optional.",
@@ -421,40 +275,7 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Resource) GetSchema(_ context.
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"not_namespaces": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"principals": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"remote_ip_blocks": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"not_principals": {
+											"not_ip_blocks": {
 												Description:         "Optional.",
 												MarkdownDescription: "Optional.",
 
@@ -477,6 +298,17 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Resource) GetSchema(_ context.
 											},
 
 											"not_request_principals": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"remote_ip_blocks": {
 												Description:         "Optional.",
 												MarkdownDescription: "Optional.",
 
@@ -520,7 +352,141 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Resource) GetSchema(_ context.
 												Computed: false,
 											},
 
-											"not_ip_blocks": {
+											"not_namespaces": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"not_principals": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"principals": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"to": {
+								Description:         "Optional.",
+								MarkdownDescription: "Optional.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"operation": {
+										Description:         "Operation specifies the operation of a request.",
+										MarkdownDescription: "Operation specifies the operation of a request.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"methods": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"not_hosts": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"not_methods": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"not_paths": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"not_ports": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"paths": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"ports": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"hosts": {
 												Description:         "Optional.",
 												MarkdownDescription: "Optional.",
 
@@ -560,6 +526,40 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Resource) GetSchema(_ context.
 								MarkdownDescription: "",
 
 								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"action": {
+						Description:         "Optional.",
+						MarkdownDescription: "Optional.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"provider": {
+						Description:         "Specifies detailed configuration of the CUSTOM action.",
+						MarkdownDescription: "Specifies detailed configuration of the CUSTOM action.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Specifies the name of the extension provider.",
+								MarkdownDescription: "Specifies the name of the extension provider.",
+
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,

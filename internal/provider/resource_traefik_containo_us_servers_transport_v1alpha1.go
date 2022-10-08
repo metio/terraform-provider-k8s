@@ -49,15 +49,7 @@ type TraefikContainoUsServersTransportV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
-
-		CertificatesSecrets *[]string `tfsdk:"certificates_secrets" yaml:"certificatesSecrets,omitempty"`
-
-		DisableHTTP2 *bool `tfsdk:"disable_http2" yaml:"disableHTTP2,omitempty"`
-
 		ForwardingTimeouts *struct {
-			ResponseHeaderTimeout *string `tfsdk:"response_header_timeout" yaml:"responseHeaderTimeout,omitempty"`
-
 			DialTimeout *string `tfsdk:"dial_timeout" yaml:"dialTimeout,omitempty"`
 
 			IdleConnTimeout *string `tfsdk:"idle_conn_timeout" yaml:"idleConnTimeout,omitempty"`
@@ -65,6 +57,8 @@ type TraefikContainoUsServersTransportV1Alpha1GoModel struct {
 			PingTimeout *string `tfsdk:"ping_timeout" yaml:"pingTimeout,omitempty"`
 
 			ReadIdleTimeout *string `tfsdk:"read_idle_timeout" yaml:"readIdleTimeout,omitempty"`
+
+			ResponseHeaderTimeout *string `tfsdk:"response_header_timeout" yaml:"responseHeaderTimeout,omitempty"`
 		} `tfsdk:"forwarding_timeouts" yaml:"forwardingTimeouts,omitempty"`
 
 		InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
@@ -74,6 +68,12 @@ type TraefikContainoUsServersTransportV1Alpha1GoModel struct {
 		PeerCertURI *string `tfsdk:"peer_cert_uri" yaml:"peerCertURI,omitempty"`
 
 		RootCAsSecrets *[]string `tfsdk:"root_c_as_secrets" yaml:"rootCAsSecrets,omitempty"`
+
+		ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
+
+		CertificatesSecrets *[]string `tfsdk:"certificates_secrets" yaml:"certificatesSecrets,omitempty"`
+
+		DisableHTTP2 *bool `tfsdk:"disable_http2" yaml:"disableHTTP2,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -174,55 +174,11 @@ func (r *TraefikContainoUsServersTransportV1Alpha1Resource) GetSchema(_ context.
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"server_name": {
-						Description:         "ServerName defines the server name used to contact the server.",
-						MarkdownDescription: "ServerName defines the server name used to contact the server.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"certificates_secrets": {
-						Description:         "CertificatesSecrets defines a list of secret storing client certificates for mTLS.",
-						MarkdownDescription: "CertificatesSecrets defines a list of secret storing client certificates for mTLS.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"disable_http2": {
-						Description:         "DisableHTTP2 disables HTTP/2 for connections with backend servers.",
-						MarkdownDescription: "DisableHTTP2 disables HTTP/2 for connections with backend servers.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"forwarding_timeouts": {
 						Description:         "ForwardingTimeouts defines the timeouts for requests forwarded to the backend servers.",
 						MarkdownDescription: "ForwardingTimeouts defines the timeouts for requests forwarded to the backend servers.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"response_header_timeout": {
-								Description:         "ResponseHeaderTimeout is the amount of time to wait for a server's response headers after fully writing the request (including its body, if any).",
-								MarkdownDescription: "ResponseHeaderTimeout is the amount of time to wait for a server's response headers after fully writing the request (including its body, if any).",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"dial_timeout": {
 								Description:         "DialTimeout is the amount of time to wait until a connection to a backend server can be established.",
@@ -260,6 +216,17 @@ func (r *TraefikContainoUsServersTransportV1Alpha1Resource) GetSchema(_ context.
 							"read_idle_timeout": {
 								Description:         "ReadIdleTimeout is the timeout after which a health check using ping frame will be carried out if no frame is received on the HTTP/2 connection.",
 								MarkdownDescription: "ReadIdleTimeout is the timeout after which a health check using ping frame will be carried out if no frame is received on the HTTP/2 connection.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"response_header_timeout": {
+								Description:         "ResponseHeaderTimeout is the amount of time to wait for a server's response headers after fully writing the request (including its body, if any).",
+								MarkdownDescription: "ResponseHeaderTimeout is the amount of time to wait for a server's response headers after fully writing the request (including its body, if any).",
 
 								Type: types.StringType,
 
@@ -312,6 +279,39 @@ func (r *TraefikContainoUsServersTransportV1Alpha1Resource) GetSchema(_ context.
 						MarkdownDescription: "RootCAsSecrets defines a list of CA secret used to validate self-signed certificate.",
 
 						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"server_name": {
+						Description:         "ServerName defines the server name used to contact the server.",
+						MarkdownDescription: "ServerName defines the server name used to contact the server.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"certificates_secrets": {
+						Description:         "CertificatesSecrets defines a list of secret storing client certificates for mTLS.",
+						MarkdownDescription: "CertificatesSecrets defines a list of secret storing client certificates for mTLS.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"disable_http2": {
+						Description:         "DisableHTTP2 disables HTTP/2 for connections with backend servers.",
+						MarkdownDescription: "DisableHTTP2 disables HTTP/2 for connections with backend servers.",
+
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,

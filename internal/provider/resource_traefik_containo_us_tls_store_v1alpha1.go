@@ -49,10 +49,6 @@ type TraefikContainoUsTLSStoreV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Certificates *[]struct {
-			SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-		} `tfsdk:"certificates" yaml:"certificates,omitempty"`
-
 		DefaultCertificate *struct {
 			SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
 		} `tfsdk:"default_certificate" yaml:"defaultCertificate,omitempty"`
@@ -66,6 +62,10 @@ type TraefikContainoUsTLSStoreV1Alpha1GoModel struct {
 				Sans *[]string `tfsdk:"sans" yaml:"sans,omitempty"`
 			} `tfsdk:"domain" yaml:"domain,omitempty"`
 		} `tfsdk:"default_generated_cert" yaml:"defaultGeneratedCert,omitempty"`
+
+		Certificates *[]struct {
+			SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
+		} `tfsdk:"certificates" yaml:"certificates,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -166,29 +166,6 @@ func (r *TraefikContainoUsTLSStoreV1Alpha1Resource) GetSchema(_ context.Context)
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"certificates": {
-						Description:         "Certificates is a list of secret names, each secret holding a key/certificate pair to add to the store.",
-						MarkdownDescription: "Certificates is a list of secret names, each secret holding a key/certificate pair to add to the store.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"secret_name": {
-								Description:         "SecretName is the name of the referenced Kubernetes Secret to specify the certificate details.",
-								MarkdownDescription: "SecretName is the name of the referenced Kubernetes Secret to specify the certificate details.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"default_certificate": {
 						Description:         "DefaultCertificate defines the default certificate configuration.",
 						MarkdownDescription: "DefaultCertificate defines the default certificate configuration.",
@@ -260,6 +237,29 @@ func (r *TraefikContainoUsTLSStoreV1Alpha1Resource) GetSchema(_ context.Context)
 
 								Required: false,
 								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"certificates": {
+						Description:         "Certificates is a list of secret names, each secret holding a key/certificate pair to add to the store.",
+						MarkdownDescription: "Certificates is a list of secret names, each secret holding a key/certificate pair to add to the store.",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"secret_name": {
+								Description:         "SecretName is the name of the referenced Kubernetes Secret to specify the certificate details.",
+								MarkdownDescription: "SecretName is the name of the referenced Kubernetes Secret to specify the certificate details.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
 								Computed: false,
 							},
 						}),

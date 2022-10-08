@@ -50,9 +50,9 @@ type SecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2GoModel struct {
 
 	Spec *struct {
 		Inherit *[]struct {
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 		} `tfsdk:"inherit" yaml:"inherit,omitempty"`
 
 		Allow *map[string]string `tfsdk:"allow" yaml:"allow,omitempty"`
@@ -162,17 +162,6 @@ func (r *SecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2Resource) GetSchema
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"kind": {
-								Description:         "The Kind of the policy that this inherits from. Can be a SelinuxProfile object Or 'System' if an already installed policy will be used. The allowed 'System' policies are available in the SecurityProfilesOpertorDaemon instance.",
-								MarkdownDescription: "The Kind of the policy that this inherits from. Can be a SelinuxProfile object Or 'System' if an already installed policy will be used. The allowed 'System' policies are available in the SecurityProfilesOpertorDaemon instance.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"name": {
 								Description:         "The name of the policy that this inherits from.",
 								MarkdownDescription: "The name of the policy that this inherits from.",
@@ -181,6 +170,17 @@ func (r *SecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2Resource) GetSchema
 
 								Required: true,
 								Optional: false,
+								Computed: false,
+							},
+
+							"kind": {
+								Description:         "The Kind of the policy that this inherits from. Can be a SelinuxProfile object Or 'System' if an already installed policy will be used. The allowed 'System' policies are available in the SecurityProfilesOpertorDaemon instance.",
+								MarkdownDescription: "The Kind of the policy that this inherits from. Can be a SelinuxProfile object Or 'System' if an already installed policy will be used. The allowed 'System' policies are available in the SecurityProfilesOpertorDaemon instance.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 						}),

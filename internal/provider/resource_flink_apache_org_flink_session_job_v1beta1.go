@@ -49,15 +49,11 @@ type FlinkApacheOrgFlinkSessionJobV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		DeploymentName *string `tfsdk:"deployment_name" yaml:"deploymentName,omitempty"`
+
+		FlinkConfiguration *map[string]string `tfsdk:"flink_configuration" yaml:"flinkConfiguration,omitempty"`
+
 		Job *struct {
-			AllowNonRestoredState *bool `tfsdk:"allow_non_restored_state" yaml:"allowNonRestoredState,omitempty"`
-
-			Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
-
-			SavepointTriggerNonce *int64 `tfsdk:"savepoint_trigger_nonce" yaml:"savepointTriggerNonce,omitempty"`
-
-			UpgradeMode *string `tfsdk:"upgrade_mode" yaml:"upgradeMode,omitempty"`
-
 			EntryClass *string `tfsdk:"entry_class" yaml:"entryClass,omitempty"`
 
 			InitialSavepointPath *string `tfsdk:"initial_savepoint_path" yaml:"initialSavepointPath,omitempty"`
@@ -66,14 +62,18 @@ type FlinkApacheOrgFlinkSessionJobV1Beta1GoModel struct {
 
 			Parallelism *int64 `tfsdk:"parallelism" yaml:"parallelism,omitempty"`
 
+			SavepointTriggerNonce *int64 `tfsdk:"savepoint_trigger_nonce" yaml:"savepointTriggerNonce,omitempty"`
+
+			AllowNonRestoredState *bool `tfsdk:"allow_non_restored_state" yaml:"allowNonRestoredState,omitempty"`
+
+			Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
+
 			State *string `tfsdk:"state" yaml:"state,omitempty"`
+
+			UpgradeMode *string `tfsdk:"upgrade_mode" yaml:"upgradeMode,omitempty"`
 		} `tfsdk:"job" yaml:"job,omitempty"`
 
 		RestartNonce *int64 `tfsdk:"restart_nonce" yaml:"restartNonce,omitempty"`
-
-		DeploymentName *string `tfsdk:"deployment_name" yaml:"deploymentName,omitempty"`
-
-		FlinkConfiguration *map[string]string `tfsdk:"flink_configuration" yaml:"flinkConfiguration,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -174,55 +174,33 @@ func (r *FlinkApacheOrgFlinkSessionJobV1Beta1Resource) GetSchema(_ context.Conte
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"deployment_name": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"flink_configuration": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.MapType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"job": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"allow_non_restored_state": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"args": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"savepoint_trigger_nonce": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"upgrade_mode": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"entry_class": {
 								Description:         "",
@@ -268,7 +246,51 @@ func (r *FlinkApacheOrgFlinkSessionJobV1Beta1Resource) GetSchema(_ context.Conte
 								Computed: false,
 							},
 
+							"savepoint_trigger_nonce": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"allow_non_restored_state": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"args": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"state": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"upgrade_mode": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -290,28 +312,6 @@ func (r *FlinkApacheOrgFlinkSessionJobV1Beta1Resource) GetSchema(_ context.Conte
 						MarkdownDescription: "",
 
 						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"deployment_name": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"flink_configuration": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.MapType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

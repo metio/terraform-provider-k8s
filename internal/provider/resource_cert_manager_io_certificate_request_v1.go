@@ -49,29 +49,29 @@ type CertManagerIoCertificateRequestV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Request *string `tfsdk:"request" yaml:"request,omitempty"`
-
-		Username *string `tfsdk:"username" yaml:"username,omitempty"`
-
-		IssuerRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Group *string `tfsdk:"group" yaml:"group,omitempty"`
-
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-		} `tfsdk:"issuer_ref" yaml:"issuerRef,omitempty"`
-
-		Uid *string `tfsdk:"uid" yaml:"uid,omitempty"`
-
 		Usages *[]string `tfsdk:"usages" yaml:"usages,omitempty"`
 
-		Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
+		Username *string `tfsdk:"username" yaml:"username,omitempty"`
 
 		Extra *map[string][]string `tfsdk:"extra" yaml:"extra,omitempty"`
 
 		Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
 
 		IsCA *bool `tfsdk:"is_ca" yaml:"isCA,omitempty"`
+
+		Request *string `tfsdk:"request" yaml:"request,omitempty"`
+
+		Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
+
+		IssuerRef *struct {
+			Group *string `tfsdk:"group" yaml:"group,omitempty"`
+
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"issuer_ref" yaml:"issuerRef,omitempty"`
+
+		Uid *string `tfsdk:"uid" yaml:"uid,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -172,84 +172,6 @@ func (r *CertManagerIoCertificateRequestV1Resource) GetSchema(_ context.Context)
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"request": {
-						Description:         "The PEM-encoded x509 certificate signing request to be submitted to the CA for signing.",
-						MarkdownDescription: "The PEM-encoded x509 certificate signing request to be submitted to the CA for signing.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"username": {
-						Description:         "Username contains the name of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
-						MarkdownDescription: "Username contains the name of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"issuer_ref": {
-						Description:         "IssuerRef is a reference to the issuer for this CertificateRequest.  If the 'kind' field is not set, or set to 'Issuer', an Issuer resource with the given name in the same namespace as the CertificateRequest will be used.  If the 'kind' field is set to 'ClusterIssuer', a ClusterIssuer with the provided name will be used. The 'name' field in this stanza is required at all times. The group field refers to the API group of the issuer which defaults to 'cert-manager.io' if empty.",
-						MarkdownDescription: "IssuerRef is a reference to the issuer for this CertificateRequest.  If the 'kind' field is not set, or set to 'Issuer', an Issuer resource with the given name in the same namespace as the CertificateRequest will be used.  If the 'kind' field is set to 'ClusterIssuer', a ClusterIssuer with the provided name will be used. The 'name' field in this stanza is required at all times. The group field refers to the API group of the issuer which defaults to 'cert-manager.io' if empty.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the resource being referred to.",
-								MarkdownDescription: "Name of the resource being referred to.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"group": {
-								Description:         "Group of the resource being referred to.",
-								MarkdownDescription: "Group of the resource being referred to.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"kind": {
-								Description:         "Kind of the resource being referred to.",
-								MarkdownDescription: "Kind of the resource being referred to.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"uid": {
-						Description:         "UID contains the uid of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
-						MarkdownDescription: "UID contains the uid of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"usages": {
 						Description:         "Usages is the set of x509 usages that are requested for the certificate. If usages are set they SHOULD be encoded inside the CSR spec Defaults to 'digital signature' and 'key encipherment' if not specified.",
 						MarkdownDescription: "Usages is the set of x509 usages that are requested for the certificate. If usages are set they SHOULD be encoded inside the CSR spec Defaults to 'digital signature' and 'key encipherment' if not specified.",
@@ -261,9 +183,9 @@ func (r *CertManagerIoCertificateRequestV1Resource) GetSchema(_ context.Context)
 						Computed: false,
 					},
 
-					"duration": {
-						Description:         "The requested 'duration' (i.e. lifetime) of the Certificate. This option may be ignored/overridden by some issuer types.",
-						MarkdownDescription: "The requested 'duration' (i.e. lifetime) of the Certificate. This option may be ignored/overridden by some issuer types.",
+					"username": {
+						Description:         "Username contains the name of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
+						MarkdownDescription: "Username contains the name of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
 
 						Type: types.StringType,
 
@@ -299,6 +221,84 @@ func (r *CertManagerIoCertificateRequestV1Resource) GetSchema(_ context.Context)
 						MarkdownDescription: "IsCA will request to mark the certificate as valid for certificate signing when submitting to the issuer. This will automatically add the 'cert sign' usage to the list of 'usages'.",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"request": {
+						Description:         "The PEM-encoded x509 certificate signing request to be submitted to the CA for signing.",
+						MarkdownDescription: "The PEM-encoded x509 certificate signing request to be submitted to the CA for signing.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"duration": {
+						Description:         "The requested 'duration' (i.e. lifetime) of the Certificate. This option may be ignored/overridden by some issuer types.",
+						MarkdownDescription: "The requested 'duration' (i.e. lifetime) of the Certificate. This option may be ignored/overridden by some issuer types.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"issuer_ref": {
+						Description:         "IssuerRef is a reference to the issuer for this CertificateRequest.  If the 'kind' field is not set, or set to 'Issuer', an Issuer resource with the given name in the same namespace as the CertificateRequest will be used.  If the 'kind' field is set to 'ClusterIssuer', a ClusterIssuer with the provided name will be used. The 'name' field in this stanza is required at all times. The group field refers to the API group of the issuer which defaults to 'cert-manager.io' if empty.",
+						MarkdownDescription: "IssuerRef is a reference to the issuer for this CertificateRequest.  If the 'kind' field is not set, or set to 'Issuer', an Issuer resource with the given name in the same namespace as the CertificateRequest will be used.  If the 'kind' field is set to 'ClusterIssuer', a ClusterIssuer with the provided name will be used. The 'name' field in this stanza is required at all times. The group field refers to the API group of the issuer which defaults to 'cert-manager.io' if empty.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"group": {
+								Description:         "Group of the resource being referred to.",
+								MarkdownDescription: "Group of the resource being referred to.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"kind": {
+								Description:         "Kind of the resource being referred to.",
+								MarkdownDescription: "Kind of the resource being referred to.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name of the resource being referred to.",
+								MarkdownDescription: "Name of the resource being referred to.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"uid": {
+						Description:         "UID contains the uid of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
+						MarkdownDescription: "UID contains the uid of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

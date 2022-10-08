@@ -49,11 +49,11 @@ type AcidZalanDoPostgresTeamV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		AdditionalMembers *map[string][]string `tfsdk:"additional_members" yaml:"additionalMembers,omitempty"`
+
 		AdditionalSuperuserTeams *map[string][]string `tfsdk:"additional_superuser_teams" yaml:"additionalSuperuserTeams,omitempty"`
 
 		AdditionalTeams *map[string][]string `tfsdk:"additional_teams" yaml:"additionalTeams,omitempty"`
-
-		AdditionalMembers *map[string][]string `tfsdk:"additional_members" yaml:"additionalMembers,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -154,6 +154,17 @@ func (r *AcidZalanDoPostgresTeamV1Resource) GetSchema(_ context.Context) (tfsdk.
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"additional_members": {
+						Description:         "Map for teamId and associated additional users",
+						MarkdownDescription: "Map for teamId and associated additional users",
+
+						Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"additional_superuser_teams": {
 						Description:         "Map for teamId and associated additional superuser teams",
 						MarkdownDescription: "Map for teamId and associated additional superuser teams",
@@ -168,17 +179,6 @@ func (r *AcidZalanDoPostgresTeamV1Resource) GetSchema(_ context.Context) (tfsdk.
 					"additional_teams": {
 						Description:         "Map for teamId and associated additional teams",
 						MarkdownDescription: "Map for teamId and associated additional teams",
-
-						Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"additional_members": {
-						Description:         "Map for teamId and associated additional users",
-						MarkdownDescription: "Map for teamId and associated additional users",
 
 						Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
 

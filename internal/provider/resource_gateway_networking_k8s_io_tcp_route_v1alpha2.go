@@ -50,15 +50,15 @@ type GatewayNetworkingK8SIoTCPRouteV1Alpha2GoModel struct {
 
 	Spec *struct {
 		ParentRefs *[]struct {
+			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+			SectionName *string `tfsdk:"section_name" yaml:"sectionName,omitempty"`
+
 			Group *string `tfsdk:"group" yaml:"group,omitempty"`
 
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-			SectionName *string `tfsdk:"section_name" yaml:"sectionName,omitempty"`
 		} `tfsdk:"parent_refs" yaml:"parentRefs,omitempty"`
 
 		Rules *[]struct {
@@ -182,6 +182,28 @@ func (r *GatewayNetworkingK8SIoTCPRouteV1Alpha2Resource) GetSchema(_ context.Con
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+							"namespace": {
+								Description:         "Namespace is the namespace of the referent. When unspecified (or empty string), this refers to the local namespace of the Route.  Support: Core",
+								MarkdownDescription: "Namespace is the namespace of the referent. When unspecified (or empty string), this refers to the local namespace of the Route.  Support: Core",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"section_name": {
+								Description:         "SectionName is the name of a section within the target resource. In the following resources, SectionName is interpreted as the following:  * Gateway: Listener Name  Implementations MAY choose to support attaching Routes to other resources. If that is the case, they MUST clearly document how SectionName is interpreted.  When unspecified (empty string), this will reference the entire resource. For the purpose of status, an attachment is considered successful if at least one section in the parent resource accepts it. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway.  Support: Core",
+								MarkdownDescription: "SectionName is the name of a section within the target resource. In the following resources, SectionName is interpreted as the following:  * Gateway: Listener Name  Implementations MAY choose to support attaching Routes to other resources. If that is the case, they MUST clearly document how SectionName is interpreted.  When unspecified (empty string), this will reference the entire resource. For the purpose of status, an attachment is considered successful if at least one section in the parent resource accepts it. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway.  Support: Core",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"group": {
 								Description:         "Group is the group of the referent.  Support: Core",
 								MarkdownDescription: "Group is the group of the referent.  Support: Core",
@@ -212,28 +234,6 @@ func (r *GatewayNetworkingK8SIoTCPRouteV1Alpha2Resource) GetSchema(_ context.Con
 
 								Required: true,
 								Optional: false,
-								Computed: false,
-							},
-
-							"namespace": {
-								Description:         "Namespace is the namespace of the referent. When unspecified (or empty string), this refers to the local namespace of the Route.  Support: Core",
-								MarkdownDescription: "Namespace is the namespace of the referent. When unspecified (or empty string), this refers to the local namespace of the Route.  Support: Core",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"section_name": {
-								Description:         "SectionName is the name of a section within the target resource. In the following resources, SectionName is interpreted as the following:  * Gateway: Listener Name  Implementations MAY choose to support attaching Routes to other resources. If that is the case, they MUST clearly document how SectionName is interpreted.  When unspecified (empty string), this will reference the entire resource. For the purpose of status, an attachment is considered successful if at least one section in the parent resource accepts it. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway.  Support: Core",
-								MarkdownDescription: "SectionName is the name of a section within the target resource. In the following resources, SectionName is interpreted as the following:  * Gateway: Listener Name  Implementations MAY choose to support attaching Routes to other resources. If that is the case, they MUST clearly document how SectionName is interpreted.  When unspecified (empty string), this will reference the entire resource. For the purpose of status, an attachment is considered successful if at least one section in the parent resource accepts it. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway.  Support: Core",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
 								Computed: false,
 							},
 						}),

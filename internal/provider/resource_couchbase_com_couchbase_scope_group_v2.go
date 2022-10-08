@@ -50,10 +50,14 @@ type CouchbaseComCouchbaseScopeGroupV2GoModel struct {
 
 	Spec *struct {
 		Collections *struct {
-			Resources *[]struct {
-				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+			Managed *bool `tfsdk:"managed" yaml:"managed,omitempty"`
 
+			PreserveDefaultCollection *bool `tfsdk:"preserve_default_collection" yaml:"preserveDefaultCollection,omitempty"`
+
+			Resources *[]struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 			} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 			Selector *struct {
@@ -67,10 +71,6 @@ type CouchbaseComCouchbaseScopeGroupV2GoModel struct {
 
 				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 			} `tfsdk:"selector" yaml:"selector,omitempty"`
-
-			Managed *bool `tfsdk:"managed" yaml:"managed,omitempty"`
-
-			PreserveDefaultCollection *bool `tfsdk:"preserve_default_collection" yaml:"preserveDefaultCollection,omitempty"`
 		} `tfsdk:"collections" yaml:"collections,omitempty"`
 
 		Names *[]string `tfsdk:"names" yaml:"names,omitempty"`
@@ -180,22 +180,33 @@ func (r *CouchbaseComCouchbaseScopeGroupV2Resource) GetSchema(_ context.Context)
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+							"managed": {
+								Description:         "Managed indicates whether collections within this scope are managed. If not then you can dynamically create and delete collections with the Couchbase UI or SDKs.",
+								MarkdownDescription: "Managed indicates whether collections within this scope are managed. If not then you can dynamically create and delete collections with the Couchbase UI or SDKs.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"preserve_default_collection": {
+								Description:         "PreserveDefaultCollection indicates whether the Operator should manage the default collection within the default scope.  The default collection can be deleted, but can not be recreated by Couchbase Server.  By setting this field to 'true', the Operator will implicitly manage the default collection within the default scope.  The default collection cannot be modified and will have no document time-to-live (TTL).  When set to 'false', the operator will not manage the default collection, which will be deleted and cannot be used or recreated.",
+								MarkdownDescription: "PreserveDefaultCollection indicates whether the Operator should manage the default collection within the default scope.  The default collection can be deleted, but can not be recreated by Couchbase Server.  By setting this field to 'true', the Operator will implicitly manage the default collection within the default scope.  The default collection cannot be modified and will have no document time-to-live (TTL).  When set to 'false', the operator will not manage the default collection, which will be deleted and cannot be used or recreated.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"resources": {
 								Description:         "Resources is an explicit list of named resources that will be considered for inclusion in this scope or scopes.  If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.",
 								MarkdownDescription: "Resources is an explicit list of named resources that will be considered for inclusion in this scope or scopes.  If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"kind": {
-										Description:         "Kind indicates the kind of resource that is being referenced.  A scope can only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource kinds.  This field defaults to 'CouchbaseCollection' if not specified.",
-										MarkdownDescription: "Kind indicates the kind of resource that is being referenced.  A scope can only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource kinds.  This field defaults to 'CouchbaseCollection' if not specified.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"name": {
 										Description:         "Name is the name of the Kubernetes resource name that is being referenced. Legal collection names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.",
@@ -205,6 +216,17 @@ func (r *CouchbaseComCouchbaseScopeGroupV2Resource) GetSchema(_ context.Context)
 
 										Required: true,
 										Optional: false,
+										Computed: false,
+									},
+
+									"kind": {
+										Description:         "Kind indicates the kind of resource that is being referenced.  A scope can only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource kinds.  This field defaults to 'CouchbaseCollection' if not specified.",
+										MarkdownDescription: "Kind indicates the kind of resource that is being referenced.  A scope can only reference 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource kinds.  This field defaults to 'CouchbaseCollection' if not specified.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 								}),
@@ -276,28 +298,6 @@ func (r *CouchbaseComCouchbaseScopeGroupV2Resource) GetSchema(_ context.Context)
 										Computed: false,
 									},
 								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"managed": {
-								Description:         "Managed indicates whether collections within this scope are managed. If not then you can dynamically create and delete collections with the Couchbase UI or SDKs.",
-								MarkdownDescription: "Managed indicates whether collections within this scope are managed. If not then you can dynamically create and delete collections with the Couchbase UI or SDKs.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"preserve_default_collection": {
-								Description:         "PreserveDefaultCollection indicates whether the Operator should manage the default collection within the default scope.  The default collection can be deleted, but can not be recreated by Couchbase Server.  By setting this field to 'true', the Operator will implicitly manage the default collection within the default scope.  The default collection cannot be modified and will have no document time-to-live (TTL).  When set to 'false', the operator will not manage the default collection, which will be deleted and cannot be used or recreated.",
-								MarkdownDescription: "PreserveDefaultCollection indicates whether the Operator should manage the default collection within the default scope.  The default collection can be deleted, but can not be recreated by Couchbase Server.  By setting this field to 'true', the Operator will implicitly manage the default collection within the default scope.  The default collection cannot be modified and will have no document time-to-live (TTL).  When set to 'false', the operator will not manage the default collection, which will be deleted and cannot be used or recreated.",
-
-								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,

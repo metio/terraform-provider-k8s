@@ -50,117 +50,25 @@ type TraefikContainoUsTraefikServiceV1Alpha1GoModel struct {
 
 	Spec *struct {
 		Mirroring *struct {
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+			Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+			Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 
 			MaxBodySize *int64 `tfsdk:"max_body_size" yaml:"maxBodySize,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 
 			PassHostHeader *bool `tfsdk:"pass_host_header" yaml:"passHostHeader,omitempty"`
-
-			Strategy *string `tfsdk:"strategy" yaml:"strategy,omitempty"`
-
-			ServersTransport *string `tfsdk:"servers_transport" yaml:"serversTransport,omitempty"`
-
-			Sticky *struct {
-				Cookie *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					SameSite *string `tfsdk:"same_site" yaml:"sameSite,omitempty"`
-
-					Secure *bool `tfsdk:"secure" yaml:"secure,omitempty"`
-
-					HttpOnly *bool `tfsdk:"http_only" yaml:"httpOnly,omitempty"`
-				} `tfsdk:"cookie" yaml:"cookie,omitempty"`
-			} `tfsdk:"sticky" yaml:"sticky,omitempty"`
-
-			Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-
-			Mirrors *[]struct {
-				Sticky *struct {
-					Cookie *struct {
-						HttpOnly *bool `tfsdk:"http_only" yaml:"httpOnly,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						SameSite *string `tfsdk:"same_site" yaml:"sameSite,omitempty"`
-
-						Secure *bool `tfsdk:"secure" yaml:"secure,omitempty"`
-					} `tfsdk:"cookie" yaml:"cookie,omitempty"`
-				} `tfsdk:"sticky" yaml:"sticky,omitempty"`
-
-				Strategy *string `tfsdk:"strategy" yaml:"strategy,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-				PassHostHeader *bool `tfsdk:"pass_host_header" yaml:"passHostHeader,omitempty"`
-
-				Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-				ServersTransport *string `tfsdk:"servers_transport" yaml:"serversTransport,omitempty"`
-
-				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-				Percent *int64 `tfsdk:"percent" yaml:"percent,omitempty"`
-
-				ResponseForwarding *struct {
-					FlushInterval *string `tfsdk:"flush_interval" yaml:"flushInterval,omitempty"`
-				} `tfsdk:"response_forwarding" yaml:"responseForwarding,omitempty"`
-
-				Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-				Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-			} `tfsdk:"mirrors" yaml:"mirrors,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Port *string `tfsdk:"port" yaml:"port,omitempty"`
 
 			ResponseForwarding *struct {
 				FlushInterval *string `tfsdk:"flush_interval" yaml:"flushInterval,omitempty"`
 			} `tfsdk:"response_forwarding" yaml:"responseForwarding,omitempty"`
 
 			Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-		} `tfsdk:"mirroring" yaml:"mirroring,omitempty"`
 
-		Weighted *struct {
-			Services *[]struct {
-				Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-				ResponseForwarding *struct {
-					FlushInterval *string `tfsdk:"flush_interval" yaml:"flushInterval,omitempty"`
-				} `tfsdk:"response_forwarding" yaml:"responseForwarding,omitempty"`
-
-				Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-				Sticky *struct {
-					Cookie *struct {
-						HttpOnly *bool `tfsdk:"http_only" yaml:"httpOnly,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						SameSite *string `tfsdk:"same_site" yaml:"sameSite,omitempty"`
-
-						Secure *bool `tfsdk:"secure" yaml:"secure,omitempty"`
-					} `tfsdk:"cookie" yaml:"cookie,omitempty"`
-				} `tfsdk:"sticky" yaml:"sticky,omitempty"`
-
-				Strategy *string `tfsdk:"strategy" yaml:"strategy,omitempty"`
-
-				Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-
-				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-				ServersTransport *string `tfsdk:"servers_transport" yaml:"serversTransport,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				PassHostHeader *bool `tfsdk:"pass_host_header" yaml:"passHostHeader,omitempty"`
-			} `tfsdk:"services" yaml:"services,omitempty"`
+			ServersTransport *string `tfsdk:"servers_transport" yaml:"serversTransport,omitempty"`
 
 			Sticky *struct {
 				Cookie *struct {
@@ -171,6 +79,98 @@ type TraefikContainoUsTraefikServiceV1Alpha1GoModel struct {
 					SameSite *string `tfsdk:"same_site" yaml:"sameSite,omitempty"`
 
 					Secure *bool `tfsdk:"secure" yaml:"secure,omitempty"`
+				} `tfsdk:"cookie" yaml:"cookie,omitempty"`
+			} `tfsdk:"sticky" yaml:"sticky,omitempty"`
+
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			Mirrors *[]struct {
+				Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+				Sticky *struct {
+					Cookie *struct {
+						SameSite *string `tfsdk:"same_site" yaml:"sameSite,omitempty"`
+
+						Secure *bool `tfsdk:"secure" yaml:"secure,omitempty"`
+
+						HttpOnly *bool `tfsdk:"http_only" yaml:"httpOnly,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+					} `tfsdk:"cookie" yaml:"cookie,omitempty"`
+				} `tfsdk:"sticky" yaml:"sticky,omitempty"`
+
+				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+				PassHostHeader *bool `tfsdk:"pass_host_header" yaml:"passHostHeader,omitempty"`
+
+				Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+				ResponseForwarding *struct {
+					FlushInterval *string `tfsdk:"flush_interval" yaml:"flushInterval,omitempty"`
+				} `tfsdk:"response_forwarding" yaml:"responseForwarding,omitempty"`
+
+				ServersTransport *string `tfsdk:"servers_transport" yaml:"serversTransport,omitempty"`
+
+				Strategy *string `tfsdk:"strategy" yaml:"strategy,omitempty"`
+
+				Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+
+				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Percent *int64 `tfsdk:"percent" yaml:"percent,omitempty"`
+			} `tfsdk:"mirrors" yaml:"mirrors,omitempty"`
+
+			Strategy *string `tfsdk:"strategy" yaml:"strategy,omitempty"`
+		} `tfsdk:"mirroring" yaml:"mirroring,omitempty"`
+
+		Weighted *struct {
+			Services *[]struct {
+				Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+				Sticky *struct {
+					Cookie *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						SameSite *string `tfsdk:"same_site" yaml:"sameSite,omitempty"`
+
+						Secure *bool `tfsdk:"secure" yaml:"secure,omitempty"`
+
+						HttpOnly *bool `tfsdk:"http_only" yaml:"httpOnly,omitempty"`
+					} `tfsdk:"cookie" yaml:"cookie,omitempty"`
+				} `tfsdk:"sticky" yaml:"sticky,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+				ResponseForwarding *struct {
+					FlushInterval *string `tfsdk:"flush_interval" yaml:"flushInterval,omitempty"`
+				} `tfsdk:"response_forwarding" yaml:"responseForwarding,omitempty"`
+
+				ServersTransport *string `tfsdk:"servers_transport" yaml:"serversTransport,omitempty"`
+
+				Strategy *string `tfsdk:"strategy" yaml:"strategy,omitempty"`
+
+				Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+
+				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+				PassHostHeader *bool `tfsdk:"pass_host_header" yaml:"passHostHeader,omitempty"`
+
+				Port *string `tfsdk:"port" yaml:"port,omitempty"`
+			} `tfsdk:"services" yaml:"services,omitempty"`
+
+			Sticky *struct {
+				Cookie *struct {
+					SameSite *string `tfsdk:"same_site" yaml:"sameSite,omitempty"`
+
+					Secure *bool `tfsdk:"secure" yaml:"secure,omitempty"`
+
+					HttpOnly *bool `tfsdk:"http_only" yaml:"httpOnly,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 				} `tfsdk:"cookie" yaml:"cookie,omitempty"`
 			} `tfsdk:"sticky" yaml:"sticky,omitempty"`
 		} `tfsdk:"weighted" yaml:"weighted,omitempty"`
@@ -280,11 +280,22 @@ func (r *TraefikContainoUsTraefikServiceV1Alpha1Resource) GetSchema(_ context.Co
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"kind": {
-								Description:         "Kind defines the kind of the Service.",
-								MarkdownDescription: "Kind defines the kind of the Service.",
+							"port": {
+								Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
+								MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
 
 								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"weight": {
+								Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
+								MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
+
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
@@ -299,6 +310,17 @@ func (r *TraefikContainoUsTraefikServiceV1Alpha1Resource) GetSchema(_ context.Co
 
 								Required: false,
 								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
+								MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
 								Computed: false,
 							},
 
@@ -318,342 +340,6 @@ func (r *TraefikContainoUsTraefikServiceV1Alpha1Resource) GetSchema(_ context.Co
 								MarkdownDescription: "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
 
 								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"strategy": {
-								Description:         "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
-								MarkdownDescription: "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"servers_transport": {
-								Description:         "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
-								MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"sticky": {
-								Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/services/#sticky-sessions",
-								MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/services/#sticky-sessions",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"cookie": {
-										Description:         "Cookie defines the sticky cookie configuration.",
-										MarkdownDescription: "Cookie defines the sticky cookie configuration.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "Name defines the Cookie name.",
-												MarkdownDescription: "Name defines the Cookie name.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"same_site": {
-												Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
-												MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"secure": {
-												Description:         "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
-												MarkdownDescription: "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http_only": {
-												Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
-												MarkdownDescription: "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"weight": {
-								Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
-								MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"mirrors": {
-								Description:         "Mirrors defines the list of mirrors where Traefik will duplicate the traffic.",
-								MarkdownDescription: "Mirrors defines the list of mirrors where Traefik will duplicate the traffic.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"sticky": {
-										Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/services/#sticky-sessions",
-										MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/services/#sticky-sessions",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"cookie": {
-												Description:         "Cookie defines the sticky cookie configuration.",
-												MarkdownDescription: "Cookie defines the sticky cookie configuration.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"http_only": {
-														Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
-														MarkdownDescription: "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "Name defines the Cookie name.",
-														MarkdownDescription: "Name defines the Cookie name.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"same_site": {
-														Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
-														MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"secure": {
-														Description:         "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
-														MarkdownDescription: "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"strategy": {
-										Description:         "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
-										MarkdownDescription: "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
-										MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"namespace": {
-										Description:         "Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.",
-										MarkdownDescription: "Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"pass_host_header": {
-										Description:         "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
-										MarkdownDescription: "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"port": {
-										Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
-										MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"servers_transport": {
-										Description:         "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
-										MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"kind": {
-										Description:         "Kind defines the kind of the Service.",
-										MarkdownDescription: "Kind defines the kind of the Service.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"percent": {
-										Description:         "Percent defines the part of the traffic to mirror. Supported values: 0 to 100.",
-										MarkdownDescription: "Percent defines the part of the traffic to mirror. Supported values: 0 to 100.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"response_forwarding": {
-										Description:         "ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client.",
-										MarkdownDescription: "ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"flush_interval": {
-												Description:         "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
-												MarkdownDescription: "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"scheme": {
-										Description:         "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
-										MarkdownDescription: "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"weight": {
-										Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
-										MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
-								MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"port": {
-								Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
-								MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
-
-								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
@@ -693,215 +379,12 @@ func (r *TraefikContainoUsTraefikServiceV1Alpha1Resource) GetSchema(_ context.Co
 								Optional: true,
 								Computed: false,
 							},
-						}),
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
+							"servers_transport": {
+								Description:         "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
+								MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
 
-					"weighted": {
-						Description:         "Weighted defines the Weighted Round Robin configuration.",
-						MarkdownDescription: "Weighted defines the Weighted Round Robin configuration.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"services": {
-								Description:         "Services defines the list of Kubernetes Service and/or TraefikService to load-balance, with weight.",
-								MarkdownDescription: "Services defines the list of Kubernetes Service and/or TraefikService to load-balance, with weight.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"port": {
-										Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
-										MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"response_forwarding": {
-										Description:         "ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client.",
-										MarkdownDescription: "ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"flush_interval": {
-												Description:         "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
-												MarkdownDescription: "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"scheme": {
-										Description:         "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
-										MarkdownDescription: "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"sticky": {
-										Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/services/#sticky-sessions",
-										MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/services/#sticky-sessions",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"cookie": {
-												Description:         "Cookie defines the sticky cookie configuration.",
-												MarkdownDescription: "Cookie defines the sticky cookie configuration.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"http_only": {
-														Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
-														MarkdownDescription: "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "Name defines the Cookie name.",
-														MarkdownDescription: "Name defines the Cookie name.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"same_site": {
-														Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
-														MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"secure": {
-														Description:         "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
-														MarkdownDescription: "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"strategy": {
-										Description:         "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
-										MarkdownDescription: "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"weight": {
-										Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
-										MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"kind": {
-										Description:         "Kind defines the kind of the Service.",
-										MarkdownDescription: "Kind defines the kind of the Service.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"namespace": {
-										Description:         "Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.",
-										MarkdownDescription: "Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"servers_transport": {
-										Description:         "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
-										MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
-										MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"pass_host_header": {
-										Description:         "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
-										MarkdownDescription: "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
@@ -909,8 +392,8 @@ func (r *TraefikContainoUsTraefikServiceV1Alpha1Resource) GetSchema(_ context.Co
 							},
 
 							"sticky": {
-								Description:         "Sticky defines whether sticky sessions are enabled. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
-								MarkdownDescription: "Sticky defines whether sticky sessions are enabled. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
+								Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/services/#sticky-sessions",
+								MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/services/#sticky-sessions",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -958,6 +441,523 @@ func (r *TraefikContainoUsTraefikServiceV1Alpha1Resource) GetSchema(_ context.Co
 												MarkdownDescription: "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
 
 												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"kind": {
+								Description:         "Kind defines the kind of the Service.",
+								MarkdownDescription: "Kind defines the kind of the Service.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"mirrors": {
+								Description:         "Mirrors defines the list of mirrors where Traefik will duplicate the traffic.",
+								MarkdownDescription: "Mirrors defines the list of mirrors where Traefik will duplicate the traffic.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"scheme": {
+										Description:         "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
+										MarkdownDescription: "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"sticky": {
+										Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/services/#sticky-sessions",
+										MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/services/#sticky-sessions",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"cookie": {
+												Description:         "Cookie defines the sticky cookie configuration.",
+												MarkdownDescription: "Cookie defines the sticky cookie configuration.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"same_site": {
+														Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+														MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"secure": {
+														Description:         "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
+														MarkdownDescription: "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_only": {
+														Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
+														MarkdownDescription: "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "Name defines the Cookie name.",
+														MarkdownDescription: "Name defines the Cookie name.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"namespace": {
+										Description:         "Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.",
+										MarkdownDescription: "Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"pass_host_header": {
+										Description:         "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
+										MarkdownDescription: "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"port": {
+										Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
+										MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"response_forwarding": {
+										Description:         "ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client.",
+										MarkdownDescription: "ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"flush_interval": {
+												Description:         "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
+												MarkdownDescription: "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"servers_transport": {
+										Description:         "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
+										MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"strategy": {
+										Description:         "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
+										MarkdownDescription: "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"weight": {
+										Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
+										MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"kind": {
+										Description:         "Kind defines the kind of the Service.",
+										MarkdownDescription: "Kind defines the kind of the Service.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
+										MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"percent": {
+										Description:         "Percent defines the part of the traffic to mirror. Supported values: 0 to 100.",
+										MarkdownDescription: "Percent defines the part of the traffic to mirror. Supported values: 0 to 100.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"strategy": {
+								Description:         "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
+								MarkdownDescription: "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"weighted": {
+						Description:         "Weighted defines the Weighted Round Robin configuration.",
+						MarkdownDescription: "Weighted defines the Weighted Round Robin configuration.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"services": {
+								Description:         "Services defines the list of Kubernetes Service and/or TraefikService to load-balance, with weight.",
+								MarkdownDescription: "Services defines the list of Kubernetes Service and/or TraefikService to load-balance, with weight.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"scheme": {
+										Description:         "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
+										MarkdownDescription: "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"sticky": {
+										Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/services/#sticky-sessions",
+										MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/services/#sticky-sessions",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"cookie": {
+												Description:         "Cookie defines the sticky cookie configuration.",
+												MarkdownDescription: "Cookie defines the sticky cookie configuration.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "Name defines the Cookie name.",
+														MarkdownDescription: "Name defines the Cookie name.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"same_site": {
+														Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+														MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"secure": {
+														Description:         "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
+														MarkdownDescription: "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_only": {
+														Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
+														MarkdownDescription: "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
+										MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"namespace": {
+										Description:         "Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.",
+										MarkdownDescription: "Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"response_forwarding": {
+										Description:         "ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client.",
+										MarkdownDescription: "ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"flush_interval": {
+												Description:         "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
+												MarkdownDescription: "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"servers_transport": {
+										Description:         "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
+										MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"strategy": {
+										Description:         "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
+										MarkdownDescription: "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"weight": {
+										Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
+										MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"kind": {
+										Description:         "Kind defines the kind of the Service.",
+										MarkdownDescription: "Kind defines the kind of the Service.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"pass_host_header": {
+										Description:         "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
+										MarkdownDescription: "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"port": {
+										Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
+										MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"sticky": {
+								Description:         "Sticky defines whether sticky sessions are enabled. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
+								MarkdownDescription: "Sticky defines whether sticky sessions are enabled. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"cookie": {
+										Description:         "Cookie defines the sticky cookie configuration.",
+										MarkdownDescription: "Cookie defines the sticky cookie configuration.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"same_site": {
+												Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+												MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secure": {
+												Description:         "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
+												MarkdownDescription: "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_only": {
+												Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
+												MarkdownDescription: "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name defines the Cookie name.",
+												MarkdownDescription: "Name defines the Cookie name.",
+
+												Type: types.StringType,
 
 												Required: false,
 												Optional: true,

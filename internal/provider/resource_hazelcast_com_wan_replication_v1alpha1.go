@@ -49,6 +49,14 @@ type HazelcastComWanReplicationV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Batch *struct {
+			MaximumDelay *int64 `tfsdk:"maximum_delay" yaml:"maximumDelay,omitempty"`
+
+			Size *int64 `tfsdk:"size" yaml:"size,omitempty"`
+		} `tfsdk:"batch" yaml:"batch,omitempty"`
+
+		Endpoints *string `tfsdk:"endpoints" yaml:"endpoints,omitempty"`
+
 		Queue *struct {
 			Capacity *int64 `tfsdk:"capacity" yaml:"capacity,omitempty"`
 
@@ -68,14 +76,6 @@ type HazelcastComWanReplicationV1Alpha1GoModel struct {
 
 			Type *string `tfsdk:"type" yaml:"type,omitempty"`
 		} `tfsdk:"acknowledgement" yaml:"acknowledgement,omitempty"`
-
-		Batch *struct {
-			MaximumDelay *int64 `tfsdk:"maximum_delay" yaml:"maximumDelay,omitempty"`
-
-			Size *int64 `tfsdk:"size" yaml:"size,omitempty"`
-		} `tfsdk:"batch" yaml:"batch,omitempty"`
-
-		Endpoints *string `tfsdk:"endpoints" yaml:"endpoints,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -175,6 +175,51 @@ func (r *HazelcastComWanReplicationV1Alpha1Resource) GetSchema(_ context.Context
 				MarkdownDescription: "WanReplicationSpec defines the desired state of WanReplication",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+					"batch": {
+						Description:         "Batch is the configuration for WAN events batch.",
+						MarkdownDescription: "Batch is the configuration for WAN events batch.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"maximum_delay": {
+								Description:         "MaximumDelay represents the maximum delay in milliseconds. If the batch size is not reached, the events will be sent after the maximum delay.",
+								MarkdownDescription: "MaximumDelay represents the maximum delay in milliseconds. If the batch size is not reached, the events will be sent after the maximum delay.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"size": {
+								Description:         "Size represents the maximum batch size.",
+								MarkdownDescription: "Size represents the maximum batch size.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"endpoints": {
+						Description:         "Endpoints is the target cluster endpoints.",
+						MarkdownDescription: "Endpoints is the target cluster endpoints.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
 
 					"queue": {
 						Description:         "Queue is the configuration for WAN events queue.",
@@ -286,51 +331,6 @@ func (r *HazelcastComWanReplicationV1Alpha1Resource) GetSchema(_ context.Context
 
 						Required: false,
 						Optional: true,
-						Computed: false,
-					},
-
-					"batch": {
-						Description:         "Batch is the configuration for WAN events batch.",
-						MarkdownDescription: "Batch is the configuration for WAN events batch.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"maximum_delay": {
-								Description:         "MaximumDelay represents the maximum delay in milliseconds. If the batch size is not reached, the events will be sent after the maximum delay.",
-								MarkdownDescription: "MaximumDelay represents the maximum delay in milliseconds. If the batch size is not reached, the events will be sent after the maximum delay.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"size": {
-								Description:         "Size represents the maximum batch size.",
-								MarkdownDescription: "Size represents the maximum batch size.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"endpoints": {
-						Description:         "Endpoints is the target cluster endpoints.",
-						MarkdownDescription: "Endpoints is the target cluster endpoints.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
 						Computed: false,
 					},
 				}),

@@ -50,7 +50,25 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 
 	Spec *struct {
 		ConsoleDeployment *struct {
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			Metadata *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+				Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+
+				Finalizers *[]string `tfsdk:"finalizers" yaml:"finalizers,omitempty"`
+
+				Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+			} `tfsdk:"metadata" yaml:"metadata,omitempty"`
+
 			Spec *struct {
+				ProgressDeadlineSeconds *int64 `tfsdk:"progress_deadline_seconds" yaml:"progressDeadlineSeconds,omitempty"`
+
+				Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
+
 				RevisionHistoryLimit *int64 `tfsdk:"revision_history_limit" yaml:"revisionHistoryLimit,omitempty"`
 
 				Selector *struct {
@@ -89,70 +107,28 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 					} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
 					Spec *struct {
-						SetHostnameAsFQDN *bool `tfsdk:"set_hostname_as_fqdn" yaml:"setHostnameAsFQDN,omitempty"`
-
-						TopologySpreadConstraints *[]struct {
-							LabelSelector *struct {
-								MatchExpressions *[]struct {
-									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
-								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-							MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
-
-							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
-							WhenUnsatisfiable *string `tfsdk:"when_unsatisfiable" yaml:"whenUnsatisfiable,omitempty"`
-						} `tfsdk:"topology_spread_constraints" yaml:"topologySpreadConstraints,omitempty"`
-
-						NodeName *string `tfsdk:"node_name" yaml:"nodeName,omitempty"`
-
-						Priority *int64 `tfsdk:"priority" yaml:"priority,omitempty"`
-
-						ReadinessGates *[]struct {
-							ConditionType *string `tfsdk:"condition_type" yaml:"conditionType,omitempty"`
-						} `tfsdk:"readiness_gates" yaml:"readinessGates,omitempty"`
+						ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
 
 						ShareProcessNamespace *bool `tfsdk:"share_process_namespace" yaml:"shareProcessNamespace,omitempty"`
-
-						AutomountServiceAccountToken *bool `tfsdk:"automount_service_account_token" yaml:"automountServiceAccountToken,omitempty"`
-
-						HostPID *bool `tfsdk:"host_pid" yaml:"hostPID,omitempty"`
-
-						DnsPolicy *string `tfsdk:"dns_policy" yaml:"dnsPolicy,omitempty"`
-
-						HostIPC *bool `tfsdk:"host_ipc" yaml:"hostIPC,omitempty"`
-
-						HostNetwork *bool `tfsdk:"host_network" yaml:"hostNetwork,omitempty"`
-
-						NodeSelector *map[string]string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
-
-						ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
 
 						Affinity *struct {
 							NodeAffinity *struct {
 								PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 									Preference *struct {
 										MatchExpressions *[]struct {
+											Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 											Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 											Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-											Key *string `tfsdk:"key" yaml:"key,omitempty"`
 										} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 										MatchFields *[]struct {
-											Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
 											Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 											Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+											Key *string `tfsdk:"key" yaml:"key,omitempty"`
 										} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
 									} `tfsdk:"preference" yaml:"preference,omitempty"`
 
@@ -161,26 +137,60 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 
 								RequiredDuringSchedulingIgnoredDuringExecution *struct {
 									NodeSelectorTerms *[]struct {
-										MatchExpressions *[]struct {
-											Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-											Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-											Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-										} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
 										MatchFields *[]struct {
-											Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
 											Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 											Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+											Key *string `tfsdk:"key" yaml:"key,omitempty"`
 										} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
+
+										MatchExpressions *[]struct {
+											Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+											Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+											Key *string `tfsdk:"key" yaml:"key,omitempty"`
+										} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 									} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
 								} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 							} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
 
 							PodAffinity *struct {
+								PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+									PodAffinityTerm *struct {
+										Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+										TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+
+										LabelSelector *struct {
+											MatchExpressions *[]struct {
+												Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+												Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+
+												Key *string `tfsdk:"key" yaml:"key,omitempty"`
+											} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+											MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+										} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+										NamespaceSelector *struct {
+											MatchExpressions *[]struct {
+												Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+												Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+												Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+											} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+											MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+										} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+									} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
+
+									Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+								} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+
 								RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
 									LabelSelector *struct {
 										MatchExpressions *[]struct {
@@ -210,43 +220,43 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 
 									TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 								} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
-
-								PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-									PodAffinityTerm *struct {
-										LabelSelector *struct {
-											MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-
-											MatchExpressions *[]struct {
-												Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-												Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-												Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-											} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-										} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-										NamespaceSelector *struct {
-											MatchExpressions *[]struct {
-												Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-												Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-												Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-											} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-											MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-										} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-
-										Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-										TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-									} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
-
-									Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-								} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
 							} `tfsdk:"pod_affinity" yaml:"podAffinity,omitempty"`
 
 							PodAntiAffinity *struct {
+								PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+									PodAffinityTerm *struct {
+										LabelSelector *struct {
+											MatchExpressions *[]struct {
+												Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+												Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+												Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+											} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+											MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+										} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+										NamespaceSelector *struct {
+											MatchExpressions *[]struct {
+												Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+												Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+												Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+											} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+											MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+										} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
+										Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+										TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+									} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
+
+									Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+								} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+
 								RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
 									LabelSelector *struct {
 										MatchExpressions *[]struct {
@@ -276,360 +286,46 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 
 									TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 								} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
-
-								PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-									PodAffinityTerm *struct {
-										TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
-										LabelSelector *struct {
-											MatchExpressions *[]struct {
-												Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-												Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-												Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-											} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-											MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-										} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
-										NamespaceSelector *struct {
-											MatchExpressions *[]struct {
-												Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-												Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-												Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-											} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-											MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-										} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-
-										Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-									} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
-
-									Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-								} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
 							} `tfsdk:"pod_anti_affinity" yaml:"podAntiAffinity,omitempty"`
 						} `tfsdk:"affinity" yaml:"affinity,omitempty"`
 
-						DnsConfig *struct {
-							Nameservers *[]string `tfsdk:"nameservers" yaml:"nameservers,omitempty"`
+						HostIPC *bool `tfsdk:"host_ipc" yaml:"hostIPC,omitempty"`
 
-							Options *[]struct {
-								Value *string `tfsdk:"value" yaml:"value,omitempty"`
+						Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-							} `tfsdk:"options" yaml:"options,omitempty"`
+						ActiveDeadlineSeconds *int64 `tfsdk:"active_deadline_seconds" yaml:"activeDeadlineSeconds,omitempty"`
 
-							Searches *[]string `tfsdk:"searches" yaml:"searches,omitempty"`
-						} `tfsdk:"dns_config" yaml:"dnsConfig,omitempty"`
+						SchedulerName *string `tfsdk:"scheduler_name" yaml:"schedulerName,omitempty"`
 
-						TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+						Tolerations *[]struct {
+							Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
 
-						InitContainers *[]struct {
-							Lifecycle *struct {
-								PostStart *struct {
-									Exec *struct {
-										Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-									} `tfsdk:"exec" yaml:"exec,omitempty"`
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
-									HttpGet *struct {
-										Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+							Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
-										Host *string `tfsdk:"host" yaml:"host,omitempty"`
+							TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
 
-										HttpHeaders *[]struct {
-											Name *string `tfsdk:"name" yaml:"name,omitempty"`
+							Value *string `tfsdk:"value" yaml:"value,omitempty"`
+						} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
 
-											Value *string `tfsdk:"value" yaml:"value,omitempty"`
-										} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-										Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-										Port *string `tfsdk:"port" yaml:"port,omitempty"`
-									} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-									TcpSocket *struct {
-										Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-										Port *string `tfsdk:"port" yaml:"port,omitempty"`
-									} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-								} `tfsdk:"post_start" yaml:"postStart,omitempty"`
-
-								PreStop *struct {
-									Exec *struct {
-										Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-									} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-									HttpGet *struct {
-										Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-										HttpHeaders *[]struct {
-											Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-											Name *string `tfsdk:"name" yaml:"name,omitempty"`
-										} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-										Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-										Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-										Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-									} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-									TcpSocket *struct {
-										Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-										Port *string `tfsdk:"port" yaml:"port,omitempty"`
-									} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-								} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
-							} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Tty *bool `tfsdk:"tty" yaml:"tty,omitempty"`
-
-							VolumeMounts *[]struct {
-								MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-
-								MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-								SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
-
-								SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
-							} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
-
-							ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
-
-							StdinOnce *bool `tfsdk:"stdin_once" yaml:"stdinOnce,omitempty"`
-
-							TerminationMessagePolicy *string `tfsdk:"termination_message_policy" yaml:"terminationMessagePolicy,omitempty"`
-
-							VolumeDevices *[]struct {
-								DevicePath *string `tfsdk:"device_path" yaml:"devicePath,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-							} `tfsdk:"volume_devices" yaml:"volumeDevices,omitempty"`
-
-							LivenessProbe *struct {
-								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
-
-								Exec *struct {
-									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-								} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-								HttpGet *struct {
-									Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-									HttpHeaders *[]struct {
-										Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-										Name *string `tfsdk:"name" yaml:"name,omitempty"`
-									} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-									Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-								TcpSocket *struct {
-									Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
-								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-							} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
-
-							ReadinessProbe *struct {
-								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-								Exec *struct {
-									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-								} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-								HttpGet *struct {
-									HttpHeaders *[]struct {
-										Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-										Value *string `tfsdk:"value" yaml:"value,omitempty"`
-									} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-									Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-									Host *string `tfsdk:"host" yaml:"host,omitempty"`
-								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-								TcpSocket *struct {
-									Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
-								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
-
-								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-							} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
-
+						Containers *[]struct {
 							Resources *struct {
 								Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
 
 								Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
 							} `tfsdk:"resources" yaml:"resources,omitempty"`
 
-							StartupProbe *struct {
-								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-								TcpSocket *struct {
-									Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
-								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-								Exec *struct {
-									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-								} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-								HttpGet *struct {
-									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-									Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-									HttpHeaders *[]struct {
-										Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-										Value *string `tfsdk:"value" yaml:"value,omitempty"`
-									} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-									Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
-								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
-
-								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-							} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
-
-							Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
-
-							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-
-							Env *[]struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-								ValueFrom *struct {
-									ConfigMapKeyRef *struct {
-										Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-										Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-										Key *string `tfsdk:"key" yaml:"key,omitempty"`
-									} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
-
-									FieldRef *struct {
-										FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
-
-										ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-									} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
-
-									ResourceFieldRef *struct {
-										ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
-
-										Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
-
-										Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-									} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
-
-									SecretKeyRef *struct {
-										Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-										Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-										Name *string `tfsdk:"name" yaml:"name,omitempty"`
-									} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
-								} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
-							} `tfsdk:"env" yaml:"env,omitempty"`
-
-							EnvFrom *[]struct {
-								ConfigMapRef *struct {
-									Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-									Name *string `tfsdk:"name" yaml:"name,omitempty"`
-								} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
-
-								Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-
-								SecretRef *struct {
-									Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-									Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-							} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
-
-							Stdin *bool `tfsdk:"stdin" yaml:"stdin,omitempty"`
-
-							WorkingDir *string `tfsdk:"working_dir" yaml:"workingDir,omitempty"`
-
-							Image *string `tfsdk:"image" yaml:"image,omitempty"`
-
-							Ports *[]struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
-
-								ContainerPort *int64 `tfsdk:"container_port" yaml:"containerPort,omitempty"`
-
-								HostIP *string `tfsdk:"host_ip" yaml:"hostIP,omitempty"`
-
-								HostPort *int64 `tfsdk:"host_port" yaml:"hostPort,omitempty"`
-							} `tfsdk:"ports" yaml:"ports,omitempty"`
-
 							SecurityContext *struct {
-								RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
+								WindowsOptions *struct {
+									RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
 
-								SeLinuxOptions *struct {
-									Level *string `tfsdk:"level" yaml:"level,omitempty"`
+									GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
 
-									Role *string `tfsdk:"role" yaml:"role,omitempty"`
+									GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
 
-									Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-									User *string `tfsdk:"user" yaml:"user,omitempty"`
-								} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
+									HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
+								} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
 
 								AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
 
@@ -649,98 +345,90 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 									Type *string `tfsdk:"type" yaml:"type,omitempty"`
 								} `tfsdk:"seccomp_profile" yaml:"seccompProfile,omitempty"`
 
-								WindowsOptions *struct {
-									GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
-
-									GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
-
-									HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
-
-									RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
-								} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
-
 								ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
 
 								ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
 
 								RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
+
+								RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
+
+								SeLinuxOptions *struct {
+									Level *string `tfsdk:"level" yaml:"level,omitempty"`
+
+									Role *string `tfsdk:"role" yaml:"role,omitempty"`
+
+									Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+									User *string `tfsdk:"user" yaml:"user,omitempty"`
+								} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
 							} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
 
-							TerminationMessagePath *string `tfsdk:"termination_message_path" yaml:"terminationMessagePath,omitempty"`
-						} `tfsdk:"init_containers" yaml:"initContainers,omitempty"`
+							StartupProbe *struct {
+								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
 
-						RuntimeClassName *string `tfsdk:"runtime_class_name" yaml:"runtimeClassName,omitempty"`
+								HttpGet *struct {
+									Port *string `tfsdk:"port" yaml:"port,omitempty"`
 
-						Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
+									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 
-						PreemptionPolicy *string `tfsdk:"preemption_policy" yaml:"preemptionPolicy,omitempty"`
+									Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-						Overhead *map[string]string `tfsdk:"overhead" yaml:"overhead,omitempty"`
+									HttpHeaders *[]struct {
+										Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
-						Subdomain *string `tfsdk:"subdomain" yaml:"subdomain,omitempty"`
+										Value *string `tfsdk:"value" yaml:"value,omitempty"`
+									} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
 
-						Tolerations *[]struct {
-							Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-							TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
-
-							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-							Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
-
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-						} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
-
-						Volumes *[]struct {
-							GcePersistentDisk *struct {
-								PdName *string `tfsdk:"pd_name" yaml:"pdName,omitempty"`
-
-								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
-
-								Partition *int64 `tfsdk:"partition" yaml:"partition,omitempty"`
-							} `tfsdk:"gce_persistent_disk" yaml:"gcePersistentDisk,omitempty"`
-
-							Secret *struct {
-								DefaultMode *int64 `tfsdk:"default_mode" yaml:"defaultMode,omitempty"`
-
-								Items *[]struct {
 									Path *string `tfsdk:"path" yaml:"path,omitempty"`
+								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
 
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
 
-									Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
-								} `tfsdk:"items" yaml:"items,omitempty"`
+								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
 
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
 
-								SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-							} `tfsdk:"secret" yaml:"secret,omitempty"`
+								Exec *struct {
+									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+								} `tfsdk:"exec" yaml:"exec,omitempty"`
 
-							AwsElasticBlockStore *struct {
-								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
 
-								Partition *int64 `tfsdk:"partition" yaml:"partition,omitempty"`
+								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
 
-								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+								TcpSocket *struct {
+									Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								VolumeID *string `tfsdk:"volume_id" yaml:"volumeID,omitempty"`
-							} `tfsdk:"aws_elastic_block_store" yaml:"awsElasticBlockStore,omitempty"`
+									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+							} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
 
-							DownwardAPI *struct {
-								DefaultMode *int64 `tfsdk:"default_mode" yaml:"defaultMode,omitempty"`
+							TerminationMessagePath *string `tfsdk:"termination_message_path" yaml:"terminationMessagePath,omitempty"`
 
-								Items *[]struct {
+							TerminationMessagePolicy *string `tfsdk:"termination_message_policy" yaml:"terminationMessagePolicy,omitempty"`
+
+							Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
+
+							Env *[]struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+								ValueFrom *struct {
+									ConfigMapKeyRef *struct {
+										Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+										Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+										Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+									} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
+
 									FieldRef *struct {
 										ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
 
 										FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
 									} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
-
-									Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
-
-									Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
 									ResourceFieldRef *struct {
 										Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
@@ -749,8 +437,382 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 
 										ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 									} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
+
+									SecretKeyRef *struct {
+										Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+										Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+										Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+									} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
+								} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
+							} `tfsdk:"env" yaml:"env,omitempty"`
+
+							Ports *[]struct {
+								HostIP *string `tfsdk:"host_ip" yaml:"hostIP,omitempty"`
+
+								HostPort *int64 `tfsdk:"host_port" yaml:"hostPort,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+
+								ContainerPort *int64 `tfsdk:"container_port" yaml:"containerPort,omitempty"`
+							} `tfsdk:"ports" yaml:"ports,omitempty"`
+
+							VolumeDevices *[]struct {
+								DevicePath *string `tfsdk:"device_path" yaml:"devicePath,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+							} `tfsdk:"volume_devices" yaml:"volumeDevices,omitempty"`
+
+							EnvFrom *[]struct {
+								SecretRef *struct {
+									Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+									Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+								ConfigMapRef *struct {
+									Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+									Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+								} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
+
+								Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+							} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
+
+							Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+							Stdin *bool `tfsdk:"stdin" yaml:"stdin,omitempty"`
+
+							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+
+							Lifecycle *struct {
+								PostStart *struct {
+									Exec *struct {
+										Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+									} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+									HttpGet *struct {
+										Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+										Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+										Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+										Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+										HttpHeaders *[]struct {
+											Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+											Value *string `tfsdk:"value" yaml:"value,omitempty"`
+										} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+									} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+									TcpSocket *struct {
+										Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+										Port *string `tfsdk:"port" yaml:"port,omitempty"`
+									} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+								} `tfsdk:"post_start" yaml:"postStart,omitempty"`
+
+								PreStop *struct {
+									Exec *struct {
+										Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+									} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+									HttpGet *struct {
+										HttpHeaders *[]struct {
+											Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+											Name *string `tfsdk:"name" yaml:"name,omitempty"`
+										} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+										Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+										Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+										Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+										Host *string `tfsdk:"host" yaml:"host,omitempty"`
+									} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+									TcpSocket *struct {
+										Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+										Port *string `tfsdk:"port" yaml:"port,omitempty"`
+									} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+								} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
+							} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
+
+							LivenessProbe *struct {
+								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+
+								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+
+								Exec *struct {
+									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+								} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+								HttpGet *struct {
+									Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+									HttpHeaders *[]struct {
+										Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+										Value *string `tfsdk:"value" yaml:"value,omitempty"`
+									} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+									Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+								TcpSocket *struct {
+									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+									Host *string `tfsdk:"host" yaml:"host,omitempty"`
+								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+							} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
+
+							StdinOnce *bool `tfsdk:"stdin_once" yaml:"stdinOnce,omitempty"`
+
+							Tty *bool `tfsdk:"tty" yaml:"tty,omitempty"`
+
+							VolumeMounts *[]struct {
+								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+								SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
+
+								SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
+
+								MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+								MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+							} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
+
+							WorkingDir *string `tfsdk:"working_dir" yaml:"workingDir,omitempty"`
+
+							ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							ReadinessProbe *struct {
+								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+								HttpGet *struct {
+									Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+									HttpHeaders *[]struct {
+										Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+										Value *string `tfsdk:"value" yaml:"value,omitempty"`
+									} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+									Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+								TcpSocket *struct {
+									Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+
+								Exec *struct {
+									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+								} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+							} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
+						} `tfsdk:"containers" yaml:"containers,omitempty"`
+
+						RestartPolicy *string `tfsdk:"restart_policy" yaml:"restartPolicy,omitempty"`
+
+						RuntimeClassName *string `tfsdk:"runtime_class_name" yaml:"runtimeClassName,omitempty"`
+
+						Priority *int64 `tfsdk:"priority" yaml:"priority,omitempty"`
+
+						SetHostnameAsFQDN *bool `tfsdk:"set_hostname_as_fqdn" yaml:"setHostnameAsFQDN,omitempty"`
+
+						DnsPolicy *string `tfsdk:"dns_policy" yaml:"dnsPolicy,omitempty"`
+
+						NodeSelector *map[string]string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
+
+						Overhead *map[string]string `tfsdk:"overhead" yaml:"overhead,omitempty"`
+
+						SecurityContext *struct {
+							FsGroup *int64 `tfsdk:"fs_group" yaml:"fsGroup,omitempty"`
+
+							RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
+
+							SupplementalGroups *[]string `tfsdk:"supplemental_groups" yaml:"supplementalGroups,omitempty"`
+
+							SeLinuxOptions *struct {
+								Level *string `tfsdk:"level" yaml:"level,omitempty"`
+
+								Role *string `tfsdk:"role" yaml:"role,omitempty"`
+
+								Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+								User *string `tfsdk:"user" yaml:"user,omitempty"`
+							} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
+
+							SeccompProfile *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" yaml:"localhostProfile,omitempty"`
+
+								Type *string `tfsdk:"type" yaml:"type,omitempty"`
+							} `tfsdk:"seccomp_profile" yaml:"seccompProfile,omitempty"`
+
+							Sysctls *[]struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Value *string `tfsdk:"value" yaml:"value,omitempty"`
+							} `tfsdk:"sysctls" yaml:"sysctls,omitempty"`
+
+							WindowsOptions *struct {
+								GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
+
+								GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
+
+								HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
+
+								RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
+							} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
+
+							FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" yaml:"fsGroupChangePolicy,omitempty"`
+
+							RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
+
+							RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
+						} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
+
+						DnsConfig *struct {
+							Nameservers *[]string `tfsdk:"nameservers" yaml:"nameservers,omitempty"`
+
+							Options *[]struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Value *string `tfsdk:"value" yaml:"value,omitempty"`
+							} `tfsdk:"options" yaml:"options,omitempty"`
+
+							Searches *[]string `tfsdk:"searches" yaml:"searches,omitempty"`
+						} `tfsdk:"dns_config" yaml:"dnsConfig,omitempty"`
+
+						HostPID *bool `tfsdk:"host_pid" yaml:"hostPID,omitempty"`
+
+						NodeName *string `tfsdk:"node_name" yaml:"nodeName,omitempty"`
+
+						PreemptionPolicy *string `tfsdk:"preemption_policy" yaml:"preemptionPolicy,omitempty"`
+
+						Volumes *[]struct {
+							GitRepo *struct {
+								Directory *string `tfsdk:"directory" yaml:"directory,omitempty"`
+
+								Repository *string `tfsdk:"repository" yaml:"repository,omitempty"`
+
+								Revision *string `tfsdk:"revision" yaml:"revision,omitempty"`
+							} `tfsdk:"git_repo" yaml:"gitRepo,omitempty"`
+
+							PortworxVolume *struct {
+								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+
+								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+								VolumeID *string `tfsdk:"volume_id" yaml:"volumeID,omitempty"`
+							} `tfsdk:"portworx_volume" yaml:"portworxVolume,omitempty"`
+
+							PersistentVolumeClaim *struct {
+								ClaimName *string `tfsdk:"claim_name" yaml:"claimName,omitempty"`
+
+								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+							} `tfsdk:"persistent_volume_claim" yaml:"persistentVolumeClaim,omitempty"`
+
+							Secret *struct {
+								DefaultMode *int64 `tfsdk:"default_mode" yaml:"defaultMode,omitempty"`
+
+								Items *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
+
+									Path *string `tfsdk:"path" yaml:"path,omitempty"`
 								} `tfsdk:"items" yaml:"items,omitempty"`
-							} `tfsdk:"downward_api" yaml:"downwardAPI,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+								SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
+							} `tfsdk:"secret" yaml:"secret,omitempty"`
+
+							AzureDisk *struct {
+								Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+								CachingMode *string `tfsdk:"caching_mode" yaml:"cachingMode,omitempty"`
+
+								DiskName *string `tfsdk:"disk_name" yaml:"diskName,omitempty"`
+
+								DiskURI *string `tfsdk:"disk_uri" yaml:"diskURI,omitempty"`
+
+								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+							} `tfsdk:"azure_disk" yaml:"azureDisk,omitempty"`
+
+							Cinder *struct {
+								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+								SecretRef *struct {
+									Name *string `tfsdk:"name" yaml:"name,omitempty"`
+								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+								VolumeID *string `tfsdk:"volume_id" yaml:"volumeID,omitempty"`
+
+								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+							} `tfsdk:"cinder" yaml:"cinder,omitempty"`
+
+							Rbd *struct {
+								Monitors *[]string `tfsdk:"monitors" yaml:"monitors,omitempty"`
+
+								Pool *string `tfsdk:"pool" yaml:"pool,omitempty"`
+
+								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+								SecretRef *struct {
+									Name *string `tfsdk:"name" yaml:"name,omitempty"`
+								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+								User *string `tfsdk:"user" yaml:"user,omitempty"`
+
+								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+
+								Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+								Keyring *string `tfsdk:"keyring" yaml:"keyring,omitempty"`
+							} `tfsdk:"rbd" yaml:"rbd,omitempty"`
 
 							FlexVolume *struct {
 								Driver *string `tfsdk:"driver" yaml:"driver,omitempty"`
@@ -766,73 +828,37 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 							} `tfsdk:"flex_volume" yaml:"flexVolume,omitempty"`
 
-							Glusterfs *struct {
-								Endpoints *string `tfsdk:"endpoints" yaml:"endpoints,omitempty"`
-
-								Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-							} `tfsdk:"glusterfs" yaml:"glusterfs,omitempty"`
-
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
-							Cephfs *struct {
-								SecretFile *string `tfsdk:"secret_file" yaml:"secretFile,omitempty"`
+							PhotonPersistentDisk *struct {
+								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+
+								PdID *string `tfsdk:"pd_id" yaml:"pdID,omitempty"`
+							} `tfsdk:"photon_persistent_disk" yaml:"photonPersistentDisk,omitempty"`
+
+							ScaleIO *struct {
+								StorageMode *string `tfsdk:"storage_mode" yaml:"storageMode,omitempty"`
+
+								ProtectionDomain *string `tfsdk:"protection_domain" yaml:"protectionDomain,omitempty"`
+
+								SslEnabled *bool `tfsdk:"ssl_enabled" yaml:"sslEnabled,omitempty"`
+
+								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
 
 								SecretRef *struct {
 									Name *string `tfsdk:"name" yaml:"name,omitempty"`
 								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
-								User *string `tfsdk:"user" yaml:"user,omitempty"`
+								StoragePool *string `tfsdk:"storage_pool" yaml:"storagePool,omitempty"`
 
-								Monitors *[]string `tfsdk:"monitors" yaml:"monitors,omitempty"`
+								System *string `tfsdk:"system" yaml:"system,omitempty"`
 
-								Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-							} `tfsdk:"cephfs" yaml:"cephfs,omitempty"`
-
-							AzureFile *struct {
-								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-								SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-
-								ShareName *string `tfsdk:"share_name" yaml:"shareName,omitempty"`
-							} `tfsdk:"azure_file" yaml:"azureFile,omitempty"`
-
-							Fc *struct {
-								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
-
-								Lun *int64 `tfsdk:"lun" yaml:"lun,omitempty"`
-
-								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-								TargetWWNs *[]string `tfsdk:"target_ww_ns" yaml:"targetWWNs,omitempty"`
-
-								Wwids *[]string `tfsdk:"wwids" yaml:"wwids,omitempty"`
-							} `tfsdk:"fc" yaml:"fc,omitempty"`
-
-							GitRepo *struct {
-								Directory *string `tfsdk:"directory" yaml:"directory,omitempty"`
-
-								Repository *string `tfsdk:"repository" yaml:"repository,omitempty"`
-
-								Revision *string `tfsdk:"revision" yaml:"revision,omitempty"`
-							} `tfsdk:"git_repo" yaml:"gitRepo,omitempty"`
-
-							Storageos *struct {
 								VolumeName *string `tfsdk:"volume_name" yaml:"volumeName,omitempty"`
 
-								VolumeNamespace *string `tfsdk:"volume_namespace" yaml:"volumeNamespace,omitempty"`
-
 								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
 
-								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-								SecretRef *struct {
-									Name *string `tfsdk:"name" yaml:"name,omitempty"`
-								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-							} `tfsdk:"storageos" yaml:"storageos,omitempty"`
+								Gateway *string `tfsdk:"gateway" yaml:"gateway,omitempty"`
+							} `tfsdk:"scale_io" yaml:"scaleIO,omitempty"`
 
 							VsphereVolume *struct {
 								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
@@ -844,37 +870,55 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 								VolumePath *string `tfsdk:"volume_path" yaml:"volumePath,omitempty"`
 							} `tfsdk:"vsphere_volume" yaml:"vsphereVolume,omitempty"`
 
-							AzureDisk *struct {
+							AzureFile *struct {
+								ShareName *string `tfsdk:"share_name" yaml:"shareName,omitempty"`
+
 								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
 
-								CachingMode *string `tfsdk:"caching_mode" yaml:"cachingMode,omitempty"`
+								SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
+							} `tfsdk:"azure_file" yaml:"azureFile,omitempty"`
 
-								DiskName *string `tfsdk:"disk_name" yaml:"diskName,omitempty"`
+							Iscsi *struct {
+								TargetPortal *string `tfsdk:"target_portal" yaml:"targetPortal,omitempty"`
 
-								DiskURI *string `tfsdk:"disk_uri" yaml:"diskURI,omitempty"`
+								ChapAuthSession *bool `tfsdk:"chap_auth_session" yaml:"chapAuthSession,omitempty"`
+
+								Lun *int64 `tfsdk:"lun" yaml:"lun,omitempty"`
+
+								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+								SecretRef *struct {
+									Name *string `tfsdk:"name" yaml:"name,omitempty"`
+								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+								IscsiInterface *string `tfsdk:"iscsi_interface" yaml:"iscsiInterface,omitempty"`
+
+								Portals *[]string `tfsdk:"portals" yaml:"portals,omitempty"`
+
+								ChapAuthDiscovery *bool `tfsdk:"chap_auth_discovery" yaml:"chapAuthDiscovery,omitempty"`
 
 								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
 
-								Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-							} `tfsdk:"azure_disk" yaml:"azureDisk,omitempty"`
+								InitiatorName *string `tfsdk:"initiator_name" yaml:"initiatorName,omitempty"`
+
+								Iqn *string `tfsdk:"iqn" yaml:"iqn,omitempty"`
+							} `tfsdk:"iscsi" yaml:"iscsi,omitempty"`
 
 							Ephemeral *struct {
 								VolumeClaimTemplate *struct {
+									Metadata *struct {
+										Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+
+										Finalizers *[]string `tfsdk:"finalizers" yaml:"finalizers,omitempty"`
+
+										Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+
+										Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+										Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+									} `tfsdk:"metadata" yaml:"metadata,omitempty"`
+
 									Spec *struct {
-										DataSourceRef *struct {
-											ApiGroup *string `tfsdk:"api_group" yaml:"apiGroup,omitempty"`
-
-											Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-											Name *string `tfsdk:"name" yaml:"name,omitempty"`
-										} `tfsdk:"data_source_ref" yaml:"dataSourceRef,omitempty"`
-
-										Resources *struct {
-											Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
-
-											Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
-										} `tfsdk:"resources" yaml:"resources,omitempty"`
-
 										Selector *struct {
 											MatchExpressions *[]struct {
 												Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -896,27 +940,39 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 										AccessModes *[]string `tfsdk:"access_modes" yaml:"accessModes,omitempty"`
 
 										DataSource *struct {
+											Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+											Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+											ApiGroup *string `tfsdk:"api_group" yaml:"apiGroup,omitempty"`
+										} `tfsdk:"data_source" yaml:"dataSource,omitempty"`
+
+										DataSourceRef *struct {
 											ApiGroup *string `tfsdk:"api_group" yaml:"apiGroup,omitempty"`
 
 											Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
 											Name *string `tfsdk:"name" yaml:"name,omitempty"`
-										} `tfsdk:"data_source" yaml:"dataSource,omitempty"`
+										} `tfsdk:"data_source_ref" yaml:"dataSourceRef,omitempty"`
+
+										Resources *struct {
+											Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+
+											Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+										} `tfsdk:"resources" yaml:"resources,omitempty"`
 									} `tfsdk:"spec" yaml:"spec,omitempty"`
-
-									Metadata *struct {
-										Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-										Finalizers *[]string `tfsdk:"finalizers" yaml:"finalizers,omitempty"`
-
-										Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-
-										Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-										Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-									} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 								} `tfsdk:"volume_claim_template" yaml:"volumeClaimTemplate,omitempty"`
 							} `tfsdk:"ephemeral" yaml:"ephemeral,omitempty"`
+
+							GcePersistentDisk *struct {
+								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+
+								Partition *int64 `tfsdk:"partition" yaml:"partition,omitempty"`
+
+								PdName *string `tfsdk:"pd_name" yaml:"pdName,omitempty"`
+
+								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+							} `tfsdk:"gce_persistent_disk" yaml:"gcePersistentDisk,omitempty"`
 
 							HostPath *struct {
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
@@ -924,115 +980,65 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 								Type *string `tfsdk:"type" yaml:"type,omitempty"`
 							} `tfsdk:"host_path" yaml:"hostPath,omitempty"`
 
-							Iscsi *struct {
-								ChapAuthDiscovery *bool `tfsdk:"chap_auth_discovery" yaml:"chapAuthDiscovery,omitempty"`
-
-								ChapAuthSession *bool `tfsdk:"chap_auth_session" yaml:"chapAuthSession,omitempty"`
-
-								InitiatorName *string `tfsdk:"initiator_name" yaml:"initiatorName,omitempty"`
-
-								IscsiInterface *string `tfsdk:"iscsi_interface" yaml:"iscsiInterface,omitempty"`
-
-								Lun *int64 `tfsdk:"lun" yaml:"lun,omitempty"`
-
-								TargetPortal *string `tfsdk:"target_portal" yaml:"targetPortal,omitempty"`
-
+							Storageos *struct {
 								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
-
-								Iqn *string `tfsdk:"iqn" yaml:"iqn,omitempty"`
-
-								Portals *[]string `tfsdk:"portals" yaml:"portals,omitempty"`
 
 								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
 
 								SecretRef *struct {
 									Name *string `tfsdk:"name" yaml:"name,omitempty"`
 								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-							} `tfsdk:"iscsi" yaml:"iscsi,omitempty"`
 
-							PhotonPersistentDisk *struct {
-								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+								VolumeName *string `tfsdk:"volume_name" yaml:"volumeName,omitempty"`
 
-								PdID *string `tfsdk:"pd_id" yaml:"pdID,omitempty"`
-							} `tfsdk:"photon_persistent_disk" yaml:"photonPersistentDisk,omitempty"`
+								VolumeNamespace *string `tfsdk:"volume_namespace" yaml:"volumeNamespace,omitempty"`
+							} `tfsdk:"storageos" yaml:"storageos,omitempty"`
 
-							EmptyDir *struct {
-								Medium *string `tfsdk:"medium" yaml:"medium,omitempty"`
+							Cephfs *struct {
+								Monitors *[]string `tfsdk:"monitors" yaml:"monitors,omitempty"`
 
-								SizeLimit *string `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
-							} `tfsdk:"empty_dir" yaml:"emptyDir,omitempty"`
+								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Flocker *struct {
-								DatasetName *string `tfsdk:"dataset_name" yaml:"datasetName,omitempty"`
-
-								DatasetUUID *string `tfsdk:"dataset_uuid" yaml:"datasetUUID,omitempty"`
-							} `tfsdk:"flocker" yaml:"flocker,omitempty"`
-
-							Rbd *struct {
 								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+								SecretFile *string `tfsdk:"secret_file" yaml:"secretFile,omitempty"`
 
 								SecretRef *struct {
 									Name *string `tfsdk:"name" yaml:"name,omitempty"`
 								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
 								User *string `tfsdk:"user" yaml:"user,omitempty"`
+							} `tfsdk:"cephfs" yaml:"cephfs,omitempty"`
 
-								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+							DownwardAPI *struct {
+								DefaultMode *int64 `tfsdk:"default_mode" yaml:"defaultMode,omitempty"`
 
-								Image *string `tfsdk:"image" yaml:"image,omitempty"`
+								Items *[]struct {
+									FieldRef *struct {
+										ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
 
-								Keyring *string `tfsdk:"keyring" yaml:"keyring,omitempty"`
+										FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
+									} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
 
-								Monitors *[]string `tfsdk:"monitors" yaml:"monitors,omitempty"`
+									Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
 
-								Pool *string `tfsdk:"pool" yaml:"pool,omitempty"`
-							} `tfsdk:"rbd" yaml:"rbd,omitempty"`
+									Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Cinder *struct {
-								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+									ResourceFieldRef *struct {
+										ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+										Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
-								SecretRef *struct {
-									Name *string `tfsdk:"name" yaml:"name,omitempty"`
-								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-								VolumeID *string `tfsdk:"volume_id" yaml:"volumeID,omitempty"`
-							} `tfsdk:"cinder" yaml:"cinder,omitempty"`
-
-							ScaleIO *struct {
-								Gateway *string `tfsdk:"gateway" yaml:"gateway,omitempty"`
-
-								ProtectionDomain *string `tfsdk:"protection_domain" yaml:"protectionDomain,omitempty"`
-
-								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
-								SecretRef *struct {
-									Name *string `tfsdk:"name" yaml:"name,omitempty"`
-								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-								System *string `tfsdk:"system" yaml:"system,omitempty"`
-
-								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
-
-								SslEnabled *bool `tfsdk:"ssl_enabled" yaml:"sslEnabled,omitempty"`
-
-								StorageMode *string `tfsdk:"storage_mode" yaml:"storageMode,omitempty"`
-
-								StoragePool *string `tfsdk:"storage_pool" yaml:"storagePool,omitempty"`
-
-								VolumeName *string `tfsdk:"volume_name" yaml:"volumeName,omitempty"`
-							} `tfsdk:"scale_io" yaml:"scaleIO,omitempty"`
-
-							PortworxVolume *struct {
-								VolumeID *string `tfsdk:"volume_id" yaml:"volumeID,omitempty"`
-
-								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
-
-								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-							} `tfsdk:"portworx_volume" yaml:"portworxVolume,omitempty"`
+										Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
+									} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
+								} `tfsdk:"items" yaml:"items,omitempty"`
+							} `tfsdk:"downward_api" yaml:"downwardAPI,omitempty"`
 
 							Csi *struct {
+								Driver *string `tfsdk:"driver" yaml:"driver,omitempty"`
+
+								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+
 								NodePublishSecretRef *struct {
 									Name *string `tfsdk:"name" yaml:"name,omitempty"`
 								} `tfsdk:"node_publish_secret_ref" yaml:"nodePublishSecretRef,omitempty"`
@@ -1040,11 +1046,25 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
 
 								VolumeAttributes *map[string]string `tfsdk:"volume_attributes" yaml:"volumeAttributes,omitempty"`
-
-								Driver *string `tfsdk:"driver" yaml:"driver,omitempty"`
-
-								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
 							} `tfsdk:"csi" yaml:"csi,omitempty"`
+
+							Fc *struct {
+								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+
+								Lun *int64 `tfsdk:"lun" yaml:"lun,omitempty"`
+
+								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+								TargetWWNs *[]string `tfsdk:"target_ww_ns" yaml:"targetWWNs,omitempty"`
+
+								Wwids *[]string `tfsdk:"wwids" yaml:"wwids,omitempty"`
+							} `tfsdk:"fc" yaml:"fc,omitempty"`
+
+							Flocker *struct {
+								DatasetName *string `tfsdk:"dataset_name" yaml:"datasetName,omitempty"`
+
+								DatasetUUID *string `tfsdk:"dataset_uuid" yaml:"datasetUUID,omitempty"`
+							} `tfsdk:"flocker" yaml:"flocker,omitempty"`
 
 							Nfs *struct {
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
@@ -1054,11 +1074,45 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 								Server *string `tfsdk:"server" yaml:"server,omitempty"`
 							} `tfsdk:"nfs" yaml:"nfs,omitempty"`
 
-							PersistentVolumeClaim *struct {
-								ClaimName *string `tfsdk:"claim_name" yaml:"claimName,omitempty"`
+							Quobyte *struct {
+								Volume *string `tfsdk:"volume" yaml:"volume,omitempty"`
+
+								Group *string `tfsdk:"group" yaml:"group,omitempty"`
 
 								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-							} `tfsdk:"persistent_volume_claim" yaml:"persistentVolumeClaim,omitempty"`
+
+								Registry *string `tfsdk:"registry" yaml:"registry,omitempty"`
+
+								Tenant *string `tfsdk:"tenant" yaml:"tenant,omitempty"`
+
+								User *string `tfsdk:"user" yaml:"user,omitempty"`
+							} `tfsdk:"quobyte" yaml:"quobyte,omitempty"`
+
+							AwsElasticBlockStore *struct {
+								VolumeID *string `tfsdk:"volume_id" yaml:"volumeID,omitempty"`
+
+								FsType *string `tfsdk:"fs_type" yaml:"fsType,omitempty"`
+
+								Partition *int64 `tfsdk:"partition" yaml:"partition,omitempty"`
+
+								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+							} `tfsdk:"aws_elastic_block_store" yaml:"awsElasticBlockStore,omitempty"`
+
+							ConfigMap *struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+								DefaultMode *int64 `tfsdk:"default_mode" yaml:"defaultMode,omitempty"`
+
+								Items *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
+
+									Path *string `tfsdk:"path" yaml:"path,omitempty"`
+								} `tfsdk:"items" yaml:"items,omitempty"`
+							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
 
 							Projected *struct {
 								DefaultMode *int64 `tfsdk:"default_mode" yaml:"defaultMode,omitempty"`
@@ -1066,11 +1120,11 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 								Sources *[]struct {
 									Secret *struct {
 										Items *[]struct {
-											Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
 											Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
 
 											Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+											Key *string `tfsdk:"key" yaml:"key,omitempty"`
 										} `tfsdk:"items" yaml:"items,omitempty"`
 
 										Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -1088,11 +1142,11 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 
 									ConfigMap *struct {
 										Items *[]struct {
-											Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
 											Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 											Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
+
+											Path *string `tfsdk:"path" yaml:"path,omitempty"`
 										} `tfsdk:"items" yaml:"items,omitempty"`
 
 										Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -1124,53 +1178,121 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 								} `tfsdk:"sources" yaml:"sources,omitempty"`
 							} `tfsdk:"projected" yaml:"projected,omitempty"`
 
-							Quobyte *struct {
-								Group *string `tfsdk:"group" yaml:"group,omitempty"`
+							EmptyDir *struct {
+								Medium *string `tfsdk:"medium" yaml:"medium,omitempty"`
+
+								SizeLimit *string `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
+							} `tfsdk:"empty_dir" yaml:"emptyDir,omitempty"`
+
+							Glusterfs *struct {
+								Endpoints *string `tfsdk:"endpoints" yaml:"endpoints,omitempty"`
+
+								Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+							} `tfsdk:"glusterfs" yaml:"glusterfs,omitempty"`
+						} `tfsdk:"volumes" yaml:"volumes,omitempty"`
+
+						AutomountServiceAccountToken *bool `tfsdk:"automount_service_account_token" yaml:"automountServiceAccountToken,omitempty"`
+
+						EnableServiceLinks *bool `tfsdk:"enable_service_links" yaml:"enableServiceLinks,omitempty"`
+
+						InitContainers *[]struct {
+							ReadinessProbe *struct {
+								Exec *struct {
+									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+								} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+								HttpGet *struct {
+									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+									Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+									HttpHeaders *[]struct {
+										Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+										Value *string `tfsdk:"value" yaml:"value,omitempty"`
+									} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+									Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+								TcpSocket *struct {
+									Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+
+								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+							} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
+
+							TerminationMessagePolicy *string `tfsdk:"termination_message_policy" yaml:"terminationMessagePolicy,omitempty"`
+
+							VolumeMounts *[]struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
 
-								Registry *string `tfsdk:"registry" yaml:"registry,omitempty"`
+								SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
 
-								Tenant *string `tfsdk:"tenant" yaml:"tenant,omitempty"`
+								SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
 
-								User *string `tfsdk:"user" yaml:"user,omitempty"`
+								MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
 
-								Volume *string `tfsdk:"volume" yaml:"volume,omitempty"`
-							} `tfsdk:"quobyte" yaml:"quobyte,omitempty"`
+								MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
+							} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
 
-							ConfigMap *struct {
-								DefaultMode *int64 `tfsdk:"default_mode" yaml:"defaultMode,omitempty"`
+							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
 
-								Items *[]struct {
-									Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-									Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
-								} `tfsdk:"items" yaml:"items,omitempty"`
-
+							Env *[]struct {
 								Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
-								Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-							} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-						} `tfsdk:"volumes" yaml:"volumes,omitempty"`
+								Value *string `tfsdk:"value" yaml:"value,omitempty"`
 
-						Containers *[]struct {
-							EnvFrom *[]struct {
-								Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+								ValueFrom *struct {
+									ConfigMapKeyRef *struct {
+										Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
-								SecretRef *struct {
-									Name *string `tfsdk:"name" yaml:"name,omitempty"`
+										Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
-									Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+										Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+									} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
 
-								ConfigMapRef *struct {
-									Name *string `tfsdk:"name" yaml:"name,omitempty"`
+									FieldRef *struct {
+										ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
 
-									Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-								} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
-							} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
+										FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
+									} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
+
+									ResourceFieldRef *struct {
+										Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+
+										Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
+
+										ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
+									} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
+
+									SecretKeyRef *struct {
+										Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+										Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+										Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+									} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
+								} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
+							} `tfsdk:"env" yaml:"env,omitempty"`
 
 							Lifecycle *struct {
 								PostStart *struct {
@@ -1179,12 +1301,6 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 									} `tfsdk:"exec" yaml:"exec,omitempty"`
 
 									HttpGet *struct {
-										Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-										Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-										Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
 										Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
 										HttpHeaders *[]struct {
@@ -1192,6 +1308,12 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 
 											Value *string `tfsdk:"value" yaml:"value,omitempty"`
 										} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+										Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+										Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+										Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 									} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
 
 									TcpSocket *struct {
@@ -1230,170 +1352,20 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 								} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
 							} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
 
-							TerminationMessagePath *string `tfsdk:"termination_message_path" yaml:"terminationMessagePath,omitempty"`
-
-							Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
-
-							ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
-
-							ReadinessProbe *struct {
-								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-								TcpSocket *struct {
-									Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
-								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
-
-								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-								Exec *struct {
-									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-								} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-								HttpGet *struct {
-									Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-									HttpHeaders *[]struct {
-										Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-										Value *string `tfsdk:"value" yaml:"value,omitempty"`
-									} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-									Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-							} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
-
-							SecurityContext *struct {
-								Capabilities *struct {
-									Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
-
-									Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
-								} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
-
-								Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
-
-								RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
-
-								RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
-
-								RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
-
-								SeLinuxOptions *struct {
-									Level *string `tfsdk:"level" yaml:"level,omitempty"`
-
-									Role *string `tfsdk:"role" yaml:"role,omitempty"`
-
-									Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-									User *string `tfsdk:"user" yaml:"user,omitempty"`
-								} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
-
-								SeccompProfile *struct {
-									LocalhostProfile *string `tfsdk:"localhost_profile" yaml:"localhostProfile,omitempty"`
-
-									Type *string `tfsdk:"type" yaml:"type,omitempty"`
-								} `tfsdk:"seccomp_profile" yaml:"seccompProfile,omitempty"`
-
-								WindowsOptions *struct {
-									GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
-
-									GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
-
-									HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
-
-									RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
-								} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
-
-								AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
-
-								ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
-
-								ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
-							} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
-
-							VolumeDevices *[]struct {
-								DevicePath *string `tfsdk:"device_path" yaml:"devicePath,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-							} `tfsdk:"volume_devices" yaml:"volumeDevices,omitempty"`
-
-							WorkingDir *string `tfsdk:"working_dir" yaml:"workingDir,omitempty"`
-
-							Env *[]struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-								ValueFrom *struct {
-									ConfigMapKeyRef *struct {
-										Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-										Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-										Name *string `tfsdk:"name" yaml:"name,omitempty"`
-									} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
-
-									FieldRef *struct {
-										FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
-
-										ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-									} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
-
-									ResourceFieldRef *struct {
-										Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-
-										ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
-
-										Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
-									} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
-
-									SecretKeyRef *struct {
-										Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-										Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-										Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-									} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
-								} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
-							} `tfsdk:"env" yaml:"env,omitempty"`
-
 							LivenessProbe *struct {
-								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
 
 								Exec *struct {
 									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
 								} `tfsdk:"exec" yaml:"exec,omitempty"`
 
-								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+								HttpGet *struct {
+									Port *string `tfsdk:"port" yaml:"port,omitempty"`
 
-								TcpSocket *struct {
+									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
 									Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
-								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-								HttpGet *struct {
 									HttpHeaders *[]struct {
 										Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
@@ -1401,16 +1373,32 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 									} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
 
 									Path *string `tfsdk:"path" yaml:"path,omitempty"`
+								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
 
+								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+								TcpSocket *struct {
 									Port *string `tfsdk:"port" yaml:"port,omitempty"`
 
-									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
 									Host *string `tfsdk:"host" yaml:"host,omitempty"`
-								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+
+								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
 							} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
 
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+							VolumeDevices *[]struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								DevicePath *string `tfsdk:"device_path" yaml:"devicePath,omitempty"`
+							} `tfsdk:"volume_devices" yaml:"volumeDevices,omitempty"`
+
+							Image *string `tfsdk:"image" yaml:"image,omitempty"`
 
 							Ports *[]struct {
 								HostPort *int64 `tfsdk:"host_port" yaml:"hostPort,omitempty"`
@@ -1430,8 +1418,94 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 								Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
 							} `tfsdk:"resources" yaml:"resources,omitempty"`
 
+							SecurityContext *struct {
+								Capabilities *struct {
+									Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
+
+									Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
+								} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
+
+								Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
+
+								SeLinuxOptions *struct {
+									Level *string `tfsdk:"level" yaml:"level,omitempty"`
+
+									Role *string `tfsdk:"role" yaml:"role,omitempty"`
+
+									Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+									User *string `tfsdk:"user" yaml:"user,omitempty"`
+								} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
+
+								WindowsOptions *struct {
+									GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
+
+									GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
+
+									HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
+
+									RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
+								} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
+
+								RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
+
+								RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
+
+								SeccompProfile *struct {
+									LocalhostProfile *string `tfsdk:"localhost_profile" yaml:"localhostProfile,omitempty"`
+
+									Type *string `tfsdk:"type" yaml:"type,omitempty"`
+								} `tfsdk:"seccomp_profile" yaml:"seccompProfile,omitempty"`
+
+								AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
+
+								ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
+
+								ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
+
+								RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
+							} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
+
+							TerminationMessagePath *string `tfsdk:"termination_message_path" yaml:"terminationMessagePath,omitempty"`
+
+							Tty *bool `tfsdk:"tty" yaml:"tty,omitempty"`
+
+							WorkingDir *string `tfsdk:"working_dir" yaml:"workingDir,omitempty"`
+
+							Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
+
+							EnvFrom *[]struct {
+								Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+								SecretRef *struct {
+									Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+									Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+								ConfigMapRef *struct {
+									Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+									Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+								} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
+							} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
+
 							StartupProbe *struct {
+								TcpSocket *struct {
+									Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+
+								Exec *struct {
+									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+								} `tfsdk:"exec" yaml:"exec,omitempty"`
+
 								HttpGet *struct {
+									Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
 									HttpHeaders *[]struct {
 										Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
@@ -1443,17 +1517,211 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 									Port *string `tfsdk:"port" yaml:"port,omitempty"`
 
 									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+							} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
+
+							StdinOnce *bool `tfsdk:"stdin_once" yaml:"stdinOnce,omitempty"`
+
+							ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Stdin *bool `tfsdk:"stdin" yaml:"stdin,omitempty"`
+						} `tfsdk:"init_containers" yaml:"initContainers,omitempty"`
+
+						Subdomain *string `tfsdk:"subdomain" yaml:"subdomain,omitempty"`
+
+						TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+
+						TopologySpreadConstraints *[]struct {
+							LabelSelector *struct {
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+
+								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+							MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
+
+							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
+
+							WhenUnsatisfiable *string `tfsdk:"when_unsatisfiable" yaml:"whenUnsatisfiable,omitempty"`
+						} `tfsdk:"topology_spread_constraints" yaml:"topologySpreadConstraints,omitempty"`
+
+						HostNetwork *bool `tfsdk:"host_network" yaml:"hostNetwork,omitempty"`
+
+						PriorityClassName *string `tfsdk:"priority_class_name" yaml:"priorityClassName,omitempty"`
+
+						ReadinessGates *[]struct {
+							ConditionType *string `tfsdk:"condition_type" yaml:"conditionType,omitempty"`
+						} `tfsdk:"readiness_gates" yaml:"readinessGates,omitempty"`
+
+						ServiceAccount *string `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
+
+						EphemeralContainers *[]struct {
+							LivenessProbe *struct {
+								Exec *struct {
+									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+								} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+								TcpSocket *struct {
+									Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+
+								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+								HttpGet *struct {
+									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+									Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+									HttpHeaders *[]struct {
+										Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+										Value *string `tfsdk:"value" yaml:"value,omitempty"`
+									} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+									Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+							} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
+
+							Ports *[]struct {
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+
+								ContainerPort *int64 `tfsdk:"container_port" yaml:"containerPort,omitempty"`
+
+								HostIP *string `tfsdk:"host_ip" yaml:"hostIP,omitempty"`
+
+								HostPort *int64 `tfsdk:"host_port" yaml:"hostPort,omitempty"`
+							} `tfsdk:"ports" yaml:"ports,omitempty"`
+
+							Stdin *bool `tfsdk:"stdin" yaml:"stdin,omitempty"`
+
+							StdinOnce *bool `tfsdk:"stdin_once" yaml:"stdinOnce,omitempty"`
+
+							VolumeDevices *[]struct {
+								DevicePath *string `tfsdk:"device_path" yaml:"devicePath,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+							} `tfsdk:"volume_devices" yaml:"volumeDevices,omitempty"`
+
+							Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
+
+							ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
+
+							Resources *struct {
+								Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+
+								Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+							} `tfsdk:"resources" yaml:"resources,omitempty"`
+
+							VolumeMounts *[]struct {
+								MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+								MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
+
+								SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
+
+								SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
+							} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
+
+							WorkingDir *string `tfsdk:"working_dir" yaml:"workingDir,omitempty"`
+
+							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+
+							Env *[]struct {
+								Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+								ValueFrom *struct {
+									ResourceFieldRef *struct {
+										ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
+
+										Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+
+										Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
+									} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
+
+									SecretKeyRef *struct {
+										Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+										Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+										Key *string `tfsdk:"key" yaml:"key,omitempty"`
+									} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
+
+									ConfigMapKeyRef *struct {
+										Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+										Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+										Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+									} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
+
+									FieldRef *struct {
+										ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+										FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
+									} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
+								} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+							} `tfsdk:"env" yaml:"env,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							ReadinessProbe *struct {
+								HttpGet *struct {
+									HttpHeaders *[]struct {
+										Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+										Name *string `tfsdk:"name" yaml:"name,omitempty"`
+									} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+									Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 
 									Host *string `tfsdk:"host" yaml:"host,omitempty"`
 								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
 
-								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
-
 								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-								Exec *struct {
-									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-								} `tfsdk:"exec" yaml:"exec,omitempty"`
 
 								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
 
@@ -1468,46 +1736,186 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 
 									Port *string `tfsdk:"port" yaml:"port,omitempty"`
 								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+
+								Exec *struct {
+									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+								} `tfsdk:"exec" yaml:"exec,omitempty"`
+							} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
+
+							SecurityContext *struct {
+								AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
+
+								Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
+
+								ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
+
+								ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
+
+								RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
+
+								SeccompProfile *struct {
+									LocalhostProfile *string `tfsdk:"localhost_profile" yaml:"localhostProfile,omitempty"`
+
+									Type *string `tfsdk:"type" yaml:"type,omitempty"`
+								} `tfsdk:"seccomp_profile" yaml:"seccompProfile,omitempty"`
+
+								WindowsOptions *struct {
+									GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
+
+									GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
+
+									HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
+
+									RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
+								} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
+
+								Capabilities *struct {
+									Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
+
+									Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
+								} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
+
+								RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
+
+								RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
+
+								SeLinuxOptions *struct {
+									Level *string `tfsdk:"level" yaml:"level,omitempty"`
+
+									Role *string `tfsdk:"role" yaml:"role,omitempty"`
+
+									Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+									User *string `tfsdk:"user" yaml:"user,omitempty"`
+								} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
+							} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
+
+							StartupProbe *struct {
+								Exec *struct {
+									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+								} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+
+								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+								HttpGet *struct {
+									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+									Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+									HttpHeaders *[]struct {
+										Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+										Value *string `tfsdk:"value" yaml:"value,omitempty"`
+									} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+									Path *string `tfsdk:"path" yaml:"path,omitempty"`
+								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+								TcpSocket *struct {
+									Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
 							} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
+
+							TargetContainerName *string `tfsdk:"target_container_name" yaml:"targetContainerName,omitempty"`
 
 							TerminationMessagePolicy *string `tfsdk:"termination_message_policy" yaml:"terminationMessagePolicy,omitempty"`
 
-							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+							EnvFrom *[]struct {
+								ConfigMapRef *struct {
+									Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+									Name *string `tfsdk:"name" yaml:"name,omitempty"`
+								} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
+
+								Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+								SecretRef *struct {
+									Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+									Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+							} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
 
 							Image *string `tfsdk:"image" yaml:"image,omitempty"`
 
-							Stdin *bool `tfsdk:"stdin" yaml:"stdin,omitempty"`
-
-							StdinOnce *bool `tfsdk:"stdin_once" yaml:"stdinOnce,omitempty"`
-
 							Tty *bool `tfsdk:"tty" yaml:"tty,omitempty"`
 
-							VolumeMounts *[]struct {
-								SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
+							Lifecycle *struct {
+								PostStart *struct {
+									Exec *struct {
+										Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+									} `tfsdk:"exec" yaml:"exec,omitempty"`
 
-								SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
+									HttpGet *struct {
+										Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+										HttpHeaders *[]struct {
+											Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
-								MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
+											Value *string `tfsdk:"value" yaml:"value,omitempty"`
+										} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
 
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+										Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-							} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
-						} `tfsdk:"containers" yaml:"containers,omitempty"`
+										Port *string `tfsdk:"port" yaml:"port,omitempty"`
 
-						EnableServiceLinks *bool `tfsdk:"enable_service_links" yaml:"enableServiceLinks,omitempty"`
+										Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+									} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
 
-						ImagePullSecrets *[]struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-						} `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
+									TcpSocket *struct {
+										Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-						RestartPolicy *string `tfsdk:"restart_policy" yaml:"restartPolicy,omitempty"`
+										Port *string `tfsdk:"port" yaml:"port,omitempty"`
+									} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+								} `tfsdk:"post_start" yaml:"postStart,omitempty"`
 
-						ServiceAccount *string `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
+								PreStop *struct {
+									Exec *struct {
+										Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+									} `tfsdk:"exec" yaml:"exec,omitempty"`
 
-						ActiveDeadlineSeconds *int64 `tfsdk:"active_deadline_seconds" yaml:"activeDeadlineSeconds,omitempty"`
+									HttpGet *struct {
+										HttpHeaders *[]struct {
+											Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+											Value *string `tfsdk:"value" yaml:"value,omitempty"`
+										} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+										Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+										Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+										Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+										Host *string `tfsdk:"host" yaml:"host,omitempty"`
+									} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+									TcpSocket *struct {
+										Port *string `tfsdk:"port" yaml:"port,omitempty"`
+
+										Host *string `tfsdk:"host" yaml:"host,omitempty"`
+									} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+								} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
+							} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
+
+							TerminationMessagePath *string `tfsdk:"termination_message_path" yaml:"terminationMessagePath,omitempty"`
+						} `tfsdk:"ephemeral_containers" yaml:"ephemeralContainers,omitempty"`
 
 						HostAliases *[]struct {
 							Hostnames *[]string `tfsdk:"hostnames" yaml:"hostnames,omitempty"`
@@ -1515,412 +1923,34 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 							Ip *string `tfsdk:"ip" yaml:"ip,omitempty"`
 						} `tfsdk:"host_aliases" yaml:"hostAliases,omitempty"`
 
-						SchedulerName *string `tfsdk:"scheduler_name" yaml:"schedulerName,omitempty"`
-
-						SecurityContext *struct {
-							FsGroup *int64 `tfsdk:"fs_group" yaml:"fsGroup,omitempty"`
-
-							RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
-
-							SeLinuxOptions *struct {
-								Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-								User *string `tfsdk:"user" yaml:"user,omitempty"`
-
-								Level *string `tfsdk:"level" yaml:"level,omitempty"`
-
-								Role *string `tfsdk:"role" yaml:"role,omitempty"`
-							} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
-
-							Sysctls *[]struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Value *string `tfsdk:"value" yaml:"value,omitempty"`
-							} `tfsdk:"sysctls" yaml:"sysctls,omitempty"`
-
-							WindowsOptions *struct {
-								GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
-
-								HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
-
-								RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
-
-								GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
-							} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
-
-							FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" yaml:"fsGroupChangePolicy,omitempty"`
-
-							RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
-
-							RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
-
-							SeccompProfile *struct {
-								LocalhostProfile *string `tfsdk:"localhost_profile" yaml:"localhostProfile,omitempty"`
-
-								Type *string `tfsdk:"type" yaml:"type,omitempty"`
-							} `tfsdk:"seccomp_profile" yaml:"seccompProfile,omitempty"`
-
-							SupplementalGroups *[]string `tfsdk:"supplemental_groups" yaml:"supplementalGroups,omitempty"`
-						} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
-
-						EphemeralContainers *[]struct {
-							Ports *[]struct {
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
-
-								ContainerPort *int64 `tfsdk:"container_port" yaml:"containerPort,omitempty"`
-
-								HostIP *string `tfsdk:"host_ip" yaml:"hostIP,omitempty"`
-
-								HostPort *int64 `tfsdk:"host_port" yaml:"hostPort,omitempty"`
-							} `tfsdk:"ports" yaml:"ports,omitempty"`
-
-							ReadinessProbe *struct {
-								HttpGet *struct {
-									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-									Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-									HttpHeaders *[]struct {
-										Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-										Value *string `tfsdk:"value" yaml:"value,omitempty"`
-									} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-									Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
-								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
-
-								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-								Exec *struct {
-									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-								} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-								TcpSocket *struct {
-									Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
-								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-							} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
-
-							StartupProbe *struct {
-								HttpGet *struct {
-									HttpHeaders *[]struct {
-										Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-										Value *string `tfsdk:"value" yaml:"value,omitempty"`
-									} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-									Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-									Host *string `tfsdk:"host" yaml:"host,omitempty"`
-								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-								TcpSocket *struct {
-									Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
-								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-								Exec *struct {
-									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-								} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
-
-								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-							} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
-
-							VolumeDevices *[]struct {
-								DevicePath *string `tfsdk:"device_path" yaml:"devicePath,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-							} `tfsdk:"volume_devices" yaml:"volumeDevices,omitempty"`
-
-							Env *[]struct {
-								Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-								ValueFrom *struct {
-									SecretKeyRef *struct {
-										Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-										Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-										Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-									} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
-
-									ConfigMapKeyRef *struct {
-										Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-										Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-										Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-									} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
-
-									FieldRef *struct {
-										ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-										FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
-									} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
-
-									ResourceFieldRef *struct {
-										ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
-
-										Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
-
-										Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-									} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
-								} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-							} `tfsdk:"env" yaml:"env,omitempty"`
-
-							ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
-
-							TargetContainerName *string `tfsdk:"target_container_name" yaml:"targetContainerName,omitempty"`
-
-							TerminationMessagePath *string `tfsdk:"termination_message_path" yaml:"terminationMessagePath,omitempty"`
-
-							SecurityContext *struct {
-								RunAsNonRoot *bool `tfsdk:"run_as_non_root" yaml:"runAsNonRoot,omitempty"`
-
-								SeLinuxOptions *struct {
-									Role *string `tfsdk:"role" yaml:"role,omitempty"`
-
-									Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-									User *string `tfsdk:"user" yaml:"user,omitempty"`
-
-									Level *string `tfsdk:"level" yaml:"level,omitempty"`
-								} `tfsdk:"se_linux_options" yaml:"seLinuxOptions,omitempty"`
-
-								WindowsOptions *struct {
-									GmsaCredentialSpec *string `tfsdk:"gmsa_credential_spec" yaml:"gmsaCredentialSpec,omitempty"`
-
-									GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
-
-									HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
-
-									RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
-								} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
-
-								AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
-
-								ProcMount *string `tfsdk:"proc_mount" yaml:"procMount,omitempty"`
-
-								ReadOnlyRootFilesystem *bool `tfsdk:"read_only_root_filesystem" yaml:"readOnlyRootFilesystem,omitempty"`
-
-								RunAsGroup *int64 `tfsdk:"run_as_group" yaml:"runAsGroup,omitempty"`
-
-								Capabilities *struct {
-									Add *[]string `tfsdk:"add" yaml:"add,omitempty"`
-
-									Drop *[]string `tfsdk:"drop" yaml:"drop,omitempty"`
-								} `tfsdk:"capabilities" yaml:"capabilities,omitempty"`
-
-								Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
-
-								RunAsUser *int64 `tfsdk:"run_as_user" yaml:"runAsUser,omitempty"`
-
-								SeccompProfile *struct {
-									LocalhostProfile *string `tfsdk:"localhost_profile" yaml:"localhostProfile,omitempty"`
-
-									Type *string `tfsdk:"type" yaml:"type,omitempty"`
-								} `tfsdk:"seccomp_profile" yaml:"seccompProfile,omitempty"`
-							} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
-
-							Stdin *bool `tfsdk:"stdin" yaml:"stdin,omitempty"`
-
-							Lifecycle *struct {
-								PostStart *struct {
-									Exec *struct {
-										Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-									} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-									HttpGet *struct {
-										Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-										HttpHeaders *[]struct {
-											Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-											Value *string `tfsdk:"value" yaml:"value,omitempty"`
-										} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-										Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-										Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-										Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-									} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-									TcpSocket *struct {
-										Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-										Port *string `tfsdk:"port" yaml:"port,omitempty"`
-									} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-								} `tfsdk:"post_start" yaml:"postStart,omitempty"`
-
-								PreStop *struct {
-									HttpGet *struct {
-										Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-										HttpHeaders *[]struct {
-											Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-											Value *string `tfsdk:"value" yaml:"value,omitempty"`
-										} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-										Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-										Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-										Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-									} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-									TcpSocket *struct {
-										Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-										Port *string `tfsdk:"port" yaml:"port,omitempty"`
-									} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-									Exec *struct {
-										Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-									} `tfsdk:"exec" yaml:"exec,omitempty"`
-								} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
-							} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
-
-							StdinOnce *bool `tfsdk:"stdin_once" yaml:"stdinOnce,omitempty"`
-
-							TerminationMessagePolicy *string `tfsdk:"termination_message_policy" yaml:"terminationMessagePolicy,omitempty"`
-
-							Tty *bool `tfsdk:"tty" yaml:"tty,omitempty"`
-
-							VolumeMounts *[]struct {
-								SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
-
-								SubPathExpr *string `tfsdk:"sub_path_expr" yaml:"subPathExpr,omitempty"`
-
-								MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-
-								MountPropagation *string `tfsdk:"mount_propagation" yaml:"mountPropagation,omitempty"`
-
-								Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-								ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-							} `tfsdk:"volume_mounts" yaml:"volumeMounts,omitempty"`
-
-							WorkingDir *string `tfsdk:"working_dir" yaml:"workingDir,omitempty"`
-
-							Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-
-							Image *string `tfsdk:"image" yaml:"image,omitempty"`
-
-							LivenessProbe *struct {
-								TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
-
-								TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-								Exec *struct {
-									Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-								} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-								PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
-
-								InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
-								SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
-
-								TcpSocket *struct {
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-									Host *string `tfsdk:"host" yaml:"host,omitempty"`
-								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
-
-								FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-								HttpGet *struct {
-									Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-									HttpHeaders *[]struct {
-										Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-										Value *string `tfsdk:"value" yaml:"value,omitempty"`
-									} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-									Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-							} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
-
+						ImagePullSecrets *[]struct {
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Resources *struct {
-								Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
-
-								Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
-							} `tfsdk:"resources" yaml:"resources,omitempty"`
-
-							Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
-
-							EnvFrom *[]struct {
-								ConfigMapRef *struct {
-									Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-									Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-								} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
-
-								Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-
-								SecretRef *struct {
-									Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-									Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-								} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-							} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
-						} `tfsdk:"ephemeral_containers" yaml:"ephemeralContainers,omitempty"`
-
-						PriorityClassName *string `tfsdk:"priority_class_name" yaml:"priorityClassName,omitempty"`
+						} `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
 					} `tfsdk:"spec" yaml:"spec,omitempty"`
 				} `tfsdk:"template" yaml:"template,omitempty"`
 
 				MinReadySeconds *int64 `tfsdk:"min_ready_seconds" yaml:"minReadySeconds,omitempty"`
 
 				Paused *bool `tfsdk:"paused" yaml:"paused,omitempty"`
-
-				ProgressDeadlineSeconds *int64 `tfsdk:"progress_deadline_seconds" yaml:"progressDeadlineSeconds,omitempty"`
-
-				Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
 			} `tfsdk:"spec" yaml:"spec,omitempty"`
 
 			Status *struct {
+				CollisionCount *int64 `tfsdk:"collision_count" yaml:"collisionCount,omitempty"`
+
+				Conditions *[]struct {
+					Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+					LastTransitionTime *string `tfsdk:"last_transition_time" yaml:"lastTransitionTime,omitempty"`
+
+					LastUpdateTime *string `tfsdk:"last_update_time" yaml:"lastUpdateTime,omitempty"`
+
+					Message *string `tfsdk:"message" yaml:"message,omitempty"`
+
+					Reason *string `tfsdk:"reason" yaml:"reason,omitempty"`
+
+					Status *string `tfsdk:"status" yaml:"status,omitempty"`
+				} `tfsdk:"conditions" yaml:"conditions,omitempty"`
+
 				ObservedGeneration *int64 `tfsdk:"observed_generation" yaml:"observedGeneration,omitempty"`
 
 				ReadyReplicas *int64 `tfsdk:"ready_replicas" yaml:"readyReplicas,omitempty"`
@@ -1932,39 +1962,9 @@ type RocketmqApacheOrgConsoleV1Alpha1GoModel struct {
 				UpdatedReplicas *int64 `tfsdk:"updated_replicas" yaml:"updatedReplicas,omitempty"`
 
 				AvailableReplicas *int64 `tfsdk:"available_replicas" yaml:"availableReplicas,omitempty"`
-
-				CollisionCount *int64 `tfsdk:"collision_count" yaml:"collisionCount,omitempty"`
-
-				Conditions *[]struct {
-					LastTransitionTime *string `tfsdk:"last_transition_time" yaml:"lastTransitionTime,omitempty"`
-
-					LastUpdateTime *string `tfsdk:"last_update_time" yaml:"lastUpdateTime,omitempty"`
-
-					Message *string `tfsdk:"message" yaml:"message,omitempty"`
-
-					Reason *string `tfsdk:"reason" yaml:"reason,omitempty"`
-
-					Status *string `tfsdk:"status" yaml:"status,omitempty"`
-
-					Type *string `tfsdk:"type" yaml:"type,omitempty"`
-				} `tfsdk:"conditions" yaml:"conditions,omitempty"`
 			} `tfsdk:"status" yaml:"status,omitempty"`
 
 			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-			Metadata *struct {
-				Finalizers *[]string `tfsdk:"finalizers" yaml:"finalizers,omitempty"`
-
-				Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-				Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-			} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 		} `tfsdk:"console_deployment" yaml:"consoleDeployment,omitempty"`
 
 		NameServers *string `tfsdk:"name_servers" yaml:"nameServers,omitempty"`
@@ -2074,11 +2074,111 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+							"kind": {
+								Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"metadata": {
+								Description:         "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
+								MarkdownDescription: "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"namespace": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"annotations": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"finalizers": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"labels": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"spec": {
 								Description:         "Specification of the desired behavior of the Deployment.",
 								MarkdownDescription: "Specification of the desired behavior of the Deployment.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"progress_deadline_seconds": {
+										Description:         "The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s.",
+										MarkdownDescription: "The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"replicas": {
+										Description:         "Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.",
+										MarkdownDescription: "Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"revision_history_limit": {
 										Description:         "The number of old ReplicaSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10.",
@@ -2295,169 +2395,11 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"set_hostname_as_fqdn": {
-														Description:         "If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesTcpipParameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.",
-														MarkdownDescription: "If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesTcpipParameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"topology_spread_constraints": {
-														Description:         "TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
-														MarkdownDescription: "TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"label_selector": {
-																Description:         "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
-																MarkdownDescription: "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"match_expressions": {
-																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																		MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"operator": {
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"values": {
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"key": {
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_labels": {
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"max_skew": {
-																Description:         "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
-																MarkdownDescription: "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
-
-																Type: types.Int64Type,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"topology_key": {
-																Description:         "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. It's a required field.",
-																MarkdownDescription: "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. It's a required field.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"when_unsatisfiable": {
-																Description:         "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location,   but giving higher precedence to topologies that would help reduce the   skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assigment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.",
-																MarkdownDescription: "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location,   but giving higher precedence to topologies that would help reduce the   skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assigment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"node_name": {
-														Description:         "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
-														MarkdownDescription: "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
+													"service_account_name": {
+														Description:         "ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+														MarkdownDescription: "ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
 
 														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"priority": {
-														Description:         "The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority.",
-														MarkdownDescription: "The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority.",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"readiness_gates": {
-														Description:         "If specified, all readiness gates will be evaluated for pod readiness. A pod is ready when all its containers are ready AND all conditions specified in the readiness gates have status equal to 'True' More info: https://git.k8s.io/enhancements/keps/sig-network/580-pod-readiness-gates",
-														MarkdownDescription: "If specified, all readiness gates will be evaluated for pod readiness. A pod is ready when all its containers are ready AND all conditions specified in the readiness gates have status equal to 'True' More info: https://git.k8s.io/enhancements/keps/sig-network/580-pod-readiness-gates",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"condition_type": {
-																Description:         "ConditionType refers to a condition in the pod's condition list with matching type.",
-																MarkdownDescription: "ConditionType refers to a condition in the pod's condition list with matching type.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
 
 														Required: false,
 														Optional: true,
@@ -2469,83 +2411,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 														MarkdownDescription: "Share a single process namespace between all of the containers in a pod. When this is set containers will be able to view and signal processes from other containers in the same pod, and the first process in each container will not be assigned PID 1. HostPID and ShareProcessNamespace cannot both be set. Optional: Default to false.",
 
 														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"automount_service_account_token": {
-														Description:         "AutomountServiceAccountToken indicates whether a service account token should be automatically mounted.",
-														MarkdownDescription: "AutomountServiceAccountToken indicates whether a service account token should be automatically mounted.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"host_pid": {
-														Description:         "Use the host's pid namespace. Optional: Default to false.",
-														MarkdownDescription: "Use the host's pid namespace. Optional: Default to false.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"dns_policy": {
-														Description:         "Set DNS policy for the pod. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.",
-														MarkdownDescription: "Set DNS policy for the pod. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"host_ipc": {
-														Description:         "Use the host's ipc namespace. Optional: Default to false.",
-														MarkdownDescription: "Use the host's ipc namespace. Optional: Default to false.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"host_network": {
-														Description:         "Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.",
-														MarkdownDescription: "Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"node_selector": {
-														Description:         "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
-														MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
-
-														Type: types.MapType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"service_account_name": {
-														Description:         "ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
-														MarkdownDescription: "ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
-
-														Type: types.StringType,
 
 														Required: false,
 														Optional: true,
@@ -2582,6 +2447,17 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+																							"key": {
+																								Description:         "The label key that the selector applies to.",
+																								MarkdownDescription: "The label key that the selector applies to.",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+
 																							"operator": {
 																								Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																								MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
@@ -2601,17 +2477,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																								Required: false,
 																								Optional: true,
-																								Computed: false,
-																							},
-
-																							"key": {
-																								Description:         "The label key that the selector applies to.",
-																								MarkdownDescription: "The label key that the selector applies to.",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
 																								Computed: false,
 																							},
 																						}),
@@ -2627,17 +2492,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																							"key": {
-																								Description:         "The label key that the selector applies to.",
-																								MarkdownDescription: "The label key that the selector applies to.",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-
 																							"operator": {
 																								Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																								MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
@@ -2657,6 +2511,17 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																								Required: false,
 																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"key": {
+																								Description:         "The label key that the selector applies to.",
+																								MarkdownDescription: "The label key that the selector applies to.",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
 																								Computed: false,
 																							},
 																						}),
@@ -2701,11 +2566,22 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																					"match_expressions": {
-																						Description:         "A list of node selector requirements by node's labels.",
-																						MarkdownDescription: "A list of node selector requirements by node's labels.",
+																					"match_fields": {
+																						Description:         "A list of node selector requirements by node's fields.",
+																						MarkdownDescription: "A list of node selector requirements by node's fields.",
 
 																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																							"operator": {
+																								Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																								MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
 
 																							"values": {
 																								Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
@@ -2721,17 +2597,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																							"key": {
 																								Description:         "The label key that the selector applies to.",
 																								MarkdownDescription: "The label key that the selector applies to.",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-
-																							"operator": {
-																								Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																								MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 
 																								Type: types.StringType,
 
@@ -2746,22 +2611,11 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																						Computed: false,
 																					},
 
-																					"match_fields": {
-																						Description:         "A list of node selector requirements by node's fields.",
-																						MarkdownDescription: "A list of node selector requirements by node's fields.",
+																					"match_expressions": {
+																						Description:         "A list of node selector requirements by node's labels.",
+																						MarkdownDescription: "A list of node selector requirements by node's labels.",
 
 																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																							"key": {
-																								Description:         "The label key that the selector applies to.",
-																								MarkdownDescription: "The label key that the selector applies to.",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
 
 																							"operator": {
 																								Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
@@ -2782,6 +2636,17 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																								Required: false,
 																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"key": {
+																								Description:         "The label key that the selector applies to.",
+																								MarkdownDescription: "The label key that the selector applies to.",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
 																								Computed: false,
 																							},
 																						}),
@@ -2814,6 +2679,199 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"preferred_during_scheduling_ignored_during_execution": {
+																		Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+																		MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"pod_affinity_term": {
+																				Description:         "Required. A pod affinity term, associated with the corresponding weight.",
+																				MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"namespaces": {
+																						Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																						MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+
+																						Type: types.ListType{ElemType: types.StringType},
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"topology_key": {
+																						Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																						MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"label_selector": {
+																						Description:         "A label query over a set of resources, in this case pods.",
+																						MarkdownDescription: "A label query over a set of resources, in this case pods.",
+
+																						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																							"match_expressions": {
+																								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																									"operator": {
+																										Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																										Type: types.StringType,
+
+																										Required: true,
+																										Optional: false,
+																										Computed: false,
+																									},
+
+																									"values": {
+																										Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																										Type: types.ListType{ElemType: types.StringType},
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+
+																									"key": {
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
+
+																										Type: types.StringType,
+
+																										Required: true,
+																										Optional: false,
+																										Computed: false,
+																									},
+																								}),
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"match_labels": {
+																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																								Type: types.MapType{ElemType: types.StringType},
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						}),
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"namespace_selector": {
+																						Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																						MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+
+																						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																							"match_expressions": {
+																								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																									"key": {
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
+
+																										Type: types.StringType,
+
+																										Required: true,
+																										Optional: false,
+																										Computed: false,
+																									},
+
+																									"operator": {
+																										Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																										Type: types.StringType,
+
+																										Required: true,
+																										Optional: false,
+																										Computed: false,
+																									},
+
+																									"values": {
+																										Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																										Type: types.ListType{ElemType: types.StringType},
+
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								}),
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"match_labels": {
+																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																								Type: types.MapType{ElemType: types.StringType},
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						}),
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"weight": {
+																				Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+																				MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+
+																				Type: types.Int64Type,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
 
 																	"required_during_scheduling_ignored_during_execution": {
 																		Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
@@ -2984,10 +3042,22 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Optional: true,
 																		Computed: false,
 																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"pod_anti_affinity": {
+																Description:         "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
+																MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 																	"preferred_during_scheduling_ignored_during_execution": {
-																		Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-																		MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+																		Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+																		MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
 
 																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -3002,17 +3072,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																						MarkdownDescription: "A label query over a set of resources, in this case pods.",
 
 																						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																							"match_labels": {
-																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																								Type: types.MapType{ElemType: types.StringType},
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
 
 																							"match_expressions": {
 																								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3053,6 +3112,17 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																										Computed: false,
 																									},
 																								}),
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"match_labels": {
+																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																								Type: types.MapType{ElemType: types.StringType},
 
 																								Required: false,
 																								Optional: true,
@@ -3177,18 +3247,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Optional: true,
 																		Computed: false,
 																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"pod_anti_affinity": {
-																Description:         "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
-																MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 																	"required_during_scheduling_ignored_during_execution": {
 																		Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
@@ -3359,199 +3417,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Optional: true,
 																		Computed: false,
 																	},
-
-																	"preferred_during_scheduling_ignored_during_execution": {
-																		Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-																		MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"pod_affinity_term": {
-																				Description:         "Required. A pod affinity term, associated with the corresponding weight.",
-																				MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"topology_key": {
-																						Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																						MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"label_selector": {
-																						Description:         "A label query over a set of resources, in this case pods.",
-																						MarkdownDescription: "A label query over a set of resources, in this case pods.",
-
-																						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																							"match_expressions": {
-																								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																									"values": {
-																										Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																										Type: types.ListType{ElemType: types.StringType},
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-
-																									"key": {
-																										Description:         "key is the label key that the selector applies to.",
-																										MarkdownDescription: "key is the label key that the selector applies to.",
-
-																										Type: types.StringType,
-
-																										Required: true,
-																										Optional: false,
-																										Computed: false,
-																									},
-
-																									"operator": {
-																										Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																										MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																										Type: types.StringType,
-
-																										Required: true,
-																										Optional: false,
-																										Computed: false,
-																									},
-																								}),
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-
-																							"match_labels": {
-																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																								Type: types.MapType{ElemType: types.StringType},
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-																						}),
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"namespace_selector": {
-																						Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																						MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-
-																						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																							"match_expressions": {
-																								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-																								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																									"key": {
-																										Description:         "key is the label key that the selector applies to.",
-																										MarkdownDescription: "key is the label key that the selector applies to.",
-
-																										Type: types.StringType,
-
-																										Required: true,
-																										Optional: false,
-																										Computed: false,
-																									},
-
-																									"operator": {
-																										Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																										MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-																										Type: types.StringType,
-
-																										Required: true,
-																										Optional: false,
-																										Computed: false,
-																									},
-
-																									"values": {
-																										Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																										Type: types.ListType{ElemType: types.StringType},
-
-																										Required: false,
-																										Optional: true,
-																										Computed: false,
-																									},
-																								}),
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-
-																							"match_labels": {
-																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																								Type: types.MapType{ElemType: types.StringType},
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-																						}),
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"namespaces": {
-																						Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																						MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-
-																						Type: types.ListType{ElemType: types.StringType},
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"weight": {
-																				Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-																				MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-
-																				Type: types.Int64Type,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
 																}),
 
 																Required: false,
@@ -3565,77 +3430,31 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 														Computed: false,
 													},
 
-													"dns_config": {
-														Description:         "Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.",
-														MarkdownDescription: "Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.",
+													"host_ipc": {
+														Description:         "Use the host's ipc namespace. Optional: Default to false.",
+														MarkdownDescription: "Use the host's ipc namespace. Optional: Default to false.",
 
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"nameservers": {
-																Description:         "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.",
-																MarkdownDescription: "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"options": {
-																Description:         "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.",
-																MarkdownDescription: "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"value": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Required.",
-																		MarkdownDescription: "Required.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"searches": {
-																Description:         "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.",
-																MarkdownDescription: "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
+														Type: types.BoolType,
 
 														Required: false,
 														Optional: true,
 														Computed: false,
 													},
 
-													"termination_grace_period_seconds": {
-														Description:         "Optional duration in seconds the pod needs to terminate gracefully. May be decreased in delete request. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). If this value is nil, the default grace period will be used instead. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. Defaults to 30 seconds.",
-														MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully. May be decreased in delete request. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). If this value is nil, the default grace period will be used instead. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. Defaults to 30 seconds.",
+													"hostname": {
+														Description:         "Specifies the hostname of the Pod If not specified, the pod's hostname will be set to a system-defined value.",
+														MarkdownDescription: "Specifies the hostname of the Pod If not specified, the pod's hostname will be set to a system-defined value.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"active_deadline_seconds": {
+														Description:         "Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer.",
+														MarkdownDescription: "Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer.",
 
 														Type: types.Int64Type,
 
@@ -3644,445 +3463,26 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 														Computed: false,
 													},
 
-													"init_containers": {
-														Description:         "List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
-														MarkdownDescription: "List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
+													"scheduler_name": {
+														Description:         "If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.",
+														MarkdownDescription: "If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"tolerations": {
+														Description:         "If specified, the pod's tolerations.",
+														MarkdownDescription: "If specified, the pod's tolerations.",
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-															"lifecycle": {
-																Description:         "Actions that the management system should take in response to container lifecycle events. Cannot be updated.",
-																MarkdownDescription: "Actions that the management system should take in response to container lifecycle events. Cannot be updated.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"post_start": {
-																		Description:         "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
-																		MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"exec": {
-																				Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
-																				MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"command": {
-																						Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-																						MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-
-																						Type: types.ListType{ElemType: types.StringType},
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"http_get": {
-																				Description:         "HTTPGet specifies the http request to perform.",
-																				MarkdownDescription: "HTTPGet specifies the http request to perform.",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"scheme": {
-																						Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-																						MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"host": {
-																						Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-																						MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"http_headers": {
-																						Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-																						MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
-
-																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																							"name": {
-																								Description:         "The header field name",
-																								MarkdownDescription: "The header field name",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-
-																							"value": {
-																								Description:         "The header field value",
-																								MarkdownDescription: "The header field value",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-																						}),
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"path": {
-																						Description:         "Path to access on the HTTP server.",
-																						MarkdownDescription: "Path to access on the HTTP server.",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"port": {
-																						Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																						MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"tcp_socket": {
-																				Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-																				MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"host": {
-																						Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-																						MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"port": {
-																						Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																						MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"pre_stop": {
-																		Description:         "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
-																		MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"exec": {
-																				Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
-																				MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"command": {
-																						Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-																						MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-
-																						Type: types.ListType{ElemType: types.StringType},
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"http_get": {
-																				Description:         "HTTPGet specifies the http request to perform.",
-																				MarkdownDescription: "HTTPGet specifies the http request to perform.",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"host": {
-																						Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-																						MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"http_headers": {
-																						Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-																						MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
-
-																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																							"value": {
-																								Description:         "The header field value",
-																								MarkdownDescription: "The header field value",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-
-																							"name": {
-																								Description:         "The header field name",
-																								MarkdownDescription: "The header field name",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-																						}),
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"path": {
-																						Description:         "Path to access on the HTTP server.",
-																						MarkdownDescription: "Path to access on the HTTP server.",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"port": {
-																						Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																						MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"scheme": {
-																						Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-																						MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"tcp_socket": {
-																				Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-																				MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"host": {
-																						Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-																						MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"port": {
-																						Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																						MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.",
-																MarkdownDescription: "Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"tty": {
-																Description:         "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
-																MarkdownDescription: "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"volume_mounts": {
-																Description:         "Pod volumes to mount into the container's filesystem. Cannot be updated.",
-																MarkdownDescription: "Pod volumes to mount into the container's filesystem. Cannot be updated.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"mount_path": {
-																		Description:         "Path within the container at which the volume should be mounted.  Must not contain ':'.",
-																		MarkdownDescription: "Path within the container at which the volume should be mounted.  Must not contain ':'.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"mount_propagation": {
-																		Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																		MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "This must match the Name of a Volume.",
-																		MarkdownDescription: "This must match the Name of a Volume.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"read_only": {
-																		Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
-																		MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"sub_path": {
-																		Description:         "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
-																		MarkdownDescription: "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"sub_path_expr": {
-																		Description:         "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
-																		MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"image_pull_policy": {
-																Description:         "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
-																MarkdownDescription: "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+															"effect": {
+																Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 
 																Type: types.StringType,
 
@@ -4091,20 +3491,9 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"stdin_once": {
-																Description:         "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false",
-																MarkdownDescription: "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"termination_message_policy": {
-																Description:         "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.",
-																MarkdownDescription: "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.",
+															"key": {
+																Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 
 																Type: types.StringType,
 
@@ -4113,489 +3502,50 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"volume_devices": {
-																Description:         "volumeDevices is the list of block devices to be used by the container.",
-																MarkdownDescription: "volumeDevices is the list of block devices to be used by the container.",
+															"operator": {
+																Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+																MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
 
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"device_path": {
-																		Description:         "devicePath is the path inside of the container that the device will be mapped to.",
-																		MarkdownDescription: "devicePath is the path inside of the container that the device will be mapped to.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "name must match the name of a persistentVolumeClaim in the pod",
-																		MarkdownDescription: "name must match the name of a persistentVolumeClaim in the pod",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
+																Type: types.StringType,
 
 																Required: false,
 																Optional: true,
 																Computed: false,
 															},
 
-															"liveness_probe": {
-																Description:         "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+															"toleration_seconds": {
+																Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+																MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
 
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"initial_delay_seconds": {
-																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"termination_grace_period_seconds": {
-																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"exec": {
-																		Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
-																		MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"command": {
-																				Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-																				MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"http_get": {
-																		Description:         "HTTPGet specifies the http request to perform.",
-																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"host": {
-																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"http_headers": {
-																				Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-																				MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
-
-																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"value": {
-																						Description:         "The header field value",
-																						MarkdownDescription: "The header field value",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"name": {
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"path": {
-																				Description:         "Path to access on the HTTP server.",
-																				MarkdownDescription: "Path to access on the HTTP server.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"port": {
-																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"scheme": {
-																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"period_seconds": {
-																		Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-																		MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"success_threshold": {
-																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"tcp_socket": {
-																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"host": {
-																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"port": {
-																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"timeout_seconds": {
-																		Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"failure_threshold": {
-																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
+																Type: types.Int64Type,
 
 																Required: false,
 																Optional: true,
 																Computed: false,
 															},
 
-															"readiness_probe": {
-																Description:         "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+															"value": {
+																Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
 
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"timeout_seconds": {
-																		Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"exec": {
-																		Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
-																		MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"command": {
-																				Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-																				MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"failure_threshold": {
-																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"http_get": {
-																		Description:         "HTTPGet specifies the http request to perform.",
-																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"http_headers": {
-																				Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-																				MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
-
-																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"name": {
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"value": {
-																						Description:         "The header field value",
-																						MarkdownDescription: "The header field value",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"path": {
-																				Description:         "Path to access on the HTTP server.",
-																				MarkdownDescription: "Path to access on the HTTP server.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"port": {
-																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"scheme": {
-																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"host": {
-																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"period_seconds": {
-																		Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-																		MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"tcp_socket": {
-																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"host": {
-																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"port": {
-																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"termination_grace_period_seconds": {
-																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"initial_delay_seconds": {
-																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"success_threshold": {
-																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
+																Type: types.StringType,
 
 																Required: false,
 																Optional: true,
 																Computed: false,
 															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"containers": {
+														Description:         "List of containers belonging to the pod. Containers cannot currently be added or removed. There must be at least one container in a Pod. Cannot be updated.",
+														MarkdownDescription: "List of containers belonging to the pod. Containers cannot currently be added or removed. There must be at least one container in a Pod. Cannot be updated.",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 															"resources": {
 																Description:         "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -4631,685 +3581,21 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"startup_probe": {
-																Description:         "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"success_threshold": {
-																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"tcp_socket": {
-																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"host": {
-																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"port": {
-																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"exec": {
-																		Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
-																		MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"command": {
-																				Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-																				MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"failure_threshold": {
-																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"initial_delay_seconds": {
-																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"period_seconds": {
-																		Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-																		MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"http_get": {
-																		Description:         "HTTPGet specifies the http request to perform.",
-																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"scheme": {
-																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"host": {
-																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"http_headers": {
-																				Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-																				MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
-
-																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"name": {
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"value": {
-																						Description:         "The header field value",
-																						MarkdownDescription: "The header field value",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"path": {
-																				Description:         "Path to access on the HTTP server.",
-																				MarkdownDescription: "Path to access on the HTTP server.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"port": {
-																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"termination_grace_period_seconds": {
-																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"timeout_seconds": {
-																		Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"args": {
-																Description:         "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-																MarkdownDescription: "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"command": {
-																Description:         "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-																MarkdownDescription: "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"env": {
-																Description:         "List of environment variables to set in the container. Cannot be updated.",
-																MarkdownDescription: "List of environment variables to set in the container. Cannot be updated.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-																		MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"value": {
-																		Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-																		MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"value_from": {
-																		Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-																		MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"config_map_key_ref": {
-																				Description:         "Selects a key of a ConfigMap.",
-																				MarkdownDescription: "Selects a key of a ConfigMap.",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"name": {
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"optional": {
-																						Description:         "Specify whether the ConfigMap or its key must be defined",
-																						MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																						Type: types.BoolType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"key": {
-																						Description:         "The key to select.",
-																						MarkdownDescription: "The key to select.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"field_ref": {
-																				Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																				MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"field_path": {
-																						Description:         "Path of the field to select in the specified API version.",
-																						MarkdownDescription: "Path of the field to select in the specified API version.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"api_version": {
-																						Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																						MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"resource_field_ref": {
-																				Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																				MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"container_name": {
-																						Description:         "Container name: required for volumes, optional for env vars",
-																						MarkdownDescription: "Container name: required for volumes, optional for env vars",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"divisor": {
-																						Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																						MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"resource": {
-																						Description:         "Required: resource to select",
-																						MarkdownDescription: "Required: resource to select",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"secret_key_ref": {
-																				Description:         "Selects a key of a secret in the pod's namespace",
-																				MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"optional": {
-																						Description:         "Specify whether the Secret or its key must be defined",
-																						MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																						Type: types.BoolType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"key": {
-																						Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																						MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"name": {
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"env_from": {
-																Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
-																MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"config_map_ref": {
-																		Description:         "The ConfigMap to select from",
-																		MarkdownDescription: "The ConfigMap to select from",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"optional": {
-																				Description:         "Specify whether the ConfigMap must be defined",
-																				MarkdownDescription: "Specify whether the ConfigMap must be defined",
-
-																				Type: types.BoolType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"name": {
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"prefix": {
-																		Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-																		MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"secret_ref": {
-																		Description:         "The Secret to select from",
-																		MarkdownDescription: "The Secret to select from",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"name": {
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"optional": {
-																				Description:         "Specify whether the Secret must be defined",
-																				MarkdownDescription: "Specify whether the Secret must be defined",
-
-																				Type: types.BoolType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"stdin": {
-																Description:         "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
-																MarkdownDescription: "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"working_dir": {
-																Description:         "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
-																MarkdownDescription: "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"image": {
-																Description:         "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
-																MarkdownDescription: "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"ports": {
-																Description:         "List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Cannot be updated.",
-																MarkdownDescription: "List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Cannot be updated.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.",
-																		MarkdownDescription: "If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"protocol": {
-																		Description:         "Protocol for port. Must be UDP, TCP, or SCTP. Defaults to 'TCP'.",
-																		MarkdownDescription: "Protocol for port. Must be UDP, TCP, or SCTP. Defaults to 'TCP'.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"container_port": {
-																		Description:         "Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.",
-																		MarkdownDescription: "Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.",
-
-																		Type: types.Int64Type,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"host_ip": {
-																		Description:         "What host IP to bind the external port to.",
-																		MarkdownDescription: "What host IP to bind the external port to.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"host_port": {
-																		Description:         "Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.",
-																		MarkdownDescription: "Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"security_context": {
 																Description:         "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 																MarkdownDescription: "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"run_as_user": {
-																		Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																		MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"se_linux_options": {
-																		Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																		MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																	"windows_options": {
+																		Description:         "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																		MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																			"level": {
-																				Description:         "Level is SELinux level label that applies to the container.",
-																				MarkdownDescription: "Level is SELinux level label that applies to the container.",
+																			"run_as_user_name": {
+																				Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																				MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
 
 																				Type: types.StringType,
 
@@ -5318,9 +3604,9 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																				Computed: false,
 																			},
 
-																			"role": {
-																				Description:         "Role is a SELinux role label that applies to the container.",
-																				MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+																			"gmsa_credential_spec": {
+																				Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+																				MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
 
 																				Type: types.StringType,
 
@@ -5329,9 +3615,9 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																				Computed: false,
 																			},
 
-																			"type": {
-																				Description:         "Type is a SELinux type label that applies to the container.",
-																				MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+																			"gmsa_credential_spec_name": {
+																				Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																				MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
 
 																				Type: types.StringType,
 
@@ -5340,11 +3626,11 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																				Computed: false,
 																			},
 
-																			"user": {
-																				Description:         "User is a SELinux user label that applies to the container.",
-																				MarkdownDescription: "User is a SELinux user label that applies to the container.",
+																			"host_process": {
+																				Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																				MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
 
-																				Type: types.StringType,
+																				Type: types.BoolType,
 
 																				Required: false,
 																				Optional: true,
@@ -5458,62 +3744,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"windows_options": {
-																		Description:         "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																		MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"gmsa_credential_spec": {
-																				Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
-																				MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"gmsa_credential_spec_name": {
-																				Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
-																				MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"host_process": {
-																				Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																				MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-
-																				Type: types.BoolType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"run_as_user_name": {
-																				Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																				MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
 																	"proc_mount": {
 																		Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.",
 																		MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.",
@@ -5546,6 +3776,298 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Optional: true,
 																		Computed: false,
 																	},
+
+																	"run_as_user": {
+																		Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																		MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"se_linux_options": {
+																		Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																		MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"level": {
+																				Description:         "Level is SELinux level label that applies to the container.",
+																				MarkdownDescription: "Level is SELinux level label that applies to the container.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"role": {
+																				Description:         "Role is a SELinux role label that applies to the container.",
+																				MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"type": {
+																				Description:         "Type is a SELinux type label that applies to the container.",
+																				MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"user": {
+																				Description:         "User is a SELinux user label that applies to the container.",
+																				MarkdownDescription: "User is a SELinux user label that applies to the container.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"startup_probe": {
+																Description:         "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"timeout_seconds": {
+																		Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"http_get": {
+																		Description:         "HTTPGet specifies the http request to perform.",
+																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"port": {
+																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"scheme": {
+																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"host": {
+																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"http_headers": {
+																				Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																				MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+
+																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"name": {
+																						Description:         "The header field name",
+																						MarkdownDescription: "The header field name",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"value": {
+																						Description:         "The header field value",
+																						MarkdownDescription: "The header field value",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"path": {
+																				Description:         "Path to access on the HTTP server.",
+																				MarkdownDescription: "Path to access on the HTTP server.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"initial_delay_seconds": {
+																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"period_seconds": {
+																		Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+																		MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"termination_grace_period_seconds": {
+																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"exec": {
+																		Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
+																		MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"command": {
+																				Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																				MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"failure_threshold": {
+																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"success_threshold": {
+																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"tcp_socket": {
+																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"host": {
+																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"port": {
+																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
 																}),
 
 																Required: false,
@@ -5563,77 +4085,10 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Optional: true,
 																Computed: false,
 															},
-														}),
 
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"runtime_class_name": {
-														Description:         "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class This is a beta feature as of Kubernetes v1.14.",
-														MarkdownDescription: "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class This is a beta feature as of Kubernetes v1.14.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"hostname": {
-														Description:         "Specifies the hostname of the Pod If not specified, the pod's hostname will be set to a system-defined value.",
-														MarkdownDescription: "Specifies the hostname of the Pod If not specified, the pod's hostname will be set to a system-defined value.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"preemption_policy": {
-														Description:         "PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is beta-level, gated by the NonPreemptingPriority feature-gate.",
-														MarkdownDescription: "PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is beta-level, gated by the NonPreemptingPriority feature-gate.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"overhead": {
-														Description:         "Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md This field is beta-level as of Kubernetes v1.18, and is only honored by servers that enable the PodOverhead feature.",
-														MarkdownDescription: "Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md This field is beta-level as of Kubernetes v1.18, and is only honored by servers that enable the PodOverhead feature.",
-
-														Type: types.MapType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"subdomain": {
-														Description:         "If specified, the fully qualified Pod hostname will be '<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>'. If not specified, the pod will not have a domainname at all.",
-														MarkdownDescription: "If specified, the fully qualified Pod hostname will be '<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>'. If not specified, the pod will not have a domainname at all.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"tolerations": {
-														Description:         "If specified, the pod's tolerations.",
-														MarkdownDescription: "If specified, the pod's tolerations.",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"operator": {
-																Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-																MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+															"termination_message_policy": {
+																Description:         "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.",
+																MarkdownDescription: "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.",
 
 																Type: types.StringType,
 
@@ -5642,71 +4097,26 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"toleration_seconds": {
-																Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-																MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+															"args": {
+																Description:         "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+																MarkdownDescription: "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
 
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"value": {
-																Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-																MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-
-																Type: types.StringType,
+																Type: types.ListType{ElemType: types.StringType},
 
 																Required: false,
 																Optional: true,
 																Computed: false,
 															},
 
-															"effect": {
-																Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-																MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+															"env": {
+																Description:         "List of environment variables to set in the container. Cannot be updated.",
+																MarkdownDescription: "List of environment variables to set in the container. Cannot be updated.",
 
-																Type: types.StringType,
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"key": {
-																Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-																MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"volumes": {
-														Description:         "List of volumes that can be mounted by containers belonging to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes",
-														MarkdownDescription: "List of volumes that can be mounted by containers belonging to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"gce_persistent_disk": {
-																Description:         "GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-																MarkdownDescription: "GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"pd_name": {
-																		Description:         "Unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-																		MarkdownDescription: "Unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																	"name": {
+																		Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																		MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
 
 																		Type: types.StringType,
 
@@ -5715,20 +4125,9 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"read_only": {
-																		Description:         "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-																		MarkdownDescription: "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"fs_type": {
-																		Description:         "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
-																		MarkdownDescription: "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
+																	"value": {
+																		Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+																		MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
 
 																		Type: types.StringType,
 
@@ -5737,195 +4136,60 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"partition": {
-																		Description:         "The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-																		MarkdownDescription: "The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																	"value_from": {
+																		Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																		MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
 
-																		Type: types.Int64Type,
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
+																			"config_map_key_ref": {
+																				Description:         "Selects a key of a ConfigMap.",
+																				MarkdownDescription: "Selects a key of a ConfigMap.",
 
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"secret": {
-																Description:         "Secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-																MarkdownDescription: "Secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+																					"key": {
+																						Description:         "The key to select.",
+																						MarkdownDescription: "The key to select.",
 
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+																						Type: types.StringType,
 
-																	"default_mode": {
-																		Description:         "Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																		MarkdownDescription: "Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
 
-																		Type: types.Int64Type,
+																					"name": {
+																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
+																						Type: types.StringType,
 
-																	"items": {
-																		Description:         "If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																		MarkdownDescription: "If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
 
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+																					"optional": {
+																						Description:         "Specify whether the ConfigMap or its key must be defined",
+																						MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
 
-																			"path": {
-																				Description:         "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																				MarkdownDescription: "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																						Type: types.BoolType,
 
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"key": {
-																				Description:         "The key to project.",
-																				MarkdownDescription: "The key to project.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"mode": {
-																				Description:         "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																				MarkdownDescription: "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-
-																				Type: types.Int64Type,
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
 
 																				Required: false,
 																				Optional: true,
 																				Computed: false,
 																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"optional": {
-																		Description:         "Specify whether the Secret or its keys must be defined",
-																		MarkdownDescription: "Specify whether the Secret or its keys must be defined",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"secret_name": {
-																		Description:         "Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-																		MarkdownDescription: "Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"aws_elastic_block_store": {
-																Description:         "AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-																MarkdownDescription: "AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"fs_type": {
-																		Description:         "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
-																		MarkdownDescription: "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"partition": {
-																		Description:         "The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).",
-																		MarkdownDescription: "The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"read_only": {
-																		Description:         "Specify 'true' to force and set the ReadOnly property in VolumeMounts to 'true'. If omitted, the default is 'false'. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-																		MarkdownDescription: "Specify 'true' to force and set the ReadOnly property in VolumeMounts to 'true'. If omitted, the default is 'false'. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"volume_id": {
-																		Description:         "Unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-																		MarkdownDescription: "Unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"downward_api": {
-																Description:         "DownwardAPI represents downward API about the pod that should populate this volume",
-																MarkdownDescription: "DownwardAPI represents downward API about the pod that should populate this volume",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"default_mode": {
-																		Description:         "Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																		MarkdownDescription: "Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"items": {
-																		Description:         "Items is a list of downward API volume file",
-																		MarkdownDescription: "Items is a list of downward API volume file",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 																			"field_ref": {
-																				Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																				MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																				Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																				MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 
 																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -5957,31 +4221,9 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																				Computed: false,
 																			},
 
-																			"mode": {
-																				Description:         "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																				MarkdownDescription: "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-
-																				Type: types.Int64Type,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"path": {
-																				Description:         "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
-																				MarkdownDescription: "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
 																			"resource_field_ref": {
-																				Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
-																				MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
+																				Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																				MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 
 																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -6023,7 +4265,2110 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																				Optional: true,
 																				Computed: false,
 																			},
+
+																			"secret_key_ref": {
+																				Description:         "Selects a key of a secret in the pod's namespace",
+																				MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"key": {
+																						Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																						MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"name": {
+																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"optional": {
+																						Description:         "Specify whether the Secret or its key must be defined",
+																						MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																						Type: types.BoolType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
 																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"ports": {
+																Description:         "List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Cannot be updated.",
+																MarkdownDescription: "List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Cannot be updated.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"host_ip": {
+																		Description:         "What host IP to bind the external port to.",
+																		MarkdownDescription: "What host IP to bind the external port to.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"host_port": {
+																		Description:         "Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.",
+																		MarkdownDescription: "Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.",
+																		MarkdownDescription: "If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"protocol": {
+																		Description:         "Protocol for port. Must be UDP, TCP, or SCTP. Defaults to 'TCP'.",
+																		MarkdownDescription: "Protocol for port. Must be UDP, TCP, or SCTP. Defaults to 'TCP'.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"container_port": {
+																		Description:         "Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.",
+																		MarkdownDescription: "Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.",
+
+																		Type: types.Int64Type,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"volume_devices": {
+																Description:         "volumeDevices is the list of block devices to be used by the container.",
+																MarkdownDescription: "volumeDevices is the list of block devices to be used by the container.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"device_path": {
+																		Description:         "devicePath is the path inside of the container that the device will be mapped to.",
+																		MarkdownDescription: "devicePath is the path inside of the container that the device will be mapped to.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "name must match the name of a persistentVolumeClaim in the pod",
+																		MarkdownDescription: "name must match the name of a persistentVolumeClaim in the pod",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"env_from": {
+																Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+																MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"secret_ref": {
+																		Description:         "The Secret to select from",
+																		MarkdownDescription: "The Secret to select from",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"name": {
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"optional": {
+																				Description:         "Specify whether the Secret must be defined",
+																				MarkdownDescription: "Specify whether the Secret must be defined",
+
+																				Type: types.BoolType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"config_map_ref": {
+																		Description:         "The ConfigMap to select from",
+																		MarkdownDescription: "The ConfigMap to select from",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"name": {
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"optional": {
+																				Description:         "Specify whether the ConfigMap must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap must be defined",
+
+																				Type: types.BoolType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"prefix": {
+																		Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+																		MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"image": {
+																Description:         "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+																MarkdownDescription: "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"stdin": {
+																Description:         "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
+																MarkdownDescription: "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"command": {
+																Description:         "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+																MarkdownDescription: "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"lifecycle": {
+																Description:         "Actions that the management system should take in response to container lifecycle events. Cannot be updated.",
+																MarkdownDescription: "Actions that the management system should take in response to container lifecycle events. Cannot be updated.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"post_start": {
+																		Description:         "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
+																		MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"exec": {
+																				Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
+																				MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"command": {
+																						Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																						MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+
+																						Type: types.ListType{ElemType: types.StringType},
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"http_get": {
+																				Description:         "HTTPGet specifies the http request to perform.",
+																				MarkdownDescription: "HTTPGet specifies the http request to perform.",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"path": {
+																						Description:         "Path to access on the HTTP server.",
+																						MarkdownDescription: "Path to access on the HTTP server.",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"port": {
+																						Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																						MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"scheme": {
+																						Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+																						MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"host": {
+																						Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+																						MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"http_headers": {
+																						Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																						MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+
+																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																							"name": {
+																								Description:         "The header field name",
+																								MarkdownDescription: "The header field name",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+
+																							"value": {
+																								Description:         "The header field value",
+																								MarkdownDescription: "The header field value",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+																						}),
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"tcp_socket": {
+																				Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+																				MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"host": {
+																						Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																						MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"port": {
+																						Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																						MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"pre_stop": {
+																		Description:         "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
+																		MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"exec": {
+																				Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
+																				MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"command": {
+																						Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																						MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+
+																						Type: types.ListType{ElemType: types.StringType},
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"http_get": {
+																				Description:         "HTTPGet specifies the http request to perform.",
+																				MarkdownDescription: "HTTPGet specifies the http request to perform.",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"http_headers": {
+																						Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																						MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+
+																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																							"value": {
+																								Description:         "The header field value",
+																								MarkdownDescription: "The header field value",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+
+																							"name": {
+																								Description:         "The header field name",
+																								MarkdownDescription: "The header field name",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+																						}),
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"path": {
+																						Description:         "Path to access on the HTTP server.",
+																						MarkdownDescription: "Path to access on the HTTP server.",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"port": {
+																						Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																						MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"scheme": {
+																						Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+																						MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"host": {
+																						Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+																						MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"tcp_socket": {
+																				Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+																				MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"host": {
+																						Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																						MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"port": {
+																						Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																						MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"liveness_probe": {
+																Description:         "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"initial_delay_seconds": {
+																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"period_seconds": {
+																		Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+																		MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"success_threshold": {
+																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"termination_grace_period_seconds": {
+																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"timeout_seconds": {
+																		Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"exec": {
+																		Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
+																		MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"command": {
+																				Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																				MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"failure_threshold": {
+																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"http_get": {
+																		Description:         "HTTPGet specifies the http request to perform.",
+																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"host": {
+																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"http_headers": {
+																				Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																				MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+
+																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"name": {
+																						Description:         "The header field name",
+																						MarkdownDescription: "The header field name",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"value": {
+																						Description:         "The header field value",
+																						MarkdownDescription: "The header field value",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"path": {
+																				Description:         "Path to access on the HTTP server.",
+																				MarkdownDescription: "Path to access on the HTTP server.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"port": {
+																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"scheme": {
+																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"tcp_socket": {
+																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"port": {
+																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"host": {
+																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"stdin_once": {
+																Description:         "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false",
+																MarkdownDescription: "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"tty": {
+																Description:         "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
+																MarkdownDescription: "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"volume_mounts": {
+																Description:         "Pod volumes to mount into the container's filesystem. Cannot be updated.",
+																MarkdownDescription: "Pod volumes to mount into the container's filesystem. Cannot be updated.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"read_only": {
+																		Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																		MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"sub_path": {
+																		Description:         "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
+																		MarkdownDescription: "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"sub_path_expr": {
+																		Description:         "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
+																		MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"mount_path": {
+																		Description:         "Path within the container at which the volume should be mounted.  Must not contain ':'.",
+																		MarkdownDescription: "Path within the container at which the volume should be mounted.  Must not contain ':'.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"mount_propagation": {
+																		Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																		MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "This must match the Name of a Volume.",
+																		MarkdownDescription: "This must match the Name of a Volume.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"working_dir": {
+																Description:         "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
+																MarkdownDescription: "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"image_pull_policy": {
+																Description:         "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+																MarkdownDescription: "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.",
+																MarkdownDescription: "Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"readiness_probe": {
+																Description:         "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"failure_threshold": {
+																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"http_get": {
+																		Description:         "HTTPGet specifies the http request to perform.",
+																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"host": {
+																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"http_headers": {
+																				Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																				MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+
+																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"name": {
+																						Description:         "The header field name",
+																						MarkdownDescription: "The header field name",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"value": {
+																						Description:         "The header field value",
+																						MarkdownDescription: "The header field value",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"path": {
+																				Description:         "Path to access on the HTTP server.",
+																				MarkdownDescription: "Path to access on the HTTP server.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"port": {
+																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"scheme": {
+																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"success_threshold": {
+																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"tcp_socket": {
+																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"host": {
+																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"port": {
+																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"termination_grace_period_seconds": {
+																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"exec": {
+																		Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
+																		MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"command": {
+																				Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																				MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"initial_delay_seconds": {
+																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"period_seconds": {
+																		Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+																		MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"timeout_seconds": {
+																		Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"restart_policy": {
+														Description:         "Restart policy for all containers within the pod. One of Always, OnFailure, Never. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
+														MarkdownDescription: "Restart policy for all containers within the pod. One of Always, OnFailure, Never. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"runtime_class_name": {
+														Description:         "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class This is a beta feature as of Kubernetes v1.14.",
+														MarkdownDescription: "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class This is a beta feature as of Kubernetes v1.14.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"priority": {
+														Description:         "The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority.",
+														MarkdownDescription: "The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority.",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"set_hostname_as_fqdn": {
+														Description:         "If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesTcpipParameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.",
+														MarkdownDescription: "If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesTcpipParameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"dns_policy": {
+														Description:         "Set DNS policy for the pod. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.",
+														MarkdownDescription: "Set DNS policy for the pod. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_selector": {
+														Description:         "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+														MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+
+														Type: types.MapType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"overhead": {
+														Description:         "Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md This field is beta-level as of Kubernetes v1.18, and is only honored by servers that enable the PodOverhead feature.",
+														MarkdownDescription: "Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md This field is beta-level as of Kubernetes v1.18, and is only honored by servers that enable the PodOverhead feature.",
+
+														Type: types.MapType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"security_context": {
+														Description:         "SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty.  See type description for default values of each field.",
+														MarkdownDescription: "SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty.  See type description for default values of each field.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"fs_group": {
+																Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume.",
+																MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume.",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"run_as_user": {
+																Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.",
+																MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"supplemental_groups": {
+																Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container.",
+																MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container.",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"se_linux_options": {
+																Description:         "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.",
+																MarkdownDescription: "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"level": {
+																		Description:         "Level is SELinux level label that applies to the container.",
+																		MarkdownDescription: "Level is SELinux level label that applies to the container.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"role": {
+																		Description:         "Role is a SELinux role label that applies to the container.",
+																		MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"type": {
+																		Description:         "Type is a SELinux type label that applies to the container.",
+																		MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"user": {
+																		Description:         "User is a SELinux user label that applies to the container.",
+																		MarkdownDescription: "User is a SELinux user label that applies to the container.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"seccomp_profile": {
+																Description:         "The seccomp options to use by the containers in this pod.",
+																MarkdownDescription: "The seccomp options to use by the containers in this pod.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"localhost_profile": {
+																		Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																		MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"type": {
+																		Description:         "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																		MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"sysctls": {
+																Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch.",
+																MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "Name of a property to set",
+																		MarkdownDescription: "Name of a property to set",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"value": {
+																		Description:         "Value of a property to set",
+																		MarkdownDescription: "Value of a property to set",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"windows_options": {
+																Description:         "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"gmsa_credential_spec": {
+																		Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+																		MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"gmsa_credential_spec_name": {
+																		Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																		MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"host_process": {
+																		Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																		MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"run_as_user_name": {
+																		Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																		MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"fs_group_change_policy": {
+																Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.",
+																MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"run_as_group": {
+																Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.",
+																MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"run_as_non_root": {
+																Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"dns_config": {
+														Description:         "Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.",
+														MarkdownDescription: "Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"nameservers": {
+																Description:         "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.",
+																MarkdownDescription: "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"options": {
+																Description:         "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.",
+																MarkdownDescription: "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "Required.",
+																		MarkdownDescription: "Required.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"value": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"searches": {
+																Description:         "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.",
+																MarkdownDescription: "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"host_pid": {
+														Description:         "Use the host's pid namespace. Optional: Default to false.",
+														MarkdownDescription: "Use the host's pid namespace. Optional: Default to false.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_name": {
+														Description:         "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
+														MarkdownDescription: "NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"preemption_policy": {
+														Description:         "PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is beta-level, gated by the NonPreemptingPriority feature-gate.",
+														MarkdownDescription: "PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is beta-level, gated by the NonPreemptingPriority feature-gate.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"volumes": {
+														Description:         "List of volumes that can be mounted by containers belonging to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes",
+														MarkdownDescription: "List of volumes that can be mounted by containers belonging to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"git_repo": {
+																Description:         "GitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+																MarkdownDescription: "GitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"directory": {
+																		Description:         "Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
+																		MarkdownDescription: "Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"repository": {
+																		Description:         "Repository URL",
+																		MarkdownDescription: "Repository URL",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"revision": {
+																		Description:         "Commit hash for the specified revision.",
+																		MarkdownDescription: "Commit hash for the specified revision.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"portworx_volume": {
+																Description:         "PortworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+																MarkdownDescription: "PortworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"fs_type": {
+																		Description:         "FSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																		MarkdownDescription: "FSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"read_only": {
+																		Description:         "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																		MarkdownDescription: "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"volume_id": {
+																		Description:         "VolumeID uniquely identifies a Portworx volume",
+																		MarkdownDescription: "VolumeID uniquely identifies a Portworx volume",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"persistent_volume_claim": {
+																Description:         "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																MarkdownDescription: "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"claim_name": {
+																		Description:         "ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																		MarkdownDescription: "ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"read_only": {
+																		Description:         "Will force the ReadOnly setting in VolumeMounts. Default false.",
+																		MarkdownDescription: "Will force the ReadOnly setting in VolumeMounts. Default false.",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"secret": {
+																Description:         "Secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+																MarkdownDescription: "Secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"default_mode": {
+																		Description:         "Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																		MarkdownDescription: "Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"items": {
+																		Description:         "If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																		MarkdownDescription: "If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "The key to project.",
+																				MarkdownDescription: "The key to project.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"mode": {
+																				Description:         "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																				MarkdownDescription: "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+
+																				Type: types.Int64Type,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"path": {
+																				Description:         "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																				MarkdownDescription: "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the Secret or its keys must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its keys must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret_name": {
+																		Description:         "Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+																		MarkdownDescription: "Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"azure_disk": {
+																Description:         "AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+																MarkdownDescription: "AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"kind": {
+																		Description:         "Expected values Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared",
+																		MarkdownDescription: "Expected values Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"read_only": {
+																		Description:         "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																		MarkdownDescription: "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"caching_mode": {
+																		Description:         "Host Caching mode: None, Read Only, Read Write.",
+																		MarkdownDescription: "Host Caching mode: None, Read Only, Read Write.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"disk_name": {
+																		Description:         "The Name of the data disk in the blob storage",
+																		MarkdownDescription: "The Name of the data disk in the blob storage",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"disk_uri": {
+																		Description:         "The URI the data disk in the blob storage",
+																		MarkdownDescription: "The URI the data disk in the blob storage",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"fs_type": {
+																		Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																		MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"cinder": {
+																Description:         "Cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+																MarkdownDescription: "Cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"read_only": {
+																		Description:         "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+																		MarkdownDescription: "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret_ref": {
+																		Description:         "Optional: points to a secret object containing parameters used to connect to OpenStack.",
+																		MarkdownDescription: "Optional: points to a secret object containing parameters used to connect to OpenStack.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"name": {
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"volume_id": {
+																		Description:         "volume id used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+																		MarkdownDescription: "volume id used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"fs_type": {
+																		Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+																		MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"rbd": {
+																Description:         "RBD represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
+																MarkdownDescription: "RBD represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"monitors": {
+																		Description:         "A collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																		MarkdownDescription: "A collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"pool": {
+																		Description:         "The rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																		MarkdownDescription: "The rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"read_only": {
+																		Description:         "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																		MarkdownDescription: "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret_ref": {
+																		Description:         "SecretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																		MarkdownDescription: "SecretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"name": {
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"user": {
+																		Description:         "The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																		MarkdownDescription: "The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"fs_type": {
+																		Description:         "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
+																		MarkdownDescription: "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"image": {
+																		Description:         "The rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																		MarkdownDescription: "The rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"keyring": {
+																		Description:         "Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																		MarkdownDescription: "Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+
+																		Type: types.StringType,
 
 																		Required: false,
 																		Optional: true,
@@ -6115,51 +6460,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"glusterfs": {
-																Description:         "Glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
-																MarkdownDescription: "Glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"endpoints": {
-																		Description:         "EndpointsName is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
-																		MarkdownDescription: "EndpointsName is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"path": {
-																		Description:         "Path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
-																		MarkdownDescription: "Path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"read_only": {
-																		Description:         "ReadOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
-																		MarkdownDescription: "ReadOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"name": {
 																Description:         "Volume's name. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																MarkdownDescription: "Volume's name. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
@@ -6171,280 +6471,11 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"cephfs": {
-																Description:         "CephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
-																MarkdownDescription: "CephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+															"photon_persistent_disk": {
+																Description:         "PhotonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
+																MarkdownDescription: "PhotonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"secret_file": {
-																		Description:         "Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-																		MarkdownDescription: "Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"secret_ref": {
-																		Description:         "Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-																		MarkdownDescription: "Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"name": {
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"user": {
-																		Description:         "Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-																		MarkdownDescription: "Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"monitors": {
-																		Description:         "Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-																		MarkdownDescription: "Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"path": {
-																		Description:         "Optional: Used as the mounted root, rather than the full Ceph tree, default is /",
-																		MarkdownDescription: "Optional: Used as the mounted root, rather than the full Ceph tree, default is /",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"read_only": {
-																		Description:         "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-																		MarkdownDescription: "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"azure_file": {
-																Description:         "AzureFile represents an Azure File Service mount on the host and bind mount to the pod.",
-																MarkdownDescription: "AzureFile represents an Azure File Service mount on the host and bind mount to the pod.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"read_only": {
-																		Description:         "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-																		MarkdownDescription: "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"secret_name": {
-																		Description:         "the name of secret that contains Azure Storage Account Name and Key",
-																		MarkdownDescription: "the name of secret that contains Azure Storage Account Name and Key",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"share_name": {
-																		Description:         "Share Name",
-																		MarkdownDescription: "Share Name",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"fc": {
-																Description:         "FC represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
-																MarkdownDescription: "FC represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"fs_type": {
-																		Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
-																		MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"lun": {
-																		Description:         "Optional: FC target lun number",
-																		MarkdownDescription: "Optional: FC target lun number",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"read_only": {
-																		Description:         "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-																		MarkdownDescription: "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"target_ww_ns": {
-																		Description:         "Optional: FC target worldwide names (WWNs)",
-																		MarkdownDescription: "Optional: FC target worldwide names (WWNs)",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"wwids": {
-																		Description:         "Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.",
-																		MarkdownDescription: "Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"git_repo": {
-																Description:         "GitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
-																MarkdownDescription: "GitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"directory": {
-																		Description:         "Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
-																		MarkdownDescription: "Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"repository": {
-																		Description:         "Repository URL",
-																		MarkdownDescription: "Repository URL",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"revision": {
-																		Description:         "Commit hash for the specified revision.",
-																		MarkdownDescription: "Commit hash for the specified revision.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"storageos": {
-																Description:         "StorageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
-																MarkdownDescription: "StorageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"volume_name": {
-																		Description:         "VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.",
-																		MarkdownDescription: "VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"volume_namespace": {
-																		Description:         "VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.",
-																		MarkdownDescription: "VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
 
 																	"fs_type": {
 																		Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -6457,6 +6488,62 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
+																	"pd_id": {
+																		Description:         "ID that identifies Photon Controller persistent disk",
+																		MarkdownDescription: "ID that identifies Photon Controller persistent disk",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"scale_io": {
+																Description:         "ScaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+																MarkdownDescription: "ScaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"storage_mode": {
+																		Description:         "Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.",
+																		MarkdownDescription: "Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"protection_domain": {
+																		Description:         "The name of the ScaleIO Protection Domain for the configured storage.",
+																		MarkdownDescription: "The name of the ScaleIO Protection Domain for the configured storage.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"ssl_enabled": {
+																		Description:         "Flag to enable/disable SSL communication with Gateway, default false",
+																		MarkdownDescription: "Flag to enable/disable SSL communication with Gateway, default false",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
 																	"read_only": {
 																		Description:         "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
 																		MarkdownDescription: "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
@@ -6469,8 +6556,8 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																	},
 
 																	"secret_ref": {
-																		Description:         "SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.",
-																		MarkdownDescription: "SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.",
+																		Description:         "SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
+																		MarkdownDescription: "SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -6486,8 +6573,63 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																			},
 																		}),
 
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"storage_pool": {
+																		Description:         "The ScaleIO Storage Pool associated with the protection domain.",
+																		MarkdownDescription: "The ScaleIO Storage Pool associated with the protection domain.",
+
+																		Type: types.StringType,
+
 																		Required: false,
 																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"system": {
+																		Description:         "The name of the storage system as configured in ScaleIO.",
+																		MarkdownDescription: "The name of the storage system as configured in ScaleIO.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"volume_name": {
+																		Description:         "The name of a volume already created in the ScaleIO system that is associated with this volume source.",
+																		MarkdownDescription: "The name of a volume already created in the ScaleIO system that is associated with this volume source.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"fs_type": {
+																		Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
+																		MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"gateway": {
+																		Description:         "The host address of the ScaleIO API Gateway.",
+																		MarkdownDescription: "The host address of the ScaleIO API Gateway.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
 																		Computed: false,
 																	},
 																}),
@@ -6553,11 +6695,22 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"azure_disk": {
-																Description:         "AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
-																MarkdownDescription: "AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+															"azure_file": {
+																Description:         "AzureFile represents an Azure File Service mount on the host and bind mount to the pod.",
+																MarkdownDescription: "AzureFile represents an Azure File Service mount on the host and bind mount to the pod.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"share_name": {
+																		Description:         "Share Name",
+																		MarkdownDescription: "Share Name",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
 
 																	"read_only": {
 																		Description:         "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
@@ -6570,9 +6723,99 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"caching_mode": {
-																		Description:         "Host Caching mode: None, Read Only, Read Write.",
-																		MarkdownDescription: "Host Caching mode: None, Read Only, Read Write.",
+																	"secret_name": {
+																		Description:         "the name of secret that contains Azure Storage Account Name and Key",
+																		MarkdownDescription: "the name of secret that contains Azure Storage Account Name and Key",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"iscsi": {
+																Description:         "ISCSI represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md",
+																MarkdownDescription: "ISCSI represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"target_portal": {
+																		Description:         "iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
+																		MarkdownDescription: "iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"chap_auth_session": {
+																		Description:         "whether support iSCSI Session CHAP authentication",
+																		MarkdownDescription: "whether support iSCSI Session CHAP authentication",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"lun": {
+																		Description:         "iSCSI Target Lun number.",
+																		MarkdownDescription: "iSCSI Target Lun number.",
+
+																		Type: types.Int64Type,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"read_only": {
+																		Description:         "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.",
+																		MarkdownDescription: "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret_ref": {
+																		Description:         "CHAP Secret for iSCSI target and initiator authentication",
+																		MarkdownDescription: "CHAP Secret for iSCSI target and initiator authentication",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"name": {
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"iscsi_interface": {
+																		Description:         "iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).",
+																		MarkdownDescription: "iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).",
 
 																		Type: types.StringType,
 
@@ -6581,31 +6824,31 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"disk_name": {
-																		Description:         "The Name of the data disk in the blob storage",
-																		MarkdownDescription: "The Name of the data disk in the blob storage",
+																	"portals": {
+																		Description:         "iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
+																		MarkdownDescription: "iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
 
-																		Type: types.StringType,
+																		Type: types.ListType{ElemType: types.StringType},
 
-																		Required: true,
-																		Optional: false,
+																		Required: false,
+																		Optional: true,
 																		Computed: false,
 																	},
 
-																	"disk_uri": {
-																		Description:         "The URI the data disk in the blob storage",
-																		MarkdownDescription: "The URI the data disk in the blob storage",
+																	"chap_auth_discovery": {
+																		Description:         "whether support iSCSI Discovery CHAP authentication",
+																		MarkdownDescription: "whether support iSCSI Discovery CHAP authentication",
 
-																		Type: types.StringType,
+																		Type: types.BoolType,
 
-																		Required: true,
-																		Optional: false,
+																		Required: false,
+																		Optional: true,
 																		Computed: false,
 																	},
 
 																	"fs_type": {
-																		Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
-																		MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																		Description:         "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
+																		MarkdownDescription: "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
 
 																		Type: types.StringType,
 
@@ -6614,14 +6857,25 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"kind": {
-																		Description:         "Expected values Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared",
-																		MarkdownDescription: "Expected values Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared",
+																	"initiator_name": {
+																		Description:         "Custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.",
+																		MarkdownDescription: "Custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.",
 
 																		Type: types.StringType,
 
 																		Required: false,
 																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"iqn": {
+																		Description:         "Target iSCSI Qualified Name.",
+																		MarkdownDescription: "Target iSCSI Qualified Name.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
 																		Computed: false,
 																	},
 																}),
@@ -6643,90 +6897,78 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+																			"metadata": {
+																				Description:         "May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.",
+																				MarkdownDescription: "May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"annotations": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.MapType{ElemType: types.StringType},
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"finalizers": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.ListType{ElemType: types.StringType},
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"labels": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.MapType{ElemType: types.StringType},
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"name": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"namespace": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
 																			"spec": {
 																				Description:         "The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here.",
 																				MarkdownDescription: "The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here.",
 
 																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"data_source_ref": {
-																						Description:         "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Alpha) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
-																						MarkdownDescription: "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Alpha) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
-
-																						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																							"api_group": {
-																								Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-																								MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-
-																								Type: types.StringType,
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-
-																							"kind": {
-																								Description:         "Kind is the type of resource being referenced",
-																								MarkdownDescription: "Kind is the type of resource being referenced",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-
-																							"name": {
-																								Description:         "Name is the name of resource being referenced",
-																								MarkdownDescription: "Name is the name of resource being referenced",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-																						}),
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"resources": {
-																						Description:         "Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
-																						MarkdownDescription: "Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
-
-																						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																							"requests": {
-																								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-
-																								Type: types.MapType{ElemType: types.StringType},
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-
-																							"limits": {
-																								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-
-																								Type: types.MapType{ElemType: types.StringType},
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-																						}),
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
 
 																					"selector": {
 																						Description:         "A label query over volumes to consider for binding.",
@@ -6846,6 +7088,51 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+																							"kind": {
+																								Description:         "Kind is the type of resource being referenced",
+																								MarkdownDescription: "Kind is the type of resource being referenced",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+
+																							"name": {
+																								Description:         "Name is the name of resource being referenced",
+																								MarkdownDescription: "Name is the name of resource being referenced",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+
+																							"api_group": {
+																								Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+																								MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+
+																								Type: types.StringType,
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						}),
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"data_source_ref": {
+																						Description:         "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Alpha) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
+																						MarkdownDescription: "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Alpha) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
+
+																						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
 																							"api_group": {
 																								Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
 																								MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -6884,80 +7171,103 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																						Optional: true,
 																						Computed: false,
 																					},
+
+																					"resources": {
+																						Description:         "Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+																						MarkdownDescription: "Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+
+																						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																							"limits": {
+																								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+
+																								Type: types.MapType{ElemType: types.StringType},
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"requests": {
+																								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+
+																								Type: types.MapType{ElemType: types.StringType},
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						}),
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
 																				}),
 
 																				Required: true,
 																				Optional: false,
 																				Computed: false,
 																			},
-
-																			"metadata": {
-																				Description:         "May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.",
-																				MarkdownDescription: "May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"annotations": {
-																						Description:         "",
-																						MarkdownDescription: "",
-
-																						Type: types.MapType{ElemType: types.StringType},
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"finalizers": {
-																						Description:         "",
-																						MarkdownDescription: "",
-
-																						Type: types.ListType{ElemType: types.StringType},
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"labels": {
-																						Description:         "",
-																						MarkdownDescription: "",
-
-																						Type: types.MapType{ElemType: types.StringType},
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"name": {
-																						Description:         "",
-																						MarkdownDescription: "",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"namespace": {
-																						Description:         "",
-																						MarkdownDescription: "",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
 																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"gce_persistent_disk": {
+																Description:         "GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																MarkdownDescription: "GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"fs_type": {
+																		Description:         "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
+																		MarkdownDescription: "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"partition": {
+																		Description:         "The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																		MarkdownDescription: "The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"pd_name": {
+																		Description:         "Unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																		MarkdownDescription: "Unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"read_only": {
+																		Description:         "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																		MarkdownDescription: "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+
+																		Type: types.BoolType,
 
 																		Required: false,
 																		Optional: true,
@@ -7004,105 +7314,17 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"iscsi": {
-																Description:         "ISCSI represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md",
-																MarkdownDescription: "ISCSI represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md",
+															"storageos": {
+																Description:         "StorageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
+																MarkdownDescription: "StorageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"chap_auth_discovery": {
-																		Description:         "whether support iSCSI Discovery CHAP authentication",
-																		MarkdownDescription: "whether support iSCSI Discovery CHAP authentication",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"chap_auth_session": {
-																		Description:         "whether support iSCSI Session CHAP authentication",
-																		MarkdownDescription: "whether support iSCSI Session CHAP authentication",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"initiator_name": {
-																		Description:         "Custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.",
-																		MarkdownDescription: "Custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"iscsi_interface": {
-																		Description:         "iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).",
-																		MarkdownDescription: "iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"lun": {
-																		Description:         "iSCSI Target Lun number.",
-																		MarkdownDescription: "iSCSI Target Lun number.",
-
-																		Type: types.Int64Type,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"target_portal": {
-																		Description:         "iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
-																		MarkdownDescription: "iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
 																	"fs_type": {
-																		Description:         "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
-																		MarkdownDescription: "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
+																		Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																		MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
 
 																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"iqn": {
-																		Description:         "Target iSCSI Qualified Name.",
-																		MarkdownDescription: "Target iSCSI Qualified Name.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"portals": {
-																		Description:         "iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
-																		MarkdownDescription: "iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
-
-																		Type: types.ListType{ElemType: types.StringType},
 
 																		Required: false,
 																		Optional: true,
@@ -7110,8 +7332,8 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																	},
 
 																	"read_only": {
-																		Description:         "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.",
-																		MarkdownDescription: "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.",
+																		Description:         "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																		MarkdownDescription: "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
 
 																		Type: types.BoolType,
 
@@ -7121,8 +7343,8 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																	},
 
 																	"secret_ref": {
-																		Description:         "CHAP Secret for iSCSI target and initiator authentication",
-																		MarkdownDescription: "CHAP Secret for iSCSI target and initiator authentication",
+																		Description:         "SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.",
+																		MarkdownDescription: "SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -7142,22 +7364,10 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Optional: true,
 																		Computed: false,
 																	},
-																}),
 
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"photon_persistent_disk": {
-																Description:         "PhotonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
-																MarkdownDescription: "PhotonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"fs_type": {
-																		Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
-																		MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																	"volume_name": {
+																		Description:         "VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.",
+																		MarkdownDescription: "VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.",
 
 																		Type: types.StringType,
 
@@ -7166,32 +7376,43 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"pd_id": {
-																		Description:         "ID that identifies Photon Controller persistent disk",
-																		MarkdownDescription: "ID that identifies Photon Controller persistent disk",
+																	"volume_namespace": {
+																		Description:         "VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.",
+																		MarkdownDescription: "VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.",
 
 																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"cephfs": {
+																Description:         "CephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+																MarkdownDescription: "CephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"monitors": {
+																		Description:         "Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																		MarkdownDescription: "Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+
+																		Type: types.ListType{ElemType: types.StringType},
 
 																		Required: true,
 																		Optional: false,
 																		Computed: false,
 																	},
-																}),
 
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"empty_dir": {
-																Description:         "EmptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-																MarkdownDescription: "EmptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"medium": {
-																		Description:         "What type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-																		MarkdownDescription: "What type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																	"path": {
+																		Description:         "Optional: Used as the mounted root, rather than the full Ceph tree, default is /",
+																		MarkdownDescription: "Optional: Used as the mounted root, rather than the full Ceph tree, default is /",
 
 																		Type: types.StringType,
 
@@ -7199,67 +7420,10 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Optional: true,
 																		Computed: false,
 																	},
-
-																	"size_limit": {
-																		Description:         "Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
-																		MarkdownDescription: "Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"flocker": {
-																Description:         "Flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
-																MarkdownDescription: "Flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"dataset_name": {
-																		Description:         "Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
-																		MarkdownDescription: "Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"dataset_uuid": {
-																		Description:         "UUID of the dataset. This is unique identifier of a Flocker dataset",
-																		MarkdownDescription: "UUID of the dataset. This is unique identifier of a Flocker dataset",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"rbd": {
-																Description:         "RBD represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
-																MarkdownDescription: "RBD represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 																	"read_only": {
-																		Description:         "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-																		MarkdownDescription: "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																		Description:         "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																		MarkdownDescription: "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 
 																		Type: types.BoolType,
 
@@ -7268,9 +7432,20 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
+																	"secret_file": {
+																		Description:         "Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																		MarkdownDescription: "Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
 																	"secret_ref": {
-																		Description:         "SecretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-																		MarkdownDescription: "SecretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																		Description:         "Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																		MarkdownDescription: "Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -7292,63 +7467,8 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																	},
 
 																	"user": {
-																		Description:         "The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-																		MarkdownDescription: "The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"fs_type": {
-																		Description:         "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
-																		MarkdownDescription: "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"image": {
-																		Description:         "The rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-																		MarkdownDescription: "The rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"keyring": {
-																		Description:         "Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-																		MarkdownDescription: "Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"monitors": {
-																		Description:         "A collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-																		MarkdownDescription: "A collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"pool": {
-																		Description:         "The rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-																		MarkdownDescription: "The rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																		Description:         "Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																		MarkdownDescription: "Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 
 																		Type: types.StringType,
 
@@ -7363,241 +7483,130 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"cinder": {
-																Description:         "Cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-																MarkdownDescription: "Cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+															"downward_api": {
+																Description:         "DownwardAPI represents downward API about the pod that should populate this volume",
+																MarkdownDescription: "DownwardAPI represents downward API about the pod that should populate this volume",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"fs_type": {
-																		Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-																		MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+																	"default_mode": {
+																		Description:         "Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																		MarkdownDescription: "Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
 
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"read_only": {
-																		Description:         "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-																		MarkdownDescription: "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-
-																		Type: types.BoolType,
+																		Type: types.Int64Type,
 
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
 																	},
 
-																	"secret_ref": {
-																		Description:         "Optional: points to a secret object containing parameters used to connect to OpenStack.",
-																		MarkdownDescription: "Optional: points to a secret object containing parameters used to connect to OpenStack.",
+																	"items": {
+																		Description:         "Items is a list of downward API volume file",
+																		MarkdownDescription: "Items is a list of downward API volume file",
 
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																			"name": {
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			"field_ref": {
+																				Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																				MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"api_version": {
+																						Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																						MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"field_path": {
+																						Description:         "Path of the field to select in the specified API version.",
+																						MarkdownDescription: "Path of the field to select in the specified API version.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"mode": {
+																				Description:         "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																				MarkdownDescription: "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+
+																				Type: types.Int64Type,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"path": {
+																				Description:         "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+																				MarkdownDescription: "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
 
 																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"resource_field_ref": {
+																				Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
+																				MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"container_name": {
+																						Description:         "Container name: required for volumes, optional for env vars",
+																						MarkdownDescription: "Container name: required for volumes, optional for env vars",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"divisor": {
+																						Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																						MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"resource": {
+																						Description:         "Required: resource to select",
+																						MarkdownDescription: "Required: resource to select",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				}),
 
 																				Required: false,
 																				Optional: true,
 																				Computed: false,
 																			},
 																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"volume_id": {
-																		Description:         "volume id used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-																		MarkdownDescription: "volume id used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"scale_io": {
-																Description:         "ScaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
-																MarkdownDescription: "ScaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"gateway": {
-																		Description:         "The host address of the ScaleIO API Gateway.",
-																		MarkdownDescription: "The host address of the ScaleIO API Gateway.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"protection_domain": {
-																		Description:         "The name of the ScaleIO Protection Domain for the configured storage.",
-																		MarkdownDescription: "The name of the ScaleIO Protection Domain for the configured storage.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"read_only": {
-																		Description:         "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-																		MarkdownDescription: "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"secret_ref": {
-																		Description:         "SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
-																		MarkdownDescription: "SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"name": {
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"system": {
-																		Description:         "The name of the storage system as configured in ScaleIO.",
-																		MarkdownDescription: "The name of the storage system as configured in ScaleIO.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"fs_type": {
-																		Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
-																		MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"ssl_enabled": {
-																		Description:         "Flag to enable/disable SSL communication with Gateway, default false",
-																		MarkdownDescription: "Flag to enable/disable SSL communication with Gateway, default false",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"storage_mode": {
-																		Description:         "Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.",
-																		MarkdownDescription: "Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"storage_pool": {
-																		Description:         "The ScaleIO Storage Pool associated with the protection domain.",
-																		MarkdownDescription: "The ScaleIO Storage Pool associated with the protection domain.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"volume_name": {
-																		Description:         "The name of a volume already created in the ScaleIO system that is associated with this volume source.",
-																		MarkdownDescription: "The name of a volume already created in the ScaleIO system that is associated with this volume source.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"portworx_volume": {
-																Description:         "PortworxVolume represents a portworx volume attached and mounted on kubelets host machine",
-																MarkdownDescription: "PortworxVolume represents a portworx volume attached and mounted on kubelets host machine",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"volume_id": {
-																		Description:         "VolumeID uniquely identifies a Portworx volume",
-																		MarkdownDescription: "VolumeID uniquely identifies a Portworx volume",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"fs_type": {
-																		Description:         "FSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
-																		MarkdownDescription: "FSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"read_only": {
-																		Description:         "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-																		MarkdownDescription: "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-
-																		Type: types.BoolType,
 
 																		Required: false,
 																		Optional: true,
@@ -7615,6 +7624,28 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																MarkdownDescription: "CSI (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"driver": {
+																		Description:         "Driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
+																		MarkdownDescription: "Driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"fs_type": {
+																		Description:         "Filesystem type to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.",
+																		MarkdownDescription: "Filesystem type to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
 
 																	"node_publish_secret_ref": {
 																		Description:         "NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
@@ -7660,21 +7691,100 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Optional: true,
 																		Computed: false,
 																	},
+																}),
 
-																	"driver": {
-																		Description:         "Driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
-																		MarkdownDescription: "Driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"fc": {
+																Description:         "FC represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
+																MarkdownDescription: "FC represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"fs_type": {
+																		Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
+																		MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
 
 																		Type: types.StringType,
 
-																		Required: true,
-																		Optional: false,
+																		Required: false,
+																		Optional: true,
 																		Computed: false,
 																	},
 
-																	"fs_type": {
-																		Description:         "Filesystem type to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.",
-																		MarkdownDescription: "Filesystem type to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.",
+																	"lun": {
+																		Description:         "Optional: FC target lun number",
+																		MarkdownDescription: "Optional: FC target lun number",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"read_only": {
+																		Description:         "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																		MarkdownDescription: "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"target_ww_ns": {
+																		Description:         "Optional: FC target worldwide names (WWNs)",
+																		MarkdownDescription: "Optional: FC target worldwide names (WWNs)",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"wwids": {
+																		Description:         "Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.",
+																		MarkdownDescription: "Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"flocker": {
+																Description:         "Flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+																MarkdownDescription: "Flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"dataset_name": {
+																		Description:         "Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
+																		MarkdownDescription: "Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"dataset_uuid": {
+																		Description:         "UUID of the dataset. This is unique identifier of a Flocker dataset",
+																		MarkdownDescription: "UUID of the dataset. This is unique identifier of a Flocker dataset",
 
 																		Type: types.StringType,
 
@@ -7734,15 +7844,15 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"persistent_volume_claim": {
-																Description:         "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																MarkdownDescription: "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+															"quobyte": {
+																Description:         "Quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+																MarkdownDescription: "Quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"claim_name": {
-																		Description:         "ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																		MarkdownDescription: "ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																	"volume": {
+																		Description:         "Volume is a string that references an already created Quobyte volume by name.",
+																		MarkdownDescription: "Volume is a string that references an already created Quobyte volume by name.",
 
 																		Type: types.StringType,
 
@@ -7751,11 +7861,201 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
+																	"group": {
+																		Description:         "Group to map volume access to Default is no group",
+																		MarkdownDescription: "Group to map volume access to Default is no group",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
 																	"read_only": {
-																		Description:         "Will force the ReadOnly setting in VolumeMounts. Default false.",
-																		MarkdownDescription: "Will force the ReadOnly setting in VolumeMounts. Default false.",
+																		Description:         "ReadOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.",
+																		MarkdownDescription: "ReadOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.",
 
 																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"registry": {
+																		Description:         "Registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes",
+																		MarkdownDescription: "Registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"tenant": {
+																		Description:         "Tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin",
+																		MarkdownDescription: "Tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"user": {
+																		Description:         "User to map volume access to Defaults to serivceaccount user",
+																		MarkdownDescription: "User to map volume access to Defaults to serivceaccount user",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"aws_elastic_block_store": {
+																Description:         "AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+																MarkdownDescription: "AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"volume_id": {
+																		Description:         "Unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+																		MarkdownDescription: "Unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"fs_type": {
+																		Description:         "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
+																		MarkdownDescription: "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"partition": {
+																		Description:         "The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).",
+																		MarkdownDescription: "The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"read_only": {
+																		Description:         "Specify 'true' to force and set the ReadOnly property in VolumeMounts to 'true'. If omitted, the default is 'false'. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+																		MarkdownDescription: "Specify 'true' to force and set the ReadOnly property in VolumeMounts to 'true'. If omitted, the default is 'false'. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"config_map": {
+																Description:         "ConfigMap represents a configMap that should populate this volume",
+																MarkdownDescription: "ConfigMap represents a configMap that should populate this volume",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"optional": {
+																		Description:         "Specify whether the ConfigMap or its keys must be defined",
+																		MarkdownDescription: "Specify whether the ConfigMap or its keys must be defined",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"default_mode": {
+																		Description:         "Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																		MarkdownDescription: "Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"items": {
+																		Description:         "If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																		MarkdownDescription: "If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "The key to project.",
+																				MarkdownDescription: "The key to project.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"mode": {
+																				Description:         "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																				MarkdownDescription: "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+
+																				Type: types.Int64Type,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"path": {
+																				Description:         "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																				MarkdownDescription: "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
 
 																		Required: false,
 																		Optional: true,
@@ -7803,17 +8103,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																							"key": {
-																								Description:         "The key to project.",
-																								MarkdownDescription: "The key to project.",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-
 																							"mode": {
 																								Description:         "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
 																								MarkdownDescription: "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
@@ -7828,6 +8117,17 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																							"path": {
 																								Description:         "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
 																								MarkdownDescription: "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+
+																							"key": {
+																								Description:         "The key to project.",
+																								MarkdownDescription: "The key to project.",
 
 																								Type: types.StringType,
 
@@ -7927,17 +8227,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																							"path": {
-																								Description:         "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																								MarkdownDescription: "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
-																								Computed: false,
-																							},
-
 																							"key": {
 																								Description:         "The key to project.",
 																								MarkdownDescription: "The key to project.",
@@ -7957,6 +8246,17 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																								Required: false,
 																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"path": {
+																								Description:         "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																								MarkdownDescription: "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
 																								Computed: false,
 																							},
 																						}),
@@ -8131,15 +8431,15 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"quobyte": {
-																Description:         "Quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
-																MarkdownDescription: "Quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+															"empty_dir": {
+																Description:         "EmptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																MarkdownDescription: "EmptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"group": {
-																		Description:         "Group to map volume access to Default is no group",
-																		MarkdownDescription: "Group to map volume access to Default is no group",
+																	"medium": {
+																		Description:         "What type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																		MarkdownDescription: "What type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
 
 																		Type: types.StringType,
 
@@ -8148,58 +8448,14 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"read_only": {
-																		Description:         "ReadOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.",
-																		MarkdownDescription: "ReadOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"registry": {
-																		Description:         "Registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes",
-																		MarkdownDescription: "Registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"tenant": {
-																		Description:         "Tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin",
-																		MarkdownDescription: "Tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin",
+																	"size_limit": {
+																		Description:         "Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
+																		MarkdownDescription: "Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
 
 																		Type: types.StringType,
 
 																		Required: false,
 																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"user": {
-																		Description:         "User to map volume access to Defaults to serivceaccount user",
-																		MarkdownDescription: "User to map volume access to Defaults to serivceaccount user",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"volume": {
-																		Description:         "Volume is a string that references an already created Quobyte volume by name.",
-																		MarkdownDescription: "Volume is a string that references an already created Quobyte volume by name.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
 																		Computed: false,
 																	},
 																}),
@@ -8209,82 +8465,37 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"config_map": {
-																Description:         "ConfigMap represents a configMap that should populate this volume",
-																MarkdownDescription: "ConfigMap represents a configMap that should populate this volume",
+															"glusterfs": {
+																Description:         "Glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+																MarkdownDescription: "Glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"default_mode": {
-																		Description:         "Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																		MarkdownDescription: "Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"items": {
-																		Description:         "If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																		MarkdownDescription: "If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-
-																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"path": {
-																				Description:         "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																				MarkdownDescription: "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"key": {
-																				Description:         "The key to project.",
-																				MarkdownDescription: "The key to project.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"mode": {
-																				Description:         "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																				MarkdownDescription: "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-
-																				Type: types.Int64Type,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	"endpoints": {
+																		Description:         "EndpointsName is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+																		MarkdownDescription: "EndpointsName is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
 
 																		Type: types.StringType,
 
-																		Required: false,
-																		Optional: true,
+																		Required: true,
+																		Optional: false,
 																		Computed: false,
 																	},
 
-																	"optional": {
-																		Description:         "Specify whether the ConfigMap or its keys must be defined",
-																		MarkdownDescription: "Specify whether the ConfigMap or its keys must be defined",
+																	"path": {
+																		Description:         "Path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+																		MarkdownDescription: "Path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"read_only": {
+																		Description:         "ReadOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+																		MarkdownDescription: "ReadOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
 
 																		Type: types.BoolType,
 
@@ -8305,51 +8516,51 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 														Computed: false,
 													},
 
-													"containers": {
-														Description:         "List of containers belonging to the pod. Containers cannot currently be added or removed. There must be at least one container in a Pod. Cannot be updated.",
-														MarkdownDescription: "List of containers belonging to the pod. Containers cannot currently be added or removed. There must be at least one container in a Pod. Cannot be updated.",
+													"automount_service_account_token": {
+														Description:         "AutomountServiceAccountToken indicates whether a service account token should be automatically mounted.",
+														MarkdownDescription: "AutomountServiceAccountToken indicates whether a service account token should be automatically mounted.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"enable_service_links": {
+														Description:         "EnableServiceLinks indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Optional: Defaults to true.",
+														MarkdownDescription: "EnableServiceLinks indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Optional: Defaults to true.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"init_containers": {
+														Description:         "List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
+														MarkdownDescription: "List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-															"env_from": {
-																Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
-																MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+															"readiness_probe": {
+																Description:         "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"prefix": {
-																		Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-																		MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"secret_ref": {
-																		Description:         "The Secret to select from",
-																		MarkdownDescription: "The Secret to select from",
+																	"exec": {
+																		Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
+																		MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																			"name": {
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			"command": {
+																				Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																				MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"optional": {
-																				Description:         "Specify whether the Secret must be defined",
-																				MarkdownDescription: "Specify whether the Secret must be defined",
-
-																				Type: types.BoolType,
+																				Type: types.ListType{ElemType: types.StringType},
 
 																				Required: false,
 																				Optional: true,
@@ -8362,15 +8573,26 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"config_map_ref": {
-																		Description:         "The ConfigMap to select from",
-																		MarkdownDescription: "The ConfigMap to select from",
+																	"failure_threshold": {
+																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"http_get": {
+																		Description:         "HTTPGet specifies the http request to perform.",
+																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																			"name": {
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			"scheme": {
+																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 
 																				Type: types.StringType,
 
@@ -8379,11 +8601,471 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																				Computed: false,
 																			},
 
-																			"optional": {
-																				Description:         "Specify whether the ConfigMap must be defined",
-																				MarkdownDescription: "Specify whether the ConfigMap must be defined",
+																			"host": {
+																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
 
-																				Type: types.BoolType,
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"http_headers": {
+																				Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																				MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+
+																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"name": {
+																						Description:         "The header field name",
+																						MarkdownDescription: "The header field name",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"value": {
+																						Description:         "The header field value",
+																						MarkdownDescription: "The header field value",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"path": {
+																				Description:         "Path to access on the HTTP server.",
+																				MarkdownDescription: "Path to access on the HTTP server.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"port": {
+																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"initial_delay_seconds": {
+																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"period_seconds": {
+																		Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+																		MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"success_threshold": {
+																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"tcp_socket": {
+																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"host": {
+																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"port": {
+																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"termination_grace_period_seconds": {
+																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"timeout_seconds": {
+																		Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"termination_message_policy": {
+																Description:         "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.",
+																MarkdownDescription: "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"volume_mounts": {
+																Description:         "Pod volumes to mount into the container's filesystem. Cannot be updated.",
+																MarkdownDescription: "Pod volumes to mount into the container's filesystem. Cannot be updated.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "This must match the Name of a Volume.",
+																		MarkdownDescription: "This must match the Name of a Volume.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"read_only": {
+																		Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																		MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"sub_path": {
+																		Description:         "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
+																		MarkdownDescription: "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"sub_path_expr": {
+																		Description:         "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
+																		MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"mount_path": {
+																		Description:         "Path within the container at which the volume should be mounted.  Must not contain ':'.",
+																		MarkdownDescription: "Path within the container at which the volume should be mounted.  Must not contain ':'.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"mount_propagation": {
+																		Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																		MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"command": {
+																Description:         "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+																MarkdownDescription: "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"env": {
+																Description:         "List of environment variables to set in the container. Cannot be updated.",
+																MarkdownDescription: "List of environment variables to set in the container. Cannot be updated.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"name": {
+																		Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																		MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"value": {
+																		Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+																		MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"value_from": {
+																		Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																		MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"config_map_key_ref": {
+																				Description:         "Selects a key of a ConfigMap.",
+																				MarkdownDescription: "Selects a key of a ConfigMap.",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"key": {
+																						Description:         "The key to select.",
+																						MarkdownDescription: "The key to select.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"name": {
+																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"optional": {
+																						Description:         "Specify whether the ConfigMap or its key must be defined",
+																						MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																						Type: types.BoolType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"field_ref": {
+																				Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																				MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"api_version": {
+																						Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																						MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"field_path": {
+																						Description:         "Path of the field to select in the specified API version.",
+																						MarkdownDescription: "Path of the field to select in the specified API version.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"resource_field_ref": {
+																				Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																				MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"divisor": {
+																						Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																						MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"resource": {
+																						Description:         "Required: resource to select",
+																						MarkdownDescription: "Required: resource to select",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"container_name": {
+																						Description:         "Container name: required for volumes, optional for env vars",
+																						MarkdownDescription: "Container name: required for volumes, optional for env vars",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"secret_key_ref": {
+																				Description:         "Selects a key of a secret in the pod's namespace",
+																				MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"key": {
+																						Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																						MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"name": {
+																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"optional": {
+																						Description:         "Specify whether the Secret or its key must be defined",
+																						MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																						Type: types.BoolType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
 
 																				Required: false,
 																				Optional: true,
@@ -8443,39 +9125,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																					"path": {
-																						Description:         "Path to access on the HTTP server.",
-																						MarkdownDescription: "Path to access on the HTTP server.",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"port": {
-																						Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																						MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"scheme": {
-																						Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-																						MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
 																					"host": {
 																						Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
 																						MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -8515,6 +9164,39 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																								Computed: false,
 																							},
 																						}),
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"path": {
+																						Description:         "Path to access on the HTTP server.",
+																						MarkdownDescription: "Path to access on the HTTP server.",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"port": {
+																						Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																						MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"scheme": {
+																						Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+																						MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+
+																						Type: types.StringType,
 
 																						Required: false,
 																						Optional: true,
@@ -8732,100 +9414,11 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"termination_message_path": {
-																Description:         "Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.",
-																MarkdownDescription: "Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"args": {
-																Description:         "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-																MarkdownDescription: "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"image_pull_policy": {
-																Description:         "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
-																MarkdownDescription: "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"readiness_probe": {
-																Description:         "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+															"liveness_probe": {
+																Description:         "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"success_threshold": {
-																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"tcp_socket": {
-																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"host": {
-																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"port": {
-																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"termination_grace_period_seconds": {
-																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
 
 																	"timeout_seconds": {
 																		Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
@@ -8861,22 +9454,33 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"failure_threshold": {
-																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
 																	"http_get": {
 																		Description:         "HTTPGet specifies the http request to perform.",
 																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"port": {
+																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"scheme": {
+																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
 
 																			"host": {
 																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -8933,40 +9537,7 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																				Optional: true,
 																				Computed: false,
 																			},
-
-																			"port": {
-																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"scheme": {
-																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
 																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"initial_delay_seconds": {
-																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
 
 																		Required: false,
 																		Optional: true,
@@ -8983,78 +9554,10 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Optional: true,
 																		Computed: false,
 																	},
-																}),
 
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"security_context": {
-																Description:         "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
-																MarkdownDescription: "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"capabilities": {
-																		Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime.",
-																		MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"add": {
-																				Description:         "Added capabilities",
-																				MarkdownDescription: "Added capabilities",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"drop": {
-																				Description:         "Removed capabilities",
-																				MarkdownDescription: "Removed capabilities",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"privileged": {
-																		Description:         "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.",
-																		MarkdownDescription: "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"run_as_non_root": {
-																		Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																		MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"run_as_group": {
-																		Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																		MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																	"success_threshold": {
+																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
 
 																		Type: types.Int64Type,
 
@@ -9063,93 +9566,15 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"run_as_user": {
-																		Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																		MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"se_linux_options": {
-																		Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																		MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																	"tcp_socket": {
+																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																			"level": {
-																				Description:         "Level is SELinux level label that applies to the container.",
-																				MarkdownDescription: "Level is SELinux level label that applies to the container.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"role": {
-																				Description:         "Role is a SELinux role label that applies to the container.",
-																				MarkdownDescription: "Role is a SELinux role label that applies to the container.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"type": {
-																				Description:         "Type is a SELinux type label that applies to the container.",
-																				MarkdownDescription: "Type is a SELinux type label that applies to the container.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"user": {
-																				Description:         "User is a SELinux user label that applies to the container.",
-																				MarkdownDescription: "User is a SELinux user label that applies to the container.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"seccomp_profile": {
-																		Description:         "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
-																		MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"localhost_profile": {
-																				Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																				MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"type": {
-																				Description:         "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
-																				MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																			"port": {
+																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
 																				Type: types.StringType,
 
@@ -9157,55 +9582,10 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																				Optional: false,
 																				Computed: false,
 																			},
-																		}),
 
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"windows_options": {
-																		Description:         "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																		MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"gmsa_credential_spec": {
-																				Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
-																				MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"gmsa_credential_spec_name": {
-																				Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
-																				MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"host_process": {
-																				Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																				MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-
-																				Type: types.BoolType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"run_as_user_name": {
-																				Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																				MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																			"host": {
+																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 
 																				Type: types.StringType,
 
@@ -9220,33 +9600,33 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"allow_privilege_escalation": {
-																		Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN",
-																		MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN",
+																	"termination_grace_period_seconds": {
+																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
 
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"proc_mount": {
-																		Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.",
-																		MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.",
-
-																		Type: types.StringType,
+																		Type: types.Int64Type,
 
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
 																	},
 
-																	"read_only_root_filesystem": {
-																		Description:         "Whether this container has a read-only root filesystem. Default is false.",
-																		MarkdownDescription: "Whether this container has a read-only root filesystem. Default is false.",
+																	"failure_threshold": {
+																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
 
-																		Type: types.BoolType,
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"initial_delay_seconds": {
+																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																		Type: types.Int64Type,
 
 																		Required: false,
 																		Optional: true,
@@ -9265,17 +9645,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"device_path": {
-																		Description:         "devicePath is the path inside of the container that the device will be mapped to.",
-																		MarkdownDescription: "devicePath is the path inside of the container that the device will be mapped to.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
 																	"name": {
 																		Description:         "name must match the name of a persistentVolumeClaim in the pod",
 																		MarkdownDescription: "name must match the name of a persistentVolumeClaim in the pod",
@@ -9286,33 +9655,10 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Optional: false,
 																		Computed: false,
 																	},
-																}),
 
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"working_dir": {
-																Description:         "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
-																MarkdownDescription: "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"env": {
-																Description:         "List of environment variables to set in the container. Cannot be updated.",
-																MarkdownDescription: "List of environment variables to set in the container. Cannot be updated.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-																		MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+																	"device_path": {
+																		Description:         "devicePath is the path inside of the container that the device will be mapped to.",
+																		MarkdownDescription: "devicePath is the path inside of the container that the device will be mapped to.",
 
 																		Type: types.StringType,
 
@@ -9320,198 +9666,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Optional: false,
 																		Computed: false,
 																	},
-
-																	"value": {
-																		Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-																		MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"value_from": {
-																		Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-																		MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"config_map_key_ref": {
-																				Description:         "Selects a key of a ConfigMap.",
-																				MarkdownDescription: "Selects a key of a ConfigMap.",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"optional": {
-																						Description:         "Specify whether the ConfigMap or its key must be defined",
-																						MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																						Type: types.BoolType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"key": {
-																						Description:         "The key to select.",
-																						MarkdownDescription: "The key to select.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"name": {
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"field_ref": {
-																				Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																				MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"field_path": {
-																						Description:         "Path of the field to select in the specified API version.",
-																						MarkdownDescription: "Path of the field to select in the specified API version.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"api_version": {
-																						Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																						MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"resource_field_ref": {
-																				Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																				MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"resource": {
-																						Description:         "Required: resource to select",
-																						MarkdownDescription: "Required: resource to select",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"container_name": {
-																						Description:         "Container name: required for volumes, optional for env vars",
-																						MarkdownDescription: "Container name: required for volumes, optional for env vars",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"divisor": {
-																						Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																						MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"secret_key_ref": {
-																				Description:         "Selects a key of a secret in the pod's namespace",
-																				MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"key": {
-																						Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																						MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"name": {
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"optional": {
-																						Description:         "Specify whether the Secret or its key must be defined",
-																						MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																						Type: types.BoolType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
 																}),
 
 																Required: false,
@@ -9519,239 +9673,14 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"liveness_probe": {
-																Description:         "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"failure_threshold": {
-																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"period_seconds": {
-																		Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-																		MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"success_threshold": {
-																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"termination_grace_period_seconds": {
-																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"exec": {
-																		Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
-																		MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"command": {
-																				Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-																				MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"initial_delay_seconds": {
-																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"tcp_socket": {
-																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"host": {
-																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"port": {
-																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"timeout_seconds": {
-																		Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"http_get": {
-																		Description:         "HTTPGet specifies the http request to perform.",
-																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"http_headers": {
-																				Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-																				MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
-
-																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"name": {
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"value": {
-																						Description:         "The header field value",
-																						MarkdownDescription: "The header field value",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"path": {
-																				Description:         "Path to access on the HTTP server.",
-																				MarkdownDescription: "Path to access on the HTTP server.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"port": {
-																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"scheme": {
-																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"host": {
-																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.",
-																MarkdownDescription: "Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.",
+															"image": {
+																Description:         "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+																MarkdownDescription: "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
 
 																Type: types.StringType,
 
-																Required: true,
-																Optional: false,
+																Required: false,
+																Optional: true,
 																Computed: false,
 															},
 
@@ -9856,17 +9785,500 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
+															"security_context": {
+																Description:         "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+																MarkdownDescription: "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"capabilities": {
+																		Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime.",
+																		MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"add": {
+																				Description:         "Added capabilities",
+																				MarkdownDescription: "Added capabilities",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"drop": {
+																				Description:         "Removed capabilities",
+																				MarkdownDescription: "Removed capabilities",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"privileged": {
+																		Description:         "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.",
+																		MarkdownDescription: "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"se_linux_options": {
+																		Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																		MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"level": {
+																				Description:         "Level is SELinux level label that applies to the container.",
+																				MarkdownDescription: "Level is SELinux level label that applies to the container.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"role": {
+																				Description:         "Role is a SELinux role label that applies to the container.",
+																				MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"type": {
+																				Description:         "Type is a SELinux type label that applies to the container.",
+																				MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"user": {
+																				Description:         "User is a SELinux user label that applies to the container.",
+																				MarkdownDescription: "User is a SELinux user label that applies to the container.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"windows_options": {
+																		Description:         "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																		MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"gmsa_credential_spec": {
+																				Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+																				MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"gmsa_credential_spec_name": {
+																				Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																				MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"host_process": {
+																				Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																				MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+
+																				Type: types.BoolType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"run_as_user_name": {
+																				Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																				MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"run_as_non_root": {
+																		Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																		MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"run_as_user": {
+																		Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																		MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"seccomp_profile": {
+																		Description:         "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
+																		MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"localhost_profile": {
+																				Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																				MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"type": {
+																				Description:         "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																				MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"allow_privilege_escalation": {
+																		Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN",
+																		MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"proc_mount": {
+																		Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.",
+																		MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"read_only_root_filesystem": {
+																		Description:         "Whether this container has a read-only root filesystem. Default is false.",
+																		MarkdownDescription: "Whether this container has a read-only root filesystem. Default is false.",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"run_as_group": {
+																		Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																		MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"termination_message_path": {
+																Description:         "Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.",
+																MarkdownDescription: "Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"tty": {
+																Description:         "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
+																MarkdownDescription: "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"working_dir": {
+																Description:         "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
+																MarkdownDescription: "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"args": {
+																Description:         "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+																MarkdownDescription: "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"env_from": {
+																Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+																MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"prefix": {
+																		Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+																		MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret_ref": {
+																		Description:         "The Secret to select from",
+																		MarkdownDescription: "The Secret to select from",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"name": {
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"optional": {
+																				Description:         "Specify whether the Secret must be defined",
+																				MarkdownDescription: "Specify whether the Secret must be defined",
+
+																				Type: types.BoolType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"config_map_ref": {
+																		Description:         "The ConfigMap to select from",
+																		MarkdownDescription: "The ConfigMap to select from",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"name": {
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"optional": {
+																				Description:         "Specify whether the ConfigMap must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap must be defined",
+
+																				Type: types.BoolType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"startup_probe": {
 																Description:         "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 																MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+																	"tcp_socket": {
+																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"host": {
+																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"port": {
+																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"termination_grace_period_seconds": {
+																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"exec": {
+																		Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
+																		MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"command": {
+																				Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																				MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
 																	"http_get": {
 																		Description:         "HTTPGet specifies the http request to perform.",
 																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"host": {
+																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
 
 																			"http_headers": {
 																				Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
@@ -9934,17 +10346,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																				Optional: true,
 																				Computed: false,
 																			},
-
-																			"host": {
-																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
 																		}),
 
 																		Required: false,
@@ -9952,9 +10353,42 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"termination_grace_period_seconds": {
-																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																	"initial_delay_seconds": {
+																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"period_seconds": {
+																		Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+																		MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"success_threshold": {
+																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"failure_threshold": {
+																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
 
 																		Type: types.Int64Type,
 
@@ -9973,6 +10407,265 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Optional: true,
 																		Computed: false,
 																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"stdin_once": {
+																Description:         "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false",
+																MarkdownDescription: "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"image_pull_policy": {
+																Description:         "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+																MarkdownDescription: "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.",
+																MarkdownDescription: "Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"stdin": {
+																Description:         "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
+																MarkdownDescription: "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"subdomain": {
+														Description:         "If specified, the fully qualified Pod hostname will be '<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>'. If not specified, the pod will not have a domainname at all.",
+														MarkdownDescription: "If specified, the fully qualified Pod hostname will be '<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>'. If not specified, the pod will not have a domainname at all.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"termination_grace_period_seconds": {
+														Description:         "Optional duration in seconds the pod needs to terminate gracefully. May be decreased in delete request. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). If this value is nil, the default grace period will be used instead. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. Defaults to 30 seconds.",
+														MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully. May be decreased in delete request. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). If this value is nil, the default grace period will be used instead. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. Defaults to 30 seconds.",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"topology_spread_constraints": {
+														Description:         "TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
+														MarkdownDescription: "TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed.",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"label_selector": {
+																Description:         "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
+																MarkdownDescription: "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_labels": {
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_expressions": {
+																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																		MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "key is the label key that the selector applies to.",
+																				MarkdownDescription: "key is the label key that the selector applies to.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"max_skew": {
+																Description:         "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
+																MarkdownDescription: "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
+
+																Type: types.Int64Type,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"topology_key": {
+																Description:         "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. It's a required field.",
+																MarkdownDescription: "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. It's a required field.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"when_unsatisfiable": {
+																Description:         "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location,   but giving higher precedence to topologies that would help reduce the   skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assigment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.",
+																MarkdownDescription: "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location,   but giving higher precedence to topologies that would help reduce the   skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assigment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"host_network": {
+														Description:         "Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.",
+														MarkdownDescription: "Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"priority_class_name": {
+														Description:         "If specified, indicates the pod's priority. 'system-node-critical' and 'system-cluster-critical' are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.",
+														MarkdownDescription: "If specified, indicates the pod's priority. 'system-node-critical' and 'system-cluster-critical' are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"readiness_gates": {
+														Description:         "If specified, all readiness gates will be evaluated for pod readiness. A pod is ready when all its containers are ready AND all conditions specified in the readiness gates have status equal to 'True' More info: https://git.k8s.io/enhancements/keps/sig-network/580-pod-readiness-gates",
+														MarkdownDescription: "If specified, all readiness gates will be evaluated for pod readiness. A pod is ready when all its containers are ready AND all conditions specified in the readiness gates have status equal to 'True' More info: https://git.k8s.io/enhancements/keps/sig-network/580-pod-readiness-gates",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"condition_type": {
+																Description:         "ConditionType refers to a condition in the pod's condition list with matching type.",
+																MarkdownDescription: "ConditionType refers to a condition in the pod's condition list with matching type.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"service_account": {
+														Description:         "DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.",
+														MarkdownDescription: "DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"ephemeral_containers": {
+														Description:         "List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod's ephemeralcontainers subresource. This field is alpha-level and is only honored by servers that enable the EphemeralContainers feature.",
+														MarkdownDescription: "List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod's ephemeralcontainers subresource. This field is alpha-level and is only honored by servers that enable the EphemeralContainers feature.",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"liveness_probe": {
+																Description:         "Probes are not allowed for ephemeral containers.",
+																MarkdownDescription: "Probes are not allowed for ephemeral containers.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 																	"exec": {
 																		Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
@@ -9991,28 +10684,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																				Computed: false,
 																			},
 																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"failure_threshold": {
-																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"initial_delay_seconds": {
-																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
 
 																		Required: false,
 																		Optional: true,
@@ -10074,145 +10745,135 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Optional: true,
 																		Computed: false,
 																	},
-																}),
 
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
+																	"termination_grace_period_seconds": {
+																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
 
-															"termination_message_policy": {
-																Description:         "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.",
-																MarkdownDescription: "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"command": {
-																Description:         "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-																MarkdownDescription: "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"image": {
-																Description:         "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
-																MarkdownDescription: "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"stdin": {
-																Description:         "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
-																MarkdownDescription: "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"stdin_once": {
-																Description:         "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false",
-																MarkdownDescription: "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"tty": {
-																Description:         "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
-																MarkdownDescription: "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"volume_mounts": {
-																Description:         "Pod volumes to mount into the container's filesystem. Cannot be updated.",
-																MarkdownDescription: "Pod volumes to mount into the container's filesystem. Cannot be updated.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"sub_path": {
-																		Description:         "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
-																		MarkdownDescription: "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
-
-																		Type: types.StringType,
+																		Type: types.Int64Type,
 
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
 																	},
 
-																	"sub_path_expr": {
-																		Description:         "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
-																		MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
+																	"failure_threshold": {
+																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
 
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"mount_path": {
-																		Description:         "Path within the container at which the volume should be mounted.  Must not contain ':'.",
-																		MarkdownDescription: "Path within the container at which the volume should be mounted.  Must not contain ':'.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"mount_propagation": {
-																		Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																		MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-
-																		Type: types.StringType,
+																		Type: types.Int64Type,
 
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
 																	},
 
-																	"name": {
-																		Description:         "This must match the Name of a Volume.",
-																		MarkdownDescription: "This must match the Name of a Volume.",
+																	"http_get": {
+																		Description:         "HTTPGet specifies the http request to perform.",
+																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
 
-																		Type: types.StringType,
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																		Required: true,
-																		Optional: false,
+																			"scheme": {
+																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"host": {
+																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"http_headers": {
+																				Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																				MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+
+																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"name": {
+																						Description:         "The header field name",
+																						MarkdownDescription: "The header field name",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"value": {
+																						Description:         "The header field value",
+																						MarkdownDescription: "The header field value",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"path": {
+																				Description:         "Path to access on the HTTP server.",
+																				MarkdownDescription: "Path to access on the HTTP server.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"port": {
+																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
 																		Computed: false,
 																	},
 
-																	"read_only": {
-																		Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
-																		MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																	"initial_delay_seconds": {
+																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 
-																		Type: types.BoolType,
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"timeout_seconds": {
+																		Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																		Type: types.Int64Type,
 
 																		Required: false,
 																		Optional: true,
@@ -10224,388 +10885,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Optional: true,
 																Computed: false,
 															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"enable_service_links": {
-														Description:         "EnableServiceLinks indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Optional: Defaults to true.",
-														MarkdownDescription: "EnableServiceLinks indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Optional: Defaults to true.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"image_pull_secrets": {
-														Description:         "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. For example, in the case of docker, only DockerConfig type secrets are honored. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
-														MarkdownDescription: "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. For example, in the case of docker, only DockerConfig type secrets are honored. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"restart_policy": {
-														Description:         "Restart policy for all containers within the pod. One of Always, OnFailure, Never. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
-														MarkdownDescription: "Restart policy for all containers within the pod. One of Always, OnFailure, Never. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"service_account": {
-														Description:         "DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.",
-														MarkdownDescription: "DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"active_deadline_seconds": {
-														Description:         "Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer.",
-														MarkdownDescription: "Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer.",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"host_aliases": {
-														Description:         "HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified. This is only valid for non-hostNetwork pods.",
-														MarkdownDescription: "HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified. This is only valid for non-hostNetwork pods.",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"hostnames": {
-																Description:         "Hostnames for the above IP address.",
-																MarkdownDescription: "Hostnames for the above IP address.",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"ip": {
-																Description:         "IP address of the host file entry.",
-																MarkdownDescription: "IP address of the host file entry.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"scheduler_name": {
-														Description:         "If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.",
-														MarkdownDescription: "If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"security_context": {
-														Description:         "SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty.  See type description for default values of each field.",
-														MarkdownDescription: "SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty.  See type description for default values of each field.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"fs_group": {
-																Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume.",
-																MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume.",
-
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"run_as_non_root": {
-																Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"se_linux_options": {
-																Description:         "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.",
-																MarkdownDescription: "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"type": {
-																		Description:         "Type is a SELinux type label that applies to the container.",
-																		MarkdownDescription: "Type is a SELinux type label that applies to the container.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"user": {
-																		Description:         "User is a SELinux user label that applies to the container.",
-																		MarkdownDescription: "User is a SELinux user label that applies to the container.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"level": {
-																		Description:         "Level is SELinux level label that applies to the container.",
-																		MarkdownDescription: "Level is SELinux level label that applies to the container.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"role": {
-																		Description:         "Role is a SELinux role label that applies to the container.",
-																		MarkdownDescription: "Role is a SELinux role label that applies to the container.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"sysctls": {
-																Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch.",
-																MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"name": {
-																		Description:         "Name of a property to set",
-																		MarkdownDescription: "Name of a property to set",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"value": {
-																		Description:         "Value of a property to set",
-																		MarkdownDescription: "Value of a property to set",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"windows_options": {
-																Description:         "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"gmsa_credential_spec_name": {
-																		Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
-																		MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"host_process": {
-																		Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																		MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"run_as_user_name": {
-																		Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																		MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"gmsa_credential_spec": {
-																		Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
-																		MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"fs_group_change_policy": {
-																Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.",
-																MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"run_as_group": {
-																Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.",
-																MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.",
-
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"run_as_user": {
-																Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.",
-																MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.",
-
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"seccomp_profile": {
-																Description:         "The seccomp options to use by the containers in this pod.",
-																MarkdownDescription: "The seccomp options to use by the containers in this pod.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"localhost_profile": {
-																		Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																		MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"type": {
-																		Description:         "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
-																		MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"supplemental_groups": {
-																Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container.",
-																MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container.",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"ephemeral_containers": {
-														Description:         "List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod's ephemeralcontainers subresource. This field is alpha-level and is only honored by servers that enable the EphemeralContainers feature.",
-														MarkdownDescription: "List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod's ephemeralcontainers subresource. This field is alpha-level and is only honored by servers that enable the EphemeralContainers feature.",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 															"ports": {
 																Description:         "Ports are not allowed for ephemeral containers.",
@@ -10674,450 +10953,22 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"readiness_probe": {
-																Description:         "Probes are not allowed for ephemeral containers.",
-																MarkdownDescription: "Probes are not allowed for ephemeral containers.",
+															"stdin": {
+																Description:         "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
+																MarkdownDescription: "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
 
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"http_get": {
-																		Description:         "HTTPGet specifies the http request to perform.",
-																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"scheme": {
-																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"host": {
-																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"http_headers": {
-																				Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-																				MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
-
-																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"name": {
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"value": {
-																						Description:         "The header field value",
-																						MarkdownDescription: "The header field value",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"path": {
-																				Description:         "Path to access on the HTTP server.",
-																				MarkdownDescription: "Path to access on the HTTP server.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"port": {
-																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"initial_delay_seconds": {
-																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"termination_grace_period_seconds": {
-																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"timeout_seconds": {
-																		Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"exec": {
-																		Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
-																		MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"command": {
-																				Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-																				MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"failure_threshold": {
-																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"period_seconds": {
-																		Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-																		MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"success_threshold": {
-																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"tcp_socket": {
-																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"host": {
-																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"port": {
-																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
+																Type: types.BoolType,
 
 																Required: false,
 																Optional: true,
 																Computed: false,
 															},
 
-															"startup_probe": {
-																Description:         "Probes are not allowed for ephemeral containers.",
-																MarkdownDescription: "Probes are not allowed for ephemeral containers.",
+															"stdin_once": {
+																Description:         "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false",
+																MarkdownDescription: "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false",
 
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"http_get": {
-																		Description:         "HTTPGet specifies the http request to perform.",
-																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"http_headers": {
-																				Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-																				MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
-
-																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"name": {
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"value": {
-																						Description:         "The header field value",
-																						MarkdownDescription: "The header field value",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"path": {
-																				Description:         "Path to access on the HTTP server.",
-																				MarkdownDescription: "Path to access on the HTTP server.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"port": {
-																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"scheme": {
-																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"host": {
-																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"period_seconds": {
-																		Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-																		MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"success_threshold": {
-																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"tcp_socket": {
-																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"host": {
-																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"port": {
-																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"exec": {
-																		Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
-																		MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"command": {
-																				Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-																				MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"failure_threshold": {
-																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"initial_delay_seconds": {
-																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"termination_grace_period_seconds": {
-																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"timeout_seconds": {
-																		Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
+																Type: types.BoolType,
 
 																Required: false,
 																Optional: true,
@@ -11158,6 +11009,162 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
+															"args": {
+																Description:         "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+																MarkdownDescription: "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"image_pull_policy": {
+																Description:         "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+																MarkdownDescription: "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"resources": {
+																Description:         "Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod.",
+																MarkdownDescription: "Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"requests": {
+																		Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																		MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"limits": {
+																		Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																		MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"volume_mounts": {
+																Description:         "Pod volumes to mount into the container's filesystem. Cannot be updated.",
+																MarkdownDescription: "Pod volumes to mount into the container's filesystem. Cannot be updated.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"mount_path": {
+																		Description:         "Path within the container at which the volume should be mounted.  Must not contain ':'.",
+																		MarkdownDescription: "Path within the container at which the volume should be mounted.  Must not contain ':'.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"mount_propagation": {
+																		Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+																		MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "This must match the Name of a Volume.",
+																		MarkdownDescription: "This must match the Name of a Volume.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"read_only": {
+																		Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+																		MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"sub_path": {
+																		Description:         "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
+																		MarkdownDescription: "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"sub_path_expr": {
+																		Description:         "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
+																		MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"working_dir": {
+																Description:         "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
+																MarkdownDescription: "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"command": {
+																Description:         "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+																MarkdownDescription: "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"env": {
 																Description:         "List of environment variables to set in the container. Cannot be updated.",
 																MarkdownDescription: "List of environment variables to set in the container. Cannot be updated.",
@@ -11181,15 +11188,37 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																			"secret_key_ref": {
-																				Description:         "Selects a key of a secret in the pod's namespace",
-																				MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																			"resource_field_ref": {
+																				Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																				MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 
 																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																					"key": {
-																						Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																						MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					"container_name": {
+																						Description:         "Container name: required for volumes, optional for env vars",
+																						MarkdownDescription: "Container name: required for volumes, optional for env vars",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"divisor": {
+																						Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																						MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"resource": {
+																						Description:         "Required: resource to select",
+																						MarkdownDescription: "Required: resource to select",
 
 																						Type: types.StringType,
 
@@ -11197,6 +11226,18 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																						Optional: false,
 																						Computed: false,
 																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"secret_key_ref": {
+																				Description:         "Selects a key of a secret in the pod's namespace",
+																				MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 																					"name": {
 																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -11217,6 +11258,17 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																						Required: false,
 																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"key": {
+																						Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																						MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
 																						Computed: false,
 																					},
 																				}),
@@ -11304,51 +11356,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																				Optional: true,
 																				Computed: false,
 																			},
-
-																			"resource_field_ref": {
-																				Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																				MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"container_name": {
-																						Description:         "Container name: required for volumes, optional for env vars",
-																						MarkdownDescription: "Container name: required for volumes, optional for env vars",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"divisor": {
-																						Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																						MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"resource": {
-																						Description:         "Required: resource to select",
-																						MarkdownDescription: "Required: resource to select",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
 																		}),
 
 																		Required: false,
@@ -11373,33 +11380,236 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"image_pull_policy": {
-																Description:         "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
-																MarkdownDescription: "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+															"name": {
+																Description:         "Name of the ephemeral container specified as a DNS_LABEL. This name must be unique among all containers, init containers and ephemeral containers.",
+																MarkdownDescription: "Name of the ephemeral container specified as a DNS_LABEL. This name must be unique among all containers, init containers and ephemeral containers.",
 
 																Type: types.StringType,
 
-																Required: false,
-																Optional: true,
+																Required: true,
+																Optional: false,
 																Computed: false,
 															},
 
-															"target_container_name": {
-																Description:         "If set, the name of the container from PodSpec that this ephemeral container targets. The ephemeral container will be run in the namespaces (IPC, PID, etc) of this container. If not set then the ephemeral container is run in whatever namespaces are shared for the pod. Note that the container runtime must support this feature.",
-																MarkdownDescription: "If set, the name of the container from PodSpec that this ephemeral container targets. The ephemeral container will be run in the namespaces (IPC, PID, etc) of this container. If not set then the ephemeral container is run in whatever namespaces are shared for the pod. Note that the container runtime must support this feature.",
+															"readiness_probe": {
+																Description:         "Probes are not allowed for ephemeral containers.",
+																MarkdownDescription: "Probes are not allowed for ephemeral containers.",
 
-																Type: types.StringType,
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
+																	"http_get": {
+																		Description:         "HTTPGet specifies the http request to perform.",
+																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
 
-															"termination_message_path": {
-																Description:         "Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.",
-																MarkdownDescription: "Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.",
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																Type: types.StringType,
+																			"http_headers": {
+																				Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																				MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+
+																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"value": {
+																						Description:         "The header field value",
+																						MarkdownDescription: "The header field value",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"name": {
+																						Description:         "The header field name",
+																						MarkdownDescription: "The header field name",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"path": {
+																				Description:         "Path to access on the HTTP server.",
+																				MarkdownDescription: "Path to access on the HTTP server.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"port": {
+																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"scheme": {
+																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"host": {
+																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"timeout_seconds": {
+																		Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"failure_threshold": {
+																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"initial_delay_seconds": {
+																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"period_seconds": {
+																		Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+																		MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"success_threshold": {
+																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"tcp_socket": {
+																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"host": {
+																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"port": {
+																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"termination_grace_period_seconds": {
+																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"exec": {
+																		Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
+																		MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"command": {
+																				Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																				MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
 
 																Required: false,
 																Optional: true,
@@ -11412,9 +11622,9 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																	"run_as_non_root": {
-																		Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																		MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																	"allow_privilege_escalation": {
+																		Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN",
+																		MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN",
 
 																		Type: types.BoolType,
 
@@ -11423,15 +11633,59 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"se_linux_options": {
-																		Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																		MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																	"privileged": {
+																		Description:         "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.",
+																		MarkdownDescription: "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"proc_mount": {
+																		Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.",
+																		MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"read_only_root_filesystem": {
+																		Description:         "Whether this container has a read-only root filesystem. Default is false.",
+																		MarkdownDescription: "Whether this container has a read-only root filesystem. Default is false.",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"run_as_user": {
+																		Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																		MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"seccomp_profile": {
+																		Description:         "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
+																		MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																			"role": {
-																				Description:         "Role is a SELinux role label that applies to the container.",
-																				MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+																			"localhost_profile": {
+																				Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																				MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
 
 																				Type: types.StringType,
 
@@ -11441,35 +11695,13 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																			},
 
 																			"type": {
-																				Description:         "Type is a SELinux type label that applies to the container.",
-																				MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+																				Description:         "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																				MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
 
 																				Type: types.StringType,
 
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"user": {
-																				Description:         "User is a SELinux user label that applies to the container.",
-																				MarkdownDescription: "User is a SELinux user label that applies to the container.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"level": {
-																				Description:         "Level is SELinux level label that applies to the container.",
-																				MarkdownDescription: "Level is SELinux level label that applies to the container.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
+																				Required: true,
+																				Optional: false,
 																				Computed: false,
 																			},
 																		}),
@@ -11535,50 +11767,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"allow_privilege_escalation": {
-																		Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN",
-																		MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"proc_mount": {
-																		Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.",
-																		MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"read_only_root_filesystem": {
-																		Description:         "Whether this container has a read-only root filesystem. Default is false.",
-																		MarkdownDescription: "Whether this container has a read-only root filesystem. Default is false.",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"run_as_group": {
-																		Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																		MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
 																	"capabilities": {
 																		Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime.",
 																		MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime.",
@@ -11613,20 +11801,9 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"privileged": {
-																		Description:         "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.",
-																		MarkdownDescription: "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"run_as_user": {
-																		Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-																		MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																	"run_as_group": {
+																		Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																		MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
 
 																		Type: types.Int64Type,
 
@@ -11635,15 +11812,37 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"seccomp_profile": {
-																		Description:         "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
-																		MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
+																	"run_as_non_root": {
+																		Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																		MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+
+																		Type: types.BoolType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"se_linux_options": {
+																		Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																		MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																			"localhost_profile": {
-																				Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																				MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																			"level": {
+																				Description:         "Level is SELinux level label that applies to the container.",
+																				MarkdownDescription: "Level is SELinux level label that applies to the container.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"role": {
+																				Description:         "Role is a SELinux role label that applies to the container.",
+																				MarkdownDescription: "Role is a SELinux role label that applies to the container.",
 
 																				Type: types.StringType,
 
@@ -11653,13 +11852,24 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																			},
 
 																			"type": {
-																				Description:         "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
-																				MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																				Description:         "Type is a SELinux type label that applies to the container.",
+																				MarkdownDescription: "Type is a SELinux type label that applies to the container.",
 
 																				Type: types.StringType,
 
-																				Required: true,
-																				Optional: false,
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"user": {
+																				Description:         "User is a SELinux user label that applies to the container.",
+																				MarkdownDescription: "User is a SELinux user label that applies to the container.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
 																				Computed: false,
 																			},
 																		}),
@@ -11675,9 +11885,358 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"stdin": {
-																Description:         "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
-																MarkdownDescription: "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
+															"startup_probe": {
+																Description:         "Probes are not allowed for ephemeral containers.",
+																MarkdownDescription: "Probes are not allowed for ephemeral containers.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"exec": {
+																		Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
+																		MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"command": {
+																				Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																				MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"initial_delay_seconds": {
+																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"timeout_seconds": {
+																		Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+																		MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"failure_threshold": {
+																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"http_get": {
+																		Description:         "HTTPGet specifies the http request to perform.",
+																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"port": {
+																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"scheme": {
+																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"host": {
+																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"http_headers": {
+																				Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+																				MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+
+																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"name": {
+																						Description:         "The header field name",
+																						MarkdownDescription: "The header field name",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"value": {
+																						Description:         "The header field value",
+																						MarkdownDescription: "The header field value",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"path": {
+																				Description:         "Path to access on the HTTP server.",
+																				MarkdownDescription: "Path to access on the HTTP server.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"period_seconds": {
+																		Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+																		MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"success_threshold": {
+																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"tcp_socket": {
+																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"host": {
+																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"port": {
+																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"termination_grace_period_seconds": {
+																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"target_container_name": {
+																Description:         "If set, the name of the container from PodSpec that this ephemeral container targets. The ephemeral container will be run in the namespaces (IPC, PID, etc) of this container. If not set then the ephemeral container is run in whatever namespaces are shared for the pod. Note that the container runtime must support this feature.",
+																MarkdownDescription: "If set, the name of the container from PodSpec that this ephemeral container targets. The ephemeral container will be run in the namespaces (IPC, PID, etc) of this container. If not set then the ephemeral container is run in whatever namespaces are shared for the pod. Note that the container runtime must support this feature.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"termination_message_policy": {
+																Description:         "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.",
+																MarkdownDescription: "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"env_from": {
+																Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+																MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"config_map_ref": {
+																		Description:         "The ConfigMap to select from",
+																		MarkdownDescription: "The ConfigMap to select from",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"optional": {
+																				Description:         "Specify whether the ConfigMap must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap must be defined",
+
+																				Type: types.BoolType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"name": {
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"prefix": {
+																		Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+																		MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret_ref": {
+																		Description:         "The Secret to select from",
+																		MarkdownDescription: "The Secret to select from",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"name": {
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																				Type: types.StringType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"optional": {
+																				Description:         "Specify whether the Secret must be defined",
+																				MarkdownDescription: "Specify whether the Secret must be defined",
+
+																				Type: types.BoolType,
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"image": {
+																Description:         "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images",
+																MarkdownDescription: "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"tty": {
+																Description:         "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
+																MarkdownDescription: "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
 
 																Type: types.BoolType,
 
@@ -11857,22 +12416,34 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																			"http_get": {
-																				Description:         "HTTPGet specifies the http request to perform.",
-																				MarkdownDescription: "HTTPGet specifies the http request to perform.",
+																			"exec": {
+																				Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
+																				MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
 
 																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																					"host": {
-																						Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-																						MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+																					"command": {
+																						Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+																						MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
 
-																						Type: types.StringType,
+																						Type: types.ListType{ElemType: types.StringType},
 
 																						Required: false,
 																						Optional: true,
 																						Computed: false,
 																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"http_get": {
+																				Description:         "HTTPGet specifies the http request to perform.",
+																				MarkdownDescription: "HTTPGet specifies the http request to perform.",
+
+																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 																					"http_headers": {
 																						Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
@@ -11940,6 +12511,17 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																						Optional: true,
 																						Computed: false,
 																					},
+
+																					"host": {
+																						Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+																						MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+
+																						Type: types.StringType,
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
 																				}),
 
 																				Required: false,
@@ -11953,17 +12535,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																					"host": {
-																						Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-																						MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
-
-																						Type: types.StringType,
-
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
 																					"port": {
 																						Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																						MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
@@ -11974,24 +12545,12 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																						Optional: false,
 																						Computed: false,
 																					},
-																				}),
 
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
+																					"host": {
+																						Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+																						MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
 
-																			"exec": {
-																				Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
-																				MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
-
-																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"command": {
-																						Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-																						MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-
-																						Type: types.ListType{ElemType: types.StringType},
+																						Type: types.StringType,
 
 																						Required: false,
 																						Optional: true,
@@ -12016,516 +12575,11 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"stdin_once": {
-																Description:         "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false",
-																MarkdownDescription: "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"termination_message_policy": {
-																Description:         "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.",
-																MarkdownDescription: "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.",
+															"termination_message_path": {
+																Description:         "Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.",
+																MarkdownDescription: "Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.",
 
 																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"tty": {
-																Description:         "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
-																MarkdownDescription: "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"volume_mounts": {
-																Description:         "Pod volumes to mount into the container's filesystem. Cannot be updated.",
-																MarkdownDescription: "Pod volumes to mount into the container's filesystem. Cannot be updated.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"sub_path": {
-																		Description:         "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
-																		MarkdownDescription: "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"sub_path_expr": {
-																		Description:         "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
-																		MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"mount_path": {
-																		Description:         "Path within the container at which the volume should be mounted.  Must not contain ':'.",
-																		MarkdownDescription: "Path within the container at which the volume should be mounted.  Must not contain ':'.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"mount_propagation": {
-																		Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-																		MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"name": {
-																		Description:         "This must match the Name of a Volume.",
-																		MarkdownDescription: "This must match the Name of a Volume.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"read_only": {
-																		Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
-																		MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
-
-																		Type: types.BoolType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"working_dir": {
-																Description:         "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
-																MarkdownDescription: "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"command": {
-																Description:         "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-																MarkdownDescription: "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"image": {
-																Description:         "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images",
-																MarkdownDescription: "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"liveness_probe": {
-																Description:         "Probes are not allowed for ephemeral containers.",
-																MarkdownDescription: "Probes are not allowed for ephemeral containers.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"termination_grace_period_seconds": {
-																		Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-																		MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"timeout_seconds": {
-																		Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"exec": {
-																		Description:         "One and only one of the following should be specified. Exec specifies the action to take.",
-																		MarkdownDescription: "One and only one of the following should be specified. Exec specifies the action to take.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"command": {
-																				Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-																				MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
-
-																				Type: types.ListType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"period_seconds": {
-																		Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-																		MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"initial_delay_seconds": {
-																		Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-																		MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"success_threshold": {
-																		Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"tcp_socket": {
-																		Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-																		MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"port": {
-																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"host": {
-																				Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-																				MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"failure_threshold": {
-																		Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-																		MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"http_get": {
-																		Description:         "HTTPGet specifies the http request to perform.",
-																		MarkdownDescription: "HTTPGet specifies the http request to perform.",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"host": {
-																				Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-																				MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"http_headers": {
-																				Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-																				MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
-
-																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																					"name": {
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-
-																					"value": {
-																						Description:         "The header field value",
-																						MarkdownDescription: "The header field value",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
-																						Computed: false,
-																					},
-																				}),
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"path": {
-																				Description:         "Path to access on the HTTP server.",
-																				MarkdownDescription: "Path to access on the HTTP server.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"port": {
-																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
-																				Computed: false,
-																			},
-
-																			"scheme": {
-																				Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-																				MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the ephemeral container specified as a DNS_LABEL. This name must be unique among all containers, init containers and ephemeral containers.",
-																MarkdownDescription: "Name of the ephemeral container specified as a DNS_LABEL. This name must be unique among all containers, init containers and ephemeral containers.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"resources": {
-																Description:         "Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod.",
-																MarkdownDescription: "Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"limits": {
-																		Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																		MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"requests": {
-																		Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																		MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"args": {
-																Description:         "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-																MarkdownDescription: "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"env_from": {
-																Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
-																MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"config_map_ref": {
-																		Description:         "The ConfigMap to select from",
-																		MarkdownDescription: "The ConfigMap to select from",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"name": {
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"optional": {
-																				Description:         "Specify whether the ConfigMap must be defined",
-																				MarkdownDescription: "Specify whether the ConfigMap must be defined",
-
-																				Type: types.BoolType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"prefix": {
-																		Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-																		MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"secret_ref": {
-																		Description:         "The Secret to select from",
-																		MarkdownDescription: "The Secret to select from",
-
-																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																			"name": {
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																				Type: types.StringType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"optional": {
-																				Description:         "Specify whether the Secret must be defined",
-																				MarkdownDescription: "Specify whether the Secret must be defined",
-
-																				Type: types.BoolType,
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-																		}),
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
 
 																Required: false,
 																Optional: true,
@@ -12538,11 +12592,57 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 														Computed: false,
 													},
 
-													"priority_class_name": {
-														Description:         "If specified, indicates the pod's priority. 'system-node-critical' and 'system-cluster-critical' are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.",
-														MarkdownDescription: "If specified, indicates the pod's priority. 'system-node-critical' and 'system-cluster-critical' are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.",
+													"host_aliases": {
+														Description:         "HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified. This is only valid for non-hostNetwork pods.",
+														MarkdownDescription: "HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified. This is only valid for non-hostNetwork pods.",
 
-														Type: types.StringType,
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"hostnames": {
+																Description:         "Hostnames for the above IP address.",
+																MarkdownDescription: "Hostnames for the above IP address.",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"ip": {
+																Description:         "IP address of the host file entry.",
+																MarkdownDescription: "IP address of the host file entry.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"image_pull_secrets": {
+														Description:         "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. For example, in the case of docker, only DockerConfig type secrets are honored. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
+														MarkdownDescription: "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. For example, in the case of docker, only DockerConfig type secrets are honored. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
 
 														Required: false,
 														Optional: true,
@@ -12582,28 +12682,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 										Optional: true,
 										Computed: false,
 									},
-
-									"progress_deadline_seconds": {
-										Description:         "The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s.",
-										MarkdownDescription: "The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"replicas": {
-										Description:         "Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.",
-										MarkdownDescription: "Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -12616,6 +12694,95 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 								MarkdownDescription: "Most recently observed status of the Deployment.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"collision_count": {
+										Description:         "Count of hash collisions for the Deployment. The Deployment controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ReplicaSet.",
+										MarkdownDescription: "Count of hash collisions for the Deployment. The Deployment controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ReplicaSet.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"conditions": {
+										Description:         "Represents the latest available observations of a deployment's current state.",
+										MarkdownDescription: "Represents the latest available observations of a deployment's current state.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"type": {
+												Description:         "Type of deployment condition.",
+												MarkdownDescription: "Type of deployment condition.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"last_transition_time": {
+												Description:         "Last time the condition transitioned from one status to another.",
+												MarkdownDescription: "Last time the condition transitioned from one status to another.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"last_update_time": {
+												Description:         "The last time this condition was updated.",
+												MarkdownDescription: "The last time this condition was updated.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"message": {
+												Description:         "A human readable message indicating details about the transition.",
+												MarkdownDescription: "A human readable message indicating details about the transition.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"reason": {
+												Description:         "The reason for the condition's last transition.",
+												MarkdownDescription: "The reason for the condition's last transition.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"status": {
+												Description:         "Status of the condition, one of True, False, Unknown.",
+												MarkdownDescription: "Status of the condition, one of True, False, Unknown.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"observed_generation": {
 										Description:         "The generation observed by the deployment controller.",
@@ -12682,95 +12849,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 										Optional: true,
 										Computed: false,
 									},
-
-									"collision_count": {
-										Description:         "Count of hash collisions for the Deployment. The Deployment controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ReplicaSet.",
-										MarkdownDescription: "Count of hash collisions for the Deployment. The Deployment controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ReplicaSet.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"conditions": {
-										Description:         "Represents the latest available observations of a deployment's current state.",
-										MarkdownDescription: "Represents the latest available observations of a deployment's current state.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"last_transition_time": {
-												Description:         "Last time the condition transitioned from one status to another.",
-												MarkdownDescription: "Last time the condition transitioned from one status to another.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"last_update_time": {
-												Description:         "The last time this condition was updated.",
-												MarkdownDescription: "The last time this condition was updated.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"message": {
-												Description:         "A human readable message indicating details about the transition.",
-												MarkdownDescription: "A human readable message indicating details about the transition.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"reason": {
-												Description:         "The reason for the condition's last transition.",
-												MarkdownDescription: "The reason for the condition's last transition.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"status": {
-												Description:         "Status of the condition, one of True, False, Unknown.",
-												MarkdownDescription: "Status of the condition, one of True, False, Unknown.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"type": {
-												Description:         "Type of deployment condition.",
-												MarkdownDescription: "Type of deployment condition.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -12783,84 +12861,6 @@ func (r *RocketmqApacheOrgConsoleV1Alpha1Resource) GetSchema(_ context.Context) 
 								MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
 
 								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"kind": {
-								Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"metadata": {
-								Description:         "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
-								MarkdownDescription: "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"finalizers": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"labels": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"namespace": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"annotations": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
 
 								Required: false,
 								Optional: true,

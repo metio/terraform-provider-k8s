@@ -49,18 +49,166 @@ type NetworkingIstioIoDestinationRuleV1Alpha3GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		WorkloadSelector *struct {
-			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-		} `tfsdk:"workload_selector" yaml:"workloadSelector,omitempty"`
+		TrafficPolicy *struct {
+			Tls *struct {
+				ClientCertificate *string `tfsdk:"client_certificate" yaml:"clientCertificate,omitempty"`
 
-		ExportTo *[]string `tfsdk:"export_to" yaml:"exportTo,omitempty"`
+				CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
 
-		Host *string `tfsdk:"host" yaml:"host,omitempty"`
+				InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
 
-		Subsets *[]struct {
-			TrafficPolicy *struct {
+				Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
+
+				PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
+
+				Sni *string `tfsdk:"sni" yaml:"sni,omitempty"`
+
+				SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
+
+				CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
+			} `tfsdk:"tls" yaml:"tls,omitempty"`
+
+			Tunnel *struct {
+				Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+
+				TargetHost *string `tfsdk:"target_host" yaml:"targetHost,omitempty"`
+
+				TargetPort *int64 `tfsdk:"target_port" yaml:"targetPort,omitempty"`
+			} `tfsdk:"tunnel" yaml:"tunnel,omitempty"`
+
+			ConnectionPool *struct {
+				Http *struct {
+					Http2MaxRequests *int64 `tfsdk:"http2_max_requests" yaml:"http2MaxRequests,omitempty"`
+
+					IdleTimeout *string `tfsdk:"idle_timeout" yaml:"idleTimeout,omitempty"`
+
+					MaxRequestsPerConnection *int64 `tfsdk:"max_requests_per_connection" yaml:"maxRequestsPerConnection,omitempty"`
+
+					MaxRetries *int64 `tfsdk:"max_retries" yaml:"maxRetries,omitempty"`
+
+					UseClientProtocol *bool `tfsdk:"use_client_protocol" yaml:"useClientProtocol,omitempty"`
+
+					H2UpgradePolicy *string `tfsdk:"h2_upgrade_policy" yaml:"h2UpgradePolicy,omitempty"`
+
+					Http1MaxPendingRequests *int64 `tfsdk:"http1_max_pending_requests" yaml:"http1MaxPendingRequests,omitempty"`
+				} `tfsdk:"http" yaml:"http,omitempty"`
+
+				Tcp *struct {
+					ConnectTimeout *string `tfsdk:"connect_timeout" yaml:"connectTimeout,omitempty"`
+
+					MaxConnectionDuration *string `tfsdk:"max_connection_duration" yaml:"maxConnectionDuration,omitempty"`
+
+					MaxConnections *int64 `tfsdk:"max_connections" yaml:"maxConnections,omitempty"`
+
+					TcpKeepalive *struct {
+						Probes *int64 `tfsdk:"probes" yaml:"probes,omitempty"`
+
+						Time *string `tfsdk:"time" yaml:"time,omitempty"`
+
+						Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+					} `tfsdk:"tcp_keepalive" yaml:"tcpKeepalive,omitempty"`
+				} `tfsdk:"tcp" yaml:"tcp,omitempty"`
+			} `tfsdk:"connection_pool" yaml:"connectionPool,omitempty"`
+
+			LoadBalancer *struct {
+				Simple *string `tfsdk:"simple" yaml:"simple,omitempty"`
+
+				WarmupDurationSecs *string `tfsdk:"warmup_duration_secs" yaml:"warmupDurationSecs,omitempty"`
+
+				ConsistentHash *struct {
+					UseSourceIp *bool `tfsdk:"use_source_ip" yaml:"useSourceIp,omitempty"`
+
+					HttpCookie *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+						Ttl *string `tfsdk:"ttl" yaml:"ttl,omitempty"`
+					} `tfsdk:"http_cookie" yaml:"httpCookie,omitempty"`
+
+					HttpHeaderName *string `tfsdk:"http_header_name" yaml:"httpHeaderName,omitempty"`
+
+					HttpQueryParameterName *string `tfsdk:"http_query_parameter_name" yaml:"httpQueryParameterName,omitempty"`
+
+					Maglev *struct {
+						TableSize *int64 `tfsdk:"table_size" yaml:"tableSize,omitempty"`
+					} `tfsdk:"maglev" yaml:"maglev,omitempty"`
+
+					MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
+
+					RingHash *struct {
+						MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
+					} `tfsdk:"ring_hash" yaml:"ringHash,omitempty"`
+				} `tfsdk:"consistent_hash" yaml:"consistentHash,omitempty"`
+
+				LocalityLbSetting *struct {
+					Distribute *[]struct {
+						From *string `tfsdk:"from" yaml:"from,omitempty"`
+
+						To *map[string]string `tfsdk:"to" yaml:"to,omitempty"`
+					} `tfsdk:"distribute" yaml:"distribute,omitempty"`
+
+					Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+
+					Failover *[]struct {
+						From *string `tfsdk:"from" yaml:"from,omitempty"`
+
+						To *string `tfsdk:"to" yaml:"to,omitempty"`
+					} `tfsdk:"failover" yaml:"failover,omitempty"`
+
+					FailoverPriority *[]string `tfsdk:"failover_priority" yaml:"failoverPriority,omitempty"`
+				} `tfsdk:"locality_lb_setting" yaml:"localityLbSetting,omitempty"`
+			} `tfsdk:"load_balancer" yaml:"loadBalancer,omitempty"`
+
+			OutlierDetection *struct {
+				ConsecutiveGatewayErrors *int64 `tfsdk:"consecutive_gateway_errors" yaml:"consecutiveGatewayErrors,omitempty"`
+
+				ConsecutiveLocalOriginFailures *int64 `tfsdk:"consecutive_local_origin_failures" yaml:"consecutiveLocalOriginFailures,omitempty"`
+
+				MaxEjectionPercent *int64 `tfsdk:"max_ejection_percent" yaml:"maxEjectionPercent,omitempty"`
+
+				MinHealthPercent *int64 `tfsdk:"min_health_percent" yaml:"minHealthPercent,omitempty"`
+
+				Consecutive5xxErrors *int64 `tfsdk:"consecutive5xx_errors" yaml:"consecutive5xxErrors,omitempty"`
+
+				ConsecutiveErrors *int64 `tfsdk:"consecutive_errors" yaml:"consecutiveErrors,omitempty"`
+
+				SplitExternalLocalOriginErrors *bool `tfsdk:"split_external_local_origin_errors" yaml:"splitExternalLocalOriginErrors,omitempty"`
+
+				BaseEjectionTime *string `tfsdk:"base_ejection_time" yaml:"baseEjectionTime,omitempty"`
+
+				Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+			} `tfsdk:"outlier_detection" yaml:"outlierDetection,omitempty"`
+
+			PortLevelSettings *[]struct {
+				Port *struct {
+					Number *int64 `tfsdk:"number" yaml:"number,omitempty"`
+				} `tfsdk:"port" yaml:"port,omitempty"`
+
+				Tls *struct {
+					Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
+
+					PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
+
+					Sni *string `tfsdk:"sni" yaml:"sni,omitempty"`
+
+					SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
+
+					CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
+
+					ClientCertificate *string `tfsdk:"client_certificate" yaml:"clientCertificate,omitempty"`
+
+					CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
+
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
+				} `tfsdk:"tls" yaml:"tls,omitempty"`
+
 				ConnectionPool *struct {
 					Http *struct {
+						H2UpgradePolicy *string `tfsdk:"h2_upgrade_policy" yaml:"h2UpgradePolicy,omitempty"`
+
+						Http1MaxPendingRequests *int64 `tfsdk:"http1_max_pending_requests" yaml:"http1MaxPendingRequests,omitempty"`
+
 						Http2MaxRequests *int64 `tfsdk:"http2_max_requests" yaml:"http2MaxRequests,omitempty"`
 
 						IdleTimeout *string `tfsdk:"idle_timeout" yaml:"idleTimeout,omitempty"`
@@ -70,13 +218,15 @@ type NetworkingIstioIoDestinationRuleV1Alpha3GoModel struct {
 						MaxRetries *int64 `tfsdk:"max_retries" yaml:"maxRetries,omitempty"`
 
 						UseClientProtocol *bool `tfsdk:"use_client_protocol" yaml:"useClientProtocol,omitempty"`
-
-						H2UpgradePolicy *string `tfsdk:"h2_upgrade_policy" yaml:"h2UpgradePolicy,omitempty"`
-
-						Http1MaxPendingRequests *int64 `tfsdk:"http1_max_pending_requests" yaml:"http1MaxPendingRequests,omitempty"`
 					} `tfsdk:"http" yaml:"http,omitempty"`
 
 					Tcp *struct {
+						ConnectTimeout *string `tfsdk:"connect_timeout" yaml:"connectTimeout,omitempty"`
+
+						MaxConnectionDuration *string `tfsdk:"max_connection_duration" yaml:"maxConnectionDuration,omitempty"`
+
+						MaxConnections *int64 `tfsdk:"max_connections" yaml:"maxConnections,omitempty"`
+
 						TcpKeepalive *struct {
 							Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 
@@ -84,23 +234,11 @@ type NetworkingIstioIoDestinationRuleV1Alpha3GoModel struct {
 
 							Time *string `tfsdk:"time" yaml:"time,omitempty"`
 						} `tfsdk:"tcp_keepalive" yaml:"tcpKeepalive,omitempty"`
-
-						ConnectTimeout *string `tfsdk:"connect_timeout" yaml:"connectTimeout,omitempty"`
-
-						MaxConnectionDuration *string `tfsdk:"max_connection_duration" yaml:"maxConnectionDuration,omitempty"`
-
-						MaxConnections *int64 `tfsdk:"max_connections" yaml:"maxConnections,omitempty"`
 					} `tfsdk:"tcp" yaml:"tcp,omitempty"`
 				} `tfsdk:"connection_pool" yaml:"connectionPool,omitempty"`
 
 				LoadBalancer *struct {
 					ConsistentHash *struct {
-						MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
-
-						RingHash *struct {
-							MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
-						} `tfsdk:"ring_hash" yaml:"ringHash,omitempty"`
-
 						UseSourceIp *bool `tfsdk:"use_source_ip" yaml:"useSourceIp,omitempty"`
 
 						HttpCookie *struct {
@@ -118,6 +256,12 @@ type NetworkingIstioIoDestinationRuleV1Alpha3GoModel struct {
 						Maglev *struct {
 							TableSize *int64 `tfsdk:"table_size" yaml:"tableSize,omitempty"`
 						} `tfsdk:"maglev" yaml:"maglev,omitempty"`
+
+						MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
+
+						RingHash *struct {
+							MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
+						} `tfsdk:"ring_hash" yaml:"ringHash,omitempty"`
 					} `tfsdk:"consistent_hash" yaml:"consistentHash,omitempty"`
 
 					LocalityLbSetting *struct {
@@ -144,70 +288,180 @@ type NetworkingIstioIoDestinationRuleV1Alpha3GoModel struct {
 				} `tfsdk:"load_balancer" yaml:"loadBalancer,omitempty"`
 
 				OutlierDetection *struct {
+					ConsecutiveErrors *int64 `tfsdk:"consecutive_errors" yaml:"consecutiveErrors,omitempty"`
+
+					Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+					MinHealthPercent *int64 `tfsdk:"min_health_percent" yaml:"minHealthPercent,omitempty"`
+
 					BaseEjectionTime *string `tfsdk:"base_ejection_time" yaml:"baseEjectionTime,omitempty"`
+
+					Consecutive5xxErrors *int64 `tfsdk:"consecutive5xx_errors" yaml:"consecutive5xxErrors,omitempty"`
 
 					ConsecutiveGatewayErrors *int64 `tfsdk:"consecutive_gateway_errors" yaml:"consecutiveGatewayErrors,omitempty"`
 
-					SplitExternalLocalOriginErrors *bool `tfsdk:"split_external_local_origin_errors" yaml:"splitExternalLocalOriginErrors,omitempty"`
+					ConsecutiveLocalOriginFailures *int64 `tfsdk:"consecutive_local_origin_failures" yaml:"consecutiveLocalOriginFailures,omitempty"`
 
+					MaxEjectionPercent *int64 `tfsdk:"max_ejection_percent" yaml:"maxEjectionPercent,omitempty"`
+
+					SplitExternalLocalOriginErrors *bool `tfsdk:"split_external_local_origin_errors" yaml:"splitExternalLocalOriginErrors,omitempty"`
+				} `tfsdk:"outlier_detection" yaml:"outlierDetection,omitempty"`
+			} `tfsdk:"port_level_settings" yaml:"portLevelSettings,omitempty"`
+		} `tfsdk:"traffic_policy" yaml:"trafficPolicy,omitempty"`
+
+		WorkloadSelector *struct {
+			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+		} `tfsdk:"workload_selector" yaml:"workloadSelector,omitempty"`
+
+		ExportTo *[]string `tfsdk:"export_to" yaml:"exportTo,omitempty"`
+
+		Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+		Subsets *[]struct {
+			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			TrafficPolicy *struct {
+				Tls *struct {
+					Sni *string `tfsdk:"sni" yaml:"sni,omitempty"`
+
+					SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
+
+					CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
+
+					ClientCertificate *string `tfsdk:"client_certificate" yaml:"clientCertificate,omitempty"`
+
+					CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
+
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
+
+					Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
+
+					PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
+				} `tfsdk:"tls" yaml:"tls,omitempty"`
+
+				Tunnel *struct {
+					TargetPort *int64 `tfsdk:"target_port" yaml:"targetPort,omitempty"`
+
+					Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+
+					TargetHost *string `tfsdk:"target_host" yaml:"targetHost,omitempty"`
+				} `tfsdk:"tunnel" yaml:"tunnel,omitempty"`
+
+				ConnectionPool *struct {
+					Http *struct {
+						IdleTimeout *string `tfsdk:"idle_timeout" yaml:"idleTimeout,omitempty"`
+
+						MaxRequestsPerConnection *int64 `tfsdk:"max_requests_per_connection" yaml:"maxRequestsPerConnection,omitempty"`
+
+						MaxRetries *int64 `tfsdk:"max_retries" yaml:"maxRetries,omitempty"`
+
+						UseClientProtocol *bool `tfsdk:"use_client_protocol" yaml:"useClientProtocol,omitempty"`
+
+						H2UpgradePolicy *string `tfsdk:"h2_upgrade_policy" yaml:"h2UpgradePolicy,omitempty"`
+
+						Http1MaxPendingRequests *int64 `tfsdk:"http1_max_pending_requests" yaml:"http1MaxPendingRequests,omitempty"`
+
+						Http2MaxRequests *int64 `tfsdk:"http2_max_requests" yaml:"http2MaxRequests,omitempty"`
+					} `tfsdk:"http" yaml:"http,omitempty"`
+
+					Tcp *struct {
+						ConnectTimeout *string `tfsdk:"connect_timeout" yaml:"connectTimeout,omitempty"`
+
+						MaxConnectionDuration *string `tfsdk:"max_connection_duration" yaml:"maxConnectionDuration,omitempty"`
+
+						MaxConnections *int64 `tfsdk:"max_connections" yaml:"maxConnections,omitempty"`
+
+						TcpKeepalive *struct {
+							Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+							Probes *int64 `tfsdk:"probes" yaml:"probes,omitempty"`
+
+							Time *string `tfsdk:"time" yaml:"time,omitempty"`
+						} `tfsdk:"tcp_keepalive" yaml:"tcpKeepalive,omitempty"`
+					} `tfsdk:"tcp" yaml:"tcp,omitempty"`
+				} `tfsdk:"connection_pool" yaml:"connectionPool,omitempty"`
+
+				LoadBalancer *struct {
+					WarmupDurationSecs *string `tfsdk:"warmup_duration_secs" yaml:"warmupDurationSecs,omitempty"`
+
+					ConsistentHash *struct {
+						Maglev *struct {
+							TableSize *int64 `tfsdk:"table_size" yaml:"tableSize,omitempty"`
+						} `tfsdk:"maglev" yaml:"maglev,omitempty"`
+
+						MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
+
+						RingHash *struct {
+							MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
+						} `tfsdk:"ring_hash" yaml:"ringHash,omitempty"`
+
+						UseSourceIp *bool `tfsdk:"use_source_ip" yaml:"useSourceIp,omitempty"`
+
+						HttpCookie *struct {
+							Ttl *string `tfsdk:"ttl" yaml:"ttl,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Path *string `tfsdk:"path" yaml:"path,omitempty"`
+						} `tfsdk:"http_cookie" yaml:"httpCookie,omitempty"`
+
+						HttpHeaderName *string `tfsdk:"http_header_name" yaml:"httpHeaderName,omitempty"`
+
+						HttpQueryParameterName *string `tfsdk:"http_query_parameter_name" yaml:"httpQueryParameterName,omitempty"`
+					} `tfsdk:"consistent_hash" yaml:"consistentHash,omitempty"`
+
+					LocalityLbSetting *struct {
+						Distribute *[]struct {
+							From *string `tfsdk:"from" yaml:"from,omitempty"`
+
+							To *map[string]string `tfsdk:"to" yaml:"to,omitempty"`
+						} `tfsdk:"distribute" yaml:"distribute,omitempty"`
+
+						Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+
+						Failover *[]struct {
+							From *string `tfsdk:"from" yaml:"from,omitempty"`
+
+							To *string `tfsdk:"to" yaml:"to,omitempty"`
+						} `tfsdk:"failover" yaml:"failover,omitempty"`
+
+						FailoverPriority *[]string `tfsdk:"failover_priority" yaml:"failoverPriority,omitempty"`
+					} `tfsdk:"locality_lb_setting" yaml:"localityLbSetting,omitempty"`
+
+					Simple *string `tfsdk:"simple" yaml:"simple,omitempty"`
+				} `tfsdk:"load_balancer" yaml:"loadBalancer,omitempty"`
+
+				OutlierDetection *struct {
 					Consecutive5xxErrors *int64 `tfsdk:"consecutive5xx_errors" yaml:"consecutive5xxErrors,omitempty"`
 
 					ConsecutiveErrors *int64 `tfsdk:"consecutive_errors" yaml:"consecutiveErrors,omitempty"`
 
-					ConsecutiveLocalOriginFailures *int64 `tfsdk:"consecutive_local_origin_failures" yaml:"consecutiveLocalOriginFailures,omitempty"`
+					ConsecutiveGatewayErrors *int64 `tfsdk:"consecutive_gateway_errors" yaml:"consecutiveGatewayErrors,omitempty"`
 
-					Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+					ConsecutiveLocalOriginFailures *int64 `tfsdk:"consecutive_local_origin_failures" yaml:"consecutiveLocalOriginFailures,omitempty"`
 
 					MaxEjectionPercent *int64 `tfsdk:"max_ejection_percent" yaml:"maxEjectionPercent,omitempty"`
 
+					BaseEjectionTime *string `tfsdk:"base_ejection_time" yaml:"baseEjectionTime,omitempty"`
+
+					Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
 					MinHealthPercent *int64 `tfsdk:"min_health_percent" yaml:"minHealthPercent,omitempty"`
+
+					SplitExternalLocalOriginErrors *bool `tfsdk:"split_external_local_origin_errors" yaml:"splitExternalLocalOriginErrors,omitempty"`
 				} `tfsdk:"outlier_detection" yaml:"outlierDetection,omitempty"`
 
 				PortLevelSettings *[]struct {
-					OutlierDetection *struct {
-						Consecutive5xxErrors *int64 `tfsdk:"consecutive5xx_errors" yaml:"consecutive5xxErrors,omitempty"`
-
-						MinHealthPercent *int64 `tfsdk:"min_health_percent" yaml:"minHealthPercent,omitempty"`
-
-						SplitExternalLocalOriginErrors *bool `tfsdk:"split_external_local_origin_errors" yaml:"splitExternalLocalOriginErrors,omitempty"`
-
-						BaseEjectionTime *string `tfsdk:"base_ejection_time" yaml:"baseEjectionTime,omitempty"`
-
-						ConsecutiveErrors *int64 `tfsdk:"consecutive_errors" yaml:"consecutiveErrors,omitempty"`
-
-						ConsecutiveGatewayErrors *int64 `tfsdk:"consecutive_gateway_errors" yaml:"consecutiveGatewayErrors,omitempty"`
-
-						ConsecutiveLocalOriginFailures *int64 `tfsdk:"consecutive_local_origin_failures" yaml:"consecutiveLocalOriginFailures,omitempty"`
-
-						Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-						MaxEjectionPercent *int64 `tfsdk:"max_ejection_percent" yaml:"maxEjectionPercent,omitempty"`
-					} `tfsdk:"outlier_detection" yaml:"outlierDetection,omitempty"`
-
-					Port *struct {
-						Number *int64 `tfsdk:"number" yaml:"number,omitempty"`
-					} `tfsdk:"port" yaml:"port,omitempty"`
-
-					Tls *struct {
-						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
-
-						Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
-
-						PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
-
-						Sni *string `tfsdk:"sni" yaml:"sni,omitempty"`
-
-						SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
-
-						CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
-
-						ClientCertificate *string `tfsdk:"client_certificate" yaml:"clientCertificate,omitempty"`
-
-						CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
-					} `tfsdk:"tls" yaml:"tls,omitempty"`
-
 					ConnectionPool *struct {
 						Http *struct {
+							H2UpgradePolicy *string `tfsdk:"h2_upgrade_policy" yaml:"h2UpgradePolicy,omitempty"`
+
+							Http1MaxPendingRequests *int64 `tfsdk:"http1_max_pending_requests" yaml:"http1MaxPendingRequests,omitempty"`
+
+							Http2MaxRequests *int64 `tfsdk:"http2_max_requests" yaml:"http2MaxRequests,omitempty"`
+
 							IdleTimeout *string `tfsdk:"idle_timeout" yaml:"idleTimeout,omitempty"`
 
 							MaxRequestsPerConnection *int64 `tfsdk:"max_requests_per_connection" yaml:"maxRequestsPerConnection,omitempty"`
@@ -215,12 +469,6 @@ type NetworkingIstioIoDestinationRuleV1Alpha3GoModel struct {
 							MaxRetries *int64 `tfsdk:"max_retries" yaml:"maxRetries,omitempty"`
 
 							UseClientProtocol *bool `tfsdk:"use_client_protocol" yaml:"useClientProtocol,omitempty"`
-
-							H2UpgradePolicy *string `tfsdk:"h2_upgrade_policy" yaml:"h2UpgradePolicy,omitempty"`
-
-							Http1MaxPendingRequests *int64 `tfsdk:"http1_max_pending_requests" yaml:"http1MaxPendingRequests,omitempty"`
-
-							Http2MaxRequests *int64 `tfsdk:"http2_max_requests" yaml:"http2MaxRequests,omitempty"`
 						} `tfsdk:"http" yaml:"http,omitempty"`
 
 						Tcp *struct {
@@ -242,6 +490,12 @@ type NetworkingIstioIoDestinationRuleV1Alpha3GoModel struct {
 
 					LoadBalancer *struct {
 						ConsistentHash *struct {
+							RingHash *struct {
+								MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
+							} `tfsdk:"ring_hash" yaml:"ringHash,omitempty"`
+
+							UseSourceIp *bool `tfsdk:"use_source_ip" yaml:"useSourceIp,omitempty"`
+
 							HttpCookie *struct {
 								Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
@@ -259,23 +513,9 @@ type NetworkingIstioIoDestinationRuleV1Alpha3GoModel struct {
 							} `tfsdk:"maglev" yaml:"maglev,omitempty"`
 
 							MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
-
-							RingHash *struct {
-								MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
-							} `tfsdk:"ring_hash" yaml:"ringHash,omitempty"`
-
-							UseSourceIp *bool `tfsdk:"use_source_ip" yaml:"useSourceIp,omitempty"`
 						} `tfsdk:"consistent_hash" yaml:"consistentHash,omitempty"`
 
 						LocalityLbSetting *struct {
-							FailoverPriority *[]string `tfsdk:"failover_priority" yaml:"failoverPriority,omitempty"`
-
-							Distribute *[]struct {
-								From *string `tfsdk:"from" yaml:"from,omitempty"`
-
-								To *map[string]string `tfsdk:"to" yaml:"to,omitempty"`
-							} `tfsdk:"distribute" yaml:"distribute,omitempty"`
-
 							Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
 
 							Failover *[]struct {
@@ -283,305 +523,65 @@ type NetworkingIstioIoDestinationRuleV1Alpha3GoModel struct {
 
 								To *string `tfsdk:"to" yaml:"to,omitempty"`
 							} `tfsdk:"failover" yaml:"failover,omitempty"`
+
+							FailoverPriority *[]string `tfsdk:"failover_priority" yaml:"failoverPriority,omitempty"`
+
+							Distribute *[]struct {
+								From *string `tfsdk:"from" yaml:"from,omitempty"`
+
+								To *map[string]string `tfsdk:"to" yaml:"to,omitempty"`
+							} `tfsdk:"distribute" yaml:"distribute,omitempty"`
 						} `tfsdk:"locality_lb_setting" yaml:"localityLbSetting,omitempty"`
 
 						Simple *string `tfsdk:"simple" yaml:"simple,omitempty"`
 
 						WarmupDurationSecs *string `tfsdk:"warmup_duration_secs" yaml:"warmupDurationSecs,omitempty"`
 					} `tfsdk:"load_balancer" yaml:"loadBalancer,omitempty"`
-				} `tfsdk:"port_level_settings" yaml:"portLevelSettings,omitempty"`
 
-				Tls *struct {
-					Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
-
-					PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
-
-					Sni *string `tfsdk:"sni" yaml:"sni,omitempty"`
-
-					SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
-
-					CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
-
-					ClientCertificate *string `tfsdk:"client_certificate" yaml:"clientCertificate,omitempty"`
-
-					CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
-
-					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
-				} `tfsdk:"tls" yaml:"tls,omitempty"`
-
-				Tunnel *struct {
-					Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
-
-					TargetHost *string `tfsdk:"target_host" yaml:"targetHost,omitempty"`
-
-					TargetPort *int64 `tfsdk:"target_port" yaml:"targetPort,omitempty"`
-				} `tfsdk:"tunnel" yaml:"tunnel,omitempty"`
-			} `tfsdk:"traffic_policy" yaml:"trafficPolicy,omitempty"`
-
-			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"subsets" yaml:"subsets,omitempty"`
-
-		TrafficPolicy *struct {
-			ConnectionPool *struct {
-				Http *struct {
-					Http1MaxPendingRequests *int64 `tfsdk:"http1_max_pending_requests" yaml:"http1MaxPendingRequests,omitempty"`
-
-					Http2MaxRequests *int64 `tfsdk:"http2_max_requests" yaml:"http2MaxRequests,omitempty"`
-
-					IdleTimeout *string `tfsdk:"idle_timeout" yaml:"idleTimeout,omitempty"`
-
-					MaxRequestsPerConnection *int64 `tfsdk:"max_requests_per_connection" yaml:"maxRequestsPerConnection,omitempty"`
-
-					MaxRetries *int64 `tfsdk:"max_retries" yaml:"maxRetries,omitempty"`
-
-					UseClientProtocol *bool `tfsdk:"use_client_protocol" yaml:"useClientProtocol,omitempty"`
-
-					H2UpgradePolicy *string `tfsdk:"h2_upgrade_policy" yaml:"h2UpgradePolicy,omitempty"`
-				} `tfsdk:"http" yaml:"http,omitempty"`
-
-				Tcp *struct {
-					ConnectTimeout *string `tfsdk:"connect_timeout" yaml:"connectTimeout,omitempty"`
-
-					MaxConnectionDuration *string `tfsdk:"max_connection_duration" yaml:"maxConnectionDuration,omitempty"`
-
-					MaxConnections *int64 `tfsdk:"max_connections" yaml:"maxConnections,omitempty"`
-
-					TcpKeepalive *struct {
-						Time *string `tfsdk:"time" yaml:"time,omitempty"`
+					OutlierDetection *struct {
+						ConsecutiveGatewayErrors *int64 `tfsdk:"consecutive_gateway_errors" yaml:"consecutiveGatewayErrors,omitempty"`
 
 						Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 
-						Probes *int64 `tfsdk:"probes" yaml:"probes,omitempty"`
-					} `tfsdk:"tcp_keepalive" yaml:"tcpKeepalive,omitempty"`
-				} `tfsdk:"tcp" yaml:"tcp,omitempty"`
-			} `tfsdk:"connection_pool" yaml:"connectionPool,omitempty"`
+						MaxEjectionPercent *int64 `tfsdk:"max_ejection_percent" yaml:"maxEjectionPercent,omitempty"`
 
-			LoadBalancer *struct {
-				ConsistentHash *struct {
-					HttpQueryParameterName *string `tfsdk:"http_query_parameter_name" yaml:"httpQueryParameterName,omitempty"`
+						MinHealthPercent *int64 `tfsdk:"min_health_percent" yaml:"minHealthPercent,omitempty"`
 
-					Maglev *struct {
-						TableSize *int64 `tfsdk:"table_size" yaml:"tableSize,omitempty"`
-					} `tfsdk:"maglev" yaml:"maglev,omitempty"`
+						SplitExternalLocalOriginErrors *bool `tfsdk:"split_external_local_origin_errors" yaml:"splitExternalLocalOriginErrors,omitempty"`
 
-					MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
+						BaseEjectionTime *string `tfsdk:"base_ejection_time" yaml:"baseEjectionTime,omitempty"`
 
-					RingHash *struct {
-						MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
-					} `tfsdk:"ring_hash" yaml:"ringHash,omitempty"`
+						Consecutive5xxErrors *int64 `tfsdk:"consecutive5xx_errors" yaml:"consecutive5xxErrors,omitempty"`
 
-					UseSourceIp *bool `tfsdk:"use_source_ip" yaml:"useSourceIp,omitempty"`
+						ConsecutiveErrors *int64 `tfsdk:"consecutive_errors" yaml:"consecutiveErrors,omitempty"`
 
-					HttpCookie *struct {
-						Path *string `tfsdk:"path" yaml:"path,omitempty"`
+						ConsecutiveLocalOriginFailures *int64 `tfsdk:"consecutive_local_origin_failures" yaml:"consecutiveLocalOriginFailures,omitempty"`
+					} `tfsdk:"outlier_detection" yaml:"outlierDetection,omitempty"`
 
-						Ttl *string `tfsdk:"ttl" yaml:"ttl,omitempty"`
+					Port *struct {
+						Number *int64 `tfsdk:"number" yaml:"number,omitempty"`
+					} `tfsdk:"port" yaml:"port,omitempty"`
 
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-					} `tfsdk:"http_cookie" yaml:"httpCookie,omitempty"`
+					Tls *struct {
+						Sni *string `tfsdk:"sni" yaml:"sni,omitempty"`
 
-					HttpHeaderName *string `tfsdk:"http_header_name" yaml:"httpHeaderName,omitempty"`
-				} `tfsdk:"consistent_hash" yaml:"consistentHash,omitempty"`
+						SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
 
-				LocalityLbSetting *struct {
-					Failover *[]struct {
-						From *string `tfsdk:"from" yaml:"from,omitempty"`
+						CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
 
-						To *string `tfsdk:"to" yaml:"to,omitempty"`
-					} `tfsdk:"failover" yaml:"failover,omitempty"`
+						ClientCertificate *string `tfsdk:"client_certificate" yaml:"clientCertificate,omitempty"`
 
-					FailoverPriority *[]string `tfsdk:"failover_priority" yaml:"failoverPriority,omitempty"`
+						CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
 
-					Distribute *[]struct {
-						From *string `tfsdk:"from" yaml:"from,omitempty"`
+						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
 
-						To *map[string]string `tfsdk:"to" yaml:"to,omitempty"`
-					} `tfsdk:"distribute" yaml:"distribute,omitempty"`
+						Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
 
-					Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
-				} `tfsdk:"locality_lb_setting" yaml:"localityLbSetting,omitempty"`
-
-				Simple *string `tfsdk:"simple" yaml:"simple,omitempty"`
-
-				WarmupDurationSecs *string `tfsdk:"warmup_duration_secs" yaml:"warmupDurationSecs,omitempty"`
-			} `tfsdk:"load_balancer" yaml:"loadBalancer,omitempty"`
-
-			OutlierDetection *struct {
-				BaseEjectionTime *string `tfsdk:"base_ejection_time" yaml:"baseEjectionTime,omitempty"`
-
-				Consecutive5xxErrors *int64 `tfsdk:"consecutive5xx_errors" yaml:"consecutive5xxErrors,omitempty"`
-
-				ConsecutiveGatewayErrors *int64 `tfsdk:"consecutive_gateway_errors" yaml:"consecutiveGatewayErrors,omitempty"`
-
-				ConsecutiveLocalOriginFailures *int64 `tfsdk:"consecutive_local_origin_failures" yaml:"consecutiveLocalOriginFailures,omitempty"`
-
-				MinHealthPercent *int64 `tfsdk:"min_health_percent" yaml:"minHealthPercent,omitempty"`
-
-				SplitExternalLocalOriginErrors *bool `tfsdk:"split_external_local_origin_errors" yaml:"splitExternalLocalOriginErrors,omitempty"`
-
-				ConsecutiveErrors *int64 `tfsdk:"consecutive_errors" yaml:"consecutiveErrors,omitempty"`
-
-				Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-				MaxEjectionPercent *int64 `tfsdk:"max_ejection_percent" yaml:"maxEjectionPercent,omitempty"`
-			} `tfsdk:"outlier_detection" yaml:"outlierDetection,omitempty"`
-
-			PortLevelSettings *[]struct {
-				OutlierDetection *struct {
-					BaseEjectionTime *string `tfsdk:"base_ejection_time" yaml:"baseEjectionTime,omitempty"`
-
-					ConsecutiveErrors *int64 `tfsdk:"consecutive_errors" yaml:"consecutiveErrors,omitempty"`
-
-					ConsecutiveGatewayErrors *int64 `tfsdk:"consecutive_gateway_errors" yaml:"consecutiveGatewayErrors,omitempty"`
-
-					ConsecutiveLocalOriginFailures *int64 `tfsdk:"consecutive_local_origin_failures" yaml:"consecutiveLocalOriginFailures,omitempty"`
-
-					SplitExternalLocalOriginErrors *bool `tfsdk:"split_external_local_origin_errors" yaml:"splitExternalLocalOriginErrors,omitempty"`
-
-					Consecutive5xxErrors *int64 `tfsdk:"consecutive5xx_errors" yaml:"consecutive5xxErrors,omitempty"`
-
-					Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-					MaxEjectionPercent *int64 `tfsdk:"max_ejection_percent" yaml:"maxEjectionPercent,omitempty"`
-
-					MinHealthPercent *int64 `tfsdk:"min_health_percent" yaml:"minHealthPercent,omitempty"`
-				} `tfsdk:"outlier_detection" yaml:"outlierDetection,omitempty"`
-
-				Port *struct {
-					Number *int64 `tfsdk:"number" yaml:"number,omitempty"`
-				} `tfsdk:"port" yaml:"port,omitempty"`
-
-				Tls *struct {
-					ClientCertificate *string `tfsdk:"client_certificate" yaml:"clientCertificate,omitempty"`
-
-					CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
-
-					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
-
-					Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
-
-					PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
-
-					Sni *string `tfsdk:"sni" yaml:"sni,omitempty"`
-
-					SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
-
-					CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
-				} `tfsdk:"tls" yaml:"tls,omitempty"`
-
-				ConnectionPool *struct {
-					Http *struct {
-						H2UpgradePolicy *string `tfsdk:"h2_upgrade_policy" yaml:"h2UpgradePolicy,omitempty"`
-
-						Http1MaxPendingRequests *int64 `tfsdk:"http1_max_pending_requests" yaml:"http1MaxPendingRequests,omitempty"`
-
-						Http2MaxRequests *int64 `tfsdk:"http2_max_requests" yaml:"http2MaxRequests,omitempty"`
-
-						IdleTimeout *string `tfsdk:"idle_timeout" yaml:"idleTimeout,omitempty"`
-
-						MaxRequestsPerConnection *int64 `tfsdk:"max_requests_per_connection" yaml:"maxRequestsPerConnection,omitempty"`
-
-						MaxRetries *int64 `tfsdk:"max_retries" yaml:"maxRetries,omitempty"`
-
-						UseClientProtocol *bool `tfsdk:"use_client_protocol" yaml:"useClientProtocol,omitempty"`
-					} `tfsdk:"http" yaml:"http,omitempty"`
-
-					Tcp *struct {
-						ConnectTimeout *string `tfsdk:"connect_timeout" yaml:"connectTimeout,omitempty"`
-
-						MaxConnectionDuration *string `tfsdk:"max_connection_duration" yaml:"maxConnectionDuration,omitempty"`
-
-						MaxConnections *int64 `tfsdk:"max_connections" yaml:"maxConnections,omitempty"`
-
-						TcpKeepalive *struct {
-							Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-							Probes *int64 `tfsdk:"probes" yaml:"probes,omitempty"`
-
-							Time *string `tfsdk:"time" yaml:"time,omitempty"`
-						} `tfsdk:"tcp_keepalive" yaml:"tcpKeepalive,omitempty"`
-					} `tfsdk:"tcp" yaml:"tcp,omitempty"`
-				} `tfsdk:"connection_pool" yaml:"connectionPool,omitempty"`
-
-				LoadBalancer *struct {
-					Simple *string `tfsdk:"simple" yaml:"simple,omitempty"`
-
-					WarmupDurationSecs *string `tfsdk:"warmup_duration_secs" yaml:"warmupDurationSecs,omitempty"`
-
-					ConsistentHash *struct {
-						HttpCookie *struct {
-							Ttl *string `tfsdk:"ttl" yaml:"ttl,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Path *string `tfsdk:"path" yaml:"path,omitempty"`
-						} `tfsdk:"http_cookie" yaml:"httpCookie,omitempty"`
-
-						HttpHeaderName *string `tfsdk:"http_header_name" yaml:"httpHeaderName,omitempty"`
-
-						HttpQueryParameterName *string `tfsdk:"http_query_parameter_name" yaml:"httpQueryParameterName,omitempty"`
-
-						Maglev *struct {
-							TableSize *int64 `tfsdk:"table_size" yaml:"tableSize,omitempty"`
-						} `tfsdk:"maglev" yaml:"maglev,omitempty"`
-
-						MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
-
-						RingHash *struct {
-							MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
-						} `tfsdk:"ring_hash" yaml:"ringHash,omitempty"`
-
-						UseSourceIp *bool `tfsdk:"use_source_ip" yaml:"useSourceIp,omitempty"`
-					} `tfsdk:"consistent_hash" yaml:"consistentHash,omitempty"`
-
-					LocalityLbSetting *struct {
-						Failover *[]struct {
-							From *string `tfsdk:"from" yaml:"from,omitempty"`
-
-							To *string `tfsdk:"to" yaml:"to,omitempty"`
-						} `tfsdk:"failover" yaml:"failover,omitempty"`
-
-						FailoverPriority *[]string `tfsdk:"failover_priority" yaml:"failoverPriority,omitempty"`
-
-						Distribute *[]struct {
-							From *string `tfsdk:"from" yaml:"from,omitempty"`
-
-							To *map[string]string `tfsdk:"to" yaml:"to,omitempty"`
-						} `tfsdk:"distribute" yaml:"distribute,omitempty"`
-
-						Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
-					} `tfsdk:"locality_lb_setting" yaml:"localityLbSetting,omitempty"`
-				} `tfsdk:"load_balancer" yaml:"loadBalancer,omitempty"`
-			} `tfsdk:"port_level_settings" yaml:"portLevelSettings,omitempty"`
-
-			Tls *struct {
-				CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
-
-				ClientCertificate *string `tfsdk:"client_certificate" yaml:"clientCertificate,omitempty"`
-
-				CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
-
-				InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
-
-				Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
-
-				PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
-
-				Sni *string `tfsdk:"sni" yaml:"sni,omitempty"`
-
-				SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
-			} `tfsdk:"tls" yaml:"tls,omitempty"`
-
-			Tunnel *struct {
-				TargetHost *string `tfsdk:"target_host" yaml:"targetHost,omitempty"`
-
-				TargetPort *int64 `tfsdk:"target_port" yaml:"targetPort,omitempty"`
-
-				Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
-			} `tfsdk:"tunnel" yaml:"tunnel,omitempty"`
-		} `tfsdk:"traffic_policy" yaml:"trafficPolicy,omitempty"`
+						PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
+					} `tfsdk:"tls" yaml:"tls,omitempty"`
+				} `tfsdk:"port_level_settings" yaml:"portLevelSettings,omitempty"`
+			} `tfsdk:"traffic_policy" yaml:"trafficPolicy,omitempty"`
+		} `tfsdk:"subsets" yaml:"subsets,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -682,62 +682,870 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"workload_selector": {
+					"traffic_policy": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"match_labels": {
-								Description:         "",
-								MarkdownDescription: "",
+							"tls": {
+								Description:         "TLS related settings for connections to the upstream service.",
+								MarkdownDescription: "TLS related settings for connections to the upstream service.",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"client_certificate": {
+										Description:         "REQUIRED if mode is 'MUTUAL'.",
+										MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"credential_name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"insecure_skip_verify": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"mode": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"private_key": {
+										Description:         "REQUIRED if mode is 'MUTUAL'.",
+										MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"sni": {
+										Description:         "SNI string to present to the server during TLS handshake.",
+										MarkdownDescription: "SNI string to present to the server during TLS handshake.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"subject_alt_names": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"ca_certificates": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
-						}),
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"export_to": {
-						Description:         "A list of namespaces to which this destination rule is exported.",
-						MarkdownDescription: "A list of namespaces to which this destination rule is exported.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"host": {
-						Description:         "The name of a service from the service registry.",
-						MarkdownDescription: "The name of a service from the service registry.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"subsets": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"traffic_policy": {
-								Description:         "Traffic policies that apply to this subset.",
-								MarkdownDescription: "Traffic policies that apply to this subset.",
+							"tunnel": {
+								Description:         "",
+								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"protocol": {
+										Description:         "Specifies which protocol to use for tunneling the downstream connection.",
+										MarkdownDescription: "Specifies which protocol to use for tunneling the downstream connection.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"target_host": {
+										Description:         "Specifies a host to which the downstream connection is tunneled.",
+										MarkdownDescription: "Specifies a host to which the downstream connection is tunneled.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"target_port": {
+										Description:         "Specifies a port to which the downstream connection is tunneled.",
+										MarkdownDescription: "Specifies a port to which the downstream connection is tunneled.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"connection_pool": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"http": {
+										Description:         "HTTP connection pool settings.",
+										MarkdownDescription: "HTTP connection pool settings.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"http2_max_requests": {
+												Description:         "Maximum number of active requests to a destination.",
+												MarkdownDescription: "Maximum number of active requests to a destination.",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"idle_timeout": {
+												Description:         "The idle timeout for upstream connection pool connections.",
+												MarkdownDescription: "The idle timeout for upstream connection pool connections.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"max_requests_per_connection": {
+												Description:         "Maximum number of requests per connection to a backend.",
+												MarkdownDescription: "Maximum number of requests per connection to a backend.",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"max_retries": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"use_client_protocol": {
+												Description:         "If set to true, client protocol will be preserved while initiating connection to backend.",
+												MarkdownDescription: "If set to true, client protocol will be preserved while initiating connection to backend.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"h2_upgrade_policy": {
+												Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
+												MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http1_max_pending_requests": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"tcp": {
+										Description:         "Settings common to both HTTP and TCP upstream connections.",
+										MarkdownDescription: "Settings common to both HTTP and TCP upstream connections.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"connect_timeout": {
+												Description:         "TCP connection timeout.",
+												MarkdownDescription: "TCP connection timeout.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"max_connection_duration": {
+												Description:         "The maximum duration of a connection.",
+												MarkdownDescription: "The maximum duration of a connection.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"max_connections": {
+												Description:         "Maximum number of HTTP1 /TCP connections to a destination host.",
+												MarkdownDescription: "Maximum number of HTTP1 /TCP connections to a destination host.",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tcp_keepalive": {
+												Description:         "If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives.",
+												MarkdownDescription: "If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"probes": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"time": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"interval": {
+														Description:         "The time duration between keep-alive probes.",
+														MarkdownDescription: "The time duration between keep-alive probes.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"load_balancer": {
+								Description:         "Settings controlling the load balancer algorithms.",
+								MarkdownDescription: "Settings controlling the load balancer algorithms.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"simple": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"warmup_duration_secs": {
+										Description:         "Represents the warmup duration of Service.",
+										MarkdownDescription: "Represents the warmup duration of Service.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"consistent_hash": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"use_source_ip": {
+												Description:         "Hash based on the source IP address.",
+												MarkdownDescription: "Hash based on the source IP address.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_cookie": {
+												Description:         "Hash based on HTTP cookie.",
+												MarkdownDescription: "Hash based on HTTP cookie.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "Name of the cookie.",
+														MarkdownDescription: "Name of the cookie.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": {
+														Description:         "Path to set for the cookie.",
+														MarkdownDescription: "Path to set for the cookie.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"ttl": {
+														Description:         "Lifetime of the cookie.",
+														MarkdownDescription: "Lifetime of the cookie.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_header_name": {
+												Description:         "Hash based on a specific HTTP header.",
+												MarkdownDescription: "Hash based on a specific HTTP header.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_query_parameter_name": {
+												Description:         "Hash based on a specific HTTP query parameter.",
+												MarkdownDescription: "Hash based on a specific HTTP query parameter.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"maglev": {
+												Description:         "The Maglev load balancer implements consistent hashing to backend hosts.",
+												MarkdownDescription: "The Maglev load balancer implements consistent hashing to backend hosts.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"table_size": {
+														Description:         "The table size for Maglev hashing.",
+														MarkdownDescription: "The table size for Maglev hashing.",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"minimum_ring_size": {
+												Description:         "Deprecated.",
+												MarkdownDescription: "Deprecated.",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"ring_hash": {
+												Description:         "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
+												MarkdownDescription: "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"minimum_ring_size": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"locality_lb_setting": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"distribute": {
+												Description:         "Optional: only one of distribute, failover or failoverPriority can be set.",
+												MarkdownDescription: "Optional: only one of distribute, failover or failoverPriority can be set.",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"from": {
+														Description:         "Originating locality, '/' separated, e.g.",
+														MarkdownDescription: "Originating locality, '/' separated, e.g.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"to": {
+														Description:         "Map of upstream localities to traffic distribution weights.",
+														MarkdownDescription: "Map of upstream localities to traffic distribution weights.",
+
+														Type: types.MapType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"enabled": {
+												Description:         "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
+												MarkdownDescription: "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"failover": {
+												Description:         "Optional: only one of distribute, failover or failoverPriority can be set.",
+												MarkdownDescription: "Optional: only one of distribute, failover or failoverPriority can be set.",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"from": {
+														Description:         "Originating region.",
+														MarkdownDescription: "Originating region.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"to": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"failover_priority": {
+												Description:         "failoverPriority is an ordered list of labels used to sort endpoints to do priority based load balancing.",
+												MarkdownDescription: "failoverPriority is an ordered list of labels used to sort endpoints to do priority based load balancing.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"outlier_detection": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"consecutive_gateway_errors": {
+										Description:         "Number of gateway errors before a host is ejected from the connection pool.",
+										MarkdownDescription: "Number of gateway errors before a host is ejected from the connection pool.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"consecutive_local_origin_failures": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"max_ejection_percent": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"min_health_percent": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"consecutive5xx_errors": {
+										Description:         "Number of 5xx errors before a host is ejected from the connection pool.",
+										MarkdownDescription: "Number of 5xx errors before a host is ejected from the connection pool.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"consecutive_errors": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"split_external_local_origin_errors": {
+										Description:         "Determines whether to distinguish local origin failures from external errors.",
+										MarkdownDescription: "Determines whether to distinguish local origin failures from external errors.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"base_ejection_time": {
+										Description:         "Minimum ejection duration.",
+										MarkdownDescription: "Minimum ejection duration.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"interval": {
+										Description:         "Time interval between ejection sweep analysis.",
+										MarkdownDescription: "Time interval between ejection sweep analysis.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"port_level_settings": {
+								Description:         "Traffic policies specific to individual ports.",
+								MarkdownDescription: "Traffic policies specific to individual ports.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"port": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"number": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"tls": {
+										Description:         "TLS related settings for connections to the upstream service.",
+										MarkdownDescription: "TLS related settings for connections to the upstream service.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"mode": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"private_key": {
+												Description:         "REQUIRED if mode is 'MUTUAL'.",
+												MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"sni": {
+												Description:         "SNI string to present to the server during TLS handshake.",
+												MarkdownDescription: "SNI string to present to the server during TLS handshake.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"subject_alt_names": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"ca_certificates": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"client_certificate": {
+												Description:         "REQUIRED if mode is 'MUTUAL'.",
+												MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"credential_name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"insecure_skip_verify": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"connection_pool": {
 										Description:         "",
@@ -750,6 +1558,28 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												MarkdownDescription: "HTTP connection pool settings.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"h2_upgrade_policy": {
+														Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
+														MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http1_max_pending_requests": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
 
 													"http2_max_requests": {
 														Description:         "Maximum number of active requests to a destination.",
@@ -805,28 +1635,6 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														Optional: true,
 														Computed: false,
 													},
-
-													"h2_upgrade_policy": {
-														Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
-														MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http1_max_pending_requests": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 												}),
 
 												Required: false,
@@ -839,6 +1647,39 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												MarkdownDescription: "Settings common to both HTTP and TCP upstream connections.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"connect_timeout": {
+														Description:         "TCP connection timeout.",
+														MarkdownDescription: "TCP connection timeout.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"max_connection_duration": {
+														Description:         "The maximum duration of a connection.",
+														MarkdownDescription: "The maximum duration of a connection.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"max_connections": {
+														Description:         "Maximum number of HTTP1 /TCP connections to a destination host.",
+														MarkdownDescription: "Maximum number of HTTP1 /TCP connections to a destination host.",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
 
 													"tcp_keepalive": {
 														Description:         "If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives.",
@@ -884,39 +1725,6 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														Optional: true,
 														Computed: false,
 													},
-
-													"connect_timeout": {
-														Description:         "TCP connection timeout.",
-														MarkdownDescription: "TCP connection timeout.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"max_connection_duration": {
-														Description:         "The maximum duration of a connection.",
-														MarkdownDescription: "The maximum duration of a connection.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"max_connections": {
-														Description:         "Maximum number of HTTP1 /TCP connections to a destination host.",
-														MarkdownDescription: "Maximum number of HTTP1 /TCP connections to a destination host.",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 												}),
 
 												Required: false,
@@ -941,40 +1749,6 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												MarkdownDescription: "",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"minimum_ring_size": {
-														Description:         "Deprecated.",
-														MarkdownDescription: "Deprecated.",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"ring_hash": {
-														Description:         "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
-														MarkdownDescription: "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"minimum_ring_size": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 
 													"use_source_ip": {
 														Description:         "Hash based on the source IP address.",
@@ -1063,6 +1837,40 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 															"table_size": {
 																Description:         "The table size for Maglev hashing.",
 																MarkdownDescription: "The table size for Maglev hashing.",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"minimum_ring_size": {
+														Description:         "Deprecated.",
+														MarkdownDescription: "Deprecated.",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"ring_hash": {
+														Description:         "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
+														MarkdownDescription: "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"minimum_ring_size": {
+																Description:         "",
+																MarkdownDescription: "",
 
 																Type: types.Int64Type,
 
@@ -1219,6 +2027,39 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+											"consecutive_errors": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"interval": {
+												Description:         "Time interval between ejection sweep analysis.",
+												MarkdownDescription: "Time interval between ejection sweep analysis.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"min_health_percent": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"base_ejection_time": {
 												Description:         "Minimum ejection duration.",
 												MarkdownDescription: "Minimum ejection duration.",
@@ -1230,9 +2071,42 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												Computed: false,
 											},
 
+											"consecutive5xx_errors": {
+												Description:         "Number of 5xx errors before a host is ejected from the connection pool.",
+												MarkdownDescription: "Number of 5xx errors before a host is ejected from the connection pool.",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"consecutive_gateway_errors": {
 												Description:         "Number of gateway errors before a host is ejected from the connection pool.",
 												MarkdownDescription: "Number of gateway errors before a host is ejected from the connection pool.",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"consecutive_local_origin_failures": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"max_ejection_percent": {
+												Description:         "",
+												MarkdownDescription: "",
 
 												Type: types.Int64Type,
 
@@ -1251,6 +2125,728 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												Optional: true,
 												Computed: false,
 											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"workload_selector": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"match_labels": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"export_to": {
+						Description:         "A list of namespaces to which this destination rule is exported.",
+						MarkdownDescription: "A list of namespaces to which this destination rule is exported.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"host": {
+						Description:         "The name of a service from the service registry.",
+						MarkdownDescription: "The name of a service from the service registry.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"subsets": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"labels": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name of the subset.",
+								MarkdownDescription: "Name of the subset.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"traffic_policy": {
+								Description:         "Traffic policies that apply to this subset.",
+								MarkdownDescription: "Traffic policies that apply to this subset.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"tls": {
+										Description:         "TLS related settings for connections to the upstream service.",
+										MarkdownDescription: "TLS related settings for connections to the upstream service.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"sni": {
+												Description:         "SNI string to present to the server during TLS handshake.",
+												MarkdownDescription: "SNI string to present to the server during TLS handshake.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"subject_alt_names": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"ca_certificates": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"client_certificate": {
+												Description:         "REQUIRED if mode is 'MUTUAL'.",
+												MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"credential_name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"insecure_skip_verify": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"mode": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"private_key": {
+												Description:         "REQUIRED if mode is 'MUTUAL'.",
+												MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"tunnel": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"target_port": {
+												Description:         "Specifies a port to which the downstream connection is tunneled.",
+												MarkdownDescription: "Specifies a port to which the downstream connection is tunneled.",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"protocol": {
+												Description:         "Specifies which protocol to use for tunneling the downstream connection.",
+												MarkdownDescription: "Specifies which protocol to use for tunneling the downstream connection.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"target_host": {
+												Description:         "Specifies a host to which the downstream connection is tunneled.",
+												MarkdownDescription: "Specifies a host to which the downstream connection is tunneled.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"connection_pool": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"http": {
+												Description:         "HTTP connection pool settings.",
+												MarkdownDescription: "HTTP connection pool settings.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"idle_timeout": {
+														Description:         "The idle timeout for upstream connection pool connections.",
+														MarkdownDescription: "The idle timeout for upstream connection pool connections.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"max_requests_per_connection": {
+														Description:         "Maximum number of requests per connection to a backend.",
+														MarkdownDescription: "Maximum number of requests per connection to a backend.",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"max_retries": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"use_client_protocol": {
+														Description:         "If set to true, client protocol will be preserved while initiating connection to backend.",
+														MarkdownDescription: "If set to true, client protocol will be preserved while initiating connection to backend.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"h2_upgrade_policy": {
+														Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
+														MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http1_max_pending_requests": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http2_max_requests": {
+														Description:         "Maximum number of active requests to a destination.",
+														MarkdownDescription: "Maximum number of active requests to a destination.",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tcp": {
+												Description:         "Settings common to both HTTP and TCP upstream connections.",
+												MarkdownDescription: "Settings common to both HTTP and TCP upstream connections.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"connect_timeout": {
+														Description:         "TCP connection timeout.",
+														MarkdownDescription: "TCP connection timeout.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"max_connection_duration": {
+														Description:         "The maximum duration of a connection.",
+														MarkdownDescription: "The maximum duration of a connection.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"max_connections": {
+														Description:         "Maximum number of HTTP1 /TCP connections to a destination host.",
+														MarkdownDescription: "Maximum number of HTTP1 /TCP connections to a destination host.",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"tcp_keepalive": {
+														Description:         "If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives.",
+														MarkdownDescription: "If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"interval": {
+																Description:         "The time duration between keep-alive probes.",
+																MarkdownDescription: "The time duration between keep-alive probes.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"probes": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"time": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"load_balancer": {
+										Description:         "Settings controlling the load balancer algorithms.",
+										MarkdownDescription: "Settings controlling the load balancer algorithms.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"warmup_duration_secs": {
+												Description:         "Represents the warmup duration of Service.",
+												MarkdownDescription: "Represents the warmup duration of Service.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"consistent_hash": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"maglev": {
+														Description:         "The Maglev load balancer implements consistent hashing to backend hosts.",
+														MarkdownDescription: "The Maglev load balancer implements consistent hashing to backend hosts.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"table_size": {
+																Description:         "The table size for Maglev hashing.",
+																MarkdownDescription: "The table size for Maglev hashing.",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"minimum_ring_size": {
+														Description:         "Deprecated.",
+														MarkdownDescription: "Deprecated.",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"ring_hash": {
+														Description:         "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
+														MarkdownDescription: "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"minimum_ring_size": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"use_source_ip": {
+														Description:         "Hash based on the source IP address.",
+														MarkdownDescription: "Hash based on the source IP address.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_cookie": {
+														Description:         "Hash based on HTTP cookie.",
+														MarkdownDescription: "Hash based on HTTP cookie.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"ttl": {
+																Description:         "Lifetime of the cookie.",
+																MarkdownDescription: "Lifetime of the cookie.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the cookie.",
+																MarkdownDescription: "Name of the cookie.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"path": {
+																Description:         "Path to set for the cookie.",
+																MarkdownDescription: "Path to set for the cookie.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_header_name": {
+														Description:         "Hash based on a specific HTTP header.",
+														MarkdownDescription: "Hash based on a specific HTTP header.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_query_parameter_name": {
+														Description:         "Hash based on a specific HTTP query parameter.",
+														MarkdownDescription: "Hash based on a specific HTTP query parameter.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"locality_lb_setting": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"distribute": {
+														Description:         "Optional: only one of distribute, failover or failoverPriority can be set.",
+														MarkdownDescription: "Optional: only one of distribute, failover or failoverPriority can be set.",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"from": {
+																Description:         "Originating locality, '/' separated, e.g.",
+																MarkdownDescription: "Originating locality, '/' separated, e.g.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"to": {
+																Description:         "Map of upstream localities to traffic distribution weights.",
+																MarkdownDescription: "Map of upstream localities to traffic distribution weights.",
+
+																Type: types.MapType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"enabled": {
+														Description:         "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
+														MarkdownDescription: "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"failover": {
+														Description:         "Optional: only one of distribute, failover or failoverPriority can be set.",
+														MarkdownDescription: "Optional: only one of distribute, failover or failoverPriority can be set.",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"from": {
+																Description:         "Originating region.",
+																MarkdownDescription: "Originating region.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"to": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"failover_priority": {
+														Description:         "failoverPriority is an ordered list of labels used to sort endpoints to do priority based load balancing.",
+														MarkdownDescription: "failoverPriority is an ordered list of labels used to sort endpoints to do priority based load balancing.",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"simple": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"outlier_detection": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 											"consecutive5xx_errors": {
 												Description:         "Number of 5xx errors before a host is ejected from the connection pool.",
@@ -1274,9 +2870,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												Computed: false,
 											},
 
-											"consecutive_local_origin_failures": {
-												Description:         "",
-												MarkdownDescription: "",
+											"consecutive_gateway_errors": {
+												Description:         "Number of gateway errors before a host is ejected from the connection pool.",
+												MarkdownDescription: "Number of gateway errors before a host is ejected from the connection pool.",
 
 												Type: types.Int64Type,
 
@@ -1285,11 +2881,11 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												Computed: false,
 											},
 
-											"interval": {
-												Description:         "Time interval between ejection sweep analysis.",
-												MarkdownDescription: "Time interval between ejection sweep analysis.",
+											"consecutive_local_origin_failures": {
+												Description:         "",
+												MarkdownDescription: "",
 
-												Type: types.StringType,
+												Type: types.Int64Type,
 
 												Required: false,
 												Optional: true,
@@ -1307,11 +2903,44 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												Computed: false,
 											},
 
+											"base_ejection_time": {
+												Description:         "Minimum ejection duration.",
+												MarkdownDescription: "Minimum ejection duration.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"interval": {
+												Description:         "Time interval between ejection sweep analysis.",
+												MarkdownDescription: "Time interval between ejection sweep analysis.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"min_health_percent": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"split_external_local_origin_errors": {
+												Description:         "Determines whether to distinguish local origin failures from external errors.",
+												MarkdownDescription: "Determines whether to distinguish local origin failures from external errors.",
+
+												Type: types.BoolType,
 
 												Required: false,
 												Optional: true,
@@ -1330,240 +2959,6 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-											"outlier_detection": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"consecutive5xx_errors": {
-														Description:         "Number of 5xx errors before a host is ejected from the connection pool.",
-														MarkdownDescription: "Number of 5xx errors before a host is ejected from the connection pool.",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"min_health_percent": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"split_external_local_origin_errors": {
-														Description:         "Determines whether to distinguish local origin failures from external errors.",
-														MarkdownDescription: "Determines whether to distinguish local origin failures from external errors.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"base_ejection_time": {
-														Description:         "Minimum ejection duration.",
-														MarkdownDescription: "Minimum ejection duration.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"consecutive_errors": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"consecutive_gateway_errors": {
-														Description:         "Number of gateway errors before a host is ejected from the connection pool.",
-														MarkdownDescription: "Number of gateway errors before a host is ejected from the connection pool.",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"consecutive_local_origin_failures": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"interval": {
-														Description:         "Time interval between ejection sweep analysis.",
-														MarkdownDescription: "Time interval between ejection sweep analysis.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"max_ejection_percent": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"port": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"number": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tls": {
-												Description:         "TLS related settings for connections to the upstream service.",
-												MarkdownDescription: "TLS related settings for connections to the upstream service.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"insecure_skip_verify": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"mode": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"private_key": {
-														Description:         "REQUIRED if mode is 'MUTUAL'.",
-														MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"sni": {
-														Description:         "SNI string to present to the server during TLS handshake.",
-														MarkdownDescription: "SNI string to present to the server during TLS handshake.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"subject_alt_names": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"ca_certificates": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"client_certificate": {
-														Description:         "REQUIRED if mode is 'MUTUAL'.",
-														MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"credential_name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"connection_pool": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -1575,6 +2970,39 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														MarkdownDescription: "HTTP connection pool settings.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"h2_upgrade_policy": {
+																Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
+																MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"http1_max_pending_requests": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"http2_max_requests": {
+																Description:         "Maximum number of active requests to a destination.",
+																MarkdownDescription: "Maximum number of active requests to a destination.",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
 
 															"idle_timeout": {
 																Description:         "The idle timeout for upstream connection pool connections.",
@@ -1614,39 +3042,6 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 																MarkdownDescription: "If set to true, client protocol will be preserved while initiating connection to backend.",
 
 																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"h2_upgrade_policy": {
-																Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
-																MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"http1_max_pending_requests": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"http2_max_requests": {
-																Description:         "Maximum number of active requests to a destination.",
-																MarkdownDescription: "Maximum number of active requests to a destination.",
-
-																Type: types.Int64Type,
 
 																Required: false,
 																Optional: true,
@@ -1767,6 +3162,40 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+															"ring_hash": {
+																Description:         "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
+																MarkdownDescription: "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"minimum_ring_size": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.Int64Type,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"use_source_ip": {
+																Description:         "Hash based on the source IP address.",
+																MarkdownDescription: "Hash based on the source IP address.",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"http_cookie": {
 																Description:         "Hash based on HTTP cookie.",
 																MarkdownDescription: "Hash based on HTTP cookie.",
@@ -1867,40 +3296,6 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 																Optional: true,
 																Computed: false,
 															},
-
-															"ring_hash": {
-																Description:         "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
-																MarkdownDescription: "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"minimum_ring_size": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.Int64Type,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"use_source_ip": {
-																Description:         "Hash based on the source IP address.",
-																MarkdownDescription: "Hash based on the source IP address.",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
 														}),
 
 														Required: false,
@@ -1913,51 +3308,6 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														MarkdownDescription: "",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"failover_priority": {
-																Description:         "failoverPriority is an ordered list of labels used to sort endpoints to do priority based load balancing.",
-																MarkdownDescription: "failoverPriority is an ordered list of labels used to sort endpoints to do priority based load balancing.",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"distribute": {
-																Description:         "Optional: only one of distribute, failover or failoverPriority can be set.",
-																MarkdownDescription: "Optional: only one of distribute, failover or failoverPriority can be set.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"from": {
-																		Description:         "Originating locality, '/' separated, e.g.",
-																		MarkdownDescription: "Originating locality, '/' separated, e.g.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"to": {
-																		Description:         "Map of upstream localities to traffic distribution weights.",
-																		MarkdownDescription: "Map of upstream localities to traffic distribution weights.",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
 
 															"enabled": {
 																Description:         "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
@@ -2003,6 +3353,51 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 																Optional: true,
 																Computed: false,
 															},
+
+															"failover_priority": {
+																Description:         "failoverPriority is an ordered list of labels used to sort endpoints to do priority based load balancing.",
+																MarkdownDescription: "failoverPriority is an ordered list of labels used to sort endpoints to do priority based load balancing.",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"distribute": {
+																Description:         "Optional: only one of distribute, failover or failoverPriority can be set.",
+																MarkdownDescription: "Optional: only one of distribute, failover or failoverPriority can be set.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"from": {
+																		Description:         "Originating locality, '/' separated, e.g.",
+																		MarkdownDescription: "Originating locality, '/' separated, e.g.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"to": {
+																		Description:         "Map of upstream localities to traffic distribution weights.",
+																		MarkdownDescription: "Map of upstream localities to traffic distribution weights.",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
 														}),
 
 														Required: false,
@@ -2037,343 +3432,18 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												Optional: true,
 												Computed: false,
 											},
-										}),
 
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"tls": {
-										Description:         "TLS related settings for connections to the upstream service.",
-										MarkdownDescription: "TLS related settings for connections to the upstream service.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"mode": {
+											"outlier_detection": {
 												Description:         "",
 												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"private_key": {
-												Description:         "REQUIRED if mode is 'MUTUAL'.",
-												MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"sni": {
-												Description:         "SNI string to present to the server during TLS handshake.",
-												MarkdownDescription: "SNI string to present to the server during TLS handshake.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"subject_alt_names": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"ca_certificates": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"client_certificate": {
-												Description:         "REQUIRED if mode is 'MUTUAL'.",
-												MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"credential_name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"insecure_skip_verify": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"tunnel": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"protocol": {
-												Description:         "Specifies which protocol to use for tunneling the downstream connection.",
-												MarkdownDescription: "Specifies which protocol to use for tunneling the downstream connection.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"target_host": {
-												Description:         "Specifies a host to which the downstream connection is tunneled.",
-												MarkdownDescription: "Specifies a host to which the downstream connection is tunneled.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"target_port": {
-												Description:         "Specifies a port to which the downstream connection is tunneled.",
-												MarkdownDescription: "Specifies a port to which the downstream connection is tunneled.",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"labels": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "Name of the subset.",
-								MarkdownDescription: "Name of the subset.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"traffic_policy": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"connection_pool": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"http": {
-										Description:         "HTTP connection pool settings.",
-										MarkdownDescription: "HTTP connection pool settings.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"http1_max_pending_requests": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http2_max_requests": {
-												Description:         "Maximum number of active requests to a destination.",
-												MarkdownDescription: "Maximum number of active requests to a destination.",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"idle_timeout": {
-												Description:         "The idle timeout for upstream connection pool connections.",
-												MarkdownDescription: "The idle timeout for upstream connection pool connections.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"max_requests_per_connection": {
-												Description:         "Maximum number of requests per connection to a backend.",
-												MarkdownDescription: "Maximum number of requests per connection to a backend.",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"max_retries": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"use_client_protocol": {
-												Description:         "If set to true, client protocol will be preserved while initiating connection to backend.",
-												MarkdownDescription: "If set to true, client protocol will be preserved while initiating connection to backend.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"h2_upgrade_policy": {
-												Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
-												MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"tcp": {
-										Description:         "Settings common to both HTTP and TCP upstream connections.",
-										MarkdownDescription: "Settings common to both HTTP and TCP upstream connections.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"connect_timeout": {
-												Description:         "TCP connection timeout.",
-												MarkdownDescription: "TCP connection timeout.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"max_connection_duration": {
-												Description:         "The maximum duration of a connection.",
-												MarkdownDescription: "The maximum duration of a connection.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"max_connections": {
-												Description:         "Maximum number of HTTP1 /TCP connections to a destination host.",
-												MarkdownDescription: "Maximum number of HTTP1 /TCP connections to a destination host.",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tcp_keepalive": {
-												Description:         "If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives.",
-												MarkdownDescription: "If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"time": {
-														Description:         "",
-														MarkdownDescription: "",
+													"consecutive_gateway_errors": {
+														Description:         "Number of gateway errors before a host is ejected from the connection pool.",
+														MarkdownDescription: "Number of gateway errors before a host is ejected from the connection pool.",
 
-														Type: types.StringType,
+														Type: types.Int64Type,
 
 														Required: false,
 														Optional: true,
@@ -2381,8 +3451,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 													},
 
 													"interval": {
-														Description:         "The time duration between keep-alive probes.",
-														MarkdownDescription: "The time duration between keep-alive probes.",
+														Description:         "Time interval between ejection sweep analysis.",
+														MarkdownDescription: "Time interval between ejection sweep analysis.",
 
 														Type: types.StringType,
 
@@ -2391,693 +3461,7 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														Computed: false,
 													},
 
-													"probes": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"load_balancer": {
-								Description:         "Settings controlling the load balancer algorithms.",
-								MarkdownDescription: "Settings controlling the load balancer algorithms.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"consistent_hash": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"http_query_parameter_name": {
-												Description:         "Hash based on a specific HTTP query parameter.",
-												MarkdownDescription: "Hash based on a specific HTTP query parameter.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"maglev": {
-												Description:         "The Maglev load balancer implements consistent hashing to backend hosts.",
-												MarkdownDescription: "The Maglev load balancer implements consistent hashing to backend hosts.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"table_size": {
-														Description:         "The table size for Maglev hashing.",
-														MarkdownDescription: "The table size for Maglev hashing.",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"minimum_ring_size": {
-												Description:         "Deprecated.",
-												MarkdownDescription: "Deprecated.",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"ring_hash": {
-												Description:         "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
-												MarkdownDescription: "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"minimum_ring_size": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"use_source_ip": {
-												Description:         "Hash based on the source IP address.",
-												MarkdownDescription: "Hash based on the source IP address.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http_cookie": {
-												Description:         "Hash based on HTTP cookie.",
-												MarkdownDescription: "Hash based on HTTP cookie.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"path": {
-														Description:         "Path to set for the cookie.",
-														MarkdownDescription: "Path to set for the cookie.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"ttl": {
-														Description:         "Lifetime of the cookie.",
-														MarkdownDescription: "Lifetime of the cookie.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "Name of the cookie.",
-														MarkdownDescription: "Name of the cookie.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"http_header_name": {
-												Description:         "Hash based on a specific HTTP header.",
-												MarkdownDescription: "Hash based on a specific HTTP header.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"locality_lb_setting": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"failover": {
-												Description:         "Optional: only one of distribute, failover or failoverPriority can be set.",
-												MarkdownDescription: "Optional: only one of distribute, failover or failoverPriority can be set.",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"from": {
-														Description:         "Originating region.",
-														MarkdownDescription: "Originating region.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"to": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"failover_priority": {
-												Description:         "failoverPriority is an ordered list of labels used to sort endpoints to do priority based load balancing.",
-												MarkdownDescription: "failoverPriority is an ordered list of labels used to sort endpoints to do priority based load balancing.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"distribute": {
-												Description:         "Optional: only one of distribute, failover or failoverPriority can be set.",
-												MarkdownDescription: "Optional: only one of distribute, failover or failoverPriority can be set.",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"from": {
-														Description:         "Originating locality, '/' separated, e.g.",
-														MarkdownDescription: "Originating locality, '/' separated, e.g.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"to": {
-														Description:         "Map of upstream localities to traffic distribution weights.",
-														MarkdownDescription: "Map of upstream localities to traffic distribution weights.",
-
-														Type: types.MapType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"enabled": {
-												Description:         "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
-												MarkdownDescription: "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"simple": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"warmup_duration_secs": {
-										Description:         "Represents the warmup duration of Service.",
-										MarkdownDescription: "Represents the warmup duration of Service.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"outlier_detection": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"base_ejection_time": {
-										Description:         "Minimum ejection duration.",
-										MarkdownDescription: "Minimum ejection duration.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"consecutive5xx_errors": {
-										Description:         "Number of 5xx errors before a host is ejected from the connection pool.",
-										MarkdownDescription: "Number of 5xx errors before a host is ejected from the connection pool.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"consecutive_gateway_errors": {
-										Description:         "Number of gateway errors before a host is ejected from the connection pool.",
-										MarkdownDescription: "Number of gateway errors before a host is ejected from the connection pool.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"consecutive_local_origin_failures": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"min_health_percent": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"split_external_local_origin_errors": {
-										Description:         "Determines whether to distinguish local origin failures from external errors.",
-										MarkdownDescription: "Determines whether to distinguish local origin failures from external errors.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"consecutive_errors": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"interval": {
-										Description:         "Time interval between ejection sweep analysis.",
-										MarkdownDescription: "Time interval between ejection sweep analysis.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"max_ejection_percent": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"port_level_settings": {
-								Description:         "Traffic policies specific to individual ports.",
-								MarkdownDescription: "Traffic policies specific to individual ports.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"outlier_detection": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"base_ejection_time": {
-												Description:         "Minimum ejection duration.",
-												MarkdownDescription: "Minimum ejection duration.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"consecutive_errors": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"consecutive_gateway_errors": {
-												Description:         "Number of gateway errors before a host is ejected from the connection pool.",
-												MarkdownDescription: "Number of gateway errors before a host is ejected from the connection pool.",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"consecutive_local_origin_failures": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"split_external_local_origin_errors": {
-												Description:         "Determines whether to distinguish local origin failures from external errors.",
-												MarkdownDescription: "Determines whether to distinguish local origin failures from external errors.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"consecutive5xx_errors": {
-												Description:         "Number of 5xx errors before a host is ejected from the connection pool.",
-												MarkdownDescription: "Number of 5xx errors before a host is ejected from the connection pool.",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"interval": {
-												Description:         "Time interval between ejection sweep analysis.",
-												MarkdownDescription: "Time interval between ejection sweep analysis.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"max_ejection_percent": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"min_health_percent": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"port": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"number": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"tls": {
-										Description:         "TLS related settings for connections to the upstream service.",
-										MarkdownDescription: "TLS related settings for connections to the upstream service.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"client_certificate": {
-												Description:         "REQUIRED if mode is 'MUTUAL'.",
-												MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"credential_name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"insecure_skip_verify": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"mode": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"private_key": {
-												Description:         "REQUIRED if mode is 'MUTUAL'.",
-												MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"sni": {
-												Description:         "SNI string to present to the server during TLS handshake.",
-												MarkdownDescription: "SNI string to present to the server during TLS handshake.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"subject_alt_names": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"ca_certificates": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"connection_pool": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"http": {
-												Description:         "HTTP connection pool settings.",
-												MarkdownDescription: "HTTP connection pool settings.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"h2_upgrade_policy": {
-														Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
-														MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http1_max_pending_requests": {
+													"max_ejection_percent": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -3088,40 +3472,7 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														Computed: false,
 													},
 
-													"http2_max_requests": {
-														Description:         "Maximum number of active requests to a destination.",
-														MarkdownDescription: "Maximum number of active requests to a destination.",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"idle_timeout": {
-														Description:         "The idle timeout for upstream connection pool connections.",
-														MarkdownDescription: "The idle timeout for upstream connection pool connections.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"max_requests_per_connection": {
-														Description:         "Maximum number of requests per connection to a backend.",
-														MarkdownDescription: "Maximum number of requests per connection to a backend.",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"max_retries": {
+													"min_health_percent": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -3132,9 +3483,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														Computed: false,
 													},
 
-													"use_client_protocol": {
-														Description:         "If set to true, client protocol will be preserved while initiating connection to backend.",
-														MarkdownDescription: "If set to true, client protocol will be preserved while initiating connection to backend.",
+													"split_external_local_origin_errors": {
+														Description:         "Determines whether to distinguish local origin failures from external errors.",
+														MarkdownDescription: "Determines whether to distinguish local origin failures from external errors.",
 
 														Type: types.BoolType,
 
@@ -3142,22 +3493,10 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														Optional: true,
 														Computed: false,
 													},
-												}),
 
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tcp": {
-												Description:         "Settings common to both HTTP and TCP upstream connections.",
-												MarkdownDescription: "Settings common to both HTTP and TCP upstream connections.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"connect_timeout": {
-														Description:         "TCP connection timeout.",
-														MarkdownDescription: "TCP connection timeout.",
+													"base_ejection_time": {
+														Description:         "Minimum ejection duration.",
+														MarkdownDescription: "Minimum ejection duration.",
 
 														Type: types.StringType,
 
@@ -3166,20 +3505,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														Computed: false,
 													},
 
-													"max_connection_duration": {
-														Description:         "The maximum duration of a connection.",
-														MarkdownDescription: "The maximum duration of a connection.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"max_connections": {
-														Description:         "Maximum number of HTTP1 /TCP connections to a destination host.",
-														MarkdownDescription: "Maximum number of HTTP1 /TCP connections to a destination host.",
+													"consecutive5xx_errors": {
+														Description:         "Number of 5xx errors before a host is ejected from the connection pool.",
+														MarkdownDescription: "Number of 5xx errors before a host is ejected from the connection pool.",
 
 														Type: types.Int64Type,
 
@@ -3188,190 +3516,9 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														Computed: false,
 													},
 
-													"tcp_keepalive": {
-														Description:         "If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives.",
-														MarkdownDescription: "If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"interval": {
-																Description:         "The time duration between keep-alive probes.",
-																MarkdownDescription: "The time duration between keep-alive probes.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"probes": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"time": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"load_balancer": {
-										Description:         "Settings controlling the load balancer algorithms.",
-										MarkdownDescription: "Settings controlling the load balancer algorithms.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"simple": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"warmup_duration_secs": {
-												Description:         "Represents the warmup duration of Service.",
-												MarkdownDescription: "Represents the warmup duration of Service.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"consistent_hash": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"http_cookie": {
-														Description:         "Hash based on HTTP cookie.",
-														MarkdownDescription: "Hash based on HTTP cookie.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"ttl": {
-																Description:         "Lifetime of the cookie.",
-																MarkdownDescription: "Lifetime of the cookie.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the cookie.",
-																MarkdownDescription: "Name of the cookie.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"path": {
-																Description:         "Path to set for the cookie.",
-																MarkdownDescription: "Path to set for the cookie.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_header_name": {
-														Description:         "Hash based on a specific HTTP header.",
-														MarkdownDescription: "Hash based on a specific HTTP header.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_query_parameter_name": {
-														Description:         "Hash based on a specific HTTP query parameter.",
-														MarkdownDescription: "Hash based on a specific HTTP query parameter.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"maglev": {
-														Description:         "The Maglev load balancer implements consistent hashing to backend hosts.",
-														MarkdownDescription: "The Maglev load balancer implements consistent hashing to backend hosts.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"table_size": {
-																Description:         "The table size for Maglev hashing.",
-																MarkdownDescription: "The table size for Maglev hashing.",
-
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"minimum_ring_size": {
-														Description:         "Deprecated.",
-														MarkdownDescription: "Deprecated.",
+													"consecutive_errors": {
+														Description:         "",
+														MarkdownDescription: "",
 
 														Type: types.Int64Type,
 
@@ -3380,34 +3527,11 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														Computed: false,
 													},
 
-													"ring_hash": {
-														Description:         "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
-														MarkdownDescription: "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
+													"consecutive_local_origin_failures": {
+														Description:         "",
+														MarkdownDescription: "",
 
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"minimum_ring_size": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"use_source_ip": {
-														Description:         "Hash based on the source IP address.",
-														MarkdownDescription: "Hash based on the source IP address.",
-
-														Type: types.BoolType,
+														Type: types.Int64Type,
 
 														Required: false,
 														Optional: true,
@@ -3420,49 +3544,49 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												Computed: false,
 											},
 
-											"locality_lb_setting": {
+											"port": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"failover": {
-														Description:         "Optional: only one of distribute, failover or failoverPriority can be set.",
-														MarkdownDescription: "Optional: only one of distribute, failover or failoverPriority can be set.",
+													"number": {
+														Description:         "",
+														MarkdownDescription: "",
 
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+														Type: types.Int64Type,
 
-															"from": {
-																Description:         "Originating region.",
-																MarkdownDescription: "Originating region.",
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
 
-																Type: types.StringType,
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
+											"tls": {
+												Description:         "TLS related settings for connections to the upstream service.",
+												MarkdownDescription: "TLS related settings for connections to the upstream service.",
 
-															"to": {
-																Description:         "",
-																MarkdownDescription: "",
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																Type: types.StringType,
+													"sni": {
+														Description:         "SNI string to present to the server during TLS handshake.",
+														MarkdownDescription: "SNI string to present to the server during TLS handshake.",
 
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
+														Type: types.StringType,
 
 														Required: false,
 														Optional: true,
 														Computed: false,
 													},
 
-													"failover_priority": {
-														Description:         "failoverPriority is an ordered list of labels used to sort endpoints to do priority based load balancing.",
-														MarkdownDescription: "failoverPriority is an ordered list of labels used to sort endpoints to do priority based load balancing.",
+													"subject_alt_names": {
+														Description:         "",
+														MarkdownDescription: "",
 
 														Type: types.ListType{ElemType: types.StringType},
 
@@ -3471,45 +3595,66 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														Computed: false,
 													},
 
-													"distribute": {
-														Description:         "Optional: only one of distribute, failover or failoverPriority can be set.",
-														MarkdownDescription: "Optional: only one of distribute, failover or failoverPriority can be set.",
+													"ca_certificates": {
+														Description:         "",
+														MarkdownDescription: "",
 
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"from": {
-																Description:         "Originating locality, '/' separated, e.g.",
-																MarkdownDescription: "Originating locality, '/' separated, e.g.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"to": {
-																Description:         "Map of upstream localities to traffic distribution weights.",
-																MarkdownDescription: "Map of upstream localities to traffic distribution weights.",
-
-																Type: types.MapType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
+														Type: types.StringType,
 
 														Required: false,
 														Optional: true,
 														Computed: false,
 													},
 
-													"enabled": {
-														Description:         "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
-														MarkdownDescription: "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
+													"client_certificate": {
+														Description:         "REQUIRED if mode is 'MUTUAL'.",
+														MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"credential_name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"insecure_skip_verify": {
+														Description:         "",
+														MarkdownDescription: "",
 
 														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"mode": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"private_key": {
+														Description:         "REQUIRED if mode is 'MUTUAL'.",
+														MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
+
+														Type: types.StringType,
 
 														Required: false,
 														Optional: true,
@@ -3522,151 +3667,6 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												Computed: false,
 											},
 										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"tls": {
-								Description:         "TLS related settings for connections to the upstream service.",
-								MarkdownDescription: "TLS related settings for connections to the upstream service.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"ca_certificates": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"client_certificate": {
-										Description:         "REQUIRED if mode is 'MUTUAL'.",
-										MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"credential_name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"insecure_skip_verify": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"mode": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"private_key": {
-										Description:         "REQUIRED if mode is 'MUTUAL'.",
-										MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"sni": {
-										Description:         "SNI string to present to the server during TLS handshake.",
-										MarkdownDescription: "SNI string to present to the server during TLS handshake.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"subject_alt_names": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"tunnel": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"target_host": {
-										Description:         "Specifies a host to which the downstream connection is tunneled.",
-										MarkdownDescription: "Specifies a host to which the downstream connection is tunneled.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"target_port": {
-										Description:         "Specifies a port to which the downstream connection is tunneled.",
-										MarkdownDescription: "Specifies a port to which the downstream connection is tunneled.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"protocol": {
-										Description:         "Specifies which protocol to use for tunneling the downstream connection.",
-										MarkdownDescription: "Specifies which protocol to use for tunneling the downstream connection.",
-
-										Type: types.StringType,
 
 										Required: false,
 										Optional: true,

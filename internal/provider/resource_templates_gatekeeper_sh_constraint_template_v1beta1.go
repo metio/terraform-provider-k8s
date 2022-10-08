@@ -56,9 +56,9 @@ type TemplatesGatekeeperShConstraintTemplateV1Beta1GoModel struct {
 				} `tfsdk:"names" yaml:"names,omitempty"`
 
 				Validation *struct {
-					OpenAPIV3Schema *map[string]string `tfsdk:"open_apiv3_schema" yaml:"openAPIV3Schema,omitempty"`
-
 					LegacySchema *bool `tfsdk:"legacy_schema" yaml:"legacySchema,omitempty"`
+
+					OpenAPIV3Schema *map[string]string `tfsdk:"open_apiv3_schema" yaml:"openAPIV3Schema,omitempty"`
 				} `tfsdk:"validation" yaml:"validation,omitempty"`
 			} `tfsdk:"spec" yaml:"spec,omitempty"`
 		} `tfsdk:"crd" yaml:"crd,omitempty"`
@@ -215,22 +215,22 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Beta1Resource) GetSchema(_ con
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"open_apiv3_schema": {
+											"legacy_schema": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: types.BoolType,
 
 												Required: false,
 												Optional: true,
 												Computed: false,
 											},
 
-											"legacy_schema": {
+											"open_apiv3_schema": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.BoolType,
+												Type: types.MapType{ElemType: types.StringType},
 
 												Required: false,
 												Optional: true,

@@ -49,16 +49,6 @@ type SourceToolkitFluxcdIoHelmRepositoryV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		SecretRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
-
-		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
-		Url *string `tfsdk:"url" yaml:"url,omitempty"`
-
 		AccessFrom *struct {
 			NamespaceSelectors *[]struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -68,6 +58,16 @@ type SourceToolkitFluxcdIoHelmRepositoryV1Beta1GoModel struct {
 		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 
 		PassCredentials *bool `tfsdk:"pass_credentials" yaml:"passCredentials,omitempty"`
+
+		SecretRef *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+
+		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+
+		Url *string `tfsdk:"url" yaml:"url,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -168,62 +168,6 @@ func (r *SourceToolkitFluxcdIoHelmRepositoryV1Beta1Resource) GetSchema(_ context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"secret_ref": {
-						Description:         "The name of the secret containing authentication credentials for the Helm repository. For HTTP/S basic auth the secret must contain username and password fields. For TLS the secret must contain a certFile and keyFile, and/or caCert fields.",
-						MarkdownDescription: "The name of the secret containing authentication credentials for the Helm repository. For HTTP/S basic auth the secret must contain username and password fields. For TLS the secret must contain a certFile and keyFile, and/or caCert fields.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the referent.",
-								MarkdownDescription: "Name of the referent.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"suspend": {
-						Description:         "This flag tells the controller to suspend the reconciliation of this source.",
-						MarkdownDescription: "This flag tells the controller to suspend the reconciliation of this source.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"timeout": {
-						Description:         "The timeout of index downloading, defaults to 60s.",
-						MarkdownDescription: "The timeout of index downloading, defaults to 60s.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"url": {
-						Description:         "The Helm repository URL, a valid URL contains at least a protocol and host.",
-						MarkdownDescription: "The Helm repository URL, a valid URL contains at least a protocol and host.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
 					"access_from": {
 						Description:         "AccessFrom defines an Access Control List for allowing cross-namespace references to this object.",
 						MarkdownDescription: "AccessFrom defines an Access Control List for allowing cross-namespace references to this object.",
@@ -278,6 +222,62 @@ func (r *SourceToolkitFluxcdIoHelmRepositoryV1Beta1Resource) GetSchema(_ context
 
 						Required: false,
 						Optional: true,
+						Computed: false,
+					},
+
+					"secret_ref": {
+						Description:         "The name of the secret containing authentication credentials for the Helm repository. For HTTP/S basic auth the secret must contain username and password fields. For TLS the secret must contain a certFile and keyFile, and/or caCert fields.",
+						MarkdownDescription: "The name of the secret containing authentication credentials for the Helm repository. For HTTP/S basic auth the secret must contain username and password fields. For TLS the secret must contain a certFile and keyFile, and/or caCert fields.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"suspend": {
+						Description:         "This flag tells the controller to suspend the reconciliation of this source.",
+						MarkdownDescription: "This flag tells the controller to suspend the reconciliation of this source.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"timeout": {
+						Description:         "The timeout of index downloading, defaults to 60s.",
+						MarkdownDescription: "The timeout of index downloading, defaults to 60s.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"url": {
+						Description:         "The Helm repository URL, a valid URL contains at least a protocol and host.",
+						MarkdownDescription: "The Helm repository URL, a valid URL contains at least a protocol and host.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 				}),

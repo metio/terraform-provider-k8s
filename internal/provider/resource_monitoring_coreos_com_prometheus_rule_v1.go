@@ -50,25 +50,25 @@ type MonitoringCoreosComPrometheusRuleV1GoModel struct {
 
 	Spec *struct {
 		Groups *[]struct {
-			Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Partial_response_strategy *string `tfsdk:"partial_response_strategy" yaml:"partial_response_strategy,omitempty"`
 
 			Rules *[]struct {
-				For *string `tfsdk:"for" yaml:"for,omitempty"`
-
-				Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-
-				Record *string `tfsdk:"record" yaml:"record,omitempty"`
-
 				Alert *string `tfsdk:"alert" yaml:"alert,omitempty"`
 
 				Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
 				Expr *string `tfsdk:"expr" yaml:"expr,omitempty"`
+
+				For *string `tfsdk:"for" yaml:"for,omitempty"`
+
+				Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+
+				Record *string `tfsdk:"record" yaml:"record,omitempty"`
 			} `tfsdk:"rules" yaml:"rules,omitempty"`
+
+			Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 		} `tfsdk:"groups" yaml:"groups,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -176,17 +176,6 @@ func (r *MonitoringCoreosComPrometheusRuleV1Resource) GetSchema(_ context.Contex
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"interval": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"name": {
 								Description:         "",
 								MarkdownDescription: "",
@@ -214,39 +203,6 @@ func (r *MonitoringCoreosComPrometheusRuleV1Resource) GetSchema(_ context.Contex
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"for": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"labels": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"record": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"alert": {
 										Description:         "",
@@ -280,10 +236,54 @@ func (r *MonitoringCoreosComPrometheusRuleV1Resource) GetSchema(_ context.Contex
 										Optional: false,
 										Computed: false,
 									},
+
+									"for": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"labels": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"record": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: true,
 								Optional: false,
+								Computed: false,
+							},
+
+							"interval": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 						}),

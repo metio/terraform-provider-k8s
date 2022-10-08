@@ -49,81 +49,81 @@ type TraefikContainoUsIngressRouteV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Routes *[]struct {
-			Middlewares *[]struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		EntryPoints *[]string `tfsdk:"entry_points" yaml:"entryPoints,omitempty"`
 
+		Routes *[]struct {
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			Match *string `tfsdk:"match" yaml:"match,omitempty"`
+
+			Middlewares *[]struct {
 				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 			} `tfsdk:"middlewares" yaml:"middlewares,omitempty"`
 
 			Priority *int64 `tfsdk:"priority" yaml:"priority,omitempty"`
 
 			Services *[]struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				PassHostHeader *bool `tfsdk:"pass_host_header" yaml:"passHostHeader,omitempty"`
+				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 
 				Port *string `tfsdk:"port" yaml:"port,omitempty"`
-
-				Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-				ServersTransport *string `tfsdk:"servers_transport" yaml:"serversTransport,omitempty"`
-
-				Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-
-				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 
 				ResponseForwarding *struct {
 					FlushInterval *string `tfsdk:"flush_interval" yaml:"flushInterval,omitempty"`
 				} `tfsdk:"response_forwarding" yaml:"responseForwarding,omitempty"`
 
+				Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+				ServersTransport *string `tfsdk:"servers_transport" yaml:"serversTransport,omitempty"`
+
 				Sticky *struct {
 					Cookie *struct {
-						SameSite *string `tfsdk:"same_site" yaml:"sameSite,omitempty"`
-
-						Secure *bool `tfsdk:"secure" yaml:"secure,omitempty"`
-
 						HttpOnly *bool `tfsdk:"http_only" yaml:"httpOnly,omitempty"`
 
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						SameSite *string `tfsdk:"same_site" yaml:"sameSite,omitempty"`
+
+						Secure *bool `tfsdk:"secure" yaml:"secure,omitempty"`
 					} `tfsdk:"cookie" yaml:"cookie,omitempty"`
 				} `tfsdk:"sticky" yaml:"sticky,omitempty"`
 
 				Strategy *string `tfsdk:"strategy" yaml:"strategy,omitempty"`
+
+				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+				Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+
+				PassHostHeader *bool `tfsdk:"pass_host_header" yaml:"passHostHeader,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 			} `tfsdk:"services" yaml:"services,omitempty"`
-
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-			Match *string `tfsdk:"match" yaml:"match,omitempty"`
 		} `tfsdk:"routes" yaml:"routes,omitempty"`
 
 		Tls *struct {
+			Store *struct {
+				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"store" yaml:"store,omitempty"`
+
 			CertResolver *string `tfsdk:"cert_resolver" yaml:"certResolver,omitempty"`
 
 			Domains *[]struct {
-				Main *string `tfsdk:"main" yaml:"main,omitempty"`
-
 				Sans *[]string `tfsdk:"sans" yaml:"sans,omitempty"`
+
+				Main *string `tfsdk:"main" yaml:"main,omitempty"`
 			} `tfsdk:"domains" yaml:"domains,omitempty"`
 
 			Options *struct {
-				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 			} `tfsdk:"options" yaml:"options,omitempty"`
 
 			SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-
-			Store *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-			} `tfsdk:"store" yaml:"store,omitempty"`
 		} `tfsdk:"tls" yaml:"tls,omitempty"`
-
-		EntryPoints *[]string `tfsdk:"entry_points" yaml:"entryPoints,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -224,28 +224,50 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"entry_points": {
+						Description:         "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/entrypoints/ Default: all.",
+						MarkdownDescription: "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/entrypoints/ Default: all.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"routes": {
 						Description:         "Routes defines the list of routes.",
 						MarkdownDescription: "Routes defines the list of routes.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+							"kind": {
+								Description:         "Kind defines the kind of the route. Rule is the only supported kind.",
+								MarkdownDescription: "Kind defines the kind of the route. Rule is the only supported kind.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"match": {
+								Description:         "Match defines the router's rule. More info: https://doc.traefik.io/traefik/v2.9/routing/routers/#rule",
+								MarkdownDescription: "Match defines the router's rule. More info: https://doc.traefik.io/traefik/v2.9/routing/routers/#rule",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
 							"middlewares": {
 								Description:         "Middlewares defines the list of references to Middleware resources. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-middleware",
 								MarkdownDescription: "Middlewares defines the list of references to Middleware resources. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-middleware",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name defines the name of the referenced Middleware resource.",
-										MarkdownDescription: "Name defines the name of the referenced Middleware resource.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
 
 									"namespace": {
 										Description:         "Namespace defines the namespace of the referenced Middleware resource.",
@@ -255,6 +277,17 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 
 										Required: false,
 										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name defines the name of the referenced Middleware resource.",
+										MarkdownDescription: "Name defines the name of the referenced Middleware resource.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
 										Computed: false,
 									},
 								}),
@@ -281,22 +314,11 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"name": {
-										Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
-										MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
+									"namespace": {
+										Description:         "Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.",
+										MarkdownDescription: "Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.",
 
 										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"pass_host_header": {
-										Description:         "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
-										MarkdownDescription: "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
-
-										Type: types.BoolType,
 
 										Required: false,
 										Optional: true,
@@ -306,61 +328,6 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 									"port": {
 										Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
 										MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"scheme": {
-										Description:         "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
-										MarkdownDescription: "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"servers_transport": {
-										Description:         "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
-										MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"weight": {
-										Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
-										MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"kind": {
-										Description:         "Kind defines the kind of the Service.",
-										MarkdownDescription: "Kind defines the kind of the Service.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"namespace": {
-										Description:         "Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.",
-										MarkdownDescription: "Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.",
 
 										Type: types.StringType,
 
@@ -392,6 +359,28 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 										Computed: false,
 									},
 
+									"scheme": {
+										Description:         "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
+										MarkdownDescription: "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"servers_transport": {
+										Description:         "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
+										MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"sticky": {
 										Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/services/#sticky-sessions",
 										MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/services/#sticky-sessions",
@@ -403,28 +392,6 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 												MarkdownDescription: "Cookie defines the sticky cookie configuration.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"same_site": {
-														Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
-														MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"secure": {
-														Description:         "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
-														MarkdownDescription: "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 
 													"http_only": {
 														Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
@@ -442,6 +409,28 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 														MarkdownDescription: "Name defines the Cookie name.",
 
 														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"same_site": {
+														Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+														MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"secure": {
+														Description:         "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
+														MarkdownDescription: "Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).",
+
+														Type: types.BoolType,
 
 														Required: false,
 														Optional: true,
@@ -470,32 +459,54 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 										Optional: true,
 										Computed: false,
 									},
+
+									"kind": {
+										Description:         "Kind defines the kind of the Service.",
+										MarkdownDescription: "Kind defines the kind of the Service.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"weight": {
+										Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
+										MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"pass_host_header": {
+										Description:         "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
+										MarkdownDescription: "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
+										MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
 								Optional: true,
-								Computed: false,
-							},
-
-							"kind": {
-								Description:         "Kind defines the kind of the route. Rule is the only supported kind.",
-								MarkdownDescription: "Kind defines the kind of the route. Rule is the only supported kind.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"match": {
-								Description:         "Match defines the router's rule. More info: https://doc.traefik.io/traefik/v2.9/routing/routers/#rule",
-								MarkdownDescription: "Match defines the router's rule. More info: https://doc.traefik.io/traefik/v2.9/routing/routers/#rule",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
 								Computed: false,
 							},
 						}),
@@ -510,6 +521,40 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 						MarkdownDescription: "TLS defines the TLS configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/routers/#tls",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"store": {
+								Description:         "Store defines the reference to the TLSStore, that will be used to store certificates. Please note that only 'default' TLSStore can be used.",
+								MarkdownDescription: "Store defines the reference to the TLSStore, that will be used to store certificates. Please note that only 'default' TLSStore can be used.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"namespace": {
+										Description:         "Namespace defines the namespace of the referenced TLSStore. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-tlsstore",
+										MarkdownDescription: "Namespace defines the namespace of the referenced TLSStore. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-tlsstore",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name defines the name of the referenced TLSStore. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-tlsstore",
+										MarkdownDescription: "Name defines the name of the referenced TLSStore. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-tlsstore",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"cert_resolver": {
 								Description:         "CertResolver defines the name of the certificate resolver to use. Cert resolvers have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v2.9/https/acme/#certificate-resolvers",
@@ -528,22 +573,22 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"main": {
-										Description:         "Main defines the main domain name.",
-										MarkdownDescription: "Main defines the main domain name.",
+									"sans": {
+										Description:         "SANs defines the subject alternative domain names.",
+										MarkdownDescription: "SANs defines the subject alternative domain names.",
 
-										Type: types.StringType,
+										Type: types.ListType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"sans": {
-										Description:         "SANs defines the subject alternative domain names.",
-										MarkdownDescription: "SANs defines the subject alternative domain names.",
+									"main": {
+										Description:         "Main defines the main domain name.",
+										MarkdownDescription: "Main defines the main domain name.",
 
-										Type: types.ListType{ElemType: types.StringType},
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -562,17 +607,6 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"namespace": {
-										Description:         "Namespace defines the namespace of the referenced TLSOption. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-tlsoption",
-										MarkdownDescription: "Namespace defines the namespace of the referenced TLSOption. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-tlsoption",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"name": {
 										Description:         "Name defines the name of the referenced TLSOption. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-tlsoption",
 										MarkdownDescription: "Name defines the name of the referenced TLSOption. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-tlsoption",
@@ -581,6 +615,17 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 
 										Required: true,
 										Optional: false,
+										Computed: false,
+									},
+
+									"namespace": {
+										Description:         "Namespace defines the namespace of the referenced TLSOption. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-tlsoption",
+										MarkdownDescription: "Namespace defines the namespace of the referenced TLSOption. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-tlsoption",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 								}),
@@ -600,52 +645,7 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 								Optional: true,
 								Computed: false,
 							},
-
-							"store": {
-								Description:         "Store defines the reference to the TLSStore, that will be used to store certificates. Please note that only 'default' TLSStore can be used.",
-								MarkdownDescription: "Store defines the reference to the TLSStore, that will be used to store certificates. Please note that only 'default' TLSStore can be used.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name defines the name of the referenced TLSStore. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-tlsstore",
-										MarkdownDescription: "Name defines the name of the referenced TLSStore. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-tlsstore",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"namespace": {
-										Description:         "Namespace defines the namespace of the referenced TLSStore. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-tlsstore",
-										MarkdownDescription: "Namespace defines the namespace of the referenced TLSStore. More info: https://doc.traefik.io/traefik/v2.9/routing/providers/kubernetes-crd/#kind-tlsstore",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"entry_points": {
-						Description:         "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/entrypoints/ Default: all.",
-						MarkdownDescription: "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v2.9/routing/entrypoints/ Default: all.",
-
-						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

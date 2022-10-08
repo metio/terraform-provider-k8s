@@ -49,27 +49,27 @@ type NotificationToolkitFluxcdIoReceiverV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+
+		Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
 		Events *[]string `tfsdk:"events" yaml:"events,omitempty"`
 
 		Resources *[]struct {
+			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
 			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 		SecretRef *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
-
-		Type *string `tfsdk:"type" yaml:"type,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -170,6 +170,28 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Resource) GetSchema(_ context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"suspend": {
+						Description:         "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
+						MarkdownDescription: "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"type": {
+						Description:         "Type of webhook sender, used to determine the validation procedure and payload deserialization.",
+						MarkdownDescription: "Type of webhook sender, used to determine the validation procedure and payload deserialization.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
 					"events": {
 						Description:         "A list of events to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
 						MarkdownDescription: "A list of events to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
@@ -186,6 +208,28 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Resource) GetSchema(_ context
 						MarkdownDescription: "A list of resources to be notified about changes.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"api_version": {
+								Description:         "API version of the referent",
+								MarkdownDescription: "API version of the referent",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"kind": {
+								Description:         "Kind of the referent",
+								MarkdownDescription: "Kind of the referent",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"match_labels": {
 								Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
@@ -212,28 +256,6 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Resource) GetSchema(_ context
 							"namespace": {
 								Description:         "Namespace of the referent",
 								MarkdownDescription: "Namespace of the referent",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"api_version": {
-								Description:         "API version of the referent",
-								MarkdownDescription: "API version of the referent",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"kind": {
-								Description:         "Kind of the referent",
-								MarkdownDescription: "Kind of the referent",
 
 								Type: types.StringType,
 
@@ -268,28 +290,6 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Resource) GetSchema(_ context
 
 						Required: false,
 						Optional: true,
-						Computed: false,
-					},
-
-					"suspend": {
-						Description:         "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
-						MarkdownDescription: "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"type": {
-						Description:         "Type of webhook sender, used to determine the validation procedure and payload deserialization.",
-						MarkdownDescription: "Type of webhook sender, used to determine the validation procedure and payload deserialization.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
 						Computed: false,
 					},
 				}),

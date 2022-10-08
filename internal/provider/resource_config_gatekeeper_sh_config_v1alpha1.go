@@ -71,8 +71,6 @@ type ConfigGatekeeperShConfigV1Alpha1GoModel struct {
 
 		Validation *struct {
 			Traces *[]struct {
-				User *string `tfsdk:"user" yaml:"user,omitempty"`
-
 				Dump *string `tfsdk:"dump" yaml:"dump,omitempty"`
 
 				Kind *struct {
@@ -82,6 +80,8 @@ type ConfigGatekeeperShConfigV1Alpha1GoModel struct {
 
 					Version *string `tfsdk:"version" yaml:"version,omitempty"`
 				} `tfsdk:"kind" yaml:"kind,omitempty"`
+
+				User *string `tfsdk:"user" yaml:"user,omitempty"`
 			} `tfsdk:"traces" yaml:"traces,omitempty"`
 		} `tfsdk:"validation" yaml:"validation,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -310,17 +310,6 @@ func (r *ConfigGatekeeperShConfigV1Alpha1Resource) GetSchema(_ context.Context) 
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"user": {
-										Description:         "Only trace requests from the specified user",
-										MarkdownDescription: "Only trace requests from the specified user",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"dump": {
 										Description:         "Also dump the state of OPA with the trace. Set to 'All' to dump everything.",
 										MarkdownDescription: "Also dump the state of OPA with the trace. Set to 'All' to dump everything.",
@@ -371,6 +360,17 @@ func (r *ConfigGatekeeperShConfigV1Alpha1Resource) GetSchema(_ context.Context) 
 												Computed: false,
 											},
 										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"user": {
+										Description:         "Only trace requests from the specified user",
+										MarkdownDescription: "Only trace requests from the specified user",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,

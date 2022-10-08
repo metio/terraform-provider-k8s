@@ -49,33 +49,9 @@ type SourceToolkitFluxcdIoGitRepositoryV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		AccessFrom *struct {
-			NamespaceSelectors *[]struct {
-				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-			} `tfsdk:"namespace_selectors" yaml:"namespaceSelectors,omitempty"`
-		} `tfsdk:"access_from" yaml:"accessFrom,omitempty"`
-
-		Include *[]struct {
-			FromPath *string `tfsdk:"from_path" yaml:"fromPath,omitempty"`
-
-			Repository *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"repository" yaml:"repository,omitempty"`
-
-			ToPath *string `tfsdk:"to_path" yaml:"toPath,omitempty"`
-		} `tfsdk:"include" yaml:"include,omitempty"`
-
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-		SecretRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-		GitImplementation *string `tfsdk:"git_implementation" yaml:"gitImplementation,omitempty"`
-
 		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
 
-		RecurseSubmodules *bool `tfsdk:"recurse_submodules" yaml:"recurseSubmodules,omitempty"`
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 
 		Ref *struct {
 			Branch *string `tfsdk:"branch" yaml:"branch,omitempty"`
@@ -87,9 +63,13 @@ type SourceToolkitFluxcdIoGitRepositoryV1Beta2GoModel struct {
 			Tag *string `tfsdk:"tag" yaml:"tag,omitempty"`
 		} `tfsdk:"ref" yaml:"ref,omitempty"`
 
-		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
-
 		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+
+		SecretRef *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 
 		Url *string `tfsdk:"url" yaml:"url,omitempty"`
 
@@ -100,6 +80,26 @@ type SourceToolkitFluxcdIoGitRepositoryV1Beta2GoModel struct {
 
 			Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
 		} `tfsdk:"verify" yaml:"verify,omitempty"`
+
+		AccessFrom *struct {
+			NamespaceSelectors *[]struct {
+				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+			} `tfsdk:"namespace_selectors" yaml:"namespaceSelectors,omitempty"`
+		} `tfsdk:"access_from" yaml:"accessFrom,omitempty"`
+
+		GitImplementation *string `tfsdk:"git_implementation" yaml:"gitImplementation,omitempty"`
+
+		Include *[]struct {
+			FromPath *string `tfsdk:"from_path" yaml:"fromPath,omitempty"`
+
+			Repository *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"repository" yaml:"repository,omitempty"`
+
+			ToPath *string `tfsdk:"to_path" yaml:"toPath,omitempty"`
+		} `tfsdk:"include" yaml:"include,omitempty"`
+
+		RecurseSubmodules *bool `tfsdk:"recurse_submodules" yaml:"recurseSubmodules,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -200,6 +200,186 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"ignore": {
+						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"interval": {
+						Description:         "Interval at which to check the GitRepository for updates.",
+						MarkdownDescription: "Interval at which to check the GitRepository for updates.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"ref": {
+						Description:         "Reference specifies the Git reference to resolve and monitor for changes, defaults to the 'master' branch.",
+						MarkdownDescription: "Reference specifies the Git reference to resolve and monitor for changes, defaults to the 'master' branch.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"branch": {
+								Description:         "Branch to check out, defaults to 'master' if no other field is defined.  When GitRepositorySpec.GitImplementation is set to 'go-git', a shallow clone of the specified branch is performed.",
+								MarkdownDescription: "Branch to check out, defaults to 'master' if no other field is defined.  When GitRepositorySpec.GitImplementation is set to 'go-git', a shallow clone of the specified branch is performed.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"commit": {
+								Description:         "Commit SHA to check out, takes precedence over all reference fields.  When GitRepositorySpec.GitImplementation is set to 'go-git', this can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.",
+								MarkdownDescription: "Commit SHA to check out, takes precedence over all reference fields.  When GitRepositorySpec.GitImplementation is set to 'go-git', this can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"semver": {
+								Description:         "SemVer tag expression to check out, takes precedence over Tag.",
+								MarkdownDescription: "SemVer tag expression to check out, takes precedence over Tag.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tag": {
+								Description:         "Tag to check out, takes precedence over Branch.",
+								MarkdownDescription: "Tag to check out, takes precedence over Branch.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"timeout": {
+						Description:         "Timeout for Git operations like cloning, defaults to 60s.",
+						MarkdownDescription: "Timeout for Git operations like cloning, defaults to 60s.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"secret_ref": {
+						Description:         "SecretRef specifies the Secret containing authentication credentials for the GitRepository. For HTTPS repositories the Secret must contain 'username' and 'password' fields. For SSH repositories the Secret must contain 'identity' and 'known_hosts' fields.",
+						MarkdownDescription: "SecretRef specifies the Secret containing authentication credentials for the GitRepository. For HTTPS repositories the Secret must contain 'username' and 'password' fields. For SSH repositories the Secret must contain 'identity' and 'known_hosts' fields.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"suspend": {
+						Description:         "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
+						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"url": {
+						Description:         "URL specifies the Git repository URL, it can be an HTTP/S or SSH address.",
+						MarkdownDescription: "URL specifies the Git repository URL, it can be an HTTP/S or SSH address.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"verify": {
+						Description:         "Verification specifies the configuration to verify the Git commit signature(s).",
+						MarkdownDescription: "Verification specifies the configuration to verify the Git commit signature(s).",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"secret_ref": {
+								Description:         "SecretRef specifies the Secret containing the public keys of trusted Git authors.",
+								MarkdownDescription: "SecretRef specifies the Secret containing the public keys of trusted Git authors.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "Name of the referent.",
+										MarkdownDescription: "Name of the referent.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"mode": {
+								Description:         "Mode specifies what Git object should be verified, currently ('head').",
+								MarkdownDescription: "Mode specifies what Git object should be verified, currently ('head').",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"access_from": {
 						Description:         "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
 						MarkdownDescription: "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
@@ -229,6 +409,17 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"git_implementation": {
+						Description:         "GitImplementation specifies which Git client library implementation to use. Defaults to 'go-git', valid values are ('go-git', 'libgit2').",
+						MarkdownDescription: "GitImplementation specifies which Git client library implementation to use. Defaults to 'go-git', valid values are ('go-git', 'libgit2').",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -292,202 +483,11 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"interval": {
-						Description:         "Interval at which to check the GitRepository for updates.",
-						MarkdownDescription: "Interval at which to check the GitRepository for updates.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"secret_ref": {
-						Description:         "SecretRef specifies the Secret containing authentication credentials for the GitRepository. For HTTPS repositories the Secret must contain 'username' and 'password' fields. For SSH repositories the Secret must contain 'identity' and 'known_hosts' fields.",
-						MarkdownDescription: "SecretRef specifies the Secret containing authentication credentials for the GitRepository. For HTTPS repositories the Secret must contain 'username' and 'password' fields. For SSH repositories the Secret must contain 'identity' and 'known_hosts' fields.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the referent.",
-								MarkdownDescription: "Name of the referent.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"git_implementation": {
-						Description:         "GitImplementation specifies which Git client library implementation to use. Defaults to 'go-git', valid values are ('go-git', 'libgit2').",
-						MarkdownDescription: "GitImplementation specifies which Git client library implementation to use. Defaults to 'go-git', valid values are ('go-git', 'libgit2').",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"ignore": {
-						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
-						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"recurse_submodules": {
 						Description:         "RecurseSubmodules enables the initialization of all submodules within the GitRepository as cloned from the URL, using their default settings. This option is available only when using the 'go-git' GitImplementation.",
 						MarkdownDescription: "RecurseSubmodules enables the initialization of all submodules within the GitRepository as cloned from the URL, using their default settings. This option is available only when using the 'go-git' GitImplementation.",
 
 						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"ref": {
-						Description:         "Reference specifies the Git reference to resolve and monitor for changes, defaults to the 'master' branch.",
-						MarkdownDescription: "Reference specifies the Git reference to resolve and monitor for changes, defaults to the 'master' branch.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"branch": {
-								Description:         "Branch to check out, defaults to 'master' if no other field is defined.  When GitRepositorySpec.GitImplementation is set to 'go-git', a shallow clone of the specified branch is performed.",
-								MarkdownDescription: "Branch to check out, defaults to 'master' if no other field is defined.  When GitRepositorySpec.GitImplementation is set to 'go-git', a shallow clone of the specified branch is performed.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"commit": {
-								Description:         "Commit SHA to check out, takes precedence over all reference fields.  When GitRepositorySpec.GitImplementation is set to 'go-git', this can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.",
-								MarkdownDescription: "Commit SHA to check out, takes precedence over all reference fields.  When GitRepositorySpec.GitImplementation is set to 'go-git', this can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"semver": {
-								Description:         "SemVer tag expression to check out, takes precedence over Tag.",
-								MarkdownDescription: "SemVer tag expression to check out, takes precedence over Tag.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"tag": {
-								Description:         "Tag to check out, takes precedence over Branch.",
-								MarkdownDescription: "Tag to check out, takes precedence over Branch.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"suspend": {
-						Description:         "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
-						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"timeout": {
-						Description:         "Timeout for Git operations like cloning, defaults to 60s.",
-						MarkdownDescription: "Timeout for Git operations like cloning, defaults to 60s.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"url": {
-						Description:         "URL specifies the Git repository URL, it can be an HTTP/S or SSH address.",
-						MarkdownDescription: "URL specifies the Git repository URL, it can be an HTTP/S or SSH address.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"verify": {
-						Description:         "Verification specifies the configuration to verify the Git commit signature(s).",
-						MarkdownDescription: "Verification specifies the configuration to verify the Git commit signature(s).",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"secret_ref": {
-								Description:         "SecretRef specifies the Secret containing the public keys of trusted Git authors.",
-								MarkdownDescription: "SecretRef specifies the Secret containing the public keys of trusted Git authors.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name of the referent.",
-										MarkdownDescription: "Name of the referent.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"mode": {
-								Description:         "Mode specifies what Git object should be verified, currently ('head').",
-								MarkdownDescription: "Mode specifies what Git object should be verified, currently ('head').",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
 
 						Required: false,
 						Optional: true,

@@ -49,21 +49,87 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		EnvFrom *[]struct {
+			SecretRef *struct {
+				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+			ConfigMapRef *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+			} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
+
+			Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+		} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
+
+		Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
+
+		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
+
+		SessionAffinity *bool `tfsdk:"session_affinity" yaml:"sessionAffinity,omitempty"`
+
 		BootableJar *bool `tfsdk:"bootable_jar" yaml:"bootableJar,omitempty"`
 
 		ConfigMaps *[]string `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
 
-		Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
+		DisableHTTPRoute *bool `tfsdk:"disable_http_route" yaml:"disableHTTPRoute,omitempty"`
 
-		Secrets *[]string `tfsdk:"secrets" yaml:"secrets,omitempty"`
+		Env *[]struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
-		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
+			Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+			ValueFrom *struct {
+				ConfigMapKeyRef *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
+
+				FieldRef *struct {
+					ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+					FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
+				} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
+
+				ResourceFieldRef *struct {
+					Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
+
+					ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
+
+					Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+				} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
+
+				SecretKeyRef *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
+			} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
+		} `tfsdk:"env" yaml:"env,omitempty"`
 
 		StandaloneConfigMap *struct {
 			Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"standalone_config_map" yaml:"standaloneConfigMap,omitempty"`
+
+		ApplicationImage *string `tfsdk:"application_image" yaml:"applicationImage,omitempty"`
+
+		Resources *struct {
+			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+
+			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+		} `tfsdk:"resources" yaml:"resources,omitempty"`
+
+		Secrets *[]string `tfsdk:"secrets" yaml:"secrets,omitempty"`
 
 		Storage *struct {
 			EmptyDir *struct {
@@ -117,6 +183,8 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 					Capacity *map[string]string `tfsdk:"capacity" yaml:"capacity,omitempty"`
 
 					Conditions *[]struct {
+						LastProbeTime *string `tfsdk:"last_probe_time" yaml:"lastProbeTime,omitempty"`
+
 						LastTransitionTime *string `tfsdk:"last_transition_time" yaml:"lastTransitionTime,omitempty"`
 
 						Message *string `tfsdk:"message" yaml:"message,omitempty"`
@@ -126,8 +194,6 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 						Status *string `tfsdk:"status" yaml:"status,omitempty"`
 
 						Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-						LastProbeTime *string `tfsdk:"last_probe_time" yaml:"lastProbeTime,omitempty"`
 					} `tfsdk:"conditions" yaml:"conditions,omitempty"`
 
 					Phase *string `tfsdk:"phase" yaml:"phase,omitempty"`
@@ -138,72 +204,6 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 			} `tfsdk:"volume_claim_template" yaml:"volumeClaimTemplate,omitempty"`
 		} `tfsdk:"storage" yaml:"storage,omitempty"`
-
-		ApplicationImage *string `tfsdk:"application_image" yaml:"applicationImage,omitempty"`
-
-		DisableHTTPRoute *bool `tfsdk:"disable_http_route" yaml:"disableHTTPRoute,omitempty"`
-
-		Env *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-			ValueFrom *struct {
-				FieldRef *struct {
-					ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-					FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
-				} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
-
-				ResourceFieldRef *struct {
-					ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
-
-					Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
-
-					Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-				} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
-
-				SecretKeyRef *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-				} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
-
-				ConfigMapKeyRef *struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-				} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
-			} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
-		} `tfsdk:"env" yaml:"env,omitempty"`
-
-		EnvFrom *[]struct {
-			Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-
-			SecretRef *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-			ConfigMapRef *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-			} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
-		} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
-
-		Resources *struct {
-			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
-
-			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
-		} `tfsdk:"resources" yaml:"resources,omitempty"`
-
-		SessionAffinity *bool `tfsdk:"session_affinity" yaml:"sessionAffinity,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -304,6 +304,130 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"env_from": {
+						Description:         "EnvFrom contains environment variables from a source such as a ConfigMap or a Secret",
+						MarkdownDescription: "EnvFrom contains environment variables from a source such as a ConfigMap or a Secret",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"secret_ref": {
+								Description:         "The Secret to select from",
+								MarkdownDescription: "The Secret to select from",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"optional": {
+										Description:         "Specify whether the Secret must be defined",
+										MarkdownDescription: "Specify whether the Secret must be defined",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"config_map_ref": {
+								Description:         "The ConfigMap to select from",
+								MarkdownDescription: "The ConfigMap to select from",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"optional": {
+										Description:         "Specify whether the ConfigMap must be defined",
+										MarkdownDescription: "Specify whether the ConfigMap must be defined",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"prefix": {
+								Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+								MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"replicas": {
+						Description:         "Replicas is the desired number of replicas for the application",
+						MarkdownDescription: "Replicas is the desired number of replicas for the application",
+
+						Type: types.Int64Type,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"service_account_name": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"session_affinity": {
+						Description:         "SessionAffinity defines if connections from the same client ip are passed to the same WildFlyServer instance/pod each time (false if omitted)",
+						MarkdownDescription: "SessionAffinity defines if connections from the same client ip are passed to the same WildFlyServer instance/pod each time (false if omitted)",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"bootable_jar": {
 						Description:         "BootableJar specifies whether the application image is using S2I Builder/Runtime images or Bootable Jar. If omitted, it defaults to false (application image is expected to use S2I Builder/Runtime images)",
 						MarkdownDescription: "BootableJar specifies whether the application image is using S2I Builder/Runtime images or Bootable Jar. If omitted, it defaults to false (application image is expected to use S2I Builder/Runtime images)",
@@ -326,33 +450,226 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 						Computed: false,
 					},
 
-					"replicas": {
-						Description:         "Replicas is the desired number of replicas for the application",
-						MarkdownDescription: "Replicas is the desired number of replicas for the application",
+					"disable_http_route": {
+						Description:         "DisableHTTPRoute disables the creation a route to the HTTP port of the application service (false if omitted)",
+						MarkdownDescription: "DisableHTTPRoute disables the creation a route to the HTTP port of the application service (false if omitted)",
 
-						Type: types.Int64Type,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"secrets": {
-						Description:         "Secrets is a list of Secrets in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The Secrets are mounted into /etc/secrets/<secret-name>.",
-						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The Secrets are mounted into /etc/secrets/<secret-name>.",
-
-						Type: types.ListType{ElemType: types.StringType},
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
 					},
 
-					"service_account_name": {
-						Description:         "",
-						MarkdownDescription: "",
+					"env": {
+						Description:         "Env contains environment variables for the containers running the WildFlyServer application",
+						MarkdownDescription: "Env contains environment variables for the containers running the WildFlyServer application",
 
-						Type: types.StringType,
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+								MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"value": {
+								Description:         "Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+								MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"value_from": {
+								Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+								MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"config_map_key_ref": {
+										Description:         "Selects a key of a ConfigMap.",
+										MarkdownDescription: "Selects a key of a ConfigMap.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "The key to select.",
+												MarkdownDescription: "The key to select.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the ConfigMap or its key must be defined",
+												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"field_ref": {
+										Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+										MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"api_version": {
+												Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+												MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"field_path": {
+												Description:         "Path of the field to select in the specified API version.",
+												MarkdownDescription: "Path of the field to select in the specified API version.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"resource_field_ref": {
+										Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+										MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"resource": {
+												Description:         "Required: resource to select",
+												MarkdownDescription: "Required: resource to select",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"container_name": {
+												Description:         "Container name: required for volumes, optional for env vars",
+												MarkdownDescription: "Container name: required for volumes, optional for env vars",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"divisor": {
+												Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+												MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"secret_key_ref": {
+										Description:         "Selects a key of a secret in the pod's namespace",
+										MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
@@ -387,6 +704,62 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"application_image": {
+						Description:         "ApplicationImage is the name of the application image to be deployed",
+						MarkdownDescription: "ApplicationImage is the name of the application image to be deployed",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"resources": {
+						Description:         "ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements",
+						MarkdownDescription: "ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"limits": {
+								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"requests": {
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"secrets": {
+						Description:         "Secrets is a list of Secrets in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The Secrets are mounted into /etc/secrets/<secret-name>.",
+						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The Secrets are mounted into /etc/secrets/<secret-name>.",
+
+						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,
@@ -687,6 +1060,17 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+													"last_probe_time": {
+														Description:         "Last time we probed the condition.",
+														MarkdownDescription: "Last time we probed the condition.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"last_transition_time": {
 														Description:         "Last time the condition transitioned from one status to another.",
 														MarkdownDescription: "Last time the condition transitioned from one status to another.",
@@ -741,17 +1125,6 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 														Optional: false,
 														Computed: false,
 													},
-
-													"last_probe_time": {
-														Description:         "Last time we probed the condition.",
-														MarkdownDescription: "Last time we probed the condition.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 												}),
 
 												Required: false,
@@ -804,379 +1177,6 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"application_image": {
-						Description:         "ApplicationImage is the name of the application image to be deployed",
-						MarkdownDescription: "ApplicationImage is the name of the application image to be deployed",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"disable_http_route": {
-						Description:         "DisableHTTPRoute disables the creation a route to the HTTP port of the application service (false if omitted)",
-						MarkdownDescription: "DisableHTTPRoute disables the creation a route to the HTTP port of the application service (false if omitted)",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"env": {
-						Description:         "Env contains environment variables for the containers running the WildFlyServer application",
-						MarkdownDescription: "Env contains environment variables for the containers running the WildFlyServer application",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-								MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"value": {
-								Description:         "Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-								MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"value_from": {
-								Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-								MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"field_ref": {
-										Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-										MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"api_version": {
-												Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-												MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"field_path": {
-												Description:         "Path of the field to select in the specified API version.",
-												MarkdownDescription: "Path of the field to select in the specified API version.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"resource_field_ref": {
-										Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-										MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"container_name": {
-												Description:         "Container name: required for volumes, optional for env vars",
-												MarkdownDescription: "Container name: required for volumes, optional for env vars",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"divisor": {
-												Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-												MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"resource": {
-												Description:         "Required: resource to select",
-												MarkdownDescription: "Required: resource to select",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"secret_key_ref": {
-										Description:         "Selects a key of a secret in the pod's namespace",
-										MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "The key of the secret to select from.  Must be a valid secret key.",
-												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"config_map_key_ref": {
-										Description:         "Selects a key of a ConfigMap.",
-										MarkdownDescription: "Selects a key of a ConfigMap.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "The key to select.",
-												MarkdownDescription: "The key to select.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "Specify whether the ConfigMap or its key must be defined",
-												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"env_from": {
-						Description:         "EnvFrom contains environment variables from a source such as a ConfigMap or a Secret",
-						MarkdownDescription: "EnvFrom contains environment variables from a source such as a ConfigMap or a Secret",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"prefix": {
-								Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-								MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"secret_ref": {
-								Description:         "The Secret to select from",
-								MarkdownDescription: "The Secret to select from",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"optional": {
-										Description:         "Specify whether the Secret must be defined",
-										MarkdownDescription: "Specify whether the Secret must be defined",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"config_map_ref": {
-								Description:         "The ConfigMap to select from",
-								MarkdownDescription: "The ConfigMap to select from",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"optional": {
-										Description:         "Specify whether the ConfigMap must be defined",
-										MarkdownDescription: "Specify whether the ConfigMap must be defined",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"resources": {
-						Description:         "ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements",
-						MarkdownDescription: "ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"limits": {
-								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"requests": {
-								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"session_affinity": {
-						Description:         "SessionAffinity defines if connections from the same client ip are passed to the same WildFlyServer instance/pod each time (false if omitted)",
-						MarkdownDescription: "SessionAffinity defines if connections from the same client ip are passed to the same WildFlyServer instance/pod each time (false if omitted)",
-
-						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,

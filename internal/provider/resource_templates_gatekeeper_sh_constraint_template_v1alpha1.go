@@ -49,26 +49,26 @@ type TemplatesGatekeeperShConstraintTemplateV1Alpha1GoModel struct {
 	Spec *struct {
 		Crd *struct {
 			Spec *struct {
-				Names *struct {
-					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-					ShortNames *[]string `tfsdk:"short_names" yaml:"shortNames,omitempty"`
-				} `tfsdk:"names" yaml:"names,omitempty"`
-
 				Validation *struct {
 					LegacySchema *bool `tfsdk:"legacy_schema" yaml:"legacySchema,omitempty"`
 
 					OpenAPIV3Schema *map[string]string `tfsdk:"open_apiv3_schema" yaml:"openAPIV3Schema,omitempty"`
 				} `tfsdk:"validation" yaml:"validation,omitempty"`
+
+				Names *struct {
+					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+					ShortNames *[]string `tfsdk:"short_names" yaml:"shortNames,omitempty"`
+				} `tfsdk:"names" yaml:"names,omitempty"`
 			} `tfsdk:"spec" yaml:"spec,omitempty"`
 		} `tfsdk:"crd" yaml:"crd,omitempty"`
 
 		Targets *[]struct {
+			Libs *[]string `tfsdk:"libs" yaml:"libs,omitempty"`
+
 			Rego *string `tfsdk:"rego" yaml:"rego,omitempty"`
 
 			Target *string `tfsdk:"target" yaml:"target,omitempty"`
-
-			Libs *[]string `tfsdk:"libs" yaml:"libs,omitempty"`
 		} `tfsdk:"targets" yaml:"targets,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -175,40 +175,6 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Alpha1Resource) GetSchema(_ co
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"names": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"kind": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"short_names": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"validation": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -242,6 +208,40 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Alpha1Resource) GetSchema(_ co
 										Optional: true,
 										Computed: false,
 									},
+
+									"names": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"kind": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"short_names": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -261,6 +261,17 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Alpha1Resource) GetSchema(_ co
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+							"libs": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"rego": {
 								Description:         "",
 								MarkdownDescription: "",
@@ -277,17 +288,6 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Alpha1Resource) GetSchema(_ co
 								MarkdownDescription: "",
 
 								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"libs": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,

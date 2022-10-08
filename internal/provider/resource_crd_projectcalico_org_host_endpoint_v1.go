@@ -47,6 +47,10 @@ type CrdProjectcalicoOrgHostEndpointV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		ExpectedIPs *[]string `tfsdk:"expected_i_ps" yaml:"expectedIPs,omitempty"`
+
+		InterfaceName *string `tfsdk:"interface_name" yaml:"interfaceName,omitempty"`
+
 		Node *string `tfsdk:"node" yaml:"node,omitempty"`
 
 		Ports *[]struct {
@@ -58,10 +62,6 @@ type CrdProjectcalicoOrgHostEndpointV1GoModel struct {
 		} `tfsdk:"ports" yaml:"ports,omitempty"`
 
 		Profiles *[]string `tfsdk:"profiles" yaml:"profiles,omitempty"`
-
-		ExpectedIPs *[]string `tfsdk:"expected_i_ps" yaml:"expectedIPs,omitempty"`
-
-		InterfaceName *string `tfsdk:"interface_name" yaml:"interfaceName,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -155,6 +155,28 @@ func (r *CrdProjectcalicoOrgHostEndpointV1Resource) GetSchema(_ context.Context)
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"expected_i_ps": {
+						Description:         "The expected IP addresses (IPv4 and IPv6) of the endpoint. If 'InterfaceName' is not present, Calico will look for an interface matching any of the IPs in the list and apply policy to that. Note: 	When using the selector match criteria in an ingress or egress security Policy 	or Profile, Calico converts the selector into a set of IP addresses. For host 	endpoints, the ExpectedIPs field is used for that purpose. (If only the interface 	name is specified, Calico does not learn the IPs of the interface for use in match 	criteria.)",
+						MarkdownDescription: "The expected IP addresses (IPv4 and IPv6) of the endpoint. If 'InterfaceName' is not present, Calico will look for an interface matching any of the IPs in the list and apply policy to that. Note: 	When using the selector match criteria in an ingress or egress security Policy 	or Profile, Calico converts the selector into a set of IP addresses. For host 	endpoints, the ExpectedIPs field is used for that purpose. (If only the interface 	name is specified, Calico does not learn the IPs of the interface for use in match 	criteria.)",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"interface_name": {
+						Description:         "Either '*', or the name of a specific Linux interface to apply policy to; or empty.  '*' indicates that this HostEndpoint governs all traffic to, from or through the default network namespace of the host named by the 'Node' field; entering and leaving that namespace via any interface, including those from/to non-host-networked local workloads.  If InterfaceName is not '*', this HostEndpoint only governs traffic that enters or leaves the host through the specific interface named by InterfaceName, or - when InterfaceName is empty - through the specific interface that has one of the IPs in ExpectedIPs. Therefore, when InterfaceName is empty, at least one expected IP must be specified.  Only external interfaces (such as 'eth0') are supported here; it isn't possible for a HostEndpoint to protect traffic through a specific local workload interface.  Note: Only some kinds of policy are implemented for '*' HostEndpoints; initially just pre-DNAT policy.  Please check Calico documentation for the latest position.",
+						MarkdownDescription: "Either '*', or the name of a specific Linux interface to apply policy to; or empty.  '*' indicates that this HostEndpoint governs all traffic to, from or through the default network namespace of the host named by the 'Node' field; entering and leaving that namespace via any interface, including those from/to non-host-networked local workloads.  If InterfaceName is not '*', this HostEndpoint only governs traffic that enters or leaves the host through the specific interface named by InterfaceName, or - when InterfaceName is empty - through the specific interface that has one of the IPs in ExpectedIPs. Therefore, when InterfaceName is empty, at least one expected IP must be specified.  Only external interfaces (such as 'eth0') are supported here; it isn't possible for a HostEndpoint to protect traffic through a specific local workload interface.  Note: Only some kinds of policy are implemented for '*' HostEndpoints; initially just pre-DNAT policy.  Please check Calico documentation for the latest position.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"node": {
 						Description:         "The node name identifying the Calico node instance.",
 						MarkdownDescription: "The node name identifying the Calico node instance.",
@@ -216,28 +238,6 @@ func (r *CrdProjectcalicoOrgHostEndpointV1Resource) GetSchema(_ context.Context)
 						MarkdownDescription: "A list of identifiers of security Profile objects that apply to this endpoint. Each profile is applied in the order that they appear in this list.  Profile rules are applied after the selector-based security policy.",
 
 						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"expected_i_ps": {
-						Description:         "The expected IP addresses (IPv4 and IPv6) of the endpoint. If 'InterfaceName' is not present, Calico will look for an interface matching any of the IPs in the list and apply policy to that. Note: 	When using the selector match criteria in an ingress or egress security Policy 	or Profile, Calico converts the selector into a set of IP addresses. For host 	endpoints, the ExpectedIPs field is used for that purpose. (If only the interface 	name is specified, Calico does not learn the IPs of the interface for use in match 	criteria.)",
-						MarkdownDescription: "The expected IP addresses (IPv4 and IPv6) of the endpoint. If 'InterfaceName' is not present, Calico will look for an interface matching any of the IPs in the list and apply policy to that. Note: 	When using the selector match criteria in an ingress or egress security Policy 	or Profile, Calico converts the selector into a set of IP addresses. For host 	endpoints, the ExpectedIPs field is used for that purpose. (If only the interface 	name is specified, Calico does not learn the IPs of the interface for use in match 	criteria.)",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"interface_name": {
-						Description:         "Either '*', or the name of a specific Linux interface to apply policy to; or empty.  '*' indicates that this HostEndpoint governs all traffic to, from or through the default network namespace of the host named by the 'Node' field; entering and leaving that namespace via any interface, including those from/to non-host-networked local workloads.  If InterfaceName is not '*', this HostEndpoint only governs traffic that enters or leaves the host through the specific interface named by InterfaceName, or - when InterfaceName is empty - through the specific interface that has one of the IPs in ExpectedIPs. Therefore, when InterfaceName is empty, at least one expected IP must be specified.  Only external interfaces (such as 'eth0') are supported here; it isn't possible for a HostEndpoint to protect traffic through a specific local workload interface.  Note: Only some kinds of policy are implemented for '*' HostEndpoints; initially just pre-DNAT policy.  Please check Calico documentation for the latest position.",
-						MarkdownDescription: "Either '*', or the name of a specific Linux interface to apply policy to; or empty.  '*' indicates that this HostEndpoint governs all traffic to, from or through the default network namespace of the host named by the 'Node' field; entering and leaving that namespace via any interface, including those from/to non-host-networked local workloads.  If InterfaceName is not '*', this HostEndpoint only governs traffic that enters or leaves the host through the specific interface named by InterfaceName, or - when InterfaceName is empty - through the specific interface that has one of the IPs in ExpectedIPs. Therefore, when InterfaceName is empty, at least one expected IP must be specified.  Only external interfaces (such as 'eth0') are supported here; it isn't possible for a HostEndpoint to protect traffic through a specific local workload interface.  Note: Only some kinds of policy are implemented for '*' HostEndpoints; initially just pre-DNAT policy.  Please check Calico documentation for the latest position.",
-
-						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

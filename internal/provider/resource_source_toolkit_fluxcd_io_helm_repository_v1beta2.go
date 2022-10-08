@@ -55,21 +55,21 @@ type SourceToolkitFluxcdIoHelmRepositoryV1Beta2GoModel struct {
 			} `tfsdk:"namespace_selectors" yaml:"namespaceSelectors,omitempty"`
 		} `tfsdk:"access_from" yaml:"accessFrom,omitempty"`
 
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
-
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 
 		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 
-		Type *string `tfsdk:"type" yaml:"type,omitempty"`
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 
 		PassCredentials *bool `tfsdk:"pass_credentials" yaml:"passCredentials,omitempty"`
+
+		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
 
 		SecretRef *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+		Type *string `tfsdk:"type" yaml:"type,omitempty"`
 
 		Url *string `tfsdk:"url" yaml:"url,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -207,28 +207,6 @@ func (r *SourceToolkitFluxcdIoHelmRepositoryV1Beta2Resource) GetSchema(_ context
 						Computed: false,
 					},
 
-					"interval": {
-						Description:         "Interval at which to check the URL for updates.",
-						MarkdownDescription: "Interval at which to check the URL for updates.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"provider": {
-						Description:         "Provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. This field is optional, and only taken into account if the .spec.type field is set to 'oci'. When not specified, defaults to 'generic'.",
-						MarkdownDescription: "Provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. This field is optional, and only taken into account if the .spec.type field is set to 'oci'. When not specified, defaults to 'generic'.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"suspend": {
 						Description:         "Suspend tells the controller to suspend the reconciliation of this HelmRepository.",
 						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this HelmRepository.",
@@ -251,14 +229,14 @@ func (r *SourceToolkitFluxcdIoHelmRepositoryV1Beta2Resource) GetSchema(_ context
 						Computed: false,
 					},
 
-					"type": {
-						Description:         "Type of the HelmRepository. When this field is set to  'oci', the URL field value must be prefixed with 'oci://'.",
-						MarkdownDescription: "Type of the HelmRepository. When this field is set to  'oci', the URL field value must be prefixed with 'oci://'.",
+					"interval": {
+						Description:         "Interval at which to check the URL for updates.",
+						MarkdownDescription: "Interval at which to check the URL for updates.",
 
 						Type: types.StringType,
 
-						Required: false,
-						Optional: true,
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 
@@ -267,6 +245,17 @@ func (r *SourceToolkitFluxcdIoHelmRepositoryV1Beta2Resource) GetSchema(_ context
 						MarkdownDescription: "PassCredentials allows the credentials from the SecretRef to be passed on to a host that does not match the host as defined in URL. This may be required if the host of the advertised chart URLs in the index differ from the defined URL. Enabling this should be done with caution, as it can potentially result in credentials getting stolen in a MITM-attack.",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"provider": {
+						Description:         "Provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. This field is optional, and only taken into account if the .spec.type field is set to 'oci'. When not specified, defaults to 'generic'.",
+						MarkdownDescription: "Provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. This field is optional, and only taken into account if the .spec.type field is set to 'oci'. When not specified, defaults to 'generic'.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -290,6 +279,17 @@ func (r *SourceToolkitFluxcdIoHelmRepositoryV1Beta2Resource) GetSchema(_ context
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"type": {
+						Description:         "Type of the HelmRepository. When this field is set to  'oci', the URL field value must be prefixed with 'oci://'.",
+						MarkdownDescription: "Type of the HelmRepository. When this field is set to  'oci', the URL field value must be prefixed with 'oci://'.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

@@ -52,25 +52,25 @@ type AppKiegroupOrgKogitoInfraV1Beta1GoModel struct {
 		SecretEnvFromReferences *[]string `tfsdk:"secret_env_from_references" yaml:"secretEnvFromReferences,omitempty"`
 
 		SecretVolumeReferences *[]struct {
+			Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
 			FileMode *int64 `tfsdk:"file_mode" yaml:"fileMode,omitempty"`
 
 			MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 		} `tfsdk:"secret_volume_references" yaml:"secretVolumeReferences,omitempty"`
 
 		ConfigMapEnvFromReferences *[]string `tfsdk:"config_map_env_from_references" yaml:"configMapEnvFromReferences,omitempty"`
 
 		ConfigMapVolumeReferences *[]struct {
-			FileMode *int64 `tfsdk:"file_mode" yaml:"fileMode,omitempty"`
-
 			MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+			FileMode *int64 `tfsdk:"file_mode" yaml:"fileMode,omitempty"`
 		} `tfsdk:"config_map_volume_references" yaml:"configMapVolumeReferences,omitempty"`
 
 		Envs *[]struct {
@@ -88,25 +88,25 @@ type AppKiegroupOrgKogitoInfraV1Beta1GoModel struct {
 				} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
 
 				FieldRef *struct {
-					ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
 					FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
+
+					ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
 				} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
 
 				ResourceFieldRef *struct {
+					Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+
 					Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 
 					ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
-
-					Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
 				} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
 
 				SecretKeyRef *struct {
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 				} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
 			} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
 		} `tfsdk:"envs" yaml:"envs,omitempty"`
@@ -114,13 +114,13 @@ type AppKiegroupOrgKogitoInfraV1Beta1GoModel struct {
 		InfraProperties *map[string]string `tfsdk:"infra_properties" yaml:"infraProperties,omitempty"`
 
 		Resource *struct {
-			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
 		} `tfsdk:"resource" yaml:"resource,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -239,6 +239,17 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+							"optional": {
+								Description:         "Specify whether the Secret or its keys must be defined",
+								MarkdownDescription: "Specify whether the Secret or its keys must be defined",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"file_mode": {
 								Description:         "Permission on the file mounted as volume on deployment. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.",
 								MarkdownDescription: "Permission on the file mounted as volume on deployment. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.",
@@ -269,17 +280,6 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 
 								Required: true,
 								Optional: false,
-								Computed: false,
-							},
-
-							"optional": {
-								Description:         "Specify whether the Secret or its keys must be defined",
-								MarkdownDescription: "Specify whether the Secret or its keys must be defined",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
 								Computed: false,
 							},
 						}),
@@ -306,17 +306,6 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"file_mode": {
-								Description:         "Permission on the file mounted as volume on deployment. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.",
-								MarkdownDescription: "Permission on the file mounted as volume on deployment. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"mount_path": {
 								Description:         "Path within the container at which the volume should be mounted.  Must not contain ':'. Default mount path is /home/kogito/config",
 								MarkdownDescription: "Path within the container at which the volume should be mounted.  Must not contain ':'. Default mount path is /home/kogito/config",
@@ -344,6 +333,17 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 								MarkdownDescription: "Specify whether the Secret or its keys must be defined",
 
 								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"file_mode": {
+								Description:         "Permission on the file mounted as volume on deployment. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.",
+								MarkdownDescription: "Permission on the file mounted as volume on deployment. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.",
+
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
@@ -441,17 +441,6 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"api_version": {
-												Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-												MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"field_path": {
 												Description:         "Path of the field to select in the specified API version.",
 												MarkdownDescription: "Path of the field to select in the specified API version.",
@@ -460,6 +449,17 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 
 												Required: true,
 												Optional: false,
+												Computed: false,
+											},
+
+											"api_version": {
+												Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+												MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
 												Computed: false,
 											},
 										}),
@@ -474,6 +474,17 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 										MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"divisor": {
+												Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+												MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 
 											"resource": {
 												Description:         "Required: resource to select",
@@ -496,17 +507,6 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 												Optional: true,
 												Computed: false,
 											},
-
-											"divisor": {
-												Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-												MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 										}),
 
 										Required: false,
@@ -519,17 +519,6 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 										MarkdownDescription: "Selects a key of a secret in the pod's namespace",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"optional": {
-												Description:         "Specify whether the Secret or its key must be defined",
-												MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 
 											"key": {
 												Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -547,6 +536,17 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 
 												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+												Type: types.BoolType,
 
 												Required: false,
 												Optional: true,
@@ -588,17 +588,6 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"api_version": {
-								Description:         "APIVersion describes the API Version of referred Kubernetes resource for example, infinispan.org/v1",
-								MarkdownDescription: "APIVersion describes the API Version of referred Kubernetes resource for example, infinispan.org/v1",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
 							"kind": {
 								Description:         "Kind describes the kind of referred Kubernetes resource for example, Infinispan",
 								MarkdownDescription: "Kind describes the kind of referred Kubernetes resource for example, Infinispan",
@@ -629,6 +618,17 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 
 								Required: false,
 								Optional: true,
+								Computed: false,
+							},
+
+							"api_version": {
+								Description:         "APIVersion describes the API Version of referred Kubernetes resource for example, infinispan.org/v1",
+								MarkdownDescription: "APIVersion describes the API Version of referred Kubernetes resource for example, infinispan.org/v1",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
 								Computed: false,
 							},
 						}),

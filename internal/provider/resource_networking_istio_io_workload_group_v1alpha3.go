@@ -49,33 +49,7 @@ type NetworkingIstioIoWorkloadGroupV1Alpha3GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Metadata *struct {
-			Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-		} `tfsdk:"metadata" yaml:"metadata,omitempty"`
-
 		Probe *struct {
-			FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
-
-			HttpGet *struct {
-				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-
-				Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-				Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-				HttpHeaders *[]struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-				} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
-
-				Path *string `tfsdk:"path" yaml:"path,omitempty"`
-			} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
-
-			InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
-
 			PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
 
 			SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
@@ -91,6 +65,26 @@ type NetworkingIstioIoWorkloadGroupV1Alpha3GoModel struct {
 			Exec *struct {
 				Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
 			} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+			FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+			HttpGet *struct {
+				Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+
+				Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+				Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+				HttpHeaders *[]struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+				} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+			} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+			InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
 		} `tfsdk:"probe" yaml:"probe,omitempty"`
 
 		Template *struct {
@@ -108,6 +102,12 @@ type NetworkingIstioIoWorkloadGroupV1Alpha3GoModel struct {
 
 			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
 		} `tfsdk:"template" yaml:"template,omitempty"`
+
+		Metadata *struct {
+			Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+
+			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+		} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -208,157 +208,11 @@ func (r *NetworkingIstioIoWorkloadGroupV1Alpha3Resource) GetSchema(_ context.Con
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"metadata": {
-						Description:         "Metadata that will be used for all corresponding 'WorkloadEntries'.",
-						MarkdownDescription: "Metadata that will be used for all corresponding 'WorkloadEntries'.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"annotations": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"labels": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"probe": {
 						Description:         "'ReadinessProbe' describes the configuration the user must provide for healthchecking on their workload.",
 						MarkdownDescription: "'ReadinessProbe' describes the configuration the user must provide for healthchecking on their workload.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"failure_threshold": {
-								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.",
-								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"http_get": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"port": {
-										Description:         "Port on which the endpoint lives.",
-										MarkdownDescription: "Port on which the endpoint lives.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"scheme": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"host": {
-										Description:         "Host name to connect to, defaults to the pod IP.",
-										MarkdownDescription: "Host name to connect to, defaults to the pod IP.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"http_headers": {
-										Description:         "Headers the proxy will pass on to make the request.",
-										MarkdownDescription: "Headers the proxy will pass on to make the request.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"value": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"path": {
-										Description:         "Path to access on the HTTP server.",
-										MarkdownDescription: "Path to access on the HTTP server.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"initial_delay_seconds": {
-								Description:         "Number of seconds after the container has started before readiness probes are initiated.",
-								MarkdownDescription: "Number of seconds after the container has started before readiness probes are initiated.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"period_seconds": {
 								Description:         "How often (in seconds) to perform the probe.",
@@ -449,6 +303,118 @@ func (r *NetworkingIstioIoWorkloadGroupV1Alpha3Resource) GetSchema(_ context.Con
 								Optional: true,
 								Computed: false,
 							},
+
+							"failure_threshold": {
+								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.",
+								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"http_get": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"path": {
+										Description:         "Path to access on the HTTP server.",
+										MarkdownDescription: "Path to access on the HTTP server.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"port": {
+										Description:         "Port on which the endpoint lives.",
+										MarkdownDescription: "Port on which the endpoint lives.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"scheme": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"host": {
+										Description:         "Host name to connect to, defaults to the pod IP.",
+										MarkdownDescription: "Host name to connect to, defaults to the pod IP.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http_headers": {
+										Description:         "Headers the proxy will pass on to make the request.",
+										MarkdownDescription: "Headers the proxy will pass on to make the request.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"value": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"initial_delay_seconds": {
+								Description:         "Number of seconds after the container has started before readiness probes are initiated.",
+								MarkdownDescription: "Number of seconds after the container has started before readiness probes are initiated.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						}),
 
 						Required: false,
@@ -531,6 +497,40 @@ func (r *NetworkingIstioIoWorkloadGroupV1Alpha3Resource) GetSchema(_ context.Con
 							"labels": {
 								Description:         "One or more labels associated with the endpoint.",
 								MarkdownDescription: "One or more labels associated with the endpoint.",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"metadata": {
+						Description:         "Metadata that will be used for all corresponding 'WorkloadEntries'.",
+						MarkdownDescription: "Metadata that will be used for all corresponding 'WorkloadEntries'.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"annotations": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"labels": {
+								Description:         "",
+								MarkdownDescription: "",
 
 								Type: types.MapType{ElemType: types.StringType},
 

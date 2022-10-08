@@ -47,11 +47,11 @@ type CrdProjectcalicoOrgCalicoNodeStatusV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		UpdatePeriodSeconds *int64 `tfsdk:"update_period_seconds" yaml:"updatePeriodSeconds,omitempty"`
-
 		Classes *[]string `tfsdk:"classes" yaml:"classes,omitempty"`
 
 		Node *string `tfsdk:"node" yaml:"node,omitempty"`
+
+		UpdatePeriodSeconds *int64 `tfsdk:"update_period_seconds" yaml:"updatePeriodSeconds,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -145,17 +145,6 @@ func (r *CrdProjectcalicoOrgCalicoNodeStatusV1Resource) GetSchema(_ context.Cont
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"update_period_seconds": {
-						Description:         "UpdatePeriodSeconds is the period at which CalicoNodeStatus should be updated. Set to 0 to disable CalicoNodeStatus refresh. Maximum update period is one day.",
-						MarkdownDescription: "UpdatePeriodSeconds is the period at which CalicoNodeStatus should be updated. Set to 0 to disable CalicoNodeStatus refresh. Maximum update period is one day.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"classes": {
 						Description:         "Classes declares the types of information to monitor for this calico/node, and allows for selective status reporting about certain subsets of information.",
 						MarkdownDescription: "Classes declares the types of information to monitor for this calico/node, and allows for selective status reporting about certain subsets of information.",
@@ -172,6 +161,17 @@ func (r *CrdProjectcalicoOrgCalicoNodeStatusV1Resource) GetSchema(_ context.Cont
 						MarkdownDescription: "The node name identifies the Calico node instance for node status.",
 
 						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"update_period_seconds": {
+						Description:         "UpdatePeriodSeconds is the period at which CalicoNodeStatus should be updated. Set to 0 to disable CalicoNodeStatus refresh. Maximum update period is one day.",
+						MarkdownDescription: "UpdatePeriodSeconds is the period at which CalicoNodeStatus should be updated. Set to 0 to disable CalicoNodeStatus refresh. Maximum update period is one day.",
+
+						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,

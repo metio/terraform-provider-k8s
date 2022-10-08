@@ -68,11 +68,11 @@ type MutationsGatekeeperShAssignV1Beta1GoModel struct {
 
 			LabelSelector *struct {
 				MatchExpressions *[]struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 					Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 				} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -334,6 +334,17 @@ func (r *MutationsGatekeeperShAssignV1Beta1Resource) GetSchema(_ context.Context
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+											"key": {
+												Description:         "key is the label key that the selector applies to.",
+												MarkdownDescription: "key is the label key that the selector applies to.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
 											"operator": {
 												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
@@ -353,17 +364,6 @@ func (r *MutationsGatekeeperShAssignV1Beta1Resource) GetSchema(_ context.Context
 
 												Required: false,
 												Optional: true,
-												Computed: false,
-											},
-
-											"key": {
-												Description:         "key is the label key that the selector applies to.",
-												MarkdownDescription: "key is the label key that the selector applies to.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
 												Computed: false,
 											},
 										}),

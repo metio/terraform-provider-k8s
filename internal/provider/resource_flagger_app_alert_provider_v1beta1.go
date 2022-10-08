@@ -49,12 +49,6 @@ type FlaggerAppAlertProviderV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		SecretRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-		Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
 		Username *string `tfsdk:"username" yaml:"username,omitempty"`
 
 		Address *string `tfsdk:"address" yaml:"address,omitempty"`
@@ -62,6 +56,12 @@ type FlaggerAppAlertProviderV1Beta1GoModel struct {
 		Channel *string `tfsdk:"channel" yaml:"channel,omitempty"`
 
 		Proxy *string `tfsdk:"proxy" yaml:"proxy,omitempty"`
+
+		SecretRef *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+		Type *string `tfsdk:"type" yaml:"type,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -162,40 +162,6 @@ func (r *FlaggerAppAlertProviderV1Beta1Resource) GetSchema(_ context.Context) (t
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"secret_ref": {
-						Description:         "Kubernetes secret reference containing the provider address",
-						MarkdownDescription: "Kubernetes secret reference containing the provider address",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the Kubernetes secret",
-								MarkdownDescription: "Name of the Kubernetes secret",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"type": {
-						Description:         "Type of this provider",
-						MarkdownDescription: "Type of this provider",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"username": {
 						Description:         "Bot username for this provider",
 						MarkdownDescription: "Bot username for this provider",
@@ -232,6 +198,40 @@ func (r *FlaggerAppAlertProviderV1Beta1Resource) GetSchema(_ context.Context) (t
 					"proxy": {
 						Description:         "Http/s proxy of this provider",
 						MarkdownDescription: "Http/s proxy of this provider",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"secret_ref": {
+						Description:         "Kubernetes secret reference containing the provider address",
+						MarkdownDescription: "Kubernetes secret reference containing the provider address",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the Kubernetes secret",
+								MarkdownDescription: "Name of the Kubernetes secret",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"type": {
+						Description:         "Type of this provider",
+						MarkdownDescription: "Type of this provider",
 
 						Type: types.StringType,
 

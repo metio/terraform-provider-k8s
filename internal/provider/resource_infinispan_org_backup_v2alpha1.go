@@ -52,8 +52,6 @@ type InfinispanOrgBackupV2Alpha1GoModel struct {
 		Cluster *string `tfsdk:"cluster" yaml:"cluster,omitempty"`
 
 		Container *struct {
-			ExtraJvmOpts *string `tfsdk:"extra_jvm_opts" yaml:"extraJvmOpts,omitempty"`
-
 			Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
 
 			RouterExtraJvmOpts *string `tfsdk:"router_extra_jvm_opts" yaml:"routerExtraJvmOpts,omitempty"`
@@ -61,6 +59,8 @@ type InfinispanOrgBackupV2Alpha1GoModel struct {
 			CliExtraJvmOpts *string `tfsdk:"cli_extra_jvm_opts" yaml:"cliExtraJvmOpts,omitempty"`
 
 			Cpu *string `tfsdk:"cpu" yaml:"cpu,omitempty"`
+
+			ExtraJvmOpts *string `tfsdk:"extra_jvm_opts" yaml:"extraJvmOpts,omitempty"`
 		} `tfsdk:"container" yaml:"container,omitempty"`
 
 		Resources *struct {
@@ -201,17 +201,6 @@ func (r *InfinispanOrgBackupV2Alpha1Resource) GetSchema(_ context.Context) (tfsd
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"extra_jvm_opts": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"memory": {
 								Description:         "",
 								MarkdownDescription: "",
@@ -246,6 +235,17 @@ func (r *InfinispanOrgBackupV2Alpha1Resource) GetSchema(_ context.Context) (tfsd
 							},
 
 							"cpu": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"extra_jvm_opts": {
 								Description:         "",
 								MarkdownDescription: "",
 

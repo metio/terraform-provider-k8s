@@ -49,6 +49,10 @@ type InfinispanOrgCacheV2Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Template *string `tfsdk:"template" yaml:"template,omitempty"`
+
+		TemplateName *string `tfsdk:"template_name" yaml:"templateName,omitempty"`
+
 		AdminAuth *struct {
 			Password *struct {
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -72,10 +76,6 @@ type InfinispanOrgCacheV2Alpha1GoModel struct {
 		ClusterName *string `tfsdk:"cluster_name" yaml:"clusterName,omitempty"`
 
 		Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-		Template *string `tfsdk:"template" yaml:"template,omitempty"`
-
-		TemplateName *string `tfsdk:"template_name" yaml:"templateName,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -175,6 +175,28 @@ func (r *InfinispanOrgCacheV2Alpha1Resource) GetSchema(_ context.Context) (tfsdk
 				MarkdownDescription: "CacheSpec defines the desired state of Cache",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+					"template": {
+						Description:         "Cache template in XML format",
+						MarkdownDescription: "Cache template in XML format",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"template_name": {
+						Description:         "Name of the template to be used to create this cache",
+						MarkdownDescription: "Name of the template to be used to create this cache",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
 
 					"admin_auth": {
 						Description:         "Deprecated. This no longer has any effect. The operator's admin credentials are now used to perform cache operations",
@@ -303,28 +325,6 @@ func (r *InfinispanOrgCacheV2Alpha1Resource) GetSchema(_ context.Context) (tfsdk
 					"name": {
 						Description:         "Name of the cache to be created. If empty ObjectMeta.Name will be used",
 						MarkdownDescription: "Name of the cache to be created. If empty ObjectMeta.Name will be used",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"template": {
-						Description:         "Cache template in XML format",
-						MarkdownDescription: "Cache template in XML format",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"template_name": {
-						Description:         "Name of the template to be used to create this cache",
-						MarkdownDescription: "Name of the template to be used to create this cache",
 
 						Type: types.StringType,
 

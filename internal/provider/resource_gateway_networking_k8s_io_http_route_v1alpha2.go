@@ -64,8 +64,48 @@ type GatewayNetworkingK8SIoHTTPRouteV1Alpha2GoModel struct {
 		} `tfsdk:"parent_refs" yaml:"parentRefs,omitempty"`
 
 		Rules *[]struct {
+			Matches *[]struct {
+				Path *struct {
+					Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+				} `tfsdk:"path" yaml:"path,omitempty"`
+
+				QueryParams *[]struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+				} `tfsdk:"query_params" yaml:"queryParams,omitempty"`
+
+				Headers *[]struct {
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Type *string `tfsdk:"type" yaml:"type,omitempty"`
+				} `tfsdk:"headers" yaml:"headers,omitempty"`
+
+				Method *string `tfsdk:"method" yaml:"method,omitempty"`
+			} `tfsdk:"matches" yaml:"matches,omitempty"`
+
 			BackendRefs *[]struct {
 				Filters *[]struct {
+					RequestMirror *struct {
+						BackendRef *struct {
+							Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+							Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+
+							Group *string `tfsdk:"group" yaml:"group,omitempty"`
+						} `tfsdk:"backend_ref" yaml:"backendRef,omitempty"`
+					} `tfsdk:"request_mirror" yaml:"requestMirror,omitempty"`
+
 					RequestRedirect *struct {
 						Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
@@ -79,11 +119,11 @@ type GatewayNetworkingK8SIoHTTPRouteV1Alpha2GoModel struct {
 					Type *string `tfsdk:"type" yaml:"type,omitempty"`
 
 					ExtensionRef *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
 						Group *string `tfsdk:"group" yaml:"group,omitempty"`
 
 						Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
 					} `tfsdk:"extension_ref" yaml:"extensionRef,omitempty"`
 
 					RequestHeaderModifier *struct {
@@ -101,20 +141,6 @@ type GatewayNetworkingK8SIoHTTPRouteV1Alpha2GoModel struct {
 							Value *string `tfsdk:"value" yaml:"value,omitempty"`
 						} `tfsdk:"set" yaml:"set,omitempty"`
 					} `tfsdk:"request_header_modifier" yaml:"requestHeaderModifier,omitempty"`
-
-					RequestMirror *struct {
-						BackendRef *struct {
-							Group *string `tfsdk:"group" yaml:"group,omitempty"`
-
-							Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-							Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-						} `tfsdk:"backend_ref" yaml:"backendRef,omitempty"`
-					} `tfsdk:"request_mirror" yaml:"requestMirror,omitempty"`
 				} `tfsdk:"filters" yaml:"filters,omitempty"`
 
 				Group *string `tfsdk:"group" yaml:"group,omitempty"`
@@ -131,32 +157,46 @@ type GatewayNetworkingK8SIoHTTPRouteV1Alpha2GoModel struct {
 			} `tfsdk:"backend_refs" yaml:"backendRefs,omitempty"`
 
 			Filters *[]struct {
+				RequestRedirect *struct {
+					Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
+
+					Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+
+					Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+					StatusCode *int64 `tfsdk:"status_code" yaml:"statusCode,omitempty"`
+				} `tfsdk:"request_redirect" yaml:"requestRedirect,omitempty"`
+
+				Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
 				ExtensionRef *struct {
+					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 					Group *string `tfsdk:"group" yaml:"group,omitempty"`
-
-					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 				} `tfsdk:"extension_ref" yaml:"extensionRef,omitempty"`
 
 				RequestHeaderModifier *struct {
 					Add *[]struct {
-						Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Value *string `tfsdk:"value" yaml:"value,omitempty"`
 					} `tfsdk:"add" yaml:"add,omitempty"`
 
 					Remove *[]string `tfsdk:"remove" yaml:"remove,omitempty"`
 
 					Set *[]struct {
-						Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Value *string `tfsdk:"value" yaml:"value,omitempty"`
 					} `tfsdk:"set" yaml:"set,omitempty"`
 				} `tfsdk:"request_header_modifier" yaml:"requestHeaderModifier,omitempty"`
 
 				RequestMirror *struct {
 					BackendRef *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
 						Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 
 						Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
@@ -164,49 +204,9 @@ type GatewayNetworkingK8SIoHTTPRouteV1Alpha2GoModel struct {
 						Group *string `tfsdk:"group" yaml:"group,omitempty"`
 
 						Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
 					} `tfsdk:"backend_ref" yaml:"backendRef,omitempty"`
 				} `tfsdk:"request_mirror" yaml:"requestMirror,omitempty"`
-
-				RequestRedirect *struct {
-					StatusCode *int64 `tfsdk:"status_code" yaml:"statusCode,omitempty"`
-
-					Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
-
-					Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-
-					Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-				} `tfsdk:"request_redirect" yaml:"requestRedirect,omitempty"`
-
-				Type *string `tfsdk:"type" yaml:"type,omitempty"`
 			} `tfsdk:"filters" yaml:"filters,omitempty"`
-
-			Matches *[]struct {
-				Headers *[]struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-				} `tfsdk:"headers" yaml:"headers,omitempty"`
-
-				Method *string `tfsdk:"method" yaml:"method,omitempty"`
-
-				Path *struct {
-					Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-				} `tfsdk:"path" yaml:"path,omitempty"`
-
-				QueryParams *[]struct {
-					Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"query_params" yaml:"queryParams,omitempty"`
-			} `tfsdk:"matches" yaml:"matches,omitempty"`
 		} `tfsdk:"rules" yaml:"rules,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -392,6 +392,153 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+							"matches": {
+								Description:         "Matches define conditions used for matching the rule against incoming HTTP requests. Each match is independent, i.e. this rule will be matched if **any** one of the matches is satisfied.  For example, take the following matches configuration:  ''' matches: - path:     value: '/foo'   headers:   - name: 'version'     value: 'v2' - path:     value: '/v2/foo' '''  For a request to match against this rule, a request must satisfy EITHER of the two conditions:  - path prefixed with '/foo' AND contains the header 'version: v2' - path prefix of '/v2/foo'  See the documentation for HTTPRouteMatch on how to specify multiple match conditions that should be ANDed together.  If no matches are specified, the default is a prefix path match on '/', which has the effect of matching every HTTP request.  Proxy or Load Balancer routing configuration generated from HTTPRoutes MUST prioritize rules based on the following criteria, continuing on ties. Precedence must be given to the the Rule with the largest number of:  * Characters in a matching non-wildcard hostname. * Characters in a matching hostname. * Characters in a matching path. * Header matches. * Query param matches.  If ties still exist across multiple Routes, matching precedence MUST be determined in order of the following criteria, continuing on ties:  * The oldest Route based on creation timestamp. * The Route appearing first in alphabetical order by   '<namespace>/<name>'.  If ties still exist within the Route that has been given precedence, matching precedence MUST be granted to the first matching rule meeting the above criteria.",
+								MarkdownDescription: "Matches define conditions used for matching the rule against incoming HTTP requests. Each match is independent, i.e. this rule will be matched if **any** one of the matches is satisfied.  For example, take the following matches configuration:  ''' matches: - path:     value: '/foo'   headers:   - name: 'version'     value: 'v2' - path:     value: '/v2/foo' '''  For a request to match against this rule, a request must satisfy EITHER of the two conditions:  - path prefixed with '/foo' AND contains the header 'version: v2' - path prefix of '/v2/foo'  See the documentation for HTTPRouteMatch on how to specify multiple match conditions that should be ANDed together.  If no matches are specified, the default is a prefix path match on '/', which has the effect of matching every HTTP request.  Proxy or Load Balancer routing configuration generated from HTTPRoutes MUST prioritize rules based on the following criteria, continuing on ties. Precedence must be given to the the Rule with the largest number of:  * Characters in a matching non-wildcard hostname. * Characters in a matching hostname. * Characters in a matching path. * Header matches. * Query param matches.  If ties still exist across multiple Routes, matching precedence MUST be determined in order of the following criteria, continuing on ties:  * The oldest Route based on creation timestamp. * The Route appearing first in alphabetical order by   '<namespace>/<name>'.  If ties still exist within the Route that has been given precedence, matching precedence MUST be granted to the first matching rule meeting the above criteria.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"path": {
+										Description:         "Path specifies a HTTP request path matcher. If this field is not specified, a default prefix match on the '/' path is provided.",
+										MarkdownDescription: "Path specifies a HTTP request path matcher. If this field is not specified, a default prefix match on the '/' path is provided.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"type": {
+												Description:         "Type specifies how to match against the path Value.  Support: Core (Exact, PathPrefix)  Support: Custom (RegularExpression)",
+												MarkdownDescription: "Type specifies how to match against the path Value.  Support: Core (Exact, PathPrefix)  Support: Custom (RegularExpression)",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"value": {
+												Description:         "Value of the HTTP path to match against.",
+												MarkdownDescription: "Value of the HTTP path to match against.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"query_params": {
+										Description:         "QueryParams specifies HTTP query parameter matchers. Multiple match values are ANDed together, meaning, a request must match all the specified query parameters to select the route.",
+										MarkdownDescription: "QueryParams specifies HTTP query parameter matchers. Multiple match values are ANDed together, meaning, a request must match all the specified query parameters to select the route.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "Name is the name of the HTTP query param to be matched. This must be an exact string match. (See https://tools.ietf.org/html/rfc7230#section-2.7.3).",
+												MarkdownDescription: "Name is the name of the HTTP query param to be matched. This must be an exact string match. (See https://tools.ietf.org/html/rfc7230#section-2.7.3).",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"type": {
+												Description:         "Type specifies how to match against the value of the query parameter.  Support: Extended (Exact)  Support: Custom (RegularExpression)  Since RegularExpression QueryParamMatchType has custom conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
+												MarkdownDescription: "Type specifies how to match against the value of the query parameter.  Support: Extended (Exact)  Support: Custom (RegularExpression)  Since RegularExpression QueryParamMatchType has custom conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"value": {
+												Description:         "Value is the value of HTTP query param to be matched.",
+												MarkdownDescription: "Value is the value of HTTP query param to be matched.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"headers": {
+										Description:         "Headers specifies HTTP request header matchers. Multiple match values are ANDed together, meaning, a request must match all the specified headers to select the route.",
+										MarkdownDescription: "Headers specifies HTTP request header matchers. Multiple match values are ANDed together, meaning, a request must match all the specified headers to select the route.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"value": {
+												Description:         "Value is the value of HTTP Header to be matched.",
+												MarkdownDescription: "Value is the value of HTTP Header to be matched.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.  When a header is repeated in an HTTP request, it is implementation-specific behavior as to how this is represented. Generally, proxies should follow the guidance from the RFC: https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regarding processing a repeated header, with special handling for 'Set-Cookie'.",
+												MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.  When a header is repeated in an HTTP request, it is implementation-specific behavior as to how this is represented. Generally, proxies should follow the guidance from the RFC: https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regarding processing a repeated header, with special handling for 'Set-Cookie'.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"type": {
+												Description:         "Type specifies how to match against the value of the header.  Support: Core (Exact)  Support: Custom (RegularExpression)  Since RegularExpression HeaderMatchType has custom conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
+												MarkdownDescription: "Type specifies how to match against the value of the header.  Support: Core (Exact)  Support: Custom (RegularExpression)  Since RegularExpression HeaderMatchType has custom conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"method": {
+										Description:         "Method specifies HTTP method matcher. When specified, this route will be matched only if the request has the specified method.  Support: Extended",
+										MarkdownDescription: "Method specifies HTTP method matcher. When specified, this route will be matched only if the request has the specified method.  Support: Extended",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"backend_refs": {
 								Description:         "If unspecified or invalid (refers to a non-existent resource or a Service with no endpoints), the rule performs no forwarding. If there are also no filters specified that would result in a response being sent, a HTTP 503 status code is returned. 503 responses must be sent so that the overall weight is respected; if an invalid backend is requested to have 80% of requests, then 80% of requests must get a 503 instead.  Support: Core for Kubernetes Service Support: Custom for any other resource  Support for weight: Core",
 								MarkdownDescription: "If unspecified or invalid (refers to a non-existent resource or a Service with no endpoints), the rule performs no forwarding. If there are also no filters specified that would result in a response being sent, a HTTP 503 status code is returned. 503 responses must be sent so that the overall weight is respected; if an invalid backend is requested to have 80% of requests, then 80% of requests must get a 503 instead.  Support: Core for Kubernetes Service Support: Custom for any other resource  Support for weight: Core",
@@ -403,6 +550,85 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 										MarkdownDescription: "Filters defined at this level should be executed if and only if the request is being forwarded to the backend defined here.  Support: Custom (For broader support of filters, use the Filters field in HTTPRouteRule.)",
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"request_mirror": {
+												Description:         "RequestMirror defines a schema for a filter that mirrors requests. Requests are sent to the specified destination, but responses from that destination are ignored.  Support: Extended",
+												MarkdownDescription: "RequestMirror defines a schema for a filter that mirrors requests. Requests are sent to the specified destination, but responses from that destination are ignored.  Support: Extended",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"backend_ref": {
+														Description:         "BackendRef references a resource where mirrored requests are sent.  If the referent cannot be found, this BackendRef is invalid and must be dropped from the Gateway. The controller must ensure the 'ResolvedRefs' condition on the Route status is set to 'status: False' and not configure this backend in the underlying implementation.  If there is a cross-namespace reference to an *existing* object that is not allowed by a ReferencePolicy, the controller must ensure the 'ResolvedRefs'  condition on the Route is set to 'status: False', with the 'RefNotPermitted' reason and not configure this backend in the underlying implementation.  In either error case, the Message of the 'ResolvedRefs' Condition should be used to provide more detail about the problem.  Support: Extended for Kubernetes Service Support: Custom for any other resource",
+														MarkdownDescription: "BackendRef references a resource where mirrored requests are sent.  If the referent cannot be found, this BackendRef is invalid and must be dropped from the Gateway. The controller must ensure the 'ResolvedRefs' condition on the Route status is set to 'status: False' and not configure this backend in the underlying implementation.  If there is a cross-namespace reference to an *existing* object that is not allowed by a ReferencePolicy, the controller must ensure the 'ResolvedRefs'  condition on the Route is set to 'status: False', with the 'RefNotPermitted' reason and not configure this backend in the underlying implementation.  In either error case, the Message of the 'ResolvedRefs' Condition should be used to provide more detail about the problem.  Support: Extended for Kubernetes Service Support: Custom for any other resource",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"kind": {
+																Description:         "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
+																MarkdownDescription: "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name is the name of the referent.",
+																MarkdownDescription: "Name is the name of the referent.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
+																MarkdownDescription: "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"port": {
+																Description:         "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. For other resources, destination port might be derived from the referent resource or this field.",
+																MarkdownDescription: "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. For other resources, destination port might be derived from the referent resource or this field.",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"group": {
+																Description:         "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
+																MarkdownDescription: "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 
 											"request_redirect": {
 												Description:         "RequestRedirect defines a schema for a filter that responds to the request with an HTTP redirection.  Support: Core",
@@ -477,6 +703,17 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+													"name": {
+														Description:         "Name is the name of the referent.",
+														MarkdownDescription: "Name is the name of the referent.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
 													"group": {
 														Description:         "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
 														MarkdownDescription: "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
@@ -491,17 +728,6 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 													"kind": {
 														Description:         "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
 														MarkdownDescription: "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "Name is the name of the referent.",
-														MarkdownDescription: "Name is the name of the referent.",
 
 														Type: types.StringType,
 
@@ -606,85 +832,6 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Optional: true,
 												Computed: false,
 											},
-
-											"request_mirror": {
-												Description:         "RequestMirror defines a schema for a filter that mirrors requests. Requests are sent to the specified destination, but responses from that destination are ignored.  Support: Extended",
-												MarkdownDescription: "RequestMirror defines a schema for a filter that mirrors requests. Requests are sent to the specified destination, but responses from that destination are ignored.  Support: Extended",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"backend_ref": {
-														Description:         "BackendRef references a resource where mirrored requests are sent.  If the referent cannot be found, this BackendRef is invalid and must be dropped from the Gateway. The controller must ensure the 'ResolvedRefs' condition on the Route status is set to 'status: False' and not configure this backend in the underlying implementation.  If there is a cross-namespace reference to an *existing* object that is not allowed by a ReferencePolicy, the controller must ensure the 'ResolvedRefs'  condition on the Route is set to 'status: False', with the 'RefNotPermitted' reason and not configure this backend in the underlying implementation.  In either error case, the Message of the 'ResolvedRefs' Condition should be used to provide more detail about the problem.  Support: Extended for Kubernetes Service Support: Custom for any other resource",
-														MarkdownDescription: "BackendRef references a resource where mirrored requests are sent.  If the referent cannot be found, this BackendRef is invalid and must be dropped from the Gateway. The controller must ensure the 'ResolvedRefs' condition on the Route status is set to 'status: False' and not configure this backend in the underlying implementation.  If there is a cross-namespace reference to an *existing* object that is not allowed by a ReferencePolicy, the controller must ensure the 'ResolvedRefs'  condition on the Route is set to 'status: False', with the 'RefNotPermitted' reason and not configure this backend in the underlying implementation.  In either error case, the Message of the 'ResolvedRefs' Condition should be used to provide more detail about the problem.  Support: Extended for Kubernetes Service Support: Custom for any other resource",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"group": {
-																Description:         "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
-																MarkdownDescription: "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"kind": {
-																Description:         "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
-																MarkdownDescription: "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name is the name of the referent.",
-																MarkdownDescription: "Name is the name of the referent.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"namespace": {
-																Description:         "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
-																MarkdownDescription: "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"port": {
-																Description:         "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. For other resources, destination port might be derived from the referent resource or this field.",
-																MarkdownDescription: "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. For other resources, destination port might be derived from the referent resource or this field.",
-
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 										}),
 
 										Required: false,
@@ -770,11 +917,89 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+									"request_redirect": {
+										Description:         "RequestRedirect defines a schema for a filter that responds to the request with an HTTP redirection.  Support: Core",
+										MarkdownDescription: "RequestRedirect defines a schema for a filter that responds to the request with an HTTP redirection.  Support: Core",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"hostname": {
+												Description:         "Hostname is the hostname to be used in the value of the 'Location' header in the response. When empty, the hostname of the request is used.  Support: Core",
+												MarkdownDescription: "Hostname is the hostname to be used in the value of the 'Location' header in the response. When empty, the hostname of the request is used.  Support: Core",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"port": {
+												Description:         "Port is the port to be used in the value of the 'Location' header in the response. When empty, port (if specified) of the request is used.  Support: Extended",
+												MarkdownDescription: "Port is the port to be used in the value of the 'Location' header in the response. When empty, port (if specified) of the request is used.  Support: Extended",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"scheme": {
+												Description:         "Scheme is the scheme to be used in the value of the 'Location' header in the response. When empty, the scheme of the request is used.  Support: Extended",
+												MarkdownDescription: "Scheme is the scheme to be used in the value of the 'Location' header in the response. When empty, the scheme of the request is used.  Support: Extended",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"status_code": {
+												Description:         "StatusCode is the HTTP status code to be used in response.  Support: Core",
+												MarkdownDescription: "StatusCode is the HTTP status code to be used in response.  Support: Core",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"type": {
+										Description:         "Type identifies the type of filter to apply. As with other API fields, types are classified into three conformance levels:  - Core: Filter types and their corresponding configuration defined by   'Support: Core' in this package, e.g. 'RequestHeaderModifier'. All   implementations must support core filters.  - Extended: Filter types and their corresponding configuration defined by   'Support: Extended' in this package, e.g. 'RequestMirror'. Implementers   are encouraged to support extended filters.  - Custom: Filters that are defined and supported by specific vendors.   In the future, filters showing convergence in behavior across multiple   implementations will be considered for inclusion in extended or core   conformance levels. Filter-specific configuration for such filters   is specified using the ExtensionRef field. 'Type' should be set to   'ExtensionRef' for custom filters.  Implementers are encouraged to define custom implementation types to extend the core API with implementation-specific behavior.  If a reference to a custom filter type cannot be resolved, the filter MUST NOT be skipped. Instead, requests that would have been processed by that filter MUST receive a HTTP error response.",
+										MarkdownDescription: "Type identifies the type of filter to apply. As with other API fields, types are classified into three conformance levels:  - Core: Filter types and their corresponding configuration defined by   'Support: Core' in this package, e.g. 'RequestHeaderModifier'. All   implementations must support core filters.  - Extended: Filter types and their corresponding configuration defined by   'Support: Extended' in this package, e.g. 'RequestMirror'. Implementers   are encouraged to support extended filters.  - Custom: Filters that are defined and supported by specific vendors.   In the future, filters showing convergence in behavior across multiple   implementations will be considered for inclusion in extended or core   conformance levels. Filter-specific configuration for such filters   is specified using the ExtensionRef field. 'Type' should be set to   'ExtensionRef' for custom filters.  Implementers are encouraged to define custom implementation types to extend the core API with implementation-specific behavior.  If a reference to a custom filter type cannot be resolved, the filter MUST NOT be skipped. Instead, requests that would have been processed by that filter MUST receive a HTTP error response.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
 									"extension_ref": {
 										Description:         "ExtensionRef is an optional, implementation-specific extension to the 'filter' behavior.  For example, resource 'myroutefilter' in group 'networking.example.net'). ExtensionRef MUST NOT be used for core and extended filters.  Support: Implementation-specific",
 										MarkdownDescription: "ExtensionRef is an optional, implementation-specific extension to the 'filter' behavior.  For example, resource 'myroutefilter' in group 'networking.example.net'). ExtensionRef MUST NOT be used for core and extended filters.  Support: Implementation-specific",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"kind": {
+												Description:         "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
+												MarkdownDescription: "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
 
 											"name": {
 												Description:         "Name is the name of the referent.",
@@ -790,17 +1015,6 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 											"group": {
 												Description:         "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
 												MarkdownDescription: "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"kind": {
-												Description:         "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
-												MarkdownDescription: "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
 
 												Type: types.StringType,
 
@@ -827,9 +1041,9 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-													"value": {
-														Description:         "Value is the value of HTTP Header to be matched.",
-														MarkdownDescription: "Value is the value of HTTP Header to be matched.",
+													"name": {
+														Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
+														MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
 
 														Type: types.StringType,
 
@@ -838,9 +1052,9 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Computed: false,
 													},
 
-													"name": {
-														Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
-														MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
+													"value": {
+														Description:         "Value is the value of HTTP Header to be matched.",
+														MarkdownDescription: "Value is the value of HTTP Header to be matched.",
 
 														Type: types.StringType,
 
@@ -872,9 +1086,9 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-													"value": {
-														Description:         "Value is the value of HTTP Header to be matched.",
-														MarkdownDescription: "Value is the value of HTTP Header to be matched.",
+													"name": {
+														Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
+														MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
 
 														Type: types.StringType,
 
@@ -883,9 +1097,9 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Computed: false,
 													},
 
-													"name": {
-														Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
-														MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
+													"value": {
+														Description:         "Value is the value of HTTP Header to be matched.",
+														MarkdownDescription: "Value is the value of HTTP Header to be matched.",
 
 														Type: types.StringType,
 
@@ -917,6 +1131,17 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												MarkdownDescription: "BackendRef references a resource where mirrored requests are sent.  If the referent cannot be found, this BackendRef is invalid and must be dropped from the Gateway. The controller must ensure the 'ResolvedRefs' condition on the Route status is set to 'status: False' and not configure this backend in the underlying implementation.  If there is a cross-namespace reference to an *existing* object that is not allowed by a ReferencePolicy, the controller must ensure the 'ResolvedRefs'  condition on the Route is set to 'status: False', with the 'RefNotPermitted' reason and not configure this backend in the underlying implementation.  In either error case, the Message of the 'ResolvedRefs' Condition should be used to provide more detail about the problem.  Support: Extended for Kubernetes Service Support: Custom for any other resource",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "Name is the name of the referent.",
+														MarkdownDescription: "Name is the name of the referent.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
 
 													"namespace": {
 														Description:         "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
@@ -961,232 +1186,7 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Optional: true,
 														Computed: false,
 													},
-
-													"name": {
-														Description:         "Name is the name of the referent.",
-														MarkdownDescription: "Name is the name of the referent.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
 												}),
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"request_redirect": {
-										Description:         "RequestRedirect defines a schema for a filter that responds to the request with an HTTP redirection.  Support: Core",
-										MarkdownDescription: "RequestRedirect defines a schema for a filter that responds to the request with an HTTP redirection.  Support: Core",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"status_code": {
-												Description:         "StatusCode is the HTTP status code to be used in response.  Support: Core",
-												MarkdownDescription: "StatusCode is the HTTP status code to be used in response.  Support: Core",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"hostname": {
-												Description:         "Hostname is the hostname to be used in the value of the 'Location' header in the response. When empty, the hostname of the request is used.  Support: Core",
-												MarkdownDescription: "Hostname is the hostname to be used in the value of the 'Location' header in the response. When empty, the hostname of the request is used.  Support: Core",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"port": {
-												Description:         "Port is the port to be used in the value of the 'Location' header in the response. When empty, port (if specified) of the request is used.  Support: Extended",
-												MarkdownDescription: "Port is the port to be used in the value of the 'Location' header in the response. When empty, port (if specified) of the request is used.  Support: Extended",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"scheme": {
-												Description:         "Scheme is the scheme to be used in the value of the 'Location' header in the response. When empty, the scheme of the request is used.  Support: Extended",
-												MarkdownDescription: "Scheme is the scheme to be used in the value of the 'Location' header in the response. When empty, the scheme of the request is used.  Support: Extended",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"type": {
-										Description:         "Type identifies the type of filter to apply. As with other API fields, types are classified into three conformance levels:  - Core: Filter types and their corresponding configuration defined by   'Support: Core' in this package, e.g. 'RequestHeaderModifier'. All   implementations must support core filters.  - Extended: Filter types and their corresponding configuration defined by   'Support: Extended' in this package, e.g. 'RequestMirror'. Implementers   are encouraged to support extended filters.  - Custom: Filters that are defined and supported by specific vendors.   In the future, filters showing convergence in behavior across multiple   implementations will be considered for inclusion in extended or core   conformance levels. Filter-specific configuration for such filters   is specified using the ExtensionRef field. 'Type' should be set to   'ExtensionRef' for custom filters.  Implementers are encouraged to define custom implementation types to extend the core API with implementation-specific behavior.  If a reference to a custom filter type cannot be resolved, the filter MUST NOT be skipped. Instead, requests that would have been processed by that filter MUST receive a HTTP error response.",
-										MarkdownDescription: "Type identifies the type of filter to apply. As with other API fields, types are classified into three conformance levels:  - Core: Filter types and their corresponding configuration defined by   'Support: Core' in this package, e.g. 'RequestHeaderModifier'. All   implementations must support core filters.  - Extended: Filter types and their corresponding configuration defined by   'Support: Extended' in this package, e.g. 'RequestMirror'. Implementers   are encouraged to support extended filters.  - Custom: Filters that are defined and supported by specific vendors.   In the future, filters showing convergence in behavior across multiple   implementations will be considered for inclusion in extended or core   conformance levels. Filter-specific configuration for such filters   is specified using the ExtensionRef field. 'Type' should be set to   'ExtensionRef' for custom filters.  Implementers are encouraged to define custom implementation types to extend the core API with implementation-specific behavior.  If a reference to a custom filter type cannot be resolved, the filter MUST NOT be skipped. Instead, requests that would have been processed by that filter MUST receive a HTTP error response.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"matches": {
-								Description:         "Matches define conditions used for matching the rule against incoming HTTP requests. Each match is independent, i.e. this rule will be matched if **any** one of the matches is satisfied.  For example, take the following matches configuration:  ''' matches: - path:     value: '/foo'   headers:   - name: 'version'     value: 'v2' - path:     value: '/v2/foo' '''  For a request to match against this rule, a request must satisfy EITHER of the two conditions:  - path prefixed with '/foo' AND contains the header 'version: v2' - path prefix of '/v2/foo'  See the documentation for HTTPRouteMatch on how to specify multiple match conditions that should be ANDed together.  If no matches are specified, the default is a prefix path match on '/', which has the effect of matching every HTTP request.  Proxy or Load Balancer routing configuration generated from HTTPRoutes MUST prioritize rules based on the following criteria, continuing on ties. Precedence must be given to the the Rule with the largest number of:  * Characters in a matching non-wildcard hostname. * Characters in a matching hostname. * Characters in a matching path. * Header matches. * Query param matches.  If ties still exist across multiple Routes, matching precedence MUST be determined in order of the following criteria, continuing on ties:  * The oldest Route based on creation timestamp. * The Route appearing first in alphabetical order by   '<namespace>/<name>'.  If ties still exist within the Route that has been given precedence, matching precedence MUST be granted to the first matching rule meeting the above criteria.",
-								MarkdownDescription: "Matches define conditions used for matching the rule against incoming HTTP requests. Each match is independent, i.e. this rule will be matched if **any** one of the matches is satisfied.  For example, take the following matches configuration:  ''' matches: - path:     value: '/foo'   headers:   - name: 'version'     value: 'v2' - path:     value: '/v2/foo' '''  For a request to match against this rule, a request must satisfy EITHER of the two conditions:  - path prefixed with '/foo' AND contains the header 'version: v2' - path prefix of '/v2/foo'  See the documentation for HTTPRouteMatch on how to specify multiple match conditions that should be ANDed together.  If no matches are specified, the default is a prefix path match on '/', which has the effect of matching every HTTP request.  Proxy or Load Balancer routing configuration generated from HTTPRoutes MUST prioritize rules based on the following criteria, continuing on ties. Precedence must be given to the the Rule with the largest number of:  * Characters in a matching non-wildcard hostname. * Characters in a matching hostname. * Characters in a matching path. * Header matches. * Query param matches.  If ties still exist across multiple Routes, matching precedence MUST be determined in order of the following criteria, continuing on ties:  * The oldest Route based on creation timestamp. * The Route appearing first in alphabetical order by   '<namespace>/<name>'.  If ties still exist within the Route that has been given precedence, matching precedence MUST be granted to the first matching rule meeting the above criteria.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"headers": {
-										Description:         "Headers specifies HTTP request header matchers. Multiple match values are ANDed together, meaning, a request must match all the specified headers to select the route.",
-										MarkdownDescription: "Headers specifies HTTP request header matchers. Multiple match values are ANDed together, meaning, a request must match all the specified headers to select the route.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.  When a header is repeated in an HTTP request, it is implementation-specific behavior as to how this is represented. Generally, proxies should follow the guidance from the RFC: https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regarding processing a repeated header, with special handling for 'Set-Cookie'.",
-												MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.  When a header is repeated in an HTTP request, it is implementation-specific behavior as to how this is represented. Generally, proxies should follow the guidance from the RFC: https://www.rfc-editor.org/rfc/rfc7230.html#section-3.2.2 regarding processing a repeated header, with special handling for 'Set-Cookie'.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"type": {
-												Description:         "Type specifies how to match against the value of the header.  Support: Core (Exact)  Support: Custom (RegularExpression)  Since RegularExpression HeaderMatchType has custom conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
-												MarkdownDescription: "Type specifies how to match against the value of the header.  Support: Core (Exact)  Support: Custom (RegularExpression)  Since RegularExpression HeaderMatchType has custom conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"value": {
-												Description:         "Value is the value of HTTP Header to be matched.",
-												MarkdownDescription: "Value is the value of HTTP Header to be matched.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"method": {
-										Description:         "Method specifies HTTP method matcher. When specified, this route will be matched only if the request has the specified method.  Support: Extended",
-										MarkdownDescription: "Method specifies HTTP method matcher. When specified, this route will be matched only if the request has the specified method.  Support: Extended",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"path": {
-										Description:         "Path specifies a HTTP request path matcher. If this field is not specified, a default prefix match on the '/' path is provided.",
-										MarkdownDescription: "Path specifies a HTTP request path matcher. If this field is not specified, a default prefix match on the '/' path is provided.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"type": {
-												Description:         "Type specifies how to match against the path Value.  Support: Core (Exact, PathPrefix)  Support: Custom (RegularExpression)",
-												MarkdownDescription: "Type specifies how to match against the path Value.  Support: Core (Exact, PathPrefix)  Support: Custom (RegularExpression)",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"value": {
-												Description:         "Value of the HTTP path to match against.",
-												MarkdownDescription: "Value of the HTTP path to match against.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"query_params": {
-										Description:         "QueryParams specifies HTTP query parameter matchers. Multiple match values are ANDed together, meaning, a request must match all the specified query parameters to select the route.",
-										MarkdownDescription: "QueryParams specifies HTTP query parameter matchers. Multiple match values are ANDed together, meaning, a request must match all the specified query parameters to select the route.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"type": {
-												Description:         "Type specifies how to match against the value of the query parameter.  Support: Extended (Exact)  Support: Custom (RegularExpression)  Since RegularExpression QueryParamMatchType has custom conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
-												MarkdownDescription: "Type specifies how to match against the value of the query parameter.  Support: Extended (Exact)  Support: Custom (RegularExpression)  Since RegularExpression QueryParamMatchType has custom conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"value": {
-												Description:         "Value is the value of HTTP query param to be matched.",
-												MarkdownDescription: "Value is the value of HTTP query param to be matched.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name is the name of the HTTP query param to be matched. This must be an exact string match. (See https://tools.ietf.org/html/rfc7230#section-2.7.3).",
-												MarkdownDescription: "Name is the name of the HTTP query param to be matched. This must be an exact string match. (See https://tools.ietf.org/html/rfc7230#section-2.7.3).",
-
-												Type: types.StringType,
 
 												Required: true,
 												Optional: false,

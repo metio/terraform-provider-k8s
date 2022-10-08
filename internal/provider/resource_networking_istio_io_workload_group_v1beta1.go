@@ -81,9 +81,9 @@ type NetworkingIstioIoWorkloadGroupV1Beta1GoModel struct {
 			SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
 
 			TcpSocket *struct {
-				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-
 				Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 			} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
@@ -94,8 +94,6 @@ type NetworkingIstioIoWorkloadGroupV1Beta1GoModel struct {
 		} `tfsdk:"probe" yaml:"probe,omitempty"`
 
 		Template *struct {
-			ServiceAccount *string `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
-
 			Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 
 			Address *string `tfsdk:"address" yaml:"address,omitempty"`
@@ -107,6 +105,8 @@ type NetworkingIstioIoWorkloadGroupV1Beta1GoModel struct {
 			Network *string `tfsdk:"network" yaml:"network,omitempty"`
 
 			Ports *map[string]string `tfsdk:"ports" yaml:"ports,omitempty"`
+
+			ServiceAccount *string `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
 		} `tfsdk:"template" yaml:"template,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -388,22 +388,22 @@ func (r *NetworkingIstioIoWorkloadGroupV1Beta1Resource) GetSchema(_ context.Cont
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"port": {
+									"host": {
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.Int64Type,
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"host": {
+									"port": {
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.StringType,
+										Type: types.Int64Type,
 
 										Required: false,
 										Optional: true,
@@ -461,17 +461,6 @@ func (r *NetworkingIstioIoWorkloadGroupV1Beta1Resource) GetSchema(_ context.Cont
 						MarkdownDescription: "Template to be used for the generation of 'WorkloadEntry' resources that belong to this 'WorkloadGroup'.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"service_account": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"weight": {
 								Description:         "The load balancing weight associated with the endpoint.",
@@ -533,6 +522,17 @@ func (r *NetworkingIstioIoWorkloadGroupV1Beta1Resource) GetSchema(_ context.Cont
 								MarkdownDescription: "Set of ports associated with the endpoint.",
 
 								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"service_account": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,

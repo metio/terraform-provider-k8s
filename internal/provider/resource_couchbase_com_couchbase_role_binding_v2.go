@@ -49,17 +49,17 @@ type CouchbaseComCouchbaseRoleBindingV2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Subjects *[]struct {
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"subjects" yaml:"subjects,omitempty"`
-
 		RoleRef *struct {
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"role_ref" yaml:"roleRef,omitempty"`
+
+		Subjects *[]struct {
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"subjects" yaml:"subjects,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -160,40 +160,6 @@ func (r *CouchbaseComCouchbaseRoleBindingV2Resource) GetSchema(_ context.Context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"subjects": {
-						Description:         "List of users to bind a role to.",
-						MarkdownDescription: "List of users to bind a role to.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"kind": {
-								Description:         "Couchbase user/group kind.",
-								MarkdownDescription: "Couchbase user/group kind.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "Name of Couchbase user resource.",
-								MarkdownDescription: "Name of Couchbase user resource.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
 					"role_ref": {
 						Description:         "CouchbaseGroup being bound to subjects.",
 						MarkdownDescription: "CouchbaseGroup being bound to subjects.",
@@ -214,6 +180,40 @@ func (r *CouchbaseComCouchbaseRoleBindingV2Resource) GetSchema(_ context.Context
 							"name": {
 								Description:         "Name of role resource to use for binding.",
 								MarkdownDescription: "Name of role resource to use for binding.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"subjects": {
+						Description:         "List of users to bind a role to.",
+						MarkdownDescription: "List of users to bind a role to.",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"kind": {
+								Description:         "Couchbase user/group kind.",
+								MarkdownDescription: "Couchbase user/group kind.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name of Couchbase user resource.",
+								MarkdownDescription: "Name of Couchbase user resource.",
 
 								Type: types.StringType,
 

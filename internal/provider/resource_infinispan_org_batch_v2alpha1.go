@@ -49,11 +49,11 @@ type InfinispanOrgBatchV2Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		ConfigMap *string `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
 		Cluster *string `tfsdk:"cluster" yaml:"cluster,omitempty"`
 
 		Config *string `tfsdk:"config" yaml:"config,omitempty"`
+
+		ConfigMap *string `tfsdk:"config_map" yaml:"configMap,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -154,17 +154,6 @@ func (r *InfinispanOrgBatchV2Alpha1Resource) GetSchema(_ context.Context) (tfsdk
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"config_map": {
-						Description:         "Name of the ConfigMap containing the batch and resource files to be executed",
-						MarkdownDescription: "Name of the ConfigMap containing the batch and resource files to be executed",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"cluster": {
 						Description:         "Infinispan cluster name",
 						MarkdownDescription: "Infinispan cluster name",
@@ -179,6 +168,17 @@ func (r *InfinispanOrgBatchV2Alpha1Resource) GetSchema(_ context.Context) (tfsdk
 					"config": {
 						Description:         "Batch string to be executed",
 						MarkdownDescription: "Batch string to be executed",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"config_map": {
+						Description:         "Name of the ConfigMap containing the batch and resource files to be executed",
+						MarkdownDescription: "Name of the ConfigMap containing the batch and resource files to be executed",
 
 						Type: types.StringType,
 

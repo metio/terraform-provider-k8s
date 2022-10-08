@@ -47,13 +47,13 @@ type ExternaldataGatekeeperShProviderV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		CaBundle *string `tfsdk:"ca_bundle" yaml:"caBundle,omitempty"`
+
 		InsecureTLSSkipVerify *bool `tfsdk:"insecure_tls_skip_verify" yaml:"insecureTLSSkipVerify,omitempty"`
 
 		Timeout *int64 `tfsdk:"timeout" yaml:"timeout,omitempty"`
 
 		Url *string `tfsdk:"url" yaml:"url,omitempty"`
-
-		CaBundle *string `tfsdk:"ca_bundle" yaml:"caBundle,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -147,6 +147,17 @@ func (r *ExternaldataGatekeeperShProviderV1Alpha1Resource) GetSchema(_ context.C
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"ca_bundle": {
+						Description:         "CABundle is a base64-encoded string that contains the TLS CA bundle in PEM format. It is used to verify the signature of the provider's certificate.",
+						MarkdownDescription: "CABundle is a base64-encoded string that contains the TLS CA bundle in PEM format. It is used to verify the signature of the provider's certificate.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"insecure_tls_skip_verify": {
 						Description:         "InsecureTLSSkipVerify skips the verification of Provider's certificate if enabled.",
 						MarkdownDescription: "InsecureTLSSkipVerify skips the verification of Provider's certificate if enabled.",
@@ -172,17 +183,6 @@ func (r *ExternaldataGatekeeperShProviderV1Alpha1Resource) GetSchema(_ context.C
 					"url": {
 						Description:         "URL is the url for the provider. URL is prefixed with http:// or https://.",
 						MarkdownDescription: "URL is the url for the provider. URL is prefixed with http:// or https://.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"ca_bundle": {
-						Description:         "CABundle is a base64-encoded string that contains the TLS CA bundle in PEM format. It is used to verify the signature of the provider's certificate.",
-						MarkdownDescription: "CABundle is a base64-encoded string that contains the TLS CA bundle in PEM format. It is used to verify the signature of the provider's certificate.",
 
 						Type: types.StringType,
 

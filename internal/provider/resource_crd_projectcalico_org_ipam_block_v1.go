@@ -47,13 +47,15 @@ type CrdProjectcalicoOrgIPAMBlockV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Deleted *bool `tfsdk:"deleted" yaml:"deleted,omitempty"`
+		Allocations *[]string `tfsdk:"allocations" yaml:"allocations,omitempty"`
 
 		SequenceNumber *int64 `tfsdk:"sequence_number" yaml:"sequenceNumber,omitempty"`
 
-		SequenceNumberForAllocation *map[string]string `tfsdk:"sequence_number_for_allocation" yaml:"sequenceNumberForAllocation,omitempty"`
+		StrictAffinity *bool `tfsdk:"strict_affinity" yaml:"strictAffinity,omitempty"`
 
-		Allocations *[]string `tfsdk:"allocations" yaml:"allocations,omitempty"`
+		Unallocated *[]string `tfsdk:"unallocated" yaml:"unallocated,omitempty"`
+
+		Affinity *string `tfsdk:"affinity" yaml:"affinity,omitempty"`
 
 		Attributes *[]struct {
 			Handle_id *string `tfsdk:"handle_id" yaml:"handle_id,omitempty"`
@@ -63,11 +65,9 @@ type CrdProjectcalicoOrgIPAMBlockV1GoModel struct {
 
 		Cidr *string `tfsdk:"cidr" yaml:"cidr,omitempty"`
 
-		Affinity *string `tfsdk:"affinity" yaml:"affinity,omitempty"`
+		Deleted *bool `tfsdk:"deleted" yaml:"deleted,omitempty"`
 
-		StrictAffinity *bool `tfsdk:"strict_affinity" yaml:"strictAffinity,omitempty"`
-
-		Unallocated *[]string `tfsdk:"unallocated" yaml:"unallocated,omitempty"`
+		SequenceNumberForAllocation *map[string]string `tfsdk:"sequence_number_for_allocation" yaml:"sequenceNumberForAllocation,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -161,14 +161,14 @@ func (r *CrdProjectcalicoOrgIPAMBlockV1Resource) GetSchema(_ context.Context) (t
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"deleted": {
-						Description:         "Deleted is an internal boolean used to workaround a limitation in the Kubernetes API whereby deletion will not return a conflict error if the block has been updated. It should not be set manually.",
-						MarkdownDescription: "Deleted is an internal boolean used to workaround a limitation in the Kubernetes API whereby deletion will not return a conflict error if the block has been updated. It should not be set manually.",
+					"allocations": {
+						Description:         "Array of allocations in-use within this block. nil entries mean the allocation is free. For non-nil entries at index i, the index is the ordinal of the allocation within this block and the value is the index of the associated attributes in the Attributes array.",
+						MarkdownDescription: "Array of allocations in-use within this block. nil entries mean the allocation is free. For non-nil entries at index i, the index is the ordinal of the allocation within this block and the value is the index of the associated attributes in the Attributes array.",
 
-						Type: types.BoolType,
+						Type: types.ListType{ElemType: types.StringType},
 
-						Required: false,
-						Optional: true,
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 
@@ -183,25 +183,36 @@ func (r *CrdProjectcalicoOrgIPAMBlockV1Resource) GetSchema(_ context.Context) (t
 						Computed: false,
 					},
 
-					"sequence_number_for_allocation": {
-						Description:         "Map of allocated ordinal within the block to sequence number of the block at the time of allocation. Kubernetes does not allow numerical keys for maps, so the key is cast to a string.",
-						MarkdownDescription: "Map of allocated ordinal within the block to sequence number of the block at the time of allocation. Kubernetes does not allow numerical keys for maps, so the key is cast to a string.",
+					"strict_affinity": {
+						Description:         "StrictAffinity on the IPAMBlock is deprecated and no longer used by the code. Use IPAMConfig StrictAffinity instead.",
+						MarkdownDescription: "StrictAffinity on the IPAMBlock is deprecated and no longer used by the code. Use IPAMConfig StrictAffinity instead.",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Type: types.BoolType,
 
-						Required: false,
-						Optional: true,
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 
-					"allocations": {
-						Description:         "Array of allocations in-use within this block. nil entries mean the allocation is free. For non-nil entries at index i, the index is the ordinal of the allocation within this block and the value is the index of the associated attributes in the Attributes array.",
-						MarkdownDescription: "Array of allocations in-use within this block. nil entries mean the allocation is free. For non-nil entries at index i, the index is the ordinal of the allocation within this block and the value is the index of the associated attributes in the Attributes array.",
+					"unallocated": {
+						Description:         "Unallocated is an ordered list of allocations which are free in the block.",
+						MarkdownDescription: "Unallocated is an ordered list of allocations which are free in the block.",
 
 						Type: types.ListType{ElemType: types.StringType},
 
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"affinity": {
+						Description:         "Affinity of the block, if this block has one. If set, it will be of the form 'host:<hostname>'. If not set, this block is not affine to a host.",
+						MarkdownDescription: "Affinity of the block, if this block has one. If set, it will be of the form 'host:<hostname>'. If not set, this block is not affine to a host.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
@@ -250,36 +261,25 @@ func (r *CrdProjectcalicoOrgIPAMBlockV1Resource) GetSchema(_ context.Context) (t
 						Computed: false,
 					},
 
-					"affinity": {
-						Description:         "Affinity of the block, if this block has one. If set, it will be of the form 'host:<hostname>'. If not set, this block is not affine to a host.",
-						MarkdownDescription: "Affinity of the block, if this block has one. If set, it will be of the form 'host:<hostname>'. If not set, this block is not affine to a host.",
+					"deleted": {
+						Description:         "Deleted is an internal boolean used to workaround a limitation in the Kubernetes API whereby deletion will not return a conflict error if the block has been updated. It should not be set manually.",
+						MarkdownDescription: "Deleted is an internal boolean used to workaround a limitation in the Kubernetes API whereby deletion will not return a conflict error if the block has been updated. It should not be set manually.",
 
-						Type: types.StringType,
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
 					},
 
-					"strict_affinity": {
-						Description:         "StrictAffinity on the IPAMBlock is deprecated and no longer used by the code. Use IPAMConfig StrictAffinity instead.",
-						MarkdownDescription: "StrictAffinity on the IPAMBlock is deprecated and no longer used by the code. Use IPAMConfig StrictAffinity instead.",
+					"sequence_number_for_allocation": {
+						Description:         "Map of allocated ordinal within the block to sequence number of the block at the time of allocation. Kubernetes does not allow numerical keys for maps, so the key is cast to a string.",
+						MarkdownDescription: "Map of allocated ordinal within the block to sequence number of the block at the time of allocation. Kubernetes does not allow numerical keys for maps, so the key is cast to a string.",
 
-						Type: types.BoolType,
+						Type: types.MapType{ElemType: types.StringType},
 
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"unallocated": {
-						Description:         "Unallocated is an ordered list of allocations which are free in the block.",
-						MarkdownDescription: "Unallocated is an ordered list of allocations which are free in the block.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 				}),

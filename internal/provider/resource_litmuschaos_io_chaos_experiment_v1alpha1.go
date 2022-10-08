@@ -51,6 +51,52 @@ type LitmuschaosIoChaosExperimentV1Alpha1GoModel struct {
 
 	Spec *struct {
 		Definition *struct {
+			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+
+			Permissions *[]struct {
+				NonResourceURLs *[]string `tfsdk:"non_resource_ur_ls" yaml:"nonResourceURLs,omitempty"`
+
+				ResourceNames *[]string `tfsdk:"resource_names" yaml:"resourceNames,omitempty"`
+
+				Resources *[]string `tfsdk:"resources" yaml:"resources,omitempty"`
+
+				Verbs *[]string `tfsdk:"verbs" yaml:"verbs,omitempty"`
+
+				ApiGroups *[]string `tfsdk:"api_groups" yaml:"apiGroups,omitempty"`
+			} `tfsdk:"permissions" yaml:"permissions,omitempty"`
+
+			SecurityContext *map[string]string `tfsdk:"security_context" yaml:"securityContext,omitempty"`
+
+			Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+
+			HostFileVolumes *[]struct {
+				MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				NodePath *string `tfsdk:"node_path" yaml:"nodePath,omitempty"`
+			} `tfsdk:"host_file_volumes" yaml:"hostFileVolumes,omitempty"`
+
+			Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+			ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
+
+			Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
+
+			Secrets *[]struct {
+				MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"secrets" yaml:"secrets,omitempty"`
+
+			Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
+
+			ConfigMaps *[]struct {
+				MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
+
 			Env *[]struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
@@ -66,9 +112,9 @@ type LitmuschaosIoChaosExperimentV1Alpha1GoModel struct {
 					} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
 
 					FieldRef *struct {
-						ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
 						FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
+
+						ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
 					} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
 
 					ResourceFieldRef *struct {
@@ -89,53 +135,7 @@ type LitmuschaosIoChaosExperimentV1Alpha1GoModel struct {
 				} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
 			} `tfsdk:"env" yaml:"env,omitempty"`
 
-			ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
-
-			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-
-			Permissions *[]struct {
-				ApiGroups *[]string `tfsdk:"api_groups" yaml:"apiGroups,omitempty"`
-
-				NonResourceURLs *[]string `tfsdk:"non_resource_ur_ls" yaml:"nonResourceURLs,omitempty"`
-
-				ResourceNames *[]string `tfsdk:"resource_names" yaml:"resourceNames,omitempty"`
-
-				Resources *[]string `tfsdk:"resources" yaml:"resources,omitempty"`
-
-				Verbs *[]string `tfsdk:"verbs" yaml:"verbs,omitempty"`
-			} `tfsdk:"permissions" yaml:"permissions,omitempty"`
-
-			Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
-
-			Secrets *[]struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-			} `tfsdk:"secrets" yaml:"secrets,omitempty"`
-
-			SecurityContext *map[string]string `tfsdk:"security_context" yaml:"securityContext,omitempty"`
-
-			Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
-
-			ConfigMaps *[]struct {
-				MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
-
-			HostFileVolumes *[]struct {
-				MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				NodePath *string `tfsdk:"node_path" yaml:"nodePath,omitempty"`
-			} `tfsdk:"host_file_volumes" yaml:"hostFileVolumes,omitempty"`
-
 			HostPID *bool `tfsdk:"host_pid" yaml:"hostPID,omitempty"`
-
-			Image *string `tfsdk:"image" yaml:"image,omitempty"`
-
-			Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
 		} `tfsdk:"definition" yaml:"definition,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 
@@ -245,6 +245,263 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+							"labels": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"permissions": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"non_resource_ur_ls": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"resource_names": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"resources": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"verbs": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"api_groups": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"security_context": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"command": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"host_file_volumes": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"mount_path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"node_path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"image": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"image_pull_policy": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"scope": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"secrets": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"mount_path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"args": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"config_maps": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"mount_path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"env": {
 								Description:         "",
 								MarkdownDescription: "",
@@ -330,17 +587,6 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"api_version": {
-														Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-														MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
 													"field_path": {
 														Description:         "Path of the field to select in the specified API version.",
 														MarkdownDescription: "Path of the field to select in the specified API version.",
@@ -349,6 +595,17 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 
 														Required: true,
 														Optional: false,
+														Computed: false,
+													},
+
+													"api_version": {
+														Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+														MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
 														Computed: false,
 													},
 												}),
@@ -460,268 +717,11 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 								Computed: false,
 							},
 
-							"image_pull_policy": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"labels": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"permissions": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"api_groups": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"non_resource_ur_ls": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"resource_names": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"resources": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"verbs": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"scope": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"secrets": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"mount_path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"security_context": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"args": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"config_maps": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"mount_path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"host_file_volumes": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"mount_path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"node_path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"host_pid": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"image": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"command": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,

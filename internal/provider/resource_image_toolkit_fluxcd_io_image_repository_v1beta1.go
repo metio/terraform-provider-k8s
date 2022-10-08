@@ -49,9 +49,9 @@ type ImageToolkitFluxcdIoImageRepositoryV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
+		CertSecretRef *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"cert_secret_ref" yaml:"certSecretRef,omitempty"`
 
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 
@@ -63,17 +63,17 @@ type ImageToolkitFluxcdIoImageRepositoryV1Beta1GoModel struct {
 			} `tfsdk:"namespace_selectors" yaml:"namespaceSelectors,omitempty"`
 		} `tfsdk:"access_from" yaml:"accessFrom,omitempty"`
 
-		CertSecretRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"cert_secret_ref" yaml:"certSecretRef,omitempty"`
-
 		ExclusionList *[]string `tfsdk:"exclusion_list" yaml:"exclusionList,omitempty"`
 
 		Image *string `tfsdk:"image" yaml:"image,omitempty"`
 
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
 		SecretRef *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -174,22 +174,23 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta1Resource) GetSchema(_ context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"interval": {
-						Description:         "Interval is the length of time to wait between scans of the image repository.",
-						MarkdownDescription: "Interval is the length of time to wait between scans of the image repository.",
+					"cert_secret_ref": {
+						Description:         "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
+						MarkdownDescription: "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
 
-						Type: types.StringType,
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
+							"name": {
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
 
-					"service_account_name": {
-						Description:         "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets.",
-						MarkdownDescription: "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets.",
+								Type: types.StringType,
 
-						Type: types.StringType,
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
@@ -253,29 +254,6 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta1Resource) GetSchema(_ context
 						Computed: false,
 					},
 
-					"cert_secret_ref": {
-						Description:         "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
-						MarkdownDescription: "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the referent.",
-								MarkdownDescription: "Name of the referent.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"exclusion_list": {
 						Description:         "ExclusionList is a list of regex strings used to exclude certain tags from being stored in the database.",
 						MarkdownDescription: "ExclusionList is a list of regex strings used to exclude certain tags from being stored in the database.",
@@ -290,6 +268,17 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta1Resource) GetSchema(_ context
 					"image": {
 						Description:         "Image is the name of the image repository",
 						MarkdownDescription: "Image is the name of the image repository",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"interval": {
+						Description:         "Interval is the length of time to wait between scans of the image repository.",
+						MarkdownDescription: "Interval is the length of time to wait between scans of the image repository.",
 
 						Type: types.StringType,
 
@@ -315,6 +304,17 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta1Resource) GetSchema(_ context
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"service_account_name": {
+						Description:         "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets.",
+						MarkdownDescription: "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
