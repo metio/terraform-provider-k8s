@@ -120,12 +120,12 @@ func Properties(properties map[string]apiextensionsv1.JSONSchemaProps, required 
 
 var matchFirstCap = regexp.MustCompile("(.)([A-Z][a-z]+)")
 var matchAllCap = regexp.MustCompile("([a-z0-9])([A-Z])")
-var matchBackticks = regexp.MustCompile("\\x60")
+var matchBackticks = regexp.MustCompile(`\x60`)
 var matchDoubleQuotes = regexp.MustCompile("\"")
 var matchNewlines = regexp.MustCompile("\n")
-var matchBackslashes = regexp.MustCompile("\\\\")
+var matchBackslashes = regexp.MustCompile(`\\`)
 var matchDashes = regexp.MustCompile("-")
-var matchDots = regexp.MustCompile("\\.")
+var matchDots = regexp.MustCompile(`\.`)
 var matchSlashes = regexp.MustCompile("/")
 
 func toSnakeCase(str string) string {
