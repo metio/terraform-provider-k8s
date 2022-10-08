@@ -52,17 +52,11 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Resources *struct {
-			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
-
-			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
-		} `tfsdk:"resources" yaml:"resources,omitempty"`
-
-		Secrets *[]string `tfsdk:"secrets" yaml:"secrets,omitempty"`
-
 		ApplicationImage *string `tfsdk:"application_image" yaml:"applicationImage,omitempty"`
 
 		BootableJar *bool `tfsdk:"bootable_jar" yaml:"bootableJar,omitempty"`
+
+		ConfigMaps *[]string `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
 
 		DisableHTTPRoute *bool `tfsdk:"disable_http_route" yaml:"disableHTTPRoute,omitempty"`
 
@@ -114,15 +108,21 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 			Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
 
 			SecretRef *struct {
-				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 		} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
 
 		Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
 
-		ConfigMaps *[]string `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
+		Resources *struct {
+			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+
+			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+		} `tfsdk:"resources" yaml:"resources,omitempty"`
+
+		Secrets *[]string `tfsdk:"secrets" yaml:"secrets,omitempty"`
 
 		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
 
@@ -142,6 +142,8 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 			} `tfsdk:"empty_dir" yaml:"emptyDir,omitempty"`
 
 			VolumeClaimTemplate *struct {
+				ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
 				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
 				Metadata *map[string]string `tfsdk:"metadata" yaml:"metadata,omitempty"`
@@ -188,23 +190,21 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 					Capacity *map[string]string `tfsdk:"capacity" yaml:"capacity,omitempty"`
 
 					Conditions *[]struct {
-						Reason *string `tfsdk:"reason" yaml:"reason,omitempty"`
-
-						Status *string `tfsdk:"status" yaml:"status,omitempty"`
-
-						Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
 						LastProbeTime *string `tfsdk:"last_probe_time" yaml:"lastProbeTime,omitempty"`
 
 						LastTransitionTime *string `tfsdk:"last_transition_time" yaml:"lastTransitionTime,omitempty"`
 
 						Message *string `tfsdk:"message" yaml:"message,omitempty"`
+
+						Reason *string `tfsdk:"reason" yaml:"reason,omitempty"`
+
+						Status *string `tfsdk:"status" yaml:"status,omitempty"`
+
+						Type *string `tfsdk:"type" yaml:"type,omitempty"`
 					} `tfsdk:"conditions" yaml:"conditions,omitempty"`
 
 					Phase *string `tfsdk:"phase" yaml:"phase,omitempty"`
 				} `tfsdk:"status" yaml:"status,omitempty"`
-
-				ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
 			} `tfsdk:"volume_claim_template" yaml:"volumeClaimTemplate,omitempty"`
 		} `tfsdk:"storage" yaml:"storage,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -307,51 +307,6 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"resources": {
-						Description:         "ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements",
-						MarkdownDescription: "ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"limits": {
-								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"requests": {
-								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"secrets": {
-						Description:         "Secrets is a list of Secrets in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The Secrets are mounted into /etc/secrets/<secret-name>.",
-						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The Secrets are mounted into /etc/secrets/<secret-name>.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"application_image": {
 						Description:         "ApplicationImage is the name of the application image to be deployed",
 						MarkdownDescription: "ApplicationImage is the name of the application image to be deployed",
@@ -368,6 +323,17 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 						MarkdownDescription: "BootableJar specifies whether the application image is using S2I Builder/Runtime images or Bootable Jar. If omitted, it defaults to false (application image is expected to use S2I Builder/Runtime images)",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"config_maps": {
+						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The ConfigMaps are mounted into /etc/configmaps/<configmap-name>.",
+						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The ConfigMaps are mounted into /etc/configmaps/<configmap-name>.",
+
+						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,
@@ -657,22 +623,22 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"optional": {
-										Description:         "Specify whether the Secret must be defined",
-										MarkdownDescription: "Specify whether the Secret must be defined",
+									"name": {
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 
-										Type: types.BoolType,
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"name": {
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+									"optional": {
+										Description:         "Specify whether the Secret must be defined",
+										MarkdownDescription: "Specify whether the Secret must be defined",
 
-										Type: types.StringType,
+										Type: types.BoolType,
 
 										Required: false,
 										Optional: true,
@@ -707,9 +673,43 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 						},
 					},
 
-					"config_maps": {
-						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The ConfigMaps are mounted into /etc/configmaps/<configmap-name>.",
-						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The ConfigMaps are mounted into /etc/configmaps/<configmap-name>.",
+					"resources": {
+						Description:         "ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements",
+						MarkdownDescription: "ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"limits": {
+								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"requests": {
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"secrets": {
+						Description:         "Secrets is a list of Secrets in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The Secrets are mounted into /etc/secrets/<secret-name>.",
+						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The Secrets are mounted into /etc/secrets/<secret-name>.",
 
 						Type: types.ListType{ElemType: types.StringType},
 
@@ -819,6 +819,17 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 								MarkdownDescription: "VolumeClaimTemplate defines the template to store WildFlyServer standalone data directory. The name of the template is derived from the WildFlyServer name. The corresponding volume will be mounted in ReadWriteOnce access mode. This template should be used to specify specific Resources requirements in the template spec.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"api_version": {
+										Description:         "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+										MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"kind": {
 										Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
@@ -1079,39 +1090,6 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-													"reason": {
-														Description:         "Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
-														MarkdownDescription: "Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"status": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"type": {
-														Description:         "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
-														MarkdownDescription: "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
 													"last_probe_time": {
 														Description:         "Last time we probed the condition.",
 														MarkdownDescription: "Last time we probed the condition.",
@@ -1144,6 +1122,39 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 														Optional: true,
 														Computed: false,
 													},
+
+													"reason": {
+														Description:         "Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
+														MarkdownDescription: "Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"status": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"type": {
+														Description:         "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
+														MarkdownDescription: "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
 												}),
 
 												Required: false,
@@ -1162,17 +1173,6 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 												Computed: false,
 											},
 										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"api_version": {
-										Description:         "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-										MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-
-										Type: types.StringType,
 
 										Required: false,
 										Optional: true,

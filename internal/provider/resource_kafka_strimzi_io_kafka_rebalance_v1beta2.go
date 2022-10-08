@@ -52,27 +52,27 @@ type KafkaStrimziIoKafkaRebalanceV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Brokers *[]string `tfsdk:"brokers" yaml:"brokers,omitempty"`
+
 		ConcurrentIntraBrokerPartitionMovements *int64 `tfsdk:"concurrent_intra_broker_partition_movements" yaml:"concurrentIntraBrokerPartitionMovements,omitempty"`
+
+		ConcurrentLeaderMovements *int64 `tfsdk:"concurrent_leader_movements" yaml:"concurrentLeaderMovements,omitempty"`
 
 		ConcurrentPartitionMovementsPerBroker *int64 `tfsdk:"concurrent_partition_movements_per_broker" yaml:"concurrentPartitionMovementsPerBroker,omitempty"`
 
 		ExcludedTopics *string `tfsdk:"excluded_topics" yaml:"excludedTopics,omitempty"`
 
+		Goals *[]string `tfsdk:"goals" yaml:"goals,omitempty"`
+
 		Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
+
+		RebalanceDisk *bool `tfsdk:"rebalance_disk" yaml:"rebalanceDisk,omitempty"`
 
 		ReplicaMovementStrategies *[]string `tfsdk:"replica_movement_strategies" yaml:"replicaMovementStrategies,omitempty"`
 
 		ReplicationThrottle *int64 `tfsdk:"replication_throttle" yaml:"replicationThrottle,omitempty"`
 
 		SkipHardGoalCheck *bool `tfsdk:"skip_hard_goal_check" yaml:"skipHardGoalCheck,omitempty"`
-
-		Brokers *[]string `tfsdk:"brokers" yaml:"brokers,omitempty"`
-
-		ConcurrentLeaderMovements *int64 `tfsdk:"concurrent_leader_movements" yaml:"concurrentLeaderMovements,omitempty"`
-
-		Goals *[]string `tfsdk:"goals" yaml:"goals,omitempty"`
-
-		RebalanceDisk *bool `tfsdk:"rebalance_disk" yaml:"rebalanceDisk,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -173,9 +173,36 @@ func (r *KafkaStrimziIoKafkaRebalanceV1Beta2Resource) GetSchema(_ context.Contex
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"brokers": {
+						Description:         "The list of newly added brokers in case of scaling up or the ones to be removed in case of scaling down to use for rebalancing. This list can be used only with rebalancing mode 'add-brokers' and 'removed-brokers'. It is ignored with 'full' mode.",
+						MarkdownDescription: "The list of newly added brokers in case of scaling up or the ones to be removed in case of scaling down to use for rebalancing. This list can be used only with rebalancing mode 'add-brokers' and 'removed-brokers'. It is ignored with 'full' mode.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"concurrent_intra_broker_partition_movements": {
 						Description:         "The upper bound of ongoing partition replica movements between disks within each broker. Default is 2.",
 						MarkdownDescription: "The upper bound of ongoing partition replica movements between disks within each broker. Default is 2.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(0),
+						},
+					},
+
+					"concurrent_leader_movements": {
+						Description:         "The upper bound of ongoing partition leadership movements. Default is 1000.",
+						MarkdownDescription: "The upper bound of ongoing partition leadership movements. Default is 1000.",
 
 						Type: types.Int64Type,
 
@@ -216,11 +243,33 @@ func (r *KafkaStrimziIoKafkaRebalanceV1Beta2Resource) GetSchema(_ context.Contex
 						Computed: false,
 					},
 
+					"goals": {
+						Description:         "A list of goals, ordered by decreasing priority, to use for generating and executing the rebalance proposal. The supported goals are available at https://github.com/linkedin/cruise-control#goals. If an empty goals list is provided, the goals declared in the default.goals Cruise Control configuration parameter are used.",
+						MarkdownDescription: "A list of goals, ordered by decreasing priority, to use for generating and executing the rebalance proposal. The supported goals are available at https://github.com/linkedin/cruise-control#goals. If an empty goals list is provided, the goals declared in the default.goals Cruise Control configuration parameter are used.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"mode": {
 						Description:         "Mode to run the rebalancing. The supported modes are 'full', 'add-brokers', 'remove-brokers'.If not specified, the 'full' mode is used by default. * 'full' mode runs the rebalancing across all the brokers in the cluster.* 'add-brokers' mode can be used after scaling up the cluster to move some replicas to the newly added brokers.* 'remove-brokers' mode can be used before scaling down the cluster to move replicas out of the brokers to be removed.",
 						MarkdownDescription: "Mode to run the rebalancing. The supported modes are 'full', 'add-brokers', 'remove-brokers'.If not specified, the 'full' mode is used by default. * 'full' mode runs the rebalancing across all the brokers in the cluster.* 'add-brokers' mode can be used after scaling up the cluster to move some replicas to the newly added brokers.* 'remove-brokers' mode can be used before scaling down the cluster to move replicas out of the brokers to be removed.",
 
 						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"rebalance_disk": {
+						Description:         "Enables intra-broker disk balancing, which balances disk space utilization between disks on the same broker. Only applies to Kafka deployments that use JBOD storage with multiple disks. When enabled, inter-broker balancing is disabled. Default is false.",
+						MarkdownDescription: "Enables intra-broker disk balancing, which balances disk space utilization between disks on the same broker. Only applies to Kafka deployments that use JBOD storage with multiple disks. When enabled, inter-broker balancing is disabled. Default is false.",
+
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
@@ -257,55 +306,6 @@ func (r *KafkaStrimziIoKafkaRebalanceV1Beta2Resource) GetSchema(_ context.Contex
 					"skip_hard_goal_check": {
 						Description:         "Whether to allow the hard goals specified in the Kafka CR to be skipped in optimization proposal generation. This can be useful when some of those hard goals are preventing a balance solution being found. Default is false.",
 						MarkdownDescription: "Whether to allow the hard goals specified in the Kafka CR to be skipped in optimization proposal generation. This can be useful when some of those hard goals are preventing a balance solution being found. Default is false.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"brokers": {
-						Description:         "The list of newly added brokers in case of scaling up or the ones to be removed in case of scaling down to use for rebalancing. This list can be used only with rebalancing mode 'add-brokers' and 'removed-brokers'. It is ignored with 'full' mode.",
-						MarkdownDescription: "The list of newly added brokers in case of scaling up or the ones to be removed in case of scaling down to use for rebalancing. This list can be used only with rebalancing mode 'add-brokers' and 'removed-brokers'. It is ignored with 'full' mode.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"concurrent_leader_movements": {
-						Description:         "The upper bound of ongoing partition leadership movements. Default is 1000.",
-						MarkdownDescription: "The upper bound of ongoing partition leadership movements. Default is 1000.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-
-						Validators: []tfsdk.AttributeValidator{
-
-							int64validator.AtLeast(0),
-						},
-					},
-
-					"goals": {
-						Description:         "A list of goals, ordered by decreasing priority, to use for generating and executing the rebalance proposal. The supported goals are available at https://github.com/linkedin/cruise-control#goals. If an empty goals list is provided, the goals declared in the default.goals Cruise Control configuration parameter are used.",
-						MarkdownDescription: "A list of goals, ordered by decreasing priority, to use for generating and executing the rebalance proposal. The supported goals are available at https://github.com/linkedin/cruise-control#goals. If an empty goals list is provided, the goals declared in the default.goals Cruise Control configuration parameter are used.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"rebalance_disk": {
-						Description:         "Enables intra-broker disk balancing, which balances disk space utilization between disks on the same broker. Only applies to Kafka deployments that use JBOD storage with multiple disks. When enabled, inter-broker balancing is disabled. Default is false.",
-						MarkdownDescription: "Enables intra-broker disk balancing, which balances disk space utilization between disks on the same broker. Only applies to Kafka deployments that use JBOD storage with multiple disks. When enabled, inter-broker balancing is disabled. Default is false.",
 
 						Type: types.BoolType,
 

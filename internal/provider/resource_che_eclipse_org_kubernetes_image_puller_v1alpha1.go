@@ -52,19 +52,11 @@ type CheEclipseOrgKubernetesImagePullerV1Alpha1GoModel struct {
 	Spec *struct {
 		Affinity *string `tfsdk:"affinity" yaml:"affinity,omitempty"`
 
+		CachingCPULimit *string `tfsdk:"caching_cpu_limit" yaml:"cachingCPULimit,omitempty"`
+
 		CachingCPURequest *string `tfsdk:"caching_cpu_request" yaml:"cachingCPURequest,omitempty"`
 
 		CachingIntervalHours *string `tfsdk:"caching_interval_hours" yaml:"cachingIntervalHours,omitempty"`
-
-		Images *string `tfsdk:"images" yaml:"images,omitempty"`
-
-		DeploymentName *string `tfsdk:"deployment_name" yaml:"deploymentName,omitempty"`
-
-		ImagePullSecrets *string `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
-
-		ImagePullerImage *string `tfsdk:"image_puller_image" yaml:"imagePullerImage,omitempty"`
-
-		CachingCPULimit *string `tfsdk:"caching_cpu_limit" yaml:"cachingCPULimit,omitempty"`
 
 		CachingMemoryLimit *string `tfsdk:"caching_memory_limit" yaml:"cachingMemoryLimit,omitempty"`
 
@@ -73,6 +65,14 @@ type CheEclipseOrgKubernetesImagePullerV1Alpha1GoModel struct {
 		ConfigMapName *string `tfsdk:"config_map_name" yaml:"configMapName,omitempty"`
 
 		DaemonsetName *string `tfsdk:"daemonset_name" yaml:"daemonsetName,omitempty"`
+
+		DeploymentName *string `tfsdk:"deployment_name" yaml:"deploymentName,omitempty"`
+
+		ImagePullSecrets *string `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
+
+		ImagePullerImage *string `tfsdk:"image_puller_image" yaml:"imagePullerImage,omitempty"`
+
+		Images *string `tfsdk:"images" yaml:"images,omitempty"`
 
 		NodeSelector *string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -186,6 +186,17 @@ func (r *CheEclipseOrgKubernetesImagePullerV1Alpha1Resource) GetSchema(_ context
 						Computed: false,
 					},
 
+					"caching_cpu_limit": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"caching_cpu_request": {
 						Description:         "",
 						MarkdownDescription: "",
@@ -198,61 +209,6 @@ func (r *CheEclipseOrgKubernetesImagePullerV1Alpha1Resource) GetSchema(_ context
 					},
 
 					"caching_interval_hours": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"images": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"deployment_name": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"image_pull_secrets": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"image_puller_image": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"caching_cpu_limit": {
 						Description:         "",
 						MarkdownDescription: "",
 
@@ -297,6 +253,50 @@ func (r *CheEclipseOrgKubernetesImagePullerV1Alpha1Resource) GetSchema(_ context
 					},
 
 					"daemonset_name": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"deployment_name": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"image_pull_secrets": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"image_puller_image": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"images": {
 						Description:         "",
 						MarkdownDescription: "",
 

@@ -56,9 +56,17 @@ type SourceToolkitFluxcdIoBucketV1Beta1GoModel struct {
 			} `tfsdk:"namespace_selectors" yaml:"namespaceSelectors,omitempty"`
 		} `tfsdk:"access_from" yaml:"accessFrom,omitempty"`
 
+		BucketName *string `tfsdk:"bucket_name" yaml:"bucketName,omitempty"`
+
 		Endpoint *string `tfsdk:"endpoint" yaml:"endpoint,omitempty"`
 
+		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
+
+		Insecure *bool `tfsdk:"insecure" yaml:"insecure,omitempty"`
+
 		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
 
 		Region *string `tfsdk:"region" yaml:"region,omitempty"`
 
@@ -66,17 +74,9 @@ type SourceToolkitFluxcdIoBucketV1Beta1GoModel struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
-		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
-		BucketName *string `tfsdk:"bucket_name" yaml:"bucketName,omitempty"`
-
-		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
-
-		Insecure *bool `tfsdk:"insecure" yaml:"insecure,omitempty"`
-
-		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
-
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+
+		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -212,6 +212,17 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta1Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
+					"bucket_name": {
+						Description:         "The bucket name.",
+						MarkdownDescription: "The bucket name.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
 					"endpoint": {
 						Description:         "The bucket endpoint address.",
 						MarkdownDescription: "The bucket endpoint address.",
@@ -223,6 +234,28 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta1Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
+					"ignore": {
+						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"insecure": {
+						Description:         "Insecure allows connecting to a non-TLS S3 HTTP endpoint.",
+						MarkdownDescription: "Insecure allows connecting to a non-TLS S3 HTTP endpoint.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"interval": {
 						Description:         "The interval at which to check for bucket updates.",
 						MarkdownDescription: "The interval at which to check for bucket updates.",
@@ -231,6 +264,17 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta1Resource) GetSchema(_ context.Context
 
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"provider": {
+						Description:         "The S3 compatible storage provider name, default ('generic').",
+						MarkdownDescription: "The S3 compatible storage provider name, default ('generic').",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
@@ -268,66 +312,22 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta1Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
-					"timeout": {
-						Description:         "The timeout for download operations, defaults to 60s.",
-						MarkdownDescription: "The timeout for download operations, defaults to 60s.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"bucket_name": {
-						Description:         "The bucket name.",
-						MarkdownDescription: "The bucket name.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"ignore": {
-						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
-						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"insecure": {
-						Description:         "Insecure allows connecting to a non-TLS S3 HTTP endpoint.",
-						MarkdownDescription: "Insecure allows connecting to a non-TLS S3 HTTP endpoint.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"provider": {
-						Description:         "The S3 compatible storage provider name, default ('generic').",
-						MarkdownDescription: "The S3 compatible storage provider name, default ('generic').",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"suspend": {
 						Description:         "This flag tells the controller to suspend the reconciliation of this source.",
 						MarkdownDescription: "This flag tells the controller to suspend the reconciliation of this source.",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"timeout": {
+						Description:         "The timeout for download operations, defaults to 60s.",
+						MarkdownDescription: "The timeout for download operations, defaults to 60s.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

@@ -50,17 +50,9 @@ type CrdProjectcalicoOrgBGPConfigurationV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		NodeToNodeMeshEnabled *bool `tfsdk:"node_to_node_mesh_enabled" yaml:"nodeToNodeMeshEnabled,omitempty"`
+		AsNumber *int64 `tfsdk:"as_number" yaml:"asNumber,omitempty"`
 
-		PrefixAdvertisements *[]struct {
-			Cidr *string `tfsdk:"cidr" yaml:"cidr,omitempty"`
-
-			Communities *[]string `tfsdk:"communities" yaml:"communities,omitempty"`
-		} `tfsdk:"prefix_advertisements" yaml:"prefixAdvertisements,omitempty"`
-
-		ServiceLoadBalancerIPs *[]struct {
-			Cidr *string `tfsdk:"cidr" yaml:"cidr,omitempty"`
-		} `tfsdk:"service_load_balancer_i_ps" yaml:"serviceLoadBalancerIPs,omitempty"`
+		BindMode *string `tfsdk:"bind_mode" yaml:"bindMode,omitempty"`
 
 		Communities *[]struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -69,6 +61,8 @@ type CrdProjectcalicoOrgBGPConfigurationV1GoModel struct {
 		} `tfsdk:"communities" yaml:"communities,omitempty"`
 
 		ListenPort *int64 `tfsdk:"listen_port" yaml:"listenPort,omitempty"`
+
+		LogSeverityScreen *string `tfsdk:"log_severity_screen" yaml:"logSeverityScreen,omitempty"`
 
 		NodeMeshMaxRestartTime *string `tfsdk:"node_mesh_max_restart_time" yaml:"nodeMeshMaxRestartTime,omitempty"`
 
@@ -82,6 +76,14 @@ type CrdProjectcalicoOrgBGPConfigurationV1GoModel struct {
 			} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
 		} `tfsdk:"node_mesh_password" yaml:"nodeMeshPassword,omitempty"`
 
+		NodeToNodeMeshEnabled *bool `tfsdk:"node_to_node_mesh_enabled" yaml:"nodeToNodeMeshEnabled,omitempty"`
+
+		PrefixAdvertisements *[]struct {
+			Cidr *string `tfsdk:"cidr" yaml:"cidr,omitempty"`
+
+			Communities *[]string `tfsdk:"communities" yaml:"communities,omitempty"`
+		} `tfsdk:"prefix_advertisements" yaml:"prefixAdvertisements,omitempty"`
+
 		ServiceClusterIPs *[]struct {
 			Cidr *string `tfsdk:"cidr" yaml:"cidr,omitempty"`
 		} `tfsdk:"service_cluster_i_ps" yaml:"serviceClusterIPs,omitempty"`
@@ -90,11 +92,9 @@ type CrdProjectcalicoOrgBGPConfigurationV1GoModel struct {
 			Cidr *string `tfsdk:"cidr" yaml:"cidr,omitempty"`
 		} `tfsdk:"service_external_i_ps" yaml:"serviceExternalIPs,omitempty"`
 
-		AsNumber *int64 `tfsdk:"as_number" yaml:"asNumber,omitempty"`
-
-		BindMode *string `tfsdk:"bind_mode" yaml:"bindMode,omitempty"`
-
-		LogSeverityScreen *string `tfsdk:"log_severity_screen" yaml:"logSeverityScreen,omitempty"`
+		ServiceLoadBalancerIPs *[]struct {
+			Cidr *string `tfsdk:"cidr" yaml:"cidr,omitempty"`
+		} `tfsdk:"service_load_balancer_i_ps" yaml:"serviceLoadBalancerIPs,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -188,68 +188,22 @@ func (r *CrdProjectcalicoOrgBGPConfigurationV1Resource) GetSchema(_ context.Cont
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"node_to_node_mesh_enabled": {
-						Description:         "NodeToNodeMeshEnabled sets whether full node to node BGP mesh is enabled. [Default: true]",
-						MarkdownDescription: "NodeToNodeMeshEnabled sets whether full node to node BGP mesh is enabled. [Default: true]",
+					"as_number": {
+						Description:         "ASNumber is the default AS number used by a node. [Default: 64512]",
+						MarkdownDescription: "ASNumber is the default AS number used by a node. [Default: 64512]",
 
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"prefix_advertisements": {
-						Description:         "PrefixAdvertisements contains per-prefix advertisement configuration.",
-						MarkdownDescription: "PrefixAdvertisements contains per-prefix advertisement configuration.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"cidr": {
-								Description:         "CIDR for which properties should be advertised.",
-								MarkdownDescription: "CIDR for which properties should be advertised.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"communities": {
-								Description:         "Communities can be list of either community names already defined in 'Specs.Communities' or community value of format 'aa:nn' or 'aa:nn:mm'. For standard community use 'aa:nn' format, where 'aa' and 'nn' are 16 bit number. For large community use 'aa:nn:mm' format, where 'aa', 'nn' and 'mm' are 32 bit number. Where,'aa' is an AS Number, 'nn' and 'mm' are per-AS identifier.",
-								MarkdownDescription: "Communities can be list of either community names already defined in 'Specs.Communities' or community value of format 'aa:nn' or 'aa:nn:mm'. For standard community use 'aa:nn' format, where 'aa' and 'nn' are 16 bit number. For large community use 'aa:nn:mm' format, where 'aa', 'nn' and 'mm' are 32 bit number. Where,'aa' is an AS Number, 'nn' and 'mm' are per-AS identifier.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
+						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
 					},
 
-					"service_load_balancer_i_ps": {
-						Description:         "ServiceLoadBalancerIPs are the CIDR blocks for Kubernetes Service LoadBalancer IPs. Kubernetes Service status.LoadBalancer.Ingress IPs will only be advertised if they are within one of these blocks.",
-						MarkdownDescription: "ServiceLoadBalancerIPs are the CIDR blocks for Kubernetes Service LoadBalancer IPs. Kubernetes Service status.LoadBalancer.Ingress IPs will only be advertised if they are within one of these blocks.",
+					"bind_mode": {
+						Description:         "BindMode indicates whether to listen for BGP connections on all addresses (None) or only on the node's canonical IP address Node.Spec.BGP.IPvXAddress (NodeIP). Default behaviour is to listen for BGP connections on all addresses.",
+						MarkdownDescription: "BindMode indicates whether to listen for BGP connections on all addresses (None) or only on the node's canonical IP address Node.Spec.BGP.IPvXAddress (NodeIP). Default behaviour is to listen for BGP connections on all addresses.",
 
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"cidr": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -306,6 +260,17 @@ func (r *CrdProjectcalicoOrgBGPConfigurationV1Resource) GetSchema(_ context.Cont
 
 							int64validator.AtMost(65535),
 						},
+					},
+
+					"log_severity_screen": {
+						Description:         "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: INFO]",
+						MarkdownDescription: "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: INFO]",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"node_mesh_max_restart_time": {
@@ -376,6 +341,51 @@ func (r *CrdProjectcalicoOrgBGPConfigurationV1Resource) GetSchema(_ context.Cont
 						Computed: false,
 					},
 
+					"node_to_node_mesh_enabled": {
+						Description:         "NodeToNodeMeshEnabled sets whether full node to node BGP mesh is enabled. [Default: true]",
+						MarkdownDescription: "NodeToNodeMeshEnabled sets whether full node to node BGP mesh is enabled. [Default: true]",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"prefix_advertisements": {
+						Description:         "PrefixAdvertisements contains per-prefix advertisement configuration.",
+						MarkdownDescription: "PrefixAdvertisements contains per-prefix advertisement configuration.",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"cidr": {
+								Description:         "CIDR for which properties should be advertised.",
+								MarkdownDescription: "CIDR for which properties should be advertised.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"communities": {
+								Description:         "Communities can be list of either community names already defined in 'Specs.Communities' or community value of format 'aa:nn' or 'aa:nn:mm'. For standard community use 'aa:nn' format, where 'aa' and 'nn' are 16 bit number. For large community use 'aa:nn:mm' format, where 'aa', 'nn' and 'mm' are 32 bit number. Where,'aa' is an AS Number, 'nn' and 'mm' are per-AS identifier.",
+								MarkdownDescription: "Communities can be list of either community names already defined in 'Specs.Communities' or community value of format 'aa:nn' or 'aa:nn:mm'. For standard community use 'aa:nn' format, where 'aa' and 'nn' are 16 bit number. For large community use 'aa:nn:mm' format, where 'aa', 'nn' and 'mm' are 32 bit number. Where,'aa' is an AS Number, 'nn' and 'mm' are per-AS identifier.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"service_cluster_i_ps": {
 						Description:         "ServiceClusterIPs are the CIDR blocks from which service cluster IPs are allocated. If specified, Calico will advertise these blocks, as well as any cluster IPs within them.",
 						MarkdownDescription: "ServiceClusterIPs are the CIDR blocks from which service cluster IPs are allocated. If specified, Calico will advertise these blocks, as well as any cluster IPs within them.",
@@ -422,33 +432,23 @@ func (r *CrdProjectcalicoOrgBGPConfigurationV1Resource) GetSchema(_ context.Cont
 						Computed: false,
 					},
 
-					"as_number": {
-						Description:         "ASNumber is the default AS number used by a node. [Default: 64512]",
-						MarkdownDescription: "ASNumber is the default AS number used by a node. [Default: 64512]",
+					"service_load_balancer_i_ps": {
+						Description:         "ServiceLoadBalancerIPs are the CIDR blocks for Kubernetes Service LoadBalancer IPs. Kubernetes Service status.LoadBalancer.Ingress IPs will only be advertised if they are within one of these blocks.",
+						MarkdownDescription: "ServiceLoadBalancerIPs are the CIDR blocks for Kubernetes Service LoadBalancer IPs. Kubernetes Service status.LoadBalancer.Ingress IPs will only be advertised if they are within one of these blocks.",
 
-						Type: types.Int64Type,
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
+							"cidr": {
+								Description:         "",
+								MarkdownDescription: "",
 
-					"bind_mode": {
-						Description:         "BindMode indicates whether to listen for BGP connections on all addresses (None) or only on the node's canonical IP address Node.Spec.BGP.IPvXAddress (NodeIP). Default behaviour is to listen for BGP connections on all addresses.",
-						MarkdownDescription: "BindMode indicates whether to listen for BGP connections on all addresses (None) or only on the node's canonical IP address Node.Spec.BGP.IPvXAddress (NodeIP). Default behaviour is to listen for BGP connections on all addresses.",
+								Type: types.StringType,
 
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"log_severity_screen": {
-						Description:         "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: INFO]",
-						MarkdownDescription: "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: INFO]",
-
-						Type: types.StringType,
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

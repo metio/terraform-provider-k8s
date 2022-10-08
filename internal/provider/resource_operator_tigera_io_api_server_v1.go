@@ -73,19 +73,19 @@ type OperatorTigeraIoAPIServerV1GoModel struct {
 								PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 									Preference *struct {
 										MatchExpressions *[]struct {
-											Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
 											Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 											Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+											Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 										} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 										MatchFields *[]struct {
+											Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 											Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 											Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-											Key *string `tfsdk:"key" yaml:"key,omitempty"`
 										} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
 									} `tfsdk:"preference" yaml:"preference,omitempty"`
 
@@ -195,8 +195,6 @@ type OperatorTigeraIoAPIServerV1GoModel struct {
 										} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 										NamespaceSelector *struct {
-											MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-
 											MatchExpressions *[]struct {
 												Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -204,6 +202,8 @@ type OperatorTigeraIoAPIServerV1GoModel struct {
 
 												Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 											} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+											MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 										} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 										Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
@@ -217,11 +217,11 @@ type OperatorTigeraIoAPIServerV1GoModel struct {
 								RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
 									LabelSelector *struct {
 										MatchExpressions *[]struct {
-											Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
 											Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 											Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+											Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 										} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 										MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -269,6 +269,8 @@ type OperatorTigeraIoAPIServerV1GoModel struct {
 						NodeSelector *map[string]string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
 
 						Tolerations *[]struct {
+							Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
+
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 							Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
@@ -276,8 +278,6 @@ type OperatorTigeraIoAPIServerV1GoModel struct {
 							TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
 
 							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-							Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
 						} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
 					} `tfsdk:"spec" yaml:"spec,omitempty"`
 				} `tfsdk:"template" yaml:"template,omitempty"`
@@ -516,17 +516,6 @@ func (r *OperatorTigeraIoAPIServerV1Resource) GetSchema(_ context.Context) (tfsd
 
 																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																							"values": {
-																								Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																								MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-
-																								Type: types.ListType{ElemType: types.StringType},
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-
 																							"key": {
 																								Description:         "The label key that the selector applies to.",
 																								MarkdownDescription: "The label key that the selector applies to.",
@@ -546,6 +535,17 @@ func (r *OperatorTigeraIoAPIServerV1Resource) GetSchema(_ context.Context) (tfsd
 
 																								Required: true,
 																								Optional: false,
+																								Computed: false,
+																							},
+
+																							"values": {
+																								Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																								MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+
+																								Type: types.ListType{ElemType: types.StringType},
+
+																								Required: false,
+																								Optional: true,
 																								Computed: false,
 																							},
 																						}),
@@ -561,6 +561,17 @@ func (r *OperatorTigeraIoAPIServerV1Resource) GetSchema(_ context.Context) (tfsd
 
 																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+																							"key": {
+																								Description:         "The label key that the selector applies to.",
+																								MarkdownDescription: "The label key that the selector applies to.",
+
+																								Type: types.StringType,
+
+																								Required: true,
+																								Optional: false,
+																								Computed: false,
+																							},
+
 																							"operator": {
 																								Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																								MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
@@ -580,17 +591,6 @@ func (r *OperatorTigeraIoAPIServerV1Resource) GetSchema(_ context.Context) (tfsd
 
 																								Required: false,
 																								Optional: true,
-																								Computed: false,
-																							},
-
-																							"key": {
-																								Description:         "The label key that the selector applies to.",
-																								MarkdownDescription: "The label key that the selector applies to.",
-
-																								Type: types.StringType,
-
-																								Required: true,
-																								Optional: false,
 																								Computed: false,
 																							},
 																						}),
@@ -1210,17 +1210,6 @@ func (r *OperatorTigeraIoAPIServerV1Resource) GetSchema(_ context.Context) (tfsd
 
 																						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-																							"match_labels": {
-																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-																								Type: types.MapType{ElemType: types.StringType},
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-
 																							"match_expressions": {
 																								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 																								MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1260,6 +1249,17 @@ func (r *OperatorTigeraIoAPIServerV1Resource) GetSchema(_ context.Context) (tfsd
 																										Computed: false,
 																									},
 																								}),
+
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"match_labels": {
+																								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+																								Type: types.MapType{ElemType: types.StringType},
 
 																								Required: false,
 																								Optional: true,
@@ -1335,17 +1335,6 @@ func (r *OperatorTigeraIoAPIServerV1Resource) GetSchema(_ context.Context) (tfsd
 
 																						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-																							"values": {
-																								Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-																								Type: types.ListType{ElemType: types.StringType},
-
-																								Required: false,
-																								Optional: true,
-																								Computed: false,
-																							},
-
 																							"key": {
 																								Description:         "key is the label key that the selector applies to.",
 																								MarkdownDescription: "key is the label key that the selector applies to.",
@@ -1365,6 +1354,17 @@ func (r *OperatorTigeraIoAPIServerV1Resource) GetSchema(_ context.Context) (tfsd
 
 																								Required: true,
 																								Optional: false,
+																								Computed: false,
+																							},
+
+																							"values": {
+																								Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																								MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+																								Type: types.ListType{ElemType: types.StringType},
+
+																								Required: false,
+																								Optional: true,
 																								Computed: false,
 																							},
 																						}),
@@ -1630,6 +1630,17 @@ func (r *OperatorTigeraIoAPIServerV1Resource) GetSchema(_ context.Context) (tfsd
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+															"effect": {
+																Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"key": {
 																Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 																MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
@@ -1666,17 +1677,6 @@ func (r *OperatorTigeraIoAPIServerV1Resource) GetSchema(_ context.Context) (tfsd
 															"value": {
 																Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
 																MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"effect": {
-																Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-																MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 
 																Type: types.StringType,
 

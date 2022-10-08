@@ -50,6 +50,12 @@ type ImageToolkitFluxcdIoImageRepositoryV1Alpha2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		CertSecretRef *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"cert_secret_ref" yaml:"certSecretRef,omitempty"`
+
+		Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
 		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 
 		SecretRef *struct {
@@ -59,12 +65,6 @@ type ImageToolkitFluxcdIoImageRepositoryV1Alpha2GoModel struct {
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 
 		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
-		CertSecretRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"cert_secret_ref" yaml:"certSecretRef,omitempty"`
-
-		Image *string `tfsdk:"image" yaml:"image,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -165,6 +165,40 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Alpha2Resource) GetSchema(_ contex
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"cert_secret_ref": {
+						Description:         "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
+						MarkdownDescription: "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"image": {
+						Description:         "Image is the name of the image repository",
+						MarkdownDescription: "Image is the name of the image repository",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"interval": {
 						Description:         "Interval is the length of time to wait between scans of the image repository.",
 						MarkdownDescription: "Interval is the length of time to wait between scans of the image repository.",
@@ -213,40 +247,6 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Alpha2Resource) GetSchema(_ contex
 					"timeout": {
 						Description:         "Timeout for image scanning. Defaults to 'Interval' duration.",
 						MarkdownDescription: "Timeout for image scanning. Defaults to 'Interval' duration.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"cert_secret_ref": {
-						Description:         "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
-						MarkdownDescription: "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the referent.",
-								MarkdownDescription: "Name of the referent.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"image": {
-						Description:         "Image is the name of the image repository",
-						MarkdownDescription: "Image is the name of the image repository",
 
 						Type: types.StringType,
 

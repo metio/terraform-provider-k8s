@@ -70,19 +70,19 @@ type KafkaStrimziIoKafkaUserV1Beta2GoModel struct {
 
 		Authorization *struct {
 			Acls *[]struct {
-				Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
 				Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
 				Operation *string `tfsdk:"operation" yaml:"operation,omitempty"`
 
 				Resource *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
 					PatternType *string `tfsdk:"pattern_type" yaml:"patternType,omitempty"`
 
 					Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 				} `tfsdk:"resource" yaml:"resource,omitempty"`
+
+				Type *string `tfsdk:"type" yaml:"type,omitempty"`
 			} `tfsdk:"acls" yaml:"acls,omitempty"`
 
 			Type *string `tfsdk:"type" yaml:"type,omitempty"`
@@ -311,17 +311,6 @@ func (r *KafkaStrimziIoKafkaUserV1Beta2Resource) GetSchema(_ context.Context) (t
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"type": {
-										Description:         "The type of the rule. Currently the only supported type is 'allow'. ACL rules with type 'allow' are used to allow user to execute the specified operations. Default value is 'allow'.",
-										MarkdownDescription: "The type of the rule. Currently the only supported type is 'allow'. ACL rules with type 'allow' are used to allow user to execute the specified operations. Default value is 'allow'.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"host": {
 										Description:         "The host from which the action described in the ACL rule is allowed or denied.",
 										MarkdownDescription: "The host from which the action described in the ACL rule is allowed or denied.",
@@ -350,6 +339,17 @@ func (r *KafkaStrimziIoKafkaUserV1Beta2Resource) GetSchema(_ context.Context) (t
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+											"name": {
+												Description:         "Name of resource for which given ACL rule applies. Can be combined with 'patternType' field to use prefix pattern.",
+												MarkdownDescription: "Name of resource for which given ACL rule applies. Can be combined with 'patternType' field to use prefix pattern.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"pattern_type": {
 												Description:         "Describes the pattern used in the resource field. The supported types are 'literal' and 'prefix'. With 'literal' pattern type, the resource field will be used as a definition of a full name. With 'prefix' pattern type, the resource name will be used only as a prefix. Default value is 'literal'.",
 												MarkdownDescription: "Describes the pattern used in the resource field. The supported types are 'literal' and 'prefix'. With 'literal' pattern type, the resource field will be used as a definition of a full name. With 'prefix' pattern type, the resource name will be used only as a prefix. Default value is 'literal'.",
@@ -371,21 +371,21 @@ func (r *KafkaStrimziIoKafkaUserV1Beta2Resource) GetSchema(_ context.Context) (t
 												Optional: false,
 												Computed: false,
 											},
-
-											"name": {
-												Description:         "Name of resource for which given ACL rule applies. Can be combined with 'patternType' field to use prefix pattern.",
-												MarkdownDescription: "Name of resource for which given ACL rule applies. Can be combined with 'patternType' field to use prefix pattern.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 										}),
 
 										Required: true,
 										Optional: false,
+										Computed: false,
+									},
+
+									"type": {
+										Description:         "The type of the rule. Currently the only supported type is 'allow'. ACL rules with type 'allow' are used to allow user to execute the specified operations. Default value is 'allow'.",
+										MarkdownDescription: "The type of the rule. Currently the only supported type is 'allow'. ACL rules with type 'allow' are used to allow user to execute the specified operations. Default value is 'allow'.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 								}),

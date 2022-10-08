@@ -63,9 +63,19 @@ type AppKiegroupOrgKogitoInfraV1Beta1GoModel struct {
 		} `tfsdk:"config_map_volume_references" yaml:"configMapVolumeReferences,omitempty"`
 
 		Envs *[]struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
 			Value *string `tfsdk:"value" yaml:"value,omitempty"`
 
 			ValueFrom *struct {
+				ConfigMapKeyRef *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
+
 				FieldRef *struct {
 					ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
 
@@ -87,17 +97,7 @@ type AppKiegroupOrgKogitoInfraV1Beta1GoModel struct {
 
 					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 				} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
-
-				ConfigMapKeyRef *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-				} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
 			} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"envs" yaml:"envs,omitempty"`
 
 		InfraProperties *map[string]string `tfsdk:"infra_properties" yaml:"infraProperties,omitempty"`
@@ -115,13 +115,13 @@ type AppKiegroupOrgKogitoInfraV1Beta1GoModel struct {
 		SecretEnvFromReferences *[]string `tfsdk:"secret_env_from_references" yaml:"secretEnvFromReferences,omitempty"`
 
 		SecretVolumeReferences *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
 			FileMode *int64 `tfsdk:"file_mode" yaml:"fileMode,omitempty"`
 
 			MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 		} `tfsdk:"secret_volume_references" yaml:"secretVolumeReferences,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -296,6 +296,17 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+							"name": {
+								Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+								MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
 							"value": {
 								Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
 								MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
@@ -312,6 +323,51 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 								MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"config_map_key_ref": {
+										Description:         "Selects a key of a ConfigMap.",
+										MarkdownDescription: "Selects a key of a ConfigMap.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "The key to select.",
+												MarkdownDescription: "The key to select.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the ConfigMap or its key must be defined",
+												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"field_ref": {
 										Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
@@ -436,66 +492,10 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 										Optional: true,
 										Computed: false,
 									},
-
-									"config_map_key_ref": {
-										Description:         "Selects a key of a ConfigMap.",
-										MarkdownDescription: "Selects a key of a ConfigMap.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"optional": {
-												Description:         "Specify whether the ConfigMap or its key must be defined",
-												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"key": {
-												Description:         "The key to select.",
-												MarkdownDescription: "The key to select.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
 								Optional: true,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-								MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
 								Computed: false,
 							},
 						}),
@@ -589,28 +589,6 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"name": {
-								Description:         "This must match the Name of a ConfigMap.",
-								MarkdownDescription: "This must match the Name of a ConfigMap.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"optional": {
-								Description:         "Specify whether the Secret or its keys must be defined",
-								MarkdownDescription: "Specify whether the Secret or its keys must be defined",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"file_mode": {
 								Description:         "Permission on the file mounted as volume on deployment. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.",
 								MarkdownDescription: "Permission on the file mounted as volume on deployment. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644.",
@@ -627,6 +605,28 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Resource) GetSchema(_ context.Context) 
 								MarkdownDescription: "Path within the container at which the volume should be mounted.  Must not contain ':'. Default mount path is /home/kogito/config",
 
 								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "This must match the Name of a ConfigMap.",
+								MarkdownDescription: "This must match the Name of a ConfigMap.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"optional": {
+								Description:         "Specify whether the Secret or its keys must be defined",
+								MarkdownDescription: "Specify whether the Secret or its keys must be defined",
+
+								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,

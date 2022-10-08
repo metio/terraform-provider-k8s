@@ -50,6 +50,8 @@ type NetworkingIstioIoGatewayV1Alpha3GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Selector *map[string]string `tfsdk:"selector" yaml:"selector,omitempty"`
+
 		Servers *[]struct {
 			Bind *string `tfsdk:"bind" yaml:"bind,omitempty"`
 
@@ -70,15 +72,11 @@ type NetworkingIstioIoGatewayV1Alpha3GoModel struct {
 			} `tfsdk:"port" yaml:"port,omitempty"`
 
 			Tls *struct {
-				CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
-
-				ServerCertificate *string `tfsdk:"server_certificate" yaml:"serverCertificate,omitempty"`
-
-				SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
-
-				VerifyCertificateSpki *[]string `tfsdk:"verify_certificate_spki" yaml:"verifyCertificateSpki,omitempty"`
-
 				CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
+
+				CipherSuites *[]string `tfsdk:"cipher_suites" yaml:"cipherSuites,omitempty"`
+
+				CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
 
 				HttpsRedirect *bool `tfsdk:"https_redirect" yaml:"httpsRedirect,omitempty"`
 
@@ -90,13 +88,15 @@ type NetworkingIstioIoGatewayV1Alpha3GoModel struct {
 
 				PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
 
+				ServerCertificate *string `tfsdk:"server_certificate" yaml:"serverCertificate,omitempty"`
+
+				SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
+
 				VerifyCertificateHash *[]string `tfsdk:"verify_certificate_hash" yaml:"verifyCertificateHash,omitempty"`
 
-				CipherSuites *[]string `tfsdk:"cipher_suites" yaml:"cipherSuites,omitempty"`
+				VerifyCertificateSpki *[]string `tfsdk:"verify_certificate_spki" yaml:"verifyCertificateSpki,omitempty"`
 			} `tfsdk:"tls" yaml:"tls,omitempty"`
 		} `tfsdk:"servers" yaml:"servers,omitempty"`
-
-		Selector *map[string]string `tfsdk:"selector" yaml:"selector,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -196,6 +196,17 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 				MarkdownDescription: "Configuration affecting edge load balancer. See more details at: https://istio.io/docs/reference/config/networking/gateway.html",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+					"selector": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.MapType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
 
 					"servers": {
 						Description:         "A list of server specifications.",
@@ -309,53 +320,31 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"credential_name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"server_certificate": {
-										Description:         "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
-										MarkdownDescription: "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"subject_alt_names": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"verify_certificate_spki": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"ca_certificates": {
 										Description:         "REQUIRED if mode is 'MUTUAL'.",
 										MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"cipher_suites": {
+										Description:         "Optional: If specified, only support the specified cipher list.",
+										MarkdownDescription: "Optional: If specified, only support the specified cipher list.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"credential_name": {
+										Description:         "",
+										MarkdownDescription: "",
 
 										Type: types.StringType,
 
@@ -419,6 +408,28 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
+									"server_certificate": {
+										Description:         "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
+										MarkdownDescription: "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"subject_alt_names": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"verify_certificate_hash": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -430,9 +441,9 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
-									"cipher_suites": {
-										Description:         "Optional: If specified, only support the specified cipher list.",
-										MarkdownDescription: "Optional: If specified, only support the specified cipher list.",
+									"verify_certificate_spki": {
+										Description:         "",
+										MarkdownDescription: "",
 
 										Type: types.ListType{ElemType: types.StringType},
 
@@ -447,17 +458,6 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"selector": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.MapType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

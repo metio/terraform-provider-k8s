@@ -50,16 +50,6 @@ type SourceToolkitFluxcdIoBucketV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Region *string `tfsdk:"region" yaml:"region,omitempty"`
-
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
-
-		SecretRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
 		AccessFrom *struct {
 			NamespaceSelectors *[]struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -73,6 +63,16 @@ type SourceToolkitFluxcdIoBucketV1Beta2GoModel struct {
 		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
 
 		Insecure *bool `tfsdk:"insecure" yaml:"insecure,omitempty"`
+
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
+
+		Region *string `tfsdk:"region" yaml:"region,omitempty"`
+
+		SecretRef *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 
@@ -177,62 +177,6 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Resource) GetSchema(_ context.Context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"region": {
-						Description:         "Region of the Endpoint where the BucketName is located in.",
-						MarkdownDescription: "Region of the Endpoint where the BucketName is located in.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"interval": {
-						Description:         "Interval at which to check the Endpoint for updates.",
-						MarkdownDescription: "Interval at which to check the Endpoint for updates.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"provider": {
-						Description:         "Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.",
-						MarkdownDescription: "Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"secret_ref": {
-						Description:         "SecretRef specifies the Secret containing authentication credentials for the Bucket.",
-						MarkdownDescription: "SecretRef specifies the Secret containing authentication credentials for the Bucket.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the referent.",
-								MarkdownDescription: "Name of the referent.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"access_from": {
 						Description:         "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
 						MarkdownDescription: "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
@@ -306,6 +250,62 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Resource) GetSchema(_ context.Context
 						MarkdownDescription: "Insecure allows connecting to a non-TLS HTTP Endpoint.",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"interval": {
+						Description:         "Interval at which to check the Endpoint for updates.",
+						MarkdownDescription: "Interval at which to check the Endpoint for updates.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"provider": {
+						Description:         "Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.",
+						MarkdownDescription: "Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"region": {
+						Description:         "Region of the Endpoint where the BucketName is located in.",
+						MarkdownDescription: "Region of the Endpoint where the BucketName is located in.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"secret_ref": {
+						Description:         "SecretRef specifies the Secret containing authentication credentials for the Bucket.",
+						MarkdownDescription: "SecretRef specifies the Secret containing authentication credentials for the Bucket.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

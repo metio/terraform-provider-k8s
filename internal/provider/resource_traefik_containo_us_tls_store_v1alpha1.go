@@ -50,23 +50,23 @@ type TraefikContainoUsTLSStoreV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Certificates *[]struct {
+			SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
+		} `tfsdk:"certificates" yaml:"certificates,omitempty"`
+
 		DefaultCertificate *struct {
 			SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
 		} `tfsdk:"default_certificate" yaml:"defaultCertificate,omitempty"`
 
 		DefaultGeneratedCert *struct {
 			Domain *struct {
-				Sans *[]string `tfsdk:"sans" yaml:"sans,omitempty"`
-
 				Main *string `tfsdk:"main" yaml:"main,omitempty"`
+
+				Sans *[]string `tfsdk:"sans" yaml:"sans,omitempty"`
 			} `tfsdk:"domain" yaml:"domain,omitempty"`
 
 			Resolver *string `tfsdk:"resolver" yaml:"resolver,omitempty"`
 		} `tfsdk:"default_generated_cert" yaml:"defaultGeneratedCert,omitempty"`
-
-		Certificates *[]struct {
-			SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-		} `tfsdk:"certificates" yaml:"certificates,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -167,6 +167,29 @@ func (r *TraefikContainoUsTLSStoreV1Alpha1Resource) GetSchema(_ context.Context)
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"certificates": {
+						Description:         "Certificates is a list of secret names, each secret holding a key/certificate pair to add to the store.",
+						MarkdownDescription: "Certificates is a list of secret names, each secret holding a key/certificate pair to add to the store.",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"secret_name": {
+								Description:         "SecretName is the name of the referenced Kubernetes Secret to specify the certificate details.",
+								MarkdownDescription: "SecretName is the name of the referenced Kubernetes Secret to specify the certificate details.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"default_certificate": {
 						Description:         "DefaultCertificate defines the default certificate configuration.",
 						MarkdownDescription: "DefaultCertificate defines the default certificate configuration.",
@@ -202,22 +225,22 @@ func (r *TraefikContainoUsTLSStoreV1Alpha1Resource) GetSchema(_ context.Context)
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"sans": {
-										Description:         "SANs defines the subject alternative domain names.",
-										MarkdownDescription: "SANs defines the subject alternative domain names.",
+									"main": {
+										Description:         "Main defines the main domain name.",
+										MarkdownDescription: "Main defines the main domain name.",
 
-										Type: types.ListType{ElemType: types.StringType},
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"main": {
-										Description:         "Main defines the main domain name.",
-										MarkdownDescription: "Main defines the main domain name.",
+									"sans": {
+										Description:         "SANs defines the subject alternative domain names.",
+										MarkdownDescription: "SANs defines the subject alternative domain names.",
 
-										Type: types.StringType,
+										Type: types.ListType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
@@ -238,29 +261,6 @@ func (r *TraefikContainoUsTLSStoreV1Alpha1Resource) GetSchema(_ context.Context)
 
 								Required: false,
 								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"certificates": {
-						Description:         "Certificates is a list of secret names, each secret holding a key/certificate pair to add to the store.",
-						MarkdownDescription: "Certificates is a list of secret names, each secret holding a key/certificate pair to add to the store.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"secret_name": {
-								Description:         "SecretName is the name of the referenced Kubernetes Secret to specify the certificate details.",
-								MarkdownDescription: "SecretName is the name of the referenced Kubernetes Secret to specify the certificate details.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
 								Computed: false,
 							},
 						}),

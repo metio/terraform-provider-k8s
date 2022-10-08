@@ -50,16 +50,6 @@ type TraefikContainoUsTLSOptionV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		CurvePreferences *[]string `tfsdk:"curve_preferences" yaml:"curvePreferences,omitempty"`
-
-		MaxVersion *string `tfsdk:"max_version" yaml:"maxVersion,omitempty"`
-
-		MinVersion *string `tfsdk:"min_version" yaml:"minVersion,omitempty"`
-
-		PreferServerCipherSuites *bool `tfsdk:"prefer_server_cipher_suites" yaml:"preferServerCipherSuites,omitempty"`
-
-		SniStrict *bool `tfsdk:"sni_strict" yaml:"sniStrict,omitempty"`
-
 		AlpnProtocols *[]string `tfsdk:"alpn_protocols" yaml:"alpnProtocols,omitempty"`
 
 		CipherSuites *[]string `tfsdk:"cipher_suites" yaml:"cipherSuites,omitempty"`
@@ -69,6 +59,16 @@ type TraefikContainoUsTLSOptionV1Alpha1GoModel struct {
 
 			SecretNames *[]string `tfsdk:"secret_names" yaml:"secretNames,omitempty"`
 		} `tfsdk:"client_auth" yaml:"clientAuth,omitempty"`
+
+		CurvePreferences *[]string `tfsdk:"curve_preferences" yaml:"curvePreferences,omitempty"`
+
+		MaxVersion *string `tfsdk:"max_version" yaml:"maxVersion,omitempty"`
+
+		MinVersion *string `tfsdk:"min_version" yaml:"minVersion,omitempty"`
+
+		PreferServerCipherSuites *bool `tfsdk:"prefer_server_cipher_suites" yaml:"preferServerCipherSuites,omitempty"`
+
+		SniStrict *bool `tfsdk:"sni_strict" yaml:"sniStrict,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -169,61 +169,6 @@ func (r *TraefikContainoUsTLSOptionV1Alpha1Resource) GetSchema(_ context.Context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"curve_preferences": {
-						Description:         "CurvePreferences defines the preferred elliptic curves in a specific order. More info: https://doc.traefik.io/traefik/v2.9/https/tls/#curve-preferences",
-						MarkdownDescription: "CurvePreferences defines the preferred elliptic curves in a specific order. More info: https://doc.traefik.io/traefik/v2.9/https/tls/#curve-preferences",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"max_version": {
-						Description:         "MaxVersion defines the maximum TLS version that Traefik will accept. Possible values: VersionTLS10, VersionTLS11, VersionTLS12, VersionTLS13. Default: None.",
-						MarkdownDescription: "MaxVersion defines the maximum TLS version that Traefik will accept. Possible values: VersionTLS10, VersionTLS11, VersionTLS12, VersionTLS13. Default: None.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"min_version": {
-						Description:         "MinVersion defines the minimum TLS version that Traefik will accept. Possible values: VersionTLS10, VersionTLS11, VersionTLS12, VersionTLS13. Default: VersionTLS10.",
-						MarkdownDescription: "MinVersion defines the minimum TLS version that Traefik will accept. Possible values: VersionTLS10, VersionTLS11, VersionTLS12, VersionTLS13. Default: VersionTLS10.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"prefer_server_cipher_suites": {
-						Description:         "PreferServerCipherSuites defines whether the server chooses a cipher suite among his own instead of among the client's. It is enabled automatically when minVersion or maxVersion is set. Deprecated: https://github.com/golang/go/issues/45430",
-						MarkdownDescription: "PreferServerCipherSuites defines whether the server chooses a cipher suite among his own instead of among the client's. It is enabled automatically when minVersion or maxVersion is set. Deprecated: https://github.com/golang/go/issues/45430",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"sni_strict": {
-						Description:         "SniStrict defines whether Traefik allows connections from clients connections that do not specify a server_name extension.",
-						MarkdownDescription: "SniStrict defines whether Traefik allows connections from clients connections that do not specify a server_name extension.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"alpn_protocols": {
 						Description:         "ALPNProtocols defines the list of supported application level protocols for the TLS handshake, in order of preference. More info: https://doc.traefik.io/traefik/v2.9/https/tls/#alpn-protocols",
 						MarkdownDescription: "ALPNProtocols defines the list of supported application level protocols for the TLS handshake, in order of preference. More info: https://doc.traefik.io/traefik/v2.9/https/tls/#alpn-protocols",
@@ -274,6 +219,61 @@ func (r *TraefikContainoUsTLSOptionV1Alpha1Resource) GetSchema(_ context.Context
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"curve_preferences": {
+						Description:         "CurvePreferences defines the preferred elliptic curves in a specific order. More info: https://doc.traefik.io/traefik/v2.9/https/tls/#curve-preferences",
+						MarkdownDescription: "CurvePreferences defines the preferred elliptic curves in a specific order. More info: https://doc.traefik.io/traefik/v2.9/https/tls/#curve-preferences",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"max_version": {
+						Description:         "MaxVersion defines the maximum TLS version that Traefik will accept. Possible values: VersionTLS10, VersionTLS11, VersionTLS12, VersionTLS13. Default: None.",
+						MarkdownDescription: "MaxVersion defines the maximum TLS version that Traefik will accept. Possible values: VersionTLS10, VersionTLS11, VersionTLS12, VersionTLS13. Default: None.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"min_version": {
+						Description:         "MinVersion defines the minimum TLS version that Traefik will accept. Possible values: VersionTLS10, VersionTLS11, VersionTLS12, VersionTLS13. Default: VersionTLS10.",
+						MarkdownDescription: "MinVersion defines the minimum TLS version that Traefik will accept. Possible values: VersionTLS10, VersionTLS11, VersionTLS12, VersionTLS13. Default: VersionTLS10.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"prefer_server_cipher_suites": {
+						Description:         "PreferServerCipherSuites defines whether the server chooses a cipher suite among his own instead of among the client's. It is enabled automatically when minVersion or maxVersion is set. Deprecated: https://github.com/golang/go/issues/45430",
+						MarkdownDescription: "PreferServerCipherSuites defines whether the server chooses a cipher suite among his own instead of among the client's. It is enabled automatically when minVersion or maxVersion is set. Deprecated: https://github.com/golang/go/issues/45430",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"sni_strict": {
+						Description:         "SniStrict defines whether Traefik allows connections from clients connections that do not specify a server_name extension.",
+						MarkdownDescription: "SniStrict defines whether Traefik allows connections from clients connections that do not specify a server_name extension.",
+
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,

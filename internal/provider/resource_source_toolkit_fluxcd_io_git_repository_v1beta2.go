@@ -50,6 +50,16 @@ type SourceToolkitFluxcdIoGitRepositoryV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		AccessFrom *struct {
+			NamespaceSelectors *[]struct {
+				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+			} `tfsdk:"namespace_selectors" yaml:"namespaceSelectors,omitempty"`
+		} `tfsdk:"access_from" yaml:"accessFrom,omitempty"`
+
+		GitImplementation *string `tfsdk:"git_implementation" yaml:"gitImplementation,omitempty"`
+
+		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
+
 		Include *[]struct {
 			FromPath *string `tfsdk:"from_path" yaml:"fromPath,omitempty"`
 
@@ -78,17 +88,11 @@ type SourceToolkitFluxcdIoGitRepositoryV1Beta2GoModel struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
-		Url *string `tfsdk:"url" yaml:"url,omitempty"`
-
-		AccessFrom *struct {
-			NamespaceSelectors *[]struct {
-				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-			} `tfsdk:"namespace_selectors" yaml:"namespaceSelectors,omitempty"`
-		} `tfsdk:"access_from" yaml:"accessFrom,omitempty"`
-
-		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
+		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 
 		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+
+		Url *string `tfsdk:"url" yaml:"url,omitempty"`
 
 		Verify *struct {
 			Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
@@ -97,10 +101,6 @@ type SourceToolkitFluxcdIoGitRepositoryV1Beta2GoModel struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 		} `tfsdk:"verify" yaml:"verify,omitempty"`
-
-		GitImplementation *string `tfsdk:"git_implementation" yaml:"gitImplementation,omitempty"`
-
-		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -200,6 +200,63 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 				MarkdownDescription: "GitRepositorySpec specifies the required configuration to produce an Artifact for a Git repository.",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+					"access_from": {
+						Description:         "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
+						MarkdownDescription: "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"namespace_selectors": {
+								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
+								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"match_labels": {
+										Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"git_implementation": {
+						Description:         "GitImplementation specifies which Git client library implementation to use. Defaults to 'go-git', valid values are ('go-git', 'libgit2').",
+						MarkdownDescription: "GitImplementation specifies which Git client library implementation to use. Defaults to 'go-git', valid values are ('go-git', 'libgit2').",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"ignore": {
+						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
 
 					"include": {
 						Description:         "Include specifies a list of GitRepository resources which Artifacts should be included in the Artifact produced for this GitRepository.",
@@ -359,57 +416,11 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"url": {
-						Description:         "URL specifies the Git repository URL, it can be an HTTP/S or SSH address.",
-						MarkdownDescription: "URL specifies the Git repository URL, it can be an HTTP/S or SSH address.",
+					"suspend": {
+						Description:         "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
+						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
 
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"access_from": {
-						Description:         "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
-						MarkdownDescription: "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"namespace_selectors": {
-								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
-								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"match_labels": {
-										Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"ignore": {
-						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
-						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
-
-						Type: types.StringType,
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
@@ -424,6 +435,17 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 
 						Required: false,
 						Optional: true,
+						Computed: false,
+					},
+
+					"url": {
+						Description:         "URL specifies the Git repository URL, it can be an HTTP/S or SSH address.",
+						MarkdownDescription: "URL specifies the Git repository URL, it can be an HTTP/S or SSH address.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 
@@ -467,28 +489,6 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"git_implementation": {
-						Description:         "GitImplementation specifies which Git client library implementation to use. Defaults to 'go-git', valid values are ('go-git', 'libgit2').",
-						MarkdownDescription: "GitImplementation specifies which Git client library implementation to use. Defaults to 'go-git', valid values are ('go-git', 'libgit2').",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"suspend": {
-						Description:         "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
-						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this GitRepository.",
-
-						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,

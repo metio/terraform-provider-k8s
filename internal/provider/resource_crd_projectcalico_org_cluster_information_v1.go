@@ -48,15 +48,15 @@ type CrdProjectcalicoOrgClusterInformationV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		CalicoVersion *string `tfsdk:"calico_version" yaml:"calicoVersion,omitempty"`
+
+		ClusterGUID *string `tfsdk:"cluster_guid" yaml:"clusterGUID,omitempty"`
+
 		ClusterType *string `tfsdk:"cluster_type" yaml:"clusterType,omitempty"`
 
 		DatastoreReady *bool `tfsdk:"datastore_ready" yaml:"datastoreReady,omitempty"`
 
 		Variant *string `tfsdk:"variant" yaml:"variant,omitempty"`
-
-		CalicoVersion *string `tfsdk:"calico_version" yaml:"calicoVersion,omitempty"`
-
-		ClusterGUID *string `tfsdk:"cluster_guid" yaml:"clusterGUID,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -150,6 +150,28 @@ func (r *CrdProjectcalicoOrgClusterInformationV1Resource) GetSchema(_ context.Co
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"calico_version": {
+						Description:         "CalicoVersion is the version of Calico that the cluster is running",
+						MarkdownDescription: "CalicoVersion is the version of Calico that the cluster is running",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"cluster_guid": {
+						Description:         "ClusterGUID is the GUID of the cluster",
+						MarkdownDescription: "ClusterGUID is the GUID of the cluster",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"cluster_type": {
 						Description:         "ClusterType describes the type of the cluster",
 						MarkdownDescription: "ClusterType describes the type of the cluster",
@@ -175,28 +197,6 @@ func (r *CrdProjectcalicoOrgClusterInformationV1Resource) GetSchema(_ context.Co
 					"variant": {
 						Description:         "Variant declares which variant of Calico should be active.",
 						MarkdownDescription: "Variant declares which variant of Calico should be active.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"calico_version": {
-						Description:         "CalicoVersion is the version of Calico that the cluster is running",
-						MarkdownDescription: "CalicoVersion is the version of Calico that the cluster is running",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"cluster_guid": {
-						Description:         "ClusterGUID is the GUID of the cluster",
-						MarkdownDescription: "ClusterGUID is the GUID of the cluster",
 
 						Type: types.StringType,
 

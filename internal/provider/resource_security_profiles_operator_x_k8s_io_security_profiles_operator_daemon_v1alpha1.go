@@ -50,31 +50,21 @@ type SecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1GoModel
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		WebhookOptions *[]struct {
-			FailurePolicy *string `tfsdk:"failure_policy" yaml:"failurePolicy,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			NamespaceSelector *struct {
-				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-
-				MatchExpressions *[]struct {
-					Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-				} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-			} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
-		} `tfsdk:"webhook_options" yaml:"webhookOptions,omitempty"`
-
 		AllowedSeccompActions *[]string `tfsdk:"allowed_seccomp_actions" yaml:"allowedSeccompActions,omitempty"`
 
 		AllowedSyscalls *[]string `tfsdk:"allowed_syscalls" yaml:"allowedSyscalls,omitempty"`
 
 		EnableAppArmor *bool `tfsdk:"enable_app_armor" yaml:"enableAppArmor,omitempty"`
 
+		EnableBpfRecorder *bool `tfsdk:"enable_bpf_recorder" yaml:"enableBpfRecorder,omitempty"`
+
+		EnableLogEnricher *bool `tfsdk:"enable_log_enricher" yaml:"enableLogEnricher,omitempty"`
+
+		EnableProfiling *bool `tfsdk:"enable_profiling" yaml:"enableProfiling,omitempty"`
+
 		EnableSelinux *bool `tfsdk:"enable_selinux" yaml:"enableSelinux,omitempty"`
+
+		HostProcVolumePath *string `tfsdk:"host_proc_volume_path" yaml:"hostProcVolumePath,omitempty"`
 
 		SelinuxOptions *struct {
 			AllowedSystemProfiles *[]string `tfsdk:"allowed_system_profiles" yaml:"allowedSystemProfiles,omitempty"`
@@ -82,29 +72,39 @@ type SecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1GoModel
 
 		SelinuxTypeTag *string `tfsdk:"selinux_type_tag" yaml:"selinuxTypeTag,omitempty"`
 
+		StaticWebhookConfig *bool `tfsdk:"static_webhook_config" yaml:"staticWebhookConfig,omitempty"`
+
 		Tolerations *[]struct {
-			TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
-
-			Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
 			Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
 
 			Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 			Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-		} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
 
-		EnableProfiling *bool `tfsdk:"enable_profiling" yaml:"enableProfiling,omitempty"`
+			TolerationSeconds *int64 `tfsdk:"toleration_seconds" yaml:"tolerationSeconds,omitempty"`
+
+			Value *string `tfsdk:"value" yaml:"value,omitempty"`
+		} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
 
 		Verbosity *int64 `tfsdk:"verbosity" yaml:"verbosity,omitempty"`
 
-		EnableBpfRecorder *bool `tfsdk:"enable_bpf_recorder" yaml:"enableBpfRecorder,omitempty"`
+		WebhookOptions *[]struct {
+			FailurePolicy *string `tfsdk:"failure_policy" yaml:"failurePolicy,omitempty"`
 
-		EnableLogEnricher *bool `tfsdk:"enable_log_enricher" yaml:"enableLogEnricher,omitempty"`
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
-		HostProcVolumePath *string `tfsdk:"host_proc_volume_path" yaml:"hostProcVolumePath,omitempty"`
+			NamespaceSelector *struct {
+				MatchExpressions *[]struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
-		StaticWebhookConfig *bool `tfsdk:"static_webhook_config" yaml:"staticWebhookConfig,omitempty"`
+					Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+				} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+			} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+		} `tfsdk:"webhook_options" yaml:"webhookOptions,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -205,108 +205,6 @@ func (r *SecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1Res
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"webhook_options": {
-						Description:         "WebhookOpts set custom namespace selectors and failure mode for SPO's webhooks",
-						MarkdownDescription: "WebhookOpts set custom namespace selectors and failure mode for SPO's webhooks",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"failure_policy": {
-								Description:         "FailurePolicy sets the webhook failure policy",
-								MarkdownDescription: "FailurePolicy sets the webhook failure policy",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "Name specifies which webhook do we configure",
-								MarkdownDescription: "Name specifies which webhook do we configure",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"namespace_selector": {
-								Description:         "NamespaceSelector sets webhook's namespace selector",
-								MarkdownDescription: "NamespaceSelector sets webhook's namespace selector",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"match_labels": {
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"match_expressions": {
-										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"operator": {
-												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"values": {
-												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"key": {
-												Description:         "key is the label key that the selector applies to.",
-												MarkdownDescription: "key is the label key that the selector applies to.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"allowed_seccomp_actions": {
 						Description:         "AllowedSeccompActions if specified, a list of allowed seccomp actions.",
 						MarkdownDescription: "AllowedSeccompActions if specified, a list of allowed seccomp actions.",
@@ -340,11 +238,55 @@ func (r *SecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1Res
 						Computed: false,
 					},
 
+					"enable_bpf_recorder": {
+						Description:         "tells the operator whether or not to enable bpf recorder support for this SPOD instance.",
+						MarkdownDescription: "tells the operator whether or not to enable bpf recorder support for this SPOD instance.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_log_enricher": {
+						Description:         "tells the operator whether or not to enable log enrichment support for this SPOD instance.",
+						MarkdownDescription: "tells the operator whether or not to enable log enrichment support for this SPOD instance.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_profiling": {
+						Description:         "EnableProfiling tells the operator whether or not to enable profiling support for this SPOD instance.",
+						MarkdownDescription: "EnableProfiling tells the operator whether or not to enable profiling support for this SPOD instance.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"enable_selinux": {
 						Description:         "tells the operator whether or not to enable SELinux support for this SPOD instance.",
 						MarkdownDescription: "tells the operator whether or not to enable SELinux support for this SPOD instance.",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"host_proc_volume_path": {
+						Description:         "HostProcVolumePath is the path for specifying a custom host /proc volume, which is required for the log-enricher as well as bpf-recorder to retrieve the container ID for a process ID. This can be helpful for nested environments, for example when using 'kind'.",
+						MarkdownDescription: "HostProcVolumePath is the path for specifying a custom host /proc volume, which is required for the log-enricher as well as bpf-recorder to retrieve the container ID for a process ID. This can be helpful for nested environments, for example when using 'kind'.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -385,33 +327,22 @@ func (r *SecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1Res
 						Computed: false,
 					},
 
+					"static_webhook_config": {
+						Description:         "StaticWebhookConfig indicates whether the webhook configuration and its related resources are statically deployed. In this case, the operator will not create or update the webhook configuration and its related resources.",
+						MarkdownDescription: "StaticWebhookConfig indicates whether the webhook configuration and its related resources are statically deployed. In this case, the operator will not create or update the webhook configuration and its related resources.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"tolerations": {
 						Description:         "If specified, the SPOD's tolerations.",
 						MarkdownDescription: "If specified, the SPOD's tolerations.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"toleration_seconds": {
-								Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-								MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"value": {
-								Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-								MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"effect": {
 								Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
@@ -445,18 +376,29 @@ func (r *SecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1Res
 								Optional: true,
 								Computed: false,
 							},
+
+							"toleration_seconds": {
+								Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+								MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"value": {
+								Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+								MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"enable_profiling": {
-						Description:         "EnableProfiling tells the operator whether or not to enable profiling support for this SPOD instance.",
-						MarkdownDescription: "EnableProfiling tells the operator whether or not to enable profiling support for this SPOD instance.",
-
-						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
@@ -474,44 +416,102 @@ func (r *SecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1Res
 						Computed: false,
 					},
 
-					"enable_bpf_recorder": {
-						Description:         "tells the operator whether or not to enable bpf recorder support for this SPOD instance.",
-						MarkdownDescription: "tells the operator whether or not to enable bpf recorder support for this SPOD instance.",
+					"webhook_options": {
+						Description:         "WebhookOpts set custom namespace selectors and failure mode for SPO's webhooks",
+						MarkdownDescription: "WebhookOpts set custom namespace selectors and failure mode for SPO's webhooks",
 
-						Type: types.BoolType,
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
+							"failure_policy": {
+								Description:         "FailurePolicy sets the webhook failure policy",
+								MarkdownDescription: "FailurePolicy sets the webhook failure policy",
 
-					"enable_log_enricher": {
-						Description:         "tells the operator whether or not to enable log enrichment support for this SPOD instance.",
-						MarkdownDescription: "tells the operator whether or not to enable log enrichment support for this SPOD instance.",
+								Type: types.StringType,
 
-						Type: types.BoolType,
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
+							"name": {
+								Description:         "Name specifies which webhook do we configure",
+								MarkdownDescription: "Name specifies which webhook do we configure",
 
-					"host_proc_volume_path": {
-						Description:         "HostProcVolumePath is the path for specifying a custom host /proc volume, which is required for the log-enricher as well as bpf-recorder to retrieve the container ID for a process ID. This can be helpful for nested environments, for example when using 'kind'.",
-						MarkdownDescription: "HostProcVolumePath is the path for specifying a custom host /proc volume, which is required for the log-enricher as well as bpf-recorder to retrieve the container ID for a process ID. This can be helpful for nested environments, for example when using 'kind'.",
+								Type: types.StringType,
 
-						Type: types.StringType,
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
+							"namespace_selector": {
+								Description:         "NamespaceSelector sets webhook's namespace selector",
+								MarkdownDescription: "NamespaceSelector sets webhook's namespace selector",
 
-					"static_webhook_config": {
-						Description:         "StaticWebhookConfig indicates whether the webhook configuration and its related resources are statically deployed. In this case, the operator will not create or update the webhook configuration and its related resources.",
-						MarkdownDescription: "StaticWebhookConfig indicates whether the webhook configuration and its related resources are statically deployed. In this case, the operator will not create or update the webhook configuration and its related resources.",
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-						Type: types.BoolType,
+									"match_expressions": {
+										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "key is the label key that the selector applies to.",
+												MarkdownDescription: "key is the label key that the selector applies to.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"operator": {
+												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"values": {
+												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"match_labels": {
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

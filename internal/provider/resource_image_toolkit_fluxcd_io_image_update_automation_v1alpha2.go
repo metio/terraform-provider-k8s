@@ -50,22 +50,16 @@ type ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Update *struct {
-			Strategy *string `tfsdk:"strategy" yaml:"strategy,omitempty"`
-
-			Path *string `tfsdk:"path" yaml:"path,omitempty"`
-		} `tfsdk:"update" yaml:"update,omitempty"`
-
 		Git *struct {
 			Checkout *struct {
 				Ref *struct {
-					Semver *string `tfsdk:"semver" yaml:"semver,omitempty"`
-
-					Tag *string `tfsdk:"tag" yaml:"tag,omitempty"`
-
 					Branch *string `tfsdk:"branch" yaml:"branch,omitempty"`
 
 					Commit *string `tfsdk:"commit" yaml:"commit,omitempty"`
+
+					Semver *string `tfsdk:"semver" yaml:"semver,omitempty"`
+
+					Tag *string `tfsdk:"tag" yaml:"tag,omitempty"`
 				} `tfsdk:"ref" yaml:"ref,omitempty"`
 			} `tfsdk:"checkout" yaml:"checkout,omitempty"`
 
@@ -101,6 +95,12 @@ type ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha2GoModel struct {
 		} `tfsdk:"source_ref" yaml:"sourceRef,omitempty"`
 
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+
+		Update *struct {
+			Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+			Strategy *string `tfsdk:"strategy" yaml:"strategy,omitempty"`
+		} `tfsdk:"update" yaml:"update,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -201,40 +201,6 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha2Resource) GetSchema(_ 
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"update": {
-						Description:         "Update gives the specification for how to update the files in the repository. This can be left empty, to use the default value.",
-						MarkdownDescription: "Update gives the specification for how to update the files in the repository. This can be left empty, to use the default value.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"strategy": {
-								Description:         "Strategy names the strategy to be used.",
-								MarkdownDescription: "Strategy names the strategy to be used.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"path": {
-								Description:         "Path to the directory containing the manifests to be updated. Defaults to 'None', which translates to the root path of the GitRepositoryRef.",
-								MarkdownDescription: "Path to the directory containing the manifests to be updated. Defaults to 'None', which translates to the root path of the GitRepositoryRef.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"git": {
 						Description:         "GitSpec contains all the git-specific definitions. This is technically optional, but in practice mandatory until there are other kinds of source allowed.",
 						MarkdownDescription: "GitSpec contains all the git-specific definitions. This is technically optional, but in practice mandatory until there are other kinds of source allowed.",
@@ -253,28 +219,6 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha2Resource) GetSchema(_ 
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"semver": {
-												Description:         "The Git tag semver expression, takes precedence over Tag.",
-												MarkdownDescription: "The Git tag semver expression, takes precedence over Tag.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"tag": {
-												Description:         "The Git tag to checkout, takes precedence over Branch.",
-												MarkdownDescription: "The Git tag to checkout, takes precedence over Branch.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"branch": {
 												Description:         "The Git branch to checkout, defaults to master.",
 												MarkdownDescription: "The Git branch to checkout, defaults to master.",
@@ -289,6 +233,28 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha2Resource) GetSchema(_ 
 											"commit": {
 												Description:         "The Git commit SHA to checkout, if specified Tag filters will be ignored.",
 												MarkdownDescription: "The Git commit SHA to checkout, if specified Tag filters will be ignored.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"semver": {
+												Description:         "The Git tag semver expression, takes precedence over Tag.",
+												MarkdownDescription: "The Git tag semver expression, takes precedence over Tag.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tag": {
+												Description:         "The Git tag to checkout, takes precedence over Branch.",
+												MarkdownDescription: "The Git tag to checkout, takes precedence over Branch.",
 
 												Type: types.StringType,
 
@@ -491,6 +457,40 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha2Resource) GetSchema(_ 
 						MarkdownDescription: "Suspend tells the controller to not run this automation, until it is unset (or set to false). Defaults to false.",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"update": {
+						Description:         "Update gives the specification for how to update the files in the repository. This can be left empty, to use the default value.",
+						MarkdownDescription: "Update gives the specification for how to update the files in the repository. This can be left empty, to use the default value.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"path": {
+								Description:         "Path to the directory containing the manifests to be updated. Defaults to 'None', which translates to the root path of the GitRepositoryRef.",
+								MarkdownDescription: "Path to the directory containing the manifests to be updated. Defaults to 'None', which translates to the root path of the GitRepositoryRef.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"strategy": {
+								Description:         "Strategy names the strategy to be used.",
+								MarkdownDescription: "Strategy names the strategy to be used.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

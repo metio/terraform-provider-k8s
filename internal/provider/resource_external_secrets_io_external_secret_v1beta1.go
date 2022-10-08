@@ -50,58 +50,10 @@ type ExternalSecretsIoExternalSecretV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		RefreshInterval *string `tfsdk:"refresh_interval" yaml:"refreshInterval,omitempty"`
-
-		SecretStoreRef *struct {
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"secret_store_ref" yaml:"secretStoreRef,omitempty"`
-
-		Target *struct {
-			CreationPolicy *string `tfsdk:"creation_policy" yaml:"creationPolicy,omitempty"`
-
-			DeletionPolicy *string `tfsdk:"deletion_policy" yaml:"deletionPolicy,omitempty"`
-
-			Immutable *bool `tfsdk:"immutable" yaml:"immutable,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Template *struct {
-				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
-
-				TemplateFrom *[]struct {
-					ConfigMap *struct {
-						Items *[]struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-						} `tfsdk:"items" yaml:"items,omitempty"`
-
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-					} `tfsdk:"config_map" yaml:"configMap,omitempty"`
-
-					Secret *struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Items *[]struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-						} `tfsdk:"items" yaml:"items,omitempty"`
-					} `tfsdk:"secret" yaml:"secret,omitempty"`
-				} `tfsdk:"template_from" yaml:"templateFrom,omitempty"`
-
-				Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-				Data *map[string]string `tfsdk:"data" yaml:"data,omitempty"`
-
-				EngineVersion *string `tfsdk:"engine_version" yaml:"engineVersion,omitempty"`
-			} `tfsdk:"template" yaml:"template,omitempty"`
-		} `tfsdk:"target" yaml:"target,omitempty"`
-
 		Data *[]struct {
 			RemoteRef *struct {
+				ConversionStrategy *string `tfsdk:"conversion_strategy" yaml:"conversionStrategy,omitempty"`
+
 				DecodingStrategy *string `tfsdk:"decoding_strategy" yaml:"decodingStrategy,omitempty"`
 
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -111,8 +63,6 @@ type ExternalSecretsIoExternalSecretV1Beta1GoModel struct {
 				Property *string `tfsdk:"property" yaml:"property,omitempty"`
 
 				Version *string `tfsdk:"version" yaml:"version,omitempty"`
-
-				ConversionStrategy *string `tfsdk:"conversion_strategy" yaml:"conversionStrategy,omitempty"`
 			} `tfsdk:"remote_ref" yaml:"remoteRef,omitempty"`
 
 			SecretKey *string `tfsdk:"secret_key" yaml:"secretKey,omitempty"`
@@ -134,6 +84,8 @@ type ExternalSecretsIoExternalSecretV1Beta1GoModel struct {
 			} `tfsdk:"extract" yaml:"extract,omitempty"`
 
 			Find *struct {
+				ConversionStrategy *string `tfsdk:"conversion_strategy" yaml:"conversionStrategy,omitempty"`
+
 				DecodingStrategy *string `tfsdk:"decoding_strategy" yaml:"decodingStrategy,omitempty"`
 
 				Name *struct {
@@ -143,8 +95,6 @@ type ExternalSecretsIoExternalSecretV1Beta1GoModel struct {
 				Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
 				Tags *map[string]string `tfsdk:"tags" yaml:"tags,omitempty"`
-
-				ConversionStrategy *string `tfsdk:"conversion_strategy" yaml:"conversionStrategy,omitempty"`
 			} `tfsdk:"find" yaml:"find,omitempty"`
 
 			Rewrite *[]struct {
@@ -155,6 +105,56 @@ type ExternalSecretsIoExternalSecretV1Beta1GoModel struct {
 				} `tfsdk:"regexp" yaml:"regexp,omitempty"`
 			} `tfsdk:"rewrite" yaml:"rewrite,omitempty"`
 		} `tfsdk:"data_from" yaml:"dataFrom,omitempty"`
+
+		RefreshInterval *string `tfsdk:"refresh_interval" yaml:"refreshInterval,omitempty"`
+
+		SecretStoreRef *struct {
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"secret_store_ref" yaml:"secretStoreRef,omitempty"`
+
+		Target *struct {
+			CreationPolicy *string `tfsdk:"creation_policy" yaml:"creationPolicy,omitempty"`
+
+			DeletionPolicy *string `tfsdk:"deletion_policy" yaml:"deletionPolicy,omitempty"`
+
+			Immutable *bool `tfsdk:"immutable" yaml:"immutable,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Template *struct {
+				Data *map[string]string `tfsdk:"data" yaml:"data,omitempty"`
+
+				EngineVersion *string `tfsdk:"engine_version" yaml:"engineVersion,omitempty"`
+
+				Metadata *struct {
+					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+
+					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
+
+				TemplateFrom *[]struct {
+					ConfigMap *struct {
+						Items *[]struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+						} `tfsdk:"items" yaml:"items,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+					} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+					Secret *struct {
+						Items *[]struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+						} `tfsdk:"items" yaml:"items,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+					} `tfsdk:"secret" yaml:"secret,omitempty"`
+				} `tfsdk:"template_from" yaml:"templateFrom,omitempty"`
+
+				Type *string `tfsdk:"type" yaml:"type,omitempty"`
+			} `tfsdk:"template" yaml:"template,omitempty"`
+		} `tfsdk:"target" yaml:"target,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -255,290 +255,6 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"refresh_interval": {
-						Description:         "RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.",
-						MarkdownDescription: "RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"secret_store_ref": {
-						Description:         "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
-						MarkdownDescription: "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"kind": {
-								Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
-								MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "Name of the SecretStore resource",
-								MarkdownDescription: "Name of the SecretStore resource",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"target": {
-						Description:         "ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret.",
-						MarkdownDescription: "ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"creation_policy": {
-								Description:         "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
-								MarkdownDescription: "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"deletion_policy": {
-								Description:         "DeletionPolicy defines rules on how to delete the resulting Secret Defaults to 'Retain'",
-								MarkdownDescription: "DeletionPolicy defines rules on how to delete the resulting Secret Defaults to 'Retain'",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"immutable": {
-								Description:         "Immutable defines if the final secret will be immutable",
-								MarkdownDescription: "Immutable defines if the final secret will be immutable",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
-								MarkdownDescription: "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"template": {
-								Description:         "Template defines a blueprint for the created Secret resource.",
-								MarkdownDescription: "Template defines a blueprint for the created Secret resource.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"metadata": {
-										Description:         "ExternalSecretTemplateMetadata defines metadata fields for the Secret blueprint.",
-										MarkdownDescription: "ExternalSecretTemplateMetadata defines metadata fields for the Secret blueprint.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"annotations": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"labels": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"template_from": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"config_map": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"items": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"secret": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"items": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"type": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"data": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"engine_version": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"data": {
 						Description:         "Data defines the connection between the Kubernetes Secret keys and the Provider data",
 						MarkdownDescription: "Data defines the connection between the Kubernetes Secret keys and the Provider data",
@@ -550,6 +266,17 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 								MarkdownDescription: "ExternalSecretDataRemoteRef defines Provider data location.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"conversion_strategy": {
+										Description:         "Used to define a conversion Strategy",
+										MarkdownDescription: "Used to define a conversion Strategy",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"decoding_strategy": {
 										Description:         "Used to define a decoding Strategy",
@@ -598,17 +325,6 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 									"version": {
 										Description:         "Used to select a specific version of the Provider value, if supported",
 										MarkdownDescription: "Used to select a specific version of the Provider value, if supported",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"conversion_strategy": {
-										Description:         "Used to define a conversion Strategy",
-										MarkdownDescription: "Used to define a conversion Strategy",
 
 										Type: types.StringType,
 
@@ -730,6 +446,17 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+									"conversion_strategy": {
+										Description:         "Used to define a conversion Strategy",
+										MarkdownDescription: "Used to define a conversion Strategy",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"decoding_strategy": {
 										Description:         "Used to define a decoding Strategy",
 										MarkdownDescription: "Used to define a decoding Strategy",
@@ -785,17 +512,6 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 										Optional: true,
 										Computed: false,
 									},
-
-									"conversion_strategy": {
-										Description:         "Used to define a conversion Strategy",
-										MarkdownDescription: "Used to define a conversion Strategy",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -837,6 +553,290 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 												Computed: false,
 											},
 										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"refresh_interval": {
+						Description:         "RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.",
+						MarkdownDescription: "RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"secret_store_ref": {
+						Description:         "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
+						MarkdownDescription: "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"kind": {
+								Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
+								MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name of the SecretStore resource",
+								MarkdownDescription: "Name of the SecretStore resource",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"target": {
+						Description:         "ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret.",
+						MarkdownDescription: "ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"creation_policy": {
+								Description:         "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
+								MarkdownDescription: "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"deletion_policy": {
+								Description:         "DeletionPolicy defines rules on how to delete the resulting Secret Defaults to 'Retain'",
+								MarkdownDescription: "DeletionPolicy defines rules on how to delete the resulting Secret Defaults to 'Retain'",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"immutable": {
+								Description:         "Immutable defines if the final secret will be immutable",
+								MarkdownDescription: "Immutable defines if the final secret will be immutable",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
+								MarkdownDescription: "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"template": {
+								Description:         "Template defines a blueprint for the created Secret resource.",
+								MarkdownDescription: "Template defines a blueprint for the created Secret resource.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"data": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"engine_version": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"metadata": {
+										Description:         "ExternalSecretTemplateMetadata defines metadata fields for the Secret blueprint.",
+										MarkdownDescription: "ExternalSecretTemplateMetadata defines metadata fields for the Secret blueprint.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"annotations": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"labels": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"template_from": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"config_map": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"items": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"items": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"type": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,

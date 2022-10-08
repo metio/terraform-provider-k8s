@@ -50,11 +50,17 @@ type HazelcastComManagementCenterV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		ExternalConnectivity *struct {
+			Type *string `tfsdk:"type" yaml:"type,omitempty"`
+		} `tfsdk:"external_connectivity" yaml:"externalConnectivity,omitempty"`
+
 		HazelcastClusters *[]struct {
 			Address *string `tfsdk:"address" yaml:"address,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"hazelcast_clusters" yaml:"hazelcastClusters,omitempty"`
+
+		ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
 
 		ImagePullSecrets *[]struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -62,10 +68,70 @@ type HazelcastComManagementCenterV1Alpha1GoModel struct {
 
 		LicenseKeySecret *string `tfsdk:"license_key_secret" yaml:"licenseKeySecret,omitempty"`
 
+		Persistence *struct {
+			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+
+			ExistingVolumeClaimName *string `tfsdk:"existing_volume_claim_name" yaml:"existingVolumeClaimName,omitempty"`
+
+			Size *string `tfsdk:"size" yaml:"size,omitempty"`
+
+			StorageClass *string `tfsdk:"storage_class" yaml:"storageClass,omitempty"`
+		} `tfsdk:"persistence" yaml:"persistence,omitempty"`
+
 		Repository *string `tfsdk:"repository" yaml:"repository,omitempty"`
+
+		Resources *struct {
+			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+
+			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 		Scheduling *struct {
 			Affinity *struct {
+				NodeAffinity *struct {
+					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+						Preference *struct {
+							MatchExpressions *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchFields *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
+						} `tfsdk:"preference" yaml:"preference,omitempty"`
+
+						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+
+					RequiredDuringSchedulingIgnoredDuringExecution *struct {
+						NodeSelectorTerms *[]struct {
+							MatchExpressions *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchFields *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
+						} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
+					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+				} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
+
 				PodAffinity *struct {
 					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 						PodAffinityTerm *struct {
@@ -149,50 +215,6 @@ type HazelcastComManagementCenterV1Alpha1GoModel struct {
 						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 				} `tfsdk:"pod_anti_affinity" yaml:"podAntiAffinity,omitempty"`
-
-				NodeAffinity *struct {
-					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-						Preference *struct {
-							MatchExpressions *[]struct {
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-							MatchFields *[]struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
-						} `tfsdk:"preference" yaml:"preference,omitempty"`
-
-						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
-
-					RequiredDuringSchedulingIgnoredDuringExecution *struct {
-						NodeSelectorTerms *[]struct {
-							MatchFields *[]struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
-
-							MatchExpressions *[]struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-						} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
-					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
-				} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
 			} `tfsdk:"affinity" yaml:"affinity,omitempty"`
 
 			NodeSelector *map[string]string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
@@ -230,29 +252,7 @@ type HazelcastComManagementCenterV1Alpha1GoModel struct {
 			} `tfsdk:"topology_spread_constraints" yaml:"topologySpreadConstraints,omitempty"`
 		} `tfsdk:"scheduling" yaml:"scheduling,omitempty"`
 
-		ExternalConnectivity *struct {
-			Type *string `tfsdk:"type" yaml:"type,omitempty"`
-		} `tfsdk:"external_connectivity" yaml:"externalConnectivity,omitempty"`
-
-		Persistence *struct {
-			StorageClass *string `tfsdk:"storage_class" yaml:"storageClass,omitempty"`
-
-			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
-
-			ExistingVolumeClaimName *string `tfsdk:"existing_volume_claim_name" yaml:"existingVolumeClaimName,omitempty"`
-
-			Size *string `tfsdk:"size" yaml:"size,omitempty"`
-		} `tfsdk:"persistence" yaml:"persistence,omitempty"`
-
-		Resources *struct {
-			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
-
-			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
-		} `tfsdk:"resources" yaml:"resources,omitempty"`
-
 		Version *string `tfsdk:"version" yaml:"version,omitempty"`
-
-		ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -353,6 +353,29 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"external_connectivity": {
+						Description:         "Configuration to expose Management Center to outside.",
+						MarkdownDescription: "Configuration to expose Management Center to outside.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"type": {
+								Description:         "How Management Center is exposed. Valid values are: - 'ClusterIP' - 'NodePort' - 'LoadBalancer' (default)",
+								MarkdownDescription: "How Management Center is exposed. Valid values are: - 'ClusterIP' - 'NodePort' - 'LoadBalancer' (default)",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"hazelcast_clusters": {
 						Description:         "Connection configuration for the Hazelcast clusters that Management Center will monitor.",
 						MarkdownDescription: "Connection configuration for the Hazelcast clusters that Management Center will monitor.",
@@ -381,6 +404,17 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"image_pull_policy": {
+						Description:         "Pull policy for the Management Center image",
+						MarkdownDescription: "Pull policy for the Management Center image",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -421,11 +455,101 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 						Computed: false,
 					},
 
+					"persistence": {
+						Description:         "Configuration for Management Center persistence.",
+						MarkdownDescription: "Configuration for Management Center persistence.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"enabled": {
+								Description:         "When true, MC will use a PersistentVolumeClaim to store data.",
+								MarkdownDescription: "When true, MC will use a PersistentVolumeClaim to store data.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"existing_volume_claim_name": {
+								Description:         "Name of the PersistentVolumeClaim MC will use for persistence. If not empty, MC will use the existing claim instead of creating a new one.",
+								MarkdownDescription: "Name of the PersistentVolumeClaim MC will use for persistence. If not empty, MC will use the existing claim instead of creating a new one.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"size": {
+								Description:         "Size of the created PersistentVolumeClaim.",
+								MarkdownDescription: "Size of the created PersistentVolumeClaim.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"storage_class": {
+								Description:         "StorageClass from which PersistentVolumeClaim will be created.",
+								MarkdownDescription: "StorageClass from which PersistentVolumeClaim will be created.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"repository": {
 						Description:         "Repository to pull the Management Center image from.",
 						MarkdownDescription: "Repository to pull the Management Center image from.",
 
 						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"resources": {
+						Description:         "Compute Resources required by the MC container.",
+						MarkdownDescription: "Compute Resources required by the MC container.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"limits": {
+								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"requests": {
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
@@ -443,6 +567,257 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 								MarkdownDescription: "Affinity",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"node_affinity": {
+										Description:         "Describes node affinity scheduling rules for the pod.",
+										MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"preferred_during_scheduling_ignored_during_execution": {
+												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"preference": {
+														Description:         "A node selector term, associated with the corresponding weight.",
+														MarkdownDescription: "A node selector term, associated with the corresponding weight.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "A list of node selector requirements by node's labels.",
+																MarkdownDescription: "A list of node selector requirements by node's labels.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The label key that the selector applies to.",
+																		MarkdownDescription: "The label key that the selector applies to.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_fields": {
+																Description:         "A list of node selector requirements by node's fields.",
+																MarkdownDescription: "A list of node selector requirements by node's fields.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The label key that the selector applies to.",
+																		MarkdownDescription: "The label key that the selector applies to.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"weight": {
+														Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+														MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+
+														Type: types.Int64Type,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"required_during_scheduling_ignored_during_execution": {
+												Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
+												MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"node_selector_terms": {
+														Description:         "Required. A list of node selector terms. The terms are ORed.",
+														MarkdownDescription: "Required. A list of node selector terms. The terms are ORed.",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "A list of node selector requirements by node's labels.",
+																MarkdownDescription: "A list of node selector requirements by node's labels.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The label key that the selector applies to.",
+																		MarkdownDescription: "The label key that the selector applies to.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_fields": {
+																Description:         "A list of node selector requirements by node's fields.",
+																MarkdownDescription: "A list of node selector requirements by node's fields.",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The label key that the selector applies to.",
+																		MarkdownDescription: "The label key that the selector applies to.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"pod_affinity": {
 										Description:         "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
@@ -921,257 +1296,6 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 										Optional: true,
 										Computed: false,
 									},
-
-									"node_affinity": {
-										Description:         "Describes node affinity scheduling rules for the pod.",
-										MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"preferred_during_scheduling_ignored_during_execution": {
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"preference": {
-														Description:         "A node selector term, associated with the corresponding weight.",
-														MarkdownDescription: "A node selector term, associated with the corresponding weight.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"match_expressions": {
-																Description:         "A list of node selector requirements by node's labels.",
-																MarkdownDescription: "A list of node selector requirements by node's labels.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"values": {
-																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"key": {
-																		Description:         "The label key that the selector applies to.",
-																		MarkdownDescription: "The label key that the selector applies to.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"match_fields": {
-																Description:         "A list of node selector requirements by node's fields.",
-																MarkdownDescription: "A list of node selector requirements by node's fields.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The label key that the selector applies to.",
-																		MarkdownDescription: "The label key that the selector applies to.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"values": {
-																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"weight": {
-														Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
-														MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
-
-														Type: types.Int64Type,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"required_during_scheduling_ignored_during_execution": {
-												Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
-												MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"node_selector_terms": {
-														Description:         "Required. A list of node selector terms. The terms are ORed.",
-														MarkdownDescription: "Required. A list of node selector terms. The terms are ORed.",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"match_fields": {
-																Description:         "A list of node selector requirements by node's fields.",
-																MarkdownDescription: "A list of node selector requirements by node's fields.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The label key that the selector applies to.",
-																		MarkdownDescription: "The label key that the selector applies to.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"values": {
-																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"match_expressions": {
-																Description:         "A list of node selector requirements by node's labels.",
-																MarkdownDescription: "A list of node selector requirements by node's labels.",
-
-																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "The label key that the selector applies to.",
-																		MarkdownDescription: "The label key that the selector applies to.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"operator": {
-																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"values": {
-																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-
-																		Type: types.ListType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -1376,133 +1500,9 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 						Computed: false,
 					},
 
-					"external_connectivity": {
-						Description:         "Configuration to expose Management Center to outside.",
-						MarkdownDescription: "Configuration to expose Management Center to outside.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"type": {
-								Description:         "How Management Center is exposed. Valid values are: - 'ClusterIP' - 'NodePort' - 'LoadBalancer' (default)",
-								MarkdownDescription: "How Management Center is exposed. Valid values are: - 'ClusterIP' - 'NodePort' - 'LoadBalancer' (default)",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"persistence": {
-						Description:         "Configuration for Management Center persistence.",
-						MarkdownDescription: "Configuration for Management Center persistence.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"storage_class": {
-								Description:         "StorageClass from which PersistentVolumeClaim will be created.",
-								MarkdownDescription: "StorageClass from which PersistentVolumeClaim will be created.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"enabled": {
-								Description:         "When true, MC will use a PersistentVolumeClaim to store data.",
-								MarkdownDescription: "When true, MC will use a PersistentVolumeClaim to store data.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"existing_volume_claim_name": {
-								Description:         "Name of the PersistentVolumeClaim MC will use for persistence. If not empty, MC will use the existing claim instead of creating a new one.",
-								MarkdownDescription: "Name of the PersistentVolumeClaim MC will use for persistence. If not empty, MC will use the existing claim instead of creating a new one.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"size": {
-								Description:         "Size of the created PersistentVolumeClaim.",
-								MarkdownDescription: "Size of the created PersistentVolumeClaim.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"resources": {
-						Description:         "Compute Resources required by the MC container.",
-						MarkdownDescription: "Compute Resources required by the MC container.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"requests": {
-								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"limits": {
-								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"version": {
 						Description:         "Version of Management Center.",
 						MarkdownDescription: "Version of Management Center.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"image_pull_policy": {
-						Description:         "Pull policy for the Management Center image",
-						MarkdownDescription: "Pull policy for the Management Center image",
 
 						Type: types.StringType,
 

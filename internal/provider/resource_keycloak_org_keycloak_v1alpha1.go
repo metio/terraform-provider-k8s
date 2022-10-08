@@ -50,7 +50,11 @@ type KeycloakOrgKeycloakV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		DisableDefaultServiceMonitor *bool `tfsdk:"disable_default_service_monitor" yaml:"DisableDefaultServiceMonitor,omitempty"`
+
 		DisableReplicasSyncing *bool `tfsdk:"disable_replicas_syncing" yaml:"disableReplicasSyncing,omitempty"`
+
+		Extensions *[]string `tfsdk:"extensions" yaml:"extensions,omitempty"`
 
 		External *struct {
 			ContextRoot *string `tfsdk:"context_root" yaml:"contextRoot,omitempty"`
@@ -68,34 +72,14 @@ type KeycloakOrgKeycloakV1Alpha1GoModel struct {
 			TlsTermination *string `tfsdk:"tls_termination" yaml:"tlsTermination,omitempty"`
 		} `tfsdk:"external_access" yaml:"externalAccess,omitempty"`
 
-		Instances *int64 `tfsdk:"instances" yaml:"instances,omitempty"`
+		ExternalDatabase *struct {
+			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+		} `tfsdk:"external_database" yaml:"externalDatabase,omitempty"`
 
-		Extensions *[]string `tfsdk:"extensions" yaml:"extensions,omitempty"`
+		Instances *int64 `tfsdk:"instances" yaml:"instances,omitempty"`
 
 		KeycloakDeploymentSpec *struct {
 			Experimental *struct {
-				Volumes *struct {
-					DefaultMode *int64 `tfsdk:"default_mode" yaml:"defaultMode,omitempty"`
-
-					Items *[]struct {
-						Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-						Secrets *[]string `tfsdk:"secrets" yaml:"secrets,omitempty"`
-
-						ConfigMaps *[]string `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
-
-						Items *[]struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
-
-							Path *string `tfsdk:"path" yaml:"path,omitempty"`
-						} `tfsdk:"items" yaml:"items,omitempty"`
-
-						MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-					} `tfsdk:"items" yaml:"items,omitempty"`
-				} `tfsdk:"volumes" yaml:"volumes,omitempty"`
-
 				Affinity *struct {
 					NodeAffinity *struct {
 						PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
@@ -146,11 +130,11 @@ type KeycloakOrgKeycloakV1Alpha1GoModel struct {
 							PodAffinityTerm *struct {
 								LabelSelector *struct {
 									MatchExpressions *[]struct {
+										Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-										Key *string `tfsdk:"key" yaml:"key,omitempty"`
 									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -207,21 +191,21 @@ type KeycloakOrgKeycloakV1Alpha1GoModel struct {
 						} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
 
 						RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
-							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
 							LabelSelector *struct {
 								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-									Key *string `tfsdk:"key" yaml:"key,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 						} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 					} `tfsdk:"pod_anti_affinity" yaml:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" yaml:"affinity,omitempty"`
@@ -269,6 +253,28 @@ type KeycloakOrgKeycloakV1Alpha1GoModel struct {
 				} `tfsdk:"env" yaml:"env,omitempty"`
 
 				ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
+
+				Volumes *struct {
+					DefaultMode *int64 `tfsdk:"default_mode" yaml:"defaultMode,omitempty"`
+
+					Items *[]struct {
+						ConfigMaps *[]string `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
+
+						Items *[]struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
+
+							Path *string `tfsdk:"path" yaml:"path,omitempty"`
+						} `tfsdk:"items" yaml:"items,omitempty"`
+
+						MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Secrets *[]string `tfsdk:"secrets" yaml:"secrets,omitempty"`
+					} `tfsdk:"items" yaml:"items,omitempty"`
+				} `tfsdk:"volumes" yaml:"volumes,omitempty"`
 			} `tfsdk:"experimental" yaml:"experimental,omitempty"`
 
 			ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
@@ -278,25 +284,11 @@ type KeycloakOrgKeycloakV1Alpha1GoModel struct {
 			Podlabels *map[string]string `tfsdk:"podlabels" yaml:"podlabels,omitempty"`
 
 			Resources *struct {
-				Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
-
 				Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+
+				Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
 			} `tfsdk:"resources" yaml:"resources,omitempty"`
 		} `tfsdk:"keycloak_deployment_spec" yaml:"keycloakDeploymentSpec,omitempty"`
-
-		Profile *string `tfsdk:"profile" yaml:"profile,omitempty"`
-
-		StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
-
-		PodDisruptionBudget *struct {
-			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
-		} `tfsdk:"pod_disruption_budget" yaml:"podDisruptionBudget,omitempty"`
-
-		DisableDefaultServiceMonitor *bool `tfsdk:"disable_default_service_monitor" yaml:"DisableDefaultServiceMonitor,omitempty"`
-
-		ExternalDatabase *struct {
-			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
-		} `tfsdk:"external_database" yaml:"externalDatabase,omitempty"`
 
 		Migration *struct {
 			Backups *struct {
@@ -310,15 +302,23 @@ type KeycloakOrgKeycloakV1Alpha1GoModel struct {
 			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
 		} `tfsdk:"multi_availablity_zones" yaml:"multiAvailablityZones,omitempty"`
 
+		PodDisruptionBudget *struct {
+			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+		} `tfsdk:"pod_disruption_budget" yaml:"podDisruptionBudget,omitempty"`
+
 		PostgresDeploymentSpec *struct {
+			ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
+
 			Resources *struct {
 				Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
 
 				Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
 			} `tfsdk:"resources" yaml:"resources,omitempty"`
-
-			ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
 		} `tfsdk:"postgres_deployment_spec" yaml:"postgresDeploymentSpec,omitempty"`
+
+		Profile *string `tfsdk:"profile" yaml:"profile,omitempty"`
+
+		StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
 
 		Unmanaged *bool `tfsdk:"unmanaged" yaml:"unmanaged,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -421,11 +421,33 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"disable_default_service_monitor": {
+						Description:         "Disables the integration with Application Monitoring Operator. When set to true, the operator doesn't create default PrometheusRule, ServiceMonitor and GrafanaDashboard objects and users will have to create them manually, if needed.",
+						MarkdownDescription: "Disables the integration with Application Monitoring Operator. When set to true, the operator doesn't create default PrometheusRule, ServiceMonitor and GrafanaDashboard objects and users will have to create them manually, if needed.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"disable_replicas_syncing": {
 						Description:         "Specify whether disabling the syncing of instances from the Keycloak CR to the statefulset replicas should be enabled or disabled. This option could be used when enabling HPA(horizontal pod autoscaler). Defaults to false.",
 						MarkdownDescription: "Specify whether disabling the syncing of instances from the Keycloak CR to the statefulset replicas should be enabled or disabled. This option could be used when enabling HPA(horizontal pod autoscaler). Defaults to false.",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"extensions": {
+						Description:         "A list of extensions, where each one is a URL to a JAR files that will be deployed in Keycloak.",
+						MarkdownDescription: "A list of extensions, where each one is a URL to a JAR files that will be deployed in Keycloak.",
+
+						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,
@@ -522,22 +544,34 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 						Computed: false,
 					},
 
-					"instances": {
-						Description:         "Number of Keycloak instances in HA mode. Default is 1.",
-						MarkdownDescription: "Number of Keycloak instances in HA mode. Default is 1.",
+					"external_database": {
+						Description:         "Controls external database settings. Using an external database requires providing a secret containing credentials as well as connection details. Here's an example of such secret:      apiVersion: v1     kind: Secret     metadata:         name: keycloak-db-secret         namespace: keycloak     stringData:         POSTGRES_DATABASE: <Database Name>         POSTGRES_EXTERNAL_ADDRESS: <External Database IP or URL (resolvable by K8s)>         POSTGRES_EXTERNAL_PORT: <External Database Port>         # Strongly recommended to use <'Keycloak CR Name'-postgresql>         POSTGRES_HOST: <Database Service Name>         POSTGRES_PASSWORD: <Database Password>         # Required for AWS Backup functionality         POSTGRES_SUPERUSER: true         POSTGRES_USERNAME: <Database Username>      type: Opaque  Both POSTGRES_EXTERNAL_ADDRESS and POSTGRES_EXTERNAL_PORT are specifically required for creating connection to the external database. The secret name is created using the following convention:       <Custom Resource Name>-db-secret  For more information, please refer to the Operator documentation.",
+						MarkdownDescription: "Controls external database settings. Using an external database requires providing a secret containing credentials as well as connection details. Here's an example of such secret:      apiVersion: v1     kind: Secret     metadata:         name: keycloak-db-secret         namespace: keycloak     stringData:         POSTGRES_DATABASE: <Database Name>         POSTGRES_EXTERNAL_ADDRESS: <External Database IP or URL (resolvable by K8s)>         POSTGRES_EXTERNAL_PORT: <External Database Port>         # Strongly recommended to use <'Keycloak CR Name'-postgresql>         POSTGRES_HOST: <Database Service Name>         POSTGRES_PASSWORD: <Database Password>         # Required for AWS Backup functionality         POSTGRES_SUPERUSER: true         POSTGRES_USERNAME: <Database Username>      type: Opaque  Both POSTGRES_EXTERNAL_ADDRESS and POSTGRES_EXTERNAL_PORT are specifically required for creating connection to the external database. The secret name is created using the following convention:       <Custom Resource Name>-db-secret  For more information, please refer to the Operator documentation.",
 
-						Type: types.Int64Type,
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"enabled": {
+								Description:         "If set to true, the Operator will use an external database pointing to Keycloak. The embedded database (externalDatabase.enabled = false) is deprecated.",
+								MarkdownDescription: "If set to true, the Operator will use an external database pointing to Keycloak. The embedded database (externalDatabase.enabled = false) is deprecated.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
 						Computed: false,
 					},
 
-					"extensions": {
-						Description:         "A list of extensions, where each one is a URL to a JAR files that will be deployed in Keycloak.",
-						MarkdownDescription: "A list of extensions, where each one is a URL to a JAR files that will be deployed in Keycloak.",
+					"instances": {
+						Description:         "Number of Keycloak instances in HA mode. Default is 1.",
+						MarkdownDescription: "Number of Keycloak instances in HA mode. Default is 1.",
 
-						Type: types.ListType{ElemType: types.StringType},
+						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,
@@ -555,130 +589,6 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 								MarkdownDescription: "Experimental section NOTE: This section might change or get removed without any notice. It may also cause the deployment to behave in an unpredictable fashion. Please use with care.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"volumes": {
-										Description:         "Additional volume mounts",
-										MarkdownDescription: "Additional volume mounts",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"default_mode": {
-												Description:         "Permissions mode.",
-												MarkdownDescription: "Permissions mode.",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"items": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"name": {
-														Description:         "Volume name",
-														MarkdownDescription: "Volume name",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"secrets": {
-														Description:         "Secret mount",
-														MarkdownDescription: "Secret mount",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"config_maps": {
-														Description:         "Allow multiple configmaps to mount to the same directory",
-														MarkdownDescription: "Allow multiple configmaps to mount to the same directory",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"items": {
-														Description:         "Mount details",
-														MarkdownDescription: "Mount details",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key to project.",
-																MarkdownDescription: "The key to project.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"mode": {
-																Description:         "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																MarkdownDescription: "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-
-																Type: types.Int64Type,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"path": {
-																Description:         "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																MarkdownDescription: "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"mount_path": {
-														Description:         "An absolute path where to mount it",
-														MarkdownDescription: "An absolute path where to mount it",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"affinity": {
 										Description:         "Affinity settings",
@@ -967,6 +877,17 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 
 																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+																					"key": {
+																						Description:         "key is the label key that the selector applies to.",
+																						MarkdownDescription: "key is the label key that the selector applies to.",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
 																					"operator": {
 																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
@@ -986,17 +907,6 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 
 																						Required: false,
 																						Optional: true,
-																						Computed: false,
-																					},
-
-																					"key": {
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
-
-																						Type: types.StringType,
-
-																						Required: true,
-																						Optional: false,
 																						Computed: false,
 																					},
 																				}),
@@ -1313,28 +1223,6 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-															"namespaces": {
-																Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-																MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"topology_key": {
-																Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
 															"label_selector": {
 																Description:         "A label query over a set of resources, in this case pods.",
 																MarkdownDescription: "A label query over a set of resources, in this case pods.",
@@ -1346,6 +1234,17 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 																		MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 
 																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "key is the label key that the selector applies to.",
+																				MarkdownDescription: "key is the label key that the selector applies to.",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
 
 																			"operator": {
 																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
@@ -1366,17 +1265,6 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 
 																				Required: false,
 																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"key": {
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
-
-																				Type: types.StringType,
-
-																				Required: true,
-																				Optional: false,
 																				Computed: false,
 																			},
 																		}),
@@ -1400,6 +1288,28 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 
 																Required: false,
 																Optional: true,
+																Computed: false,
+															},
+
+															"namespaces": {
+																Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+																MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"topology_key": {
+																Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
 																Computed: false,
 															},
 														}),
@@ -1668,6 +1578,130 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 										Optional: true,
 										Computed: false,
 									},
+
+									"volumes": {
+										Description:         "Additional volume mounts",
+										MarkdownDescription: "Additional volume mounts",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"default_mode": {
+												Description:         "Permissions mode.",
+												MarkdownDescription: "Permissions mode.",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"items": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"config_maps": {
+														Description:         "Allow multiple configmaps to mount to the same directory",
+														MarkdownDescription: "Allow multiple configmaps to mount to the same directory",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"items": {
+														Description:         "Mount details",
+														MarkdownDescription: "Mount details",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key to project.",
+																MarkdownDescription: "The key to project.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"mode": {
+																Description:         "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																MarkdownDescription: "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"path": {
+																Description:         "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																MarkdownDescription: "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"mount_path": {
+														Description:         "An absolute path where to mount it",
+														MarkdownDescription: "An absolute path where to mount it",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "Volume name",
+														MarkdownDescription: "Volume name",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"secrets": {
+														Description:         "Secret mount",
+														MarkdownDescription: "Secret mount",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -1714,17 +1748,6 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"requests": {
-										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"limits": {
 										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
 										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
@@ -1735,86 +1758,18 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 										Optional: true,
 										Computed: false,
 									},
+
+									"requests": {
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"profile": {
-						Description:         "Profile used for controlling Operator behavior. Default is empty.",
-						MarkdownDescription: "Profile used for controlling Operator behavior. Default is empty.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"storage_class_name": {
-						Description:         "Name of the StorageClass for Postgresql Persistent Volume Claim",
-						MarkdownDescription: "Name of the StorageClass for Postgresql Persistent Volume Claim",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"pod_disruption_budget": {
-						Description:         "Specify PodDisruptionBudget configuration. This field is deprecated and will be ignored on K8s >=1.25",
-						MarkdownDescription: "Specify PodDisruptionBudget configuration. This field is deprecated and will be ignored on K8s >=1.25",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"enabled": {
-								Description:         "If set to true, the operator will create a PodDistruptionBudget for the Keycloak deployment and set its 'maxUnavailable' value to 1.",
-								MarkdownDescription: "If set to true, the operator will create a PodDistruptionBudget for the Keycloak deployment and set its 'maxUnavailable' value to 1.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"disable_default_service_monitor": {
-						Description:         "Disables the integration with Application Monitoring Operator. When set to true, the operator doesn't create default PrometheusRule, ServiceMonitor and GrafanaDashboard objects and users will have to create them manually, if needed.",
-						MarkdownDescription: "Disables the integration with Application Monitoring Operator. When set to true, the operator doesn't create default PrometheusRule, ServiceMonitor and GrafanaDashboard objects and users will have to create them manually, if needed.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"external_database": {
-						Description:         "Controls external database settings. Using an external database requires providing a secret containing credentials as well as connection details. Here's an example of such secret:      apiVersion: v1     kind: Secret     metadata:         name: keycloak-db-secret         namespace: keycloak     stringData:         POSTGRES_DATABASE: <Database Name>         POSTGRES_EXTERNAL_ADDRESS: <External Database IP or URL (resolvable by K8s)>         POSTGRES_EXTERNAL_PORT: <External Database Port>         # Strongly recommended to use <'Keycloak CR Name'-postgresql>         POSTGRES_HOST: <Database Service Name>         POSTGRES_PASSWORD: <Database Password>         # Required for AWS Backup functionality         POSTGRES_SUPERUSER: true         POSTGRES_USERNAME: <Database Username>      type: Opaque  Both POSTGRES_EXTERNAL_ADDRESS and POSTGRES_EXTERNAL_PORT are specifically required for creating connection to the external database. The secret name is created using the following convention:       <Custom Resource Name>-db-secret  For more information, please refer to the Operator documentation.",
-						MarkdownDescription: "Controls external database settings. Using an external database requires providing a secret containing credentials as well as connection details. Here's an example of such secret:      apiVersion: v1     kind: Secret     metadata:         name: keycloak-db-secret         namespace: keycloak     stringData:         POSTGRES_DATABASE: <Database Name>         POSTGRES_EXTERNAL_ADDRESS: <External Database IP or URL (resolvable by K8s)>         POSTGRES_EXTERNAL_PORT: <External Database Port>         # Strongly recommended to use <'Keycloak CR Name'-postgresql>         POSTGRES_HOST: <Database Service Name>         POSTGRES_PASSWORD: <Database Password>         # Required for AWS Backup functionality         POSTGRES_SUPERUSER: true         POSTGRES_USERNAME: <Database Username>      type: Opaque  Both POSTGRES_EXTERNAL_ADDRESS and POSTGRES_EXTERNAL_PORT are specifically required for creating connection to the external database. The secret name is created using the following convention:       <Custom Resource Name>-db-secret  For more information, please refer to the Operator documentation.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"enabled": {
-								Description:         "If set to true, the Operator will use an external database pointing to Keycloak. The embedded database (externalDatabase.enabled = false) is deprecated.",
-								MarkdownDescription: "If set to true, the Operator will use an external database pointing to Keycloak. The embedded database (externalDatabase.enabled = false) is deprecated.",
-
-								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,
@@ -1896,11 +1851,45 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 						Computed: false,
 					},
 
+					"pod_disruption_budget": {
+						Description:         "Specify PodDisruptionBudget configuration. This field is deprecated and will be ignored on K8s >=1.25",
+						MarkdownDescription: "Specify PodDisruptionBudget configuration. This field is deprecated and will be ignored on K8s >=1.25",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"enabled": {
+								Description:         "If set to true, the operator will create a PodDistruptionBudget for the Keycloak deployment and set its 'maxUnavailable' value to 1.",
+								MarkdownDescription: "If set to true, the operator will create a PodDistruptionBudget for the Keycloak deployment and set its 'maxUnavailable' value to 1.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"postgres_deployment_spec": {
 						Description:         "Resources (Requests and Limits) and ImagePullPolicy for PostgresDeployment.",
 						MarkdownDescription: "Resources (Requests and Limits) and ImagePullPolicy for PostgresDeployment.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"image_pull_policy": {
+								Description:         "ImagePullPolicy for the Containers.",
+								MarkdownDescription: "ImagePullPolicy for the Containers.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"resources": {
 								Description:         "Resources (Requests and Limits) for the Pods.",
@@ -1935,18 +1924,29 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 								Optional: true,
 								Computed: false,
 							},
-
-							"image_pull_policy": {
-								Description:         "ImagePullPolicy for the Containers.",
-								MarkdownDescription: "ImagePullPolicy for the Containers.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"profile": {
+						Description:         "Profile used for controlling Operator behavior. Default is empty.",
+						MarkdownDescription: "Profile used for controlling Operator behavior. Default is empty.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"storage_class_name": {
+						Description:         "Name of the StorageClass for Postgresql Persistent Volume Claim",
+						MarkdownDescription: "Name of the StorageClass for Postgresql Persistent Volume Claim",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

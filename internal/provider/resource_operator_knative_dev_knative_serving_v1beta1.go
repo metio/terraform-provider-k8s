@@ -52,6 +52,12 @@ type OperatorKnativeDevKnativeServingV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		AdditionalManifests *[]struct {
+			URL *string `tfsdk:"url" yaml:"URL,omitempty"`
+		} `tfsdk:"additional_manifests" yaml:"additionalManifests,omitempty"`
+
+		Config *map[string]map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+
 		Controller_custom_certs *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
@@ -59,61 +65,9 @@ type OperatorKnativeDevKnativeServingV1Beta1GoModel struct {
 		} `tfsdk:"controller__custom__certs" yaml:"controller-custom-certs,omitempty"`
 
 		Deployments *[]struct {
-			Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-			Env *[]struct {
-				Container *string `tfsdk:"container" yaml:"container,omitempty"`
-
-				EnvVars *[]struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-					ValueFrom *struct {
-						ConfigMapKeyRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
-
-						FieldRef *struct {
-							FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
-
-							ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-						} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
-
-						ResourceFieldRef *struct {
-							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
-
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
-
-							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
-
-						SecretKeyRef *struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-						} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
-					} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
-				} `tfsdk:"env_vars" yaml:"envVars,omitempty"`
-			} `tfsdk:"env" yaml:"env,omitempty"`
-
-			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
-
 			Affinity *struct {
 				NodeAffinity *struct {
 					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
-						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-
 						Preference *struct {
 							MatchExpressions *[]struct {
 								Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -124,25 +78,19 @@ type OperatorKnativeDevKnativeServingV1Beta1GoModel struct {
 							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 							MatchFields *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
 							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
 						} `tfsdk:"preference" yaml:"preference,omitempty"`
+
+						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" yaml:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
 
 					RequiredDuringSchedulingIgnoredDuringExecution *struct {
 						NodeSelectorTerms *[]struct {
-							MatchFields *[]struct {
-								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
-
 							MatchExpressions *[]struct {
 								Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -150,6 +98,14 @@ type OperatorKnativeDevKnativeServingV1Beta1GoModel struct {
 
 								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchFields *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_fields" yaml:"matchFields,omitempty"`
 						} `tfsdk:"node_selector_terms" yaml:"nodeSelectorTerms,omitempty"`
 					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 				} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
@@ -199,10 +155,6 @@ type OperatorKnativeDevKnativeServingV1Beta1GoModel struct {
 				PodAntiAffinity *struct {
 					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 						PodAffinityTerm *struct {
-							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
-
 							LabelSelector *struct {
 								MatchExpressions *[]struct {
 									Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -214,6 +166,10 @@ type OperatorKnativeDevKnativeServingV1Beta1GoModel struct {
 
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 						} `tfsdk:"pod_affinity_term" yaml:"podAffinityTerm,omitempty"`
 
 						Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
@@ -238,6 +194,58 @@ type OperatorKnativeDevKnativeServingV1Beta1GoModel struct {
 					} `tfsdk:"required_during_scheduling_ignored_during_execution" yaml:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 				} `tfsdk:"pod_anti_affinity" yaml:"podAntiAffinity,omitempty"`
 			} `tfsdk:"affinity" yaml:"affinity,omitempty"`
+
+			Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+
+			Env *[]struct {
+				Container *string `tfsdk:"container" yaml:"container,omitempty"`
+
+				EnvVars *[]struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"config_map_key_ref" yaml:"configMapKeyRef,omitempty"`
+
+						FieldRef *struct {
+							ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+							FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
+						} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
+
+						ResourceFieldRef *struct {
+							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
+
+							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+
+							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
+						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
+
+						SecretKeyRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
+				} `tfsdk:"env_vars" yaml:"envVars,omitempty"`
+			} `tfsdk:"env" yaml:"env,omitempty"`
+
+			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			NodeSelector *map[string]string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
+
+			Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
 
 			Resources *[]struct {
 				Container *string `tfsdk:"container" yaml:"container,omitempty"`
@@ -266,8 +274,6 @@ type OperatorKnativeDevKnativeServingV1Beta1GoModel struct {
 
 				Value *string `tfsdk:"value" yaml:"value,omitempty"`
 			} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
-
-			NodeSelector *map[string]string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
 		} `tfsdk:"deployments" yaml:"deployments,omitempty"`
 
 		High_availability *struct {
@@ -338,12 +344,6 @@ type OperatorKnativeDevKnativeServingV1Beta1GoModel struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"pod_disruption_budgets" yaml:"podDisruptionBudgets,omitempty"`
 
-		AdditionalManifests *[]struct {
-			URL *string `tfsdk:"url" yaml:"URL,omitempty"`
-		} `tfsdk:"additional_manifests" yaml:"additionalManifests,omitempty"`
-
-		Config *map[string]map[string]string `tfsdk:"config" yaml:"config,omitempty"`
-
 		Registry *struct {
 			Default *string `tfsdk:"default" yaml:"default,omitempty"`
 
@@ -355,13 +355,13 @@ type OperatorKnativeDevKnativeServingV1Beta1GoModel struct {
 		} `tfsdk:"registry" yaml:"registry,omitempty"`
 
 		Services *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Selector *map[string]string `tfsdk:"selector" yaml:"selector,omitempty"`
-
 			Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
 			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Selector *map[string]string `tfsdk:"selector" yaml:"selector,omitempty"`
 		} `tfsdk:"services" yaml:"services,omitempty"`
 
 		Version *string `tfsdk:"version" yaml:"version,omitempty"`
@@ -465,6 +465,40 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"additional_manifests": {
+						Description:         "A list of the additional serving manifests, which will be installed by the operator",
+						MarkdownDescription: "A list of the additional serving manifests, which will be installed by the operator",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"url": {
+								Description:         "The link of the additional manifest URL",
+								MarkdownDescription: "The link of the additional manifest URL",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"config": {
+						Description:         "A means to override the corresponding entries in the upstream configmaps",
+						MarkdownDescription: "A means to override the corresponding entries in the upstream configmaps",
+
+						Type: types.MapType{ElemType: types.MapType{ElemType: types.StringType}},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"controller__custom__certs": {
 						Description:         "Enabling the controller to trust registries with self-signed certificates",
 						MarkdownDescription: "Enabling the controller to trust registries with self-signed certificates",
@@ -505,293 +539,6 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"annotations": {
-								Description:         "Annotations overrides labels for the deployment and its template.",
-								MarkdownDescription: "Annotations overrides labels for the deployment and its template.",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"env": {
-								Description:         "Env overrides env vars for the containers.",
-								MarkdownDescription: "Env overrides env vars for the containers.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"container": {
-										Description:         "The container name",
-										MarkdownDescription: "The container name",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"env_vars": {
-										Description:         "The desired EnvVarRequirements",
-										MarkdownDescription: "The desired EnvVarRequirements",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-												MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"value": {
-												Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-												MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"value_from": {
-												Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-												MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"config_map_key_ref": {
-														Description:         "Selects a key of a ConfigMap.",
-														MarkdownDescription: "Selects a key of a ConfigMap.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key to select.",
-																MarkdownDescription: "The key to select.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the ConfigMap or its key must be defined",
-																MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"field_ref": {
-														Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-														MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"field_path": {
-																Description:         "Path of the field to select in the specified API version.",
-																MarkdownDescription: "Path of the field to select in the specified API version.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"api_version": {
-																Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"resource_field_ref": {
-														Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-														MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"container_name": {
-																Description:         "Container name: required for volumes, optional for env vars",
-																MarkdownDescription: "Container name: required for volumes, optional for env vars",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"divisor": {
-																Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"resource": {
-																Description:         "Required: resource to select",
-																MarkdownDescription: "Required: resource to select",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"secret_key_ref": {
-														Description:         "Selects a key of a secret in the pod's namespace",
-														MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"optional": {
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"labels": {
-								Description:         "Labels overrides labels for the deployment and its template.",
-								MarkdownDescription: "Labels overrides labels for the deployment and its template.",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "The name of the deployment",
-								MarkdownDescription: "The name of the deployment",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"replicas": {
-								Description:         "The number of replicas that HA parts of the control plane will be scaled to",
-								MarkdownDescription: "The number of replicas that HA parts of the control plane will be scaled to",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-
-								Validators: []tfsdk.AttributeValidator{
-
-									int64validator.AtLeast(0),
-								},
-							},
-
 							"affinity": {
 								Description:         "If specified, the pod's scheduling constraints.",
 								MarkdownDescription: "If specified, the pod's scheduling constraints.",
@@ -809,17 +556,6 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"weight": {
-														Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
-														MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
-
-														Type: types.Int64Type,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
 
 													"preference": {
 														Description:         "A node selector term, associated with the corresponding weight.",
@@ -878,6 +614,17 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 
 																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+																	"key": {
+																		Description:         "The label key that the selector applies to.",
+																		MarkdownDescription: "The label key that the selector applies to.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
 																	"operator": {
 																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
@@ -899,17 +646,6 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 																		Optional: true,
 																		Computed: false,
 																	},
-
-																	"key": {
-																		Description:         "The label key that the selector applies to.",
-																		MarkdownDescription: "The label key that the selector applies to.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
 																}),
 
 																Required: false,
@@ -917,6 +653,17 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 																Computed: false,
 															},
 														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"weight": {
+														Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+														MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+
+														Type: types.Int64Type,
 
 														Required: true,
 														Optional: false,
@@ -941,11 +688,22 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-															"match_fields": {
-																Description:         "A list of node selector requirements by node's fields.",
-																MarkdownDescription: "A list of node selector requirements by node's fields.",
+															"match_expressions": {
+																Description:         "A list of node selector requirements by node's labels.",
+																MarkdownDescription: "A list of node selector requirements by node's labels.",
 
 																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "The label key that the selector applies to.",
+																		MarkdownDescription: "The label key that the selector applies to.",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
 
 																	"operator": {
 																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
@@ -968,17 +726,6 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 																		Optional: true,
 																		Computed: false,
 																	},
-
-																	"key": {
-																		Description:         "The label key that the selector applies to.",
-																		MarkdownDescription: "The label key that the selector applies to.",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
 																}),
 
 																Required: false,
@@ -986,9 +733,9 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 																Computed: false,
 															},
 
-															"match_expressions": {
-																Description:         "A list of node selector requirements by node's labels.",
-																MarkdownDescription: "A list of node selector requirements by node's labels.",
+															"match_fields": {
+																Description:         "A list of node selector requirements by node's fields.",
+																MarkdownDescription: "A list of node selector requirements by node's fields.",
 
 																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -1306,28 +1053,6 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"namespaces": {
-																Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-																MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"topology_key": {
-																Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
 															"label_selector": {
 																Description:         "A label query over a set of resources, in this case pods.",
 																MarkdownDescription: "A label query over a set of resources, in this case pods.",
@@ -1393,6 +1118,28 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 
 																Required: false,
 																Optional: true,
+																Computed: false,
+															},
+
+															"namespaces": {
+																Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+																MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"topology_key": {
+																Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
 																Computed: false,
 															},
 														}),
@@ -1531,6 +1278,304 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"annotations": {
+								Description:         "Annotations overrides labels for the deployment and its template.",
+								MarkdownDescription: "Annotations overrides labels for the deployment and its template.",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"env": {
+								Description:         "Env overrides env vars for the containers.",
+								MarkdownDescription: "Env overrides env vars for the containers.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"container": {
+										Description:         "The container name",
+										MarkdownDescription: "The container name",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"env_vars": {
+										Description:         "The desired EnvVarRequirements",
+										MarkdownDescription: "The desired EnvVarRequirements",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+												MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"value": {
+												Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+												MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"value_from": {
+												Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+												MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"config_map_key_ref": {
+														Description:         "Selects a key of a ConfigMap.",
+														MarkdownDescription: "Selects a key of a ConfigMap.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key to select.",
+																MarkdownDescription: "The key to select.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the ConfigMap or its key must be defined",
+																MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"field_ref": {
+														Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+														MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"api_version": {
+																Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"field_path": {
+																Description:         "Path of the field to select in the specified API version.",
+																MarkdownDescription: "Path of the field to select in the specified API version.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"resource_field_ref": {
+														Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+														MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"container_name": {
+																Description:         "Container name: required for volumes, optional for env vars",
+																MarkdownDescription: "Container name: required for volumes, optional for env vars",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"divisor": {
+																Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"resource": {
+																Description:         "Required: resource to select",
+																MarkdownDescription: "Required: resource to select",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"secret_key_ref": {
+														Description:         "Selects a key of a secret in the pod's namespace",
+														MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"optional": {
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"labels": {
+								Description:         "Labels overrides labels for the deployment and its template.",
+								MarkdownDescription: "Labels overrides labels for the deployment and its template.",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "The name of the deployment",
+								MarkdownDescription: "The name of the deployment",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"node_selector": {
+								Description:         "NodeSelector overrides nodeSelector for the deployment.",
+								MarkdownDescription: "NodeSelector overrides nodeSelector for the deployment.",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"replicas": {
+								Description:         "The number of replicas that HA parts of the control plane will be scaled to",
+								MarkdownDescription: "The number of replicas that HA parts of the control plane will be scaled to",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(0),
+								},
 							},
 
 							"resources": {
@@ -1685,17 +1730,6 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 										Computed: false,
 									},
 								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"node_selector": {
-								Description:         "NodeSelector overrides nodeSelector for the deployment.",
-								MarkdownDescription: "NodeSelector overrides nodeSelector for the deployment.",
-
-								Type: types.MapType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,
@@ -2100,40 +2134,6 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 						Computed: false,
 					},
 
-					"additional_manifests": {
-						Description:         "A list of the additional serving manifests, which will be installed by the operator",
-						MarkdownDescription: "A list of the additional serving manifests, which will be installed by the operator",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"url": {
-								Description:         "The link of the additional manifest URL",
-								MarkdownDescription: "The link of the additional manifest URL",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"config": {
-						Description:         "A means to override the corresponding entries in the upstream configmaps",
-						MarkdownDescription: "A means to override the corresponding entries in the upstream configmaps",
-
-						Type: types.MapType{ElemType: types.MapType{ElemType: types.StringType}},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"registry": {
 						Description:         "A means to override the corresponding deployment images in the upstream. This affects both apps/v1.Deployment and caching.internal.knative.dev/v1alpha1.Image.",
 						MarkdownDescription: "A means to override the corresponding deployment images in the upstream. This affects both apps/v1.Deployment and caching.internal.knative.dev/v1alpha1.Image.",
@@ -2197,28 +2197,6 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"name": {
-								Description:         "The name of the service",
-								MarkdownDescription: "The name of the service",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"selector": {
-								Description:         "Selector overrides selector for the service",
-								MarkdownDescription: "Selector overrides selector for the service",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"annotations": {
 								Description:         "Annotations overrides labels for the service",
 								MarkdownDescription: "Annotations overrides labels for the service",
@@ -2233,6 +2211,28 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 							"labels": {
 								Description:         "Labels overrides labels for the service",
 								MarkdownDescription: "Labels overrides labels for the service",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "The name of the service",
+								MarkdownDescription: "The name of the service",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"selector": {
+								Description:         "Selector overrides selector for the service",
+								MarkdownDescription: "Selector overrides selector for the service",
 
 								Type: types.MapType{ElemType: types.StringType},
 

@@ -13,6 +13,7 @@ import (
 	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 	"k8s.io/utils/strings/slices"
 	"regexp"
+	"sort"
 	"strings"
 	"unicode"
 )
@@ -124,6 +125,10 @@ func Properties(properties map[string]apiextensionsv1.JSONSchemaProps, required 
 			Validators:             Validators(prop, uv),
 		})
 	}
+
+	sort.SliceStable(props, func(i, j int) bool {
+		return props[i].Name < props[j].Name
+	})
 
 	return props
 }

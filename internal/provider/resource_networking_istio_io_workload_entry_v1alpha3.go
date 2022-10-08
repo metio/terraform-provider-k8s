@@ -50,12 +50,6 @@ type NetworkingIstioIoWorkloadEntryV1Alpha3GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Ports *map[string]string `tfsdk:"ports" yaml:"ports,omitempty"`
-
-		ServiceAccount *string `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
-
-		Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-
 		Address *string `tfsdk:"address" yaml:"address,omitempty"`
 
 		Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
@@ -63,6 +57,12 @@ type NetworkingIstioIoWorkloadEntryV1Alpha3GoModel struct {
 		Locality *string `tfsdk:"locality" yaml:"locality,omitempty"`
 
 		Network *string `tfsdk:"network" yaml:"network,omitempty"`
+
+		Ports *map[string]string `tfsdk:"ports" yaml:"ports,omitempty"`
+
+		ServiceAccount *string `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
+
+		Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -163,39 +163,6 @@ func (r *NetworkingIstioIoWorkloadEntryV1Alpha3Resource) GetSchema(_ context.Con
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"ports": {
-						Description:         "Set of ports associated with the endpoint.",
-						MarkdownDescription: "Set of ports associated with the endpoint.",
-
-						Type: types.MapType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"service_account": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"weight": {
-						Description:         "The load balancing weight associated with the endpoint.",
-						MarkdownDescription: "The load balancing weight associated with the endpoint.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"address": {
 						Description:         "",
 						MarkdownDescription: "",
@@ -234,6 +201,39 @@ func (r *NetworkingIstioIoWorkloadEntryV1Alpha3Resource) GetSchema(_ context.Con
 						MarkdownDescription: "",
 
 						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"ports": {
+						Description:         "Set of ports associated with the endpoint.",
+						MarkdownDescription: "Set of ports associated with the endpoint.",
+
+						Type: types.MapType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"service_account": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"weight": {
+						Description:         "The load balancing weight associated with the endpoint.",
+						MarkdownDescription: "The load balancing weight associated with the endpoint.",
+
+						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,

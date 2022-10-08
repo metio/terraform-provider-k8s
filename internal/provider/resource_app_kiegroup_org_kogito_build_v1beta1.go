@@ -50,7 +50,25 @@ type AppKiegroupOrgKogitoBuildV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Artifact *struct {
+			ArtifactId *string `tfsdk:"artifact_id" yaml:"artifactId,omitempty"`
+
+			GroupId *string `tfsdk:"group_id" yaml:"groupId,omitempty"`
+
+			Version *string `tfsdk:"version" yaml:"version,omitempty"`
+		} `tfsdk:"artifact" yaml:"artifact,omitempty"`
+
+		BuildImage *string `tfsdk:"build_image" yaml:"buildImage,omitempty"`
+
+		DisableIncremental *bool `tfsdk:"disable_incremental" yaml:"disableIncremental,omitempty"`
+
+		EnableMavenDownloadOutput *bool `tfsdk:"enable_maven_download_output" yaml:"enableMavenDownloadOutput,omitempty"`
+
 		Env *[]struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Value *string `tfsdk:"value" yaml:"value,omitempty"`
+
 			ValueFrom *struct {
 				ConfigMapKeyRef *struct {
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -82,25 +100,17 @@ type AppKiegroupOrgKogitoBuildV1Beta1GoModel struct {
 					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 				} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
 			} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Value *string `tfsdk:"value" yaml:"value,omitempty"`
 		} `tfsdk:"env" yaml:"env,omitempty"`
 
-		Runtime *string `tfsdk:"runtime" yaml:"runtime,omitempty"`
+		GitSource *struct {
+			ContextDir *string `tfsdk:"context_dir" yaml:"contextDir,omitempty"`
 
-		RuntimeImage *string `tfsdk:"runtime_image" yaml:"runtimeImage,omitempty"`
+			Reference *string `tfsdk:"reference" yaml:"reference,omitempty"`
 
-		WebHooks *[]struct {
-			Secret *string `tfsdk:"secret" yaml:"secret,omitempty"`
+			Uri *string `tfsdk:"uri" yaml:"uri,omitempty"`
+		} `tfsdk:"git_source" yaml:"gitSource,omitempty"`
 
-			Type *string `tfsdk:"type" yaml:"type,omitempty"`
-		} `tfsdk:"web_hooks" yaml:"webHooks,omitempty"`
-
-		BuildImage *string `tfsdk:"build_image" yaml:"buildImage,omitempty"`
-
-		DisableIncremental *bool `tfsdk:"disable_incremental" yaml:"disableIncremental,omitempty"`
+		MavenMirrorURL *string `tfsdk:"maven_mirror_url" yaml:"mavenMirrorURL,omitempty"`
 
 		Native *bool `tfsdk:"native" yaml:"native,omitempty"`
 
@@ -110,29 +120,19 @@ type AppKiegroupOrgKogitoBuildV1Beta1GoModel struct {
 			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
 		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
-		EnableMavenDownloadOutput *bool `tfsdk:"enable_maven_download_output" yaml:"enableMavenDownloadOutput,omitempty"`
+		Runtime *string `tfsdk:"runtime" yaml:"runtime,omitempty"`
 
-		MavenMirrorURL *string `tfsdk:"maven_mirror_url" yaml:"mavenMirrorURL,omitempty"`
-
-		Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-		GitSource *struct {
-			Uri *string `tfsdk:"uri" yaml:"uri,omitempty"`
-
-			ContextDir *string `tfsdk:"context_dir" yaml:"contextDir,omitempty"`
-
-			Reference *string `tfsdk:"reference" yaml:"reference,omitempty"`
-		} `tfsdk:"git_source" yaml:"gitSource,omitempty"`
+		RuntimeImage *string `tfsdk:"runtime_image" yaml:"runtimeImage,omitempty"`
 
 		TargetKogitoRuntime *string `tfsdk:"target_kogito_runtime" yaml:"targetKogitoRuntime,omitempty"`
 
-		Artifact *struct {
-			Version *string `tfsdk:"version" yaml:"version,omitempty"`
+		Type *string `tfsdk:"type" yaml:"type,omitempty"`
 
-			ArtifactId *string `tfsdk:"artifact_id" yaml:"artifactId,omitempty"`
+		WebHooks *[]struct {
+			Secret *string `tfsdk:"secret" yaml:"secret,omitempty"`
 
-			GroupId *string `tfsdk:"group_id" yaml:"groupId,omitempty"`
-		} `tfsdk:"artifact" yaml:"artifact,omitempty"`
+			Type *string `tfsdk:"type" yaml:"type,omitempty"`
+		} `tfsdk:"web_hooks" yaml:"webHooks,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -233,11 +233,111 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"artifact": {
+						Description:         "Artifact contains override information for building the Maven artifact (used for Local Source builds).  You might want to override this information when building from decisions, rules or process files. In this scenario the Kogito Images will generate a new Java project for you underneath. This information will be used to generate this project.",
+						MarkdownDescription: "Artifact contains override information for building the Maven artifact (used for Local Source builds).  You might want to override this information when building from decisions, rules or process files. In this scenario the Kogito Images will generate a new Java project for you underneath. This information will be used to generate this project.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"artifact_id": {
+								Description:         "Indicates the unique base name of the primary artifact being generated.",
+								MarkdownDescription: "Indicates the unique base name of the primary artifact being generated.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"group_id": {
+								Description:         "Indicates the unique identifier of the organization or group that created the project.",
+								MarkdownDescription: "Indicates the unique identifier of the organization or group that created the project.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"version": {
+								Description:         "Indicates the version of the artifact generated by the project.",
+								MarkdownDescription: "Indicates the version of the artifact generated by the project.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"build_image": {
+						Description:         "Image used to build the Kogito Service from source (Local and Remote).  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
+						MarkdownDescription: "Image used to build the Kogito Service from source (Local and Remote).  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"disable_incremental": {
+						Description:         "DisableIncremental indicates that source to image builds should NOT be incremental. Defaults to false.",
+						MarkdownDescription: "DisableIncremental indicates that source to image builds should NOT be incremental. Defaults to false.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_maven_download_output": {
+						Description:         "If set to true will print the logs for downloading/uploading of maven dependencies. Defaults to false.",
+						MarkdownDescription: "If set to true will print the logs for downloading/uploading of maven dependencies. Defaults to false.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"env": {
 						Description:         "Environment variables used during build time.",
 						MarkdownDescription: "Environment variables used during build time.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+								MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"value": {
+								Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+								MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"value_from": {
 								Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
@@ -419,10 +519,44 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 								Optional: true,
 								Computed: false,
 							},
+						}),
 
-							"name": {
-								Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-								MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"git_source": {
+						Description:         "Information about the git repository where the Kogito Service source code resides.  Ignored for binary builds.",
+						MarkdownDescription: "Information about the git repository where the Kogito Service source code resides.  Ignored for binary builds.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"context_dir": {
+								Description:         "Context/subdirectory where the code is located, relative to the repo root.",
+								MarkdownDescription: "Context/subdirectory where the code is located, relative to the repo root.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"reference": {
+								Description:         "Branch to use in the Git repository.",
+								MarkdownDescription: "Branch to use in the Git repository.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"uri": {
+								Description:         "Git URI for the s2i source.",
+								MarkdownDescription: "Git URI for the s2i source.",
 
 								Type: types.StringType,
 
@@ -430,17 +564,6 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 								Optional: false,
 								Computed: false,
 							},
-
-							"value": {
-								Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-								MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
 
 						Required: false,
@@ -448,78 +571,11 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 						Computed: false,
 					},
 
-					"runtime": {
-						Description:         "Which runtime Kogito service base image to use when building the Kogito service. If 'BuildImage' is set, this value is ignored by the operator. Default value: quarkus.",
-						MarkdownDescription: "Which runtime Kogito service base image to use when building the Kogito service. If 'BuildImage' is set, this value is ignored by the operator. Default value: quarkus.",
+					"maven_mirror_url": {
+						Description:         "Maven Mirror URL to be used during source-to-image builds (Local and Remote) to considerably increase build speed.",
+						MarkdownDescription: "Maven Mirror URL to be used during source-to-image builds (Local and Remote) to considerably increase build speed.",
 
 						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"runtime_image": {
-						Description:         "Image used as the base image for the final Kogito service. This image only has the required packages to run the application.  For example: quarkus based services will have only JVM installed, native services only the packages required by the OS.  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
-						MarkdownDescription: "Image used as the base image for the final Kogito service. This image only has the required packages to run the application.  For example: quarkus based services will have only JVM installed, native services only the packages required by the OS.  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"web_hooks": {
-						Description:         "WebHooks secrets for source to image builds based on Git repositories (Remote Sources).",
-						MarkdownDescription: "WebHooks secrets for source to image builds based on Git repositories (Remote Sources).",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"secret": {
-								Description:         "Secret value for webHook",
-								MarkdownDescription: "Secret value for webHook",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"type": {
-								Description:         "WebHook type, either GitHub or Generic.",
-								MarkdownDescription: "WebHook type, either GitHub or Generic.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"build_image": {
-						Description:         "Image used to build the Kogito Service from source (Local and Remote).  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
-						MarkdownDescription: "Image used to build the Kogito Service from source (Local and Remote).  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"disable_incremental": {
-						Description:         "DisableIncremental indicates that source to image builds should NOT be incremental. Defaults to false.",
-						MarkdownDescription: "DisableIncremental indicates that source to image builds should NOT be incremental. Defaults to false.",
-
-						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
@@ -571,20 +627,31 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 						Computed: false,
 					},
 
-					"enable_maven_download_output": {
-						Description:         "If set to true will print the logs for downloading/uploading of maven dependencies. Defaults to false.",
-						MarkdownDescription: "If set to true will print the logs for downloading/uploading of maven dependencies. Defaults to false.",
+					"runtime": {
+						Description:         "Which runtime Kogito service base image to use when building the Kogito service. If 'BuildImage' is set, this value is ignored by the operator. Default value: quarkus.",
+						MarkdownDescription: "Which runtime Kogito service base image to use when building the Kogito service. If 'BuildImage' is set, this value is ignored by the operator. Default value: quarkus.",
 
-						Type: types.BoolType,
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
 					},
 
-					"maven_mirror_url": {
-						Description:         "Maven Mirror URL to be used during source-to-image builds (Local and Remote) to considerably increase build speed.",
-						MarkdownDescription: "Maven Mirror URL to be used during source-to-image builds (Local and Remote) to considerably increase build speed.",
+					"runtime_image": {
+						Description:         "Image used as the base image for the final Kogito service. This image only has the required packages to run the application.  For example: quarkus based services will have only JVM installed, native services only the packages required by the OS.  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
+						MarkdownDescription: "Image used as the base image for the final Kogito service. This image only has the required packages to run the application.  For example: quarkus based services will have only JVM installed, native services only the packages required by the OS.  If not defined the operator will use image provided by the Kogito Team based on the 'Runtime' field.  Example: 'quay.io/kiegroup/kogito-jvm-builder:latest'.  On OpenShift an ImageStream will be created in the current namespace pointing to the given image.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"target_kogito_runtime": {
+						Description:         "Set this field targeting the desired KogitoRuntime when this KogitoBuild instance has a different name than the KogitoRuntime.  By default this KogitoBuild instance will generate a final image named after its own name (.metadata.name).  On OpenShift, an ImageStream will be created causing a redeployment on any KogitoRuntime with the same name. On Kubernetes, the final image will be pushed to the KogitoRuntime deployment.  If you have multiple KogitoBuild instances (let's say BinaryBuildType and Remote Source), you might need that both target the same KogitoRuntime. Both KogitoBuilds will update the same ImageStream or generate a final image to the same KogitoRuntime deployment.",
+						MarkdownDescription: "Set this field targeting the desired KogitoRuntime when this KogitoBuild instance has a different name than the KogitoRuntime.  By default this KogitoBuild instance will generate a final image named after its own name (.metadata.name).  On OpenShift, an ImageStream will be created causing a redeployment on any KogitoRuntime with the same name. On Kubernetes, the final image will be pushed to the KogitoRuntime deployment.  If you have multiple KogitoBuild instances (let's say BinaryBuildType and Remote Source), you might need that both target the same KogitoRuntime. Both KogitoBuilds will update the same ImageStream or generate a final image to the same KogitoRuntime deployment.",
 
 						Type: types.StringType,
 
@@ -604,26 +671,15 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 						Computed: false,
 					},
 
-					"git_source": {
-						Description:         "Information about the git repository where the Kogito Service source code resides.  Ignored for binary builds.",
-						MarkdownDescription: "Information about the git repository where the Kogito Service source code resides.  Ignored for binary builds.",
+					"web_hooks": {
+						Description:         "WebHooks secrets for source to image builds based on Git repositories (Remote Sources).",
+						MarkdownDescription: "WebHooks secrets for source to image builds based on Git repositories (Remote Sources).",
 
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"uri": {
-								Description:         "Git URI for the s2i source.",
-								MarkdownDescription: "Git URI for the s2i source.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"context_dir": {
-								Description:         "Context/subdirectory where the code is located, relative to the repo root.",
-								MarkdownDescription: "Context/subdirectory where the code is located, relative to the repo root.",
+							"secret": {
+								Description:         "Secret value for webHook",
+								MarkdownDescription: "Secret value for webHook",
 
 								Type: types.StringType,
 
@@ -632,65 +688,9 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"reference": {
-								Description:         "Branch to use in the Git repository.",
-								MarkdownDescription: "Branch to use in the Git repository.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"target_kogito_runtime": {
-						Description:         "Set this field targeting the desired KogitoRuntime when this KogitoBuild instance has a different name than the KogitoRuntime.  By default this KogitoBuild instance will generate a final image named after its own name (.metadata.name).  On OpenShift, an ImageStream will be created causing a redeployment on any KogitoRuntime with the same name. On Kubernetes, the final image will be pushed to the KogitoRuntime deployment.  If you have multiple KogitoBuild instances (let's say BinaryBuildType and Remote Source), you might need that both target the same KogitoRuntime. Both KogitoBuilds will update the same ImageStream or generate a final image to the same KogitoRuntime deployment.",
-						MarkdownDescription: "Set this field targeting the desired KogitoRuntime when this KogitoBuild instance has a different name than the KogitoRuntime.  By default this KogitoBuild instance will generate a final image named after its own name (.metadata.name).  On OpenShift, an ImageStream will be created causing a redeployment on any KogitoRuntime with the same name. On Kubernetes, the final image will be pushed to the KogitoRuntime deployment.  If you have multiple KogitoBuild instances (let's say BinaryBuildType and Remote Source), you might need that both target the same KogitoRuntime. Both KogitoBuilds will update the same ImageStream or generate a final image to the same KogitoRuntime deployment.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"artifact": {
-						Description:         "Artifact contains override information for building the Maven artifact (used for Local Source builds).  You might want to override this information when building from decisions, rules or process files. In this scenario the Kogito Images will generate a new Java project for you underneath. This information will be used to generate this project.",
-						MarkdownDescription: "Artifact contains override information for building the Maven artifact (used for Local Source builds).  You might want to override this information when building from decisions, rules or process files. In this scenario the Kogito Images will generate a new Java project for you underneath. This information will be used to generate this project.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"version": {
-								Description:         "Indicates the version of the artifact generated by the project.",
-								MarkdownDescription: "Indicates the version of the artifact generated by the project.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"artifact_id": {
-								Description:         "Indicates the unique base name of the primary artifact being generated.",
-								MarkdownDescription: "Indicates the unique base name of the primary artifact being generated.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"group_id": {
-								Description:         "Indicates the unique identifier of the organization or group that created the project.",
-								MarkdownDescription: "Indicates the unique identifier of the organization or group that created the project.",
+							"type": {
+								Description:         "WebHook type, either GitHub or Generic.",
+								MarkdownDescription: "WebHook type, either GitHub or Generic.",
 
 								Type: types.StringType,
 

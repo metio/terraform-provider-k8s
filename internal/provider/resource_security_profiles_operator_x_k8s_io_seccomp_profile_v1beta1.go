@@ -52,6 +52,16 @@ type SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Architectures *[]string `tfsdk:"architectures" yaml:"architectures,omitempty"`
+
+		BaseProfileName *string `tfsdk:"base_profile_name" yaml:"baseProfileName,omitempty"`
+
+		DefaultAction *string `tfsdk:"default_action" yaml:"defaultAction,omitempty"`
+
+		Flags *[]string `tfsdk:"flags" yaml:"flags,omitempty"`
+
+		ListenerMetadata *string `tfsdk:"listener_metadata" yaml:"listenerMetadata,omitempty"`
+
 		ListenerPath *string `tfsdk:"listener_path" yaml:"listenerPath,omitempty"`
 
 		Syscalls *[]struct {
@@ -71,16 +81,6 @@ type SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1GoModel struct {
 
 			Names *[]string `tfsdk:"names" yaml:"names,omitempty"`
 		} `tfsdk:"syscalls" yaml:"syscalls,omitempty"`
-
-		Architectures *[]string `tfsdk:"architectures" yaml:"architectures,omitempty"`
-
-		BaseProfileName *string `tfsdk:"base_profile_name" yaml:"baseProfileName,omitempty"`
-
-		DefaultAction *string `tfsdk:"default_action" yaml:"defaultAction,omitempty"`
-
-		Flags *[]string `tfsdk:"flags" yaml:"flags,omitempty"`
-
-		ListenerMetadata *string `tfsdk:"listener_metadata" yaml:"listenerMetadata,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -180,6 +180,61 @@ func (r *SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Resource) GetSchema(
 				MarkdownDescription: "SeccompProfileSpec defines the desired state of SeccompProfile.",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+					"architectures": {
+						Description:         "the architecture used for system calls",
+						MarkdownDescription: "the architecture used for system calls",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"base_profile_name": {
+						Description:         "name of base profile (in the same namespace) what will be unioned into this profile",
+						MarkdownDescription: "name of base profile (in the same namespace) what will be unioned into this profile",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"default_action": {
+						Description:         "the default action for seccomp",
+						MarkdownDescription: "the default action for seccomp",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"flags": {
+						Description:         "list of flags to use with seccomp(2)",
+						MarkdownDescription: "list of flags to use with seccomp(2)",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"listener_metadata": {
+						Description:         "opaque data to pass to the seccomp agent",
+						MarkdownDescription: "opaque data to pass to the seccomp agent",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
 
 					"listener_path": {
 						Description:         "path of UNIX domain socket to contact a seccomp agent for SCMP_ACT_NOTIFY",
@@ -302,61 +357,6 @@ func (r *SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Resource) GetSchema(
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"architectures": {
-						Description:         "the architecture used for system calls",
-						MarkdownDescription: "the architecture used for system calls",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"base_profile_name": {
-						Description:         "name of base profile (in the same namespace) what will be unioned into this profile",
-						MarkdownDescription: "name of base profile (in the same namespace) what will be unioned into this profile",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"default_action": {
-						Description:         "the default action for seccomp",
-						MarkdownDescription: "the default action for seccomp",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"flags": {
-						Description:         "list of flags to use with seccomp(2)",
-						MarkdownDescription: "list of flags to use with seccomp(2)",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"listener_metadata": {
-						Description:         "opaque data to pass to the seccomp agent",
-						MarkdownDescription: "opaque data to pass to the seccomp agent",
-
-						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

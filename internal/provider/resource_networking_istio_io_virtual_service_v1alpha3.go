@@ -50,23 +50,13 @@ type NetworkingIstioIoVirtualServiceV1Alpha3GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		ExportTo *[]string `tfsdk:"export_to" yaml:"exportTo,omitempty"`
+
 		Gateways *[]string `tfsdk:"gateways" yaml:"gateways,omitempty"`
 
 		Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
 
 		Http *[]struct {
-			Mirror *struct {
-				Host *string `tfsdk:"host" yaml:"host,omitempty"`
-
-				Port *struct {
-					Number *int64 `tfsdk:"number" yaml:"number,omitempty"`
-				} `tfsdk:"port" yaml:"port,omitempty"`
-
-				Subset *string `tfsdk:"subset" yaml:"subset,omitempty"`
-			} `tfsdk:"mirror" yaml:"mirror,omitempty"`
-
-			Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
 			CorsPolicy *struct {
 				AllowCredentials *bool `tfsdk:"allow_credentials" yaml:"allowCredentials,omitempty"`
 
@@ -89,6 +79,12 @@ type NetworkingIstioIoVirtualServiceV1Alpha3GoModel struct {
 				MaxAge *string `tfsdk:"max_age" yaml:"maxAge,omitempty"`
 			} `tfsdk:"cors_policy" yaml:"corsPolicy,omitempty"`
 
+			Delegate *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+			} `tfsdk:"delegate" yaml:"delegate,omitempty"`
+
 			DirectResponse *struct {
 				Body *struct {
 					Bytes *string `tfsdk:"bytes" yaml:"bytes,omitempty"`
@@ -101,6 +97,8 @@ type NetworkingIstioIoVirtualServiceV1Alpha3GoModel struct {
 
 			Fault *struct {
 				Abort *struct {
+					GrpcStatus *string `tfsdk:"grpc_status" yaml:"grpcStatus,omitempty"`
+
 					Http2Error *string `tfsdk:"http2_error" yaml:"http2Error,omitempty"`
 
 					HttpStatus *int64 `tfsdk:"http_status" yaml:"httpStatus,omitempty"`
@@ -108,11 +106,11 @@ type NetworkingIstioIoVirtualServiceV1Alpha3GoModel struct {
 					Percentage *struct {
 						Value *float64 `tfsdk:"value" yaml:"value,omitempty"`
 					} `tfsdk:"percentage" yaml:"percentage,omitempty"`
-
-					GrpcStatus *string `tfsdk:"grpc_status" yaml:"grpcStatus,omitempty"`
 				} `tfsdk:"abort" yaml:"abort,omitempty"`
 
 				Delay *struct {
+					ExponentialDelay *string `tfsdk:"exponential_delay" yaml:"exponentialDelay,omitempty"`
+
 					FixedDelay *string `tfsdk:"fixed_delay" yaml:"fixedDelay,omitempty"`
 
 					Percent *int64 `tfsdk:"percent" yaml:"percent,omitempty"`
@@ -120,33 +118,41 @@ type NetworkingIstioIoVirtualServiceV1Alpha3GoModel struct {
 					Percentage *struct {
 						Value *float64 `tfsdk:"value" yaml:"value,omitempty"`
 					} `tfsdk:"percentage" yaml:"percentage,omitempty"`
-
-					ExponentialDelay *string `tfsdk:"exponential_delay" yaml:"exponentialDelay,omitempty"`
 				} `tfsdk:"delay" yaml:"delay,omitempty"`
 			} `tfsdk:"fault" yaml:"fault,omitempty"`
 
+			Headers *struct {
+				Request *struct {
+					Add *map[string]string `tfsdk:"add" yaml:"add,omitempty"`
+
+					Remove *[]string `tfsdk:"remove" yaml:"remove,omitempty"`
+
+					Set *map[string]string `tfsdk:"set" yaml:"set,omitempty"`
+				} `tfsdk:"request" yaml:"request,omitempty"`
+
+				Response *struct {
+					Add *map[string]string `tfsdk:"add" yaml:"add,omitempty"`
+
+					Remove *[]string `tfsdk:"remove" yaml:"remove,omitempty"`
+
+					Set *map[string]string `tfsdk:"set" yaml:"set,omitempty"`
+				} `tfsdk:"response" yaml:"response,omitempty"`
+			} `tfsdk:"headers" yaml:"headers,omitempty"`
+
 			Match *[]struct {
+				Authority *struct {
+					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
+
+					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
+				} `tfsdk:"authority" yaml:"authority,omitempty"`
+
+				Gateways *[]string `tfsdk:"gateways" yaml:"gateways,omitempty"`
+
 				Headers *map[string]string `tfsdk:"headers" yaml:"headers,omitempty"`
 
-				SourceNamespace *string `tfsdk:"source_namespace" yaml:"sourceNamespace,omitempty"`
-
-				StatPrefix *string `tfsdk:"stat_prefix" yaml:"statPrefix,omitempty"`
-
-				Uri *struct {
-					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
-
-					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-
-					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
-				} `tfsdk:"uri" yaml:"uri,omitempty"`
-
-				Authority *struct {
-					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-
-					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
-
-					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
-				} `tfsdk:"authority" yaml:"authority,omitempty"`
+				IgnoreUriCase *bool `tfsdk:"ignore_uri_case" yaml:"ignoreUriCase,omitempty"`
 
 				Method *struct {
 					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
@@ -155,6 +161,8 @@ type NetworkingIstioIoVirtualServiceV1Alpha3GoModel struct {
 
 					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
 				} `tfsdk:"method" yaml:"method,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 
@@ -168,28 +176,70 @@ type NetworkingIstioIoVirtualServiceV1Alpha3GoModel struct {
 					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
 				} `tfsdk:"scheme" yaml:"scheme,omitempty"`
 
-				IgnoreUriCase *bool `tfsdk:"ignore_uri_case" yaml:"ignoreUriCase,omitempty"`
+				SourceLabels *map[string]string `tfsdk:"source_labels" yaml:"sourceLabels,omitempty"`
 
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				SourceNamespace *string `tfsdk:"source_namespace" yaml:"sourceNamespace,omitempty"`
+
+				StatPrefix *string `tfsdk:"stat_prefix" yaml:"statPrefix,omitempty"`
+
+				Uri *struct {
+					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
+
+					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
+				} `tfsdk:"uri" yaml:"uri,omitempty"`
 
 				WithoutHeaders *map[string]string `tfsdk:"without_headers" yaml:"withoutHeaders,omitempty"`
-
-				Gateways *[]string `tfsdk:"gateways" yaml:"gateways,omitempty"`
-
-				SourceLabels *map[string]string `tfsdk:"source_labels" yaml:"sourceLabels,omitempty"`
 			} `tfsdk:"match" yaml:"match,omitempty"`
+
+			Mirror *struct {
+				Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+				Port *struct {
+					Number *int64 `tfsdk:"number" yaml:"number,omitempty"`
+				} `tfsdk:"port" yaml:"port,omitempty"`
+
+				Subset *string `tfsdk:"subset" yaml:"subset,omitempty"`
+			} `tfsdk:"mirror" yaml:"mirror,omitempty"`
 
 			MirrorPercent *int64 `tfsdk:"mirror_percent" yaml:"mirrorPercent,omitempty"`
 
-			Retries *struct {
-				RetryRemoteLocalities *bool `tfsdk:"retry_remote_localities" yaml:"retryRemoteLocalities,omitempty"`
+			MirrorPercentage *struct {
+				Value *float64 `tfsdk:"value" yaml:"value,omitempty"`
+			} `tfsdk:"mirror_percentage" yaml:"mirrorPercentage,omitempty"`
 
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Redirect *struct {
+				Authority *string `tfsdk:"authority" yaml:"authority,omitempty"`
+
+				DerivePort *string `tfsdk:"derive_port" yaml:"derivePort,omitempty"`
+
+				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+
+				RedirectCode *int64 `tfsdk:"redirect_code" yaml:"redirectCode,omitempty"`
+
+				Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+				Uri *string `tfsdk:"uri" yaml:"uri,omitempty"`
+			} `tfsdk:"redirect" yaml:"redirect,omitempty"`
+
+			Retries *struct {
 				Attempts *int64 `tfsdk:"attempts" yaml:"attempts,omitempty"`
 
 				PerTryTimeout *string `tfsdk:"per_try_timeout" yaml:"perTryTimeout,omitempty"`
 
 				RetryOn *string `tfsdk:"retry_on" yaml:"retryOn,omitempty"`
+
+				RetryRemoteLocalities *bool `tfsdk:"retry_remote_localities" yaml:"retryRemoteLocalities,omitempty"`
 			} `tfsdk:"retries" yaml:"retries,omitempty"`
+
+			Rewrite *struct {
+				Authority *string `tfsdk:"authority" yaml:"authority,omitempty"`
+
+				Uri *string `tfsdk:"uri" yaml:"uri,omitempty"`
+			} `tfsdk:"rewrite" yaml:"rewrite,omitempty"`
 
 			Route *[]struct {
 				Destination *struct {
@@ -212,88 +262,22 @@ type NetworkingIstioIoVirtualServiceV1Alpha3GoModel struct {
 					} `tfsdk:"request" yaml:"request,omitempty"`
 
 					Response *struct {
+						Add *map[string]string `tfsdk:"add" yaml:"add,omitempty"`
+
 						Remove *[]string `tfsdk:"remove" yaml:"remove,omitempty"`
 
 						Set *map[string]string `tfsdk:"set" yaml:"set,omitempty"`
-
-						Add *map[string]string `tfsdk:"add" yaml:"add,omitempty"`
 					} `tfsdk:"response" yaml:"response,omitempty"`
 				} `tfsdk:"headers" yaml:"headers,omitempty"`
 
 				Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 			} `tfsdk:"route" yaml:"route,omitempty"`
 
-			MirrorPercentage *struct {
-				Value *float64 `tfsdk:"value" yaml:"value,omitempty"`
-			} `tfsdk:"mirror_percentage" yaml:"mirrorPercentage,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Redirect *struct {
-				Authority *string `tfsdk:"authority" yaml:"authority,omitempty"`
-
-				DerivePort *string `tfsdk:"derive_port" yaml:"derivePort,omitempty"`
-
-				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-
-				RedirectCode *int64 `tfsdk:"redirect_code" yaml:"redirectCode,omitempty"`
-
-				Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-				Uri *string `tfsdk:"uri" yaml:"uri,omitempty"`
-			} `tfsdk:"redirect" yaml:"redirect,omitempty"`
-
-			Delegate *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-			} `tfsdk:"delegate" yaml:"delegate,omitempty"`
-
-			Headers *struct {
-				Request *struct {
-					Add *map[string]string `tfsdk:"add" yaml:"add,omitempty"`
-
-					Remove *[]string `tfsdk:"remove" yaml:"remove,omitempty"`
-
-					Set *map[string]string `tfsdk:"set" yaml:"set,omitempty"`
-				} `tfsdk:"request" yaml:"request,omitempty"`
-
-				Response *struct {
-					Remove *[]string `tfsdk:"remove" yaml:"remove,omitempty"`
-
-					Set *map[string]string `tfsdk:"set" yaml:"set,omitempty"`
-
-					Add *map[string]string `tfsdk:"add" yaml:"add,omitempty"`
-				} `tfsdk:"response" yaml:"response,omitempty"`
-			} `tfsdk:"headers" yaml:"headers,omitempty"`
-
-			Rewrite *struct {
-				Authority *string `tfsdk:"authority" yaml:"authority,omitempty"`
-
-				Uri *string `tfsdk:"uri" yaml:"uri,omitempty"`
-			} `tfsdk:"rewrite" yaml:"rewrite,omitempty"`
+			Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 		} `tfsdk:"http" yaml:"http,omitempty"`
 
 		Tcp *[]struct {
-			Route *[]struct {
-				Destination *struct {
-					Port *struct {
-						Number *int64 `tfsdk:"number" yaml:"number,omitempty"`
-					} `tfsdk:"port" yaml:"port,omitempty"`
-
-					Subset *string `tfsdk:"subset" yaml:"subset,omitempty"`
-
-					Host *string `tfsdk:"host" yaml:"host,omitempty"`
-				} `tfsdk:"destination" yaml:"destination,omitempty"`
-
-				Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-			} `tfsdk:"route" yaml:"route,omitempty"`
-
 			Match *[]struct {
-				SourceNamespace *string `tfsdk:"source_namespace" yaml:"sourceNamespace,omitempty"`
-
-				SourceSubnet *string `tfsdk:"source_subnet" yaml:"sourceSubnet,omitempty"`
-
 				DestinationSubnets *[]string `tfsdk:"destination_subnets" yaml:"destinationSubnets,omitempty"`
 
 				Gateways *[]string `tfsdk:"gateways" yaml:"gateways,omitempty"`
@@ -301,11 +285,33 @@ type NetworkingIstioIoVirtualServiceV1Alpha3GoModel struct {
 				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 
 				SourceLabels *map[string]string `tfsdk:"source_labels" yaml:"sourceLabels,omitempty"`
+
+				SourceNamespace *string `tfsdk:"source_namespace" yaml:"sourceNamespace,omitempty"`
+
+				SourceSubnet *string `tfsdk:"source_subnet" yaml:"sourceSubnet,omitempty"`
 			} `tfsdk:"match" yaml:"match,omitempty"`
+
+			Route *[]struct {
+				Destination *struct {
+					Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+					Port *struct {
+						Number *int64 `tfsdk:"number" yaml:"number,omitempty"`
+					} `tfsdk:"port" yaml:"port,omitempty"`
+
+					Subset *string `tfsdk:"subset" yaml:"subset,omitempty"`
+				} `tfsdk:"destination" yaml:"destination,omitempty"`
+
+				Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
+			} `tfsdk:"route" yaml:"route,omitempty"`
 		} `tfsdk:"tcp" yaml:"tcp,omitempty"`
 
 		Tls *[]struct {
 			Match *[]struct {
+				DestinationSubnets *[]string `tfsdk:"destination_subnets" yaml:"destinationSubnets,omitempty"`
+
+				Gateways *[]string `tfsdk:"gateways" yaml:"gateways,omitempty"`
+
 				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 
 				SniHosts *[]string `tfsdk:"sni_hosts" yaml:"sniHosts,omitempty"`
@@ -313,10 +319,6 @@ type NetworkingIstioIoVirtualServiceV1Alpha3GoModel struct {
 				SourceLabels *map[string]string `tfsdk:"source_labels" yaml:"sourceLabels,omitempty"`
 
 				SourceNamespace *string `tfsdk:"source_namespace" yaml:"sourceNamespace,omitempty"`
-
-				DestinationSubnets *[]string `tfsdk:"destination_subnets" yaml:"destinationSubnets,omitempty"`
-
-				Gateways *[]string `tfsdk:"gateways" yaml:"gateways,omitempty"`
 			} `tfsdk:"match" yaml:"match,omitempty"`
 
 			Route *[]struct {
@@ -333,8 +335,6 @@ type NetworkingIstioIoVirtualServiceV1Alpha3GoModel struct {
 				Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 			} `tfsdk:"route" yaml:"route,omitempty"`
 		} `tfsdk:"tls" yaml:"tls,omitempty"`
-
-		ExportTo *[]string `tfsdk:"export_to" yaml:"exportTo,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -435,6 +435,17 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"export_to": {
+						Description:         "A list of namespaces to which this virtual service is exported.",
+						MarkdownDescription: "A list of namespaces to which this virtual service is exported.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"gateways": {
 						Description:         "The names of gateways and sidecars that should apply these routes.",
 						MarkdownDescription: "The names of gateways and sidecars that should apply these routes.",
@@ -462,74 +473,6 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 						MarkdownDescription: "An ordered list of route rules for HTTP traffic.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"mirror": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"host": {
-										Description:         "The name of a service from the service registry.",
-										MarkdownDescription: "The name of a service from the service registry.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"port": {
-										Description:         "Specifies the port on the host that is being addressed.",
-										MarkdownDescription: "Specifies the port on the host that is being addressed.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"number": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"subset": {
-										Description:         "The name of a subset within the service.",
-										MarkdownDescription: "The name of a subset within the service.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"timeout": {
-								Description:         "Timeout for HTTP requests, default is disabled.",
-								MarkdownDescription: "Timeout for HTTP requests, default is disabled.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"cors_policy": {
 								Description:         "Cross-Origin Resource Sharing policy (CORS).",
@@ -654,6 +597,40 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 								Computed: false,
 							},
 
+							"delegate": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "Name specifies the name of the delegate VirtualService.",
+										MarkdownDescription: "Name specifies the name of the delegate VirtualService.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"namespace": {
+										Description:         "Namespace specifies the namespace where the delegate VirtualService resides.",
+										MarkdownDescription: "Namespace specifies the namespace where the delegate VirtualService resides.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"direct_response": {
 								Description:         "A HTTP rule can either return a direct_response, redirect or forward (default) traffic.",
 								MarkdownDescription: "A HTTP rule can either return a direct_response, redirect or forward (default) traffic.",
@@ -723,6 +700,17 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+											"grpc_status": {
+												Description:         "GRPC status code to use to abort the request.",
+												MarkdownDescription: "GRPC status code to use to abort the request.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"http2_error": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -767,17 +755,6 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 												Optional: true,
 												Computed: false,
 											},
-
-											"grpc_status": {
-												Description:         "GRPC status code to use to abort the request.",
-												MarkdownDescription: "GRPC status code to use to abort the request.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 										}),
 
 										Required: false,
@@ -790,6 +767,17 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 										MarkdownDescription: "",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"exponential_delay": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 
 											"fixed_delay": {
 												Description:         "Add a fixed delay before forwarding the request.",
@@ -835,12 +823,103 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 												Optional: true,
 												Computed: false,
 											},
+										}),
 
-											"exponential_delay": {
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"headers": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"request": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"add": {
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.StringType,
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"remove": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"set": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"response": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"add": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"remove": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"set": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
 
 												Required: false,
 												Optional: true,
@@ -865,7 +944,208 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+									"authority": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"exact": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"prefix": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"regex": {
+												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"gateways": {
+										Description:         "Names of gateways where the rule should be applied.",
+										MarkdownDescription: "Names of gateways where the rule should be applied.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"headers": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"ignore_uri_case": {
+										Description:         "Flag to specify whether the URI matching should be case-insensitive.",
+										MarkdownDescription: "Flag to specify whether the URI matching should be case-insensitive.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"method": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"exact": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"prefix": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"regex": {
+												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "The name assigned to a match.",
+										MarkdownDescription: "The name assigned to a match.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"port": {
+										Description:         "Specifies the ports on the host that is being addressed.",
+										MarkdownDescription: "Specifies the ports on the host that is being addressed.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"query_params": {
+										Description:         "Query parameters for matching.",
+										MarkdownDescription: "Query parameters for matching.",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"scheme": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"exact": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"prefix": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"regex": {
+												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"source_labels": {
 										Description:         "",
 										MarkdownDescription: "",
 
@@ -943,185 +1223,6 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 										Computed: false,
 									},
 
-									"authority": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"prefix": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"regex": {
-												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"exact": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"method": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"exact": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"prefix": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"regex": {
-												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"port": {
-										Description:         "Specifies the ports on the host that is being addressed.",
-										MarkdownDescription: "Specifies the ports on the host that is being addressed.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"query_params": {
-										Description:         "Query parameters for matching.",
-										MarkdownDescription: "Query parameters for matching.",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"scheme": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"exact": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"prefix": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"regex": {
-												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"ignore_uri_case": {
-										Description:         "Flag to specify whether the URI matching should be case-insensitive.",
-										MarkdownDescription: "Flag to specify whether the URI matching should be case-insensitive.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "The name assigned to a match.",
-										MarkdownDescription: "The name assigned to a match.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"without_headers": {
 										Description:         "withoutHeader has the same syntax with the header, but has opposite meaning.",
 										MarkdownDescription: "withoutHeader has the same syntax with the header, but has opposite meaning.",
@@ -1132,23 +1233,58 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 										Optional: true,
 										Computed: false,
 									},
+								}),
 
-									"gateways": {
-										Description:         "Names of gateways where the rule should be applied.",
-										MarkdownDescription: "Names of gateways where the rule should be applied.",
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
-										Type: types.ListType{ElemType: types.StringType},
+							"mirror": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"host": {
+										Description:         "The name of a service from the service registry.",
+										MarkdownDescription: "The name of a service from the service registry.",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"source_labels": {
-										Description:         "",
-										MarkdownDescription: "",
+									"port": {
+										Description:         "Specifies the port on the host that is being addressed.",
+										MarkdownDescription: "Specifies the port on the host that is being addressed.",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"number": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"subset": {
+										Description:         "The name of a subset within the service.",
+										MarkdownDescription: "The name of a subset within the service.",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -1172,22 +1308,123 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 								Computed: false,
 							},
 
-							"retries": {
-								Description:         "Retry policy for HTTP requests.",
-								MarkdownDescription: "Retry policy for HTTP requests.",
+							"mirror_percentage": {
+								Description:         "Percentage of the traffic to be mirrored by the 'mirror' field.",
+								MarkdownDescription: "Percentage of the traffic to be mirrored by the 'mirror' field.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"retry_remote_localities": {
-										Description:         "Flag to specify whether the retries should retry to other localities.",
-										MarkdownDescription: "Flag to specify whether the retries should retry to other localities.",
+									"value": {
+										Description:         "",
+										MarkdownDescription: "",
 
-										Type: types.BoolType,
+										Type: types.NumberType,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "The name assigned to the route for debugging purposes.",
+								MarkdownDescription: "The name assigned to the route for debugging purposes.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"redirect": {
+								Description:         "A HTTP rule can either return a direct_response, redirect or forward (default) traffic.",
+								MarkdownDescription: "A HTTP rule can either return a direct_response, redirect or forward (default) traffic.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"authority": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"derive_port": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"port": {
+										Description:         "On a redirect, overwrite the port portion of the URL with this value.",
+										MarkdownDescription: "On a redirect, overwrite the port portion of the URL with this value.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"redirect_code": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"scheme": {
+										Description:         "On a redirect, overwrite the scheme portion of the URL with this value.",
+										MarkdownDescription: "On a redirect, overwrite the scheme portion of the URL with this value.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"uri": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"retries": {
+								Description:         "Retry policy for HTTP requests.",
+								MarkdownDescription: "Retry policy for HTTP requests.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 									"attempts": {
 										Description:         "Number of retries to be allowed for a given request.",
@@ -1214,6 +1451,51 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 									"retry_on": {
 										Description:         "Specifies the conditions under which retry takes place.",
 										MarkdownDescription: "Specifies the conditions under which retry takes place.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"retry_remote_localities": {
+										Description:         "Flag to specify whether the retries should retry to other localities.",
+										MarkdownDescription: "Flag to specify whether the retries should retry to other localities.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"rewrite": {
+								Description:         "Rewrite HTTP URIs and Authority headers.",
+								MarkdownDescription: "Rewrite HTTP URIs and Authority headers.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"authority": {
+										Description:         "rewrite the Authority/Host header with this value.",
+										MarkdownDescription: "rewrite the Authority/Host header with this value.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"uri": {
+										Description:         "",
+										MarkdownDescription: "",
 
 										Type: types.StringType,
 
@@ -1348,6 +1630,17 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+													"add": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.MapType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"remove": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -1369,17 +1662,6 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 														Optional: true,
 														Computed: false,
 													},
-
-													"add": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.MapType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 												}),
 
 												Required: false,
@@ -1410,282 +1692,11 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 								Computed: false,
 							},
 
-							"mirror_percentage": {
-								Description:         "Percentage of the traffic to be mirrored by the 'mirror' field.",
-								MarkdownDescription: "Percentage of the traffic to be mirrored by the 'mirror' field.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"value": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.NumberType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "The name assigned to the route for debugging purposes.",
-								MarkdownDescription: "The name assigned to the route for debugging purposes.",
+							"timeout": {
+								Description:         "Timeout for HTTP requests, default is disabled.",
+								MarkdownDescription: "Timeout for HTTP requests, default is disabled.",
 
 								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"redirect": {
-								Description:         "A HTTP rule can either return a direct_response, redirect or forward (default) traffic.",
-								MarkdownDescription: "A HTTP rule can either return a direct_response, redirect or forward (default) traffic.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"authority": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"derive_port": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"port": {
-										Description:         "On a redirect, overwrite the port portion of the URL with this value.",
-										MarkdownDescription: "On a redirect, overwrite the port portion of the URL with this value.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"redirect_code": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"scheme": {
-										Description:         "On a redirect, overwrite the scheme portion of the URL with this value.",
-										MarkdownDescription: "On a redirect, overwrite the scheme portion of the URL with this value.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"uri": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"delegate": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name specifies the name of the delegate VirtualService.",
-										MarkdownDescription: "Name specifies the name of the delegate VirtualService.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"namespace": {
-										Description:         "Namespace specifies the namespace where the delegate VirtualService resides.",
-										MarkdownDescription: "Namespace specifies the namespace where the delegate VirtualService resides.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"headers": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"request": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"add": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"remove": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"set": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"response": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"remove": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"set": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"add": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"rewrite": {
-								Description:         "Rewrite HTTP URIs and Authority headers.",
-								MarkdownDescription: "Rewrite HTTP URIs and Authority headers.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"authority": {
-										Description:         "rewrite the Authority/Host header with this value.",
-										MarkdownDescription: "rewrite the Authority/Host header with this value.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"uri": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
 
 								Required: false,
 								Optional: true,
@@ -1704,113 +1715,11 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"route": {
-								Description:         "The destination to which the connection should be forwarded to.",
-								MarkdownDescription: "The destination to which the connection should be forwarded to.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"destination": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"port": {
-												Description:         "Specifies the port on the host that is being addressed.",
-												MarkdownDescription: "Specifies the port on the host that is being addressed.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"number": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"subset": {
-												Description:         "The name of a subset within the service.",
-												MarkdownDescription: "The name of a subset within the service.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"host": {
-												Description:         "The name of a service from the service registry.",
-												MarkdownDescription: "The name of a service from the service registry.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"weight": {
-										Description:         "Weight specifies the relative proportion of traffic to be forwarded to the destination.",
-										MarkdownDescription: "Weight specifies the relative proportion of traffic to be forwarded to the destination.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"match": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"source_namespace": {
-										Description:         "Source namespace constraining the applicability of a rule to workloads in that namespace.",
-										MarkdownDescription: "Source namespace constraining the applicability of a rule to workloads in that namespace.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"source_subnet": {
-										Description:         "IPv4 or IPv6 ip address of source with optional subnet.",
-										MarkdownDescription: "IPv4 or IPv6 ip address of source with optional subnet.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"destination_subnets": {
 										Description:         "IPv4 or IPv6 ip addresses of destination with optional subnet.",
@@ -1855,6 +1764,108 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 										Optional: true,
 										Computed: false,
 									},
+
+									"source_namespace": {
+										Description:         "Source namespace constraining the applicability of a rule to workloads in that namespace.",
+										MarkdownDescription: "Source namespace constraining the applicability of a rule to workloads in that namespace.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"source_subnet": {
+										Description:         "IPv4 or IPv6 ip address of source with optional subnet.",
+										MarkdownDescription: "IPv4 or IPv6 ip address of source with optional subnet.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"route": {
+								Description:         "The destination to which the connection should be forwarded to.",
+								MarkdownDescription: "The destination to which the connection should be forwarded to.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"destination": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"host": {
+												Description:         "The name of a service from the service registry.",
+												MarkdownDescription: "The name of a service from the service registry.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"port": {
+												Description:         "Specifies the port on the host that is being addressed.",
+												MarkdownDescription: "Specifies the port on the host that is being addressed.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"number": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"subset": {
+												Description:         "The name of a subset within the service.",
+												MarkdownDescription: "The name of a subset within the service.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"weight": {
+										Description:         "Weight specifies the relative proportion of traffic to be forwarded to the destination.",
+										MarkdownDescription: "Weight specifies the relative proportion of traffic to be forwarded to the destination.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -1879,6 +1890,28 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"destination_subnets": {
+										Description:         "IPv4 or IPv6 ip addresses of destination with optional subnet.",
+										MarkdownDescription: "IPv4 or IPv6 ip addresses of destination with optional subnet.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"gateways": {
+										Description:         "Names of gateways where the rule should be applied.",
+										MarkdownDescription: "Names of gateways where the rule should be applied.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"port": {
 										Description:         "Specifies the port on the host that is being addressed.",
@@ -1923,28 +1956,6 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 										Optional: true,
 										Computed: false,
 									},
-
-									"destination_subnets": {
-										Description:         "IPv4 or IPv6 ip addresses of destination with optional subnet.",
-										MarkdownDescription: "IPv4 or IPv6 ip addresses of destination with optional subnet.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"gateways": {
-										Description:         "Names of gateways where the rule should be applied.",
-										MarkdownDescription: "Names of gateways where the rule should be applied.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -2032,17 +2043,6 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Resource) GetSchema(_ context.Co
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"export_to": {
-						Description:         "A list of namespaces to which this virtual service is exported.",
-						MarkdownDescription: "A list of namespaces to which this virtual service is exported.",
-
-						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

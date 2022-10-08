@@ -50,6 +50,8 @@ type InfinispanOrgBackupV2Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Cluster *string `tfsdk:"cluster" yaml:"cluster,omitempty"`
+
 		Container *struct {
 			CliExtraJvmOpts *string `tfsdk:"cli_extra_jvm_opts" yaml:"cliExtraJvmOpts,omitempty"`
 
@@ -63,6 +65,12 @@ type InfinispanOrgBackupV2Alpha1GoModel struct {
 		} `tfsdk:"container" yaml:"container,omitempty"`
 
 		Resources *struct {
+			CacheConfigs *[]string `tfsdk:"cache_configs" yaml:"cacheConfigs,omitempty"`
+
+			Caches *[]string `tfsdk:"caches" yaml:"caches,omitempty"`
+
+			Counters *[]string `tfsdk:"counters" yaml:"counters,omitempty"`
+
 			ProtoSchemas *[]string `tfsdk:"proto_schemas" yaml:"protoSchemas,omitempty"`
 
 			Scripts *[]string `tfsdk:"scripts" yaml:"scripts,omitempty"`
@@ -70,12 +78,6 @@ type InfinispanOrgBackupV2Alpha1GoModel struct {
 			Tasks *[]string `tfsdk:"tasks" yaml:"tasks,omitempty"`
 
 			Templates *[]string `tfsdk:"templates" yaml:"templates,omitempty"`
-
-			CacheConfigs *[]string `tfsdk:"cache_configs" yaml:"cacheConfigs,omitempty"`
-
-			Caches *[]string `tfsdk:"caches" yaml:"caches,omitempty"`
-
-			Counters *[]string `tfsdk:"counters" yaml:"counters,omitempty"`
 		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 		Volume *struct {
@@ -83,8 +85,6 @@ type InfinispanOrgBackupV2Alpha1GoModel struct {
 
 			StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
 		} `tfsdk:"volume" yaml:"volume,omitempty"`
-
-		Cluster *string `tfsdk:"cluster" yaml:"cluster,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -185,6 +185,17 @@ func (r *InfinispanOrgBackupV2Alpha1Resource) GetSchema(_ context.Context) (tfsd
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"cluster": {
+						Description:         "Infinispan cluster name",
+						MarkdownDescription: "Infinispan cluster name",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
 					"container": {
 						Description:         "InfinispanContainerSpec specify resource requirements per container",
 						MarkdownDescription: "InfinispanContainerSpec specify resource requirements per container",
@@ -258,6 +269,39 @@ func (r *InfinispanOrgBackupV2Alpha1Resource) GetSchema(_ context.Context) (tfsd
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+							"cache_configs": {
+								Description:         "Deprecated and to be removed on subsequent release. Use .Templates instead.",
+								MarkdownDescription: "Deprecated and to be removed on subsequent release. Use .Templates instead.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"caches": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"counters": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"proto_schemas": {
 								Description:         "",
 								MarkdownDescription: "",
@@ -292,39 +336,6 @@ func (r *InfinispanOrgBackupV2Alpha1Resource) GetSchema(_ context.Context) (tfsd
 							},
 
 							"templates": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"cache_configs": {
-								Description:         "Deprecated and to be removed on subsequent release. Use .Templates instead.",
-								MarkdownDescription: "Deprecated and to be removed on subsequent release. Use .Templates instead.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"caches": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"counters": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -372,17 +383,6 @@ func (r *InfinispanOrgBackupV2Alpha1Resource) GetSchema(_ context.Context) (tfsd
 
 						Required: false,
 						Optional: true,
-						Computed: false,
-					},
-
-					"cluster": {
-						Description:         "Infinispan cluster name",
-						MarkdownDescription: "Infinispan cluster name",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
 						Computed: false,
 					},
 				}),

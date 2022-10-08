@@ -50,6 +50,12 @@ type HazelcastComWanReplicationV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Acknowledgement *struct {
+			Timeout *int64 `tfsdk:"timeout" yaml:"timeout,omitempty"`
+
+			Type *string `tfsdk:"type" yaml:"type,omitempty"`
+		} `tfsdk:"acknowledgement" yaml:"acknowledgement,omitempty"`
+
 		Batch *struct {
 			MaximumDelay *int64 `tfsdk:"maximum_delay" yaml:"maximumDelay,omitempty"`
 
@@ -59,9 +65,9 @@ type HazelcastComWanReplicationV1Alpha1GoModel struct {
 		Endpoints *string `tfsdk:"endpoints" yaml:"endpoints,omitempty"`
 
 		Queue *struct {
-			FullBehavior *string `tfsdk:"full_behavior" yaml:"fullBehavior,omitempty"`
-
 			Capacity *int64 `tfsdk:"capacity" yaml:"capacity,omitempty"`
+
+			FullBehavior *string `tfsdk:"full_behavior" yaml:"fullBehavior,omitempty"`
 		} `tfsdk:"queue" yaml:"queue,omitempty"`
 
 		Resources *[]struct {
@@ -71,12 +77,6 @@ type HazelcastComWanReplicationV1Alpha1GoModel struct {
 		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 		TargetClusterName *string `tfsdk:"target_cluster_name" yaml:"targetClusterName,omitempty"`
-
-		Acknowledgement *struct {
-			Timeout *int64 `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
-			Type *string `tfsdk:"type" yaml:"type,omitempty"`
-		} `tfsdk:"acknowledgement" yaml:"acknowledgement,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -177,6 +177,40 @@ func (r *HazelcastComWanReplicationV1Alpha1Resource) GetSchema(_ context.Context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"acknowledgement": {
+						Description:         "Acknowledgement is the configuration for the condition when the next batch of WAN events are sent.",
+						MarkdownDescription: "Acknowledgement is the configuration for the condition when the next batch of WAN events are sent.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"timeout": {
+								Description:         "Timeout represents the time the source cluster waits for the acknowledgement. After timeout, the events will be resent.",
+								MarkdownDescription: "Timeout represents the time the source cluster waits for the acknowledgement. After timeout, the events will be resent.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"type": {
+								Description:         "Type represents how a batch of replication events is considered successfully replicated.",
+								MarkdownDescription: "Type represents how a batch of replication events is considered successfully replicated.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"batch": {
 						Description:         "Batch is the configuration for WAN events batch.",
 						MarkdownDescription: "Batch is the configuration for WAN events batch.",
@@ -228,22 +262,22 @@ func (r *HazelcastComWanReplicationV1Alpha1Resource) GetSchema(_ context.Context
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"full_behavior": {
-								Description:         "FullBehavior represents the behavior of the new arrival when the queue is full.",
-								MarkdownDescription: "FullBehavior represents the behavior of the new arrival when the queue is full.",
+							"capacity": {
+								Description:         "Capacity is the total capacity of WAN queue.",
+								MarkdownDescription: "Capacity is the total capacity of WAN queue.",
 
-								Type: types.StringType,
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"capacity": {
-								Description:         "Capacity is the total capacity of WAN queue.",
-								MarkdownDescription: "Capacity is the total capacity of WAN queue.",
+							"full_behavior": {
+								Description:         "FullBehavior represents the behavior of the new arrival when the queue is full.",
+								MarkdownDescription: "FullBehavior represents the behavior of the new arrival when the queue is full.",
 
-								Type: types.Int64Type,
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
@@ -298,40 +332,6 @@ func (r *HazelcastComWanReplicationV1Alpha1Resource) GetSchema(_ context.Context
 
 						Required: true,
 						Optional: false,
-						Computed: false,
-					},
-
-					"acknowledgement": {
-						Description:         "Acknowledgement is the configuration for the condition when the next batch of WAN events are sent.",
-						MarkdownDescription: "Acknowledgement is the configuration for the condition when the next batch of WAN events are sent.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"timeout": {
-								Description:         "Timeout represents the time the source cluster waits for the acknowledgement. After timeout, the events will be resent.",
-								MarkdownDescription: "Timeout represents the time the source cluster waits for the acknowledgement. After timeout, the events will be resent.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"type": {
-								Description:         "Type represents how a batch of replication events is considered successfully replicated.",
-								MarkdownDescription: "Type represents how a batch of replication events is considered successfully replicated.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
 						Computed: false,
 					},
 				}),

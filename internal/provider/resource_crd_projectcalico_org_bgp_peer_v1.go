@@ -50,29 +50,29 @@ type CrdProjectcalicoOrgBGPPeerV1GoModel struct {
 	Spec *struct {
 		AsNumber *int64 `tfsdk:"as_number" yaml:"asNumber,omitempty"`
 
+		KeepOriginalNextHop *bool `tfsdk:"keep_original_next_hop" yaml:"keepOriginalNextHop,omitempty"`
+
+		MaxRestartTime *string `tfsdk:"max_restart_time" yaml:"maxRestartTime,omitempty"`
+
 		Node *string `tfsdk:"node" yaml:"node,omitempty"`
 
 		NodeSelector *string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
 
 		NumAllowedLocalASNumbers *int64 `tfsdk:"num_allowed_local_as_numbers" yaml:"numAllowedLocalASNumbers,omitempty"`
 
-		PeerSelector *string `tfsdk:"peer_selector" yaml:"peerSelector,omitempty"`
-
-		KeepOriginalNextHop *bool `tfsdk:"keep_original_next_hop" yaml:"keepOriginalNextHop,omitempty"`
-
-		MaxRestartTime *string `tfsdk:"max_restart_time" yaml:"maxRestartTime,omitempty"`
-
 		Password *struct {
 			SecretKeyRef *struct {
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
 			} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
 		} `tfsdk:"password" yaml:"password,omitempty"`
 
 		PeerIP *string `tfsdk:"peer_ip" yaml:"peerIP,omitempty"`
+
+		PeerSelector *string `tfsdk:"peer_selector" yaml:"peerSelector,omitempty"`
 
 		SourceAddress *string `tfsdk:"source_address" yaml:"sourceAddress,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -179,6 +179,28 @@ func (r *CrdProjectcalicoOrgBGPPeerV1Resource) GetSchema(_ context.Context) (tfs
 						Computed: false,
 					},
 
+					"keep_original_next_hop": {
+						Description:         "Option to keep the original nexthop field when routes are sent to a BGP Peer. Setting 'true' configures the selected BGP Peers node to use the 'next hop keep;' instead of 'next hop self;'(default) in the specific branch of the Node on 'bird.cfg'.",
+						MarkdownDescription: "Option to keep the original nexthop field when routes are sent to a BGP Peer. Setting 'true' configures the selected BGP Peers node to use the 'next hop keep;' instead of 'next hop self;'(default) in the specific branch of the Node on 'bird.cfg'.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"max_restart_time": {
+						Description:         "Time to allow for software restart.  When specified, this is configured as the graceful restart timeout.  When not specified, the BIRD default of 120s is used.",
+						MarkdownDescription: "Time to allow for software restart.  When specified, this is configured as the graceful restart timeout.  When not specified, the BIRD default of 120s is used.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"node": {
 						Description:         "The node name identifying the Calico node instance that is targeted by this peer. If this is not set, and no nodeSelector is specified, then this BGP peer selects all nodes in the cluster.",
 						MarkdownDescription: "The node name identifying the Calico node instance that is targeted by this peer. If this is not set, and no nodeSelector is specified, then this BGP peer selects all nodes in the cluster.",
@@ -212,39 +234,6 @@ func (r *CrdProjectcalicoOrgBGPPeerV1Resource) GetSchema(_ context.Context) (tfs
 						Computed: false,
 					},
 
-					"peer_selector": {
-						Description:         "Selector for the remote nodes to peer with.  When this is set, the PeerIP and ASNumber fields must be empty.  For each peering between the local node and selected remote nodes, we configure an IPv4 peering if both ends have NodeBGPSpec.IPv4Address specified, and an IPv6 peering if both ends have NodeBGPSpec.IPv6Address specified.  The remote AS number comes from the remote node's NodeBGPSpec.ASNumber, or the global default if that is not set.",
-						MarkdownDescription: "Selector for the remote nodes to peer with.  When this is set, the PeerIP and ASNumber fields must be empty.  For each peering between the local node and selected remote nodes, we configure an IPv4 peering if both ends have NodeBGPSpec.IPv4Address specified, and an IPv6 peering if both ends have NodeBGPSpec.IPv6Address specified.  The remote AS number comes from the remote node's NodeBGPSpec.ASNumber, or the global default if that is not set.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"keep_original_next_hop": {
-						Description:         "Option to keep the original nexthop field when routes are sent to a BGP Peer. Setting 'true' configures the selected BGP Peers node to use the 'next hop keep;' instead of 'next hop self;'(default) in the specific branch of the Node on 'bird.cfg'.",
-						MarkdownDescription: "Option to keep the original nexthop field when routes are sent to a BGP Peer. Setting 'true' configures the selected BGP Peers node to use the 'next hop keep;' instead of 'next hop self;'(default) in the specific branch of the Node on 'bird.cfg'.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"max_restart_time": {
-						Description:         "Time to allow for software restart.  When specified, this is configured as the graceful restart timeout.  When not specified, the BIRD default of 120s is used.",
-						MarkdownDescription: "Time to allow for software restart.  When specified, this is configured as the graceful restart timeout.  When not specified, the BIRD default of 120s is used.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"password": {
 						Description:         "Optional BGP password for the peerings generated by this BGPPeer resource.",
 						MarkdownDescription: "Optional BGP password for the peerings generated by this BGPPeer resource.",
@@ -256,6 +245,17 @@ func (r *CrdProjectcalicoOrgBGPPeerV1Resource) GetSchema(_ context.Context) (tfs
 								MarkdownDescription: "Selects a key of a secret in the node pod's namespace.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"key": {
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
 
 									"name": {
 										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -278,17 +278,6 @@ func (r *CrdProjectcalicoOrgBGPPeerV1Resource) GetSchema(_ context.Context) (tfs
 										Optional: true,
 										Computed: false,
 									},
-
-									"key": {
-										Description:         "The key of the secret to select from.  Must be a valid secret key.",
-										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -305,6 +294,17 @@ func (r *CrdProjectcalicoOrgBGPPeerV1Resource) GetSchema(_ context.Context) (tfs
 					"peer_ip": {
 						Description:         "The IP address of the peer followed by an optional port number to peer with. If port number is given, format should be '[<IPv6>]:port' or '<IPv4>:<port>' for IPv4. If optional port number is not set, and this peer IP and ASNumber belongs to a calico/node with ListenPort set in BGPConfiguration, then we use that port to peer.",
 						MarkdownDescription: "The IP address of the peer followed by an optional port number to peer with. If port number is given, format should be '[<IPv6>]:port' or '<IPv4>:<port>' for IPv4. If optional port number is not set, and this peer IP and ASNumber belongs to a calico/node with ListenPort set in BGPConfiguration, then we use that port to peer.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"peer_selector": {
+						Description:         "Selector for the remote nodes to peer with.  When this is set, the PeerIP and ASNumber fields must be empty.  For each peering between the local node and selected remote nodes, we configure an IPv4 peering if both ends have NodeBGPSpec.IPv4Address specified, and an IPv6 peering if both ends have NodeBGPSpec.IPv6Address specified.  The remote AS number comes from the remote node's NodeBGPSpec.ASNumber, or the global default if that is not set.",
+						MarkdownDescription: "Selector for the remote nodes to peer with.  When this is set, the PeerIP and ASNumber fields must be empty.  For each peering between the local node and selected remote nodes, we configure an IPv4 peering if both ends have NodeBGPSpec.IPv4Address specified, and an IPv6 peering if both ends have NodeBGPSpec.IPv6Address specified.  The remote AS number comes from the remote node's NodeBGPSpec.ASNumber, or the global default if that is not set.",
 
 						Type: types.StringType,
 

@@ -59,6 +59,8 @@ type MutationsGatekeeperShModifySetV1Alpha1GoModel struct {
 		Location *string `tfsdk:"location" yaml:"location,omitempty"`
 
 		Match *struct {
+			ExcludedNamespaces *[]string `tfsdk:"excluded_namespaces" yaml:"excludedNamespaces,omitempty"`
+
 			Kinds *[]struct {
 				ApiGroups *[]string `tfsdk:"api_groups" yaml:"apiGroups,omitempty"`
 
@@ -94,8 +96,6 @@ type MutationsGatekeeperShModifySetV1Alpha1GoModel struct {
 			Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 			Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
-
-			ExcludedNamespaces *[]string `tfsdk:"excluded_namespaces" yaml:"excludedNamespaces,omitempty"`
 		} `tfsdk:"match" yaml:"match,omitempty"`
 
 		Parameters *struct {
@@ -263,6 +263,17 @@ func (r *MutationsGatekeeperShModifySetV1Alpha1Resource) GetSchema(_ context.Con
 						MarkdownDescription: "Match allows the user to limit which resources get mutated. Individual match criteria are AND-ed together. An undefined match criteria matches everything.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"excluded_namespaces": {
+								Description:         "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
+								MarkdownDescription: "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"kinds": {
 								Description:         "",
@@ -461,17 +472,6 @@ func (r *MutationsGatekeeperShModifySetV1Alpha1Resource) GetSchema(_ context.Con
 								MarkdownDescription: "Scope determines if cluster-scoped and/or namespaced-scoped resources are matched.  Accepts '*', 'Cluster', or 'Namespaced'. (defaults to '*')",
 
 								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"excluded_namespaces": {
-								Description:         "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
-								MarkdownDescription: "ExcludedNamespaces is a list of namespace names. If defined, a constraint only applies to resources not in a listed namespace. ExcludedNamespaces also supports a prefix or suffix based glob.  For example, 'excludedNamespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'excludedNamespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.",
-
-								Type: types.ListType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,

@@ -64,10 +64,6 @@ type TraefikContainoUsIngressRouteTCPV1Alpha1GoModel struct {
 			Priority *int64 `tfsdk:"priority" yaml:"priority,omitempty"`
 
 			Services *[]struct {
-				TerminationDelay *int64 `tfsdk:"termination_delay" yaml:"terminationDelay,omitempty"`
-
-				Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
-
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
@@ -77,16 +73,14 @@ type TraefikContainoUsIngressRouteTCPV1Alpha1GoModel struct {
 				ProxyProtocol *struct {
 					Version *int64 `tfsdk:"version" yaml:"version,omitempty"`
 				} `tfsdk:"proxy_protocol" yaml:"proxyProtocol,omitempty"`
+
+				TerminationDelay *int64 `tfsdk:"termination_delay" yaml:"terminationDelay,omitempty"`
+
+				Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 			} `tfsdk:"services" yaml:"services,omitempty"`
 		} `tfsdk:"routes" yaml:"routes,omitempty"`
 
 		Tls *struct {
-			Store *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-			} `tfsdk:"store" yaml:"store,omitempty"`
-
 			CertResolver *string `tfsdk:"cert_resolver" yaml:"certResolver,omitempty"`
 
 			Domains *[]struct {
@@ -104,6 +98,12 @@ type TraefikContainoUsIngressRouteTCPV1Alpha1GoModel struct {
 			Passthrough *bool `tfsdk:"passthrough" yaml:"passthrough,omitempty"`
 
 			SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
+
+			Store *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+			} `tfsdk:"store" yaml:"store,omitempty"`
 		} `tfsdk:"tls" yaml:"tls,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -284,28 +284,6 @@ func (r *TraefikContainoUsIngressRouteTCPV1Alpha1Resource) GetSchema(_ context.C
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"termination_delay": {
-										Description:         "TerminationDelay defines the deadline that the proxy sets, after one of its connected peers indicates it has closed the writing capability of its connection, to close the reading capability as well, hence fully terminating the connection. It is a duration in milliseconds, defaulting to 100. A negative value means an infinite deadline (i.e. the reading capability is never closed).",
-										MarkdownDescription: "TerminationDelay defines the deadline that the proxy sets, after one of its connected peers indicates it has closed the writing capability of its connection, to close the reading capability as well, hence fully terminating the connection. It is a duration in milliseconds, defaulting to 100. A negative value means an infinite deadline (i.e. the reading capability is never closed).",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"weight": {
-										Description:         "Weight defines the weight used when balancing requests between multiple Kubernetes Service.",
-										MarkdownDescription: "Weight defines the weight used when balancing requests between multiple Kubernetes Service.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"name": {
 										Description:         "Name defines the name of the referenced Kubernetes Service.",
 										MarkdownDescription: "Name defines the name of the referenced Kubernetes Service.",
@@ -361,6 +339,28 @@ func (r *TraefikContainoUsIngressRouteTCPV1Alpha1Resource) GetSchema(_ context.C
 										Optional: true,
 										Computed: false,
 									},
+
+									"termination_delay": {
+										Description:         "TerminationDelay defines the deadline that the proxy sets, after one of its connected peers indicates it has closed the writing capability of its connection, to close the reading capability as well, hence fully terminating the connection. It is a duration in milliseconds, defaulting to 100. A negative value means an infinite deadline (i.e. the reading capability is never closed).",
+										MarkdownDescription: "TerminationDelay defines the deadline that the proxy sets, after one of its connected peers indicates it has closed the writing capability of its connection, to close the reading capability as well, hence fully terminating the connection. It is a duration in milliseconds, defaulting to 100. A negative value means an infinite deadline (i.e. the reading capability is never closed).",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"weight": {
+										Description:         "Weight defines the weight used when balancing requests between multiple Kubernetes Service.",
+										MarkdownDescription: "Weight defines the weight used when balancing requests between multiple Kubernetes Service.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -379,40 +379,6 @@ func (r *TraefikContainoUsIngressRouteTCPV1Alpha1Resource) GetSchema(_ context.C
 						MarkdownDescription: "TLS defines the TLS configuration on a layer 4 / TCP Route. More info: https://doc.traefik.io/traefik/v2.9/routing/routers/#tls_1",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"store": {
-								Description:         "Store defines the reference to the TLSStore, that will be used to store certificates. Please note that only 'default' TLSStore can be used.",
-								MarkdownDescription: "Store defines the reference to the TLSStore, that will be used to store certificates. Please note that only 'default' TLSStore can be used.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name defines the name of the referenced Traefik resource.",
-										MarkdownDescription: "Name defines the name of the referenced Traefik resource.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"namespace": {
-										Description:         "Namespace defines the namespace of the referenced Traefik resource.",
-										MarkdownDescription: "Namespace defines the namespace of the referenced Traefik resource.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"cert_resolver": {
 								Description:         "CertResolver defines the name of the certificate resolver to use. Cert resolvers have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v2.9/https/acme/#certificate-resolvers",
@@ -509,6 +475,40 @@ func (r *TraefikContainoUsIngressRouteTCPV1Alpha1Resource) GetSchema(_ context.C
 								MarkdownDescription: "SecretName is the name of the referenced Kubernetes Secret to specify the certificate details.",
 
 								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"store": {
+								Description:         "Store defines the reference to the TLSStore, that will be used to store certificates. Please note that only 'default' TLSStore can be used.",
+								MarkdownDescription: "Store defines the reference to the TLSStore, that will be used to store certificates. Please note that only 'default' TLSStore can be used.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "Name defines the name of the referenced Traefik resource.",
+										MarkdownDescription: "Name defines the name of the referenced Traefik resource.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"namespace": {
+										Description:         "Namespace defines the namespace of the referenced Traefik resource.",
+										MarkdownDescription: "Namespace defines the namespace of the referenced Traefik resource.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,

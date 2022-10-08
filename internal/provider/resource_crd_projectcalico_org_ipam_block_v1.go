@@ -48,9 +48,15 @@ type CrdProjectcalicoOrgIPAMBlockV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Unallocated *[]string `tfsdk:"unallocated" yaml:"unallocated,omitempty"`
+		Affinity *string `tfsdk:"affinity" yaml:"affinity,omitempty"`
 
 		Allocations *[]string `tfsdk:"allocations" yaml:"allocations,omitempty"`
+
+		Attributes *[]struct {
+			Handle_id *string `tfsdk:"handle_id" yaml:"handle_id,omitempty"`
+
+			Secondary *map[string]string `tfsdk:"secondary" yaml:"secondary,omitempty"`
+		} `tfsdk:"attributes" yaml:"attributes,omitempty"`
 
 		Cidr *string `tfsdk:"cidr" yaml:"cidr,omitempty"`
 
@@ -60,15 +66,9 @@ type CrdProjectcalicoOrgIPAMBlockV1GoModel struct {
 
 		SequenceNumberForAllocation *map[string]string `tfsdk:"sequence_number_for_allocation" yaml:"sequenceNumberForAllocation,omitempty"`
 
-		Affinity *string `tfsdk:"affinity" yaml:"affinity,omitempty"`
-
-		Attributes *[]struct {
-			Handle_id *string `tfsdk:"handle_id" yaml:"handle_id,omitempty"`
-
-			Secondary *map[string]string `tfsdk:"secondary" yaml:"secondary,omitempty"`
-		} `tfsdk:"attributes" yaml:"attributes,omitempty"`
-
 		StrictAffinity *bool `tfsdk:"strict_affinity" yaml:"strictAffinity,omitempty"`
+
+		Unallocated *[]string `tfsdk:"unallocated" yaml:"unallocated,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -162,14 +162,14 @@ func (r *CrdProjectcalicoOrgIPAMBlockV1Resource) GetSchema(_ context.Context) (t
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"unallocated": {
-						Description:         "Unallocated is an ordered list of allocations which are free in the block.",
-						MarkdownDescription: "Unallocated is an ordered list of allocations which are free in the block.",
+					"affinity": {
+						Description:         "Affinity of the block, if this block has one. If set, it will be of the form 'host:<hostname>'. If not set, this block is not affine to a host.",
+						MarkdownDescription: "Affinity of the block, if this block has one. If set, it will be of the form 'host:<hostname>'. If not set, this block is not affine to a host.",
 
-						Type: types.ListType{ElemType: types.StringType},
+						Type: types.StringType,
 
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
@@ -178,6 +178,40 @@ func (r *CrdProjectcalicoOrgIPAMBlockV1Resource) GetSchema(_ context.Context) (t
 						MarkdownDescription: "Array of allocations in-use within this block. nil entries mean the allocation is free. For non-nil entries at index i, the index is the ordinal of the allocation within this block and the value is the index of the associated attributes in the Attributes array.",
 
 						Type: types.ListType{ElemType: types.StringType},
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"attributes": {
+						Description:         "Attributes is an array of arbitrary metadata associated with allocations in the block. To find attributes for a given allocation, use the value of the allocation's entry in the Allocations array as the index of the element in this array.",
+						MarkdownDescription: "Attributes is an array of arbitrary metadata associated with allocations in the block. To find attributes for a given allocation, use the value of the allocation's entry in the Allocations array as the index of the element in this array.",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"handle_id": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"secondary": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: true,
 						Optional: false,
@@ -228,56 +262,22 @@ func (r *CrdProjectcalicoOrgIPAMBlockV1Resource) GetSchema(_ context.Context) (t
 						Computed: false,
 					},
 
-					"affinity": {
-						Description:         "Affinity of the block, if this block has one. If set, it will be of the form 'host:<hostname>'. If not set, this block is not affine to a host.",
-						MarkdownDescription: "Affinity of the block, if this block has one. If set, it will be of the form 'host:<hostname>'. If not set, this block is not affine to a host.",
+					"strict_affinity": {
+						Description:         "StrictAffinity on the IPAMBlock is deprecated and no longer used by the code. Use IPAMConfig StrictAffinity instead.",
+						MarkdownDescription: "StrictAffinity on the IPAMBlock is deprecated and no longer used by the code. Use IPAMConfig StrictAffinity instead.",
 
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"attributes": {
-						Description:         "Attributes is an array of arbitrary metadata associated with allocations in the block. To find attributes for a given allocation, use the value of the allocation's entry in the Allocations array as the index of the element in this array.",
-						MarkdownDescription: "Attributes is an array of arbitrary metadata associated with allocations in the block. To find attributes for a given allocation, use the value of the allocation's entry in the Allocations array as the index of the element in this array.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"handle_id": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"secondary": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
+						Type: types.BoolType,
 
 						Required: true,
 						Optional: false,
 						Computed: false,
 					},
 
-					"strict_affinity": {
-						Description:         "StrictAffinity on the IPAMBlock is deprecated and no longer used by the code. Use IPAMConfig StrictAffinity instead.",
-						MarkdownDescription: "StrictAffinity on the IPAMBlock is deprecated and no longer used by the code. Use IPAMConfig StrictAffinity instead.",
+					"unallocated": {
+						Description:         "Unallocated is an ordered list of allocations which are free in the block.",
+						MarkdownDescription: "Unallocated is an ordered list of allocations which are free in the block.",
 
-						Type: types.BoolType,
+						Type: types.ListType{ElemType: types.StringType},
 
 						Required: true,
 						Optional: false,

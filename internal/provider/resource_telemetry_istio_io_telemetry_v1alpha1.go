@@ -68,6 +68,8 @@ type TelemetryIstioIoTelemetryV1Alpha1GoModel struct {
 
 		Metrics *[]struct {
 			Overrides *[]struct {
+				Disabled *bool `tfsdk:"disabled" yaml:"disabled,omitempty"`
+
 				Match *struct {
 					CustomMetric *string `tfsdk:"custom_metric" yaml:"customMetric,omitempty"`
 
@@ -77,8 +79,6 @@ type TelemetryIstioIoTelemetryV1Alpha1GoModel struct {
 				} `tfsdk:"match" yaml:"match,omitempty"`
 
 				TagOverrides *map[string]string `tfsdk:"tag_overrides" yaml:"tagOverrides,omitempty"`
-
-				Disabled *bool `tfsdk:"disabled" yaml:"disabled,omitempty"`
 			} `tfsdk:"overrides" yaml:"overrides,omitempty"`
 
 			Providers *[]struct {
@@ -91,6 +91,10 @@ type TelemetryIstioIoTelemetryV1Alpha1GoModel struct {
 		} `tfsdk:"selector" yaml:"selector,omitempty"`
 
 		Tracing *[]struct {
+			CustomTags *map[string]string `tfsdk:"custom_tags" yaml:"customTags,omitempty"`
+
+			DisableSpanReporting *bool `tfsdk:"disable_span_reporting" yaml:"disableSpanReporting,omitempty"`
+
 			Match *struct {
 				Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
 			} `tfsdk:"match" yaml:"match,omitempty"`
@@ -102,10 +106,6 @@ type TelemetryIstioIoTelemetryV1Alpha1GoModel struct {
 			RandomSamplingPercentage *float64 `tfsdk:"random_sampling_percentage" yaml:"randomSamplingPercentage,omitempty"`
 
 			UseRequestIdForTraceSampling *bool `tfsdk:"use_request_id_for_trace_sampling" yaml:"useRequestIdForTraceSampling,omitempty"`
-
-			CustomTags *map[string]string `tfsdk:"custom_tags" yaml:"customTags,omitempty"`
-
-			DisableSpanReporting *bool `tfsdk:"disable_span_reporting" yaml:"disableSpanReporting,omitempty"`
 		} `tfsdk:"tracing" yaml:"tracing,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -311,6 +311,17 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Resource) GetSchema(_ context.Context)
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+									"disabled": {
+										Description:         "Optional.",
+										MarkdownDescription: "Optional.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"match": {
 										Description:         "Match allows provides the scope of the override.",
 										MarkdownDescription: "Match allows provides the scope of the override.",
@@ -361,17 +372,6 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Resource) GetSchema(_ context.Context)
 										MarkdownDescription: "Optional.",
 
 										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"disabled": {
-										Description:         "Optional.",
-										MarkdownDescription: "Optional.",
-
-										Type: types.BoolType,
 
 										Required: false,
 										Optional: true,
@@ -442,6 +442,28 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Resource) GetSchema(_ context.Context)
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+							"custom_tags": {
+								Description:         "Optional.",
+								MarkdownDescription: "Optional.",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"disable_span_reporting": {
+								Description:         "Controls span reporting.",
+								MarkdownDescription: "Controls span reporting.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"match": {
 								Description:         "Allows tailoring of behavior to specific conditions.",
 								MarkdownDescription: "Allows tailoring of behavior to specific conditions.",
@@ -502,28 +524,6 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Resource) GetSchema(_ context.Context)
 							"use_request_id_for_trace_sampling": {
 								Description:         "",
 								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"custom_tags": {
-								Description:         "Optional.",
-								MarkdownDescription: "Optional.",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"disable_span_reporting": {
-								Description:         "Controls span reporting.",
-								MarkdownDescription: "Controls span reporting.",
 
 								Type: types.BoolType,
 

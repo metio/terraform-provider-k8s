@@ -57,6 +57,12 @@ type NetworkingIstioIoWorkloadGroupV1Alpha3GoModel struct {
 		} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
 		Probe *struct {
+			Exec *struct {
+				Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+			} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+			FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
 			HttpGet *struct {
 				Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
@@ -86,12 +92,6 @@ type NetworkingIstioIoWorkloadGroupV1Alpha3GoModel struct {
 			} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
-
-			Exec *struct {
-				Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
-			} `tfsdk:"exec" yaml:"exec,omitempty"`
-
-			FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
 		} `tfsdk:"probe" yaml:"probe,omitempty"`
 
 		Template *struct {
@@ -248,6 +248,40 @@ func (r *NetworkingIstioIoWorkloadGroupV1Alpha3Resource) GetSchema(_ context.Con
 						MarkdownDescription: "'ReadinessProbe' describes the configuration the user must provide for healthchecking on their workload.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"exec": {
+								Description:         "Health is determined by how the command that is executed exited.",
+								MarkdownDescription: "Health is determined by how the command that is executed exited.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"command": {
+										Description:         "Command to run.",
+										MarkdownDescription: "Command to run.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"failure_threshold": {
+								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.",
+								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"http_get": {
 								Description:         "",
@@ -409,40 +443,6 @@ func (r *NetworkingIstioIoWorkloadGroupV1Alpha3Resource) GetSchema(_ context.Con
 							"timeout_seconds": {
 								Description:         "Number of seconds after which the probe times out.",
 								MarkdownDescription: "Number of seconds after which the probe times out.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"exec": {
-								Description:         "Health is determined by how the command that is executed exited.",
-								MarkdownDescription: "Health is determined by how the command that is executed exited.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"command": {
-										Description:         "Command to run.",
-										MarkdownDescription: "Command to run.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"failure_threshold": {
-								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.",
-								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.",
 
 								Type: types.Int64Type,
 

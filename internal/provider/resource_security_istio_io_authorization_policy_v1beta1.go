@@ -59,9 +59,15 @@ type SecurityIstioIoAuthorizationPolicyV1Beta1GoModel struct {
 		Rules *[]struct {
 			From *[]struct {
 				Source *struct {
+					IpBlocks *[]string `tfsdk:"ip_blocks" yaml:"ipBlocks,omitempty"`
+
+					Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
 					NotIpBlocks *[]string `tfsdk:"not_ip_blocks" yaml:"notIpBlocks,omitempty"`
 
 					NotNamespaces *[]string `tfsdk:"not_namespaces" yaml:"notNamespaces,omitempty"`
+
+					NotPrincipals *[]string `tfsdk:"not_principals" yaml:"notPrincipals,omitempty"`
 
 					NotRemoteIpBlocks *[]string `tfsdk:"not_remote_ip_blocks" yaml:"notRemoteIpBlocks,omitempty"`
 
@@ -69,20 +75,20 @@ type SecurityIstioIoAuthorizationPolicyV1Beta1GoModel struct {
 
 					Principals *[]string `tfsdk:"principals" yaml:"principals,omitempty"`
 
-					RequestPrincipals *[]string `tfsdk:"request_principals" yaml:"requestPrincipals,omitempty"`
-
-					IpBlocks *[]string `tfsdk:"ip_blocks" yaml:"ipBlocks,omitempty"`
-
-					Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-					NotPrincipals *[]string `tfsdk:"not_principals" yaml:"notPrincipals,omitempty"`
-
 					RemoteIpBlocks *[]string `tfsdk:"remote_ip_blocks" yaml:"remoteIpBlocks,omitempty"`
+
+					RequestPrincipals *[]string `tfsdk:"request_principals" yaml:"requestPrincipals,omitempty"`
 				} `tfsdk:"source" yaml:"source,omitempty"`
 			} `tfsdk:"from" yaml:"from,omitempty"`
 
 			To *[]struct {
 				Operation *struct {
+					Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
+
+					Methods *[]string `tfsdk:"methods" yaml:"methods,omitempty"`
+
+					NotHosts *[]string `tfsdk:"not_hosts" yaml:"notHosts,omitempty"`
+
 					NotMethods *[]string `tfsdk:"not_methods" yaml:"notMethods,omitempty"`
 
 					NotPaths *[]string `tfsdk:"not_paths" yaml:"notPaths,omitempty"`
@@ -92,12 +98,6 @@ type SecurityIstioIoAuthorizationPolicyV1Beta1GoModel struct {
 					Paths *[]string `tfsdk:"paths" yaml:"paths,omitempty"`
 
 					Ports *[]string `tfsdk:"ports" yaml:"ports,omitempty"`
-
-					Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
-
-					Methods *[]string `tfsdk:"methods" yaml:"methods,omitempty"`
-
-					NotHosts *[]string `tfsdk:"not_hosts" yaml:"notHosts,omitempty"`
 				} `tfsdk:"operation" yaml:"operation,omitempty"`
 			} `tfsdk:"to" yaml:"to,omitempty"`
 
@@ -265,6 +265,28 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Resource) GetSchema(_ context.
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+											"ip_blocks": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"namespaces": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"not_ip_blocks": {
 												Description:         "Optional.",
 												MarkdownDescription: "Optional.",
@@ -277,6 +299,17 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Resource) GetSchema(_ context.
 											},
 
 											"not_namespaces": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"not_principals": {
 												Description:         "Optional.",
 												MarkdownDescription: "Optional.",
 
@@ -320,51 +353,18 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Resource) GetSchema(_ context.
 												Computed: false,
 											},
 
-											"request_principals": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"ip_blocks": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"namespaces": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"not_principals": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"remote_ip_blocks": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"request_principals": {
 												Description:         "Optional.",
 												MarkdownDescription: "Optional.",
 
@@ -398,6 +398,39 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Resource) GetSchema(_ context.
 										MarkdownDescription: "Operation specifies the operation of a request.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"hosts": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"methods": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"not_hosts": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 
 											"not_methods": {
 												Description:         "Optional.",
@@ -444,39 +477,6 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Resource) GetSchema(_ context.
 											},
 
 											"ports": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"hosts": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"methods": {
-												Description:         "Optional.",
-												MarkdownDescription: "Optional.",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"not_hosts": {
 												Description:         "Optional.",
 												MarkdownDescription: "Optional.",
 
