@@ -8,12 +8,10 @@ go 1.19
 require (
 	github.com/gruntwork-io/terratest v0.40.22
 	github.com/hashicorp/terraform-plugin-docs v0.13.0
-	github.com/hashicorp/terraform-plugin-framework v0.13.0
+	github.com/hashicorp/terraform-plugin-framework v0.14.0
 	github.com/hashicorp/terraform-plugin-log v0.7.0
 	github.com/iancoleman/strcase v0.2.0
 	github.com/stretchr/testify v1.8.0
-	github.com/zclconf/go-cty v1.11.0
-	github.com/zclconf/go-cty-yaml v1.0.2
 	gopkg.in/yaml.v3 v3.0.1
 	k8s.io/apiextensions-apiserver v0.25.2
 	k8s.io/apimachinery v0.25.2
@@ -94,6 +92,7 @@ require (
 	github.com/vmihailenco/msgpack/v4 v4.3.12 // indirect
 	github.com/vmihailenco/tagparser v0.1.2 // indirect
 	github.com/xanzy/ssh-agent v0.3.2 // indirect
+	github.com/zclconf/go-cty v1.11.0 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	golang.org/x/crypto v0.0.0-20220829220503-c86fa9a7ed90 // indirect
 	golang.org/x/lint v0.0.0-20210508222113-6edffad5e616 // indirect
