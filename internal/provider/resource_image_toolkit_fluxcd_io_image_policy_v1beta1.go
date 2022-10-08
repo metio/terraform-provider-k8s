@@ -63,10 +63,6 @@ type ImageToolkitFluxcdIoImagePolicyV1Beta1GoModel struct {
 		} `tfsdk:"image_repository_ref" yaml:"imageRepositoryRef,omitempty"`
 
 		Policy *struct {
-			Semver *struct {
-				Range *string `tfsdk:"range" yaml:"range,omitempty"`
-			} `tfsdk:"semver" yaml:"semver,omitempty"`
-
 			Alphabetical *struct {
 				Order *string `tfsdk:"order" yaml:"order,omitempty"`
 			} `tfsdk:"alphabetical" yaml:"alphabetical,omitempty"`
@@ -74,6 +70,10 @@ type ImageToolkitFluxcdIoImagePolicyV1Beta1GoModel struct {
 			Numerical *struct {
 				Order *string `tfsdk:"order" yaml:"order,omitempty"`
 			} `tfsdk:"numerical" yaml:"numerical,omitempty"`
+
+			Semver *struct {
+				Range *string `tfsdk:"range" yaml:"range,omitempty"`
+			} `tfsdk:"semver" yaml:"semver,omitempty"`
 		} `tfsdk:"policy" yaml:"policy,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -249,29 +249,6 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Beta1Resource) GetSchema(_ context.Con
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"semver": {
-								Description:         "SemVer gives a semantic version range to check against the tags available.",
-								MarkdownDescription: "SemVer gives a semantic version range to check against the tags available.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"range": {
-										Description:         "Range gives a semver range for the image tag; the highest version within the range that's a tag yields the latest image.",
-										MarkdownDescription: "Range gives a semver range for the image tag; the highest version within the range that's a tag yields the latest image.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"alphabetical": {
 								Description:         "Alphabetical set of rules to use for alphabetical ordering of the tags.",
 								MarkdownDescription: "Alphabetical set of rules to use for alphabetical ordering of the tags.",
@@ -309,6 +286,29 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Beta1Resource) GetSchema(_ context.Con
 
 										Required: false,
 										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"semver": {
+								Description:         "SemVer gives a semantic version range to check against the tags available.",
+								MarkdownDescription: "SemVer gives a semantic version range to check against the tags available.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"range": {
+										Description:         "Range gives a semver range for the image tag; the highest version within the range that's a tag yields the latest image.",
+										MarkdownDescription: "Range gives a semver range for the image tag; the highest version within the range that's a tag yields the latest image.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
 										Computed: false,
 									},
 								}),

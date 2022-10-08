@@ -50,6 +50,78 @@ type HelmToolkitFluxcdIoHelmReleaseV2Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Chart *struct {
+			Spec *struct {
+				Chart *string `tfsdk:"chart" yaml:"chart,omitempty"`
+
+				Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+				ReconcileStrategy *string `tfsdk:"reconcile_strategy" yaml:"reconcileStrategy,omitempty"`
+
+				SourceRef *struct {
+					ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+				} `tfsdk:"source_ref" yaml:"sourceRef,omitempty"`
+
+				ValuesFile *string `tfsdk:"values_file" yaml:"valuesFile,omitempty"`
+
+				ValuesFiles *[]string `tfsdk:"values_files" yaml:"valuesFiles,omitempty"`
+
+				Version *string `tfsdk:"version" yaml:"version,omitempty"`
+			} `tfsdk:"spec" yaml:"spec,omitempty"`
+		} `tfsdk:"chart" yaml:"chart,omitempty"`
+
+		DependsOn *[]struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+		} `tfsdk:"depends_on" yaml:"dependsOn,omitempty"`
+
+		Install *struct {
+			Crds *string `tfsdk:"crds" yaml:"crds,omitempty"`
+
+			CreateNamespace *bool `tfsdk:"create_namespace" yaml:"createNamespace,omitempty"`
+
+			DisableHooks *bool `tfsdk:"disable_hooks" yaml:"disableHooks,omitempty"`
+
+			DisableOpenAPIValidation *bool `tfsdk:"disable_open_api_validation" yaml:"disableOpenAPIValidation,omitempty"`
+
+			DisableWait *bool `tfsdk:"disable_wait" yaml:"disableWait,omitempty"`
+
+			DisableWaitForJobs *bool `tfsdk:"disable_wait_for_jobs" yaml:"disableWaitForJobs,omitempty"`
+
+			Remediation *struct {
+				IgnoreTestFailures *bool `tfsdk:"ignore_test_failures" yaml:"ignoreTestFailures,omitempty"`
+
+				RemediateLastFailure *bool `tfsdk:"remediate_last_failure" yaml:"remediateLastFailure,omitempty"`
+
+				Retries *int64 `tfsdk:"retries" yaml:"retries,omitempty"`
+			} `tfsdk:"remediation" yaml:"remediation,omitempty"`
+
+			Replace *bool `tfsdk:"replace" yaml:"replace,omitempty"`
+
+			SkipCRDs *bool `tfsdk:"skip_cr_ds" yaml:"skipCRDs,omitempty"`
+
+			Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+		} `tfsdk:"install" yaml:"install,omitempty"`
+
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+		KubeConfig *struct {
+			SecretRef *struct {
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+		} `tfsdk:"kube_config" yaml:"kubeConfig,omitempty"`
+
+		MaxHistory *int64 `tfsdk:"max_history" yaml:"maxHistory,omitempty"`
+
 		PostRenderers *[]struct {
 			Kustomize *struct {
 				Images *[]struct {
@@ -66,8 +138,6 @@ type HelmToolkitFluxcdIoHelmReleaseV2Beta1GoModel struct {
 					Patch *string `tfsdk:"patch" yaml:"patch,omitempty"`
 
 					Target *struct {
-						Version *string `tfsdk:"version" yaml:"version,omitempty"`
-
 						AnnotationSelector *string `tfsdk:"annotation_selector" yaml:"annotationSelector,omitempty"`
 
 						Group *string `tfsdk:"group" yaml:"group,omitempty"`
@@ -79,6 +149,8 @@ type HelmToolkitFluxcdIoHelmReleaseV2Beta1GoModel struct {
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 						Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+						Version *string `tfsdk:"version" yaml:"version,omitempty"`
 					} `tfsdk:"target" yaml:"target,omitempty"`
 				} `tfsdk:"patches" yaml:"patches,omitempty"`
 
@@ -94,8 +166,6 @@ type HelmToolkitFluxcdIoHelmReleaseV2Beta1GoModel struct {
 					} `tfsdk:"patch" yaml:"patch,omitempty"`
 
 					Target *struct {
-						Version *string `tfsdk:"version" yaml:"version,omitempty"`
-
 						AnnotationSelector *string `tfsdk:"annotation_selector" yaml:"annotationSelector,omitempty"`
 
 						Group *string `tfsdk:"group" yaml:"group,omitempty"`
@@ -107,6 +177,8 @@ type HelmToolkitFluxcdIoHelmReleaseV2Beta1GoModel struct {
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 						Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+						Version *string `tfsdk:"version" yaml:"version,omitempty"`
 					} `tfsdk:"target" yaml:"target,omitempty"`
 				} `tfsdk:"patches_json6902" yaml:"patchesJson6902,omitempty"`
 
@@ -116,9 +188,29 @@ type HelmToolkitFluxcdIoHelmReleaseV2Beta1GoModel struct {
 
 		ReleaseName *string `tfsdk:"release_name" yaml:"releaseName,omitempty"`
 
+		Rollback *struct {
+			CleanupOnFail *bool `tfsdk:"cleanup_on_fail" yaml:"cleanupOnFail,omitempty"`
+
+			DisableHooks *bool `tfsdk:"disable_hooks" yaml:"disableHooks,omitempty"`
+
+			DisableWait *bool `tfsdk:"disable_wait" yaml:"disableWait,omitempty"`
+
+			DisableWaitForJobs *bool `tfsdk:"disable_wait_for_jobs" yaml:"disableWaitForJobs,omitempty"`
+
+			Force *bool `tfsdk:"force" yaml:"force,omitempty"`
+
+			Recreate *bool `tfsdk:"recreate" yaml:"recreate,omitempty"`
+
+			Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+		} `tfsdk:"rollback" yaml:"rollback,omitempty"`
+
 		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
 
 		StorageNamespace *string `tfsdk:"storage_namespace" yaml:"storageNamespace,omitempty"`
+
+		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+
+		TargetNamespace *string `tfsdk:"target_namespace" yaml:"targetNamespace,omitempty"`
 
 		Test *struct {
 			Enable *bool `tfsdk:"enable" yaml:"enable,omitempty"`
@@ -128,84 +220,28 @@ type HelmToolkitFluxcdIoHelmReleaseV2Beta1GoModel struct {
 			Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 		} `tfsdk:"test" yaml:"test,omitempty"`
 
-		Uninstall *struct {
-			Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 
+		Uninstall *struct {
 			DisableHooks *bool `tfsdk:"disable_hooks" yaml:"disableHooks,omitempty"`
 
 			DisableWait *bool `tfsdk:"disable_wait" yaml:"disableWait,omitempty"`
 
 			KeepHistory *bool `tfsdk:"keep_history" yaml:"keepHistory,omitempty"`
-		} `tfsdk:"uninstall" yaml:"uninstall,omitempty"`
-
-		Values *map[string]string `tfsdk:"values" yaml:"values,omitempty"`
-
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-		MaxHistory *int64 `tfsdk:"max_history" yaml:"maxHistory,omitempty"`
-
-		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
-
-		TargetNamespace *string `tfsdk:"target_namespace" yaml:"targetNamespace,omitempty"`
-
-		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
-		Chart *struct {
-			Spec *struct {
-				ValuesFile *string `tfsdk:"values_file" yaml:"valuesFile,omitempty"`
-
-				ValuesFiles *[]string `tfsdk:"values_files" yaml:"valuesFiles,omitempty"`
-
-				Version *string `tfsdk:"version" yaml:"version,omitempty"`
-
-				Chart *string `tfsdk:"chart" yaml:"chart,omitempty"`
-
-				Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-				ReconcileStrategy *string `tfsdk:"reconcile_strategy" yaml:"reconcileStrategy,omitempty"`
-
-				SourceRef *struct {
-					ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-				} `tfsdk:"source_ref" yaml:"sourceRef,omitempty"`
-			} `tfsdk:"spec" yaml:"spec,omitempty"`
-		} `tfsdk:"chart" yaml:"chart,omitempty"`
-
-		DependsOn *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-		} `tfsdk:"depends_on" yaml:"dependsOn,omitempty"`
-
-		Rollback *struct {
-			DisableWaitForJobs *bool `tfsdk:"disable_wait_for_jobs" yaml:"disableWaitForJobs,omitempty"`
-
-			Force *bool `tfsdk:"force" yaml:"force,omitempty"`
-
-			Recreate *bool `tfsdk:"recreate" yaml:"recreate,omitempty"`
 
 			Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
-			CleanupOnFail *bool `tfsdk:"cleanup_on_fail" yaml:"cleanupOnFail,omitempty"`
-
-			DisableHooks *bool `tfsdk:"disable_hooks" yaml:"disableHooks,omitempty"`
-
-			DisableWait *bool `tfsdk:"disable_wait" yaml:"disableWait,omitempty"`
-		} `tfsdk:"rollback" yaml:"rollback,omitempty"`
+		} `tfsdk:"uninstall" yaml:"uninstall,omitempty"`
 
 		Upgrade *struct {
+			CleanupOnFail *bool `tfsdk:"cleanup_on_fail" yaml:"cleanupOnFail,omitempty"`
+
 			Crds *string `tfsdk:"crds" yaml:"crds,omitempty"`
+
+			DisableHooks *bool `tfsdk:"disable_hooks" yaml:"disableHooks,omitempty"`
 
 			DisableOpenAPIValidation *bool `tfsdk:"disable_open_api_validation" yaml:"disableOpenAPIValidation,omitempty"`
 
 			DisableWait *bool `tfsdk:"disable_wait" yaml:"disableWait,omitempty"`
-
-			CleanupOnFail *bool `tfsdk:"cleanup_on_fail" yaml:"cleanupOnFail,omitempty"`
 
 			DisableWaitForJobs *bool `tfsdk:"disable_wait_for_jobs" yaml:"disableWaitForJobs,omitempty"`
 
@@ -224,57 +260,21 @@ type HelmToolkitFluxcdIoHelmReleaseV2Beta1GoModel struct {
 			} `tfsdk:"remediation" yaml:"remediation,omitempty"`
 
 			Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
-			DisableHooks *bool `tfsdk:"disable_hooks" yaml:"disableHooks,omitempty"`
 		} `tfsdk:"upgrade" yaml:"upgrade,omitempty"`
 
+		Values *map[string]string `tfsdk:"values" yaml:"values,omitempty"`
+
 		ValuesFrom *[]struct {
-			TargetPath *string `tfsdk:"target_path" yaml:"targetPath,omitempty"`
-
-			ValuesKey *string `tfsdk:"values_key" yaml:"valuesKey,omitempty"`
-
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+
+			TargetPath *string `tfsdk:"target_path" yaml:"targetPath,omitempty"`
+
+			ValuesKey *string `tfsdk:"values_key" yaml:"valuesKey,omitempty"`
 		} `tfsdk:"values_from" yaml:"valuesFrom,omitempty"`
-
-		Install *struct {
-			Crds *string `tfsdk:"crds" yaml:"crds,omitempty"`
-
-			CreateNamespace *bool `tfsdk:"create_namespace" yaml:"createNamespace,omitempty"`
-
-			DisableOpenAPIValidation *bool `tfsdk:"disable_open_api_validation" yaml:"disableOpenAPIValidation,omitempty"`
-
-			Remediation *struct {
-				IgnoreTestFailures *bool `tfsdk:"ignore_test_failures" yaml:"ignoreTestFailures,omitempty"`
-
-				RemediateLastFailure *bool `tfsdk:"remediate_last_failure" yaml:"remediateLastFailure,omitempty"`
-
-				Retries *int64 `tfsdk:"retries" yaml:"retries,omitempty"`
-			} `tfsdk:"remediation" yaml:"remediation,omitempty"`
-
-			Replace *bool `tfsdk:"replace" yaml:"replace,omitempty"`
-
-			Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
-			DisableHooks *bool `tfsdk:"disable_hooks" yaml:"disableHooks,omitempty"`
-
-			DisableWait *bool `tfsdk:"disable_wait" yaml:"disableWait,omitempty"`
-
-			DisableWaitForJobs *bool `tfsdk:"disable_wait_for_jobs" yaml:"disableWaitForJobs,omitempty"`
-
-			SkipCRDs *bool `tfsdk:"skip_cr_ds" yaml:"skipCRDs,omitempty"`
-		} `tfsdk:"install" yaml:"install,omitempty"`
-
-		KubeConfig *struct {
-			SecretRef *struct {
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-		} `tfsdk:"kube_config" yaml:"kubeConfig,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -375,6 +375,410 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"chart": {
+						Description:         "Chart defines the template of the v1beta2.HelmChart that should be created for this HelmRelease.",
+						MarkdownDescription: "Chart defines the template of the v1beta2.HelmChart that should be created for this HelmRelease.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"spec": {
+								Description:         "Spec holds the template for the v1beta2.HelmChartSpec for this HelmRelease.",
+								MarkdownDescription: "Spec holds the template for the v1beta2.HelmChartSpec for this HelmRelease.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"chart": {
+										Description:         "The name or path the Helm chart is available at in the SourceRef.",
+										MarkdownDescription: "The name or path the Helm chart is available at in the SourceRef.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"interval": {
+										Description:         "Interval at which to check the v1beta2.Source for updates. Defaults to 'HelmReleaseSpec.Interval'.",
+										MarkdownDescription: "Interval at which to check the v1beta2.Source for updates. Defaults to 'HelmReleaseSpec.Interval'.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"reconcile_strategy": {
+										Description:         "Determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
+										MarkdownDescription: "Determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"source_ref": {
+										Description:         "The name and namespace of the v1beta2.Source the chart is available at.",
+										MarkdownDescription: "The name and namespace of the v1beta2.Source the chart is available at.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"api_version": {
+												Description:         "APIVersion of the referent.",
+												MarkdownDescription: "APIVersion of the referent.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"kind": {
+												Description:         "Kind of the referent.",
+												MarkdownDescription: "Kind of the referent.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent.",
+												MarkdownDescription: "Name of the referent.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"namespace": {
+												Description:         "Namespace of the referent.",
+												MarkdownDescription: "Namespace of the referent.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"values_file": {
+										Description:         "Alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file defined here is merged before the ValuesFiles items. Ignored when omitted.",
+										MarkdownDescription: "Alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file defined here is merged before the ValuesFiles items. Ignored when omitted.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"values_files": {
+										Description:         "Alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
+										MarkdownDescription: "Alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"version": {
+										Description:         "Version semver expression, ignored for charts from v1beta2.GitRepository and v1beta2.Bucket sources. Defaults to latest when omitted.",
+										MarkdownDescription: "Version semver expression, ignored for charts from v1beta2.GitRepository and v1beta2.Bucket sources. Defaults to latest when omitted.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"depends_on": {
+						Description:         "DependsOn may contain a meta.NamespacedObjectReference slice with references to HelmRelease resources that must be ready before this HelmRelease can be reconciled.",
+						MarkdownDescription: "DependsOn may contain a meta.NamespacedObjectReference slice with references to HelmRelease resources that must be ready before this HelmRelease can be reconciled.",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"namespace": {
+								Description:         "Namespace of the referent, when not specified it acts as LocalObjectReference.",
+								MarkdownDescription: "Namespace of the referent, when not specified it acts as LocalObjectReference.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"install": {
+						Description:         "Install holds the configuration for Helm install actions for this HelmRelease.",
+						MarkdownDescription: "Install holds the configuration for Helm install actions for this HelmRelease.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"crds": {
+								Description:         "CRDs upgrade CRDs from the Helm Chart's crds directory according to the CRD upgrade policy provided here. Valid values are 'Skip', 'Create' or 'CreateReplace'. Default is 'Create' and if omitted CRDs are installed but not updated.  Skip: do neither install nor replace (update) any CRDs.  Create: new CRDs are created, existing CRDs are neither updated nor deleted.  CreateReplace: new CRDs are created, existing CRDs are updated (replaced) but not deleted.  By default, CRDs are applied (installed) during Helm install action. With this option users can opt-in to CRD replace existing CRDs on Helm install actions, which is not (yet) natively supported by Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.",
+								MarkdownDescription: "CRDs upgrade CRDs from the Helm Chart's crds directory according to the CRD upgrade policy provided here. Valid values are 'Skip', 'Create' or 'CreateReplace'. Default is 'Create' and if omitted CRDs are installed but not updated.  Skip: do neither install nor replace (update) any CRDs.  Create: new CRDs are created, existing CRDs are neither updated nor deleted.  CreateReplace: new CRDs are created, existing CRDs are updated (replaced) but not deleted.  By default, CRDs are applied (installed) during Helm install action. With this option users can opt-in to CRD replace existing CRDs on Helm install actions, which is not (yet) natively supported by Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"create_namespace": {
+								Description:         "CreateNamespace tells the Helm install action to create the HelmReleaseSpec.TargetNamespace if it does not exist yet. On uninstall, the namespace will not be garbage collected.",
+								MarkdownDescription: "CreateNamespace tells the Helm install action to create the HelmReleaseSpec.TargetNamespace if it does not exist yet. On uninstall, the namespace will not be garbage collected.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"disable_hooks": {
+								Description:         "DisableHooks prevents hooks from running during the Helm install action.",
+								MarkdownDescription: "DisableHooks prevents hooks from running during the Helm install action.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"disable_open_api_validation": {
+								Description:         "DisableOpenAPIValidation prevents the Helm install action from validating rendered templates against the Kubernetes OpenAPI Schema.",
+								MarkdownDescription: "DisableOpenAPIValidation prevents the Helm install action from validating rendered templates against the Kubernetes OpenAPI Schema.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"disable_wait": {
+								Description:         "DisableWait disables the waiting for resources to be ready after a Helm install has been performed.",
+								MarkdownDescription: "DisableWait disables the waiting for resources to be ready after a Helm install has been performed.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"disable_wait_for_jobs": {
+								Description:         "DisableWaitForJobs disables waiting for jobs to complete after a Helm install has been performed.",
+								MarkdownDescription: "DisableWaitForJobs disables waiting for jobs to complete after a Helm install has been performed.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"remediation": {
+								Description:         "Remediation holds the remediation configuration for when the Helm install action for the HelmRelease fails. The default is to not perform any action.",
+								MarkdownDescription: "Remediation holds the remediation configuration for when the Helm install action for the HelmRelease fails. The default is to not perform any action.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"ignore_test_failures": {
+										Description:         "IgnoreTestFailures tells the controller to skip remediation when the Helm tests are run after an install action but fail. Defaults to 'Test.IgnoreFailures'.",
+										MarkdownDescription: "IgnoreTestFailures tells the controller to skip remediation when the Helm tests are run after an install action but fail. Defaults to 'Test.IgnoreFailures'.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"remediate_last_failure": {
+										Description:         "RemediateLastFailure tells the controller to remediate the last failure, when no retries remain. Defaults to 'false'.",
+										MarkdownDescription: "RemediateLastFailure tells the controller to remediate the last failure, when no retries remain. Defaults to 'false'.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"retries": {
+										Description:         "Retries is the number of retries that should be attempted on failures before bailing. Remediation, using an uninstall, is performed between each attempt. Defaults to '0', a negative integer equals to unlimited retries.",
+										MarkdownDescription: "Retries is the number of retries that should be attempted on failures before bailing. Remediation, using an uninstall, is performed between each attempt. Defaults to '0', a negative integer equals to unlimited retries.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"replace": {
+								Description:         "Replace tells the Helm install action to re-use the 'ReleaseName', but only if that name is a deleted release which remains in the history.",
+								MarkdownDescription: "Replace tells the Helm install action to re-use the 'ReleaseName', but only if that name is a deleted release which remains in the history.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"skip_cr_ds": {
+								Description:         "SkipCRDs tells the Helm install action to not install any CRDs. By default, CRDs are installed if not already present.  Deprecated use CRD policy ('crds') attribute with value 'Skip' instead.",
+								MarkdownDescription: "SkipCRDs tells the Helm install action to not install any CRDs. By default, CRDs are installed if not already present.  Deprecated use CRD policy ('crds') attribute with value 'Skip' instead.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"timeout": {
+								Description:         "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm install action. Defaults to 'HelmReleaseSpec.Timeout'.",
+								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm install action. Defaults to 'HelmReleaseSpec.Timeout'.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"interval": {
+						Description:         "Interval at which to reconcile the Helm release.",
+						MarkdownDescription: "Interval at which to reconcile the Helm release.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"kube_config": {
+						Description:         "KubeConfig for reconciling the HelmRelease on a remote cluster. When used in combination with HelmReleaseSpec.ServiceAccountName, forces the controller to act on behalf of that Service Account at the target cluster. If the --default-service-account flag is set, its value will be used as a controller level fallback for when HelmReleaseSpec.ServiceAccountName is empty.",
+						MarkdownDescription: "KubeConfig for reconciling the HelmRelease on a remote cluster. When used in combination with HelmReleaseSpec.ServiceAccountName, forces the controller to act on behalf of that Service Account at the target cluster. If the --default-service-account flag is set, its value will be used as a controller level fallback for when HelmReleaseSpec.ServiceAccountName is empty.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"secret_ref": {
+								Description:         "SecretRef holds the name to a secret that contains a key with the kubeconfig file as the value. If no key is specified the key will default to 'value'. The secret must be in the same namespace as the HelmRelease. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling the HelmRelease.",
+								MarkdownDescription: "SecretRef holds the name to a secret that contains a key with the kubeconfig file as the value. If no key is specified the key will default to 'value'. The secret must be in the same namespace as the HelmRelease. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling the HelmRelease.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"key": {
+										Description:         "Key in the Secret, when not specified an implementation-specific default key is used.",
+										MarkdownDescription: "Key in the Secret, when not specified an implementation-specific default key is used.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name of the Secret.",
+										MarkdownDescription: "Name of the Secret.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"max_history": {
+						Description:         "MaxHistory is the number of revisions saved by Helm for this HelmRelease. Use '0' for an unlimited number of revisions; defaults to '10'.",
+						MarkdownDescription: "MaxHistory is the number of revisions saved by Helm for this HelmRelease. Use '0' for an unlimited number of revisions; defaults to '10'.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"post_renderers": {
 						Description:         "PostRenderers holds an array of Helm PostRenderers, which will be applied in order of their definition.",
 						MarkdownDescription: "PostRenderers holds an array of Helm PostRenderers, which will be applied in order of their definition.",
@@ -466,17 +870,6 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"version": {
-														Description:         "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-														MarkdownDescription: "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
 													"annotation_selector": {
 														Description:         "AnnotationSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource annotations.",
 														MarkdownDescription: "AnnotationSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource annotations.",
@@ -535,6 +928,17 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 													"namespace": {
 														Description:         "Namespace to select resources from.",
 														MarkdownDescription: "Namespace to select resources from.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"version": {
+														Description:         "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+														MarkdownDescription: "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
 
 														Type: types.StringType,
 
@@ -623,17 +1027,6 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"version": {
-														Description:         "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-														MarkdownDescription: "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
 													"annotation_selector": {
 														Description:         "AnnotationSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource annotations.",
 														MarkdownDescription: "AnnotationSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource annotations.",
@@ -699,6 +1092,17 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 														Optional: true,
 														Computed: false,
 													},
+
+													"version": {
+														Description:         "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+														MarkdownDescription: "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
 												}),
 
 												Required: true,
@@ -746,6 +1150,95 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 						Computed: false,
 					},
 
+					"rollback": {
+						Description:         "Rollback holds the configuration for Helm rollback actions for this HelmRelease.",
+						MarkdownDescription: "Rollback holds the configuration for Helm rollback actions for this HelmRelease.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"cleanup_on_fail": {
+								Description:         "CleanupOnFail allows deletion of new resources created during the Helm rollback action when it fails.",
+								MarkdownDescription: "CleanupOnFail allows deletion of new resources created during the Helm rollback action when it fails.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"disable_hooks": {
+								Description:         "DisableHooks prevents hooks from running during the Helm rollback action.",
+								MarkdownDescription: "DisableHooks prevents hooks from running during the Helm rollback action.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"disable_wait": {
+								Description:         "DisableWait disables the waiting for resources to be ready after a Helm rollback has been performed.",
+								MarkdownDescription: "DisableWait disables the waiting for resources to be ready after a Helm rollback has been performed.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"disable_wait_for_jobs": {
+								Description:         "DisableWaitForJobs disables waiting for jobs to complete after a Helm rollback has been performed.",
+								MarkdownDescription: "DisableWaitForJobs disables waiting for jobs to complete after a Helm rollback has been performed.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"force": {
+								Description:         "Force forces resource updates through a replacement strategy.",
+								MarkdownDescription: "Force forces resource updates through a replacement strategy.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"recreate": {
+								Description:         "Recreate performs pod restarts for the resource if applicable.",
+								MarkdownDescription: "Recreate performs pod restarts for the resource if applicable.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"timeout": {
+								Description:         "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm rollback action. Defaults to 'HelmReleaseSpec.Timeout'.",
+								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm rollback action. Defaults to 'HelmReleaseSpec.Timeout'.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"service_account_name": {
 						Description:         "The name of the Kubernetes service account to impersonate when reconciling this HelmRelease.",
 						MarkdownDescription: "The name of the Kubernetes service account to impersonate when reconciling this HelmRelease.",
@@ -760,6 +1253,28 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 					"storage_namespace": {
 						Description:         "StorageNamespace used for the Helm storage. Defaults to the namespace of the HelmRelease.",
 						MarkdownDescription: "StorageNamespace used for the Helm storage. Defaults to the namespace of the HelmRelease.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"suspend": {
+						Description:         "Suspend tells the controller to suspend reconciliation for this HelmRelease, it does not apply to already started reconciliations. Defaults to false.",
+						MarkdownDescription: "Suspend tells the controller to suspend reconciliation for this HelmRelease, it does not apply to already started reconciliations. Defaults to false.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"target_namespace": {
+						Description:         "TargetNamespace to target when performing operations for the HelmRelease. Defaults to the namespace of the HelmRelease.",
+						MarkdownDescription: "TargetNamespace to target when performing operations for the HelmRelease. Defaults to the namespace of the HelmRelease.",
 
 						Type: types.StringType,
 
@@ -813,22 +1328,22 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 						Computed: false,
 					},
 
+					"timeout": {
+						Description:         "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm action. Defaults to '5m0s'.",
+						MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm action. Defaults to '5m0s'.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"uninstall": {
 						Description:         "Uninstall holds the configuration for Helm uninstall actions for this HelmRelease.",
 						MarkdownDescription: "Uninstall holds the configuration for Helm uninstall actions for this HelmRelease.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"timeout": {
-								Description:         "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm uninstall action. Defaults to 'HelmReleaseSpec.Timeout'.",
-								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm uninstall action. Defaults to 'HelmReleaseSpec.Timeout'.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"disable_hooks": {
 								Description:         "DisableHooks prevents hooks from running during the Helm rollback action.",
@@ -862,336 +1377,12 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 								Optional: true,
 								Computed: false,
 							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"values": {
-						Description:         "Values holds the values for this Helm release.",
-						MarkdownDescription: "Values holds the values for this Helm release.",
-
-						Type: types.MapType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"interval": {
-						Description:         "Interval at which to reconcile the Helm release.",
-						MarkdownDescription: "Interval at which to reconcile the Helm release.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"max_history": {
-						Description:         "MaxHistory is the number of revisions saved by Helm for this HelmRelease. Use '0' for an unlimited number of revisions; defaults to '10'.",
-						MarkdownDescription: "MaxHistory is the number of revisions saved by Helm for this HelmRelease. Use '0' for an unlimited number of revisions; defaults to '10'.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"suspend": {
-						Description:         "Suspend tells the controller to suspend reconciliation for this HelmRelease, it does not apply to already started reconciliations. Defaults to false.",
-						MarkdownDescription: "Suspend tells the controller to suspend reconciliation for this HelmRelease, it does not apply to already started reconciliations. Defaults to false.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"target_namespace": {
-						Description:         "TargetNamespace to target when performing operations for the HelmRelease. Defaults to the namespace of the HelmRelease.",
-						MarkdownDescription: "TargetNamespace to target when performing operations for the HelmRelease. Defaults to the namespace of the HelmRelease.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"timeout": {
-						Description:         "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm action. Defaults to '5m0s'.",
-						MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm action. Defaults to '5m0s'.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"chart": {
-						Description:         "Chart defines the template of the v1beta2.HelmChart that should be created for this HelmRelease.",
-						MarkdownDescription: "Chart defines the template of the v1beta2.HelmChart that should be created for this HelmRelease.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"spec": {
-								Description:         "Spec holds the template for the v1beta2.HelmChartSpec for this HelmRelease.",
-								MarkdownDescription: "Spec holds the template for the v1beta2.HelmChartSpec for this HelmRelease.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"values_file": {
-										Description:         "Alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file defined here is merged before the ValuesFiles items. Ignored when omitted.",
-										MarkdownDescription: "Alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file defined here is merged before the ValuesFiles items. Ignored when omitted.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"values_files": {
-										Description:         "Alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
-										MarkdownDescription: "Alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"version": {
-										Description:         "Version semver expression, ignored for charts from v1beta2.GitRepository and v1beta2.Bucket sources. Defaults to latest when omitted.",
-										MarkdownDescription: "Version semver expression, ignored for charts from v1beta2.GitRepository and v1beta2.Bucket sources. Defaults to latest when omitted.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"chart": {
-										Description:         "The name or path the Helm chart is available at in the SourceRef.",
-										MarkdownDescription: "The name or path the Helm chart is available at in the SourceRef.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"interval": {
-										Description:         "Interval at which to check the v1beta2.Source for updates. Defaults to 'HelmReleaseSpec.Interval'.",
-										MarkdownDescription: "Interval at which to check the v1beta2.Source for updates. Defaults to 'HelmReleaseSpec.Interval'.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"reconcile_strategy": {
-										Description:         "Determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
-										MarkdownDescription: "Determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"source_ref": {
-										Description:         "The name and namespace of the v1beta2.Source the chart is available at.",
-										MarkdownDescription: "The name and namespace of the v1beta2.Source the chart is available at.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"api_version": {
-												Description:         "APIVersion of the referent.",
-												MarkdownDescription: "APIVersion of the referent.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"kind": {
-												Description:         "Kind of the referent.",
-												MarkdownDescription: "Kind of the referent.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the referent.",
-												MarkdownDescription: "Name of the referent.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"namespace": {
-												Description:         "Namespace of the referent.",
-												MarkdownDescription: "Namespace of the referent.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"depends_on": {
-						Description:         "DependsOn may contain a meta.NamespacedObjectReference slice with references to HelmRelease resources that must be ready before this HelmRelease can be reconciled.",
-						MarkdownDescription: "DependsOn may contain a meta.NamespacedObjectReference slice with references to HelmRelease resources that must be ready before this HelmRelease can be reconciled.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the referent.",
-								MarkdownDescription: "Name of the referent.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"namespace": {
-								Description:         "Namespace of the referent, when not specified it acts as LocalObjectReference.",
-								MarkdownDescription: "Namespace of the referent, when not specified it acts as LocalObjectReference.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"rollback": {
-						Description:         "Rollback holds the configuration for Helm rollback actions for this HelmRelease.",
-						MarkdownDescription: "Rollback holds the configuration for Helm rollback actions for this HelmRelease.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"disable_wait_for_jobs": {
-								Description:         "DisableWaitForJobs disables waiting for jobs to complete after a Helm rollback has been performed.",
-								MarkdownDescription: "DisableWaitForJobs disables waiting for jobs to complete after a Helm rollback has been performed.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"force": {
-								Description:         "Force forces resource updates through a replacement strategy.",
-								MarkdownDescription: "Force forces resource updates through a replacement strategy.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"recreate": {
-								Description:         "Recreate performs pod restarts for the resource if applicable.",
-								MarkdownDescription: "Recreate performs pod restarts for the resource if applicable.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"timeout": {
-								Description:         "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm rollback action. Defaults to 'HelmReleaseSpec.Timeout'.",
-								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm rollback action. Defaults to 'HelmReleaseSpec.Timeout'.",
+								Description:         "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm uninstall action. Defaults to 'HelmReleaseSpec.Timeout'.",
+								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm uninstall action. Defaults to 'HelmReleaseSpec.Timeout'.",
 
 								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"cleanup_on_fail": {
-								Description:         "CleanupOnFail allows deletion of new resources created during the Helm rollback action when it fails.",
-								MarkdownDescription: "CleanupOnFail allows deletion of new resources created during the Helm rollback action when it fails.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"disable_hooks": {
-								Description:         "DisableHooks prevents hooks from running during the Helm rollback action.",
-								MarkdownDescription: "DisableHooks prevents hooks from running during the Helm rollback action.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"disable_wait": {
-								Description:         "DisableWait disables the waiting for resources to be ready after a Helm rollback has been performed.",
-								MarkdownDescription: "DisableWait disables the waiting for resources to be ready after a Helm rollback has been performed.",
-
-								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,
@@ -1210,11 +1401,33 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+							"cleanup_on_fail": {
+								Description:         "CleanupOnFail allows deletion of new resources created during the Helm upgrade action when it fails.",
+								MarkdownDescription: "CleanupOnFail allows deletion of new resources created during the Helm upgrade action when it fails.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"crds": {
 								Description:         "CRDs upgrade CRDs from the Helm Chart's crds directory according to the CRD upgrade policy provided here. Valid values are 'Skip', 'Create' or 'CreateReplace'. Default is 'Skip' and if omitted CRDs are neither installed nor upgraded.  Skip: do neither install nor replace (update) any CRDs.  Create: new CRDs are created, existing CRDs are neither updated nor deleted.  CreateReplace: new CRDs are created, existing CRDs are updated (replaced) but not deleted.  By default, CRDs are not applied during Helm upgrade action. With this option users can opt-in to CRD upgrade, which is not (yet) natively supported by Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.",
 								MarkdownDescription: "CRDs upgrade CRDs from the Helm Chart's crds directory according to the CRD upgrade policy provided here. Valid values are 'Skip', 'Create' or 'CreateReplace'. Default is 'Skip' and if omitted CRDs are neither installed nor upgraded.  Skip: do neither install nor replace (update) any CRDs.  Create: new CRDs are created, existing CRDs are neither updated nor deleted.  CreateReplace: new CRDs are created, existing CRDs are updated (replaced) but not deleted.  By default, CRDs are not applied during Helm upgrade action. With this option users can opt-in to CRD upgrade, which is not (yet) natively supported by Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.",
 
 								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"disable_hooks": {
+								Description:         "DisableHooks prevents hooks from running during the Helm upgrade action.",
+								MarkdownDescription: "DisableHooks prevents hooks from running during the Helm upgrade action.",
+
+								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,
@@ -1235,17 +1448,6 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 							"disable_wait": {
 								Description:         "DisableWait disables the waiting for resources to be ready after a Helm upgrade has been performed.",
 								MarkdownDescription: "DisableWait disables the waiting for resources to be ready after a Helm upgrade has been performed.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"cleanup_on_fail": {
-								Description:         "CleanupOnFail allows deletion of new resources created during the Helm upgrade action when it fails.",
-								MarkdownDescription: "CleanupOnFail allows deletion of new resources created during the Helm upgrade action when it fails.",
 
 								Type: types.BoolType,
 
@@ -1353,18 +1555,18 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 								Optional: true,
 								Computed: false,
 							},
-
-							"disable_hooks": {
-								Description:         "DisableHooks prevents hooks from running during the Helm upgrade action.",
-								MarkdownDescription: "DisableHooks prevents hooks from running during the Helm upgrade action.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"values": {
+						Description:         "Values holds the values for this Helm release.",
+						MarkdownDescription: "Values holds the values for this Helm release.",
+
+						Type: types.MapType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,
@@ -1376,28 +1578,6 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 						MarkdownDescription: "ValuesFrom holds references to resources containing Helm values for this HelmRelease, and information about how they should be merged.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"target_path": {
-								Description:         "TargetPath is the YAML dot notation path the value should be merged at. When set, the ValuesKey is expected to be a single flat value. Defaults to 'None', which results in the values getting merged at the root.",
-								MarkdownDescription: "TargetPath is the YAML dot notation path the value should be merged at. When set, the ValuesKey is expected to be a single flat value. Defaults to 'None', which results in the values getting merged at the root.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"values_key": {
-								Description:         "ValuesKey is the data key where the values.yaml or a specific value can be found at. Defaults to 'values.yaml'. When set, must be a valid Data Key, consisting of alphanumeric characters, '-', '_' or '.'.",
-								MarkdownDescription: "ValuesKey is the data key where the values.yaml or a specific value can be found at. Defaults to 'values.yaml'. When set, must be a valid Data Key, consisting of alphanumeric characters, '-', '_' or '.'.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"kind": {
 								Description:         "Kind of the values referent, valid values are ('Secret', 'ConfigMap').",
@@ -1431,22 +1611,10 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 								Optional: true,
 								Computed: false,
 							},
-						}),
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"install": {
-						Description:         "Install holds the configuration for Helm install actions for this HelmRelease.",
-						MarkdownDescription: "Install holds the configuration for Helm install actions for this HelmRelease.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"crds": {
-								Description:         "CRDs upgrade CRDs from the Helm Chart's crds directory according to the CRD upgrade policy provided here. Valid values are 'Skip', 'Create' or 'CreateReplace'. Default is 'Create' and if omitted CRDs are installed but not updated.  Skip: do neither install nor replace (update) any CRDs.  Create: new CRDs are created, existing CRDs are neither updated nor deleted.  CreateReplace: new CRDs are created, existing CRDs are updated (replaced) but not deleted.  By default, CRDs are applied (installed) during Helm install action. With this option users can opt-in to CRD replace existing CRDs on Helm install actions, which is not (yet) natively supported by Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.",
-								MarkdownDescription: "CRDs upgrade CRDs from the Helm Chart's crds directory according to the CRD upgrade policy provided here. Valid values are 'Skip', 'Create' or 'CreateReplace'. Default is 'Create' and if omitted CRDs are installed but not updated.  Skip: do neither install nor replace (update) any CRDs.  Create: new CRDs are created, existing CRDs are neither updated nor deleted.  CreateReplace: new CRDs are created, existing CRDs are updated (replaced) but not deleted.  By default, CRDs are applied (installed) during Helm install action. With this option users can opt-in to CRD replace existing CRDs on Helm install actions, which is not (yet) natively supported by Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.",
+							"target_path": {
+								Description:         "TargetPath is the YAML dot notation path the value should be merged at. When set, the ValuesKey is expected to be a single flat value. Defaults to 'None', which results in the values getting merged at the root.",
+								MarkdownDescription: "TargetPath is the YAML dot notation path the value should be merged at. When set, the ValuesKey is expected to be a single flat value. Defaults to 'None', which results in the values getting merged at the root.",
 
 								Type: types.StringType,
 
@@ -1455,179 +1623,11 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 								Computed: false,
 							},
 
-							"create_namespace": {
-								Description:         "CreateNamespace tells the Helm install action to create the HelmReleaseSpec.TargetNamespace if it does not exist yet. On uninstall, the namespace will not be garbage collected.",
-								MarkdownDescription: "CreateNamespace tells the Helm install action to create the HelmReleaseSpec.TargetNamespace if it does not exist yet. On uninstall, the namespace will not be garbage collected.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"disable_open_api_validation": {
-								Description:         "DisableOpenAPIValidation prevents the Helm install action from validating rendered templates against the Kubernetes OpenAPI Schema.",
-								MarkdownDescription: "DisableOpenAPIValidation prevents the Helm install action from validating rendered templates against the Kubernetes OpenAPI Schema.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"remediation": {
-								Description:         "Remediation holds the remediation configuration for when the Helm install action for the HelmRelease fails. The default is to not perform any action.",
-								MarkdownDescription: "Remediation holds the remediation configuration for when the Helm install action for the HelmRelease fails. The default is to not perform any action.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"ignore_test_failures": {
-										Description:         "IgnoreTestFailures tells the controller to skip remediation when the Helm tests are run after an install action but fail. Defaults to 'Test.IgnoreFailures'.",
-										MarkdownDescription: "IgnoreTestFailures tells the controller to skip remediation when the Helm tests are run after an install action but fail. Defaults to 'Test.IgnoreFailures'.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"remediate_last_failure": {
-										Description:         "RemediateLastFailure tells the controller to remediate the last failure, when no retries remain. Defaults to 'false'.",
-										MarkdownDescription: "RemediateLastFailure tells the controller to remediate the last failure, when no retries remain. Defaults to 'false'.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"retries": {
-										Description:         "Retries is the number of retries that should be attempted on failures before bailing. Remediation, using an uninstall, is performed between each attempt. Defaults to '0', a negative integer equals to unlimited retries.",
-										MarkdownDescription: "Retries is the number of retries that should be attempted on failures before bailing. Remediation, using an uninstall, is performed between each attempt. Defaults to '0', a negative integer equals to unlimited retries.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"replace": {
-								Description:         "Replace tells the Helm install action to re-use the 'ReleaseName', but only if that name is a deleted release which remains in the history.",
-								MarkdownDescription: "Replace tells the Helm install action to re-use the 'ReleaseName', but only if that name is a deleted release which remains in the history.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"timeout": {
-								Description:         "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm install action. Defaults to 'HelmReleaseSpec.Timeout'.",
-								MarkdownDescription: "Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm install action. Defaults to 'HelmReleaseSpec.Timeout'.",
+							"values_key": {
+								Description:         "ValuesKey is the data key where the values.yaml or a specific value can be found at. Defaults to 'values.yaml'. When set, must be a valid Data Key, consisting of alphanumeric characters, '-', '_' or '.'.",
+								MarkdownDescription: "ValuesKey is the data key where the values.yaml or a specific value can be found at. Defaults to 'values.yaml'. When set, must be a valid Data Key, consisting of alphanumeric characters, '-', '_' or '.'.",
 
 								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"disable_hooks": {
-								Description:         "DisableHooks prevents hooks from running during the Helm install action.",
-								MarkdownDescription: "DisableHooks prevents hooks from running during the Helm install action.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"disable_wait": {
-								Description:         "DisableWait disables the waiting for resources to be ready after a Helm install has been performed.",
-								MarkdownDescription: "DisableWait disables the waiting for resources to be ready after a Helm install has been performed.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"disable_wait_for_jobs": {
-								Description:         "DisableWaitForJobs disables waiting for jobs to complete after a Helm install has been performed.",
-								MarkdownDescription: "DisableWaitForJobs disables waiting for jobs to complete after a Helm install has been performed.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"skip_cr_ds": {
-								Description:         "SkipCRDs tells the Helm install action to not install any CRDs. By default, CRDs are installed if not already present.  Deprecated use CRD policy ('crds') attribute with value 'Skip' instead.",
-								MarkdownDescription: "SkipCRDs tells the Helm install action to not install any CRDs. By default, CRDs are installed if not already present.  Deprecated use CRD policy ('crds') attribute with value 'Skip' instead.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"kube_config": {
-						Description:         "KubeConfig for reconciling the HelmRelease on a remote cluster. When used in combination with HelmReleaseSpec.ServiceAccountName, forces the controller to act on behalf of that Service Account at the target cluster. If the --default-service-account flag is set, its value will be used as a controller level fallback for when HelmReleaseSpec.ServiceAccountName is empty.",
-						MarkdownDescription: "KubeConfig for reconciling the HelmRelease on a remote cluster. When used in combination with HelmReleaseSpec.ServiceAccountName, forces the controller to act on behalf of that Service Account at the target cluster. If the --default-service-account flag is set, its value will be used as a controller level fallback for when HelmReleaseSpec.ServiceAccountName is empty.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"secret_ref": {
-								Description:         "SecretRef holds the name to a secret that contains a key with the kubeconfig file as the value. If no key is specified the key will default to 'value'. The secret must be in the same namespace as the HelmRelease. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling the HelmRelease.",
-								MarkdownDescription: "SecretRef holds the name to a secret that contains a key with the kubeconfig file as the value. If no key is specified the key will default to 'value'. The secret must be in the same namespace as the HelmRelease. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling the HelmRelease.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"key": {
-										Description:         "Key in the Secret, when not specified an implementation-specific default key is used.",
-										MarkdownDescription: "Key in the Secret, when not specified an implementation-specific default key is used.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "Name of the Secret.",
-										MarkdownDescription: "Name of the Secret.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
 
 								Required: false,
 								Optional: true,

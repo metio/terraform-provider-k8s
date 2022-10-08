@@ -50,54 +50,6 @@ type ArgoprojIoAppProjectV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		NamespaceResourceWhitelist *[]struct {
-			Group *string `tfsdk:"group" yaml:"group,omitempty"`
-
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-		} `tfsdk:"namespace_resource_whitelist" yaml:"namespaceResourceWhitelist,omitempty"`
-
-		SignatureKeys *[]struct {
-			KeyID *string `tfsdk:"key_id" yaml:"keyID,omitempty"`
-		} `tfsdk:"signature_keys" yaml:"signatureKeys,omitempty"`
-
-		SourceRepos *[]string `tfsdk:"source_repos" yaml:"sourceRepos,omitempty"`
-
-		SyncWindows *[]struct {
-			Clusters *[]string `tfsdk:"clusters" yaml:"clusters,omitempty"`
-
-			Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
-
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-			ManualSync *bool `tfsdk:"manual_sync" yaml:"manualSync,omitempty"`
-
-			Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
-
-			Schedule *string `tfsdk:"schedule" yaml:"schedule,omitempty"`
-
-			TimeZone *string `tfsdk:"time_zone" yaml:"timeZone,omitempty"`
-
-			Applications *[]string `tfsdk:"applications" yaml:"applications,omitempty"`
-		} `tfsdk:"sync_windows" yaml:"syncWindows,omitempty"`
-
-		Roles *[]struct {
-			Policies *[]string `tfsdk:"policies" yaml:"policies,omitempty"`
-
-			Description *string `tfsdk:"description" yaml:"description,omitempty"`
-
-			Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
-
-			JwtTokens *[]struct {
-				Exp *int64 `tfsdk:"exp" yaml:"exp,omitempty"`
-
-				Iat *int64 `tfsdk:"iat" yaml:"iat,omitempty"`
-
-				Id *string `tfsdk:"id" yaml:"id,omitempty"`
-			} `tfsdk:"jwt_tokens" yaml:"jwtTokens,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"roles" yaml:"roles,omitempty"`
-
 		ClusterResourceBlacklist *[]struct {
 			Group *string `tfsdk:"group" yaml:"group,omitempty"`
 
@@ -105,19 +57,19 @@ type ArgoprojIoAppProjectV1Alpha1GoModel struct {
 		} `tfsdk:"cluster_resource_blacklist" yaml:"clusterResourceBlacklist,omitempty"`
 
 		ClusterResourceWhitelist *[]struct {
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
 			Group *string `tfsdk:"group" yaml:"group,omitempty"`
+
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 		} `tfsdk:"cluster_resource_whitelist" yaml:"clusterResourceWhitelist,omitempty"`
 
 		Description *string `tfsdk:"description" yaml:"description,omitempty"`
 
 		Destinations *[]struct {
-			Server *string `tfsdk:"server" yaml:"server,omitempty"`
-
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+			Server *string `tfsdk:"server" yaml:"server,omitempty"`
 		} `tfsdk:"destinations" yaml:"destinations,omitempty"`
 
 		NamespaceResourceBlacklist *[]struct {
@@ -125,6 +77,12 @@ type ArgoprojIoAppProjectV1Alpha1GoModel struct {
 
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 		} `tfsdk:"namespace_resource_blacklist" yaml:"namespaceResourceBlacklist,omitempty"`
+
+		NamespaceResourceWhitelist *[]struct {
+			Group *string `tfsdk:"group" yaml:"group,omitempty"`
+
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+		} `tfsdk:"namespace_resource_whitelist" yaml:"namespaceResourceWhitelist,omitempty"`
 
 		OrphanedResources *struct {
 			Ignore *[]struct {
@@ -140,7 +98,49 @@ type ArgoprojIoAppProjectV1Alpha1GoModel struct {
 
 		PermitOnlyProjectScopedClusters *bool `tfsdk:"permit_only_project_scoped_clusters" yaml:"permitOnlyProjectScopedClusters,omitempty"`
 
+		Roles *[]struct {
+			Description *string `tfsdk:"description" yaml:"description,omitempty"`
+
+			Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
+
+			JwtTokens *[]struct {
+				Exp *int64 `tfsdk:"exp" yaml:"exp,omitempty"`
+
+				Iat *int64 `tfsdk:"iat" yaml:"iat,omitempty"`
+
+				Id *string `tfsdk:"id" yaml:"id,omitempty"`
+			} `tfsdk:"jwt_tokens" yaml:"jwtTokens,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Policies *[]string `tfsdk:"policies" yaml:"policies,omitempty"`
+		} `tfsdk:"roles" yaml:"roles,omitempty"`
+
+		SignatureKeys *[]struct {
+			KeyID *string `tfsdk:"key_id" yaml:"keyID,omitempty"`
+		} `tfsdk:"signature_keys" yaml:"signatureKeys,omitempty"`
+
 		SourceNamespaces *[]string `tfsdk:"source_namespaces" yaml:"sourceNamespaces,omitempty"`
+
+		SourceRepos *[]string `tfsdk:"source_repos" yaml:"sourceRepos,omitempty"`
+
+		SyncWindows *[]struct {
+			Applications *[]string `tfsdk:"applications" yaml:"applications,omitempty"`
+
+			Clusters *[]string `tfsdk:"clusters" yaml:"clusters,omitempty"`
+
+			Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
+
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			ManualSync *bool `tfsdk:"manual_sync" yaml:"manualSync,omitempty"`
+
+			Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+
+			Schedule *string `tfsdk:"schedule" yaml:"schedule,omitempty"`
+
+			TimeZone *string `tfsdk:"time_zone" yaml:"timeZone,omitempty"`
+		} `tfsdk:"sync_windows" yaml:"syncWindows,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -241,275 +241,6 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"namespace_resource_whitelist": {
-						Description:         "NamespaceResourceWhitelist contains list of whitelisted namespace level resources",
-						MarkdownDescription: "NamespaceResourceWhitelist contains list of whitelisted namespace level resources",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"group": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"kind": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"signature_keys": {
-						Description:         "SignatureKeys contains a list of PGP key IDs that commits in Git must be signed with in order to be allowed for sync",
-						MarkdownDescription: "SignatureKeys contains a list of PGP key IDs that commits in Git must be signed with in order to be allowed for sync",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"key_id": {
-								Description:         "The ID of the key in hexadecimal notation",
-								MarkdownDescription: "The ID of the key in hexadecimal notation",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"source_repos": {
-						Description:         "SourceRepos contains list of repository URLs which can be used for deployment",
-						MarkdownDescription: "SourceRepos contains list of repository URLs which can be used for deployment",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"sync_windows": {
-						Description:         "SyncWindows controls when syncs can be run for apps in this project",
-						MarkdownDescription: "SyncWindows controls when syncs can be run for apps in this project",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"clusters": {
-								Description:         "Clusters contains a list of clusters that the window will apply to",
-								MarkdownDescription: "Clusters contains a list of clusters that the window will apply to",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"duration": {
-								Description:         "Duration is the amount of time the sync window will be open",
-								MarkdownDescription: "Duration is the amount of time the sync window will be open",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"kind": {
-								Description:         "Kind defines if the window allows or blocks syncs",
-								MarkdownDescription: "Kind defines if the window allows or blocks syncs",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"manual_sync": {
-								Description:         "ManualSync enables manual syncs when they would otherwise be blocked",
-								MarkdownDescription: "ManualSync enables manual syncs when they would otherwise be blocked",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"namespaces": {
-								Description:         "Namespaces contains a list of namespaces that the window will apply to",
-								MarkdownDescription: "Namespaces contains a list of namespaces that the window will apply to",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"schedule": {
-								Description:         "Schedule is the time the window will begin, specified in cron format",
-								MarkdownDescription: "Schedule is the time the window will begin, specified in cron format",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"time_zone": {
-								Description:         "TimeZone of the sync that will be applied to the schedule",
-								MarkdownDescription: "TimeZone of the sync that will be applied to the schedule",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"applications": {
-								Description:         "Applications contains a list of applications that the window will apply to",
-								MarkdownDescription: "Applications contains a list of applications that the window will apply to",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"roles": {
-						Description:         "Roles are user defined RBAC roles associated with this project",
-						MarkdownDescription: "Roles are user defined RBAC roles associated with this project",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"policies": {
-								Description:         "Policies Stores a list of casbin formatted strings that define access policies for the role in the project",
-								MarkdownDescription: "Policies Stores a list of casbin formatted strings that define access policies for the role in the project",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"description": {
-								Description:         "Description is a description of the role",
-								MarkdownDescription: "Description is a description of the role",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"groups": {
-								Description:         "Groups are a list of OIDC group claims bound to this role",
-								MarkdownDescription: "Groups are a list of OIDC group claims bound to this role",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"jwt_tokens": {
-								Description:         "JWTTokens are a list of generated JWT tokens bound to this role",
-								MarkdownDescription: "JWTTokens are a list of generated JWT tokens bound to this role",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"exp": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"iat": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"id": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "Name is a name for this role",
-								MarkdownDescription: "Name is a name for this role",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"cluster_resource_blacklist": {
 						Description:         "ClusterResourceBlacklist contains list of blacklisted cluster level resources",
 						MarkdownDescription: "ClusterResourceBlacklist contains list of blacklisted cluster level resources",
@@ -550,7 +281,7 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"kind": {
+							"group": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -561,7 +292,7 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"group": {
+							"kind": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -595,17 +326,6 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"server": {
-								Description:         "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
-								MarkdownDescription: "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"name": {
 								Description:         "Name is an alternate way of specifying the target cluster by its symbolic name",
 								MarkdownDescription: "Name is an alternate way of specifying the target cluster by its symbolic name",
@@ -627,6 +347,17 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Optional: true,
 								Computed: false,
 							},
+
+							"server": {
+								Description:         "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
+								MarkdownDescription: "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						}),
 
 						Required: false,
@@ -637,6 +368,40 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 					"namespace_resource_blacklist": {
 						Description:         "NamespaceResourceBlacklist contains list of blacklisted namespace level resources",
 						MarkdownDescription: "NamespaceResourceBlacklist contains list of blacklisted namespace level resources",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"group": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"kind": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"namespace_resource_whitelist": {
+						Description:         "NamespaceResourceWhitelist contains list of whitelisted namespace level resources",
+						MarkdownDescription: "NamespaceResourceWhitelist contains list of whitelisted namespace level resources",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -747,11 +512,246 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 						Computed: false,
 					},
 
+					"roles": {
+						Description:         "Roles are user defined RBAC roles associated with this project",
+						MarkdownDescription: "Roles are user defined RBAC roles associated with this project",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"description": {
+								Description:         "Description is a description of the role",
+								MarkdownDescription: "Description is a description of the role",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"groups": {
+								Description:         "Groups are a list of OIDC group claims bound to this role",
+								MarkdownDescription: "Groups are a list of OIDC group claims bound to this role",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"jwt_tokens": {
+								Description:         "JWTTokens are a list of generated JWT tokens bound to this role",
+								MarkdownDescription: "JWTTokens are a list of generated JWT tokens bound to this role",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"exp": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"iat": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"id": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name is a name for this role",
+								MarkdownDescription: "Name is a name for this role",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"policies": {
+								Description:         "Policies Stores a list of casbin formatted strings that define access policies for the role in the project",
+								MarkdownDescription: "Policies Stores a list of casbin formatted strings that define access policies for the role in the project",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"signature_keys": {
+						Description:         "SignatureKeys contains a list of PGP key IDs that commits in Git must be signed with in order to be allowed for sync",
+						MarkdownDescription: "SignatureKeys contains a list of PGP key IDs that commits in Git must be signed with in order to be allowed for sync",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"key_id": {
+								Description:         "The ID of the key in hexadecimal notation",
+								MarkdownDescription: "The ID of the key in hexadecimal notation",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"source_namespaces": {
 						Description:         "SourceNamespaces defines the namespaces application resources are allowed to be created in",
 						MarkdownDescription: "SourceNamespaces defines the namespaces application resources are allowed to be created in",
 
 						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"source_repos": {
+						Description:         "SourceRepos contains list of repository URLs which can be used for deployment",
+						MarkdownDescription: "SourceRepos contains list of repository URLs which can be used for deployment",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"sync_windows": {
+						Description:         "SyncWindows controls when syncs can be run for apps in this project",
+						MarkdownDescription: "SyncWindows controls when syncs can be run for apps in this project",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"applications": {
+								Description:         "Applications contains a list of applications that the window will apply to",
+								MarkdownDescription: "Applications contains a list of applications that the window will apply to",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"clusters": {
+								Description:         "Clusters contains a list of clusters that the window will apply to",
+								MarkdownDescription: "Clusters contains a list of clusters that the window will apply to",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"duration": {
+								Description:         "Duration is the amount of time the sync window will be open",
+								MarkdownDescription: "Duration is the amount of time the sync window will be open",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"kind": {
+								Description:         "Kind defines if the window allows or blocks syncs",
+								MarkdownDescription: "Kind defines if the window allows or blocks syncs",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"manual_sync": {
+								Description:         "ManualSync enables manual syncs when they would otherwise be blocked",
+								MarkdownDescription: "ManualSync enables manual syncs when they would otherwise be blocked",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"namespaces": {
+								Description:         "Namespaces contains a list of namespaces that the window will apply to",
+								MarkdownDescription: "Namespaces contains a list of namespaces that the window will apply to",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"schedule": {
+								Description:         "Schedule is the time the window will begin, specified in cron format",
+								MarkdownDescription: "Schedule is the time the window will begin, specified in cron format",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"time_zone": {
+								Description:         "TimeZone of the sync that will be applied to the schedule",
+								MarkdownDescription: "TimeZone of the sync that will be applied to the schedule",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

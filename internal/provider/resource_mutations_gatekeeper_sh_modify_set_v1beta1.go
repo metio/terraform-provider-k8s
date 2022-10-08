@@ -48,6 +48,16 @@ type MutationsGatekeeperShModifySetV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		ApplyTo *[]struct {
+			Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
+
+			Kinds *[]string `tfsdk:"kinds" yaml:"kinds,omitempty"`
+
+			Versions *[]string `tfsdk:"versions" yaml:"versions,omitempty"`
+		} `tfsdk:"apply_to" yaml:"applyTo,omitempty"`
+
+		Location *string `tfsdk:"location" yaml:"location,omitempty"`
+
 		Match *struct {
 			ExcludedNamespaces *[]string `tfsdk:"excluded_namespaces" yaml:"excludedNamespaces,omitempty"`
 
@@ -99,16 +109,6 @@ type MutationsGatekeeperShModifySetV1Beta1GoModel struct {
 
 			Values *map[string]string `tfsdk:"values" yaml:"values,omitempty"`
 		} `tfsdk:"parameters" yaml:"parameters,omitempty"`
-
-		ApplyTo *[]struct {
-			Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
-
-			Kinds *[]string `tfsdk:"kinds" yaml:"kinds,omitempty"`
-
-			Versions *[]string `tfsdk:"versions" yaml:"versions,omitempty"`
-		} `tfsdk:"apply_to" yaml:"applyTo,omitempty"`
-
-		Location *string `tfsdk:"location" yaml:"location,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -201,6 +201,62 @@ func (r *MutationsGatekeeperShModifySetV1Beta1Resource) GetSchema(_ context.Cont
 				MarkdownDescription: "ModifySetSpec defines the desired state of ModifySet.",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+					"apply_to": {
+						Description:         "ApplyTo lists the specific groups, versions and kinds a mutation will be applied to. This is necessary because every mutation implies part of an object schema and object schemas are associated with specific GVKs.",
+						MarkdownDescription: "ApplyTo lists the specific groups, versions and kinds a mutation will be applied to. This is necessary because every mutation implies part of an object schema and object schemas are associated with specific GVKs.",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"groups": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"kinds": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"versions": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"location": {
+						Description:         "Location describes the path to be mutated, for example: 'spec.containers[name: main].args'.",
+						MarkdownDescription: "Location describes the path to be mutated, for example: 'spec.containers[name: main].args'.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
 
 					"match": {
 						Description:         "Match allows the user to limit which resources get mutated. Individual match criteria are AND-ed together. An undefined match criteria matches everything.",
@@ -490,62 +546,6 @@ func (r *MutationsGatekeeperShModifySetV1Beta1Resource) GetSchema(_ context.Cont
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"apply_to": {
-						Description:         "ApplyTo lists the specific groups, versions and kinds a mutation will be applied to. This is necessary because every mutation implies part of an object schema and object schemas are associated with specific GVKs.",
-						MarkdownDescription: "ApplyTo lists the specific groups, versions and kinds a mutation will be applied to. This is necessary because every mutation implies part of an object schema and object schemas are associated with specific GVKs.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"groups": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"kinds": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"versions": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"location": {
-						Description:         "Location describes the path to be mutated, for example: 'spec.containers[name: main].args'.",
-						MarkdownDescription: "Location describes the path to be mutated, for example: 'spec.containers[name: main].args'.",
-
-						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

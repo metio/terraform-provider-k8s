@@ -60,21 +60,21 @@ type ImageToolkitFluxcdIoImageRepositoryV1Beta1GoModel struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"cert_secret_ref" yaml:"certSecretRef,omitempty"`
 
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
-
-		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
 		ExclusionList *[]string `tfsdk:"exclusion_list" yaml:"exclusionList,omitempty"`
 
 		Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 
 		SecretRef *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 
+		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
+
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+
+		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -233,39 +233,6 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta1Resource) GetSchema(_ context
 						Computed: false,
 					},
 
-					"interval": {
-						Description:         "Interval is the length of time to wait between scans of the image repository.",
-						MarkdownDescription: "Interval is the length of time to wait between scans of the image repository.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"service_account_name": {
-						Description:         "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets.",
-						MarkdownDescription: "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"timeout": {
-						Description:         "Timeout for image scanning. Defaults to 'Interval' duration.",
-						MarkdownDescription: "Timeout for image scanning. Defaults to 'Interval' duration.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"exclusion_list": {
 						Description:         "ExclusionList is a list of regex strings used to exclude certain tags from being stored in the database.",
 						MarkdownDescription: "ExclusionList is a list of regex strings used to exclude certain tags from being stored in the database.",
@@ -280,6 +247,17 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta1Resource) GetSchema(_ context
 					"image": {
 						Description:         "Image is the name of the image repository",
 						MarkdownDescription: "Image is the name of the image repository",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"interval": {
+						Description:         "Interval is the length of time to wait between scans of the image repository.",
+						MarkdownDescription: "Interval is the length of time to wait between scans of the image repository.",
 
 						Type: types.StringType,
 
@@ -311,11 +289,33 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta1Resource) GetSchema(_ context
 						Computed: false,
 					},
 
+					"service_account_name": {
+						Description:         "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets.",
+						MarkdownDescription: "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"suspend": {
 						Description:         "This flag tells the controller to suspend subsequent image scans. It does not apply to already started scans. Defaults to false.",
 						MarkdownDescription: "This flag tells the controller to suspend subsequent image scans. It does not apply to already started scans. Defaults to false.",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"timeout": {
+						Description:         "Timeout for image scanning. Defaults to 'Interval' duration.",
+						MarkdownDescription: "Timeout for image scanning. Defaults to 'Interval' duration.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

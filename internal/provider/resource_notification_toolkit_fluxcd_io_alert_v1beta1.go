@@ -53,15 +53,15 @@ type NotificationToolkitFluxcdIoAlertV1Beta1GoModel struct {
 		EventSeverity *string `tfsdk:"event_severity" yaml:"eventSeverity,omitempty"`
 
 		EventSources *[]struct {
+			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
 			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 		} `tfsdk:"event_sources" yaml:"eventSources,omitempty"`
 
 		ExclusionList *[]string `tfsdk:"exclusion_list" yaml:"exclusionList,omitempty"`
@@ -190,6 +190,28 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta1Resource) GetSchema(_ context.Co
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+							"api_version": {
+								Description:         "API version of the referent",
+								MarkdownDescription: "API version of the referent",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"kind": {
+								Description:         "Kind of the referent",
+								MarkdownDescription: "Kind of the referent",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"match_labels": {
 								Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
@@ -215,28 +237,6 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta1Resource) GetSchema(_ context.Co
 							"namespace": {
 								Description:         "Namespace of the referent",
 								MarkdownDescription: "Namespace of the referent",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"api_version": {
-								Description:         "API version of the referent",
-								MarkdownDescription: "API version of the referent",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"kind": {
-								Description:         "Kind of the referent",
-								MarkdownDescription: "Kind of the referent",
 
 								Type: types.StringType,
 

@@ -50,16 +50,18 @@ type NotificationToolkitFluxcdIoReceiverV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Events *[]string `tfsdk:"events" yaml:"events,omitempty"`
+
 		Resources *[]struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
 			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
 
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
 			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 		SecretRef *struct {
@@ -69,8 +71,6 @@ type NotificationToolkitFluxcdIoReceiverV1Beta1GoModel struct {
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 
 		Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-		Events *[]string `tfsdk:"events" yaml:"events,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -171,33 +171,22 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Resource) GetSchema(_ context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"events": {
+						Description:         "A list of events to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
+						MarkdownDescription: "A list of events to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"resources": {
 						Description:         "A list of resources to be notified about changes.",
 						MarkdownDescription: "A list of resources to be notified about changes.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the referent",
-								MarkdownDescription: "Name of the referent",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"namespace": {
-								Description:         "Namespace of the referent",
-								MarkdownDescription: "Namespace of the referent",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"api_version": {
 								Description:         "API version of the referent",
@@ -226,6 +215,28 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Resource) GetSchema(_ context
 								MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 
 								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name of the referent",
+								MarkdownDescription: "Name of the referent",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"namespace": {
+								Description:         "Namespace of the referent",
+								MarkdownDescription: "Namespace of the referent",
+
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
@@ -280,17 +291,6 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Resource) GetSchema(_ context
 
 						Required: true,
 						Optional: false,
-						Computed: false,
-					},
-
-					"events": {
-						Description:         "A list of events to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
-						MarkdownDescription: "A list of events to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
 						Computed: false,
 					},
 				}),

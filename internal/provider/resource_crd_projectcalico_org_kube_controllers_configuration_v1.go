@@ -48,14 +48,6 @@ type CrdProjectcalicoOrgKubeControllersConfigurationV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		EtcdV3CompactionPeriod *string `tfsdk:"etcd_v3_compaction_period" yaml:"etcdV3CompactionPeriod,omitempty"`
-
-		HealthChecks *string `tfsdk:"health_checks" yaml:"healthChecks,omitempty"`
-
-		LogSeverityScreen *string `tfsdk:"log_severity_screen" yaml:"logSeverityScreen,omitempty"`
-
-		PrometheusMetricsPort *int64 `tfsdk:"prometheus_metrics_port" yaml:"prometheusMetricsPort,omitempty"`
-
 		Controllers *struct {
 			Namespace *struct {
 				ReconcilerPeriod *string `tfsdk:"reconciler_period" yaml:"reconcilerPeriod,omitempty"`
@@ -87,6 +79,14 @@ type CrdProjectcalicoOrgKubeControllersConfigurationV1GoModel struct {
 		} `tfsdk:"controllers" yaml:"controllers,omitempty"`
 
 		DebugProfilePort *int64 `tfsdk:"debug_profile_port" yaml:"debugProfilePort,omitempty"`
+
+		EtcdV3CompactionPeriod *string `tfsdk:"etcd_v3_compaction_period" yaml:"etcdV3CompactionPeriod,omitempty"`
+
+		HealthChecks *string `tfsdk:"health_checks" yaml:"healthChecks,omitempty"`
+
+		LogSeverityScreen *string `tfsdk:"log_severity_screen" yaml:"logSeverityScreen,omitempty"`
+
+		PrometheusMetricsPort *int64 `tfsdk:"prometheus_metrics_port" yaml:"prometheusMetricsPort,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -179,50 +179,6 @@ func (r *CrdProjectcalicoOrgKubeControllersConfigurationV1Resource) GetSchema(_ 
 				MarkdownDescription: "KubeControllersConfigurationSpec contains the values of the Kubernetes controllers configuration.",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-					"etcd_v3_compaction_period": {
-						Description:         "EtcdV3CompactionPeriod is the period between etcdv3 compaction requests. Set to 0 to disable. [Default: 10m]",
-						MarkdownDescription: "EtcdV3CompactionPeriod is the period between etcdv3 compaction requests. Set to 0 to disable. [Default: 10m]",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"health_checks": {
-						Description:         "HealthChecks enables or disables support for health checks [Default: Enabled]",
-						MarkdownDescription: "HealthChecks enables or disables support for health checks [Default: Enabled]",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"log_severity_screen": {
-						Description:         "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: Info]",
-						MarkdownDescription: "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: Info]",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"prometheus_metrics_port": {
-						Description:         "PrometheusMetricsPort is the TCP port that the Prometheus metrics server should bind to. Set to 0 to disable. [Default: 9094]",
-						MarkdownDescription: "PrometheusMetricsPort is the TCP port that the Prometheus metrics server should bind to. Set to 0 to disable. [Default: 9094]",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
 
 					"controllers": {
 						Description:         "Controllers enables and configures individual Kubernetes controllers",
@@ -399,6 +355,50 @@ func (r *CrdProjectcalicoOrgKubeControllersConfigurationV1Resource) GetSchema(_ 
 					"debug_profile_port": {
 						Description:         "DebugProfilePort configures the port to serve memory and cpu profiles on. If not specified, profiling is disabled.",
 						MarkdownDescription: "DebugProfilePort configures the port to serve memory and cpu profiles on. If not specified, profiling is disabled.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"etcd_v3_compaction_period": {
+						Description:         "EtcdV3CompactionPeriod is the period between etcdv3 compaction requests. Set to 0 to disable. [Default: 10m]",
+						MarkdownDescription: "EtcdV3CompactionPeriod is the period between etcdv3 compaction requests. Set to 0 to disable. [Default: 10m]",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"health_checks": {
+						Description:         "HealthChecks enables or disables support for health checks [Default: Enabled]",
+						MarkdownDescription: "HealthChecks enables or disables support for health checks [Default: Enabled]",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"log_severity_screen": {
+						Description:         "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: Info]",
+						MarkdownDescription: "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: Info]",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"prometheus_metrics_port": {
+						Description:         "PrometheusMetricsPort is the TCP port that the Prometheus metrics server should bind to. Set to 0 to disable. [Default: 9094]",
+						MarkdownDescription: "PrometheusMetricsPort is the TCP port that the Prometheus metrics server should bind to. Set to 0 to disable. [Default: 9094]",
 
 						Type: types.Int64Type,
 

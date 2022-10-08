@@ -50,19 +50,13 @@ type CertManagerIoCertificateRequestV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
-
-		IsCA *bool `tfsdk:"is_ca" yaml:"isCA,omitempty"`
-
 		Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
 
 		Extra *map[string][]string `tfsdk:"extra" yaml:"extra,omitempty"`
 
-		Uid *string `tfsdk:"uid" yaml:"uid,omitempty"`
+		Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
 
-		Usages *[]string `tfsdk:"usages" yaml:"usages,omitempty"`
-
-		Username *string `tfsdk:"username" yaml:"username,omitempty"`
+		IsCA *bool `tfsdk:"is_ca" yaml:"isCA,omitempty"`
 
 		IssuerRef *struct {
 			Group *string `tfsdk:"group" yaml:"group,omitempty"`
@@ -73,6 +67,12 @@ type CertManagerIoCertificateRequestV1GoModel struct {
 		} `tfsdk:"issuer_ref" yaml:"issuerRef,omitempty"`
 
 		Request *string `tfsdk:"request" yaml:"request,omitempty"`
+
+		Uid *string `tfsdk:"uid" yaml:"uid,omitempty"`
+
+		Usages *[]string `tfsdk:"usages" yaml:"usages,omitempty"`
+
+		Username *string `tfsdk:"username" yaml:"username,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -173,28 +173,6 @@ func (r *CertManagerIoCertificateRequestV1Resource) GetSchema(_ context.Context)
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"groups": {
-						Description:         "Groups contains group membership of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
-						MarkdownDescription: "Groups contains group membership of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"is_ca": {
-						Description:         "IsCA will request to mark the certificate as valid for certificate signing when submitting to the issuer. This will automatically add the 'cert sign' usage to the list of 'usages'.",
-						MarkdownDescription: "IsCA will request to mark the certificate as valid for certificate signing when submitting to the issuer. This will automatically add the 'cert sign' usage to the list of 'usages'.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"duration": {
 						Description:         "The requested 'duration' (i.e. lifetime) of the Certificate. This option may be ignored/overridden by some issuer types.",
 						MarkdownDescription: "The requested 'duration' (i.e. lifetime) of the Certificate. This option may be ignored/overridden by some issuer types.",
@@ -217,20 +195,9 @@ func (r *CertManagerIoCertificateRequestV1Resource) GetSchema(_ context.Context)
 						Computed: false,
 					},
 
-					"uid": {
-						Description:         "UID contains the uid of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
-						MarkdownDescription: "UID contains the uid of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"usages": {
-						Description:         "Usages is the set of x509 usages that are requested for the certificate. If usages are set they SHOULD be encoded inside the CSR spec Defaults to 'digital signature' and 'key encipherment' if not specified.",
-						MarkdownDescription: "Usages is the set of x509 usages that are requested for the certificate. If usages are set they SHOULD be encoded inside the CSR spec Defaults to 'digital signature' and 'key encipherment' if not specified.",
+					"groups": {
+						Description:         "Groups contains group membership of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
+						MarkdownDescription: "Groups contains group membership of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
 
 						Type: types.ListType{ElemType: types.StringType},
 
@@ -239,11 +206,11 @@ func (r *CertManagerIoCertificateRequestV1Resource) GetSchema(_ context.Context)
 						Computed: false,
 					},
 
-					"username": {
-						Description:         "Username contains the name of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
-						MarkdownDescription: "Username contains the name of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
+					"is_ca": {
+						Description:         "IsCA will request to mark the certificate as valid for certificate signing when submitting to the issuer. This will automatically add the 'cert sign' usage to the list of 'usages'.",
+						MarkdownDescription: "IsCA will request to mark the certificate as valid for certificate signing when submitting to the issuer. This will automatically add the 'cert sign' usage to the list of 'usages'.",
 
-						Type: types.StringType,
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
@@ -303,6 +270,39 @@ func (r *CertManagerIoCertificateRequestV1Resource) GetSchema(_ context.Context)
 
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"uid": {
+						Description:         "UID contains the uid of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
+						MarkdownDescription: "UID contains the uid of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"usages": {
+						Description:         "Usages is the set of x509 usages that are requested for the certificate. If usages are set they SHOULD be encoded inside the CSR spec Defaults to 'digital signature' and 'key encipherment' if not specified.",
+						MarkdownDescription: "Usages is the set of x509 usages that are requested for the certificate. If usages are set they SHOULD be encoded inside the CSR spec Defaults to 'digital signature' and 'key encipherment' if not specified.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"username": {
+						Description:         "Username contains the name of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
+						MarkdownDescription: "Username contains the name of the user that created the CertificateRequest. Populated by the cert-manager webhook on creation and immutable.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 				}),

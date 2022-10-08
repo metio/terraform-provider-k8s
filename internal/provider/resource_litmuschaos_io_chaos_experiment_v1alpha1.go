@@ -31,8 +31,8 @@ type LitmuschaosIoChaosExperimentV1Alpha1TerraformModel struct {
 	ApiVersion  types.String `tfsdk:"api_version"`
 	Kind        types.String `tfsdk:"kind"`
 	Metadata    types.Object `tfsdk:"metadata"`
-	Spec        types.Object `tfsdk:"spec"`
 	Description types.Map    `tfsdk:"description"`
+	Spec        types.Object `tfsdk:"spec"`
 }
 
 type LitmuschaosIoChaosExperimentV1Alpha1GoModel struct {
@@ -50,37 +50,19 @@ type LitmuschaosIoChaosExperimentV1Alpha1GoModel struct {
 		Annotations map[string]string `tfsdk:"annotations" yaml:",omitempty"`
 	} `tfsdk:"metadata" yaml:"metadata"`
 
+	Description *map[string]string `tfsdk:"description" yaml:"description,omitempty"`
+
 	Spec *struct {
 		Definition *struct {
+			Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
+
+			Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+
 			ConfigMaps *[]struct {
 				MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
 
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 			} `tfsdk:"config_maps" yaml:"configMaps,omitempty"`
-
-			HostFileVolumes *[]struct {
-				MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				NodePath *string `tfsdk:"node_path" yaml:"nodePath,omitempty"`
-			} `tfsdk:"host_file_volumes" yaml:"hostFileVolumes,omitempty"`
-
-			Permissions *[]struct {
-				ApiGroups *[]string `tfsdk:"api_groups" yaml:"apiGroups,omitempty"`
-
-				NonResourceURLs *[]string `tfsdk:"non_resource_ur_ls" yaml:"nonResourceURLs,omitempty"`
-
-				ResourceNames *[]string `tfsdk:"resource_names" yaml:"resourceNames,omitempty"`
-
-				Resources *[]string `tfsdk:"resources" yaml:"resources,omitempty"`
-
-				Verbs *[]string `tfsdk:"verbs" yaml:"verbs,omitempty"`
-			} `tfsdk:"permissions" yaml:"permissions,omitempty"`
-
-			Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
-
-			Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
 
 			Env *[]struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -103,11 +85,11 @@ type LitmuschaosIoChaosExperimentV1Alpha1GoModel struct {
 					} `tfsdk:"field_ref" yaml:"fieldRef,omitempty"`
 
 					ResourceFieldRef *struct {
-						Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
-
 						ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
 						Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+
+						Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 					} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
 
 					SecretKeyRef *struct {
@@ -120,6 +102,14 @@ type LitmuschaosIoChaosExperimentV1Alpha1GoModel struct {
 				} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
 			} `tfsdk:"env" yaml:"env,omitempty"`
 
+			HostFileVolumes *[]struct {
+				MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				NodePath *string `tfsdk:"node_path" yaml:"nodePath,omitempty"`
+			} `tfsdk:"host_file_volumes" yaml:"hostFileVolumes,omitempty"`
+
 			HostPID *bool `tfsdk:"host_pid" yaml:"hostPID,omitempty"`
 
 			Image *string `tfsdk:"image" yaml:"image,omitempty"`
@@ -127,6 +117,18 @@ type LitmuschaosIoChaosExperimentV1Alpha1GoModel struct {
 			ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
 
 			Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+
+			Permissions *[]struct {
+				ApiGroups *[]string `tfsdk:"api_groups" yaml:"apiGroups,omitempty"`
+
+				NonResourceURLs *[]string `tfsdk:"non_resource_ur_ls" yaml:"nonResourceURLs,omitempty"`
+
+				ResourceNames *[]string `tfsdk:"resource_names" yaml:"resourceNames,omitempty"`
+
+				Resources *[]string `tfsdk:"resources" yaml:"resources,omitempty"`
+
+				Verbs *[]string `tfsdk:"verbs" yaml:"verbs,omitempty"`
+			} `tfsdk:"permissions" yaml:"permissions,omitempty"`
 
 			Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
 
@@ -139,8 +141,6 @@ type LitmuschaosIoChaosExperimentV1Alpha1GoModel struct {
 			SecurityContext *map[string]string `tfsdk:"security_context" yaml:"securityContext,omitempty"`
 		} `tfsdk:"definition" yaml:"definition,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
-
-	Description *map[string]string `tfsdk:"description" yaml:"description,omitempty"`
 }
 
 func NewLitmuschaosIoChaosExperimentV1Alpha1Resource() resource.Resource {
@@ -234,6 +234,17 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 				Optional:            false,
 			},
 
+			"description": {
+				Description:         "",
+				MarkdownDescription: "",
+
+				Type: types.MapType{ElemType: types.StringType},
+
+				Required: false,
+				Optional: true,
+				Computed: false,
+			},
+
 			"spec": {
 				Description:         "",
 				MarkdownDescription: "",
@@ -245,6 +256,28 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 						MarkdownDescription: "",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"args": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"command": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
 							"config_maps": {
 								Description:         "",
@@ -274,140 +307,6 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 										Computed: false,
 									},
 								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"host_file_volumes": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"mount_path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"node_path": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"permissions": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"api_groups": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"non_resource_ur_ls": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"resource_names": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"resources": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"verbs": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"args": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"command": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,
@@ -533,17 +432,6 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"resource": {
-														Description:         "Required: resource to select",
-														MarkdownDescription: "Required: resource to select",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
 													"container_name": {
 														Description:         "Container name: required for volumes, optional for env vars",
 														MarkdownDescription: "Container name: required for volumes, optional for env vars",
@@ -563,6 +451,17 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 
 														Required: false,
 														Optional: true,
+														Computed: false,
+													},
+
+													"resource": {
+														Description:         "Required: resource to select",
+														MarkdownDescription: "Required: resource to select",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
 														Computed: false,
 													},
 												}),
@@ -629,6 +528,51 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 								Computed: false,
 							},
 
+							"host_file_volumes": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"mount_path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"node_path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"host_pid": {
 								Description:         "",
 								MarkdownDescription: "",
@@ -667,6 +611,73 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 								MarkdownDescription: "",
 
 								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"permissions": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"api_groups": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"non_resource_ur_ls": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"resource_names": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"resources": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"verbs": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,
@@ -735,17 +746,6 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 						Computed: false,
 					},
 				}),
-
-				Required: false,
-				Optional: true,
-				Computed: false,
-			},
-
-			"description": {
-				Description:         "",
-				MarkdownDescription: "",
-
-				Type: types.MapType{ElemType: types.StringType},
 
 				Required: false,
 				Optional: true,

@@ -60,8 +60,6 @@ type MutationsGatekeeperShAssignMetadataV1Beta1GoModel struct {
 			} `tfsdk:"kinds" yaml:"kinds,omitempty"`
 
 			LabelSelector *struct {
-				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-
 				MatchExpressions *[]struct {
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -69,6 +67,8 @@ type MutationsGatekeeperShAssignMetadataV1Beta1GoModel struct {
 
 					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 				} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 			} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -92,12 +92,6 @@ type MutationsGatekeeperShAssignMetadataV1Beta1GoModel struct {
 
 		Parameters *struct {
 			Assign *struct {
-				FromMetadata *struct {
-					Field *string `tfsdk:"field" yaml:"field,omitempty"`
-				} `tfsdk:"from_metadata" yaml:"fromMetadata,omitempty"`
-
-				Value *map[string]string `tfsdk:"value" yaml:"value,omitempty"`
-
 				ExternalData *struct {
 					DataSource *string `tfsdk:"data_source" yaml:"dataSource,omitempty"`
 
@@ -107,6 +101,12 @@ type MutationsGatekeeperShAssignMetadataV1Beta1GoModel struct {
 
 					Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
 				} `tfsdk:"external_data" yaml:"externalData,omitempty"`
+
+				FromMetadata *struct {
+					Field *string `tfsdk:"field" yaml:"field,omitempty"`
+				} `tfsdk:"from_metadata" yaml:"fromMetadata,omitempty"`
+
+				Value *map[string]string `tfsdk:"value" yaml:"value,omitempty"`
 			} `tfsdk:"assign" yaml:"assign,omitempty"`
 		} `tfsdk:"parameters" yaml:"parameters,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -270,17 +270,6 @@ func (r *MutationsGatekeeperShAssignMetadataV1Beta1Resource) GetSchema(_ context
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"match_labels": {
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"match_expressions": {
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -320,6 +309,17 @@ func (r *MutationsGatekeeperShAssignMetadataV1Beta1Resource) GetSchema(_ context
 												Computed: false,
 											},
 										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"match_labels": {
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+										Type: types.MapType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
@@ -451,40 +451,6 @@ func (r *MutationsGatekeeperShAssignMetadataV1Beta1Resource) GetSchema(_ context
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"from_metadata": {
-										Description:         "FromMetadata assigns a value from the specified metadata field.",
-										MarkdownDescription: "FromMetadata assigns a value from the specified metadata field.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"field": {
-												Description:         "Field specifies which metadata field provides the assigned value. Valid fields are 'namespace' and 'name'.",
-												MarkdownDescription: "Field specifies which metadata field provides the assigned value. Valid fields are 'namespace' and 'name'.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"value": {
-										Description:         "Value is a constant value that will be assigned to 'location'",
-										MarkdownDescription: "Value is a constant value that will be assigned to 'location'",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"external_data": {
 										Description:         "ExternalData describes the external data provider to be used for mutation.",
 										MarkdownDescription: "ExternalData describes the external data provider to be used for mutation.",
@@ -535,6 +501,40 @@ func (r *MutationsGatekeeperShAssignMetadataV1Beta1Resource) GetSchema(_ context
 												Computed: false,
 											},
 										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"from_metadata": {
+										Description:         "FromMetadata assigns a value from the specified metadata field.",
+										MarkdownDescription: "FromMetadata assigns a value from the specified metadata field.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"field": {
+												Description:         "Field specifies which metadata field provides the assigned value. Valid fields are 'namespace' and 'name'.",
+												MarkdownDescription: "Field specifies which metadata field provides the assigned value. Valid fields are 'namespace' and 'name'.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"value": {
+										Description:         "Value is a constant value that will be assigned to 'location'",
+										MarkdownDescription: "Value is a constant value that will be assigned to 'location'",
+
+										Type: types.MapType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,

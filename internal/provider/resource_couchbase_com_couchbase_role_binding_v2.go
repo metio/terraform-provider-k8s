@@ -51,9 +51,9 @@ type CouchbaseComCouchbaseRoleBindingV2GoModel struct {
 
 	Spec *struct {
 		RoleRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"role_ref" yaml:"roleRef,omitempty"`
 
 		Subjects *[]struct {
@@ -167,9 +167,9 @@ func (r *CouchbaseComCouchbaseRoleBindingV2Resource) GetSchema(_ context.Context
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"name": {
-								Description:         "Name of role resource to use for binding.",
-								MarkdownDescription: "Name of role resource to use for binding.",
+							"kind": {
+								Description:         "Kind of role to use for binding.",
+								MarkdownDescription: "Kind of role to use for binding.",
 
 								Type: types.StringType,
 
@@ -178,9 +178,9 @@ func (r *CouchbaseComCouchbaseRoleBindingV2Resource) GetSchema(_ context.Context
 								Computed: false,
 							},
 
-							"kind": {
-								Description:         "Kind of role to use for binding.",
-								MarkdownDescription: "Kind of role to use for binding.",
+							"name": {
+								Description:         "Name of role resource to use for binding.",
+								MarkdownDescription: "Name of role resource to use for binding.",
 
 								Type: types.StringType,
 

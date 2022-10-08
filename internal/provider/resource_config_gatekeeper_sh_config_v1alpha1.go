@@ -51,9 +51,9 @@ type ConfigGatekeeperShConfigV1Alpha1GoModel struct {
 
 	Spec *struct {
 		Match *[]struct {
-			Processes *[]string `tfsdk:"processes" yaml:"processes,omitempty"`
-
 			ExcludedNamespaces *[]string `tfsdk:"excluded_namespaces" yaml:"excludedNamespaces,omitempty"`
+
+			Processes *[]string `tfsdk:"processes" yaml:"processes,omitempty"`
 		} `tfsdk:"match" yaml:"match,omitempty"`
 
 		Readiness *struct {
@@ -191,7 +191,7 @@ func (r *ConfigGatekeeperShConfigV1Alpha1Resource) GetSchema(_ context.Context) 
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"processes": {
+							"excluded_namespaces": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -202,7 +202,7 @@ func (r *ConfigGatekeeperShConfigV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"excluded_namespaces": {
+							"processes": {
 								Description:         "",
 								MarkdownDescription: "",
 

@@ -50,21 +50,23 @@ type SourceToolkitFluxcdIoOCIRepositoryV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Verify *struct {
-			Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
+		CertSecretRef *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"cert_secret_ref" yaml:"certSecretRef,omitempty"`
 
-			SecretRef *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-		} `tfsdk:"verify" yaml:"verify,omitempty"`
+		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
 
 		Insecure *bool `tfsdk:"insecure" yaml:"insecure,omitempty"`
+
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 
 		LayerSelector *struct {
 			MediaType *string `tfsdk:"media_type" yaml:"mediaType,omitempty"`
 
 			Operation *string `tfsdk:"operation" yaml:"operation,omitempty"`
 		} `tfsdk:"layer_selector" yaml:"layerSelector,omitempty"`
+
+		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
 
 		Ref *struct {
 			Digest *string `tfsdk:"digest" yaml:"digest,omitempty"`
@@ -74,27 +76,25 @@ type SourceToolkitFluxcdIoOCIRepositoryV1Beta2GoModel struct {
 			Tag *string `tfsdk:"tag" yaml:"tag,omitempty"`
 		} `tfsdk:"ref" yaml:"ref,omitempty"`
 
+		SecretRef *struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
 		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
+
+		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 
 		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 
 		Url *string `tfsdk:"url" yaml:"url,omitempty"`
 
-		CertSecretRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"cert_secret_ref" yaml:"certSecretRef,omitempty"`
+		Verify *struct {
+			Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
 
-		Ignore *string `tfsdk:"ignore" yaml:"ignore,omitempty"`
-
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
-
-		SecretRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+			SecretRef *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+		} `tfsdk:"verify" yaml:"verify,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -195,15 +195,15 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) GetSchema(_ context.
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"verify": {
-						Description:         "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic.",
-						MarkdownDescription: "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic.",
+					"cert_secret_ref": {
+						Description:         "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
+						MarkdownDescription: "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"provider": {
-								Description:         "Provider specifies the technology used to sign the OCI Artifact.",
-								MarkdownDescription: "Provider specifies the technology used to sign the OCI Artifact.",
+							"name": {
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
 
 								Type: types.StringType,
 
@@ -211,30 +211,18 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) GetSchema(_ context.
 								Optional: false,
 								Computed: false,
 							},
-
-							"secret_ref": {
-								Description:         "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
-								MarkdownDescription: "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name of the referent.",
-										MarkdownDescription: "Name of the referent.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"ignore": {
+						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -249,6 +237,17 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) GetSchema(_ context.
 
 						Required: false,
 						Optional: true,
+						Computed: false,
+					},
+
+					"interval": {
+						Description:         "The interval at which to check for image updates.",
+						MarkdownDescription: "The interval at which to check for image updates.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 
@@ -280,6 +279,17 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) GetSchema(_ context.
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"provider": {
+						Description:         "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. When not specified, defaults to 'generic'.",
+						MarkdownDescription: "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. When not specified, defaults to 'generic'.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -331,11 +341,45 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
+					"secret_ref": {
+						Description:         "SecretRef contains the secret name containing the registry login credentials to resolve image metadata. The secret must be of type kubernetes.io/dockerconfigjson.",
+						MarkdownDescription: "SecretRef contains the secret name containing the registry login credentials to resolve image metadata. The secret must be of type kubernetes.io/dockerconfigjson.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"name": {
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"service_account_name": {
 						Description:         "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets. For more information: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account",
 						MarkdownDescription: "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets. For more information: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account",
 
 						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"suspend": {
+						Description:         "This flag tells the controller to suspend the reconciliation of this source.",
+						MarkdownDescription: "This flag tells the controller to suspend the reconciliation of this source.",
+
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
@@ -364,15 +408,15 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) GetSchema(_ context.
 						Computed: false,
 					},
 
-					"cert_secret_ref": {
-						Description:         "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
-						MarkdownDescription: "CertSecretRef can be given the name of a secret containing either or both of  - a PEM-encoded client certificate ('certFile') and private key ('keyFile'); - a PEM-encoded CA certificate ('caFile')  and whichever are supplied, will be used for connecting to the registry. The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you are using a self-signed server certificate.",
+					"verify": {
+						Description:         "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic.",
+						MarkdownDescription: "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"name": {
-								Description:         "Name of the referent.",
-								MarkdownDescription: "Name of the referent.",
+							"provider": {
+								Description:         "Provider specifies the technology used to sign the OCI Artifact.",
+								MarkdownDescription: "Provider specifies the technology used to sign the OCI Artifact.",
 
 								Type: types.StringType,
 
@@ -380,74 +424,30 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) GetSchema(_ context.
 								Optional: false,
 								Computed: false,
 							},
-						}),
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
+							"secret_ref": {
+								Description:         "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
+								MarkdownDescription: "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
 
-					"ignore": {
-						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
-						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-						Type: types.StringType,
+									"name": {
+										Description:         "Name of the referent.",
+										MarkdownDescription: "Name of the referent.",
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
+										Type: types.StringType,
 
-					"interval": {
-						Description:         "The interval at which to check for image updates.",
-						MarkdownDescription: "The interval at which to check for image updates.",
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
 
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"provider": {
-						Description:         "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. When not specified, defaults to 'generic'.",
-						MarkdownDescription: "The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'. When not specified, defaults to 'generic'.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"secret_ref": {
-						Description:         "SecretRef contains the secret name containing the registry login credentials to resolve image metadata. The secret must be of type kubernetes.io/dockerconfigjson.",
-						MarkdownDescription: "SecretRef contains the secret name containing the registry login credentials to resolve image metadata. The secret must be of type kubernetes.io/dockerconfigjson.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"name": {
-								Description:         "Name of the referent.",
-								MarkdownDescription: "Name of the referent.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"suspend": {
-						Description:         "This flag tells the controller to suspend the reconciliation of this source.",
-						MarkdownDescription: "This flag tells the controller to suspend the reconciliation of this source.",
-
-						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,

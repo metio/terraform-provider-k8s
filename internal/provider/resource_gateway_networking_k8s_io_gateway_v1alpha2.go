@@ -61,24 +61,6 @@ type GatewayNetworkingK8SIoGatewayV1Alpha2GoModel struct {
 		GatewayClassName *string `tfsdk:"gateway_class_name" yaml:"gatewayClassName,omitempty"`
 
 		Listeners *[]struct {
-			Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
-
-			Tls *struct {
-				CertificateRefs *[]struct {
-					Group *string `tfsdk:"group" yaml:"group,omitempty"`
-
-					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-				} `tfsdk:"certificate_refs" yaml:"certificateRefs,omitempty"`
-
-				Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
-
-				Options *map[string]string `tfsdk:"options" yaml:"options,omitempty"`
-			} `tfsdk:"tls" yaml:"tls,omitempty"`
-
 			AllowedRoutes *struct {
 				Kinds *[]struct {
 					Group *string `tfsdk:"group" yaml:"group,omitempty"`
@@ -108,6 +90,24 @@ type GatewayNetworkingK8SIoGatewayV1Alpha2GoModel struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+
+			Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+
+			Tls *struct {
+				CertificateRefs *[]struct {
+					Group *string `tfsdk:"group" yaml:"group,omitempty"`
+
+					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+				} `tfsdk:"certificate_refs" yaml:"certificateRefs,omitempty"`
+
+				Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
+
+				Options *map[string]string `tfsdk:"options" yaml:"options,omitempty"`
+			} `tfsdk:"tls" yaml:"tls,omitempty"`
 		} `tfsdk:"listeners" yaml:"listeners,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -259,107 +259,6 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 						MarkdownDescription: "Listeners associated with this Gateway. Listeners define logical endpoints that are bound on this Gateway's addresses. At least one Listener MUST be specified.  Each listener in a Gateway must have a unique combination of Hostname, Port, and Protocol.  An implementation MAY group Listeners by Port and then collapse each group of Listeners into a single Listener if the implementation determines that the Listeners in the group are 'compatible'. An implementation MAY also group together and collapse compatible Listeners belonging to different Gateways.  For example, an implementation might consider Listeners to be compatible with each other if all of the following conditions are met:  1. Either each Listener within the group specifies the 'HTTP'    Protocol or each Listener within the group specifies either    the 'HTTPS' or 'TLS' Protocol.  2. Each Listener within the group specifies a Hostname that is unique    within the group.  3. As a special case, one Listener within a group may omit Hostname,    in which case this Listener matches when no other Listener    matches.  If the implementation does collapse compatible Listeners, the hostname provided in the incoming client request MUST be matched to a Listener to find the correct set of Routes. The incoming hostname MUST be matched using the Hostname field for each Listener in order of most to least specific. That is, exact matches must be processed before wildcard matches.  If this field specifies multiple Listeners that have the same Port value but are not compatible, the implementation must raise a 'Conflicted' condition in the Listener status.  Support: Core",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"protocol": {
-								Description:         "Protocol specifies the network protocol this listener expects to receive.  Support: Core",
-								MarkdownDescription: "Protocol specifies the network protocol this listener expects to receive.  Support: Core",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"tls": {
-								Description:         "TLS is the TLS configuration for the Listener. This field is required if the Protocol field is 'HTTPS' or 'TLS'. It is invalid to set this field if the Protocol field is 'HTTP', 'TCP', or 'UDP'.  The association of SNIs to Certificate defined in GatewayTLSConfig is defined based on the Hostname field for this listener.  The GatewayClass MUST use the longest matching SNI out of all available certificates for any TLS handshake.  Support: Core",
-								MarkdownDescription: "TLS is the TLS configuration for the Listener. This field is required if the Protocol field is 'HTTPS' or 'TLS'. It is invalid to set this field if the Protocol field is 'HTTP', 'TCP', or 'UDP'.  The association of SNIs to Certificate defined in GatewayTLSConfig is defined based on the Hostname field for this listener.  The GatewayClass MUST use the longest matching SNI out of all available certificates for any TLS handshake.  Support: Core",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"certificate_refs": {
-										Description:         "CertificateRefs contains a series of references to Kubernetes objects that contains TLS certificates and private keys. These certificates are used to establish a TLS handshake for requests that match the hostname of the associated listener.  A single CertificateRef to a Kubernetes Secret has 'Core' support. Implementations MAY choose to support attaching multiple certificates to a Listener, but this behavior is implementation-specific.  References to a resource in different namespace are invalid UNLESS there is a ReferencePolicy in the target namespace that allows the certificate to be attached. If a ReferencePolicy does not allow this reference, the 'ResolvedRefs' condition MUST be set to False for this listener with the 'InvalidCertificateRef' reason.  This field is required to have at least one element when the mode is set to 'Terminate' (default) and is optional otherwise.  CertificateRefs can reference to standard Kubernetes resources, i.e. Secret, or implementation-specific custom resources.  Support: Core - A single reference to a Kubernetes Secret  Support: Implementation-specific (More than one reference or other resource types)",
-										MarkdownDescription: "CertificateRefs contains a series of references to Kubernetes objects that contains TLS certificates and private keys. These certificates are used to establish a TLS handshake for requests that match the hostname of the associated listener.  A single CertificateRef to a Kubernetes Secret has 'Core' support. Implementations MAY choose to support attaching multiple certificates to a Listener, but this behavior is implementation-specific.  References to a resource in different namespace are invalid UNLESS there is a ReferencePolicy in the target namespace that allows the certificate to be attached. If a ReferencePolicy does not allow this reference, the 'ResolvedRefs' condition MUST be set to False for this listener with the 'InvalidCertificateRef' reason.  This field is required to have at least one element when the mode is set to 'Terminate' (default) and is optional otherwise.  CertificateRefs can reference to standard Kubernetes resources, i.e. Secret, or implementation-specific custom resources.  Support: Core - A single reference to a Kubernetes Secret  Support: Implementation-specific (More than one reference or other resource types)",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"group": {
-												Description:         "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
-												MarkdownDescription: "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"kind": {
-												Description:         "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
-												MarkdownDescription: "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name is the name of the referent.",
-												MarkdownDescription: "Name is the name of the referent.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"namespace": {
-												Description:         "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
-												MarkdownDescription: "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"mode": {
-										Description:         "Mode defines the TLS behavior for the TLS session initiated by the client. There are two possible modes:  - Terminate: The TLS session between the downstream client   and the Gateway is terminated at the Gateway. This mode requires   certificateRefs to be set and contain at least one element. - Passthrough: The TLS session is NOT terminated by the Gateway. This   implies that the Gateway can't decipher the TLS stream except for   the ClientHello message of the TLS protocol.   CertificateRefs field is ignored in this mode.  Support: Core",
-										MarkdownDescription: "Mode defines the TLS behavior for the TLS session initiated by the client. There are two possible modes:  - Terminate: The TLS session between the downstream client   and the Gateway is terminated at the Gateway. This mode requires   certificateRefs to be set and contain at least one element. - Passthrough: The TLS session is NOT terminated by the Gateway. This   implies that the Gateway can't decipher the TLS stream except for   the ClientHello message of the TLS protocol.   CertificateRefs field is ignored in this mode.  Support: Core",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"options": {
-										Description:         "Options are a list of key/value pairs to enable extended TLS configuration for each implementation. For example, configuring the minimum TLS version or supported cipher suites.  A set of common keys MAY be defined by the API in the future. To avoid any ambiguity, implementation-specific definitions MUST use domain-prefixed names, such as 'example.com/my-custom-option'. Un-prefixed names are reserved for key names defined by Gateway API.  Support: Implementation-specific",
-										MarkdownDescription: "Options are a list of key/value pairs to enable extended TLS configuration for each implementation. For example, configuring the minimum TLS version or supported cipher suites.  A set of common keys MAY be defined by the API in the future. To avoid any ambiguity, implementation-specific definitions MUST use domain-prefixed names, such as 'example.com/my-custom-option'. Un-prefixed names are reserved for key names defined by Gateway API.  Support: Implementation-specific",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
 							"allowed_routes": {
 								Description:         "AllowedRoutes defines the types of routes that MAY be attached to a Listener and the trusted namespaces where those Route resources MAY be present.  Although a client request may match multiple route rules, only one rule may ultimately receive the request. Matching precedence MUST be determined in order of the following criteria:  * The most specific match as defined by the Route type. * The oldest Route based on creation timestamp. For example, a Route with   a creation timestamp of '2020-09-08 01:02:03' is given precedence over   a Route with a creation timestamp of '2020-09-08 01:02:04'. * If everything else is equivalent, the Route appearing first in   alphabetical order (namespace/name) should be given precedence. For   example, foo/bar is given precedence over foo/baz.  All valid rules within a Route attached to this Listener should be implemented. Invalid Route rules can be ignored (sometimes that will mean the full Route). If a Route rule transitions from valid to invalid, support for that Route rule should be dropped to ensure consistency. For example, even if a filter specified by a Route rule is invalid, the rest of the rules within that Route should still be supported.  Support: Core",
@@ -536,6 +435,107 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 
 									int64validator.AtMost(65535),
 								},
+							},
+
+							"protocol": {
+								Description:         "Protocol specifies the network protocol this listener expects to receive.  Support: Core",
+								MarkdownDescription: "Protocol specifies the network protocol this listener expects to receive.  Support: Core",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"tls": {
+								Description:         "TLS is the TLS configuration for the Listener. This field is required if the Protocol field is 'HTTPS' or 'TLS'. It is invalid to set this field if the Protocol field is 'HTTP', 'TCP', or 'UDP'.  The association of SNIs to Certificate defined in GatewayTLSConfig is defined based on the Hostname field for this listener.  The GatewayClass MUST use the longest matching SNI out of all available certificates for any TLS handshake.  Support: Core",
+								MarkdownDescription: "TLS is the TLS configuration for the Listener. This field is required if the Protocol field is 'HTTPS' or 'TLS'. It is invalid to set this field if the Protocol field is 'HTTP', 'TCP', or 'UDP'.  The association of SNIs to Certificate defined in GatewayTLSConfig is defined based on the Hostname field for this listener.  The GatewayClass MUST use the longest matching SNI out of all available certificates for any TLS handshake.  Support: Core",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"certificate_refs": {
+										Description:         "CertificateRefs contains a series of references to Kubernetes objects that contains TLS certificates and private keys. These certificates are used to establish a TLS handshake for requests that match the hostname of the associated listener.  A single CertificateRef to a Kubernetes Secret has 'Core' support. Implementations MAY choose to support attaching multiple certificates to a Listener, but this behavior is implementation-specific.  References to a resource in different namespace are invalid UNLESS there is a ReferencePolicy in the target namespace that allows the certificate to be attached. If a ReferencePolicy does not allow this reference, the 'ResolvedRefs' condition MUST be set to False for this listener with the 'InvalidCertificateRef' reason.  This field is required to have at least one element when the mode is set to 'Terminate' (default) and is optional otherwise.  CertificateRefs can reference to standard Kubernetes resources, i.e. Secret, or implementation-specific custom resources.  Support: Core - A single reference to a Kubernetes Secret  Support: Implementation-specific (More than one reference or other resource types)",
+										MarkdownDescription: "CertificateRefs contains a series of references to Kubernetes objects that contains TLS certificates and private keys. These certificates are used to establish a TLS handshake for requests that match the hostname of the associated listener.  A single CertificateRef to a Kubernetes Secret has 'Core' support. Implementations MAY choose to support attaching multiple certificates to a Listener, but this behavior is implementation-specific.  References to a resource in different namespace are invalid UNLESS there is a ReferencePolicy in the target namespace that allows the certificate to be attached. If a ReferencePolicy does not allow this reference, the 'ResolvedRefs' condition MUST be set to False for this listener with the 'InvalidCertificateRef' reason.  This field is required to have at least one element when the mode is set to 'Terminate' (default) and is optional otherwise.  CertificateRefs can reference to standard Kubernetes resources, i.e. Secret, or implementation-specific custom resources.  Support: Core - A single reference to a Kubernetes Secret  Support: Implementation-specific (More than one reference or other resource types)",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"group": {
+												Description:         "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
+												MarkdownDescription: "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"kind": {
+												Description:         "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
+												MarkdownDescription: "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name is the name of the referent.",
+												MarkdownDescription: "Name is the name of the referent.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"namespace": {
+												Description:         "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
+												MarkdownDescription: "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"mode": {
+										Description:         "Mode defines the TLS behavior for the TLS session initiated by the client. There are two possible modes:  - Terminate: The TLS session between the downstream client   and the Gateway is terminated at the Gateway. This mode requires   certificateRefs to be set and contain at least one element. - Passthrough: The TLS session is NOT terminated by the Gateway. This   implies that the Gateway can't decipher the TLS stream except for   the ClientHello message of the TLS protocol.   CertificateRefs field is ignored in this mode.  Support: Core",
+										MarkdownDescription: "Mode defines the TLS behavior for the TLS session initiated by the client. There are two possible modes:  - Terminate: The TLS session between the downstream client   and the Gateway is terminated at the Gateway. This mode requires   certificateRefs to be set and contain at least one element. - Passthrough: The TLS session is NOT terminated by the Gateway. This   implies that the Gateway can't decipher the TLS stream except for   the ClientHello message of the TLS protocol.   CertificateRefs field is ignored in this mode.  Support: Core",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"options": {
+										Description:         "Options are a list of key/value pairs to enable extended TLS configuration for each implementation. For example, configuring the minimum TLS version or supported cipher suites.  A set of common keys MAY be defined by the API in the future. To avoid any ambiguity, implementation-specific definitions MUST use domain-prefixed names, such as 'example.com/my-custom-option'. Un-prefixed names are reserved for key names defined by Gateway API.  Support: Implementation-specific",
+										MarkdownDescription: "Options are a list of key/value pairs to enable extended TLS configuration for each implementation. For example, configuring the minimum TLS version or supported cipher suites.  A set of common keys MAY be defined by the API in the future. To avoid any ambiguity, implementation-specific definitions MUST use domain-prefixed names, such as 'example.com/my-custom-option'. Un-prefixed names are reserved for key names defined by Gateway API.  Support: Implementation-specific",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						}),
 

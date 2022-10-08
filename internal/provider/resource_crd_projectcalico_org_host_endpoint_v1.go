@@ -55,11 +55,11 @@ type CrdProjectcalicoOrgHostEndpointV1GoModel struct {
 		Node *string `tfsdk:"node" yaml:"node,omitempty"`
 
 		Ports *[]struct {
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
 			Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 
 			Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"ports" yaml:"ports,omitempty"`
 
 		Profiles *[]string `tfsdk:"profiles" yaml:"profiles,omitempty"`
@@ -195,6 +195,17 @@ func (r *CrdProjectcalicoOrgHostEndpointV1Resource) GetSchema(_ context.Context)
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+							"name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
 							"port": {
 								Description:         "",
 								MarkdownDescription: "",
@@ -207,17 +218,6 @@ func (r *CrdProjectcalicoOrgHostEndpointV1Resource) GetSchema(_ context.Context)
 							},
 
 							"protocol": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"name": {
 								Description:         "",
 								MarkdownDescription: "",
 

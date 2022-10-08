@@ -60,10 +60,6 @@ type SecscanQuayRedhatComImageManifestVulnV1Alpha1GoModel struct {
 			Versionformat *string `tfsdk:"versionformat" yaml:"versionformat,omitempty"`
 
 			Vulnerabilities *[]struct {
-				NamespaceName *string `tfsdk:"namespace_name" yaml:"namespaceName,omitempty"`
-
-				Severity *string `tfsdk:"severity" yaml:"severity,omitempty"`
-
 				Description *string `tfsdk:"description" yaml:"description,omitempty"`
 
 				Fixedby *string `tfsdk:"fixedby" yaml:"fixedby,omitempty"`
@@ -73,6 +69,10 @@ type SecscanQuayRedhatComImageManifestVulnV1Alpha1GoModel struct {
 				Metadata *string `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				NamespaceName *string `tfsdk:"namespace_name" yaml:"namespaceName,omitempty"`
+
+				Severity *string `tfsdk:"severity" yaml:"severity,omitempty"`
 			} `tfsdk:"vulnerabilities" yaml:"vulnerabilities,omitempty"`
 		} `tfsdk:"features" yaml:"features,omitempty"`
 
@@ -237,28 +237,6 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"namespace_name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"severity": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"description": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -304,6 +282,28 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 									},
 
 									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"namespace_name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"severity": {
 										Description:         "",
 										MarkdownDescription: "",
 

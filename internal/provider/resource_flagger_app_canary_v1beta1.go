@@ -51,7 +51,29 @@ type FlaggerAppCanaryV1Beta1GoModel struct {
 
 	Spec *struct {
 		Analysis *struct {
+			Alerts *[]struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				ProviderRef *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+				} `tfsdk:"provider_ref" yaml:"providerRef,omitempty"`
+
+				Severity *string `tfsdk:"severity" yaml:"severity,omitempty"`
+			} `tfsdk:"alerts" yaml:"alerts,omitempty"`
+
+			CanaryReadyThreshold *float64 `tfsdk:"canary_ready_threshold" yaml:"canaryReadyThreshold,omitempty"`
+
+			Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
 			Iterations *float64 `tfsdk:"iterations" yaml:"iterations,omitempty"`
+
+			Match *[]struct {
+				Headers *map[string]string `tfsdk:"headers" yaml:"headers,omitempty"`
+
+				SourceLabels *map[string]string `tfsdk:"source_labels" yaml:"sourceLabels,omitempty"`
+			} `tfsdk:"match" yaml:"match,omitempty"`
 
 			MaxWeight *float64 `tfsdk:"max_weight" yaml:"maxWeight,omitempty"`
 
@@ -77,33 +99,21 @@ type FlaggerAppCanaryV1Beta1GoModel struct {
 				} `tfsdk:"threshold_range" yaml:"thresholdRange,omitempty"`
 			} `tfsdk:"metrics" yaml:"metrics,omitempty"`
 
-			PrimaryReadyThreshold *float64 `tfsdk:"primary_ready_threshold" yaml:"primaryReadyThreshold,omitempty"`
-
-			StepWeights *[]string `tfsdk:"step_weights" yaml:"stepWeights,omitempty"`
-
-			Alerts *[]struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				ProviderRef *struct {
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-				} `tfsdk:"provider_ref" yaml:"providerRef,omitempty"`
-
-				Severity *string `tfsdk:"severity" yaml:"severity,omitempty"`
-			} `tfsdk:"alerts" yaml:"alerts,omitempty"`
+			Mirror *bool `tfsdk:"mirror" yaml:"mirror,omitempty"`
 
 			MirrorWeight *float64 `tfsdk:"mirror_weight" yaml:"mirrorWeight,omitempty"`
+
+			PrimaryReadyThreshold *float64 `tfsdk:"primary_ready_threshold" yaml:"primaryReadyThreshold,omitempty"`
 
 			StepWeight *float64 `tfsdk:"step_weight" yaml:"stepWeight,omitempty"`
 
 			StepWeightPromotion *float64 `tfsdk:"step_weight_promotion" yaml:"stepWeightPromotion,omitempty"`
 
+			StepWeights *[]string `tfsdk:"step_weights" yaml:"stepWeights,omitempty"`
+
+			Threshold *float64 `tfsdk:"threshold" yaml:"threshold,omitempty"`
+
 			Webhooks *[]struct {
-				Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-				Url *string `tfsdk:"url" yaml:"url,omitempty"`
-
 				Metadata *map[string]string `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
 				MuteAlert *bool `tfsdk:"mute_alert" yaml:"muteAlert,omitempty"`
@@ -111,127 +121,49 @@ type FlaggerAppCanaryV1Beta1GoModel struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 				Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+
+				Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+				Url *string `tfsdk:"url" yaml:"url,omitempty"`
 			} `tfsdk:"webhooks" yaml:"webhooks,omitempty"`
-
-			CanaryReadyThreshold *float64 `tfsdk:"canary_ready_threshold" yaml:"canaryReadyThreshold,omitempty"`
-
-			Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-			Match *[]struct {
-				SourceLabels *map[string]string `tfsdk:"source_labels" yaml:"sourceLabels,omitempty"`
-
-				Headers *map[string]string `tfsdk:"headers" yaml:"headers,omitempty"`
-			} `tfsdk:"match" yaml:"match,omitempty"`
-
-			Mirror *bool `tfsdk:"mirror" yaml:"mirror,omitempty"`
-
-			Threshold *float64 `tfsdk:"threshold" yaml:"threshold,omitempty"`
 		} `tfsdk:"analysis" yaml:"analysis,omitempty"`
+
+		AutoscalerRef *struct {
+			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			PrimaryScalerQueries *map[string]string `tfsdk:"primary_scaler_queries" yaml:"primaryScalerQueries,omitempty"`
+		} `tfsdk:"autoscaler_ref" yaml:"autoscalerRef,omitempty"`
+
+		IngressRef *struct {
+			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+		} `tfsdk:"ingress_ref" yaml:"ingressRef,omitempty"`
+
+		MetricsServer *string `tfsdk:"metrics_server" yaml:"metricsServer,omitempty"`
+
+		ProgressDeadlineSeconds *float64 `tfsdk:"progress_deadline_seconds" yaml:"progressDeadlineSeconds,omitempty"`
+
+		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
 
 		RevertOnDeletion *bool `tfsdk:"revert_on_deletion" yaml:"revertOnDeletion,omitempty"`
 
 		Service *struct {
-			TargetPort *string `tfsdk:"target_port" yaml:"targetPort,omitempty"`
-
-			Primary *struct {
+			Apex *struct {
 				Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
 				Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-			} `tfsdk:"primary" yaml:"primary,omitempty"`
+			} `tfsdk:"apex" yaml:"apex,omitempty"`
 
-			Rewrite *struct {
-				Uri *string `tfsdk:"uri" yaml:"uri,omitempty"`
-			} `tfsdk:"rewrite" yaml:"rewrite,omitempty"`
+			AppProtocol *string `tfsdk:"app_protocol" yaml:"appProtocol,omitempty"`
 
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
-			TrafficPolicy *struct {
-				ConnectionPool *struct {
-					Http *struct {
-						H2UpgradePolicy *string `tfsdk:"h2_upgrade_policy" yaml:"h2UpgradePolicy,omitempty"`
-
-						Http1MaxPendingRequests *int64 `tfsdk:"http1_max_pending_requests" yaml:"http1MaxPendingRequests,omitempty"`
-
-						Http2MaxRequests *int64 `tfsdk:"http2_max_requests" yaml:"http2MaxRequests,omitempty"`
-
-						IdleTimeout *string `tfsdk:"idle_timeout" yaml:"idleTimeout,omitempty"`
-
-						MaxRequestsPerConnection *int64 `tfsdk:"max_requests_per_connection" yaml:"maxRequestsPerConnection,omitempty"`
-
-						MaxRetries *int64 `tfsdk:"max_retries" yaml:"maxRetries,omitempty"`
-					} `tfsdk:"http" yaml:"http,omitempty"`
-				} `tfsdk:"connection_pool" yaml:"connectionPool,omitempty"`
-
-				LoadBalancer *struct {
-					ConsistentHash *struct {
-						HttpQueryParameterName *string `tfsdk:"http_query_parameter_name" yaml:"httpQueryParameterName,omitempty"`
-
-						MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
-
-						UseSourceIp *bool `tfsdk:"use_source_ip" yaml:"useSourceIp,omitempty"`
-
-						HttpCookie *struct {
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-							Ttl *string `tfsdk:"ttl" yaml:"ttl,omitempty"`
-						} `tfsdk:"http_cookie" yaml:"httpCookie,omitempty"`
-
-						HttpHeaderName *string `tfsdk:"http_header_name" yaml:"httpHeaderName,omitempty"`
-					} `tfsdk:"consistent_hash" yaml:"consistentHash,omitempty"`
-
-					LocalityLbSetting *struct {
-						Failover *[]struct {
-							From *string `tfsdk:"from" yaml:"from,omitempty"`
-
-							To *string `tfsdk:"to" yaml:"to,omitempty"`
-						} `tfsdk:"failover" yaml:"failover,omitempty"`
-
-						Distribute *[]struct {
-							From *string `tfsdk:"from" yaml:"from,omitempty"`
-
-							To *map[string]string `tfsdk:"to" yaml:"to,omitempty"`
-						} `tfsdk:"distribute" yaml:"distribute,omitempty"`
-
-						Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
-					} `tfsdk:"locality_lb_setting" yaml:"localityLbSetting,omitempty"`
-
-					Simple *string `tfsdk:"simple" yaml:"simple,omitempty"`
-				} `tfsdk:"load_balancer" yaml:"loadBalancer,omitempty"`
-
-				OutlierDetection *struct {
-					ConsecutiveErrors *int64 `tfsdk:"consecutive_errors" yaml:"consecutiveErrors,omitempty"`
-
-					ConsecutiveGatewayErrors *int64 `tfsdk:"consecutive_gateway_errors" yaml:"consecutiveGatewayErrors,omitempty"`
-
-					Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
-
-					MaxEjectionPercent *int64 `tfsdk:"max_ejection_percent" yaml:"maxEjectionPercent,omitempty"`
-
-					MinHealthPercent *int64 `tfsdk:"min_health_percent" yaml:"minHealthPercent,omitempty"`
-
-					BaseEjectionTime *string `tfsdk:"base_ejection_time" yaml:"baseEjectionTime,omitempty"`
-
-					Consecutive5xxErrors *int64 `tfsdk:"consecutive5xx_errors" yaml:"consecutive5xxErrors,omitempty"`
-				} `tfsdk:"outlier_detection" yaml:"outlierDetection,omitempty"`
-
-				Tls *struct {
-					CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
-
-					ClientCertificate *string `tfsdk:"client_certificate" yaml:"clientCertificate,omitempty"`
-
-					Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
-
-					PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
-
-					Sni *string `tfsdk:"sni" yaml:"sni,omitempty"`
-
-					SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
-				} `tfsdk:"tls" yaml:"tls,omitempty"`
-			} `tfsdk:"traffic_policy" yaml:"trafficPolicy,omitempty"`
+			Backends *[]string `tfsdk:"backends" yaml:"backends,omitempty"`
 
 			Canary *struct {
 				Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
@@ -239,75 +171,13 @@ type FlaggerAppCanaryV1Beta1GoModel struct {
 				Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
 			} `tfsdk:"canary" yaml:"canary,omitempty"`
 
-			MeshName *string `tfsdk:"mesh_name" yaml:"meshName,omitempty"`
-
-			Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
-
-			Match *[]struct {
-				Headers *map[string]string `tfsdk:"headers" yaml:"headers,omitempty"`
-
-				IgnoreUriCase *bool `tfsdk:"ignore_uri_case" yaml:"ignoreUriCase,omitempty"`
-
-				Method *struct {
-					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
-
-					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-
-					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
-				} `tfsdk:"method" yaml:"method,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				QueryParams *map[string]string `tfsdk:"query_params" yaml:"queryParams,omitempty"`
-
-				SourceLabels *map[string]string `tfsdk:"source_labels" yaml:"sourceLabels,omitempty"`
-
-				WithoutHeaders *map[string]string `tfsdk:"without_headers" yaml:"withoutHeaders,omitempty"`
-
-				Authority *struct {
-					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
-
-					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-
-					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
-				} `tfsdk:"authority" yaml:"authority,omitempty"`
-
-				Gateways *[]string `tfsdk:"gateways" yaml:"gateways,omitempty"`
-
-				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-
-				Scheme *struct {
-					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
-
-					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-
-					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
-				} `tfsdk:"scheme" yaml:"scheme,omitempty"`
-
-				SourceNamespace *string `tfsdk:"source_namespace" yaml:"sourceNamespace,omitempty"`
-
-				Uri *struct {
-					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
-
-					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
-
-					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
-				} `tfsdk:"uri" yaml:"uri,omitempty"`
-			} `tfsdk:"match" yaml:"match,omitempty"`
-
-			Port *float64 `tfsdk:"port" yaml:"port,omitempty"`
-
-			Retries *struct {
-				Attempts *int64 `tfsdk:"attempts" yaml:"attempts,omitempty"`
-
-				PerTryTimeout *string `tfsdk:"per_try_timeout" yaml:"perTryTimeout,omitempty"`
-
-				RetryOn *string `tfsdk:"retry_on" yaml:"retryOn,omitempty"`
-			} `tfsdk:"retries" yaml:"retries,omitempty"`
-
-			AppProtocol *string `tfsdk:"app_protocol" yaml:"appProtocol,omitempty"`
-
 			CorsPolicy *struct {
+				AllowCredentials *bool `tfsdk:"allow_credentials" yaml:"allowCredentials,omitempty"`
+
+				AllowHeaders *[]string `tfsdk:"allow_headers" yaml:"allowHeaders,omitempty"`
+
+				AllowMethods *[]string `tfsdk:"allow_methods" yaml:"allowMethods,omitempty"`
+
 				AllowOrigin *[]string `tfsdk:"allow_origin" yaml:"allowOrigin,omitempty"`
 
 				AllowOrigins *[]struct {
@@ -321,12 +191,6 @@ type FlaggerAppCanaryV1Beta1GoModel struct {
 				ExposeHeaders *[]string `tfsdk:"expose_headers" yaml:"exposeHeaders,omitempty"`
 
 				MaxAge *string `tfsdk:"max_age" yaml:"maxAge,omitempty"`
-
-				AllowCredentials *bool `tfsdk:"allow_credentials" yaml:"allowCredentials,omitempty"`
-
-				AllowHeaders *[]string `tfsdk:"allow_headers" yaml:"allowHeaders,omitempty"`
-
-				AllowMethods *[]string `tfsdk:"allow_methods" yaml:"allowMethods,omitempty"`
 			} `tfsdk:"cors_policy" yaml:"corsPolicy,omitempty"`
 
 			Delegation *bool `tfsdk:"delegation" yaml:"delegation,omitempty"`
@@ -363,22 +227,180 @@ type FlaggerAppCanaryV1Beta1GoModel struct {
 				} `tfsdk:"response" yaml:"response,omitempty"`
 			} `tfsdk:"headers" yaml:"headers,omitempty"`
 
+			Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
+
+			Match *[]struct {
+				Authority *struct {
+					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
+
+					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
+				} `tfsdk:"authority" yaml:"authority,omitempty"`
+
+				Gateways *[]string `tfsdk:"gateways" yaml:"gateways,omitempty"`
+
+				Headers *map[string]string `tfsdk:"headers" yaml:"headers,omitempty"`
+
+				IgnoreUriCase *bool `tfsdk:"ignore_uri_case" yaml:"ignoreUriCase,omitempty"`
+
+				Method *struct {
+					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
+
+					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
+				} `tfsdk:"method" yaml:"method,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+
+				QueryParams *map[string]string `tfsdk:"query_params" yaml:"queryParams,omitempty"`
+
+				Scheme *struct {
+					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
+
+					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
+				} `tfsdk:"scheme" yaml:"scheme,omitempty"`
+
+				SourceLabels *map[string]string `tfsdk:"source_labels" yaml:"sourceLabels,omitempty"`
+
+				SourceNamespace *string `tfsdk:"source_namespace" yaml:"sourceNamespace,omitempty"`
+
+				Uri *struct {
+					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
+
+					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
+				} `tfsdk:"uri" yaml:"uri,omitempty"`
+
+				WithoutHeaders *map[string]string `tfsdk:"without_headers" yaml:"withoutHeaders,omitempty"`
+			} `tfsdk:"match" yaml:"match,omitempty"`
+
+			MeshName *string `tfsdk:"mesh_name" yaml:"meshName,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Port *float64 `tfsdk:"port" yaml:"port,omitempty"`
+
 			PortDiscovery *bool `tfsdk:"port_discovery" yaml:"portDiscovery,omitempty"`
 
 			PortName *string `tfsdk:"port_name" yaml:"portName,omitempty"`
 
-			Apex *struct {
+			Primary *struct {
 				Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
 				Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-			} `tfsdk:"apex" yaml:"apex,omitempty"`
+			} `tfsdk:"primary" yaml:"primary,omitempty"`
 
-			Backends *[]string `tfsdk:"backends" yaml:"backends,omitempty"`
+			Retries *struct {
+				Attempts *int64 `tfsdk:"attempts" yaml:"attempts,omitempty"`
+
+				PerTryTimeout *string `tfsdk:"per_try_timeout" yaml:"perTryTimeout,omitempty"`
+
+				RetryOn *string `tfsdk:"retry_on" yaml:"retryOn,omitempty"`
+			} `tfsdk:"retries" yaml:"retries,omitempty"`
+
+			Rewrite *struct {
+				Uri *string `tfsdk:"uri" yaml:"uri,omitempty"`
+			} `tfsdk:"rewrite" yaml:"rewrite,omitempty"`
+
+			TargetPort *string `tfsdk:"target_port" yaml:"targetPort,omitempty"`
+
+			Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+
+			TrafficPolicy *struct {
+				ConnectionPool *struct {
+					Http *struct {
+						H2UpgradePolicy *string `tfsdk:"h2_upgrade_policy" yaml:"h2UpgradePolicy,omitempty"`
+
+						Http1MaxPendingRequests *int64 `tfsdk:"http1_max_pending_requests" yaml:"http1MaxPendingRequests,omitempty"`
+
+						Http2MaxRequests *int64 `tfsdk:"http2_max_requests" yaml:"http2MaxRequests,omitempty"`
+
+						IdleTimeout *string `tfsdk:"idle_timeout" yaml:"idleTimeout,omitempty"`
+
+						MaxRequestsPerConnection *int64 `tfsdk:"max_requests_per_connection" yaml:"maxRequestsPerConnection,omitempty"`
+
+						MaxRetries *int64 `tfsdk:"max_retries" yaml:"maxRetries,omitempty"`
+					} `tfsdk:"http" yaml:"http,omitempty"`
+				} `tfsdk:"connection_pool" yaml:"connectionPool,omitempty"`
+
+				LoadBalancer *struct {
+					ConsistentHash *struct {
+						HttpCookie *struct {
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+							Ttl *string `tfsdk:"ttl" yaml:"ttl,omitempty"`
+						} `tfsdk:"http_cookie" yaml:"httpCookie,omitempty"`
+
+						HttpHeaderName *string `tfsdk:"http_header_name" yaml:"httpHeaderName,omitempty"`
+
+						HttpQueryParameterName *string `tfsdk:"http_query_parameter_name" yaml:"httpQueryParameterName,omitempty"`
+
+						MinimumRingSize *int64 `tfsdk:"minimum_ring_size" yaml:"minimumRingSize,omitempty"`
+
+						UseSourceIp *bool `tfsdk:"use_source_ip" yaml:"useSourceIp,omitempty"`
+					} `tfsdk:"consistent_hash" yaml:"consistentHash,omitempty"`
+
+					LocalityLbSetting *struct {
+						Distribute *[]struct {
+							From *string `tfsdk:"from" yaml:"from,omitempty"`
+
+							To *map[string]string `tfsdk:"to" yaml:"to,omitempty"`
+						} `tfsdk:"distribute" yaml:"distribute,omitempty"`
+
+						Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+
+						Failover *[]struct {
+							From *string `tfsdk:"from" yaml:"from,omitempty"`
+
+							To *string `tfsdk:"to" yaml:"to,omitempty"`
+						} `tfsdk:"failover" yaml:"failover,omitempty"`
+					} `tfsdk:"locality_lb_setting" yaml:"localityLbSetting,omitempty"`
+
+					Simple *string `tfsdk:"simple" yaml:"simple,omitempty"`
+				} `tfsdk:"load_balancer" yaml:"loadBalancer,omitempty"`
+
+				OutlierDetection *struct {
+					BaseEjectionTime *string `tfsdk:"base_ejection_time" yaml:"baseEjectionTime,omitempty"`
+
+					Consecutive5xxErrors *int64 `tfsdk:"consecutive5xx_errors" yaml:"consecutive5xxErrors,omitempty"`
+
+					ConsecutiveErrors *int64 `tfsdk:"consecutive_errors" yaml:"consecutiveErrors,omitempty"`
+
+					ConsecutiveGatewayErrors *int64 `tfsdk:"consecutive_gateway_errors" yaml:"consecutiveGatewayErrors,omitempty"`
+
+					Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+					MaxEjectionPercent *int64 `tfsdk:"max_ejection_percent" yaml:"maxEjectionPercent,omitempty"`
+
+					MinHealthPercent *int64 `tfsdk:"min_health_percent" yaml:"minHealthPercent,omitempty"`
+				} `tfsdk:"outlier_detection" yaml:"outlierDetection,omitempty"`
+
+				Tls *struct {
+					CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
+
+					ClientCertificate *string `tfsdk:"client_certificate" yaml:"clientCertificate,omitempty"`
+
+					Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
+
+					PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
+
+					Sni *string `tfsdk:"sni" yaml:"sni,omitempty"`
+
+					SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
+				} `tfsdk:"tls" yaml:"tls,omitempty"`
+			} `tfsdk:"traffic_policy" yaml:"trafficPolicy,omitempty"`
 		} `tfsdk:"service" yaml:"service,omitempty"`
 
 		SkipAnalysis *bool `tfsdk:"skip_analysis" yaml:"skipAnalysis,omitempty"`
-
-		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
 
 		TargetRef *struct {
 			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
@@ -397,28 +419,6 @@ type FlaggerAppCanaryV1Beta1GoModel struct {
 
 			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 		} `tfsdk:"upstream_ref" yaml:"upstreamRef,omitempty"`
-
-		AutoscalerRef *struct {
-			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			PrimaryScalerQueries *map[string]string `tfsdk:"primary_scaler_queries" yaml:"primaryScalerQueries,omitempty"`
-		} `tfsdk:"autoscaler_ref" yaml:"autoscalerRef,omitempty"`
-
-		IngressRef *struct {
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-		} `tfsdk:"ingress_ref" yaml:"ingressRef,omitempty"`
-
-		MetricsServer *string `tfsdk:"metrics_server" yaml:"metricsServer,omitempty"`
-
-		ProgressDeadlineSeconds *float64 `tfsdk:"progress_deadline_seconds" yaml:"progressDeadlineSeconds,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -525,11 +525,135 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+							"alerts": {
+								Description:         "Alert list for this canary analysis",
+								MarkdownDescription: "Alert list for this canary analysis",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "Name of the this alert",
+										MarkdownDescription: "Name of the this alert",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"provider_ref": {
+										Description:         "Alert provider reference",
+										MarkdownDescription: "Alert provider reference",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "Name of the alert provider",
+												MarkdownDescription: "Name of the alert provider",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"namespace": {
+												Description:         "Namespace of the alert provider",
+												MarkdownDescription: "Namespace of the alert provider",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"severity": {
+										Description:         "Severity level can be info, warn, error (default info)",
+										MarkdownDescription: "Severity level can be info, warn, error (default info)",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"canary_ready_threshold": {
+								Description:         "Percentage of pods that need to be available to consider canary as ready",
+								MarkdownDescription: "Percentage of pods that need to be available to consider canary as ready",
+
+								Type: types.NumberType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"interval": {
+								Description:         "Schedule interval for this canary",
+								MarkdownDescription: "Schedule interval for this canary",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"iterations": {
 								Description:         "Number of checks to run for A/B Testing and Blue/Green",
 								MarkdownDescription: "Number of checks to run for A/B Testing and Blue/Green",
 
 								Type: types.NumberType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"match": {
+								Description:         "A/B testing match conditions",
+								MarkdownDescription: "A/B testing match conditions",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"headers": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"source_labels": {
+										Description:         "Applicable only when the 'mesh' gateway is included in the service.gateways list",
+										MarkdownDescription: "Applicable only when the 'mesh' gateway is included in the service.gateways list",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,
@@ -671,90 +795,11 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Computed: false,
 							},
 
-							"primary_ready_threshold": {
-								Description:         "Percentage of pods that need to be available to consider primary as ready",
-								MarkdownDescription: "Percentage of pods that need to be available to consider primary as ready",
+							"mirror": {
+								Description:         "Mirror traffic to canary",
+								MarkdownDescription: "Mirror traffic to canary",
 
-								Type: types.NumberType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"step_weights": {
-								Description:         "Incremental traffic step weights for the analysis phase",
-								MarkdownDescription: "Incremental traffic step weights for the analysis phase",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"alerts": {
-								Description:         "Alert list for this canary analysis",
-								MarkdownDescription: "Alert list for this canary analysis",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name of the this alert",
-										MarkdownDescription: "Name of the this alert",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"provider_ref": {
-										Description:         "Alert provider reference",
-										MarkdownDescription: "Alert provider reference",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"name": {
-												Description:         "Name of the alert provider",
-												MarkdownDescription: "Name of the alert provider",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"namespace": {
-												Description:         "Namespace of the alert provider",
-												MarkdownDescription: "Namespace of the alert provider",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"severity": {
-										Description:         "Severity level can be info, warn, error (default info)",
-										MarkdownDescription: "Severity level can be info, warn, error (default info)",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
+								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,
@@ -764,6 +809,17 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 							"mirror_weight": {
 								Description:         "Weight of traffic to be mirrored",
 								MarkdownDescription: "Weight of traffic to be mirrored",
+
+								Type: types.NumberType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"primary_ready_threshold": {
+								Description:         "Percentage of pods that need to be available to consider primary as ready",
+								MarkdownDescription: "Percentage of pods that need to be available to consider primary as ready",
 
 								Type: types.NumberType,
 
@@ -794,33 +850,33 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Computed: false,
 							},
 
+							"step_weights": {
+								Description:         "Incremental traffic step weights for the analysis phase",
+								MarkdownDescription: "Incremental traffic step weights for the analysis phase",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"threshold": {
+								Description:         "Max number of failed checks before rollback",
+								MarkdownDescription: "Max number of failed checks before rollback",
+
+								Type: types.NumberType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"webhooks": {
 								Description:         "Webhook list for this canary",
 								MarkdownDescription: "Webhook list for this canary",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"type": {
-										Description:         "Type of the webhook pre, post or during rollout",
-										MarkdownDescription: "Type of the webhook pre, post or during rollout",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"url": {
-										Description:         "URL address of this webhook",
-										MarkdownDescription: "URL address of this webhook",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
 
 									"metadata": {
 										Description:         "Metadata (key-value pairs) for this webhook",
@@ -865,85 +921,29 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 										Optional: true,
 										Computed: false,
 									},
-								}),
 
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
+									"type": {
+										Description:         "Type of the webhook pre, post or during rollout",
+										MarkdownDescription: "Type of the webhook pre, post or during rollout",
 
-							"canary_ready_threshold": {
-								Description:         "Percentage of pods that need to be available to consider canary as ready",
-								MarkdownDescription: "Percentage of pods that need to be available to consider canary as ready",
-
-								Type: types.NumberType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"interval": {
-								Description:         "Schedule interval for this canary",
-								MarkdownDescription: "Schedule interval for this canary",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"match": {
-								Description:         "A/B testing match conditions",
-								MarkdownDescription: "A/B testing match conditions",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"source_labels": {
-										Description:         "Applicable only when the 'mesh' gateway is included in the service.gateways list",
-										MarkdownDescription: "Applicable only when the 'mesh' gateway is included in the service.gateways list",
-
-										Type: types.MapType{ElemType: types.StringType},
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"headers": {
-										Description:         "",
-										MarkdownDescription: "",
+									"url": {
+										Description:         "URL address of this webhook",
+										MarkdownDescription: "URL address of this webhook",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: types.StringType,
 
-										Required: false,
-										Optional: true,
+										Required: true,
+										Optional: false,
 										Computed: false,
 									},
 								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"mirror": {
-								Description:         "Mirror traffic to canary",
-								MarkdownDescription: "Mirror traffic to canary",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"threshold": {
-								Description:         "Max number of failed checks before rollback",
-								MarkdownDescription: "Max number of failed checks before rollback",
-
-								Type: types.NumberType,
 
 								Required: false,
 								Optional: true,
@@ -953,6 +953,140 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"autoscaler_ref": {
+						Description:         "Scaler selector",
+						MarkdownDescription: "Scaler selector",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"api_version": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"kind": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"primary_scaler_queries": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"ingress_ref": {
+						Description:         "Ingress selector",
+						MarkdownDescription: "Ingress selector",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"api_version": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"kind": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"metrics_server": {
+						Description:         "Prometheus URL",
+						MarkdownDescription: "Prometheus URL",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"progress_deadline_seconds": {
+						Description:         "Deployment progress deadline",
+						MarkdownDescription: "Deployment progress deadline",
+
+						Type: types.NumberType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"provider": {
+						Description:         "Traffic managent provider",
+						MarkdownDescription: "Traffic managent provider",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
@@ -973,20 +1107,9 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"target_port": {
-								Description:         "Container target port name",
-								MarkdownDescription: "Container target port name",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"primary": {
-								Description:         "Metadata to add to the primary service",
-								MarkdownDescription: "Metadata to add to the primary service",
+							"apex": {
+								Description:         "Metadata to add to the apex service",
+								MarkdownDescription: "Metadata to add to the apex service",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -1018,32 +1141,9 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Computed: false,
 							},
 
-							"rewrite": {
-								Description:         "Rewrite HTTP URIs",
-								MarkdownDescription: "Rewrite HTTP URIs",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"uri": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "Kubernetes service name",
-								MarkdownDescription: "Kubernetes service name",
+							"app_protocol": {
+								Description:         "Application protocol of the port",
+								MarkdownDescription: "Application protocol of the port",
 
 								Type: types.StringType,
 
@@ -1052,495 +1152,11 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Computed: false,
 							},
 
-							"timeout": {
-								Description:         "HTTP or gRPC request timeout",
-								MarkdownDescription: "HTTP or gRPC request timeout",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"traffic_policy": {
-								Description:         "Istio traffic policy",
-								MarkdownDescription: "Istio traffic policy",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"connection_pool": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"http": {
-												Description:         "HTTP connection pool settings.",
-												MarkdownDescription: "HTTP connection pool settings.",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"h2_upgrade_policy": {
-														Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
-														MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http1_max_pending_requests": {
-														Description:         "Maximum number of pending HTTP requests to a destination.",
-														MarkdownDescription: "Maximum number of pending HTTP requests to a destination.",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http2_max_requests": {
-														Description:         "Maximum number of requests to a backend.",
-														MarkdownDescription: "Maximum number of requests to a backend.",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"idle_timeout": {
-														Description:         "The idle timeout for upstream connection pool connections.",
-														MarkdownDescription: "The idle timeout for upstream connection pool connections.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"max_requests_per_connection": {
-														Description:         "Maximum number of requests per connection to a backend.",
-														MarkdownDescription: "Maximum number of requests per connection to a backend.",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"max_retries": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"load_balancer": {
-										Description:         "Settings controlling the load balancer algorithms.",
-										MarkdownDescription: "Settings controlling the load balancer algorithms.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"consistent_hash": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"http_query_parameter_name": {
-														Description:         "Hash based on a specific HTTP query parameter.",
-														MarkdownDescription: "Hash based on a specific HTTP query parameter.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"minimum_ring_size": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.Int64Type,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"use_source_ip": {
-														Description:         "Hash based on the source IP address.",
-														MarkdownDescription: "Hash based on the source IP address.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_cookie": {
-														Description:         "Hash based on HTTP cookie.",
-														MarkdownDescription: "Hash based on HTTP cookie.",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"name": {
-																Description:         "Name of the cookie.",
-																MarkdownDescription: "Name of the cookie.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"path": {
-																Description:         "Path to set for the cookie.",
-																MarkdownDescription: "Path to set for the cookie.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"ttl": {
-																Description:         "Lifetime of the cookie.",
-																MarkdownDescription: "Lifetime of the cookie.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"http_header_name": {
-														Description:         "Hash based on a specific HTTP header.",
-														MarkdownDescription: "Hash based on a specific HTTP header.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"locality_lb_setting": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"failover": {
-														Description:         "Optional: only failover or distribute can be set.",
-														MarkdownDescription: "Optional: only failover or distribute can be set.",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"from": {
-																Description:         "Originating region.",
-																MarkdownDescription: "Originating region.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"to": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"distribute": {
-														Description:         "Optional: only one of distribute or failover can be set.",
-														MarkdownDescription: "Optional: only one of distribute or failover can be set.",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"from": {
-																Description:         "Originating locality, '/' separated, e.g.",
-																MarkdownDescription: "Originating locality, '/' separated, e.g.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"to": {
-																Description:         "Map of upstream localities to traffic distribution weights.",
-																MarkdownDescription: "Map of upstream localities to traffic distribution weights.",
-
-																Type: types.MapType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"enabled": {
-														Description:         "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
-														MarkdownDescription: "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
-
-														Type: types.BoolType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"simple": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"outlier_detection": {
-										Description:         "Settings controlling eviction of unhealthy hosts from the load balancing pool.",
-										MarkdownDescription: "Settings controlling eviction of unhealthy hosts from the load balancing pool.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"consecutive_errors": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"consecutive_gateway_errors": {
-												Description:         "Number of gateway errors before a host is ejected from the connection pool.",
-												MarkdownDescription: "Number of gateway errors before a host is ejected from the connection pool.",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"interval": {
-												Description:         "Time interval between ejection sweep analysis.",
-												MarkdownDescription: "Time interval between ejection sweep analysis.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"max_ejection_percent": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"min_health_percent": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"base_ejection_time": {
-												Description:         "Minimum ejection duration.",
-												MarkdownDescription: "Minimum ejection duration.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"consecutive5xx_errors": {
-												Description:         "Number of 5xx errors before a host is ejected from the connection pool.",
-												MarkdownDescription: "Number of 5xx errors before a host is ejected from the connection pool.",
-
-												Type: types.Int64Type,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"tls": {
-										Description:         "Istio TLS related settings for connections to the upstream service",
-										MarkdownDescription: "Istio TLS related settings for connections to the upstream service",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"ca_certificates": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"client_certificate": {
-												Description:         "REQUIRED if mode is 'MUTUAL'.",
-												MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"mode": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"private_key": {
-												Description:         "REQUIRED if mode is 'MUTUAL'.",
-												MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"sni": {
-												Description:         "SNI string to present to the server during TLS handshake.",
-												MarkdownDescription: "SNI string to present to the server during TLS handshake.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"subject_alt_names": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
+							"backends": {
+								Description:         "AppMesh backend array",
+								MarkdownDescription: "AppMesh backend array",
+
+								Type: types.ListType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,
@@ -1581,48 +1197,15 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Computed: false,
 							},
 
-							"mesh_name": {
-								Description:         "AppMesh mesh name",
-								MarkdownDescription: "AppMesh mesh name",
+							"cors_policy": {
+								Description:         "Istio Cross-Origin Resource Sharing policy (CORS)",
+								MarkdownDescription: "Istio Cross-Origin Resource Sharing policy (CORS)",
 
-								Type: types.StringType,
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"hosts": {
-								Description:         "The list of host names for this service",
-								MarkdownDescription: "The list of host names for this service",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"match": {
-								Description:         "URI match conditions",
-								MarkdownDescription: "URI match conditions",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"headers": {
+									"allow_credentials": {
 										Description:         "",
 										MarkdownDescription: "",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"ignore_uri_case": {
-										Description:         "Flag to specify whether the URI matching should be case-insensitive.",
-										MarkdownDescription: "Flag to specify whether the URI matching should be case-insensitive.",
 
 										Type: types.BoolType,
 
@@ -1631,143 +1214,9 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 										Computed: false,
 									},
 
-									"method": {
+									"allow_headers": {
 										Description:         "",
 										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"exact": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"prefix": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"regex": {
-												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "The name assigned to a match.",
-										MarkdownDescription: "The name assigned to a match.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"query_params": {
-										Description:         "Query parameters for matching.",
-										MarkdownDescription: "Query parameters for matching.",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"source_labels": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"without_headers": {
-										Description:         "withoutHeader has the same syntax with the header, but has opposite meaning.",
-										MarkdownDescription: "withoutHeader has the same syntax with the header, but has opposite meaning.",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"authority": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"exact": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"prefix": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"regex": {
-												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"gateways": {
-										Description:         "Names of gateways where the rule should be applied.",
-										MarkdownDescription: "Names of gateways where the rule should be applied.",
 
 										Type: types.ListType{ElemType: types.StringType},
 
@@ -1776,196 +1225,16 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 										Computed: false,
 									},
 
-									"port": {
-										Description:         "Specifies the ports on the host that is being addressed.",
-										MarkdownDescription: "Specifies the ports on the host that is being addressed.",
+									"allow_methods": {
+										Description:         "List of HTTP methods allowed to access the resource",
+										MarkdownDescription: "List of HTTP methods allowed to access the resource",
 
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"scheme": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"exact": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"prefix": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"regex": {
-												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
+										Type: types.ListType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
-
-									"source_namespace": {
-										Description:         "Source namespace constraining the applicability of a rule to workloads in that namespace.",
-										MarkdownDescription: "Source namespace constraining the applicability of a rule to workloads in that namespace.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"uri": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"exact": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"prefix": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"regex": {
-												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"port": {
-								Description:         "Container port number",
-								MarkdownDescription: "Container port number",
-
-								Type: types.NumberType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"retries": {
-								Description:         "Retry policy for HTTP requests",
-								MarkdownDescription: "Retry policy for HTTP requests",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"attempts": {
-										Description:         "Number of retries for a given request",
-										MarkdownDescription: "Number of retries for a given request",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"per_try_timeout": {
-										Description:         "Timeout per retry attempt for a given request",
-										MarkdownDescription: "Timeout per retry attempt for a given request",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"retry_on": {
-										Description:         "Specifies the conditions under which retry takes place",
-										MarkdownDescription: "Specifies the conditions under which retry takes place",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"app_protocol": {
-								Description:         "Application protocol of the port",
-								MarkdownDescription: "Application protocol of the port",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"cors_policy": {
-								Description:         "Istio Cross-Origin Resource Sharing policy (CORS)",
-								MarkdownDescription: "Istio Cross-Origin Resource Sharing policy (CORS)",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 									"allow_origin": {
 										Description:         "The list of origins that are allowed to perform CORS requests.",
@@ -2039,39 +1308,6 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 										MarkdownDescription: "",
 
 										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"allow_credentials": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"allow_headers": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"allow_methods": {
-										Description:         "List of HTTP methods allowed to access the resource",
-										MarkdownDescription: "List of HTTP methods allowed to access the resource",
-
-										Type: types.ListType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
@@ -2275,6 +1511,341 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Computed: false,
 							},
 
+							"hosts": {
+								Description:         "The list of host names for this service",
+								MarkdownDescription: "The list of host names for this service",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"match": {
+								Description:         "URI match conditions",
+								MarkdownDescription: "URI match conditions",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"authority": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"exact": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"prefix": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"regex": {
+												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"gateways": {
+										Description:         "Names of gateways where the rule should be applied.",
+										MarkdownDescription: "Names of gateways where the rule should be applied.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"headers": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"ignore_uri_case": {
+										Description:         "Flag to specify whether the URI matching should be case-insensitive.",
+										MarkdownDescription: "Flag to specify whether the URI matching should be case-insensitive.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"method": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"exact": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"prefix": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"regex": {
+												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "The name assigned to a match.",
+										MarkdownDescription: "The name assigned to a match.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"port": {
+										Description:         "Specifies the ports on the host that is being addressed.",
+										MarkdownDescription: "Specifies the ports on the host that is being addressed.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"query_params": {
+										Description:         "Query parameters for matching.",
+										MarkdownDescription: "Query parameters for matching.",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"scheme": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"exact": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"prefix": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"regex": {
+												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"source_labels": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"source_namespace": {
+										Description:         "Source namespace constraining the applicability of a rule to workloads in that namespace.",
+										MarkdownDescription: "Source namespace constraining the applicability of a rule to workloads in that namespace.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"uri": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"exact": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"prefix": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"regex": {
+												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"without_headers": {
+										Description:         "withoutHeader has the same syntax with the header, but has opposite meaning.",
+										MarkdownDescription: "withoutHeader has the same syntax with the header, but has opposite meaning.",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"mesh_name": {
+								Description:         "AppMesh mesh name",
+								MarkdownDescription: "AppMesh mesh name",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Kubernetes service name",
+								MarkdownDescription: "Kubernetes service name",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"port": {
+								Description:         "Container port number",
+								MarkdownDescription: "Container port number",
+
+								Type: types.NumberType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
 							"port_discovery": {
 								Description:         "Enable port dicovery",
 								MarkdownDescription: "Enable port dicovery",
@@ -2297,9 +1868,9 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Computed: false,
 							},
 
-							"apex": {
-								Description:         "Metadata to add to the apex service",
-								MarkdownDescription: "Metadata to add to the apex service",
+							"primary": {
+								Description:         "Metadata to add to the primary service",
+								MarkdownDescription: "Metadata to add to the primary service",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -2331,11 +1902,574 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Computed: false,
 							},
 
-							"backends": {
-								Description:         "AppMesh backend array",
-								MarkdownDescription: "AppMesh backend array",
+							"retries": {
+								Description:         "Retry policy for HTTP requests",
+								MarkdownDescription: "Retry policy for HTTP requests",
 
-								Type: types.ListType{ElemType: types.StringType},
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"attempts": {
+										Description:         "Number of retries for a given request",
+										MarkdownDescription: "Number of retries for a given request",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"per_try_timeout": {
+										Description:         "Timeout per retry attempt for a given request",
+										MarkdownDescription: "Timeout per retry attempt for a given request",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"retry_on": {
+										Description:         "Specifies the conditions under which retry takes place",
+										MarkdownDescription: "Specifies the conditions under which retry takes place",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"rewrite": {
+								Description:         "Rewrite HTTP URIs",
+								MarkdownDescription: "Rewrite HTTP URIs",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"uri": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"target_port": {
+								Description:         "Container target port name",
+								MarkdownDescription: "Container target port name",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"timeout": {
+								Description:         "HTTP or gRPC request timeout",
+								MarkdownDescription: "HTTP or gRPC request timeout",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"traffic_policy": {
+								Description:         "Istio traffic policy",
+								MarkdownDescription: "Istio traffic policy",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"connection_pool": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"http": {
+												Description:         "HTTP connection pool settings.",
+												MarkdownDescription: "HTTP connection pool settings.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"h2_upgrade_policy": {
+														Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
+														MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http1_max_pending_requests": {
+														Description:         "Maximum number of pending HTTP requests to a destination.",
+														MarkdownDescription: "Maximum number of pending HTTP requests to a destination.",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http2_max_requests": {
+														Description:         "Maximum number of requests to a backend.",
+														MarkdownDescription: "Maximum number of requests to a backend.",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"idle_timeout": {
+														Description:         "The idle timeout for upstream connection pool connections.",
+														MarkdownDescription: "The idle timeout for upstream connection pool connections.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"max_requests_per_connection": {
+														Description:         "Maximum number of requests per connection to a backend.",
+														MarkdownDescription: "Maximum number of requests per connection to a backend.",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"max_retries": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"load_balancer": {
+										Description:         "Settings controlling the load balancer algorithms.",
+										MarkdownDescription: "Settings controlling the load balancer algorithms.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"consistent_hash": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"http_cookie": {
+														Description:         "Hash based on HTTP cookie.",
+														MarkdownDescription: "Hash based on HTTP cookie.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"name": {
+																Description:         "Name of the cookie.",
+																MarkdownDescription: "Name of the cookie.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"path": {
+																Description:         "Path to set for the cookie.",
+																MarkdownDescription: "Path to set for the cookie.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"ttl": {
+																Description:         "Lifetime of the cookie.",
+																MarkdownDescription: "Lifetime of the cookie.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_header_name": {
+														Description:         "Hash based on a specific HTTP header.",
+														MarkdownDescription: "Hash based on a specific HTTP header.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"http_query_parameter_name": {
+														Description:         "Hash based on a specific HTTP query parameter.",
+														MarkdownDescription: "Hash based on a specific HTTP query parameter.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"minimum_ring_size": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"use_source_ip": {
+														Description:         "Hash based on the source IP address.",
+														MarkdownDescription: "Hash based on the source IP address.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"locality_lb_setting": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"distribute": {
+														Description:         "Optional: only one of distribute or failover can be set.",
+														MarkdownDescription: "Optional: only one of distribute or failover can be set.",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"from": {
+																Description:         "Originating locality, '/' separated, e.g.",
+																MarkdownDescription: "Originating locality, '/' separated, e.g.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"to": {
+																Description:         "Map of upstream localities to traffic distribution weights.",
+																MarkdownDescription: "Map of upstream localities to traffic distribution weights.",
+
+																Type: types.MapType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"enabled": {
+														Description:         "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
+														MarkdownDescription: "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"failover": {
+														Description:         "Optional: only failover or distribute can be set.",
+														MarkdownDescription: "Optional: only failover or distribute can be set.",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"from": {
+																Description:         "Originating region.",
+																MarkdownDescription: "Originating region.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"to": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"simple": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"outlier_detection": {
+										Description:         "Settings controlling eviction of unhealthy hosts from the load balancing pool.",
+										MarkdownDescription: "Settings controlling eviction of unhealthy hosts from the load balancing pool.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"base_ejection_time": {
+												Description:         "Minimum ejection duration.",
+												MarkdownDescription: "Minimum ejection duration.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"consecutive5xx_errors": {
+												Description:         "Number of 5xx errors before a host is ejected from the connection pool.",
+												MarkdownDescription: "Number of 5xx errors before a host is ejected from the connection pool.",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"consecutive_errors": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"consecutive_gateway_errors": {
+												Description:         "Number of gateway errors before a host is ejected from the connection pool.",
+												MarkdownDescription: "Number of gateway errors before a host is ejected from the connection pool.",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"interval": {
+												Description:         "Time interval between ejection sweep analysis.",
+												MarkdownDescription: "Time interval between ejection sweep analysis.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"max_ejection_percent": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"min_health_percent": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"tls": {
+										Description:         "Istio TLS related settings for connections to the upstream service",
+										MarkdownDescription: "Istio TLS related settings for connections to the upstream service",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"ca_certificates": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"client_certificate": {
+												Description:         "REQUIRED if mode is 'MUTUAL'.",
+												MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"mode": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"private_key": {
+												Description:         "REQUIRED if mode is 'MUTUAL'.",
+												MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"sni": {
+												Description:         "SNI string to present to the server during TLS handshake.",
+												MarkdownDescription: "SNI string to present to the server during TLS handshake.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"subject_alt_names": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,
@@ -2353,17 +2487,6 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						MarkdownDescription: "Skip analysis and promote canary",
 
 						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"provider": {
-						Description:         "Traffic managent provider",
-						MarkdownDescription: "Traffic managent provider",
-
-						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -2465,129 +2588,6 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"autoscaler_ref": {
-						Description:         "Scaler selector",
-						MarkdownDescription: "Scaler selector",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"api_version": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"kind": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"primary_scaler_queries": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"ingress_ref": {
-						Description:         "Ingress selector",
-						MarkdownDescription: "Ingress selector",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"kind": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"api_version": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"metrics_server": {
-						Description:         "Prometheus URL",
-						MarkdownDescription: "Prometheus URL",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"progress_deadline_seconds": {
-						Description:         "Deployment progress deadline",
-						MarkdownDescription: "Deployment progress deadline",
-
-						Type: types.NumberType,
 
 						Required: false,
 						Optional: true,

@@ -52,40 +52,32 @@ type KeycloakOrgKeycloakUserV1Alpha1GoModel struct {
 	Spec *struct {
 		RealmSelector *struct {
 			MatchExpressions *[]struct {
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 				Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
 				Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
 			} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
 			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 		} `tfsdk:"realm_selector" yaml:"realmSelector,omitempty"`
 
 		User *struct {
-			Credentials *[]struct {
-				Value *string `tfsdk:"value" yaml:"value,omitempty"`
-
-				Temporary *bool `tfsdk:"temporary" yaml:"temporary,omitempty"`
-
-				Type *string `tfsdk:"type" yaml:"type,omitempty"`
-			} `tfsdk:"credentials" yaml:"credentials,omitempty"`
-
-			EmailVerified *bool `tfsdk:"email_verified" yaml:"emailVerified,omitempty"`
-
-			RequiredActions *[]string `tfsdk:"required_actions" yaml:"requiredActions,omitempty"`
-
-			Username *string `tfsdk:"username" yaml:"username,omitempty"`
+			Attributes *map[string][]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
 
 			ClientRoles *map[string][]string `tfsdk:"client_roles" yaml:"clientRoles,omitempty"`
 
-			RealmRoles *[]string `tfsdk:"realm_roles" yaml:"realmRoles,omitempty"`
+			Credentials *[]struct {
+				Temporary *bool `tfsdk:"temporary" yaml:"temporary,omitempty"`
 
-			LastName *string `tfsdk:"last_name" yaml:"lastName,omitempty"`
+				Type *string `tfsdk:"type" yaml:"type,omitempty"`
 
-			Attributes *map[string][]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
+				Value *string `tfsdk:"value" yaml:"value,omitempty"`
+			} `tfsdk:"credentials" yaml:"credentials,omitempty"`
 
 			Email *string `tfsdk:"email" yaml:"email,omitempty"`
+
+			EmailVerified *bool `tfsdk:"email_verified" yaml:"emailVerified,omitempty"`
 
 			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
 
@@ -102,6 +94,14 @@ type KeycloakOrgKeycloakUserV1Alpha1GoModel struct {
 			Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
 
 			Id *string `tfsdk:"id" yaml:"id,omitempty"`
+
+			LastName *string `tfsdk:"last_name" yaml:"lastName,omitempty"`
+
+			RealmRoles *[]string `tfsdk:"realm_roles" yaml:"realmRoles,omitempty"`
+
+			RequiredActions *[]string `tfsdk:"required_actions" yaml:"requiredActions,omitempty"`
+
+			Username *string `tfsdk:"username" yaml:"username,omitempty"`
 		} `tfsdk:"user" yaml:"user,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -215,6 +215,17 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+									"key": {
+										Description:         "key is the label key that the selector applies to.",
+										MarkdownDescription: "key is the label key that the selector applies to.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
 									"operator": {
 										Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 										MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
@@ -234,17 +245,6 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 
 										Required: false,
 										Optional: true,
-										Computed: false,
-									},
-
-									"key": {
-										Description:         "key is the label key that the selector applies to.",
-										MarkdownDescription: "key is the label key that the selector applies to.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
 										Computed: false,
 									},
 								}),
@@ -277,22 +277,33 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+							"attributes": {
+								Description:         "A set of Attributes.",
+								MarkdownDescription: "A set of Attributes.",
+
+								Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"client_roles": {
+								Description:         "A set of Client Roles.",
+								MarkdownDescription: "A set of Client Roles.",
+
+								Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"credentials": {
 								Description:         "A set of Credentials.",
 								MarkdownDescription: "A set of Credentials.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"value": {
-										Description:         "Credential Value.",
-										MarkdownDescription: "Credential Value.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"temporary": {
 										Description:         "True if this credential object is temporary.",
@@ -315,84 +326,18 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 										Optional: true,
 										Computed: false,
 									},
+
+									"value": {
+										Description:         "Credential Value.",
+										MarkdownDescription: "Credential Value.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"email_verified": {
-								Description:         "True if email has already been verified.",
-								MarkdownDescription: "True if email has already been verified.",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"required_actions": {
-								Description:         "A set of Required Actions.",
-								MarkdownDescription: "A set of Required Actions.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"username": {
-								Description:         "User Name.",
-								MarkdownDescription: "User Name.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"client_roles": {
-								Description:         "A set of Client Roles.",
-								MarkdownDescription: "A set of Client Roles.",
-
-								Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"realm_roles": {
-								Description:         "A set of Realm Roles.",
-								MarkdownDescription: "A set of Realm Roles.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"last_name": {
-								Description:         "Last Name.",
-								MarkdownDescription: "Last Name.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"attributes": {
-								Description:         "A set of Attributes.",
-								MarkdownDescription: "A set of Attributes.",
-
-								Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
 
 								Required: false,
 								Optional: true,
@@ -404,6 +349,17 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 								MarkdownDescription: "Email.",
 
 								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"email_verified": {
+								Description:         "True if email has already been verified.",
+								MarkdownDescription: "True if email has already been verified.",
+
+								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,
@@ -491,6 +447,50 @@ func (r *KeycloakOrgKeycloakUserV1Alpha1Resource) GetSchema(_ context.Context) (
 							"id": {
 								Description:         "User ID.",
 								MarkdownDescription: "User ID.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"last_name": {
+								Description:         "Last Name.",
+								MarkdownDescription: "Last Name.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"realm_roles": {
+								Description:         "A set of Realm Roles.",
+								MarkdownDescription: "A set of Realm Roles.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"required_actions": {
+								Description:         "A set of Required Actions.",
+								MarkdownDescription: "A set of Required Actions.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"username": {
+								Description:         "User Name.",
+								MarkdownDescription: "User Name.",
 
 								Type: types.StringType,
 

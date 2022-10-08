@@ -50,15 +50,15 @@ type ChartsHelmK8SIoSnykMonitorV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		NodeAffinity *struct {
-			DisableBetaArchNodeSelector *bool `tfsdk:"disable_beta_arch_node_selector" yaml:"disableBetaArchNodeSelector,omitempty"`
-		} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
-
-		Requests *struct {
-			Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
-		} `tfsdk:"requests" yaml:"requests,omitempty"`
-
 		ClusterName *string `tfsdk:"cluster_name" yaml:"clusterName,omitempty"`
+
+		Image *struct {
+			PullPolicy *string `tfsdk:"pull_policy" yaml:"pullPolicy,omitempty"`
+
+			Repository *string `tfsdk:"repository" yaml:"repository,omitempty"`
+
+			Tag *string `tfsdk:"tag" yaml:"tag,omitempty"`
+		} `tfsdk:"image" yaml:"image,omitempty"`
 
 		InitContainerImage *struct {
 			Repository *string `tfsdk:"repository" yaml:"repository,omitempty"`
@@ -74,6 +74,10 @@ type ChartsHelmK8SIoSnykMonitorV1Alpha1GoModel struct {
 
 		MonitorSecrets *string `tfsdk:"monitor_secrets" yaml:"monitorSecrets,omitempty"`
 
+		NodeAffinity *struct {
+			DisableBetaArchNodeSelector *bool `tfsdk:"disable_beta_arch_node_selector" yaml:"disableBetaArchNodeSelector,omitempty"`
+		} `tfsdk:"node_affinity" yaml:"nodeAffinity,omitempty"`
+
 		Pvc *struct {
 			Create *bool `tfsdk:"create" yaml:"create,omitempty"`
 
@@ -84,17 +88,13 @@ type ChartsHelmK8SIoSnykMonitorV1Alpha1GoModel struct {
 			StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
 		} `tfsdk:"pvc" yaml:"pvc,omitempty"`
 
+		Requests *struct {
+			Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
+		} `tfsdk:"requests" yaml:"requests,omitempty"`
+
 		Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
 
 		TemporaryStorageSize *string `tfsdk:"temporary_storage_size" yaml:"temporaryStorageSize,omitempty"`
-
-		Image *struct {
-			PullPolicy *string `tfsdk:"pull_policy" yaml:"pullPolicy,omitempty"`
-
-			Repository *string `tfsdk:"repository" yaml:"repository,omitempty"`
-
-			Tag *string `tfsdk:"tag" yaml:"tag,omitempty"`
-		} `tfsdk:"image" yaml:"image,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -195,36 +195,46 @@ func (r *ChartsHelmK8SIoSnykMonitorV1Alpha1Resource) GetSchema(_ context.Context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"node_affinity": {
+					"cluster_name": {
 						Description:         "",
 						MarkdownDescription: "",
 
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"disable_beta_arch_node_selector": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
 						Computed: false,
 					},
 
-					"requests": {
+					"image": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"memory": {
+							"pull_policy": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"repository": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tag": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -235,17 +245,6 @@ func (r *ChartsHelmK8SIoSnykMonitorV1Alpha1Resource) GetSchema(_ context.Context
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"cluster_name": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -331,6 +330,29 @@ func (r *ChartsHelmK8SIoSnykMonitorV1Alpha1Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
+					"node_affinity": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"disable_beta_arch_node_selector": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"pvc": {
 						Description:         "",
 						MarkdownDescription: "",
@@ -387,6 +409,29 @@ func (r *ChartsHelmK8SIoSnykMonitorV1Alpha1Resource) GetSchema(_ context.Context
 						Computed: false,
 					},
 
+					"requests": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"memory": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"scope": {
 						Description:         "",
 						MarkdownDescription: "",
@@ -403,51 +448,6 @@ func (r *ChartsHelmK8SIoSnykMonitorV1Alpha1Resource) GetSchema(_ context.Context
 						MarkdownDescription: "",
 
 						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"image": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"pull_policy": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"repository": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"tag": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
 
 						Required: false,
 						Optional: true,

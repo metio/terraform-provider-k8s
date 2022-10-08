@@ -67,12 +67,6 @@ type InfinispanOrgRestoreV2Alpha1GoModel struct {
 		} `tfsdk:"container" yaml:"container,omitempty"`
 
 		Resources *struct {
-			Scripts *[]string `tfsdk:"scripts" yaml:"scripts,omitempty"`
-
-			Tasks *[]string `tfsdk:"tasks" yaml:"tasks,omitempty"`
-
-			Templates *[]string `tfsdk:"templates" yaml:"templates,omitempty"`
-
 			CacheConfigs *[]string `tfsdk:"cache_configs" yaml:"cacheConfigs,omitempty"`
 
 			Caches *[]string `tfsdk:"caches" yaml:"caches,omitempty"`
@@ -80,6 +74,12 @@ type InfinispanOrgRestoreV2Alpha1GoModel struct {
 			Counters *[]string `tfsdk:"counters" yaml:"counters,omitempty"`
 
 			ProtoSchemas *[]string `tfsdk:"proto_schemas" yaml:"protoSchemas,omitempty"`
+
+			Scripts *[]string `tfsdk:"scripts" yaml:"scripts,omitempty"`
+
+			Tasks *[]string `tfsdk:"tasks" yaml:"tasks,omitempty"`
+
+			Templates *[]string `tfsdk:"templates" yaml:"templates,omitempty"`
 		} `tfsdk:"resources" yaml:"resources,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -276,39 +276,6 @@ func (r *InfinispanOrgRestoreV2Alpha1Resource) GetSchema(_ context.Context) (tfs
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"scripts": {
-								Description:         "Deprecated and to be removed on subsequent release. Use .Tasks instead.",
-								MarkdownDescription: "Deprecated and to be removed on subsequent release. Use .Tasks instead.",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"tasks": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"templates": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"cache_configs": {
 								Description:         "Deprecated and to be removed on subsequent release. Use .Templates instead.",
 								MarkdownDescription: "Deprecated and to be removed on subsequent release. Use .Templates instead.",
@@ -343,6 +310,39 @@ func (r *InfinispanOrgRestoreV2Alpha1Resource) GetSchema(_ context.Context) (tfs
 							},
 
 							"proto_schemas": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"scripts": {
+								Description:         "Deprecated and to be removed on subsequent release. Use .Tasks instead.",
+								MarkdownDescription: "Deprecated and to be removed on subsequent release. Use .Tasks instead.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tasks": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"templates": {
 								Description:         "",
 								MarkdownDescription: "",
 

@@ -52,6 +52,20 @@ type HazelcastComMapV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		BackupCount *int64 `tfsdk:"backup_count" yaml:"backupCount,omitempty"`
+
+		Eviction *struct {
+			EvictionPolicy *string `tfsdk:"eviction_policy" yaml:"evictionPolicy,omitempty"`
+
+			MaxSize *int64 `tfsdk:"max_size" yaml:"maxSize,omitempty"`
+
+			MaxSizePolicy *string `tfsdk:"max_size_policy" yaml:"maxSizePolicy,omitempty"`
+		} `tfsdk:"eviction" yaml:"eviction,omitempty"`
+
+		HazelcastResourceName *string `tfsdk:"hazelcast_resource_name" yaml:"hazelcastResourceName,omitempty"`
+
+		InMemoryFormat *string `tfsdk:"in_memory_format" yaml:"inMemoryFormat,omitempty"`
+
 		Indexes *[]struct {
 			Attributes *[]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
 
@@ -67,6 +81,10 @@ type HazelcastComMapV1Alpha1GoModel struct {
 		} `tfsdk:"indexes" yaml:"indexes,omitempty"`
 
 		MapStore *struct {
+			ClassName *string `tfsdk:"class_name" yaml:"className,omitempty"`
+
+			InitialMode *string `tfsdk:"initial_mode" yaml:"initialMode,omitempty"`
+
 			PropertiesSecretName *string `tfsdk:"properties_secret_name" yaml:"propertiesSecretName,omitempty"`
 
 			WriteBatchSize *int64 `tfsdk:"write_batch_size" yaml:"writeBatchSize,omitempty"`
@@ -74,10 +92,6 @@ type HazelcastComMapV1Alpha1GoModel struct {
 			WriteCoealescing *bool `tfsdk:"write_coealescing" yaml:"writeCoealescing,omitempty"`
 
 			WriteDelaySeconds *int64 `tfsdk:"write_delay_seconds" yaml:"writeDelaySeconds,omitempty"`
-
-			ClassName *string `tfsdk:"class_name" yaml:"className,omitempty"`
-
-			InitialMode *string `tfsdk:"initial_mode" yaml:"initialMode,omitempty"`
 		} `tfsdk:"map_store" yaml:"mapStore,omitempty"`
 
 		MaxIdleSeconds *int64 `tfsdk:"max_idle_seconds" yaml:"maxIdleSeconds,omitempty"`
@@ -87,20 +101,6 @@ type HazelcastComMapV1Alpha1GoModel struct {
 		PersistenceEnabled *bool `tfsdk:"persistence_enabled" yaml:"persistenceEnabled,omitempty"`
 
 		TimeToLiveSeconds *int64 `tfsdk:"time_to_live_seconds" yaml:"timeToLiveSeconds,omitempty"`
-
-		BackupCount *int64 `tfsdk:"backup_count" yaml:"backupCount,omitempty"`
-
-		Eviction *struct {
-			MaxSize *int64 `tfsdk:"max_size" yaml:"maxSize,omitempty"`
-
-			MaxSizePolicy *string `tfsdk:"max_size_policy" yaml:"maxSizePolicy,omitempty"`
-
-			EvictionPolicy *string `tfsdk:"eviction_policy" yaml:"evictionPolicy,omitempty"`
-		} `tfsdk:"eviction" yaml:"eviction,omitempty"`
-
-		HazelcastResourceName *string `tfsdk:"hazelcast_resource_name" yaml:"hazelcastResourceName,omitempty"`
-
-		InMemoryFormat *string `tfsdk:"in_memory_format" yaml:"inMemoryFormat,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -201,6 +201,84 @@ func (r *HazelcastComMapV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"backup_count": {
+						Description:         "Count of synchronous backups. It cannot be updated after map config is created successfully.",
+						MarkdownDescription: "Count of synchronous backups. It cannot be updated after map config is created successfully.",
+
+						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"eviction": {
+						Description:         "Configuration for removing data from the map when it reaches its max size. It can be updated.",
+						MarkdownDescription: "Configuration for removing data from the map when it reaches its max size. It can be updated.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"eviction_policy": {
+								Description:         "Eviction policy to be applied when map reaches its max size according to the max size policy.",
+								MarkdownDescription: "Eviction policy to be applied when map reaches its max size according to the max size policy.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"max_size": {
+								Description:         "Max size of the map.",
+								MarkdownDescription: "Max size of the map.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"max_size_policy": {
+								Description:         "Policy for deciding if the maxSize is reached.",
+								MarkdownDescription: "Policy for deciding if the maxSize is reached.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"hazelcast_resource_name": {
+						Description:         "HazelcastResourceName defines the name of the Hazelcast resource. It cannot be updated after map config is created successfully.",
+						MarkdownDescription: "HazelcastResourceName defines the name of the Hazelcast resource. It cannot be updated after map config is created successfully.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"in_memory_format": {
+						Description:         "InMemoryFormat specifies in which format data will be stored in your map",
+						MarkdownDescription: "InMemoryFormat specifies in which format data will be stored in your map",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"indexes": {
 						Description:         "Indexes to be created for the map data. You can learn more at https://docs.hazelcast.com/hazelcast/latest/query/indexing-maps. It cannot be updated after map config is created successfully.",
 						MarkdownDescription: "Indexes to be created for the map data. You can learn more at https://docs.hazelcast.com/hazelcast/latest/query/indexing-maps. It cannot be updated after map config is created successfully.",
@@ -286,6 +364,28 @@ func (r *HazelcastComMapV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+							"class_name": {
+								Description:         "Name of your class implementing MapLoader and/or MapStore interface.",
+								MarkdownDescription: "Name of your class implementing MapLoader and/or MapStore interface.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"initial_mode": {
+								Description:         "Sets the initial entry loading mode.",
+								MarkdownDescription: "Sets the initial entry loading mode.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"properties_secret_name": {
 								Description:         "Properties can be used for giving information to the MapStore implementation",
 								MarkdownDescription: "Properties can be used for giving information to the MapStore implementation",
@@ -329,28 +429,6 @@ func (r *HazelcastComMapV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								MarkdownDescription: "Number of seconds to delay the storing of entries.",
 
 								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"class_name": {
-								Description:         "Name of your class implementing MapLoader and/or MapStore interface.",
-								MarkdownDescription: "Name of your class implementing MapLoader and/or MapStore interface.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"initial_mode": {
-								Description:         "Sets the initial entry loading mode.",
-								MarkdownDescription: "Sets the initial entry loading mode.",
-
-								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
@@ -401,84 +479,6 @@ func (r *HazelcastComMapV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						MarkdownDescription: "Maximum time in seconds for each entry to stay in the map. If it is not 0, entries that are older than this time and not updated for this time are evicted automatically. It can be updated.",
 
 						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"backup_count": {
-						Description:         "Count of synchronous backups. It cannot be updated after map config is created successfully.",
-						MarkdownDescription: "Count of synchronous backups. It cannot be updated after map config is created successfully.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"eviction": {
-						Description:         "Configuration for removing data from the map when it reaches its max size. It can be updated.",
-						MarkdownDescription: "Configuration for removing data from the map when it reaches its max size. It can be updated.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"max_size": {
-								Description:         "Max size of the map.",
-								MarkdownDescription: "Max size of the map.",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"max_size_policy": {
-								Description:         "Policy for deciding if the maxSize is reached.",
-								MarkdownDescription: "Policy for deciding if the maxSize is reached.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"eviction_policy": {
-								Description:         "Eviction policy to be applied when map reaches its max size according to the max size policy.",
-								MarkdownDescription: "Eviction policy to be applied when map reaches its max size according to the max size policy.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"hazelcast_resource_name": {
-						Description:         "HazelcastResourceName defines the name of the Hazelcast resource. It cannot be updated after map config is created successfully.",
-						MarkdownDescription: "HazelcastResourceName defines the name of the Hazelcast resource. It cannot be updated after map config is created successfully.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"in_memory_format": {
-						Description:         "InMemoryFormat specifies in which format data will be stored in your map",
-						MarkdownDescription: "InMemoryFormat specifies in which format data will be stored in your map",
-
-						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

@@ -59,11 +59,11 @@ type AcmeCertManagerIoOrderV1GoModel struct {
 		IpAddresses *[]string `tfsdk:"ip_addresses" yaml:"ipAddresses,omitempty"`
 
 		IssuerRef *struct {
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
 			Group *string `tfsdk:"group" yaml:"group,omitempty"`
 
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"issuer_ref" yaml:"issuerRef,omitempty"`
 
 		Request *string `tfsdk:"request" yaml:"request,omitempty"`
@@ -217,17 +217,6 @@ func (r *AcmeCertManagerIoOrderV1Resource) GetSchema(_ context.Context) (tfsdk.S
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"name": {
-								Description:         "Name of the resource being referred to.",
-								MarkdownDescription: "Name of the resource being referred to.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
 							"group": {
 								Description:         "Group of the resource being referred to.",
 								MarkdownDescription: "Group of the resource being referred to.",
@@ -247,6 +236,17 @@ func (r *AcmeCertManagerIoOrderV1Resource) GetSchema(_ context.Context) (tfsdk.S
 
 								Required: false,
 								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name of the resource being referred to.",
+								MarkdownDescription: "Name of the resource being referred to.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
 								Computed: false,
 							},
 						}),

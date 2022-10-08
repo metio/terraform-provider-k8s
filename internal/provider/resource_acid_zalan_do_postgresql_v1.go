@@ -52,7 +52,91 @@ type AcidZalanDoPostgresqlV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		AdditionalVolumes *[]struct {
+			MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
+
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
+
+			TargetContainers *[]string `tfsdk:"target_containers" yaml:"targetContainers,omitempty"`
+
+			VolumeSource *map[string]string `tfsdk:"volume_source" yaml:"volumeSource,omitempty"`
+		} `tfsdk:"additional_volumes" yaml:"additionalVolumes,omitempty"`
+
+		AllowedSourceRanges *[]string `tfsdk:"allowed_source_ranges" yaml:"allowedSourceRanges,omitempty"`
+
+		Clone *struct {
+			Cluster *string `tfsdk:"cluster" yaml:"cluster,omitempty"`
+
+			S3_access_key_id *string `tfsdk:"s3_access_key_id" yaml:"s3_access_key_id,omitempty"`
+
+			S3_endpoint *string `tfsdk:"s3_endpoint" yaml:"s3_endpoint,omitempty"`
+
+			S3_force_path_style *bool `tfsdk:"s3_force_path_style" yaml:"s3_force_path_style,omitempty"`
+
+			S3_secret_access_key *string `tfsdk:"s3_secret_access_key" yaml:"s3_secret_access_key,omitempty"`
+
+			S3_wal_path *string `tfsdk:"s3_wal_path" yaml:"s3_wal_path,omitempty"`
+
+			Timestamp *string `tfsdk:"timestamp" yaml:"timestamp,omitempty"`
+
+			Uid *string `tfsdk:"uid" yaml:"uid,omitempty"`
+		} `tfsdk:"clone" yaml:"clone,omitempty"`
+
+		ConnectionPooler *struct {
+			DockerImage *string `tfsdk:"docker_image" yaml:"dockerImage,omitempty"`
+
+			MaxDBConnections *int64 `tfsdk:"max_db_connections" yaml:"maxDBConnections,omitempty"`
+
+			Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
+
+			NumberOfInstances *int64 `tfsdk:"number_of_instances" yaml:"numberOfInstances,omitempty"`
+
+			Resources *struct {
+				Limits *struct {
+					Cpu *string `tfsdk:"cpu" yaml:"cpu,omitempty"`
+
+					Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
+				} `tfsdk:"limits" yaml:"limits,omitempty"`
+
+				Requests *struct {
+					Cpu *string `tfsdk:"cpu" yaml:"cpu,omitempty"`
+
+					Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
+				} `tfsdk:"requests" yaml:"requests,omitempty"`
+			} `tfsdk:"resources" yaml:"resources,omitempty"`
+
+			Schema *string `tfsdk:"schema" yaml:"schema,omitempty"`
+
+			User *string `tfsdk:"user" yaml:"user,omitempty"`
+		} `tfsdk:"connection_pooler" yaml:"connectionPooler,omitempty"`
+
+		Databases *map[string]string `tfsdk:"databases" yaml:"databases,omitempty"`
+
+		DockerImage *string `tfsdk:"docker_image" yaml:"dockerImage,omitempty"`
+
+		EnableConnectionPooler *bool `tfsdk:"enable_connection_pooler" yaml:"enableConnectionPooler,omitempty"`
+
+		EnableLogicalBackup *bool `tfsdk:"enable_logical_backup" yaml:"enableLogicalBackup,omitempty"`
+
+		EnableMasterLoadBalancer *bool `tfsdk:"enable_master_load_balancer" yaml:"enableMasterLoadBalancer,omitempty"`
+
+		EnableMasterPoolerLoadBalancer *bool `tfsdk:"enable_master_pooler_load_balancer" yaml:"enableMasterPoolerLoadBalancer,omitempty"`
+
+		EnableReplicaConnectionPooler *bool `tfsdk:"enable_replica_connection_pooler" yaml:"enableReplicaConnectionPooler,omitempty"`
+
 		EnableReplicaLoadBalancer *bool `tfsdk:"enable_replica_load_balancer" yaml:"enableReplicaLoadBalancer,omitempty"`
+
+		EnableReplicaPoolerLoadBalancer *bool `tfsdk:"enable_replica_pooler_load_balancer" yaml:"enableReplicaPoolerLoadBalancer,omitempty"`
+
+		EnableShmVolume *bool `tfsdk:"enable_shm_volume" yaml:"enableShmVolume,omitempty"`
+
+		Env *[]map[string]string `tfsdk:"env" yaml:"env,omitempty"`
+
+		InitContainers *[]map[string]string `tfsdk:"init_containers" yaml:"initContainers,omitempty"`
+
+		LogicalBackupSchedule *string `tfsdk:"logical_backup_schedule" yaml:"logicalBackupSchedule,omitempty"`
 
 		MaintenanceWindows *[]string `tfsdk:"maintenance_windows" yaml:"maintenanceWindows,omitempty"`
 
@@ -102,19 +186,41 @@ type AcidZalanDoPostgresqlV1GoModel struct {
 
 		NumberOfInstances *int64 `tfsdk:"number_of_instances" yaml:"numberOfInstances,omitempty"`
 
-		Standby *struct {
-			Gs_wal_path *string `tfsdk:"gs_wal_path" yaml:"gs_wal_path,omitempty"`
+		Patroni *struct {
+			Initdb *map[string]string `tfsdk:"initdb" yaml:"initdb,omitempty"`
 
-			S3_wal_path *string `tfsdk:"s3_wal_path" yaml:"s3_wal_path,omitempty"`
+			Loop_wait *int64 `tfsdk:"loop_wait" yaml:"loop_wait,omitempty"`
 
-			Standby_host *string `tfsdk:"standby_host" yaml:"standby_host,omitempty"`
+			Maximum_lag_on_failover *int64 `tfsdk:"maximum_lag_on_failover" yaml:"maximum_lag_on_failover,omitempty"`
 
-			Standby_port *string `tfsdk:"standby_port" yaml:"standby_port,omitempty"`
-		} `tfsdk:"standby" yaml:"standby,omitempty"`
+			Pg_hba *[]string `tfsdk:"pg_hba" yaml:"pg_hba,omitempty"`
 
-		EnableConnectionPooler *bool `tfsdk:"enable_connection_pooler" yaml:"enableConnectionPooler,omitempty"`
+			Retry_timeout *int64 `tfsdk:"retry_timeout" yaml:"retry_timeout,omitempty"`
+
+			Slots *map[string]map[string]string `tfsdk:"slots" yaml:"slots,omitempty"`
+
+			Synchronous_mode *bool `tfsdk:"synchronous_mode" yaml:"synchronous_mode,omitempty"`
+
+			Synchronous_mode_strict *bool `tfsdk:"synchronous_mode_strict" yaml:"synchronous_mode_strict,omitempty"`
+
+			Synchronous_node_count *int64 `tfsdk:"synchronous_node_count" yaml:"synchronous_node_count,omitempty"`
+
+			Ttl *int64 `tfsdk:"ttl" yaml:"ttl,omitempty"`
+		} `tfsdk:"patroni" yaml:"patroni,omitempty"`
 
 		PodAnnotations *map[string]string `tfsdk:"pod_annotations" yaml:"podAnnotations,omitempty"`
+
+		PodPriorityClassName *string `tfsdk:"pod_priority_class_name" yaml:"podPriorityClassName,omitempty"`
+
+		Postgresql *struct {
+			Parameters *map[string]string `tfsdk:"parameters" yaml:"parameters,omitempty"`
+
+			Version *string `tfsdk:"version" yaml:"version,omitempty"`
+		} `tfsdk:"postgresql" yaml:"postgresql,omitempty"`
+
+		PreparedDatabases *map[string]string `tfsdk:"prepared_databases" yaml:"preparedDatabases,omitempty"`
+
+		ReplicaLoadBalancer *bool `tfsdk:"replica_load_balancer" yaml:"replicaLoadBalancer,omitempty"`
 
 		Resources *struct {
 			Limits *struct {
@@ -130,105 +236,27 @@ type AcidZalanDoPostgresqlV1GoModel struct {
 			} `tfsdk:"requests" yaml:"requests,omitempty"`
 		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
+		SchedulerName *string `tfsdk:"scheduler_name" yaml:"schedulerName,omitempty"`
+
 		ServiceAnnotations *map[string]string `tfsdk:"service_annotations" yaml:"serviceAnnotations,omitempty"`
 
-		Users *map[string][]string `tfsdk:"users" yaml:"users,omitempty"`
+		Sidecars *[]map[string]string `tfsdk:"sidecars" yaml:"sidecars,omitempty"`
+
+		SpiloFSGroup *int64 `tfsdk:"spilo_fs_group" yaml:"spiloFSGroup,omitempty"`
 
 		SpiloRunAsGroup *int64 `tfsdk:"spilo_run_as_group" yaml:"spiloRunAsGroup,omitempty"`
 
-		Volume *struct {
-			SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
+		SpiloRunAsUser *int64 `tfsdk:"spilo_run_as_user" yaml:"spiloRunAsUser,omitempty"`
 
-			Throughput *int64 `tfsdk:"throughput" yaml:"throughput,omitempty"`
+		Standby *struct {
+			Gs_wal_path *string `tfsdk:"gs_wal_path" yaml:"gs_wal_path,omitempty"`
 
-			Iops *int64 `tfsdk:"iops" yaml:"iops,omitempty"`
+			S3_wal_path *string `tfsdk:"s3_wal_path" yaml:"s3_wal_path,omitempty"`
 
-			Selector *struct {
-				MatchExpressions *[]struct {
-					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+			Standby_host *string `tfsdk:"standby_host" yaml:"standby_host,omitempty"`
 
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-				} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-			} `tfsdk:"selector" yaml:"selector,omitempty"`
-
-			Size *string `tfsdk:"size" yaml:"size,omitempty"`
-
-			StorageClass *string `tfsdk:"storage_class" yaml:"storageClass,omitempty"`
-		} `tfsdk:"volume" yaml:"volume,omitempty"`
-
-		ConnectionPooler *struct {
-			Schema *string `tfsdk:"schema" yaml:"schema,omitempty"`
-
-			User *string `tfsdk:"user" yaml:"user,omitempty"`
-
-			DockerImage *string `tfsdk:"docker_image" yaml:"dockerImage,omitempty"`
-
-			MaxDBConnections *int64 `tfsdk:"max_db_connections" yaml:"maxDBConnections,omitempty"`
-
-			Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
-
-			NumberOfInstances *int64 `tfsdk:"number_of_instances" yaml:"numberOfInstances,omitempty"`
-
-			Resources *struct {
-				Limits *struct {
-					Cpu *string `tfsdk:"cpu" yaml:"cpu,omitempty"`
-
-					Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
-				} `tfsdk:"limits" yaml:"limits,omitempty"`
-
-				Requests *struct {
-					Cpu *string `tfsdk:"cpu" yaml:"cpu,omitempty"`
-
-					Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
-				} `tfsdk:"requests" yaml:"requests,omitempty"`
-			} `tfsdk:"resources" yaml:"resources,omitempty"`
-		} `tfsdk:"connection_pooler" yaml:"connectionPooler,omitempty"`
-
-		DockerImage *string `tfsdk:"docker_image" yaml:"dockerImage,omitempty"`
-
-		EnableMasterLoadBalancer *bool `tfsdk:"enable_master_load_balancer" yaml:"enableMasterLoadBalancer,omitempty"`
-
-		EnableShmVolume *bool `tfsdk:"enable_shm_volume" yaml:"enableShmVolume,omitempty"`
-
-		LogicalBackupSchedule *string `tfsdk:"logical_backup_schedule" yaml:"logicalBackupSchedule,omitempty"`
-
-		Databases *map[string]string `tfsdk:"databases" yaml:"databases,omitempty"`
-
-		EnableReplicaPoolerLoadBalancer *bool `tfsdk:"enable_replica_pooler_load_balancer" yaml:"enableReplicaPoolerLoadBalancer,omitempty"`
-
-		Env *[]map[string]string `tfsdk:"env" yaml:"env,omitempty"`
-
-		Tls *struct {
-			SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-
-			CaFile *string `tfsdk:"ca_file" yaml:"caFile,omitempty"`
-
-			CaSecretName *string `tfsdk:"ca_secret_name" yaml:"caSecretName,omitempty"`
-
-			CertificateFile *string `tfsdk:"certificate_file" yaml:"certificateFile,omitempty"`
-
-			PrivateKeyFile *string `tfsdk:"private_key_file" yaml:"privateKeyFile,omitempty"`
-		} `tfsdk:"tls" yaml:"tls,omitempty"`
-
-		AdditionalVolumes *[]struct {
-			MountPath *string `tfsdk:"mount_path" yaml:"mountPath,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
-
-			TargetContainers *[]string `tfsdk:"target_containers" yaml:"targetContainers,omitempty"`
-
-			VolumeSource *map[string]string `tfsdk:"volume_source" yaml:"volumeSource,omitempty"`
-		} `tfsdk:"additional_volumes" yaml:"additionalVolumes,omitempty"`
-
-		AllowedSourceRanges *[]string `tfsdk:"allowed_source_ranges" yaml:"allowedSourceRanges,omitempty"`
-
-		SpiloFSGroup *int64 `tfsdk:"spilo_fs_group" yaml:"spiloFSGroup,omitempty"`
+			Standby_port *string `tfsdk:"standby_port" yaml:"standby_port,omitempty"`
+		} `tfsdk:"standby" yaml:"standby,omitempty"`
 
 		Streams *[]struct {
 			ApplicationId *string `tfsdk:"application_id" yaml:"applicationId,omitempty"`
@@ -242,17 +270,19 @@ type AcidZalanDoPostgresqlV1GoModel struct {
 			Tables *map[string]string `tfsdk:"tables" yaml:"tables,omitempty"`
 		} `tfsdk:"streams" yaml:"streams,omitempty"`
 
-		InitContainers *[]map[string]string `tfsdk:"init_containers" yaml:"initContainers,omitempty"`
-
-		PreparedDatabases *map[string]string `tfsdk:"prepared_databases" yaml:"preparedDatabases,omitempty"`
-
-		ReplicaLoadBalancer *bool `tfsdk:"replica_load_balancer" yaml:"replicaLoadBalancer,omitempty"`
-
-		Sidecars *[]map[string]string `tfsdk:"sidecars" yaml:"sidecars,omitempty"`
-
-		UsersWithSecretRotation *[]string `tfsdk:"users_with_secret_rotation" yaml:"usersWithSecretRotation,omitempty"`
-
 		TeamId *string `tfsdk:"team_id" yaml:"teamId,omitempty"`
+
+		Tls *struct {
+			CaFile *string `tfsdk:"ca_file" yaml:"caFile,omitempty"`
+
+			CaSecretName *string `tfsdk:"ca_secret_name" yaml:"caSecretName,omitempty"`
+
+			CertificateFile *string `tfsdk:"certificate_file" yaml:"certificateFile,omitempty"`
+
+			PrivateKeyFile *string `tfsdk:"private_key_file" yaml:"privateKeyFile,omitempty"`
+
+			SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
+		} `tfsdk:"tls" yaml:"tls,omitempty"`
 
 		Tolerations *[]struct {
 			Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
@@ -266,67 +296,37 @@ type AcidZalanDoPostgresqlV1GoModel struct {
 			Value *string `tfsdk:"value" yaml:"value,omitempty"`
 		} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
 
-		EnableLogicalBackup *bool `tfsdk:"enable_logical_backup" yaml:"enableLogicalBackup,omitempty"`
+		UseLoadBalancer *bool `tfsdk:"use_load_balancer" yaml:"useLoadBalancer,omitempty"`
 
-		Patroni *struct {
-			Retry_timeout *int64 `tfsdk:"retry_timeout" yaml:"retry_timeout,omitempty"`
-
-			Synchronous_node_count *int64 `tfsdk:"synchronous_node_count" yaml:"synchronous_node_count,omitempty"`
-
-			Ttl *int64 `tfsdk:"ttl" yaml:"ttl,omitempty"`
-
-			Loop_wait *int64 `tfsdk:"loop_wait" yaml:"loop_wait,omitempty"`
-
-			Maximum_lag_on_failover *int64 `tfsdk:"maximum_lag_on_failover" yaml:"maximum_lag_on_failover,omitempty"`
-
-			Pg_hba *[]string `tfsdk:"pg_hba" yaml:"pg_hba,omitempty"`
-
-			Synchronous_mode_strict *bool `tfsdk:"synchronous_mode_strict" yaml:"synchronous_mode_strict,omitempty"`
-
-			Initdb *map[string]string `tfsdk:"initdb" yaml:"initdb,omitempty"`
-
-			Slots *map[string]map[string]string `tfsdk:"slots" yaml:"slots,omitempty"`
-
-			Synchronous_mode *bool `tfsdk:"synchronous_mode" yaml:"synchronous_mode,omitempty"`
-		} `tfsdk:"patroni" yaml:"patroni,omitempty"`
-
-		PodPriorityClassName *string `tfsdk:"pod_priority_class_name" yaml:"podPriorityClassName,omitempty"`
-
-		SchedulerName *string `tfsdk:"scheduler_name" yaml:"schedulerName,omitempty"`
-
-		SpiloRunAsUser *int64 `tfsdk:"spilo_run_as_user" yaml:"spiloRunAsUser,omitempty"`
+		Users *map[string][]string `tfsdk:"users" yaml:"users,omitempty"`
 
 		UsersWithInPlaceSecretRotation *[]string `tfsdk:"users_with_in_place_secret_rotation" yaml:"usersWithInPlaceSecretRotation,omitempty"`
 
-		Clone *struct {
-			Cluster *string `tfsdk:"cluster" yaml:"cluster,omitempty"`
+		UsersWithSecretRotation *[]string `tfsdk:"users_with_secret_rotation" yaml:"usersWithSecretRotation,omitempty"`
 
-			S3_access_key_id *string `tfsdk:"s3_access_key_id" yaml:"s3_access_key_id,omitempty"`
+		Volume *struct {
+			Iops *int64 `tfsdk:"iops" yaml:"iops,omitempty"`
 
-			S3_endpoint *string `tfsdk:"s3_endpoint" yaml:"s3_endpoint,omitempty"`
+			Selector *struct {
+				MatchExpressions *[]struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
-			S3_force_path_style *bool `tfsdk:"s3_force_path_style" yaml:"s3_force_path_style,omitempty"`
+					Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
 
-			S3_secret_access_key *string `tfsdk:"s3_secret_access_key" yaml:"s3_secret_access_key,omitempty"`
+					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+				} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-			S3_wal_path *string `tfsdk:"s3_wal_path" yaml:"s3_wal_path,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+			} `tfsdk:"selector" yaml:"selector,omitempty"`
 
-			Timestamp *string `tfsdk:"timestamp" yaml:"timestamp,omitempty"`
+			Size *string `tfsdk:"size" yaml:"size,omitempty"`
 
-			Uid *string `tfsdk:"uid" yaml:"uid,omitempty"`
-		} `tfsdk:"clone" yaml:"clone,omitempty"`
+			StorageClass *string `tfsdk:"storage_class" yaml:"storageClass,omitempty"`
 
-		EnableMasterPoolerLoadBalancer *bool `tfsdk:"enable_master_pooler_load_balancer" yaml:"enableMasterPoolerLoadBalancer,omitempty"`
+			SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
 
-		EnableReplicaConnectionPooler *bool `tfsdk:"enable_replica_connection_pooler" yaml:"enableReplicaConnectionPooler,omitempty"`
-
-		Postgresql *struct {
-			Version *string `tfsdk:"version" yaml:"version,omitempty"`
-
-			Parameters *map[string]string `tfsdk:"parameters" yaml:"parameters,omitempty"`
-		} `tfsdk:"postgresql" yaml:"postgresql,omitempty"`
-
-		UseLoadBalancer *bool `tfsdk:"use_load_balancer" yaml:"useLoadBalancer,omitempty"`
+			Throughput *int64 `tfsdk:"throughput" yaml:"throughput,omitempty"`
+		} `tfsdk:"volume" yaml:"volume,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -427,11 +427,484 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"additional_volumes": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"mount_path": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"sub_path": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"target_containers": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"volume_source": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"allowed_source_ranges": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"clone": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"cluster": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"s3_access_key_id": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"s3_endpoint": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"s3_force_path_style": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"s3_secret_access_key": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"s3_wal_path": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"timestamp": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"uid": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"connection_pooler": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"docker_image": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"max_db_connections": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"mode": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"number_of_instances": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"resources": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"limits": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"cpu": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"memory": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"requests": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"cpu": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"memory": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"schema": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"user": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"databases": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.MapType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"docker_image": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_connection_pooler": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_logical_backup": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_master_load_balancer": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_master_pooler_load_balancer": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_replica_connection_pooler": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"enable_replica_load_balancer": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_replica_pooler_load_balancer": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_shm_volume": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"env": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.ListType{ElemType: types.MapType{ElemType: types.StringType}},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"init_containers": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.ListType{ElemType: types.MapType{ElemType: types.StringType}},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"logical_backup_schedule": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -716,50 +1189,116 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						},
 					},
 
-					"standby": {
+					"patroni": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"gs_wal_path": {
+							"initdb": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.StringType,
+								Type: types.MapType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"s3_wal_path": {
+							"loop_wait": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.StringType,
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"standby_host": {
+							"maximum_lag_on_failover": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.StringType,
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"standby_port": {
+							"pg_hba": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.StringType,
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"retry_timeout": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"slots": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.MapType{ElemType: types.StringType}},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"synchronous_mode": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"synchronous_mode_strict": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"synchronous_node_count": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"ttl": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
@@ -772,22 +1311,78 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						Computed: false,
 					},
 
-					"enable_connection_pooler": {
+					"pod_annotations": {
 						Description:         "",
 						MarkdownDescription: "",
 
-						Type: types.BoolType,
+						Type: types.MapType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,
 						Computed: false,
 					},
 
-					"pod_annotations": {
+					"pod_priority_class_name": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"postgresql": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"parameters": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"version": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"prepared_databases": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Type: types.MapType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"replica_load_balancer": {
+						Description:         "deprecated",
+						MarkdownDescription: "deprecated",
+
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
@@ -874,6 +1469,17 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						Computed: false,
 					},
 
+					"scheduler_name": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"service_annotations": {
 						Description:         "",
 						MarkdownDescription: "",
@@ -885,11 +1491,22 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						Computed: false,
 					},
 
-					"users": {
+					"sidecars": {
 						Description:         "",
 						MarkdownDescription: "",
 
-						Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
+						Type: types.ListType{ElemType: types.MapType{ElemType: types.StringType}},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"spilo_fs_group": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.Int64Type,
 
 						Required: false,
 						Optional: true,
@@ -907,531 +1524,67 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						Computed: false,
 					},
 
-					"volume": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"sub_path": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"throughput": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"iops": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"selector": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"match_expressions": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"values": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"key": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"operator": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"match_labels": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"size": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"storage_class": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"connection_pooler": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"schema": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"user": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"docker_image": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"max_db_connections": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"mode": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"number_of_instances": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-
-								Validators: []tfsdk.AttributeValidator{
-
-									int64validator.AtLeast(1),
-								},
-							},
-
-							"resources": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"limits": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"cpu": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"memory": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"requests": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"cpu": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"memory": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"docker_image": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"enable_master_load_balancer": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"enable_shm_volume": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"logical_backup_schedule": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"databases": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.MapType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"enable_replica_pooler_load_balancer": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"env": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.ListType{ElemType: types.MapType{ElemType: types.StringType}},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"tls": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"secret_name": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"ca_file": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"ca_secret_name": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"certificate_file": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"private_key_file": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"additional_volumes": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"mount_path": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"sub_path": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"target_containers": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"volume_source": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"allowed_source_ranges": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"spilo_fs_group": {
+					"spilo_run_as_user": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"standby": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"gs_wal_path": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"s3_wal_path": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"standby_host": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"standby_port": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
@@ -1505,61 +1658,6 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						Computed: false,
 					},
 
-					"init_containers": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.ListType{ElemType: types.MapType{ElemType: types.StringType}},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"prepared_databases": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.MapType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"replica_load_balancer": {
-						Description:         "deprecated",
-						MarkdownDescription: "deprecated",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"sidecars": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.ListType{ElemType: types.MapType{ElemType: types.StringType}},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"users_with_secret_rotation": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.ListType{ElemType: types.StringType},
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"team_id": {
 						Description:         "",
 						MarkdownDescription: "",
@@ -1568,6 +1666,73 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"tls": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"ca_file": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"ca_secret_name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"certificate_file": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"private_key_file": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"secret_name": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
@@ -1638,9 +1803,9 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						Computed: false,
 					},
 
-					"enable_logical_backup": {
-						Description:         "",
-						MarkdownDescription: "",
+					"use_load_balancer": {
+						Description:         "deprecated",
+						MarkdownDescription: "deprecated",
 
 						Type: types.BoolType,
 
@@ -1649,155 +1814,11 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						Computed: false,
 					},
 
-					"patroni": {
+					"users": {
 						Description:         "",
 						MarkdownDescription: "",
 
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"retry_timeout": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"synchronous_node_count": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"ttl": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"loop_wait": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"maximum_lag_on_failover": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"pg_hba": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"synchronous_mode_strict": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"initdb": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"slots": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.MapType{ElemType: types.StringType}},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"synchronous_mode": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"pod_priority_class_name": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"scheduler_name": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"spilo_run_as_user": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.Int64Type,
+						Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
 
 						Required: false,
 						Optional: true,
@@ -1815,13 +1836,103 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						Computed: false,
 					},
 
-					"clone": {
+					"users_with_secret_rotation": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"volume": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"cluster": {
+							"iops": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"selector": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"match_expressions": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"operator": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"values": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"match_labels": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"size": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -1832,7 +1943,7 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Computed: false,
 							},
 
-							"s3_access_key_id": {
+							"storage_class": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -1843,7 +1954,7 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Computed: false,
 							},
 
-							"s3_endpoint": {
+							"sub_path": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -1854,111 +1965,11 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Computed: false,
 							},
 
-							"s3_force_path_style": {
+							"throughput": {
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"s3_secret_access_key": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"s3_wal_path": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"timestamp": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"uid": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"enable_master_pooler_load_balancer": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"enable_replica_connection_pooler": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"postgresql": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"version": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"parameters": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.MapType{ElemType: types.StringType},
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
@@ -1968,17 +1979,6 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 
 						Required: true,
 						Optional: false,
-						Computed: false,
-					},
-
-					"use_load_balancer": {
-						Description:         "deprecated",
-						MarkdownDescription: "deprecated",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
 						Computed: false,
 					},
 				}),

@@ -50,6 +50,8 @@ type CouchbaseComCouchbaseGroupV2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		LdapGroupRef *string `tfsdk:"ldap_group_ref" yaml:"ldapGroupRef,omitempty"`
+
 		Roles *[]struct {
 			Bucket *string `tfsdk:"bucket" yaml:"bucket,omitempty"`
 
@@ -103,8 +105,6 @@ type CouchbaseComCouchbaseGroupV2GoModel struct {
 				} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 				Selector *struct {
-					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-
 					MatchExpressions *[]struct {
 						Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -112,11 +112,11 @@ type CouchbaseComCouchbaseGroupV2GoModel struct {
 
 						Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 					} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 				} `tfsdk:"selector" yaml:"selector,omitempty"`
 			} `tfsdk:"scopes" yaml:"scopes,omitempty"`
 		} `tfsdk:"roles" yaml:"roles,omitempty"`
-
-		LdapGroupRef *string `tfsdk:"ldap_group_ref" yaml:"ldapGroupRef,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -216,6 +216,17 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 				MarkdownDescription: "CouchbaseGroupSpec allows the specification of Couchbase group configuration.",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+					"ldap_group_ref": {
+						Description:         "LDAPGroupRef is a reference to an LDAP group.",
+						MarkdownDescription: "LDAPGroupRef is a reference to an LDAP group.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
 
 					"roles": {
 						Description:         "Roles is a list of roles that this group is granted.",
@@ -519,17 +530,6 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"match_labels": {
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"match_expressions": {
 												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -574,6 +574,17 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 												Optional: true,
 												Computed: false,
 											},
+
+											"match_labels": {
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										}),
 
 										Required: false,
@@ -590,17 +601,6 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 
 						Required: true,
 						Optional: false,
-						Computed: false,
-					},
-
-					"ldap_group_ref": {
-						Description:         "LDAPGroupRef is a reference to an LDAP group.",
-						MarkdownDescription: "LDAPGroupRef is a reference to an LDAP group.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
 						Computed: false,
 					},
 				}),

@@ -56,10 +56,6 @@ type SourceToolkitFluxcdIoHelmChartV1Beta1GoModel struct {
 			} `tfsdk:"namespace_selectors" yaml:"namespaceSelectors,omitempty"`
 		} `tfsdk:"access_from" yaml:"accessFrom,omitempty"`
 
-		ValuesFile *string `tfsdk:"values_file" yaml:"valuesFile,omitempty"`
-
-		Version *string `tfsdk:"version" yaml:"version,omitempty"`
-
 		Chart *string `tfsdk:"chart" yaml:"chart,omitempty"`
 
 		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
@@ -76,7 +72,11 @@ type SourceToolkitFluxcdIoHelmChartV1Beta1GoModel struct {
 
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 
+		ValuesFile *string `tfsdk:"values_file" yaml:"valuesFile,omitempty"`
+
 		ValuesFiles *[]string `tfsdk:"values_files" yaml:"valuesFiles,omitempty"`
+
+		Version *string `tfsdk:"version" yaml:"version,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -212,28 +212,6 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta1Resource) GetSchema(_ context.Cont
 						Computed: false,
 					},
 
-					"values_file": {
-						Description:         "Alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file defined here is merged before the ValuesFiles items. Ignored when omitted.",
-						MarkdownDescription: "Alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file defined here is merged before the ValuesFiles items. Ignored when omitted.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"version": {
-						Description:         "The chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
-						MarkdownDescription: "The chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"chart": {
 						Description:         "The name or path the Helm chart is available at in the SourceRef.",
 						MarkdownDescription: "The name or path the Helm chart is available at in the SourceRef.",
@@ -323,11 +301,33 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta1Resource) GetSchema(_ context.Cont
 						Computed: false,
 					},
 
+					"values_file": {
+						Description:         "Alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file defined here is merged before the ValuesFiles items. Ignored when omitted.",
+						MarkdownDescription: "Alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file defined here is merged before the ValuesFiles items. Ignored when omitted.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"values_files": {
 						Description:         "Alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
 						MarkdownDescription: "Alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
 
 						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"version": {
+						Description:         "The chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
+						MarkdownDescription: "The chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

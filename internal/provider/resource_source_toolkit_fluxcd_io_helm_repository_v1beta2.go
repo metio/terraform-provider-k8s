@@ -50,8 +50,6 @@ type SourceToolkitFluxcdIoHelmRepositoryV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
 		AccessFrom *struct {
 			NamespaceSelectors *[]struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -60,12 +58,6 @@ type SourceToolkitFluxcdIoHelmRepositoryV1Beta2GoModel struct {
 
 		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 
-		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
-
-		Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-		Url *string `tfsdk:"url" yaml:"url,omitempty"`
-
 		PassCredentials *bool `tfsdk:"pass_credentials" yaml:"passCredentials,omitempty"`
 
 		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
@@ -73,6 +65,14 @@ type SourceToolkitFluxcdIoHelmRepositoryV1Beta2GoModel struct {
 		SecretRef *struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+
+		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+
+		Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+		Url *string `tfsdk:"url" yaml:"url,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -173,17 +173,6 @@ func (r *SourceToolkitFluxcdIoHelmRepositoryV1Beta2Resource) GetSchema(_ context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"timeout": {
-						Description:         "Timeout is used for the index fetch operation for an HTTPS helm repository, and for remote OCI Repository operations like pulling for an OCI helm repository. Its default value is 60s.",
-						MarkdownDescription: "Timeout is used for the index fetch operation for an HTTPS helm repository, and for remote OCI Repository operations like pulling for an OCI helm repository. Its default value is 60s.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"access_from": {
 						Description:         "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
 						MarkdownDescription: "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
@@ -222,39 +211,6 @@ func (r *SourceToolkitFluxcdIoHelmRepositoryV1Beta2Resource) GetSchema(_ context
 					"interval": {
 						Description:         "Interval at which to check the URL for updates.",
 						MarkdownDescription: "Interval at which to check the URL for updates.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"suspend": {
-						Description:         "Suspend tells the controller to suspend the reconciliation of this HelmRepository.",
-						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this HelmRepository.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"type": {
-						Description:         "Type of the HelmRepository. When this field is set to  'oci', the URL field value must be prefixed with 'oci://'.",
-						MarkdownDescription: "Type of the HelmRepository. When this field is set to  'oci', the URL field value must be prefixed with 'oci://'.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"url": {
-						Description:         "URL of the Helm repository, a valid URL contains at least a protocol and host.",
-						MarkdownDescription: "URL of the Helm repository, a valid URL contains at least a protocol and host.",
 
 						Type: types.StringType,
 
@@ -305,6 +261,50 @@ func (r *SourceToolkitFluxcdIoHelmRepositoryV1Beta2Resource) GetSchema(_ context
 
 						Required: false,
 						Optional: true,
+						Computed: false,
+					},
+
+					"suspend": {
+						Description:         "Suspend tells the controller to suspend the reconciliation of this HelmRepository.",
+						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this HelmRepository.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"timeout": {
+						Description:         "Timeout is used for the index fetch operation for an HTTPS helm repository, and for remote OCI Repository operations like pulling for an OCI helm repository. Its default value is 60s.",
+						MarkdownDescription: "Timeout is used for the index fetch operation for an HTTPS helm repository, and for remote OCI Repository operations like pulling for an OCI helm repository. Its default value is 60s.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"type": {
+						Description:         "Type of the HelmRepository. When this field is set to  'oci', the URL field value must be prefixed with 'oci://'.",
+						MarkdownDescription: "Type of the HelmRepository. When this field is set to  'oci', the URL field value must be prefixed with 'oci://'.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"url": {
+						Description:         "URL of the Helm repository, a valid URL contains at least a protocol and host.",
+						MarkdownDescription: "URL of the Helm repository, a valid URL contains at least a protocol and host.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 				}),

@@ -65,13 +65,13 @@ type ExternalSecretsIoExternalSecretV1Alpha1GoModel struct {
 		} `tfsdk:"data" yaml:"data,omitempty"`
 
 		DataFrom *[]struct {
+			ConversionStrategy *string `tfsdk:"conversion_strategy" yaml:"conversionStrategy,omitempty"`
+
 			Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
 			Property *string `tfsdk:"property" yaml:"property,omitempty"`
 
 			Version *string `tfsdk:"version" yaml:"version,omitempty"`
-
-			ConversionStrategy *string `tfsdk:"conversion_strategy" yaml:"conversionStrategy,omitempty"`
 		} `tfsdk:"data_from" yaml:"dataFrom,omitempty"`
 
 		RefreshInterval *string `tfsdk:"refresh_interval" yaml:"refreshInterval,omitempty"`
@@ -90,8 +90,6 @@ type ExternalSecretsIoExternalSecretV1Alpha1GoModel struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Template *struct {
-				Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
 				Data *map[string]string `tfsdk:"data" yaml:"data,omitempty"`
 
 				EngineVersion *string `tfsdk:"engine_version" yaml:"engineVersion,omitempty"`
@@ -119,6 +117,8 @@ type ExternalSecretsIoExternalSecretV1Alpha1GoModel struct {
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
 					} `tfsdk:"secret" yaml:"secret,omitempty"`
 				} `tfsdk:"template_from" yaml:"templateFrom,omitempty"`
+
+				Type *string `tfsdk:"type" yaml:"type,omitempty"`
 			} `tfsdk:"template" yaml:"template,omitempty"`
 		} `tfsdk:"target" yaml:"target,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -306,6 +306,17 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Resource) GetSchema(_ context.Co
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+							"conversion_strategy": {
+								Description:         "Used to define a conversion Strategy",
+								MarkdownDescription: "Used to define a conversion Strategy",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"key": {
 								Description:         "Key is the key used in the Provider, mandatory",
 								MarkdownDescription: "Key is the key used in the Provider, mandatory",
@@ -331,17 +342,6 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Resource) GetSchema(_ context.Co
 							"version": {
 								Description:         "Used to select a specific version of the Provider value, if supported",
 								MarkdownDescription: "Used to select a specific version of the Provider value, if supported",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"conversion_strategy": {
-								Description:         "Used to define a conversion Strategy",
-								MarkdownDescription: "Used to define a conversion Strategy",
 
 								Type: types.StringType,
 
@@ -445,17 +445,6 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Resource) GetSchema(_ context.Co
 								MarkdownDescription: "Template defines a blueprint for the created Secret resource.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"type": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"data": {
 										Description:         "",
@@ -611,6 +600,17 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Resource) GetSchema(_ context.Co
 												Computed: false,
 											},
 										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"type": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,

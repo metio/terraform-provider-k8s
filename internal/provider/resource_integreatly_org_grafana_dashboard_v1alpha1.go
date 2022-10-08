@@ -50,10 +50,22 @@ type IntegreatlyOrgGrafanaDashboardV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Datasources *[]struct {
-			InputName *string `tfsdk:"input_name" yaml:"inputName,omitempty"`
+		ConfigMapRef *struct {
+			Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+		} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
+
+		ContentCacheDuration *string `tfsdk:"content_cache_duration" yaml:"contentCacheDuration,omitempty"`
+
+		CustomFolderName *string `tfsdk:"custom_folder_name" yaml:"customFolderName,omitempty"`
+
+		Datasources *[]struct {
 			DatasourceName *string `tfsdk:"datasource_name" yaml:"datasourceName,omitempty"`
+
+			InputName *string `tfsdk:"input_name" yaml:"inputName,omitempty"`
 		} `tfsdk:"datasources" yaml:"datasources,omitempty"`
 
 		GrafanaCom *struct {
@@ -63,16 +75,18 @@ type IntegreatlyOrgGrafanaDashboardV1Alpha1GoModel struct {
 		} `tfsdk:"grafana_com" yaml:"grafanaCom,omitempty"`
 
 		GzipConfigMapRef *struct {
+			Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-			Key *string `tfsdk:"key" yaml:"key,omitempty"`
 		} `tfsdk:"gzip_config_map_ref" yaml:"gzipConfigMapRef,omitempty"`
 
 		GzipJson *string `tfsdk:"gzip_json" yaml:"gzipJson,omitempty"`
 
 		Json *string `tfsdk:"json" yaml:"json,omitempty"`
+
+		Jsonnet *string `tfsdk:"jsonnet" yaml:"jsonnet,omitempty"`
 
 		Plugins *[]struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -80,21 +94,7 @@ type IntegreatlyOrgGrafanaDashboardV1Alpha1GoModel struct {
 			Version *string `tfsdk:"version" yaml:"version,omitempty"`
 		} `tfsdk:"plugins" yaml:"plugins,omitempty"`
 
-		ContentCacheDuration *string `tfsdk:"content_cache_duration" yaml:"contentCacheDuration,omitempty"`
-
-		CustomFolderName *string `tfsdk:"custom_folder_name" yaml:"customFolderName,omitempty"`
-
 		Url *string `tfsdk:"url" yaml:"url,omitempty"`
-
-		ConfigMapRef *struct {
-			Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-		} `tfsdk:"config_map_ref" yaml:"configMapRef,omitempty"`
-
-		Jsonnet *string `tfsdk:"jsonnet" yaml:"jsonnet,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -195,13 +195,80 @@ func (r *IntegreatlyOrgGrafanaDashboardV1Alpha1Resource) GetSchema(_ context.Con
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"config_map_ref": {
+						Description:         "ConfigMapRef is a reference to a ConfigMap data field containing the dashboard's JSON",
+						MarkdownDescription: "ConfigMapRef is a reference to a ConfigMap data field containing the dashboard's JSON",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"key": {
+								Description:         "The key to select.",
+								MarkdownDescription: "The key to select.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"optional": {
+								Description:         "Specify whether the ConfigMap or its key must be defined",
+								MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"content_cache_duration": {
+						Description:         "ContentCacheDuration sets how often the operator should resync with the external source when using the 'grafanaCom.id' or 'url' field to specify the source of the dashboard. The default value is decided by the 'dashboardContentCacheDuration' field in the 'Grafana' resource. The default is 0 which is interpreted as never refetching.",
+						MarkdownDescription: "ContentCacheDuration sets how often the operator should resync with the external source when using the 'grafanaCom.id' or 'url' field to specify the source of the dashboard. The default value is decided by the 'dashboardContentCacheDuration' field in the 'Grafana' resource. The default is 0 which is interpreted as never refetching.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"custom_folder_name": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"datasources": {
 						Description:         "",
 						MarkdownDescription: "",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"input_name": {
+							"datasource_name": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -212,7 +279,7 @@ func (r *IntegreatlyOrgGrafanaDashboardV1Alpha1Resource) GetSchema(_ context.Con
 								Computed: false,
 							},
 
-							"datasource_name": {
+							"input_name": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -269,6 +336,17 @@ func (r *IntegreatlyOrgGrafanaDashboardV1Alpha1Resource) GetSchema(_ context.Con
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+							"key": {
+								Description:         "The key to select.",
+								MarkdownDescription: "The key to select.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
 							"name": {
 								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
 								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -288,17 +366,6 @@ func (r *IntegreatlyOrgGrafanaDashboardV1Alpha1Resource) GetSchema(_ context.Con
 
 								Required: false,
 								Optional: true,
-								Computed: false,
-							},
-
-							"key": {
-								Description:         "The key to select.",
-								MarkdownDescription: "The key to select.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
 								Computed: false,
 							},
 						}),
@@ -322,6 +389,17 @@ func (r *IntegreatlyOrgGrafanaDashboardV1Alpha1Resource) GetSchema(_ context.Con
 					"json": {
 						Description:         "Json is the dashboard's JSON",
 						MarkdownDescription: "Json is the dashboard's JSON",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"jsonnet": {
+						Description:         "",
+						MarkdownDescription: "",
 
 						Type: types.StringType,
 
@@ -364,85 +442,7 @@ func (r *IntegreatlyOrgGrafanaDashboardV1Alpha1Resource) GetSchema(_ context.Con
 						Computed: false,
 					},
 
-					"content_cache_duration": {
-						Description:         "ContentCacheDuration sets how often the operator should resync with the external source when using the 'grafanaCom.id' or 'url' field to specify the source of the dashboard. The default value is decided by the 'dashboardContentCacheDuration' field in the 'Grafana' resource. The default is 0 which is interpreted as never refetching.",
-						MarkdownDescription: "ContentCacheDuration sets how often the operator should resync with the external source when using the 'grafanaCom.id' or 'url' field to specify the source of the dashboard. The default value is decided by the 'dashboardContentCacheDuration' field in the 'Grafana' resource. The default is 0 which is interpreted as never refetching.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"custom_folder_name": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"url": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"config_map_ref": {
-						Description:         "ConfigMapRef is a reference to a ConfigMap data field containing the dashboard's JSON",
-						MarkdownDescription: "ConfigMapRef is a reference to a ConfigMap data field containing the dashboard's JSON",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"key": {
-								Description:         "The key to select.",
-								MarkdownDescription: "The key to select.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"optional": {
-								Description:         "Specify whether the ConfigMap or its key must be defined",
-								MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"jsonnet": {
 						Description:         "",
 						MarkdownDescription: "",
 

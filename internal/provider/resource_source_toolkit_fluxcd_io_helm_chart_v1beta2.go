@@ -50,13 +50,17 @@ type SourceToolkitFluxcdIoHelmChartV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
-
-		ValuesFile *string `tfsdk:"values_file" yaml:"valuesFile,omitempty"`
-
-		Version *string `tfsdk:"version" yaml:"version,omitempty"`
+		AccessFrom *struct {
+			NamespaceSelectors *[]struct {
+				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+			} `tfsdk:"namespace_selectors" yaml:"namespaceSelectors,omitempty"`
+		} `tfsdk:"access_from" yaml:"accessFrom,omitempty"`
 
 		Chart *string `tfsdk:"chart" yaml:"chart,omitempty"`
+
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+		ReconcileStrategy *string `tfsdk:"reconcile_strategy" yaml:"reconcileStrategy,omitempty"`
 
 		SourceRef *struct {
 			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
@@ -66,17 +70,13 @@ type SourceToolkitFluxcdIoHelmChartV1Beta2GoModel struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"source_ref" yaml:"sourceRef,omitempty"`
 
-		ReconcileStrategy *string `tfsdk:"reconcile_strategy" yaml:"reconcileStrategy,omitempty"`
+		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+
+		ValuesFile *string `tfsdk:"values_file" yaml:"valuesFile,omitempty"`
 
 		ValuesFiles *[]string `tfsdk:"values_files" yaml:"valuesFiles,omitempty"`
 
-		AccessFrom *struct {
-			NamespaceSelectors *[]struct {
-				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-			} `tfsdk:"namespace_selectors" yaml:"namespaceSelectors,omitempty"`
-		} `tfsdk:"access_from" yaml:"accessFrom,omitempty"`
-
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+		Version *string `tfsdk:"version" yaml:"version,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -177,33 +177,35 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta2Resource) GetSchema(_ context.Cont
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"suspend": {
-						Description:         "Suspend tells the controller to suspend the reconciliation of this source.",
-						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this source.",
+					"access_from": {
+						Description:         "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
+						MarkdownDescription: "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
 
-						Type: types.BoolType,
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
+							"namespace_selectors": {
+								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
+								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
 
-					"values_file": {
-						Description:         "ValuesFile is an alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file specified here is merged before the ValuesFiles items. Ignored when omitted.",
-						MarkdownDescription: "ValuesFile is an alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file specified here is merged before the ValuesFiles items. Ignored when omitted.",
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-						Type: types.StringType,
+									"match_labels": {
+										Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
+										Type: types.MapType{ElemType: types.StringType},
 
-					"version": {
-						Description:         "Version is the chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
-						MarkdownDescription: "Version is the chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
-						Type: types.StringType,
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
@@ -218,6 +220,28 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta2Resource) GetSchema(_ context.Cont
 
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"interval": {
+						Description:         "Interval is the interval at which to check the Source for updates.",
+						MarkdownDescription: "Interval is the interval at which to check the Source for updates.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"reconcile_strategy": {
+						Description:         "ReconcileStrategy determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
+						MarkdownDescription: "ReconcileStrategy determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
@@ -266,9 +290,20 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta2Resource) GetSchema(_ context.Cont
 						Computed: false,
 					},
 
-					"reconcile_strategy": {
-						Description:         "ReconcileStrategy determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
-						MarkdownDescription: "ReconcileStrategy determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
+					"suspend": {
+						Description:         "Suspend tells the controller to suspend the reconciliation of this source.",
+						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this source.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"values_file": {
+						Description:         "ValuesFile is an alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file specified here is merged before the ValuesFiles items. Ignored when omitted.",
+						MarkdownDescription: "ValuesFile is an alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file specified here is merged before the ValuesFiles items. Ignored when omitted.",
 
 						Type: types.StringType,
 
@@ -288,49 +323,14 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta2Resource) GetSchema(_ context.Cont
 						Computed: false,
 					},
 
-					"access_from": {
-						Description:         "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
-						MarkdownDescription: "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"namespace_selectors": {
-								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
-								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"match_labels": {
-										Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"interval": {
-						Description:         "Interval is the interval at which to check the Source for updates.",
-						MarkdownDescription: "Interval is the interval at which to check the Source for updates.",
+					"version": {
+						Description:         "Version is the chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
+						MarkdownDescription: "Version is the chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
 
 						Type: types.StringType,
 
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 				}),

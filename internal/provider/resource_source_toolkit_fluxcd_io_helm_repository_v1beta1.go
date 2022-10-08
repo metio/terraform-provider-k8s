@@ -50,8 +50,6 @@ type SourceToolkitFluxcdIoHelmRepositoryV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Url *string `tfsdk:"url" yaml:"url,omitempty"`
-
 		AccessFrom *struct {
 			NamespaceSelectors *[]struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
@@ -69,6 +67,8 @@ type SourceToolkitFluxcdIoHelmRepositoryV1Beta1GoModel struct {
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 
 		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+
+		Url *string `tfsdk:"url" yaml:"url,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -169,17 +169,6 @@ func (r *SourceToolkitFluxcdIoHelmRepositoryV1Beta1Resource) GetSchema(_ context
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"url": {
-						Description:         "The Helm repository URL, a valid URL contains at least a protocol and host.",
-						MarkdownDescription: "The Helm repository URL, a valid URL contains at least a protocol and host.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
 					"access_from": {
 						Description:         "AccessFrom defines an Access Control List for allowing cross-namespace references to this object.",
 						MarkdownDescription: "AccessFrom defines an Access Control List for allowing cross-namespace references to this object.",
@@ -279,6 +268,17 @@ func (r *SourceToolkitFluxcdIoHelmRepositoryV1Beta1Resource) GetSchema(_ context
 
 						Required: false,
 						Optional: true,
+						Computed: false,
+					},
+
+					"url": {
+						Description:         "The Helm repository URL, a valid URL contains at least a protocol and host.",
+						MarkdownDescription: "The Helm repository URL, a valid URL contains at least a protocol and host.",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 				}),

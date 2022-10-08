@@ -63,16 +63,24 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 		} `tfsdk:"instance_selector" yaml:"instanceSelector,omitempty"`
 
 		Realm *struct {
-			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+			AccessTokenLifespan *int64 `tfsdk:"access_token_lifespan" yaml:"accessTokenLifespan,omitempty"`
 
-			SslRequired *string `tfsdk:"ssl_required" yaml:"sslRequired,omitempty"`
+			AccessTokenLifespanForImplicitFlow *int64 `tfsdk:"access_token_lifespan_for_implicit_flow" yaml:"accessTokenLifespanForImplicitFlow,omitempty"`
+
+			AccountTheme *string `tfsdk:"account_theme" yaml:"accountTheme,omitempty"`
+
+			AdminEventsDetailsEnabled *bool `tfsdk:"admin_events_details_enabled" yaml:"adminEventsDetailsEnabled,omitempty"`
+
+			AdminEventsEnabled *bool `tfsdk:"admin_events_enabled" yaml:"adminEventsEnabled,omitempty"`
+
+			AdminTheme *string `tfsdk:"admin_theme" yaml:"adminTheme,omitempty"`
 
 			AuthenticationFlows *[]struct {
-				TopLevel *bool `tfsdk:"top_level" yaml:"topLevel,omitempty"`
-
 				Alias *string `tfsdk:"alias" yaml:"alias,omitempty"`
 
 				AuthenticationExecutions *[]struct {
+					Authenticator *string `tfsdk:"authenticator" yaml:"authenticator,omitempty"`
+
 					AuthenticatorConfig *string `tfsdk:"authenticator_config" yaml:"authenticatorConfig,omitempty"`
 
 					AuthenticatorFlow *bool `tfsdk:"authenticator_flow" yaml:"authenticatorFlow,omitempty"`
@@ -84,8 +92,6 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 					Requirement *string `tfsdk:"requirement" yaml:"requirement,omitempty"`
 
 					UserSetupAllowed *bool `tfsdk:"user_setup_allowed" yaml:"userSetupAllowed,omitempty"`
-
-					Authenticator *string `tfsdk:"authenticator" yaml:"authenticator,omitempty"`
 				} `tfsdk:"authentication_executions" yaml:"authenticationExecutions,omitempty"`
 
 				BuiltIn *bool `tfsdk:"built_in" yaml:"builtIn,omitempty"`
@@ -95,64 +101,80 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 				Id *string `tfsdk:"id" yaml:"id,omitempty"`
 
 				ProviderId *string `tfsdk:"provider_id" yaml:"providerId,omitempty"`
+
+				TopLevel *bool `tfsdk:"top_level" yaml:"topLevel,omitempty"`
 			} `tfsdk:"authentication_flows" yaml:"authenticationFlows,omitempty"`
 
-			Clients *[]struct {
-				ClientId *string `tfsdk:"client_id" yaml:"clientId,omitempty"`
+			AuthenticatorConfig *[]struct {
+				Alias *string `tfsdk:"alias" yaml:"alias,omitempty"`
 
-				ConsentRequired *bool `tfsdk:"consent_required" yaml:"consentRequired,omitempty"`
+				Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
 
+				Id *string `tfsdk:"id" yaml:"id,omitempty"`
+			} `tfsdk:"authenticator_config" yaml:"authenticatorConfig,omitempty"`
+
+			BruteForceProtected *bool `tfsdk:"brute_force_protected" yaml:"bruteForceProtected,omitempty"`
+
+			ClientScopeMappings *map[string]string `tfsdk:"client_scope_mappings" yaml:"clientScopeMappings,omitempty"`
+
+			ClientScopes *[]struct {
 				Attributes *map[string]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
 
-				DefaultClientScopes *[]string `tfsdk:"default_client_scopes" yaml:"defaultClientScopes,omitempty"`
+				Description *string `tfsdk:"description" yaml:"description,omitempty"`
 
-				OptionalClientScopes *[]string `tfsdk:"optional_client_scopes" yaml:"optionalClientScopes,omitempty"`
-
-				Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
-
-				ServiceAccountsEnabled *bool `tfsdk:"service_accounts_enabled" yaml:"serviceAccountsEnabled,omitempty"`
-
-				StandardFlowEnabled *bool `tfsdk:"standard_flow_enabled" yaml:"standardFlowEnabled,omitempty"`
-
-				AuthenticationFlowBindingOverrides *map[string]string `tfsdk:"authentication_flow_binding_overrides" yaml:"authenticationFlowBindingOverrides,omitempty"`
-
-				DefaultRoles *[]string `tfsdk:"default_roles" yaml:"defaultRoles,omitempty"`
-
-				Access *map[string]string `tfsdk:"access" yaml:"access,omitempty"`
-
-				Secret *string `tfsdk:"secret" yaml:"secret,omitempty"`
-
-				SurrogateAuthRequired *bool `tfsdk:"surrogate_auth_required" yaml:"surrogateAuthRequired,omitempty"`
-
-				UseTemplateMappers *bool `tfsdk:"use_template_mappers" yaml:"useTemplateMappers,omitempty"`
-
-				UseTemplateScope *bool `tfsdk:"use_template_scope" yaml:"useTemplateScope,omitempty"`
-
-				ClientAuthenticatorType *string `tfsdk:"client_authenticator_type" yaml:"clientAuthenticatorType,omitempty"`
-
-				Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+				Id *string `tfsdk:"id" yaml:"id,omitempty"`
 
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
-				UseTemplateConfig *bool `tfsdk:"use_template_config" yaml:"useTemplateConfig,omitempty"`
+				Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+
+				ProtocolMappers *[]struct {
+					Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+
+					ConsentRequired *bool `tfsdk:"consent_required" yaml:"consentRequired,omitempty"`
+
+					ConsentText *string `tfsdk:"consent_text" yaml:"consentText,omitempty"`
+
+					Id *string `tfsdk:"id" yaml:"id,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+
+					ProtocolMapper *string `tfsdk:"protocol_mapper" yaml:"protocolMapper,omitempty"`
+				} `tfsdk:"protocol_mappers" yaml:"protocolMappers,omitempty"`
+			} `tfsdk:"client_scopes" yaml:"clientScopes,omitempty"`
+
+			Clients *[]struct {
+				Access *map[string]string `tfsdk:"access" yaml:"access,omitempty"`
 
 				AdminUrl *string `tfsdk:"admin_url" yaml:"adminUrl,omitempty"`
+
+				Attributes *map[string]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
+
+				AuthenticationFlowBindingOverrides *map[string]string `tfsdk:"authentication_flow_binding_overrides" yaml:"authenticationFlowBindingOverrides,omitempty"`
+
+				AuthorizationServicesEnabled *bool `tfsdk:"authorization_services_enabled" yaml:"authorizationServicesEnabled,omitempty"`
 
 				AuthorizationSettings *struct {
 					AllowRemoteResourceManagement *bool `tfsdk:"allow_remote_resource_management" yaml:"allowRemoteResourceManagement,omitempty"`
 
+					ClientId *string `tfsdk:"client_id" yaml:"clientId,omitempty"`
+
 					DecisionStrategy *string `tfsdk:"decision_strategy" yaml:"decisionStrategy,omitempty"`
 
+					Id *string `tfsdk:"id" yaml:"id,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
 					Policies *[]struct {
-						Resources *[]string `tfsdk:"resources" yaml:"resources,omitempty"`
-
-						ScopesData *[]string `tfsdk:"scopes_data" yaml:"scopesData,omitempty"`
-
 						Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
 
 						DecisionStrategy *string `tfsdk:"decision_strategy" yaml:"decisionStrategy,omitempty"`
 
 						Description *string `tfsdk:"description" yaml:"description,omitempty"`
+
+						Id *string `tfsdk:"id" yaml:"id,omitempty"`
 
 						Logic *string `tfsdk:"logic" yaml:"logic,omitempty"`
 
@@ -160,14 +182,14 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 
 						Owner *string `tfsdk:"owner" yaml:"owner,omitempty"`
 
-						Id *string `tfsdk:"id" yaml:"id,omitempty"`
-
 						Policies *[]string `tfsdk:"policies" yaml:"policies,omitempty"`
 
-						ResourcesData *[]struct {
-							OwnerManagedAccess *bool `tfsdk:"owner_managed_access" yaml:"ownerManagedAccess,omitempty"`
+						Resources *[]string `tfsdk:"resources" yaml:"resources,omitempty"`
 
+						ResourcesData *[]struct {
 							_id *string `tfsdk:"_id" yaml:"_id,omitempty"`
+
+							Attributes *map[string]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
 
 							DisplayName *string `tfsdk:"display_name" yaml:"displayName,omitempty"`
 
@@ -175,29 +197,29 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
+							OwnerManagedAccess *bool `tfsdk:"owner_managed_access" yaml:"ownerManagedAccess,omitempty"`
+
 							Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
 
 							Type *string `tfsdk:"type" yaml:"type,omitempty"`
 
 							Uris *[]string `tfsdk:"uris" yaml:"uris,omitempty"`
-
-							Attributes *map[string]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
 						} `tfsdk:"resources_data" yaml:"resourcesData,omitempty"`
 
 						Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
+
+						ScopesData *[]string `tfsdk:"scopes_data" yaml:"scopesData,omitempty"`
 
 						Type *string `tfsdk:"type" yaml:"type,omitempty"`
 					} `tfsdk:"policies" yaml:"policies,omitempty"`
 
 					PolicyEnforcementMode *string `tfsdk:"policy_enforcement_mode" yaml:"policyEnforcementMode,omitempty"`
 
-					ClientId *string `tfsdk:"client_id" yaml:"clientId,omitempty"`
-
-					Id *string `tfsdk:"id" yaml:"id,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
 					Resources *[]struct {
+						_id *string `tfsdk:"_id" yaml:"_id,omitempty"`
+
+						Attributes *map[string]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
+
 						DisplayName *string `tfsdk:"display_name" yaml:"displayName,omitempty"`
 
 						Icon_uri *string `tfsdk:"icon_uri" yaml:"icon_uri,omitempty"`
@@ -211,10 +233,6 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 						Type *string `tfsdk:"type" yaml:"type,omitempty"`
 
 						Uris *[]string `tfsdk:"uris" yaml:"uris,omitempty"`
-
-						_id *string `tfsdk:"_id" yaml:"_id,omitempty"`
-
-						Attributes *map[string]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
 					} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 					Scopes *[]struct {
@@ -227,13 +245,31 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 						Policies *[]struct {
+							Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+
+							DecisionStrategy *string `tfsdk:"decision_strategy" yaml:"decisionStrategy,omitempty"`
+
 							Description *string `tfsdk:"description" yaml:"description,omitempty"`
 
 							Id *string `tfsdk:"id" yaml:"id,omitempty"`
 
 							Logic *string `tfsdk:"logic" yaml:"logic,omitempty"`
 
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Owner *string `tfsdk:"owner" yaml:"owner,omitempty"`
+
+							Policies *[]string `tfsdk:"policies" yaml:"policies,omitempty"`
+
+							Resources *[]string `tfsdk:"resources" yaml:"resources,omitempty"`
+
 							ResourcesData *[]struct {
+								_id *string `tfsdk:"_id" yaml:"_id,omitempty"`
+
+								Attributes *map[string]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
+
+								DisplayName *string `tfsdk:"display_name" yaml:"displayName,omitempty"`
+
 								Icon_uri *string `tfsdk:"icon_uri" yaml:"icon_uri,omitempty"`
 
 								Name *string `tfsdk:"name" yaml:"name,omitempty"`
@@ -244,30 +280,12 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 
 								Type *string `tfsdk:"type" yaml:"type,omitempty"`
 
-								_id *string `tfsdk:"_id" yaml:"_id,omitempty"`
-
-								DisplayName *string `tfsdk:"display_name" yaml:"displayName,omitempty"`
-
 								Uris *[]string `tfsdk:"uris" yaml:"uris,omitempty"`
-
-								Attributes *map[string]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
 							} `tfsdk:"resources_data" yaml:"resourcesData,omitempty"`
-
-							Resources *[]string `tfsdk:"resources" yaml:"resources,omitempty"`
 
 							Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
 
 							ScopesData *[]string `tfsdk:"scopes_data" yaml:"scopesData,omitempty"`
-
-							Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
-
-							DecisionStrategy *string `tfsdk:"decision_strategy" yaml:"decisionStrategy,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Owner *string `tfsdk:"owner" yaml:"owner,omitempty"`
-
-							Policies *[]string `tfsdk:"policies" yaml:"policies,omitempty"`
 
 							Type *string `tfsdk:"type" yaml:"type,omitempty"`
 						} `tfsdk:"policies" yaml:"policies,omitempty"`
@@ -275,21 +293,21 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 						Resources *[]struct {
 							_id *string `tfsdk:"_id" yaml:"_id,omitempty"`
 
-							Icon_uri *string `tfsdk:"icon_uri" yaml:"icon_uri,omitempty"`
-
-							Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-							Type *string `tfsdk:"type" yaml:"type,omitempty"`
-
-							Uris *[]string `tfsdk:"uris" yaml:"uris,omitempty"`
-
 							Attributes *map[string]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
 
 							DisplayName *string `tfsdk:"display_name" yaml:"displayName,omitempty"`
 
+							Icon_uri *string `tfsdk:"icon_uri" yaml:"icon_uri,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
 							OwnerManagedAccess *bool `tfsdk:"owner_managed_access" yaml:"ownerManagedAccess,omitempty"`
 
 							Scopes *[]string `tfsdk:"scopes" yaml:"scopes,omitempty"`
+
+							Type *string `tfsdk:"type" yaml:"type,omitempty"`
+
+							Uris *[]string `tfsdk:"uris" yaml:"uris,omitempty"`
 						} `tfsdk:"resources" yaml:"resources,omitempty"`
 					} `tfsdk:"scopes" yaml:"scopes,omitempty"`
 				} `tfsdk:"authorization_settings" yaml:"authorizationSettings,omitempty"`
@@ -298,9 +316,45 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 
 				BearerOnly *bool `tfsdk:"bearer_only" yaml:"bearerOnly,omitempty"`
 
+				ClientAuthenticatorType *string `tfsdk:"client_authenticator_type" yaml:"clientAuthenticatorType,omitempty"`
+
+				ClientId *string `tfsdk:"client_id" yaml:"clientId,omitempty"`
+
+				ConsentRequired *bool `tfsdk:"consent_required" yaml:"consentRequired,omitempty"`
+
+				DefaultClientScopes *[]string `tfsdk:"default_client_scopes" yaml:"defaultClientScopes,omitempty"`
+
+				DefaultRoles *[]string `tfsdk:"default_roles" yaml:"defaultRoles,omitempty"`
+
+				Description *string `tfsdk:"description" yaml:"description,omitempty"`
+
+				DirectAccessGrantsEnabled *bool `tfsdk:"direct_access_grants_enabled" yaml:"directAccessGrantsEnabled,omitempty"`
+
+				Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+
+				FrontchannelLogout *bool `tfsdk:"frontchannel_logout" yaml:"frontchannelLogout,omitempty"`
+
+				FullScopeAllowed *bool `tfsdk:"full_scope_allowed" yaml:"fullScopeAllowed,omitempty"`
+
+				Id *string `tfsdk:"id" yaml:"id,omitempty"`
+
 				ImplicitFlowEnabled *bool `tfsdk:"implicit_flow_enabled" yaml:"implicitFlowEnabled,omitempty"`
 
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				NodeReRegistrationTimeout *int64 `tfsdk:"node_re_registration_timeout" yaml:"nodeReRegistrationTimeout,omitempty"`
+
+				NotBefore *int64 `tfsdk:"not_before" yaml:"notBefore,omitempty"`
+
+				OptionalClientScopes *[]string `tfsdk:"optional_client_scopes" yaml:"optionalClientScopes,omitempty"`
+
+				Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+
 				ProtocolMappers *[]struct {
+					Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+
+					ConsentRequired *bool `tfsdk:"consent_required" yaml:"consentRequired,omitempty"`
+
 					ConsentText *string `tfsdk:"consent_text" yaml:"consentText,omitempty"`
 
 					Id *string `tfsdk:"id" yaml:"id,omitempty"`
@@ -310,88 +364,34 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 					Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
 
 					ProtocolMapper *string `tfsdk:"protocol_mapper" yaml:"protocolMapper,omitempty"`
-
-					Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
-
-					ConsentRequired *bool `tfsdk:"consent_required" yaml:"consentRequired,omitempty"`
 				} `tfsdk:"protocol_mappers" yaml:"protocolMappers,omitempty"`
+
+				PublicClient *bool `tfsdk:"public_client" yaml:"publicClient,omitempty"`
 
 				RedirectUris *[]string `tfsdk:"redirect_uris" yaml:"redirectUris,omitempty"`
 
 				RootUrl *string `tfsdk:"root_url" yaml:"rootUrl,omitempty"`
 
-				AuthorizationServicesEnabled *bool `tfsdk:"authorization_services_enabled" yaml:"authorizationServicesEnabled,omitempty"`
+				Secret *string `tfsdk:"secret" yaml:"secret,omitempty"`
 
-				FullScopeAllowed *bool `tfsdk:"full_scope_allowed" yaml:"fullScopeAllowed,omitempty"`
+				ServiceAccountsEnabled *bool `tfsdk:"service_accounts_enabled" yaml:"serviceAccountsEnabled,omitempty"`
 
-				DirectAccessGrantsEnabled *bool `tfsdk:"direct_access_grants_enabled" yaml:"directAccessGrantsEnabled,omitempty"`
+				StandardFlowEnabled *bool `tfsdk:"standard_flow_enabled" yaml:"standardFlowEnabled,omitempty"`
 
-				FrontchannelLogout *bool `tfsdk:"frontchannel_logout" yaml:"frontchannelLogout,omitempty"`
+				SurrogateAuthRequired *bool `tfsdk:"surrogate_auth_required" yaml:"surrogateAuthRequired,omitempty"`
 
-				Id *string `tfsdk:"id" yaml:"id,omitempty"`
+				UseTemplateConfig *bool `tfsdk:"use_template_config" yaml:"useTemplateConfig,omitempty"`
 
-				NodeReRegistrationTimeout *int64 `tfsdk:"node_re_registration_timeout" yaml:"nodeReRegistrationTimeout,omitempty"`
+				UseTemplateMappers *bool `tfsdk:"use_template_mappers" yaml:"useTemplateMappers,omitempty"`
 
-				NotBefore *int64 `tfsdk:"not_before" yaml:"notBefore,omitempty"`
-
-				PublicClient *bool `tfsdk:"public_client" yaml:"publicClient,omitempty"`
+				UseTemplateScope *bool `tfsdk:"use_template_scope" yaml:"useTemplateScope,omitempty"`
 
 				WebOrigins *[]string `tfsdk:"web_origins" yaml:"webOrigins,omitempty"`
-
-				Description *string `tfsdk:"description" yaml:"description,omitempty"`
 			} `tfsdk:"clients" yaml:"clients,omitempty"`
 
+			DefaultDefaultClientScopes *[]string `tfsdk:"default_default_client_scopes" yaml:"defaultDefaultClientScopes,omitempty"`
+
 			DefaultLocale *string `tfsdk:"default_locale" yaml:"defaultLocale,omitempty"`
-
-			OtpPolicyLookAheadWindow *int64 `tfsdk:"otp_policy_look_ahead_window" yaml:"otpPolicyLookAheadWindow,omitempty"`
-
-			DisplayNameHtml *string `tfsdk:"display_name_html" yaml:"displayNameHtml,omitempty"`
-
-			EventsEnabled *bool `tfsdk:"events_enabled" yaml:"eventsEnabled,omitempty"`
-
-			MaxDeltaTimeSeconds *int64 `tfsdk:"max_delta_time_seconds" yaml:"maxDeltaTimeSeconds,omitempty"`
-
-			UserFederationProviders *[]struct {
-				Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
-
-				DisplayName *string `tfsdk:"display_name" yaml:"displayName,omitempty"`
-
-				FullSyncPeriod *int64 `tfsdk:"full_sync_period" yaml:"fullSyncPeriod,omitempty"`
-
-				Id *string `tfsdk:"id" yaml:"id,omitempty"`
-
-				Priority *int64 `tfsdk:"priority" yaml:"priority,omitempty"`
-
-				ProviderName *string `tfsdk:"provider_name" yaml:"providerName,omitempty"`
-
-				ChangedSyncPeriod *int64 `tfsdk:"changed_sync_period" yaml:"changedSyncPeriod,omitempty"`
-			} `tfsdk:"user_federation_providers" yaml:"userFederationProviders,omitempty"`
-
-			AdminEventsEnabled *bool `tfsdk:"admin_events_enabled" yaml:"adminEventsEnabled,omitempty"`
-
-			BruteForceProtected *bool `tfsdk:"brute_force_protected" yaml:"bruteForceProtected,omitempty"`
-
-			UserManagedAccessAllowed *bool `tfsdk:"user_managed_access_allowed" yaml:"userManagedAccessAllowed,omitempty"`
-
-			WaitIncrementSeconds *int64 `tfsdk:"wait_increment_seconds" yaml:"waitIncrementSeconds,omitempty"`
-
-			LoginTheme *string `tfsdk:"login_theme" yaml:"loginTheme,omitempty"`
-
-			ScopeMappings *[]struct {
-				Client *string `tfsdk:"client" yaml:"client,omitempty"`
-
-				ClientScope *string `tfsdk:"client_scope" yaml:"clientScope,omitempty"`
-
-				Roles *[]string `tfsdk:"roles" yaml:"roles,omitempty"`
-
-				Self *string `tfsdk:"self" yaml:"self,omitempty"`
-			} `tfsdk:"scope_mappings" yaml:"scopeMappings,omitempty"`
-
-			Realm *string `tfsdk:"realm" yaml:"realm,omitempty"`
-
-			RememberMe *bool `tfsdk:"remember_me" yaml:"rememberMe,omitempty"`
-
-			QuickLoginCheckMilliSeconds *int64 `tfsdk:"quick_login_check_milli_seconds" yaml:"quickLoginCheckMilliSeconds,omitempty"`
 
 			DefaultRole *struct {
 				Attributes *map[string][]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
@@ -415,125 +415,93 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 			} `tfsdk:"default_role" yaml:"defaultRole,omitempty"`
 
-			EditUsernameAllowed *bool `tfsdk:"edit_username_allowed" yaml:"editUsernameAllowed,omitempty"`
-
-			PasswordPolicy *string `tfsdk:"password_policy" yaml:"passwordPolicy,omitempty"`
-
-			AdminEventsDetailsEnabled *bool `tfsdk:"admin_events_details_enabled" yaml:"adminEventsDetailsEnabled,omitempty"`
-
-			OtpPolicyType *string `tfsdk:"otp_policy_type" yaml:"otpPolicyType,omitempty"`
-
-			AccessTokenLifespan *int64 `tfsdk:"access_token_lifespan" yaml:"accessTokenLifespan,omitempty"`
-
-			ClientScopes *[]struct {
-				Id *string `tfsdk:"id" yaml:"id,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
-
-				ProtocolMappers *[]struct {
-					Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
-
-					ConsentRequired *bool `tfsdk:"consent_required" yaml:"consentRequired,omitempty"`
-
-					ConsentText *string `tfsdk:"consent_text" yaml:"consentText,omitempty"`
-
-					Id *string `tfsdk:"id" yaml:"id,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
-
-					ProtocolMapper *string `tfsdk:"protocol_mapper" yaml:"protocolMapper,omitempty"`
-				} `tfsdk:"protocol_mappers" yaml:"protocolMappers,omitempty"`
-
-				Attributes *map[string]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
-
-				Description *string `tfsdk:"description" yaml:"description,omitempty"`
-			} `tfsdk:"client_scopes" yaml:"clientScopes,omitempty"`
-
-			MaxFailureWaitSeconds *int64 `tfsdk:"max_failure_wait_seconds" yaml:"maxFailureWaitSeconds,omitempty"`
-
-			OtpPolicyInitialCounter *int64 `tfsdk:"otp_policy_initial_counter" yaml:"otpPolicyInitialCounter,omitempty"`
-
-			PermanentLockout *bool `tfsdk:"permanent_lockout" yaml:"permanentLockout,omitempty"`
-
-			SmtpServer *map[string]string `tfsdk:"smtp_server" yaml:"smtpServer,omitempty"`
-
 			DisplayName *string `tfsdk:"display_name" yaml:"displayName,omitempty"`
 
-			EnabledEventTypes *[]string `tfsdk:"enabled_event_types" yaml:"enabledEventTypes,omitempty"`
+			DisplayNameHtml *string `tfsdk:"display_name_html" yaml:"displayNameHtml,omitempty"`
 
-			UserFederationMappers *[]struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			DuplicateEmailsAllowed *bool `tfsdk:"duplicate_emails_allowed" yaml:"duplicateEmailsAllowed,omitempty"`
 
-				Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
-
-				FederationMapperType *string `tfsdk:"federation_mapper_type" yaml:"federationMapperType,omitempty"`
-
-				FederationProviderDisplayName *string `tfsdk:"federation_provider_display_name" yaml:"federationProviderDisplayName,omitempty"`
-
-				Id *string `tfsdk:"id" yaml:"id,omitempty"`
-			} `tfsdk:"user_federation_mappers" yaml:"userFederationMappers,omitempty"`
-
-			MinimumQuickLoginWaitSeconds *int64 `tfsdk:"minimum_quick_login_wait_seconds" yaml:"minimumQuickLoginWaitSeconds,omitempty"`
-
-			OtpPolicyDigits *int64 `tfsdk:"otp_policy_digits" yaml:"otpPolicyDigits,omitempty"`
-
-			RegistrationEmailAsUsername *bool `tfsdk:"registration_email_as_username" yaml:"registrationEmailAsUsername,omitempty"`
-
-			InternationalizationEnabled *bool `tfsdk:"internationalization_enabled" yaml:"internationalizationEnabled,omitempty"`
-
-			OtpPolicyAlgorithm *string `tfsdk:"otp_policy_algorithm" yaml:"otpPolicyAlgorithm,omitempty"`
-
-			SupportedLocales *[]string `tfsdk:"supported_locales" yaml:"supportedLocales,omitempty"`
+			EditUsernameAllowed *bool `tfsdk:"edit_username_allowed" yaml:"editUsernameAllowed,omitempty"`
 
 			EmailTheme *string `tfsdk:"email_theme" yaml:"emailTheme,omitempty"`
 
-			FailureFactor *int64 `tfsdk:"failure_factor" yaml:"failureFactor,omitempty"`
+			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
 
-			DuplicateEmailsAllowed *bool `tfsdk:"duplicate_emails_allowed" yaml:"duplicateEmailsAllowed,omitempty"`
+			EnabledEventTypes *[]string `tfsdk:"enabled_event_types" yaml:"enabledEventTypes,omitempty"`
+
+			EventsEnabled *bool `tfsdk:"events_enabled" yaml:"eventsEnabled,omitempty"`
+
+			EventsListeners *[]string `tfsdk:"events_listeners" yaml:"eventsListeners,omitempty"`
+
+			FailureFactor *int64 `tfsdk:"failure_factor" yaml:"failureFactor,omitempty"`
 
 			Id *string `tfsdk:"id" yaml:"id,omitempty"`
 
 			IdentityProviders *[]struct {
+				AddReadTokenRoleOnCreate *bool `tfsdk:"add_read_token_role_on_create" yaml:"addReadTokenRoleOnCreate,omitempty"`
+
+				Alias *string `tfsdk:"alias" yaml:"alias,omitempty"`
+
 				Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
 
 				DisplayName *string `tfsdk:"display_name" yaml:"displayName,omitempty"`
+
+				Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
 
 				FirstBrokerLoginFlowAlias *string `tfsdk:"first_broker_login_flow_alias" yaml:"firstBrokerLoginFlowAlias,omitempty"`
 
 				InternalId *string `tfsdk:"internal_id" yaml:"internalId,omitempty"`
 
-				PostBrokerLoginFlowAlias *string `tfsdk:"post_broker_login_flow_alias" yaml:"postBrokerLoginFlowAlias,omitempty"`
-
-				TrustEmail *bool `tfsdk:"trust_email" yaml:"trustEmail,omitempty"`
-
-				Alias *string `tfsdk:"alias" yaml:"alias,omitempty"`
-
-				Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
-
 				LinkOnly *bool `tfsdk:"link_only" yaml:"linkOnly,omitempty"`
+
+				PostBrokerLoginFlowAlias *string `tfsdk:"post_broker_login_flow_alias" yaml:"postBrokerLoginFlowAlias,omitempty"`
 
 				ProviderId *string `tfsdk:"provider_id" yaml:"providerId,omitempty"`
 
 				StoreToken *bool `tfsdk:"store_token" yaml:"storeToken,omitempty"`
 
-				AddReadTokenRoleOnCreate *bool `tfsdk:"add_read_token_role_on_create" yaml:"addReadTokenRoleOnCreate,omitempty"`
+				TrustEmail *bool `tfsdk:"trust_email" yaml:"trustEmail,omitempty"`
 			} `tfsdk:"identity_providers" yaml:"identityProviders,omitempty"`
+
+			InternationalizationEnabled *bool `tfsdk:"internationalization_enabled" yaml:"internationalizationEnabled,omitempty"`
+
+			LoginTheme *string `tfsdk:"login_theme" yaml:"loginTheme,omitempty"`
 
 			LoginWithEmailAllowed *bool `tfsdk:"login_with_email_allowed" yaml:"loginWithEmailAllowed,omitempty"`
 
-			RegistrationAllowed *bool `tfsdk:"registration_allowed" yaml:"registrationAllowed,omitempty"`
+			MaxDeltaTimeSeconds *int64 `tfsdk:"max_delta_time_seconds" yaml:"maxDeltaTimeSeconds,omitempty"`
 
-			AccountTheme *string `tfsdk:"account_theme" yaml:"accountTheme,omitempty"`
+			MaxFailureWaitSeconds *int64 `tfsdk:"max_failure_wait_seconds" yaml:"maxFailureWaitSeconds,omitempty"`
 
-			ClientScopeMappings *map[string]string `tfsdk:"client_scope_mappings" yaml:"clientScopeMappings,omitempty"`
+			MinimumQuickLoginWaitSeconds *int64 `tfsdk:"minimum_quick_login_wait_seconds" yaml:"minimumQuickLoginWaitSeconds,omitempty"`
 
-			EventsListeners *[]string `tfsdk:"events_listeners" yaml:"eventsListeners,omitempty"`
+			OtpPolicyAlgorithm *string `tfsdk:"otp_policy_algorithm" yaml:"otpPolicyAlgorithm,omitempty"`
+
+			OtpPolicyDigits *int64 `tfsdk:"otp_policy_digits" yaml:"otpPolicyDigits,omitempty"`
+
+			OtpPolicyInitialCounter *int64 `tfsdk:"otp_policy_initial_counter" yaml:"otpPolicyInitialCounter,omitempty"`
+
+			OtpPolicyLookAheadWindow *int64 `tfsdk:"otp_policy_look_ahead_window" yaml:"otpPolicyLookAheadWindow,omitempty"`
 
 			OtpPolicyPeriod *int64 `tfsdk:"otp_policy_period" yaml:"otpPolicyPeriod,omitempty"`
+
+			OtpPolicyType *string `tfsdk:"otp_policy_type" yaml:"otpPolicyType,omitempty"`
+
+			OtpSupportedApplications *[]string `tfsdk:"otp_supported_applications" yaml:"otpSupportedApplications,omitempty"`
+
+			PasswordPolicy *string `tfsdk:"password_policy" yaml:"passwordPolicy,omitempty"`
+
+			PermanentLockout *bool `tfsdk:"permanent_lockout" yaml:"permanentLockout,omitempty"`
+
+			QuickLoginCheckMilliSeconds *int64 `tfsdk:"quick_login_check_milli_seconds" yaml:"quickLoginCheckMilliSeconds,omitempty"`
+
+			Realm *string `tfsdk:"realm" yaml:"realm,omitempty"`
+
+			RegistrationAllowed *bool `tfsdk:"registration_allowed" yaml:"registrationAllowed,omitempty"`
+
+			RegistrationEmailAsUsername *bool `tfsdk:"registration_email_as_username" yaml:"registrationEmailAsUsername,omitempty"`
+
+			RememberMe *bool `tfsdk:"remember_me" yaml:"rememberMe,omitempty"`
 
 			ResetPasswordAllowed *bool `tfsdk:"reset_password_allowed" yaml:"resetPasswordAllowed,omitempty"`
 
@@ -541,6 +509,10 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 				Client *map[string]string `tfsdk:"client" yaml:"client,omitempty"`
 
 				Realm *[]struct {
+					Attributes *map[string][]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
+
+					ClientRole *bool `tfsdk:"client_role" yaml:"clientRole,omitempty"`
+
 					Composite *bool `tfsdk:"composite" yaml:"composite,omitempty"`
 
 					Composites *struct {
@@ -556,26 +528,60 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 					Id *string `tfsdk:"id" yaml:"id,omitempty"`
 
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Attributes *map[string][]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
-
-					ClientRole *bool `tfsdk:"client_role" yaml:"clientRole,omitempty"`
 				} `tfsdk:"realm" yaml:"realm,omitempty"`
 			} `tfsdk:"roles" yaml:"roles,omitempty"`
 
-			AuthenticatorConfig *[]struct {
+			ScopeMappings *[]struct {
+				Client *string `tfsdk:"client" yaml:"client,omitempty"`
+
+				ClientScope *string `tfsdk:"client_scope" yaml:"clientScope,omitempty"`
+
+				Roles *[]string `tfsdk:"roles" yaml:"roles,omitempty"`
+
+				Self *string `tfsdk:"self" yaml:"self,omitempty"`
+			} `tfsdk:"scope_mappings" yaml:"scopeMappings,omitempty"`
+
+			SmtpServer *map[string]string `tfsdk:"smtp_server" yaml:"smtpServer,omitempty"`
+
+			SslRequired *string `tfsdk:"ssl_required" yaml:"sslRequired,omitempty"`
+
+			SupportedLocales *[]string `tfsdk:"supported_locales" yaml:"supportedLocales,omitempty"`
+
+			UserFederationMappers *[]struct {
+				Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+
+				FederationMapperType *string `tfsdk:"federation_mapper_type" yaml:"federationMapperType,omitempty"`
+
+				FederationProviderDisplayName *string `tfsdk:"federation_provider_display_name" yaml:"federationProviderDisplayName,omitempty"`
+
 				Id *string `tfsdk:"id" yaml:"id,omitempty"`
 
-				Alias *string `tfsdk:"alias" yaml:"alias,omitempty"`
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"user_federation_mappers" yaml:"userFederationMappers,omitempty"`
+
+			UserFederationProviders *[]struct {
+				ChangedSyncPeriod *int64 `tfsdk:"changed_sync_period" yaml:"changedSyncPeriod,omitempty"`
 
 				Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
-			} `tfsdk:"authenticator_config" yaml:"authenticatorConfig,omitempty"`
 
-			DefaultDefaultClientScopes *[]string `tfsdk:"default_default_client_scopes" yaml:"defaultDefaultClientScopes,omitempty"`
+				DisplayName *string `tfsdk:"display_name" yaml:"displayName,omitempty"`
 
-			AccessTokenLifespanForImplicitFlow *int64 `tfsdk:"access_token_lifespan_for_implicit_flow" yaml:"accessTokenLifespanForImplicitFlow,omitempty"`
+				FullSyncPeriod *int64 `tfsdk:"full_sync_period" yaml:"fullSyncPeriod,omitempty"`
+
+				Id *string `tfsdk:"id" yaml:"id,omitempty"`
+
+				Priority *int64 `tfsdk:"priority" yaml:"priority,omitempty"`
+
+				ProviderName *string `tfsdk:"provider_name" yaml:"providerName,omitempty"`
+			} `tfsdk:"user_federation_providers" yaml:"userFederationProviders,omitempty"`
+
+			UserManagedAccessAllowed *bool `tfsdk:"user_managed_access_allowed" yaml:"userManagedAccessAllowed,omitempty"`
 
 			Users *[]struct {
+				Attributes *map[string][]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
+
+				ClientRoles *map[string][]string `tfsdk:"client_roles" yaml:"clientRoles,omitempty"`
+
 				Credentials *[]struct {
 					Temporary *bool `tfsdk:"temporary" yaml:"temporary,omitempty"`
 
@@ -586,25 +592,9 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 
 				Email *string `tfsdk:"email" yaml:"email,omitempty"`
 
-				Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
-
-				LastName *string `tfsdk:"last_name" yaml:"lastName,omitempty"`
-
-				ClientRoles *map[string][]string `tfsdk:"client_roles" yaml:"clientRoles,omitempty"`
-
-				Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
-
-				Id *string `tfsdk:"id" yaml:"id,omitempty"`
-
-				Username *string `tfsdk:"username" yaml:"username,omitempty"`
-
-				Attributes *map[string][]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
-
-				RealmRoles *[]string `tfsdk:"realm_roles" yaml:"realmRoles,omitempty"`
-
-				RequiredActions *[]string `tfsdk:"required_actions" yaml:"requiredActions,omitempty"`
-
 				EmailVerified *bool `tfsdk:"email_verified" yaml:"emailVerified,omitempty"`
+
+				Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
 
 				FederatedIdentities *[]struct {
 					IdentityProvider *string `tfsdk:"identity_provider" yaml:"identityProvider,omitempty"`
@@ -615,19 +605,29 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 				} `tfsdk:"federated_identities" yaml:"federatedIdentities,omitempty"`
 
 				FirstName *string `tfsdk:"first_name" yaml:"firstName,omitempty"`
+
+				Groups *[]string `tfsdk:"groups" yaml:"groups,omitempty"`
+
+				Id *string `tfsdk:"id" yaml:"id,omitempty"`
+
+				LastName *string `tfsdk:"last_name" yaml:"lastName,omitempty"`
+
+				RealmRoles *[]string `tfsdk:"realm_roles" yaml:"realmRoles,omitempty"`
+
+				RequiredActions *[]string `tfsdk:"required_actions" yaml:"requiredActions,omitempty"`
+
+				Username *string `tfsdk:"username" yaml:"username,omitempty"`
 			} `tfsdk:"users" yaml:"users,omitempty"`
 
 			VerifyEmail *bool `tfsdk:"verify_email" yaml:"verifyEmail,omitempty"`
 
-			AdminTheme *string `tfsdk:"admin_theme" yaml:"adminTheme,omitempty"`
-
-			OtpSupportedApplications *[]string `tfsdk:"otp_supported_applications" yaml:"otpSupportedApplications,omitempty"`
+			WaitIncrementSeconds *int64 `tfsdk:"wait_increment_seconds" yaml:"waitIncrementSeconds,omitempty"`
 		} `tfsdk:"realm" yaml:"realm,omitempty"`
 
 		RealmOverrides *[]struct {
-			IdentityProvider *string `tfsdk:"identity_provider" yaml:"identityProvider,omitempty"`
-
 			ForFlow *string `tfsdk:"for_flow" yaml:"forFlow,omitempty"`
+
+			IdentityProvider *string `tfsdk:"identity_provider" yaml:"identityProvider,omitempty"`
 		} `tfsdk:"realm_overrides" yaml:"realmOverrides,omitempty"`
 
 		Unmanaged *bool `tfsdk:"unmanaged" yaml:"unmanaged,omitempty"`
@@ -805,9 +805,42 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"enabled": {
-								Description:         "Realm enabled flag.",
-								MarkdownDescription: "Realm enabled flag.",
+							"access_token_lifespan": {
+								Description:         "Access Token Lifespan",
+								MarkdownDescription: "Access Token Lifespan",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"access_token_lifespan_for_implicit_flow": {
+								Description:         "Access Token Lifespan For Implicit Flow",
+								MarkdownDescription: "Access Token Lifespan For Implicit Flow",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"account_theme": {
+								Description:         "Account Theme",
+								MarkdownDescription: "Account Theme",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"admin_events_details_enabled": {
+								Description:         "Enable admin events details TODO: change to values and use kubebuilder default annotation once supported",
+								MarkdownDescription: "Enable admin events details TODO: change to values and use kubebuilder default annotation once supported",
 
 								Type: types.BoolType,
 
@@ -816,9 +849,20 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"ssl_required": {
-								Description:         "Require SSL",
-								MarkdownDescription: "Require SSL",
+							"admin_events_enabled": {
+								Description:         "Enable events recording TODO: change to values and use kubebuilder default annotation once supported",
+								MarkdownDescription: "Enable events recording TODO: change to values and use kubebuilder default annotation once supported",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"admin_theme": {
+								Description:         "Admin Console Theme",
+								MarkdownDescription: "Admin Console Theme",
 
 								Type: types.StringType,
 
@@ -832,17 +876,6 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								MarkdownDescription: "Authentication flows",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"top_level": {
-										Description:         "Top level",
-										MarkdownDescription: "Top level",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 
 									"alias": {
 										Description:         "Alias",
@@ -860,6 +893,17 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										MarkdownDescription: "Authentication executions",
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"authenticator": {
+												Description:         "Authenticator",
+												MarkdownDescription: "Authenticator",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 
 											"authenticator_config": {
 												Description:         "Authenticator Config",
@@ -926,17 +970,6 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 												Optional: true,
 												Computed: false,
 											},
-
-											"authenticator": {
-												Description:         "Authenticator",
-												MarkdownDescription: "Authenticator",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 										}),
 
 										Required: true,
@@ -987,6 +1020,240 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										Optional: true,
 										Computed: false,
 									},
+
+									"top_level": {
+										Description:         "Top level",
+										MarkdownDescription: "Top level",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"authenticator_config": {
+								Description:         "Authenticator config",
+								MarkdownDescription: "Authenticator config",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"alias": {
+										Description:         "Alias",
+										MarkdownDescription: "Alias",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"config": {
+										Description:         "Config",
+										MarkdownDescription: "Config",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"id": {
+										Description:         "ID",
+										MarkdownDescription: "ID",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"brute_force_protected": {
+								Description:         "Brute Force Detection",
+								MarkdownDescription: "Brute Force Detection",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"client_scope_mappings": {
+								Description:         "Client Scope Mappings",
+								MarkdownDescription: "Client Scope Mappings",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"client_scopes": {
+								Description:         "Client scopes",
+								MarkdownDescription: "Client scopes",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"attributes": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"description": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"id": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"protocol": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"protocol_mappers": {
+										Description:         "Protocol Mappers.",
+										MarkdownDescription: "Protocol Mappers.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"config": {
+												Description:         "Config options.",
+												MarkdownDescription: "Config options.",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"consent_required": {
+												Description:         "True if Consent Screen is required.",
+												MarkdownDescription: "True if Consent Screen is required.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"consent_text": {
+												Description:         "Text to use for displaying Consent Screen.",
+												MarkdownDescription: "Text to use for displaying Consent Screen.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"id": {
+												Description:         "Protocol Mapper ID.",
+												MarkdownDescription: "Protocol Mapper ID.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Protocol Mapper Name.",
+												MarkdownDescription: "Protocol Mapper Name.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"protocol": {
+												Description:         "Protocol to use.",
+												MarkdownDescription: "Protocol to use.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"protocol_mapper": {
+												Description:         "Protocol Mapper to use",
+												MarkdownDescription: "Protocol Mapper to use",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -1000,22 +1267,22 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"client_id": {
-										Description:         "Client ID.",
-										MarkdownDescription: "Client ID.",
+									"access": {
+										Description:         "Access options.",
+										MarkdownDescription: "Access options.",
 
-										Type: types.StringType,
+										Type: types.MapType{ElemType: types.StringType},
 
-										Required: true,
-										Optional: false,
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 
-									"consent_required": {
-										Description:         "True if Consent Screen is required.",
-										MarkdownDescription: "True if Consent Screen is required.",
+									"admin_url": {
+										Description:         "Application Admin URL.",
+										MarkdownDescription: "Application Admin URL.",
 
-										Type: types.BoolType,
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -1033,61 +1300,6 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
-									"default_client_scopes": {
-										Description:         "A list of default client scopes. Default client scopes are always applied when issuing OpenID Connect tokens or SAML assertions for this client.",
-										MarkdownDescription: "A list of default client scopes. Default client scopes are always applied when issuing OpenID Connect tokens or SAML assertions for this client.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"optional_client_scopes": {
-										Description:         "A list of optional client scopes. Optional client scopes are applied when issuing tokens for this client, but only when they are requested by the scope parameter in the OpenID Connect authorization request.",
-										MarkdownDescription: "A list of optional client scopes. Optional client scopes are applied when issuing tokens for this client, but only when they are requested by the scope parameter in the OpenID Connect authorization request.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"protocol": {
-										Description:         "Protocol used for this Client.",
-										MarkdownDescription: "Protocol used for this Client.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"service_accounts_enabled": {
-										Description:         "True if Service Accounts are enabled.",
-										MarkdownDescription: "True if Service Accounts are enabled.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"standard_flow_enabled": {
-										Description:         "True if Standard flow is enabled.",
-										MarkdownDescription: "True if Standard flow is enabled.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"authentication_flow_binding_overrides": {
 										Description:         "Authentication Flow Binding Overrides.",
 										MarkdownDescription: "Authentication Flow Binding Overrides.",
@@ -1099,121 +1311,11 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
-									"default_roles": {
-										Description:         "Default Client roles.",
-										MarkdownDescription: "Default Client roles.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"access": {
-										Description:         "Access options.",
-										MarkdownDescription: "Access options.",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"secret": {
-										Description:         "Client Secret. The Operator will automatically create a Secret based on this value.",
-										MarkdownDescription: "Client Secret. The Operator will automatically create a Secret based on this value.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"surrogate_auth_required": {
-										Description:         "Surrogate Authentication Required option.",
-										MarkdownDescription: "Surrogate Authentication Required option.",
+									"authorization_services_enabled": {
+										Description:         "True if fine-grained authorization support is enabled for this client.",
+										MarkdownDescription: "True if fine-grained authorization support is enabled for this client.",
 
 										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"use_template_mappers": {
-										Description:         "True to use Template Mappers.",
-										MarkdownDescription: "True to use Template Mappers.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"use_template_scope": {
-										Description:         "True to use Template Scope.",
-										MarkdownDescription: "True to use Template Scope.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"client_authenticator_type": {
-										Description:         "What Client authentication type to use.",
-										MarkdownDescription: "What Client authentication type to use.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"enabled": {
-										Description:         "Client enabled flag.",
-										MarkdownDescription: "Client enabled flag.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "Client name.",
-										MarkdownDescription: "Client name.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"use_template_config": {
-										Description:         "True to use a Template Config.",
-										MarkdownDescription: "True to use a Template Config.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"admin_url": {
-										Description:         "Application Admin URL.",
-										MarkdownDescription: "Application Admin URL.",
-
-										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -1237,9 +1339,42 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 												Computed: false,
 											},
 
+											"client_id": {
+												Description:         "Client ID.",
+												MarkdownDescription: "Client ID.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"decision_strategy": {
 												Description:         "The decision strategy dictates how permissions are evaluated and how a final decision is obtained. 'Affirmative' means that at least one permission must evaluate to a positive decision in order to grant access to a resource and its scopes. 'Unanimous' means that all permissions must evaluate to a positive decision in order for the final decision to be also positive.",
 												MarkdownDescription: "The decision strategy dictates how permissions are evaluated and how a final decision is obtained. 'Affirmative' means that at least one permission must evaluate to a positive decision in order to grant access to a resource and its scopes. 'Unanimous' means that all permissions must evaluate to a positive decision in order for the final decision to be also positive.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"id": {
+												Description:         "ID.",
+												MarkdownDescription: "ID.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name.",
+												MarkdownDescription: "Name.",
 
 												Type: types.StringType,
 
@@ -1253,28 +1388,6 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 												MarkdownDescription: "Policies.",
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"resources": {
-														Description:         "Resources.",
-														MarkdownDescription: "Resources.",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"scopes_data": {
-														Description:         "Scopes Data.",
-														MarkdownDescription: "Scopes Data.",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 
 													"config": {
 														Description:         "Config.",
@@ -1301,6 +1414,17 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 													"description": {
 														Description:         "A description for this policy.",
 														MarkdownDescription: "A description for this policy.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"id": {
+														Description:         "ID.",
+														MarkdownDescription: "ID.",
 
 														Type: types.StringType,
 
@@ -1342,20 +1466,20 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 														Computed: false,
 													},
 
-													"id": {
-														Description:         "ID.",
-														MarkdownDescription: "ID.",
+													"policies": {
+														Description:         "Policies.",
+														MarkdownDescription: "Policies.",
 
-														Type: types.StringType,
+														Type: types.ListType{ElemType: types.StringType},
 
 														Required: false,
 														Optional: true,
 														Computed: false,
 													},
 
-													"policies": {
-														Description:         "Policies.",
-														MarkdownDescription: "Policies.",
+													"resources": {
+														Description:         "Resources.",
+														MarkdownDescription: "Resources.",
 
 														Type: types.ListType{ElemType: types.StringType},
 
@@ -1370,22 +1494,22 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-															"owner_managed_access": {
-																Description:         "True if the access to this resource can be managed by the resource owner.",
-																MarkdownDescription: "True if the access to this resource can be managed by the resource owner.",
+															"_id": {
+																Description:         "ID.",
+																MarkdownDescription: "ID.",
 
-																Type: types.BoolType,
+																Type: types.StringType,
 
 																Required: false,
 																Optional: true,
 																Computed: false,
 															},
 
-															"_id": {
-																Description:         "ID.",
-																MarkdownDescription: "ID.",
+															"attributes": {
+																Description:         "The attributes associated with the resource.",
+																MarkdownDescription: "The attributes associated with the resource.",
 
-																Type: types.StringType,
+																Type: types.MapType{ElemType: types.StringType},
 
 																Required: false,
 																Optional: true,
@@ -1425,6 +1549,17 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
+															"owner_managed_access": {
+																Description:         "True if the access to this resource can be managed by the resource owner.",
+																MarkdownDescription: "True if the access to this resource can be managed by the resource owner.",
+
+																Type: types.BoolType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"scopes": {
 																Description:         "The scopes associated with this resource.",
 																MarkdownDescription: "The scopes associated with this resource.",
@@ -1457,17 +1592,6 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 																Optional: true,
 																Computed: false,
 															},
-
-															"attributes": {
-																Description:         "The attributes associated with the resource.",
-																MarkdownDescription: "The attributes associated with the resource.",
-
-																Type: types.MapType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
 														}),
 
 														Required: false,
@@ -1478,6 +1602,17 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 													"scopes": {
 														Description:         "Scopes.",
 														MarkdownDescription: "Scopes.",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"scopes_data": {
+														Description:         "Scopes Data.",
+														MarkdownDescription: "Scopes Data.",
 
 														Type: types.ListType{ElemType: types.StringType},
 
@@ -1514,44 +1649,33 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 												Computed: false,
 											},
 
-											"client_id": {
-												Description:         "Client ID.",
-												MarkdownDescription: "Client ID.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"id": {
-												Description:         "ID.",
-												MarkdownDescription: "ID.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name.",
-												MarkdownDescription: "Name.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"resources": {
 												Description:         "Resources.",
 												MarkdownDescription: "Resources.",
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"_id": {
+														Description:         "ID.",
+														MarkdownDescription: "ID.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"attributes": {
+														Description:         "The attributes associated with the resource.",
+														MarkdownDescription: "The attributes associated with the resource.",
+
+														Type: types.MapType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
 
 													"display_name": {
 														Description:         "A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource.",
@@ -1629,28 +1753,6 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 														Optional: true,
 														Computed: false,
 													},
-
-													"_id": {
-														Description:         "ID.",
-														MarkdownDescription: "ID.",
-
-														Type: types.StringType,
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"attributes": {
-														Description:         "The attributes associated with the resource.",
-														MarkdownDescription: "The attributes associated with the resource.",
-
-														Type: types.MapType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
 												}),
 
 												Required: false,
@@ -1714,6 +1816,28 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+															"config": {
+																Description:         "Config.",
+																MarkdownDescription: "Config.",
+
+																Type: types.MapType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"decision_strategy": {
+																Description:         "The decision strategy dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. 'Affirmative' means that at least one policy must evaluate to a positive decision in order for the final decision to be also positive. 'Unanimous' means that all policies must evaluate to a positive decision in order for the final decision to be also positive. 'Consensus' means that the number of positive decisions must be greater than the number of negative decisions. If the number of positive and negative is the same, the final decision will be negative.",
+																MarkdownDescription: "The decision strategy dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. 'Affirmative' means that at least one policy must evaluate to a positive decision in order for the final decision to be also positive. 'Unanimous' means that all policies must evaluate to a positive decision in order for the final decision to be also positive. 'Consensus' means that the number of positive decisions must be greater than the number of negative decisions. If the number of positive and negative is the same, the final decision will be negative.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"description": {
 																Description:         "A description for this policy.",
 																MarkdownDescription: "A description for this policy.",
@@ -1747,11 +1871,88 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
+															"name": {
+																Description:         "The name of this policy.",
+																MarkdownDescription: "The name of this policy.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"owner": {
+																Description:         "Owner.",
+																MarkdownDescription: "Owner.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"policies": {
+																Description:         "Policies.",
+																MarkdownDescription: "Policies.",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"resources": {
+																Description:         "Resources.",
+																MarkdownDescription: "Resources.",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"resources_data": {
 																Description:         "Resources Data.",
 																MarkdownDescription: "Resources Data.",
 
 																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"_id": {
+																		Description:         "ID.",
+																		MarkdownDescription: "ID.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"attributes": {
+																		Description:         "The attributes associated with the resource.",
+																		MarkdownDescription: "The attributes associated with the resource.",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"display_name": {
+																		Description:         "A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource.",
+																		MarkdownDescription: "A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource.",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
 
 																	"icon_uri": {
 																		Description:         "An URI pointing to an icon.",
@@ -1808,28 +2009,6 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Computed: false,
 																	},
 
-																	"_id": {
-																		Description:         "ID.",
-																		MarkdownDescription: "ID.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"display_name": {
-																		Description:         "A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource.",
-																		MarkdownDescription: "A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource.",
-
-																		Type: types.StringType,
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
 																	"uris": {
 																		Description:         "Set of URIs which are protected by resource.",
 																		MarkdownDescription: "Set of URIs which are protected by resource.",
@@ -1840,29 +2019,7 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Optional: true,
 																		Computed: false,
 																	},
-
-																	"attributes": {
-																		Description:         "The attributes associated with the resource.",
-																		MarkdownDescription: "The attributes associated with the resource.",
-
-																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
 																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"resources": {
-																Description:         "Resources.",
-																MarkdownDescription: "Resources.",
-
-																Type: types.ListType{ElemType: types.StringType},
 
 																Required: false,
 																Optional: true,
@@ -1883,61 +2040,6 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 															"scopes_data": {
 																Description:         "Scopes Data.",
 																MarkdownDescription: "Scopes Data.",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"config": {
-																Description:         "Config.",
-																MarkdownDescription: "Config.",
-
-																Type: types.MapType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"decision_strategy": {
-																Description:         "The decision strategy dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. 'Affirmative' means that at least one policy must evaluate to a positive decision in order for the final decision to be also positive. 'Unanimous' means that all policies must evaluate to a positive decision in order for the final decision to be also positive. 'Consensus' means that the number of positive decisions must be greater than the number of negative decisions. If the number of positive and negative is the same, the final decision will be negative.",
-																MarkdownDescription: "The decision strategy dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. 'Affirmative' means that at least one policy must evaluate to a positive decision in order for the final decision to be also positive. 'Unanimous' means that all policies must evaluate to a positive decision in order for the final decision to be also positive. 'Consensus' means that the number of positive decisions must be greater than the number of negative decisions. If the number of positive and negative is the same, the final decision will be negative.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "The name of this policy.",
-																MarkdownDescription: "The name of this policy.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"owner": {
-																Description:         "Owner.",
-																MarkdownDescription: "Owner.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"policies": {
-																Description:         "Policies.",
-																MarkdownDescription: "Policies.",
 
 																Type: types.ListType{ElemType: types.StringType},
 
@@ -1980,50 +2082,6 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"icon_uri": {
-																Description:         "An URI pointing to an icon.",
-																MarkdownDescription: "An URI pointing to an icon.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"name": {
-																Description:         "A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource.",
-																MarkdownDescription: "A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"type": {
-																Description:         "The type of this resource. It can be used to group different resource instances with the same type.",
-																MarkdownDescription: "The type of this resource. It can be used to group different resource instances with the same type.",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"uris": {
-																Description:         "Set of URIs which are protected by resource.",
-																MarkdownDescription: "Set of URIs which are protected by resource.",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"attributes": {
 																Description:         "The attributes associated with the resource.",
 																MarkdownDescription: "The attributes associated with the resource.",
@@ -2036,6 +2094,28 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 															},
 
 															"display_name": {
+																Description:         "A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource.",
+																MarkdownDescription: "A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"icon_uri": {
+																Description:         "An URI pointing to an icon.",
+																MarkdownDescription: "An URI pointing to an icon.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
 																Description:         "A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource.",
 																MarkdownDescription: "A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource.",
 
@@ -2060,6 +2140,28 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 															"scopes": {
 																Description:         "The scopes associated with this resource.",
 																MarkdownDescription: "The scopes associated with this resource.",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"type": {
+																Description:         "The type of this resource. It can be used to group different resource instances with the same type.",
+																MarkdownDescription: "The type of this resource. It can be used to group different resource instances with the same type.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"uris": {
+																Description:         "Set of URIs which are protected by resource.",
+																MarkdownDescription: "Set of URIs which are protected by resource.",
 
 																Type: types.ListType{ElemType: types.StringType},
 
@@ -2108,6 +2210,127 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
+									"client_authenticator_type": {
+										Description:         "What Client authentication type to use.",
+										MarkdownDescription: "What Client authentication type to use.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"client_id": {
+										Description:         "Client ID.",
+										MarkdownDescription: "Client ID.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"consent_required": {
+										Description:         "True if Consent Screen is required.",
+										MarkdownDescription: "True if Consent Screen is required.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"default_client_scopes": {
+										Description:         "A list of default client scopes. Default client scopes are always applied when issuing OpenID Connect tokens or SAML assertions for this client.",
+										MarkdownDescription: "A list of default client scopes. Default client scopes are always applied when issuing OpenID Connect tokens or SAML assertions for this client.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"default_roles": {
+										Description:         "Default Client roles.",
+										MarkdownDescription: "Default Client roles.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"description": {
+										Description:         "Client description.",
+										MarkdownDescription: "Client description.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"direct_access_grants_enabled": {
+										Description:         "True if Direct Grant is enabled.",
+										MarkdownDescription: "True if Direct Grant is enabled.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"enabled": {
+										Description:         "Client enabled flag.",
+										MarkdownDescription: "Client enabled flag.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"frontchannel_logout": {
+										Description:         "True if this client supports Front Channel logout.",
+										MarkdownDescription: "True if this client supports Front Channel logout.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"full_scope_allowed": {
+										Description:         "True if Full Scope is allowed.",
+										MarkdownDescription: "True if Full Scope is allowed.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"id": {
+										Description:         "Client ID. If not specified, automatically generated.",
+										MarkdownDescription: "Client ID. If not specified, automatically generated.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"implicit_flow_enabled": {
 										Description:         "True if Implicit flow is enabled.",
 										MarkdownDescription: "True if Implicit flow is enabled.",
@@ -2119,11 +2342,88 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
+									"name": {
+										Description:         "Client name.",
+										MarkdownDescription: "Client name.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"node_re_registration_timeout": {
+										Description:         "Node registration timeout.",
+										MarkdownDescription: "Node registration timeout.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"not_before": {
+										Description:         "Not Before setting.",
+										MarkdownDescription: "Not Before setting.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"optional_client_scopes": {
+										Description:         "A list of optional client scopes. Optional client scopes are applied when issuing tokens for this client, but only when they are requested by the scope parameter in the OpenID Connect authorization request.",
+										MarkdownDescription: "A list of optional client scopes. Optional client scopes are applied when issuing tokens for this client, but only when they are requested by the scope parameter in the OpenID Connect authorization request.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"protocol": {
+										Description:         "Protocol used for this Client.",
+										MarkdownDescription: "Protocol used for this Client.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"protocol_mappers": {
 										Description:         "Protocol Mappers.",
 										MarkdownDescription: "Protocol Mappers.",
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"config": {
+												Description:         "Config options.",
+												MarkdownDescription: "Config options.",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"consent_required": {
+												Description:         "True if Consent Screen is required.",
+												MarkdownDescription: "True if Consent Screen is required.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 
 											"consent_text": {
 												Description:         "Text to use for displaying Consent Screen.",
@@ -2179,29 +2479,18 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 												Optional: true,
 												Computed: false,
 											},
-
-											"config": {
-												Description:         "Config options.",
-												MarkdownDescription: "Config options.",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"consent_required": {
-												Description:         "True if Consent Screen is required.",
-												MarkdownDescription: "True if Consent Screen is required.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"public_client": {
+										Description:         "True if this is a public Client.",
+										MarkdownDescription: "True if this is a public Client.",
+
+										Type: types.BoolType,
 
 										Required: false,
 										Optional: true,
@@ -2230,53 +2519,9 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
-									"authorization_services_enabled": {
-										Description:         "True if fine-grained authorization support is enabled for this client.",
-										MarkdownDescription: "True if fine-grained authorization support is enabled for this client.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"full_scope_allowed": {
-										Description:         "True if Full Scope is allowed.",
-										MarkdownDescription: "True if Full Scope is allowed.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"direct_access_grants_enabled": {
-										Description:         "True if Direct Grant is enabled.",
-										MarkdownDescription: "True if Direct Grant is enabled.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"frontchannel_logout": {
-										Description:         "True if this client supports Front Channel logout.",
-										MarkdownDescription: "True if this client supports Front Channel logout.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"id": {
-										Description:         "Client ID. If not specified, automatically generated.",
-										MarkdownDescription: "Client ID. If not specified, automatically generated.",
+									"secret": {
+										Description:         "Client Secret. The Operator will automatically create a Secret based on this value.",
+										MarkdownDescription: "Client Secret. The Operator will automatically create a Secret based on this value.",
 
 										Type: types.StringType,
 
@@ -2285,31 +2530,64 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
-									"node_re_registration_timeout": {
-										Description:         "Node registration timeout.",
-										MarkdownDescription: "Node registration timeout.",
+									"service_accounts_enabled": {
+										Description:         "True if Service Accounts are enabled.",
+										MarkdownDescription: "True if Service Accounts are enabled.",
 
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"not_before": {
-										Description:         "Not Before setting.",
-										MarkdownDescription: "Not Before setting.",
-
-										Type: types.Int64Type,
+										Type: types.BoolType,
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 
-									"public_client": {
-										Description:         "True if this is a public Client.",
-										MarkdownDescription: "True if this is a public Client.",
+									"standard_flow_enabled": {
+										Description:         "True if Standard flow is enabled.",
+										MarkdownDescription: "True if Standard flow is enabled.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"surrogate_auth_required": {
+										Description:         "Surrogate Authentication Required option.",
+										MarkdownDescription: "Surrogate Authentication Required option.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"use_template_config": {
+										Description:         "True to use a Template Config.",
+										MarkdownDescription: "True to use a Template Config.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"use_template_mappers": {
+										Description:         "True to use Template Mappers.",
+										MarkdownDescription: "True to use Template Mappers.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"use_template_scope": {
+										Description:         "True to use Template Scope.",
+										MarkdownDescription: "True to use Template Scope.",
 
 										Type: types.BoolType,
 
@@ -2328,18 +2606,18 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										Optional: true,
 										Computed: false,
 									},
-
-									"description": {
-										Description:         "Client description.",
-										MarkdownDescription: "Client description.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"default_default_client_scopes": {
+								Description:         "Default client scopes to add to all new clients",
+								MarkdownDescription: "Default client scopes to add to all new clients",
+
+								Type: types.ListType{ElemType: types.StringType},
 
 								Required: false,
 								Optional: true,
@@ -2351,283 +2629,6 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								MarkdownDescription: "Default Locale",
 
 								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"otp_policy_look_ahead_window": {
-								Description:         "OTP Policy Look Ahead Window",
-								MarkdownDescription: "OTP Policy Look Ahead Window",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"display_name_html": {
-								Description:         "Realm HTML display name.",
-								MarkdownDescription: "Realm HTML display name.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"events_enabled": {
-								Description:         "Enable events recording TODO: change to values and use kubebuilder default annotation once supported",
-								MarkdownDescription: "Enable events recording TODO: change to values and use kubebuilder default annotation once supported",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"max_delta_time_seconds": {
-								Description:         "Failure Reset Time",
-								MarkdownDescription: "Failure Reset Time",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"user_federation_providers": {
-								Description:         "Point keycloak to an external user provider to validate credentials or pull in identity information.",
-								MarkdownDescription: "Point keycloak to an external user provider to validate credentials or pull in identity information.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"config": {
-										Description:         "User federation provider config.",
-										MarkdownDescription: "User federation provider config.",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"display_name": {
-										Description:         "The display name of this provider instance.",
-										MarkdownDescription: "The display name of this provider instance.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"full_sync_period": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"id": {
-										Description:         "The ID of this provider",
-										MarkdownDescription: "The ID of this provider",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"priority": {
-										Description:         "The priority of this provider when looking up users or adding a user.",
-										MarkdownDescription: "The priority of this provider when looking up users or adding a user.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"provider_name": {
-										Description:         "The name of the user provider, such as 'ldap', 'kerberos' or a custom SPI.",
-										MarkdownDescription: "The name of the user provider, such as 'ldap', 'kerberos' or a custom SPI.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"changed_sync_period": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"admin_events_enabled": {
-								Description:         "Enable events recording TODO: change to values and use kubebuilder default annotation once supported",
-								MarkdownDescription: "Enable events recording TODO: change to values and use kubebuilder default annotation once supported",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"brute_force_protected": {
-								Description:         "Brute Force Detection",
-								MarkdownDescription: "Brute Force Detection",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"user_managed_access_allowed": {
-								Description:         "User Managed Access Allowed",
-								MarkdownDescription: "User Managed Access Allowed",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"wait_increment_seconds": {
-								Description:         "Wait Increment",
-								MarkdownDescription: "Wait Increment",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"login_theme": {
-								Description:         "Login Theme",
-								MarkdownDescription: "Login Theme",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"scope_mappings": {
-								Description:         "Scope Mappings",
-								MarkdownDescription: "Scope Mappings",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"client": {
-										Description:         "Client",
-										MarkdownDescription: "Client",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"client_scope": {
-										Description:         "Client Scope",
-										MarkdownDescription: "Client Scope",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"roles": {
-										Description:         "Roles",
-										MarkdownDescription: "Roles",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"self": {
-										Description:         "Self",
-										MarkdownDescription: "Self",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"realm": {
-								Description:         "Realm name.",
-								MarkdownDescription: "Realm name.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"remember_me": {
-								Description:         "Remember me",
-								MarkdownDescription: "Remember me",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"quick_login_check_milli_seconds": {
-								Description:         "Quick Login Check Milli Seconds",
-								MarkdownDescription: "Quick Login Check Milli Seconds",
-
-								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
@@ -2757,261 +2758,6 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"edit_username_allowed": {
-								Description:         "Edit username",
-								MarkdownDescription: "Edit username",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"password_policy": {
-								Description:         "Realm Password Policy",
-								MarkdownDescription: "Realm Password Policy",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"admin_events_details_enabled": {
-								Description:         "Enable admin events details TODO: change to values and use kubebuilder default annotation once supported",
-								MarkdownDescription: "Enable admin events details TODO: change to values and use kubebuilder default annotation once supported",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"otp_policy_type": {
-								Description:         "OTP Policy Type",
-								MarkdownDescription: "OTP Policy Type",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"access_token_lifespan": {
-								Description:         "Access Token Lifespan",
-								MarkdownDescription: "Access Token Lifespan",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"client_scopes": {
-								Description:         "Client scopes",
-								MarkdownDescription: "Client scopes",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"id": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"protocol": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"protocol_mappers": {
-										Description:         "Protocol Mappers.",
-										MarkdownDescription: "Protocol Mappers.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"config": {
-												Description:         "Config options.",
-												MarkdownDescription: "Config options.",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"consent_required": {
-												Description:         "True if Consent Screen is required.",
-												MarkdownDescription: "True if Consent Screen is required.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"consent_text": {
-												Description:         "Text to use for displaying Consent Screen.",
-												MarkdownDescription: "Text to use for displaying Consent Screen.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"id": {
-												Description:         "Protocol Mapper ID.",
-												MarkdownDescription: "Protocol Mapper ID.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Protocol Mapper Name.",
-												MarkdownDescription: "Protocol Mapper Name.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"protocol": {
-												Description:         "Protocol to use.",
-												MarkdownDescription: "Protocol to use.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"protocol_mapper": {
-												Description:         "Protocol Mapper to use",
-												MarkdownDescription: "Protocol Mapper to use",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"attributes": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"description": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"max_failure_wait_seconds": {
-								Description:         "Max Wait",
-								MarkdownDescription: "Max Wait",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"otp_policy_initial_counter": {
-								Description:         "OTP Policy Initial Counter",
-								MarkdownDescription: "OTP Policy Initial Counter",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"permanent_lockout": {
-								Description:         "Permanent Lockout",
-								MarkdownDescription: "Permanent Lockout",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"smtp_server": {
-								Description:         "Email",
-								MarkdownDescription: "Email",
-
-								Type: types.MapType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"display_name": {
 								Description:         "Realm display name.",
 								MarkdownDescription: "Realm display name.",
@@ -3023,131 +2769,9 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"enabled_event_types": {
-								Description:         "Enabled event types",
-								MarkdownDescription: "Enabled event types",
-
-								Type: types.ListType{ElemType: types.StringType},
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"user_federation_mappers": {
-								Description:         "User federation mappers are extension points triggered by the user federation at various points.",
-								MarkdownDescription: "User federation mappers are extension points triggered by the user federation at various points.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"config": {
-										Description:         "User federation mapper config.",
-										MarkdownDescription: "User federation mapper config.",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"federation_mapper_type": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"federation_provider_display_name": {
-										Description:         "The displayName for the user federation provider this mapper applies to.",
-										MarkdownDescription: "The displayName for the user federation provider this mapper applies to.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"id": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"minimum_quick_login_wait_seconds": {
-								Description:         "Minimum Quick Login Wait",
-								MarkdownDescription: "Minimum Quick Login Wait",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"otp_policy_digits": {
-								Description:         "OTP Policy Digits",
-								MarkdownDescription: "OTP Policy Digits",
-
-								Type: types.Int64Type,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"registration_email_as_username": {
-								Description:         "Email as username",
-								MarkdownDescription: "Email as username",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"internationalization_enabled": {
-								Description:         "Internationalization Enabled",
-								MarkdownDescription: "Internationalization Enabled",
-
-								Type: types.BoolType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"otp_policy_algorithm": {
-								Description:         "OTP Policy Algorithm",
-								MarkdownDescription: "OTP Policy Algorithm",
+							"display_name_html": {
+								Description:         "Realm HTML display name.",
+								MarkdownDescription: "Realm HTML display name.",
 
 								Type: types.StringType,
 
@@ -3156,11 +2780,22 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"supported_locales": {
-								Description:         "Supported Locales",
-								MarkdownDescription: "Supported Locales",
+							"duplicate_emails_allowed": {
+								Description:         "Duplicate emails",
+								MarkdownDescription: "Duplicate emails",
 
-								Type: types.ListType{ElemType: types.StringType},
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"edit_username_allowed": {
+								Description:         "Edit username",
+								MarkdownDescription: "Edit username",
+
+								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,
@@ -3178,22 +2813,55 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"failure_factor": {
-								Description:         "Max Login Failures",
-								MarkdownDescription: "Max Login Failures",
+							"enabled": {
+								Description:         "Realm enabled flag.",
+								MarkdownDescription: "Realm enabled flag.",
 
-								Type: types.Int64Type,
+								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"duplicate_emails_allowed": {
-								Description:         "Duplicate emails",
-								MarkdownDescription: "Duplicate emails",
+							"enabled_event_types": {
+								Description:         "Enabled event types",
+								MarkdownDescription: "Enabled event types",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"events_enabled": {
+								Description:         "Enable events recording TODO: change to values and use kubebuilder default annotation once supported",
+								MarkdownDescription: "Enable events recording TODO: change to values and use kubebuilder default annotation once supported",
 
 								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"events_listeners": {
+								Description:         "A set of Event Listeners.",
+								MarkdownDescription: "A set of Event Listeners.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"failure_factor": {
+								Description:         "Max Login Failures",
+								MarkdownDescription: "Max Login Failures",
+
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
@@ -3217,6 +2885,28 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+									"add_read_token_role_on_create": {
+										Description:         "Adds Read Token role when creating this Identity Provider.",
+										MarkdownDescription: "Adds Read Token role when creating this Identity Provider.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"alias": {
+										Description:         "Identity Provider Alias.",
+										MarkdownDescription: "Identity Provider Alias.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"config": {
 										Description:         "Identity Provider config.",
 										MarkdownDescription: "Identity Provider config.",
@@ -3233,6 +2923,17 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										MarkdownDescription: "Identity Provider Display Name.",
 
 										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"enabled": {
+										Description:         "Identity Provider enabled flag.",
+										MarkdownDescription: "Identity Provider enabled flag.",
+
+										Type: types.BoolType,
 
 										Required: false,
 										Optional: true,
@@ -3261,55 +2962,22 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
-									"post_broker_login_flow_alias": {
-										Description:         "Identity Provider Post Broker Login Flow Alias.",
-										MarkdownDescription: "Identity Provider Post Broker Login Flow Alias.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"trust_email": {
-										Description:         "Identity Provider Trust Email.",
-										MarkdownDescription: "Identity Provider Trust Email.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"alias": {
-										Description:         "Identity Provider Alias.",
-										MarkdownDescription: "Identity Provider Alias.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"enabled": {
-										Description:         "Identity Provider enabled flag.",
-										MarkdownDescription: "Identity Provider enabled flag.",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"link_only": {
 										Description:         "Identity Provider Link Only setting.",
 										MarkdownDescription: "Identity Provider Link Only setting.",
 
 										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"post_broker_login_flow_alias": {
+										Description:         "Identity Provider Post Broker Login Flow Alias.",
+										MarkdownDescription: "Identity Provider Post Broker Login Flow Alias.",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -3338,9 +3006,9 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
-									"add_read_token_role_on_create": {
-										Description:         "Adds Read Token role when creating this Identity Provider.",
-										MarkdownDescription: "Adds Read Token role when creating this Identity Provider.",
+									"trust_email": {
+										Description:         "Identity Provider Trust Email.",
+										MarkdownDescription: "Identity Provider Trust Email.",
 
 										Type: types.BoolType,
 
@@ -3349,6 +3017,28 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"internationalization_enabled": {
+								Description:         "Internationalization Enabled",
+								MarkdownDescription: "Internationalization Enabled",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"login_theme": {
+								Description:         "Login Theme",
+								MarkdownDescription: "Login Theme",
+
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
@@ -3366,20 +3056,42 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"registration_allowed": {
-								Description:         "User registration",
-								MarkdownDescription: "User registration",
+							"max_delta_time_seconds": {
+								Description:         "Failure Reset Time",
+								MarkdownDescription: "Failure Reset Time",
 
-								Type: types.BoolType,
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"account_theme": {
-								Description:         "Account Theme",
-								MarkdownDescription: "Account Theme",
+							"max_failure_wait_seconds": {
+								Description:         "Max Wait",
+								MarkdownDescription: "Max Wait",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"minimum_quick_login_wait_seconds": {
+								Description:         "Minimum Quick Login Wait",
+								MarkdownDescription: "Minimum Quick Login Wait",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"otp_policy_algorithm": {
+								Description:         "OTP Policy Algorithm",
+								MarkdownDescription: "OTP Policy Algorithm",
 
 								Type: types.StringType,
 
@@ -3388,22 +3100,33 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"client_scope_mappings": {
-								Description:         "Client Scope Mappings",
-								MarkdownDescription: "Client Scope Mappings",
+							"otp_policy_digits": {
+								Description:         "OTP Policy Digits",
+								MarkdownDescription: "OTP Policy Digits",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
 
-							"events_listeners": {
-								Description:         "A set of Event Listeners.",
-								MarkdownDescription: "A set of Event Listeners.",
+							"otp_policy_initial_counter": {
+								Description:         "OTP Policy Initial Counter",
+								MarkdownDescription: "OTP Policy Initial Counter",
 
-								Type: types.ListType{ElemType: types.StringType},
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"otp_policy_look_ahead_window": {
+								Description:         "OTP Policy Look Ahead Window",
+								MarkdownDescription: "OTP Policy Look Ahead Window",
+
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
@@ -3415,6 +3138,105 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								MarkdownDescription: "OTP Policy Period",
 
 								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"otp_policy_type": {
+								Description:         "OTP Policy Type",
+								MarkdownDescription: "OTP Policy Type",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"otp_supported_applications": {
+								Description:         "OTP Supported Applications",
+								MarkdownDescription: "OTP Supported Applications",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"password_policy": {
+								Description:         "Realm Password Policy",
+								MarkdownDescription: "Realm Password Policy",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"permanent_lockout": {
+								Description:         "Permanent Lockout",
+								MarkdownDescription: "Permanent Lockout",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"quick_login_check_milli_seconds": {
+								Description:         "Quick Login Check Milli Seconds",
+								MarkdownDescription: "Quick Login Check Milli Seconds",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"realm": {
+								Description:         "Realm name.",
+								MarkdownDescription: "Realm name.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"registration_allowed": {
+								Description:         "User registration",
+								MarkdownDescription: "User registration",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"registration_email_as_username": {
+								Description:         "Email as username",
+								MarkdownDescription: "Email as username",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"remember_me": {
+								Description:         "Remember me",
+								MarkdownDescription: "Remember me",
+
+								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,
@@ -3454,6 +3276,28 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										MarkdownDescription: "Realm Roles",
 
 										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"attributes": {
+												Description:         "Role Attributes",
+												MarkdownDescription: "Role Attributes",
+
+												Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"client_role": {
+												Description:         "Client Role",
+												MarkdownDescription: "Client Role",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 
 											"composite": {
 												Description:         "Composite",
@@ -3543,28 +3387,6 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 												Optional: false,
 												Computed: false,
 											},
-
-											"attributes": {
-												Description:         "Role Attributes",
-												MarkdownDescription: "Role Attributes",
-
-												Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"client_role": {
-												Description:         "Client Role",
-												MarkdownDescription: "Client Role",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
 										}),
 
 										Required: false,
@@ -3578,15 +3400,15 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"authenticator_config": {
-								Description:         "Authenticator config",
-								MarkdownDescription: "Authenticator config",
+							"scope_mappings": {
+								Description:         "Scope Mappings",
+								MarkdownDescription: "Scope Mappings",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"id": {
-										Description:         "ID",
-										MarkdownDescription: "ID",
+									"client": {
+										Description:         "Client",
+										MarkdownDescription: "Client",
 
 										Type: types.StringType,
 
@@ -3595,22 +3417,33 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
-									"alias": {
-										Description:         "Alias",
-										MarkdownDescription: "Alias",
+									"client_scope": {
+										Description:         "Client Scope",
+										MarkdownDescription: "Client Scope",
 
 										Type: types.StringType,
 
-										Required: true,
-										Optional: false,
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 
-									"config": {
-										Description:         "Config",
-										MarkdownDescription: "Config",
+									"roles": {
+										Description:         "Roles",
+										MarkdownDescription: "Roles",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"self": {
+										Description:         "Self",
+										MarkdownDescription: "Self",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -3623,9 +3456,31 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"default_default_client_scopes": {
-								Description:         "Default client scopes to add to all new clients",
-								MarkdownDescription: "Default client scopes to add to all new clients",
+							"smtp_server": {
+								Description:         "Email",
+								MarkdownDescription: "Email",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"ssl_required": {
+								Description:         "Require SSL",
+								MarkdownDescription: "Require SSL",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"supported_locales": {
+								Description:         "Supported Locales",
+								MarkdownDescription: "Supported Locales",
 
 								Type: types.ListType{ElemType: types.StringType},
 
@@ -3634,11 +3489,167 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"access_token_lifespan_for_implicit_flow": {
-								Description:         "Access Token Lifespan For Implicit Flow",
-								MarkdownDescription: "Access Token Lifespan For Implicit Flow",
+							"user_federation_mappers": {
+								Description:         "User federation mappers are extension points triggered by the user federation at various points.",
+								MarkdownDescription: "User federation mappers are extension points triggered by the user federation at various points.",
 
-								Type: types.Int64Type,
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"config": {
+										Description:         "User federation mapper config.",
+										MarkdownDescription: "User federation mapper config.",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"federation_mapper_type": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"federation_provider_display_name": {
+										Description:         "The displayName for the user federation provider this mapper applies to.",
+										MarkdownDescription: "The displayName for the user federation provider this mapper applies to.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"id": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"user_federation_providers": {
+								Description:         "Point keycloak to an external user provider to validate credentials or pull in identity information.",
+								MarkdownDescription: "Point keycloak to an external user provider to validate credentials or pull in identity information.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"changed_sync_period": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"config": {
+										Description:         "User federation provider config.",
+										MarkdownDescription: "User federation provider config.",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"display_name": {
+										Description:         "The display name of this provider instance.",
+										MarkdownDescription: "The display name of this provider instance.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"full_sync_period": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"id": {
+										Description:         "The ID of this provider",
+										MarkdownDescription: "The ID of this provider",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"priority": {
+										Description:         "The priority of this provider when looking up users or adding a user.",
+										MarkdownDescription: "The priority of this provider when looking up users or adding a user.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"provider_name": {
+										Description:         "The name of the user provider, such as 'ldap', 'kerberos' or a custom SPI.",
+										MarkdownDescription: "The name of the user provider, such as 'ldap', 'kerberos' or a custom SPI.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"user_managed_access_allowed": {
+								Description:         "User Managed Access Allowed",
+								MarkdownDescription: "User Managed Access Allowed",
+
+								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,
@@ -3650,6 +3661,28 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								MarkdownDescription: "A set of Keycloak Users.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"attributes": {
+										Description:         "A set of Attributes.",
+										MarkdownDescription: "A set of Attributes.",
+
+										Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"client_roles": {
+										Description:         "A set of Client Roles.",
+										MarkdownDescription: "A set of Client Roles.",
+
+										Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"credentials": {
 										Description:         "A set of Credentials.",
@@ -3707,9 +3740,9 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
-									"enabled": {
-										Description:         "User enabled flag.",
-										MarkdownDescription: "User enabled flag.",
+									"email_verified": {
+										Description:         "True if email has already been verified.",
+										MarkdownDescription: "True if email has already been verified.",
 
 										Type: types.BoolType,
 
@@ -3718,97 +3751,9 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
-									"last_name": {
-										Description:         "Last Name.",
-										MarkdownDescription: "Last Name.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"client_roles": {
-										Description:         "A set of Client Roles.",
-										MarkdownDescription: "A set of Client Roles.",
-
-										Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"groups": {
-										Description:         "A set of Groups.",
-										MarkdownDescription: "A set of Groups.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"id": {
-										Description:         "User ID.",
-										MarkdownDescription: "User ID.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"username": {
-										Description:         "User Name.",
-										MarkdownDescription: "User Name.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"attributes": {
-										Description:         "A set of Attributes.",
-										MarkdownDescription: "A set of Attributes.",
-
-										Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"realm_roles": {
-										Description:         "A set of Realm Roles.",
-										MarkdownDescription: "A set of Realm Roles.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"required_actions": {
-										Description:         "A set of Required Actions.",
-										MarkdownDescription: "A set of Required Actions.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"email_verified": {
-										Description:         "True if email has already been verified.",
-										MarkdownDescription: "True if email has already been verified.",
+									"enabled": {
+										Description:         "User enabled flag.",
+										MarkdownDescription: "User enabled flag.",
 
 										Type: types.BoolType,
 
@@ -3872,6 +3817,72 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 										Optional: true,
 										Computed: false,
 									},
+
+									"groups": {
+										Description:         "A set of Groups.",
+										MarkdownDescription: "A set of Groups.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"id": {
+										Description:         "User ID.",
+										MarkdownDescription: "User ID.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"last_name": {
+										Description:         "Last Name.",
+										MarkdownDescription: "Last Name.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"realm_roles": {
+										Description:         "A set of Realm Roles.",
+										MarkdownDescription: "A set of Realm Roles.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"required_actions": {
+										Description:         "A set of Required Actions.",
+										MarkdownDescription: "A set of Required Actions.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"username": {
+										Description:         "User Name.",
+										MarkdownDescription: "User Name.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
@@ -3890,22 +3901,11 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"admin_theme": {
-								Description:         "Admin Console Theme",
-								MarkdownDescription: "Admin Console Theme",
+							"wait_increment_seconds": {
+								Description:         "Wait Increment",
+								MarkdownDescription: "Wait Increment",
 
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"otp_supported_applications": {
-								Description:         "OTP Supported Applications",
-								MarkdownDescription: "OTP Supported Applications",
-
-								Type: types.ListType{ElemType: types.StringType},
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
@@ -3924,17 +3924,6 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-							"identity_provider": {
-								Description:         "Identity Provider to be overridden.",
-								MarkdownDescription: "Identity Provider to be overridden.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
 							"for_flow": {
 								Description:         "Flow to be overridden.",
 								MarkdownDescription: "Flow to be overridden.",
@@ -3943,6 +3932,17 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 
 								Required: false,
 								Optional: true,
+								Computed: false,
+							},
+
+							"identity_provider": {
+								Description:         "Identity Provider to be overridden.",
+								MarkdownDescription: "Identity Provider to be overridden.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
 								Computed: false,
 							},
 						}),

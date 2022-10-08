@@ -50,12 +50,6 @@ type ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Update *struct {
-			Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-			Strategy *string `tfsdk:"strategy" yaml:"strategy,omitempty"`
-		} `tfsdk:"update" yaml:"update,omitempty"`
-
 		Checkout *struct {
 			Branch *string `tfsdk:"branch" yaml:"branch,omitempty"`
 
@@ -85,6 +79,12 @@ type ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha1GoModel struct {
 		} `tfsdk:"push" yaml:"push,omitempty"`
 
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
+
+		Update *struct {
+			Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+			Strategy *string `tfsdk:"strategy" yaml:"strategy,omitempty"`
+		} `tfsdk:"update" yaml:"update,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -184,40 +184,6 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha1Resource) GetSchema(_ 
 				MarkdownDescription: "ImageUpdateAutomationSpec defines the desired state of ImageUpdateAutomation",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-					"update": {
-						Description:         "Update gives the specification for how to update the files in the repository. This can be left empty, to use the default value.",
-						MarkdownDescription: "Update gives the specification for how to update the files in the repository. This can be left empty, to use the default value.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"path": {
-								Description:         "Path to the directory containing the manifests to be updated. Defaults to 'None', which translates to the root path of the GitRepositoryRef.",
-								MarkdownDescription: "Path to the directory containing the manifests to be updated. Defaults to 'None', which translates to the root path of the GitRepositoryRef.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"strategy": {
-								Description:         "Strategy names the strategy to be used.",
-								MarkdownDescription: "Strategy names the strategy to be used.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
 
 					"checkout": {
 						Description:         "Checkout gives the parameters for cloning the git repository, ready to make changes.",
@@ -384,6 +350,40 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Alpha1Resource) GetSchema(_ 
 						MarkdownDescription: "Suspend tells the controller to not run this automation, until it is unset (or set to false). Defaults to false.",
 
 						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"update": {
+						Description:         "Update gives the specification for how to update the files in the repository. This can be left empty, to use the default value.",
+						MarkdownDescription: "Update gives the specification for how to update the files in the repository. This can be left empty, to use the default value.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"path": {
+								Description:         "Path to the directory containing the manifests to be updated. Defaults to 'None', which translates to the root path of the GitRepositoryRef.",
+								MarkdownDescription: "Path to the directory containing the manifests to be updated. Defaults to 'None', which translates to the root path of the GitRepositoryRef.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"strategy": {
+								Description:         "Strategy names the strategy to be used.",
+								MarkdownDescription: "Strategy names the strategy to be used.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

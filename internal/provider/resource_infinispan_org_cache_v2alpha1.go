@@ -51,14 +51,6 @@ type InfinispanOrgCacheV2Alpha1GoModel struct {
 
 	Spec *struct {
 		AdminAuth *struct {
-			Username *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
-
-				Key *string `tfsdk:"key" yaml:"key,omitempty"`
-			} `tfsdk:"username" yaml:"username,omitempty"`
-
 			Password *struct {
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
 
@@ -68,6 +60,14 @@ type InfinispanOrgCacheV2Alpha1GoModel struct {
 			} `tfsdk:"password" yaml:"password,omitempty"`
 
 			SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
+
+			Username *struct {
+				Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+			} `tfsdk:"username" yaml:"username,omitempty"`
 		} `tfsdk:"admin_auth" yaml:"adminAuth,omitempty"`
 
 		ClusterName *string `tfsdk:"cluster_name" yaml:"clusterName,omitempty"`
@@ -183,51 +183,6 @@ func (r *InfinispanOrgCacheV2Alpha1Resource) GetSchema(_ context.Context) (tfsdk
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"username": {
-								Description:         "Secret and key containing the admin username for authentication.",
-								MarkdownDescription: "Secret and key containing the admin username for authentication.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"optional": {
-										Description:         "Specify whether the Secret or its key must be defined",
-										MarkdownDescription: "Specify whether the Secret or its key must be defined",
-
-										Type: types.BoolType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"key": {
-										Description:         "The key of the secret to select from.  Must be a valid secret key.",
-										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"password": {
 								Description:         "Secret and key containing the admin password for authentication.",
 								MarkdownDescription: "Secret and key containing the admin password for authentication.",
@@ -278,6 +233,51 @@ func (r *InfinispanOrgCacheV2Alpha1Resource) GetSchema(_ context.Context) (tfsdk
 								MarkdownDescription: "The secret that contains user credentials.",
 
 								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"username": {
+								Description:         "Secret and key containing the admin username for authentication.",
+								MarkdownDescription: "Secret and key containing the admin username for authentication.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"key": {
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+										MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"optional": {
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,

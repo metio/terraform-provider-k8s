@@ -50,10 +50,6 @@ type MattermostComMattermostRestoreDBV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		MattermostDBUser *string `tfsdk:"mattermost_db_user" yaml:"mattermostDBUser,omitempty"`
-
-		RestoreSecret *string `tfsdk:"restore_secret" yaml:"restoreSecret,omitempty"`
-
 		InitBucketURL *string `tfsdk:"init_bucket_url" yaml:"initBucketURL,omitempty"`
 
 		MattermostClusterName *string `tfsdk:"mattermost_cluster_name" yaml:"mattermostClusterName,omitempty"`
@@ -61,6 +57,10 @@ type MattermostComMattermostRestoreDBV1Alpha1GoModel struct {
 		MattermostDBName *string `tfsdk:"mattermost_db_name" yaml:"mattermostDBName,omitempty"`
 
 		MattermostDBPassword *string `tfsdk:"mattermost_db_password" yaml:"mattermostDBPassword,omitempty"`
+
+		MattermostDBUser *string `tfsdk:"mattermost_db_user" yaml:"mattermostDBUser,omitempty"`
+
+		RestoreSecret *string `tfsdk:"restore_secret" yaml:"restoreSecret,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -161,28 +161,6 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) GetSchema(_ context.C
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"mattermost_db_user": {
-						Description:         "MattermostDBUser defines the user to access the database. Need to set if the user is different from 'mmuser'.",
-						MarkdownDescription: "MattermostDBUser defines the user to access the database. Need to set if the user is different from 'mmuser'.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"restore_secret": {
-						Description:         "RestoreSecret defines the secret that holds the credentials to MySQL Operator be able to download the DB backup file",
-						MarkdownDescription: "RestoreSecret defines the secret that holds the credentials to MySQL Operator be able to download the DB backup file",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"init_bucket_url": {
 						Description:         "InitBucketURL defines where the DB backup file is located.",
 						MarkdownDescription: "InitBucketURL defines where the DB backup file is located.",
@@ -219,6 +197,28 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) GetSchema(_ context.C
 					"mattermost_db_password": {
 						Description:         "MattermostDBPassword defines the user password to access the database. Need to set if the user is different from the one created by the operator.",
 						MarkdownDescription: "MattermostDBPassword defines the user password to access the database. Need to set if the user is different from the one created by the operator.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"mattermost_db_user": {
+						Description:         "MattermostDBUser defines the user to access the database. Need to set if the user is different from 'mmuser'.",
+						MarkdownDescription: "MattermostDBUser defines the user to access the database. Need to set if the user is different from 'mmuser'.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"restore_secret": {
+						Description:         "RestoreSecret defines the secret that holds the credentials to MySQL Operator be able to download the DB backup file",
+						MarkdownDescription: "RestoreSecret defines the secret that holds the credentials to MySQL Operator be able to download the DB backup file",
 
 						Type: types.StringType,
 

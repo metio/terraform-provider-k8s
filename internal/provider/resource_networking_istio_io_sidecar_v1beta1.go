@@ -69,20 +69,36 @@ type NetworkingIstioIoSidecarV1Beta1GoModel struct {
 		} `tfsdk:"egress" yaml:"egress,omitempty"`
 
 		Ingress *[]struct {
+			Bind *string `tfsdk:"bind" yaml:"bind,omitempty"`
+
+			CaptureMode *string `tfsdk:"capture_mode" yaml:"captureMode,omitempty"`
+
+			DefaultEndpoint *string `tfsdk:"default_endpoint" yaml:"defaultEndpoint,omitempty"`
+
 			Port *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
 				Number *int64 `tfsdk:"number" yaml:"number,omitempty"`
 
 				Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
 
 				TargetPort *int64 `tfsdk:"target_port" yaml:"targetPort,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 			} `tfsdk:"port" yaml:"port,omitempty"`
 
 			Tls *struct {
+				CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
+
+				CipherSuites *[]string `tfsdk:"cipher_suites" yaml:"cipherSuites,omitempty"`
+
+				CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
+
+				HttpsRedirect *bool `tfsdk:"https_redirect" yaml:"httpsRedirect,omitempty"`
+
 				MaxProtocolVersion *string `tfsdk:"max_protocol_version" yaml:"maxProtocolVersion,omitempty"`
 
 				MinProtocolVersion *string `tfsdk:"min_protocol_version" yaml:"minProtocolVersion,omitempty"`
+
+				Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
 
 				PrivateKey *string `tfsdk:"private_key" yaml:"privateKey,omitempty"`
 
@@ -90,26 +106,10 @@ type NetworkingIstioIoSidecarV1Beta1GoModel struct {
 
 				SubjectAltNames *[]string `tfsdk:"subject_alt_names" yaml:"subjectAltNames,omitempty"`
 
-				VerifyCertificateSpki *[]string `tfsdk:"verify_certificate_spki" yaml:"verifyCertificateSpki,omitempty"`
-
-				CaCertificates *string `tfsdk:"ca_certificates" yaml:"caCertificates,omitempty"`
-
-				CipherSuites *[]string `tfsdk:"cipher_suites" yaml:"cipherSuites,omitempty"`
-
-				Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
-
 				VerifyCertificateHash *[]string `tfsdk:"verify_certificate_hash" yaml:"verifyCertificateHash,omitempty"`
 
-				CredentialName *string `tfsdk:"credential_name" yaml:"credentialName,omitempty"`
-
-				HttpsRedirect *bool `tfsdk:"https_redirect" yaml:"httpsRedirect,omitempty"`
+				VerifyCertificateSpki *[]string `tfsdk:"verify_certificate_spki" yaml:"verifyCertificateSpki,omitempty"`
 			} `tfsdk:"tls" yaml:"tls,omitempty"`
-
-			Bind *string `tfsdk:"bind" yaml:"bind,omitempty"`
-
-			CaptureMode *string `tfsdk:"capture_mode" yaml:"captureMode,omitempty"`
-
-			DefaultEndpoint *string `tfsdk:"default_endpoint" yaml:"defaultEndpoint,omitempty"`
 		} `tfsdk:"ingress" yaml:"ingress,omitempty"`
 
 		OutboundTrafficPolicy *struct {
@@ -336,11 +336,55 @@ func (r *NetworkingIstioIoSidecarV1Beta1Resource) GetSchema(_ context.Context) (
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+							"bind": {
+								Description:         "The IP(IPv4 or IPv6) to which the listener should be bound.",
+								MarkdownDescription: "The IP(IPv4 or IPv6) to which the listener should be bound.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"capture_mode": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"default_endpoint": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"port": {
 								Description:         "The port associated with the listener.",
 								MarkdownDescription: "The port associated with the listener.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "Label assigned to the port.",
+										MarkdownDescription: "Label assigned to the port.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"number": {
 										Description:         "A valid non-negative integer port number.",
@@ -374,17 +418,6 @@ func (r *NetworkingIstioIoSidecarV1Beta1Resource) GetSchema(_ context.Context) (
 										Optional: true,
 										Computed: false,
 									},
-
-									"name": {
-										Description:         "Label assigned to the port.",
-										MarkdownDescription: "Label assigned to the port.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
 								}),
 
 								Required: false,
@@ -397,6 +430,50 @@ func (r *NetworkingIstioIoSidecarV1Beta1Resource) GetSchema(_ context.Context) (
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"ca_certificates": {
+										Description:         "REQUIRED if mode is 'MUTUAL'.",
+										MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"cipher_suites": {
+										Description:         "Optional: If specified, only support the specified cipher list.",
+										MarkdownDescription: "Optional: If specified, only support the specified cipher list.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"credential_name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"https_redirect": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"max_protocol_version": {
 										Description:         "Optional: Maximum TLS protocol version.",
@@ -412,6 +489,17 @@ func (r *NetworkingIstioIoSidecarV1Beta1Resource) GetSchema(_ context.Context) (
 									"min_protocol_version": {
 										Description:         "Optional: Minimum TLS protocol version.",
 										MarkdownDescription: "Optional: Minimum TLS protocol version.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"mode": {
+										Description:         "",
+										MarkdownDescription: "",
 
 										Type: types.StringType,
 
@@ -453,50 +541,6 @@ func (r *NetworkingIstioIoSidecarV1Beta1Resource) GetSchema(_ context.Context) (
 										Computed: false,
 									},
 
-									"verify_certificate_spki": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"ca_certificates": {
-										Description:         "REQUIRED if mode is 'MUTUAL'.",
-										MarkdownDescription: "REQUIRED if mode is 'MUTUAL'.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"cipher_suites": {
-										Description:         "Optional: If specified, only support the specified cipher list.",
-										MarkdownDescription: "Optional: If specified, only support the specified cipher list.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"mode": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"verify_certificate_hash": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -508,61 +552,17 @@ func (r *NetworkingIstioIoSidecarV1Beta1Resource) GetSchema(_ context.Context) (
 										Computed: false,
 									},
 
-									"credential_name": {
+									"verify_certificate_spki": {
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"https_redirect": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.BoolType,
+										Type: types.ListType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
 										Computed: false,
 									},
 								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"bind": {
-								Description:         "The IP(IPv4 or IPv6) to which the listener should be bound.",
-								MarkdownDescription: "The IP(IPv4 or IPv6) to which the listener should be bound.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"capture_mode": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"default_endpoint": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Type: types.StringType,
 
 								Required: false,
 								Optional: true,

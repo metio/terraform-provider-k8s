@@ -50,49 +50,21 @@ type KustomizeToolkitFluxcdIoKustomizationV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		PatchesJson6902 *[]struct {
-			Target *struct {
-				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+		Decryption *struct {
+			Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
 
-				LabelSelector *string `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
-
+			SecretRef *struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-				Version *string `tfsdk:"version" yaml:"version,omitempty"`
-
-				AnnotationSelector *string `tfsdk:"annotation_selector" yaml:"annotationSelector,omitempty"`
-
-				Group *string `tfsdk:"group" yaml:"group,omitempty"`
-			} `tfsdk:"target" yaml:"target,omitempty"`
-
-			Patch *[]struct {
-				From *string `tfsdk:"from" yaml:"from,omitempty"`
-
-				Op *string `tfsdk:"op" yaml:"op,omitempty"`
-
-				Path *string `tfsdk:"path" yaml:"path,omitempty"`
-
-				Value *map[string]string `tfsdk:"value" yaml:"value,omitempty"`
-			} `tfsdk:"patch" yaml:"patch,omitempty"`
-		} `tfsdk:"patches_json6902" yaml:"patchesJson6902,omitempty"`
-
-		PostBuild *struct {
-			Substitute *map[string]string `tfsdk:"substitute" yaml:"substitute,omitempty"`
-
-			SubstituteFrom *[]struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-			} `tfsdk:"substitute_from" yaml:"substituteFrom,omitempty"`
-		} `tfsdk:"post_build" yaml:"postBuild,omitempty"`
+			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+		} `tfsdk:"decryption" yaml:"decryption,omitempty"`
 
 		DependsOn *[]struct {
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 		} `tfsdk:"depends_on" yaml:"dependsOn,omitempty"`
+
+		Force *bool `tfsdk:"force" yaml:"force,omitempty"`
 
 		HealthChecks *[]struct {
 			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
@@ -104,9 +76,17 @@ type KustomizeToolkitFluxcdIoKustomizationV1Beta1GoModel struct {
 			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 		} `tfsdk:"health_checks" yaml:"healthChecks,omitempty"`
 
-		PatchesStrategicMerge *[]string `tfsdk:"patches_strategic_merge" yaml:"patchesStrategicMerge,omitempty"`
+		Images *[]struct {
+			Digest *string `tfsdk:"digest" yaml:"digest,omitempty"`
 
-		Path *string `tfsdk:"path" yaml:"path,omitempty"`
+			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			NewName *string `tfsdk:"new_name" yaml:"newName,omitempty"`
+
+			NewTag *string `tfsdk:"new_tag" yaml:"newTag,omitempty"`
+		} `tfsdk:"images" yaml:"images,omitempty"`
+
+		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 
 		KubeConfig *struct {
 			SecretRef *struct {
@@ -114,28 +94,12 @@ type KustomizeToolkitFluxcdIoKustomizationV1Beta1GoModel struct {
 			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 		} `tfsdk:"kube_config" yaml:"kubeConfig,omitempty"`
 
-		Prune *bool `tfsdk:"prune" yaml:"prune,omitempty"`
-
-		RetryInterval *string `tfsdk:"retry_interval" yaml:"retryInterval,omitempty"`
-
-		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
-
-		TargetNamespace *string `tfsdk:"target_namespace" yaml:"targetNamespace,omitempty"`
-
-		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
-
-		Decryption *struct {
-			SecretRef *struct {
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
-
-			Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
-		} `tfsdk:"decryption" yaml:"decryption,omitempty"`
-
-		Force *bool `tfsdk:"force" yaml:"force,omitempty"`
-
 		Patches *[]struct {
+			Patch *string `tfsdk:"patch" yaml:"patch,omitempty"`
+
 			Target *struct {
+				AnnotationSelector *string `tfsdk:"annotation_selector" yaml:"annotationSelector,omitempty"`
+
 				Group *string `tfsdk:"group" yaml:"group,omitempty"`
 
 				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
@@ -147,12 +111,56 @@ type KustomizeToolkitFluxcdIoKustomizationV1Beta1GoModel struct {
 				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 
 				Version *string `tfsdk:"version" yaml:"version,omitempty"`
-
-				AnnotationSelector *string `tfsdk:"annotation_selector" yaml:"annotationSelector,omitempty"`
 			} `tfsdk:"target" yaml:"target,omitempty"`
-
-			Patch *string `tfsdk:"patch" yaml:"patch,omitempty"`
 		} `tfsdk:"patches" yaml:"patches,omitempty"`
+
+		PatchesJson6902 *[]struct {
+			Patch *[]struct {
+				From *string `tfsdk:"from" yaml:"from,omitempty"`
+
+				Op *string `tfsdk:"op" yaml:"op,omitempty"`
+
+				Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+				Value *map[string]string `tfsdk:"value" yaml:"value,omitempty"`
+			} `tfsdk:"patch" yaml:"patch,omitempty"`
+
+			Target *struct {
+				AnnotationSelector *string `tfsdk:"annotation_selector" yaml:"annotationSelector,omitempty"`
+
+				Group *string `tfsdk:"group" yaml:"group,omitempty"`
+
+				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+				LabelSelector *string `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+
+				Version *string `tfsdk:"version" yaml:"version,omitempty"`
+			} `tfsdk:"target" yaml:"target,omitempty"`
+		} `tfsdk:"patches_json6902" yaml:"patchesJson6902,omitempty"`
+
+		PatchesStrategicMerge *[]string `tfsdk:"patches_strategic_merge" yaml:"patchesStrategicMerge,omitempty"`
+
+		Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+		PostBuild *struct {
+			Substitute *map[string]string `tfsdk:"substitute" yaml:"substitute,omitempty"`
+
+			SubstituteFrom *[]struct {
+				Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"substitute_from" yaml:"substituteFrom,omitempty"`
+		} `tfsdk:"post_build" yaml:"postBuild,omitempty"`
+
+		Prune *bool `tfsdk:"prune" yaml:"prune,omitempty"`
+
+		RetryInterval *string `tfsdk:"retry_interval" yaml:"retryInterval,omitempty"`
+
+		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
 
 		SourceRef *struct {
 			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
@@ -166,19 +174,11 @@ type KustomizeToolkitFluxcdIoKustomizationV1Beta1GoModel struct {
 
 		Suspend *bool `tfsdk:"suspend" yaml:"suspend,omitempty"`
 
+		TargetNamespace *string `tfsdk:"target_namespace" yaml:"targetNamespace,omitempty"`
+
+		Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+
 		Validation *string `tfsdk:"validation" yaml:"validation,omitempty"`
-
-		Images *[]struct {
-			Digest *string `tfsdk:"digest" yaml:"digest,omitempty"`
-
-			Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-			NewName *string `tfsdk:"new_name" yaml:"newName,omitempty"`
-
-			NewTag *string `tfsdk:"new_tag" yaml:"newTag,omitempty"`
-		} `tfsdk:"images" yaml:"images,omitempty"`
-
-		Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -279,200 +279,32 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) GetSchema(_ conte
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"patches_json6902": {
-						Description:         "JSON 6902 patches, defined as inline YAML objects.",
-						MarkdownDescription: "JSON 6902 patches, defined as inline YAML objects.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"target": {
-								Description:         "Target points to the resources that the patch document should be applied to.",
-								MarkdownDescription: "Target points to the resources that the patch document should be applied to.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"kind": {
-										Description:         "Kind of the API Group to select resources from. Together with Group and Version it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-										MarkdownDescription: "Kind of the API Group to select resources from. Together with Group and Version it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"label_selector": {
-										Description:         "LabelSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource labels.",
-										MarkdownDescription: "LabelSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource labels.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "Name to match resources with.",
-										MarkdownDescription: "Name to match resources with.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"namespace": {
-										Description:         "Namespace to select resources from.",
-										MarkdownDescription: "Namespace to select resources from.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"version": {
-										Description:         "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-										MarkdownDescription: "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"annotation_selector": {
-										Description:         "AnnotationSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource annotations.",
-										MarkdownDescription: "AnnotationSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource annotations.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"group": {
-										Description:         "Group is the API group to select resources from. Together with Version and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-										MarkdownDescription: "Group is the API group to select resources from. Together with Version and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"patch": {
-								Description:         "Patch contains the JSON6902 patch document with an array of operation objects.",
-								MarkdownDescription: "Patch contains the JSON6902 patch document with an array of operation objects.",
-
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-									"from": {
-										Description:         "From contains a JSON-pointer value that references a location within the target document where the operation is performed. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.",
-										MarkdownDescription: "From contains a JSON-pointer value that references a location within the target document where the operation is performed. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"op": {
-										Description:         "Op indicates the operation to perform. Its value MUST be one of 'add', 'remove', 'replace', 'move', 'copy', or 'test'. https://datatracker.ietf.org/doc/html/rfc6902#section-4",
-										MarkdownDescription: "Op indicates the operation to perform. Its value MUST be one of 'add', 'remove', 'replace', 'move', 'copy', or 'test'. https://datatracker.ietf.org/doc/html/rfc6902#section-4",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"path": {
-										Description:         "Path contains the JSON-pointer value that references a location within the target document where the operation is performed. The meaning of the value depends on the value of Op.",
-										MarkdownDescription: "Path contains the JSON-pointer value that references a location within the target document where the operation is performed. The meaning of the value depends on the value of Op.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"value": {
-										Description:         "Value contains a valid JSON structure. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.",
-										MarkdownDescription: "Value contains a valid JSON structure. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"post_build": {
-						Description:         "PostBuild describes which actions to perform on the YAML manifest generated by building the kustomize overlay.",
-						MarkdownDescription: "PostBuild describes which actions to perform on the YAML manifest generated by building the kustomize overlay.",
+					"decryption": {
+						Description:         "Decrypt Kubernetes secrets before applying them on the cluster.",
+						MarkdownDescription: "Decrypt Kubernetes secrets before applying them on the cluster.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"substitute": {
-								Description:         "Substitute holds a map of key/value pairs. The variables defined in your YAML manifests that match any of the keys defined in the map will be substituted with the set value. Includes support for bash string replacement functions e.g. ${var:=default}, ${var:position} and ${var/substring/replacement}.",
-								MarkdownDescription: "Substitute holds a map of key/value pairs. The variables defined in your YAML manifests that match any of the keys defined in the map will be substituted with the set value. Includes support for bash string replacement functions e.g. ${var:=default}, ${var:position} and ${var/substring/replacement}.",
+							"provider": {
+								Description:         "Provider is the name of the decryption engine.",
+								MarkdownDescription: "Provider is the name of the decryption engine.",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: types.StringType,
 
-								Required: false,
-								Optional: true,
+								Required: true,
+								Optional: false,
 								Computed: false,
 							},
 
-							"substitute_from": {
-								Description:         "SubstituteFrom holds references to ConfigMaps and Secrets containing the variables and their values to be substituted in the YAML manifests. The ConfigMap and the Secret data keys represent the var names and they must match the vars declared in the manifests for the substitution to happen.",
-								MarkdownDescription: "SubstituteFrom holds references to ConfigMaps and Secrets containing the variables and their values to be substituted in the YAML manifests. The ConfigMap and the Secret data keys represent the var names and they must match the vars declared in the manifests for the substitution to happen.",
+							"secret_ref": {
+								Description:         "The secret name containing the private OpenPGP keys used for decryption.",
+								MarkdownDescription: "The secret name containing the private OpenPGP keys used for decryption.",
 
-								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 									"name": {
-										Description:         "Name of the values referent. Should reside in the same namespace as the referring resource.",
-										MarkdownDescription: "Name of the values referent. Should reside in the same namespace as the referring resource.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"kind": {
-										Description:         "Kind of the values referent, valid values are ('Secret', 'ConfigMap').",
-										MarkdownDescription: "Kind of the values referent, valid values are ('Secret', 'ConfigMap').",
+										Description:         "Name of the referent.",
+										MarkdownDescription: "Name of the referent.",
 
 										Type: types.StringType,
 
@@ -521,6 +353,17 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) GetSchema(_ conte
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"force": {
+						Description:         "Force instructs the controller to recreate resources when patching fails due to an immutable field change.",
+						MarkdownDescription: "Force instructs the controller to recreate resources when patching fails due to an immutable field change.",
+
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
@@ -583,25 +426,70 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) GetSchema(_ conte
 						Computed: false,
 					},
 
-					"patches_strategic_merge": {
-						Description:         "Strategic merge patches, defined as inline YAML objects.",
-						MarkdownDescription: "Strategic merge patches, defined as inline YAML objects.",
+					"images": {
+						Description:         "Images is a list of (image name, new name, new tag or digest) for changing image names, tags or digests. This can also be achieved with a patch, but this operator is simpler to specify.",
+						MarkdownDescription: "Images is a list of (image name, new name, new tag or digest) for changing image names, tags or digests. This can also be achieved with a patch, but this operator is simpler to specify.",
 
-						Type: types.ListType{ElemType: types.StringType},
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"digest": {
+								Description:         "Digest is the value used to replace the original image tag. If digest is present NewTag value is ignored.",
+								MarkdownDescription: "Digest is the value used to replace the original image tag. If digest is present NewTag value is ignored.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"name": {
+								Description:         "Name is a tag-less image name.",
+								MarkdownDescription: "Name is a tag-less image name.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"new_name": {
+								Description:         "NewName is the value used to replace the original name.",
+								MarkdownDescription: "NewName is the value used to replace the original name.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"new_tag": {
+								Description:         "NewTag is the value used to replace the original tag.",
+								MarkdownDescription: "NewTag is the value used to replace the original tag.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
 						Computed: false,
 					},
 
-					"path": {
-						Description:         "Path to the directory containing the kustomization.yaml file, or the set of plain YAMLs a kustomization.yaml should be generated for. Defaults to 'None', which translates to the root path of the SourceRef.",
-						MarkdownDescription: "Path to the directory containing the kustomization.yaml file, or the set of plain YAMLs a kustomization.yaml should be generated for. Defaults to 'None', which translates to the root path of the SourceRef.",
+					"interval": {
+						Description:         "The interval at which to reconcile the Kustomization.",
+						MarkdownDescription: "The interval at which to reconcile the Kustomization.",
 
 						Type: types.StringType,
 
-						Required: false,
-						Optional: true,
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 
@@ -640,129 +528,39 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) GetSchema(_ conte
 						Computed: false,
 					},
 
-					"prune": {
-						Description:         "Prune enables garbage collection.",
-						MarkdownDescription: "Prune enables garbage collection.",
-
-						Type: types.BoolType,
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"retry_interval": {
-						Description:         "The interval at which to retry a previously failed reconciliation. When not specified, the controller uses the KustomizationSpec.Interval value to retry failures.",
-						MarkdownDescription: "The interval at which to retry a previously failed reconciliation. When not specified, the controller uses the KustomizationSpec.Interval value to retry failures.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"service_account_name": {
-						Description:         "The name of the Kubernetes service account to impersonate when reconciling this Kustomization.",
-						MarkdownDescription: "The name of the Kubernetes service account to impersonate when reconciling this Kustomization.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"target_namespace": {
-						Description:         "TargetNamespace sets or overrides the namespace in the kustomization.yaml file.",
-						MarkdownDescription: "TargetNamespace sets or overrides the namespace in the kustomization.yaml file.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"timeout": {
-						Description:         "Timeout for validation, apply and health checking operations. Defaults to 'Interval' duration.",
-						MarkdownDescription: "Timeout for validation, apply and health checking operations. Defaults to 'Interval' duration.",
-
-						Type: types.StringType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"decryption": {
-						Description:         "Decrypt Kubernetes secrets before applying them on the cluster.",
-						MarkdownDescription: "Decrypt Kubernetes secrets before applying them on the cluster.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"secret_ref": {
-								Description:         "The secret name containing the private OpenPGP keys used for decryption.",
-								MarkdownDescription: "The secret name containing the private OpenPGP keys used for decryption.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"name": {
-										Description:         "Name of the referent.",
-										MarkdownDescription: "Name of the referent.",
-
-										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"provider": {
-								Description:         "Provider is the name of the decryption engine.",
-								MarkdownDescription: "Provider is the name of the decryption engine.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"force": {
-						Description:         "Force instructs the controller to recreate resources when patching fails due to an immutable field change.",
-						MarkdownDescription: "Force instructs the controller to recreate resources when patching fails due to an immutable field change.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"patches": {
 						Description:         "Strategic merge and JSON patches, defined as inline YAML objects, capable of targeting objects based on kind, label and annotation selectors.",
 						MarkdownDescription: "Strategic merge and JSON patches, defined as inline YAML objects, capable of targeting objects based on kind, label and annotation selectors.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
+							"patch": {
+								Description:         "Patch contains an inline StrategicMerge patch or an inline JSON6902 patch with an array of operation objects.",
+								MarkdownDescription: "Patch contains an inline StrategicMerge patch or an inline JSON6902 patch with an array of operation objects.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"target": {
 								Description:         "Target points to the resources that the patch document should be applied to.",
 								MarkdownDescription: "Target points to the resources that the patch document should be applied to.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"annotation_selector": {
+										Description:         "AnnotationSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource annotations.",
+										MarkdownDescription: "AnnotationSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource annotations.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 
 									"group": {
 										Description:         "Group is the API group to select resources from. Together with Version and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
@@ -829,6 +627,86 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) GetSchema(_ conte
 										Optional: true,
 										Computed: false,
 									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"patches_json6902": {
+						Description:         "JSON 6902 patches, defined as inline YAML objects.",
+						MarkdownDescription: "JSON 6902 patches, defined as inline YAML objects.",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"patch": {
+								Description:         "Patch contains the JSON6902 patch document with an array of operation objects.",
+								MarkdownDescription: "Patch contains the JSON6902 patch document with an array of operation objects.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"from": {
+										Description:         "From contains a JSON-pointer value that references a location within the target document where the operation is performed. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.",
+										MarkdownDescription: "From contains a JSON-pointer value that references a location within the target document where the operation is performed. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"op": {
+										Description:         "Op indicates the operation to perform. Its value MUST be one of 'add', 'remove', 'replace', 'move', 'copy', or 'test'. https://datatracker.ietf.org/doc/html/rfc6902#section-4",
+										MarkdownDescription: "Op indicates the operation to perform. Its value MUST be one of 'add', 'remove', 'replace', 'move', 'copy', or 'test'. https://datatracker.ietf.org/doc/html/rfc6902#section-4",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"path": {
+										Description:         "Path contains the JSON-pointer value that references a location within the target document where the operation is performed. The meaning of the value depends on the value of Op.",
+										MarkdownDescription: "Path contains the JSON-pointer value that references a location within the target document where the operation is performed. The meaning of the value depends on the value of Op.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"value": {
+										Description:         "Value contains a valid JSON structure. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.",
+										MarkdownDescription: "Value contains a valid JSON structure. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"target": {
+								Description:         "Target points to the resources that the patch document should be applied to.",
+								MarkdownDescription: "Target points to the resources that the patch document should be applied to.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 									"annotation_selector": {
 										Description:         "AnnotationSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource annotations.",
@@ -840,24 +718,191 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) GetSchema(_ conte
 										Optional: true,
 										Computed: false,
 									},
+
+									"group": {
+										Description:         "Group is the API group to select resources from. Together with Version and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+										MarkdownDescription: "Group is the API group to select resources from. Together with Version and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"kind": {
+										Description:         "Kind of the API Group to select resources from. Together with Group and Version it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+										MarkdownDescription: "Kind of the API Group to select resources from. Together with Group and Version it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"label_selector": {
+										Description:         "LabelSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource labels.",
+										MarkdownDescription: "LabelSelector is a string that follows the label selection expression https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#api It matches with the resource labels.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name to match resources with.",
+										MarkdownDescription: "Name to match resources with.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"namespace": {
+										Description:         "Namespace to select resources from.",
+										MarkdownDescription: "Namespace to select resources from.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"version": {
+										Description:         "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+										MarkdownDescription: "Version of the API Group to select resources from. Together with Group and Kind it is capable of unambiguously identifying and/or selecting resources. https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/api-group.md",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"patches_strategic_merge": {
+						Description:         "Strategic merge patches, defined as inline YAML objects.",
+						MarkdownDescription: "Strategic merge patches, defined as inline YAML objects.",
+
+						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"path": {
+						Description:         "Path to the directory containing the kustomization.yaml file, or the set of plain YAMLs a kustomization.yaml should be generated for. Defaults to 'None', which translates to the root path of the SourceRef.",
+						MarkdownDescription: "Path to the directory containing the kustomization.yaml file, or the set of plain YAMLs a kustomization.yaml should be generated for. Defaults to 'None', which translates to the root path of the SourceRef.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"post_build": {
+						Description:         "PostBuild describes which actions to perform on the YAML manifest generated by building the kustomize overlay.",
+						MarkdownDescription: "PostBuild describes which actions to perform on the YAML manifest generated by building the kustomize overlay.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"substitute": {
+								Description:         "Substitute holds a map of key/value pairs. The variables defined in your YAML manifests that match any of the keys defined in the map will be substituted with the set value. Includes support for bash string replacement functions e.g. ${var:=default}, ${var:position} and ${var/substring/replacement}.",
+								MarkdownDescription: "Substitute holds a map of key/value pairs. The variables defined in your YAML manifests that match any of the keys defined in the map will be substituted with the set value. Includes support for bash string replacement functions e.g. ${var:=default}, ${var:position} and ${var/substring/replacement}.",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"substitute_from": {
+								Description:         "SubstituteFrom holds references to ConfigMaps and Secrets containing the variables and their values to be substituted in the YAML manifests. The ConfigMap and the Secret data keys represent the var names and they must match the vars declared in the manifests for the substitution to happen.",
+								MarkdownDescription: "SubstituteFrom holds references to ConfigMaps and Secrets containing the variables and their values to be substituted in the YAML manifests. The ConfigMap and the Secret data keys represent the var names and they must match the vars declared in the manifests for the substitution to happen.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"kind": {
+										Description:         "Kind of the values referent, valid values are ('Secret', 'ConfigMap').",
+										MarkdownDescription: "Kind of the values referent, valid values are ('Secret', 'ConfigMap').",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "Name of the values referent. Should reside in the same namespace as the referring resource.",
+										MarkdownDescription: "Name of the values referent. Should reside in the same namespace as the referring resource.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
 								}),
 
 								Required: false,
 								Optional: true,
 								Computed: false,
 							},
-
-							"patch": {
-								Description:         "Patch contains an inline StrategicMerge patch or an inline JSON6902 patch with an array of operation objects.",
-								MarkdownDescription: "Patch contains an inline StrategicMerge patch or an inline JSON6902 patch with an array of operation objects.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"prune": {
+						Description:         "Prune enables garbage collection.",
+						MarkdownDescription: "Prune enables garbage collection.",
+
+						Type: types.BoolType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
+
+					"retry_interval": {
+						Description:         "The interval at which to retry a previously failed reconciliation. When not specified, the controller uses the KustomizationSpec.Interval value to retry failures.",
+						MarkdownDescription: "The interval at which to retry a previously failed reconciliation. When not specified, the controller uses the KustomizationSpec.Interval value to retry failures.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"service_account_name": {
+						Description:         "The name of the Kubernetes service account to impersonate when reconciling this Kustomization.",
+						MarkdownDescription: "The name of the Kubernetes service account to impersonate when reconciling this Kustomization.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -931,6 +976,28 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) GetSchema(_ conte
 						Computed: false,
 					},
 
+					"target_namespace": {
+						Description:         "TargetNamespace sets or overrides the namespace in the kustomization.yaml file.",
+						MarkdownDescription: "TargetNamespace sets or overrides the namespace in the kustomization.yaml file.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"timeout": {
+						Description:         "Timeout for validation, apply and health checking operations. Defaults to 'Interval' duration.",
+						MarkdownDescription: "Timeout for validation, apply and health checking operations. Defaults to 'Interval' duration.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"validation": {
 						Description:         "Validate the Kubernetes objects before applying them on the cluster. The validation strategy can be 'client' (local dry-run), 'server' (APIServer dry-run) or 'none'. When 'Force' is 'true', validation will fallback to 'client' if set to 'server' because server-side validation is not supported in this scenario.",
 						MarkdownDescription: "Validate the Kubernetes objects before applying them on the cluster. The validation strategy can be 'client' (local dry-run), 'server' (APIServer dry-run) or 'none'. When 'Force' is 'true', validation will fallback to 'client' if set to 'server' because server-side validation is not supported in this scenario.",
@@ -939,73 +1006,6 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) GetSchema(_ conte
 
 						Required: false,
 						Optional: true,
-						Computed: false,
-					},
-
-					"images": {
-						Description:         "Images is a list of (image name, new name, new tag or digest) for changing image names, tags or digests. This can also be achieved with a patch, but this operator is simpler to specify.",
-						MarkdownDescription: "Images is a list of (image name, new name, new tag or digest) for changing image names, tags or digests. This can also be achieved with a patch, but this operator is simpler to specify.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"digest": {
-								Description:         "Digest is the value used to replace the original image tag. If digest is present NewTag value is ignored.",
-								MarkdownDescription: "Digest is the value used to replace the original image tag. If digest is present NewTag value is ignored.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"name": {
-								Description:         "Name is a tag-less image name.",
-								MarkdownDescription: "Name is a tag-less image name.",
-
-								Type: types.StringType,
-
-								Required: true,
-								Optional: false,
-								Computed: false,
-							},
-
-							"new_name": {
-								Description:         "NewName is the value used to replace the original name.",
-								MarkdownDescription: "NewName is the value used to replace the original name.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"new_tag": {
-								Description:         "NewTag is the value used to replace the original tag.",
-								MarkdownDescription: "NewTag is the value used to replace the original tag.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"interval": {
-						Description:         "The interval at which to reconcile the Kustomization.",
-						MarkdownDescription: "The interval at which to reconcile the Kustomization.",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
 						Computed: false,
 					},
 				}),
