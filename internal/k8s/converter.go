@@ -14,6 +14,7 @@ import (
 	"k8s.io/utils/strings/slices"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"unicode"
 )
@@ -344,6 +345,11 @@ func Validators(prop apiextensionsv1.JSONSchemaProps, uv *UsedValidators) []stri
 		validators = append(validators, fmt.Sprintf("int64validator.AtMost(%v)", maxValue(prop)))
 		uv.Int64Validator = true
 	}
+	if prop.Type == "integer" && len(prop.Enum) > 0 {
+		enums := intEnums(prop.Enum)
+		validators = append(validators, fmt.Sprintf("int64validator.OneOf(%v)", concatEnums(enums)))
+		uv.Int64Validator = true
+	}
 	if prop.Type == "number" && prop.Minimum != nil {
 		validators = append(validators, fmt.Sprintf("float64validator.AtLeast(%v)", minValue(prop)))
 		uv.Float64Validator = true
@@ -378,6 +384,21 @@ func stringEnums(enums []apiextensionsv1.JSON) []string {
 	for _, val := range enums {
 		if str := string(val.Raw); str != "" {
 			values = append(values, str)
+		}
+	}
+
+	return values
+}
+
+func intEnums(enums []apiextensionsv1.JSON) []int64 {
+	var values []int64
+
+	for _, val := range enums {
+		if str := string(val.Raw); str != "" {
+			i, err := strconv.ParseInt(str, 10, 64)
+			if err == nil {
+				values = append(values, i)
+			}
 		}
 	}
 
