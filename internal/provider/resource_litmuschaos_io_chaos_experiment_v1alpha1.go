@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -717,6 +719,11 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(Namespaced|Cluster)$`), ""),
+								},
 							},
 
 							"secrets": {

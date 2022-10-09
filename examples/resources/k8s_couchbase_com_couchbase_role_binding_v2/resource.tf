@@ -6,7 +6,7 @@ resource "k8s_couchbase_com_couchbase_role_binding_v2" "minimal" {
   spec = {
     subjects = []
     role_ref = {
-      kind = "some-kind"
+      kind = "CouchbaseGroup"
       name = "some-name"
     }
   }

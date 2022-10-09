@@ -33,7 +33,6 @@ resource "k8s_acid_zalan_do_postgresql_v1" "big" {
       s3_force_path_style  = true
       s3_secret_access_key = "hunter2 huntering"
       s3_wal_path          = "wals/abc"
-      timestamp            = "123"
       uid                  = "abc"
     }
     databases = {
@@ -55,7 +54,7 @@ resource "k8s_acid_zalan_do_postgresql_v1" "big" {
     additional_volumes  = []
     number_of_instances = 3
     postgresql = {
-      version = "13.0"
+      version = "13"
     }
     team_id = "abc"
     volume = {
@@ -77,7 +76,7 @@ resource "k8s_acid_zalan_do_postgresql_v1" "small" {
   spec = {
     number_of_instances = 3
     postgresql = {
-      version = "13.0"
+      version = "9.6"
     }
     team_id = "abc"
     volume = {

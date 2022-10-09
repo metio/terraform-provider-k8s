@@ -40,6 +40,7 @@ type UsedValidators struct {
 	Int64Validator   bool
 	Float64Validator bool
 	StringValidator  bool
+	Regex            bool
 }
 
 type Property struct {
@@ -378,6 +379,11 @@ func Validators(prop apiextensionsv1.JSONSchemaProps, uv *UsedValidators) []stri
 		enums := stringEnums(prop.Enum)
 		validators = append(validators, fmt.Sprintf("stringvalidator.OneOf(%s)", concatEnums(enums)))
 		uv.StringValidator = true
+	}
+	if prop.Type == "string" && prop.Pattern != "" {
+		validators = append(validators, fmt.Sprintf(`stringvalidator.RegexMatches(regexp.MustCompile(%c%s%c), "")`, '`', prop.Pattern, '`'))
+		uv.StringValidator = true
+		uv.Regex = true
 	}
 
 	return validators

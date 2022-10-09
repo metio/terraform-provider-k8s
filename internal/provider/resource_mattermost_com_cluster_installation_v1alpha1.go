@@ -8,6 +8,10 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -1996,6 +2000,11 @@ func (r *MattermostComClusterInstallationV1Alpha1Resource) GetSchema(_ context.C
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$`), ""),
+								},
 							},
 
 							"type": {
@@ -2693,6 +2702,11 @@ func (r *MattermostComClusterInstallationV1Alpha1Resource) GetSchema(_ context.C
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$`), ""),
+								},
 							},
 						}),
 

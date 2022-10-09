@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -4115,6 +4117,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+										},
 									},
 
 									"tls_config": {
@@ -7124,6 +7131,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`(^0|([0-9]*[.])?[0-9]+((K|M|G|T|E|P)i?)?B)$`), ""),
+						},
 					},
 
 					"enforced_label_limit": {
@@ -7201,6 +7213,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+						},
 					},
 
 					"excluded_from_enforcement": {
@@ -9956,6 +9973,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+								},
 							},
 						}),
 
@@ -10434,6 +10456,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+								},
 							},
 
 							"required_matchers": {
@@ -11026,6 +11053,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+										},
 									},
 								}),
 
@@ -11373,6 +11405,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+								},
 							},
 
 							"send_exemplars": {
@@ -12013,6 +12050,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+						},
 					},
 
 					"retention_size": {
@@ -12024,6 +12066,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`(^0|([0-9]*[.])?[0-9]+((K|M|G|T|E|P)i?)?B)$`), ""),
+						},
 					},
 
 					"route_prefix": {
@@ -12239,6 +12286,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+						},
 					},
 
 					"scrape_timeout": {
@@ -12250,6 +12302,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+						},
 					},
 
 					"secrets": {
@@ -14015,6 +14072,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+								},
 							},
 
 							"resources": {

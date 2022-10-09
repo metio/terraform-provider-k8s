@@ -10,6 +10,10 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -233,6 +237,11 @@ func (r *CrdProjectcalicoOrgBGPConfigurationV1Resource) GetSchema(_ context.Cont
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+):(\d+)$|^(\d+):(\d+):(\d+)$`), ""),
+								},
 							},
 						}),
 

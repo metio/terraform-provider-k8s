@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -501,6 +503,11 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta2Resource) GetSchema(_ conte
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$`), ""),
+						},
 					},
 
 					"kube_config": {
@@ -945,6 +952,11 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta2Resource) GetSchema(_ conte
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$`), ""),
+						},
 					},
 
 					"service_account_name": {
@@ -1057,6 +1069,11 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta2Resource) GetSchema(_ conte
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m))+$`), ""),
+						},
 					},
 
 					"validation": {

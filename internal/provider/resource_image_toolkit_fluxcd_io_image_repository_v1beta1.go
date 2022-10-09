@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -263,6 +265,11 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta1Resource) GetSchema(_ context
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$`), ""),
+						},
 					},
 
 					"secret_ref": {
@@ -324,6 +331,11 @@ func (r *ImageToolkitFluxcdIoImageRepositoryV1Beta1Resource) GetSchema(_ context
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m))+$`), ""),
+						},
 					},
 				}),
 

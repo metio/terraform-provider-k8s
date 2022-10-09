@@ -4,6 +4,6 @@ resource "k8s_couchbase_com_couchbase_user_v2" "minimal" {
     namespace = "some-namespace"
   }
   spec = {
-    auth_domain = "some-domain"
+    auth_domain = "local"
   }
 }

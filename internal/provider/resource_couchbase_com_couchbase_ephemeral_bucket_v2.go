@@ -12,6 +12,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -287,6 +289,11 @@ func (r *CouchbaseComCouchbaseEphemeralBucketV2Resource) GetSchema(_ context.Con
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+						},
 					},
 
 					"minimum_durability": {
@@ -318,6 +325,8 @@ func (r *CouchbaseComCouchbaseEphemeralBucketV2Resource) GetSchema(_ context.Con
 						Validators: []tfsdk.AttributeValidator{
 
 							stringvalidator.LengthAtMost(100),
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9-_%\.]{1,100}$`), ""),
 						},
 					},
 
@@ -393,6 +402,8 @@ func (r *CouchbaseComCouchbaseEphemeralBucketV2Resource) GetSchema(_ context.Con
 											stringvalidator.LengthAtLeast(1),
 
 											stringvalidator.LengthAtMost(251),
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9\-][a-zA-Z0-9\-%_]{0,250}$`), ""),
 										},
 									},
 								}),

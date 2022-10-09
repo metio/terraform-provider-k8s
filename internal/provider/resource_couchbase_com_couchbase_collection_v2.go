@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -178,6 +180,8 @@ func (r *CouchbaseComCouchbaseCollectionV2Resource) GetSchema(_ context.Context)
 							stringvalidator.LengthAtLeast(1),
 
 							stringvalidator.LengthAtMost(251),
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9\-][a-zA-Z0-9\-%_]{0,250}$`), ""),
 						},
 					},
 				}),

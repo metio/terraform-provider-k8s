@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -264,6 +266,11 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Resource) GetSchema(_ context.Context
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$`), ""),
+						},
 					},
 
 					"provider": {
@@ -336,6 +343,11 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Resource) GetSchema(_ context.Context
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m))+$`), ""),
+						},
 					},
 				}),
 

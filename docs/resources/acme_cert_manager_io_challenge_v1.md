@@ -35,7 +35,7 @@ resource "k8s_acme_cert_manager_io_challenge_v1" "big" {
       kind  = "dns"
       name  = "acme"
     }
-    type = "dns"
+    type = "DNS-01"
     solver = {
       selector = {
         match_labels = {
@@ -70,7 +70,7 @@ resource "k8s_acme_cert_manager_io_challenge_v1" "small" {
       kind  = "dns"
       name  = "acme"
     }
-    type = "dns"
+    type = "HTTP-01"
     solver = {
       selector = {
         match_labels = {

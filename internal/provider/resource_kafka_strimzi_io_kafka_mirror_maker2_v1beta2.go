@@ -12,6 +12,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -1272,6 +1274,11 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Resource) GetSchema(_ context.Con
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9\._\-]{1,100}$`), ""),
+								},
 							},
 
 							"authentication": {
@@ -2129,6 +2136,11 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Resource) GetSchema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+[mMgG]?$`), ""),
+								},
 							},
 
 							"___xmx": {
@@ -2140,6 +2152,11 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Resource) GetSchema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+[mMgG]?$`), ""),
+								},
 							},
 
 							"gc_logging_enabled": {
@@ -4753,6 +4770,11 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Resource) GetSchema(_ context.Con
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$`), ""),
+										},
 									},
 
 									"tolerations": {
@@ -7208,6 +7230,11 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Resource) GetSchema(_ context.Con
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$`), ""),
+										},
 									},
 
 									"tolerations": {
