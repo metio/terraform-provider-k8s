@@ -10,6 +10,9 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	"github.com/hashicorp/terraform-plugin-framework/path"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -914,6 +917,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
 							},
 
 							"alibaba": {
@@ -1062,6 +1098,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
 							},
 
 							"aws": {
@@ -1283,6 +1352,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
 							},
 
 							"azurekv": {
@@ -1507,6 +1609,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
 							},
 
 							"fake": {
@@ -1575,6 +1710,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
 							},
 
 							"gcpsm": {
@@ -1757,6 +1925,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
 							},
 
 							"gitlab": {
@@ -1860,6 +2061,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
 							},
 
 							"ibm": {
@@ -1917,6 +2151,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("secret_ref")),
+												},
 											},
 
 											"secret_ref": {
@@ -1974,6 +2213,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("container_auth")),
+												},
 											},
 										}),
 
@@ -1997,6 +2241,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
 							},
 
 							"kubernetes": {
@@ -2111,6 +2388,13 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("service_account")),
+
+													schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("token")),
+												},
 											},
 
 											"service_account": {
@@ -2156,6 +2440,13 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("cert")),
+
+													schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("token")),
+												},
 											},
 
 											"token": {
@@ -2213,6 +2504,13 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("cert")),
+
+													schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("service_account")),
+												},
 											},
 										}),
 
@@ -2336,6 +2634,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
 							},
 
 							"onepassword": {
@@ -2439,6 +2770,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
 							},
 
 							"oracle": {
@@ -2609,6 +2973,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
 							},
 
 							"senhasegura": {
@@ -2722,6 +3119,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
 							},
 
 							"vault": {
@@ -3481,6 +3911,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
 							},
 
 							"webhook": {
@@ -3716,6 +4179,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
 							},
 
 							"yandexcertificatemanager": {
@@ -3853,6 +4349,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
 							},
 
 							"yandexlockbox": {
@@ -3990,6 +4519,39 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+								},
 							},
 						}),
 
