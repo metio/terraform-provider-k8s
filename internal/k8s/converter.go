@@ -36,7 +36,8 @@ type TemplateData struct {
 }
 
 type UsedValidators struct {
-	Int64validator bool
+	Int64validator   bool
+	Float64validator bool
 }
 
 type Property struct {
@@ -335,21 +336,37 @@ func Validators(prop apiextensionsv1.JSONSchemaProps, uv *UsedValidators) []stri
 	validators := make([]string, 0)
 
 	if prop.Type == "integer" && prop.Minimum != nil {
-		min := *prop.Minimum
-		if prop.ExclusiveMinimum {
-			min = min + 1
-		}
-		validators = append(validators, fmt.Sprintf("int64validator.AtLeast(%v)", min))
+		validators = append(validators, fmt.Sprintf("int64validator.AtLeast(%v)", minValue(prop)))
 		uv.Int64validator = true
 	}
 	if prop.Type == "integer" && prop.Maximum != nil {
-		max := *prop.Maximum
-		if prop.ExclusiveMaximum {
-			max = max - 1
-		}
-		validators = append(validators, fmt.Sprintf("int64validator.AtMost(%v)", max))
+		validators = append(validators, fmt.Sprintf("int64validator.AtMost(%v)", maxValue(prop)))
 		uv.Int64validator = true
+	}
+	if prop.Type == "number" && prop.Minimum != nil {
+		validators = append(validators, fmt.Sprintf("float64validator.AtLeast(%v)", minValue(prop)))
+		uv.Float64validator = true
+	}
+	if prop.Type == "number" && prop.Maximum != nil {
+		validators = append(validators, fmt.Sprintf("float64validator.AtMost(%v)", maxValue(prop)))
+		uv.Float64validator = true
 	}
 
 	return validators
+}
+
+func maxValue(prop apiextensionsv1.JSONSchemaProps) float64 {
+	max := *prop.Maximum
+	if prop.ExclusiveMaximum {
+		max = max - 1
+	}
+	return max
+}
+
+func minValue(prop apiextensionsv1.JSONSchemaProps) float64 {
+	min := *prop.Minimum
+	if prop.ExclusiveMinimum {
+		min = min + 1
+	}
+	return min
 }
