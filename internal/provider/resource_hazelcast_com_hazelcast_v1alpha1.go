@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -836,6 +838,11 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(6),
+										},
 									},
 
 									"secret": {
@@ -847,6 +854,11 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 								}),
 
@@ -1959,6 +1971,11 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(6),
+										},
 									},
 
 									"secret": {
@@ -1970,6 +1987,11 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 								}),
 

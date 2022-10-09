@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -229,6 +231,13 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta1Resource) GetSchema(_ context.Co
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+
+									stringvalidator.LengthAtMost(53),
+								},
 							},
 
 							"namespace": {
@@ -240,6 +249,13 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta1Resource) GetSchema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+
+									stringvalidator.LengthAtMost(53),
+								},
 							},
 						}),
 

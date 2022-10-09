@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -757,6 +759,11 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtMost(64),
+								},
 							},
 
 							"private_key_secret_ref": {
@@ -1663,6 +1670,11 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 																Required: false,
 																Optional: true,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.LengthAtMost(253),
+																},
 															},
 
 															"kind": {
@@ -1674,6 +1686,13 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 																Required: false,
 																Optional: true,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.LengthAtLeast(1),
+
+																	stringvalidator.LengthAtMost(63),
+																},
 															},
 
 															"name": {
@@ -1685,6 +1704,13 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 																Required: true,
 																Optional: false,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.LengthAtLeast(1),
+
+																	stringvalidator.LengthAtMost(253),
+																},
 															},
 
 															"namespace": {
@@ -1696,6 +1722,13 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 																Required: false,
 																Optional: true,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.LengthAtLeast(1),
+
+																	stringvalidator.LengthAtMost(63),
+																},
 															},
 
 															"section_name": {
@@ -1707,6 +1740,13 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 																Required: false,
 																Optional: true,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.LengthAtLeast(1),
+
+																	stringvalidator.LengthAtMost(253),
+																},
 															},
 														}),
 

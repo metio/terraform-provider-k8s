@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -454,6 +456,13 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+
+													stringvalidator.LengthAtMost(253),
+												},
 											},
 
 											"namespace": {
@@ -465,6 +474,13 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+
+													stringvalidator.LengthAtMost(63),
+												},
 											},
 										}),
 
@@ -1145,6 +1161,13 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.LengthAtLeast(1),
+
+							stringvalidator.LengthAtMost(53),
+						},
 					},
 
 					"rollback": {
@@ -1256,6 +1279,13 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.LengthAtLeast(1),
+
+							stringvalidator.LengthAtMost(63),
+						},
 					},
 
 					"suspend": {
@@ -1278,6 +1308,13 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.LengthAtLeast(1),
+
+							stringvalidator.LengthAtMost(63),
+						},
 					},
 
 					"test": {
@@ -1596,6 +1633,13 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+
+									stringvalidator.LengthAtMost(253),
+								},
 							},
 
 							"optional": {
@@ -1618,6 +1662,11 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtMost(250),
+								},
 							},
 
 							"values_key": {
@@ -1629,6 +1678,11 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtMost(253),
+								},
 							},
 						}),
 

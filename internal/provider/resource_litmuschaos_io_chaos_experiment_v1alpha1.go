@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -291,6 +293,11 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 
 									"name": {
@@ -302,6 +309,11 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 								}),
 
@@ -540,6 +552,11 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 
 									"name": {
@@ -551,6 +568,11 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 
 									"node_path": {
@@ -562,6 +584,11 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 								}),
 
@@ -707,6 +734,11 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 
 									"name": {
@@ -718,6 +750,11 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 								}),
 

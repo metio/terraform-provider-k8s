@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -6679,6 +6681,11 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(6),
+														},
 													},
 
 													"full": {
@@ -6690,6 +6697,11 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(6),
+														},
 													},
 
 													"incremental": {
@@ -6701,6 +6713,11 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(6),
+														},
 													},
 												}),
 
@@ -10314,6 +10331,11 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(6),
+														},
 													},
 
 													"full": {
@@ -10325,6 +10347,11 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(6),
+														},
 													},
 
 													"incremental": {
@@ -10336,6 +10363,11 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(6),
+														},
 													},
 												}),
 
@@ -22888,6 +22920,13 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+
+									stringvalidator.LengthAtMost(63),
+								},
 							},
 
 							"options": {

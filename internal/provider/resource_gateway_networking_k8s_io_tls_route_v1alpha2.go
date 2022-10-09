@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -204,6 +206,11 @@ func (r *GatewayNetworkingK8SIoTLSRouteV1Alpha2Resource) GetSchema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtMost(253),
+								},
 							},
 
 							"kind": {
@@ -215,6 +222,13 @@ func (r *GatewayNetworkingK8SIoTLSRouteV1Alpha2Resource) GetSchema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+
+									stringvalidator.LengthAtMost(63),
+								},
 							},
 
 							"name": {
@@ -226,6 +240,13 @@ func (r *GatewayNetworkingK8SIoTLSRouteV1Alpha2Resource) GetSchema(_ context.Con
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+
+									stringvalidator.LengthAtMost(253),
+								},
 							},
 
 							"namespace": {
@@ -237,6 +258,13 @@ func (r *GatewayNetworkingK8SIoTLSRouteV1Alpha2Resource) GetSchema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+
+									stringvalidator.LengthAtMost(63),
+								},
 							},
 
 							"section_name": {
@@ -248,6 +276,13 @@ func (r *GatewayNetworkingK8SIoTLSRouteV1Alpha2Resource) GetSchema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+
+									stringvalidator.LengthAtMost(253),
+								},
 							},
 						}),
 
@@ -277,6 +312,11 @@ func (r *GatewayNetworkingK8SIoTLSRouteV1Alpha2Resource) GetSchema(_ context.Con
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtMost(253),
+										},
 									},
 
 									"kind": {
@@ -288,6 +328,13 @@ func (r *GatewayNetworkingK8SIoTLSRouteV1Alpha2Resource) GetSchema(_ context.Con
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+
+											stringvalidator.LengthAtMost(63),
+										},
 									},
 
 									"name": {
@@ -299,6 +346,13 @@ func (r *GatewayNetworkingK8SIoTLSRouteV1Alpha2Resource) GetSchema(_ context.Con
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+
+											stringvalidator.LengthAtMost(253),
+										},
 									},
 
 									"namespace": {
@@ -310,6 +364,13 @@ func (r *GatewayNetworkingK8SIoTLSRouteV1Alpha2Resource) GetSchema(_ context.Con
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+
+											stringvalidator.LengthAtMost(63),
+										},
 									},
 
 									"port": {

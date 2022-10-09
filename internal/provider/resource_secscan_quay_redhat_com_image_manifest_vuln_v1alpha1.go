@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -193,6 +195,11 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+								},
 							},
 
 							"namespace_name": {
@@ -204,6 +211,11 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+								},
 							},
 
 							"version": {
@@ -215,6 +227,11 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+								},
 							},
 
 							"versionformat": {
@@ -226,6 +243,11 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+								},
 							},
 
 							"vulnerabilities": {
@@ -243,6 +265,11 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 
 									"fixedby": {
@@ -254,6 +281,11 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 
 									"link": {
@@ -265,6 +297,11 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 
 									"metadata": {
@@ -276,6 +313,11 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 
 									"name": {
@@ -287,6 +329,11 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 
 									"namespace_name": {
@@ -298,6 +345,11 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 
 									"severity": {
@@ -309,6 +361,11 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 								}),
 
@@ -332,6 +389,11 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.LengthAtLeast(1),
+						},
 					},
 
 					"manifest": {
@@ -343,6 +405,11 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.LengthAtLeast(1),
+						},
 					},
 
 					"namespace_name": {
@@ -354,6 +421,11 @@ func (r *SecscanQuayRedhatComImageManifestVulnV1Alpha1Resource) GetSchema(_ cont
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.LengthAtLeast(1),
+						},
 					},
 				}),
 

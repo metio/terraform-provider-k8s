@@ -36,8 +36,9 @@ type TemplateData struct {
 }
 
 type UsedValidators struct {
-	Int64validator   bool
-	Float64validator bool
+	Int64Validator   bool
+	Float64Validator bool
+	StringValidator  bool
 }
 
 type Property struct {
@@ -337,22 +338,30 @@ func Validators(prop apiextensionsv1.JSONSchemaProps, uv *UsedValidators) []stri
 
 	if prop.Type == "integer" && prop.Minimum != nil {
 		validators = append(validators, fmt.Sprintf("int64validator.AtLeast(%v)", minValue(prop)))
-		uv.Int64validator = true
+		uv.Int64Validator = true
 	}
 	if prop.Type == "integer" && prop.Maximum != nil {
 		validators = append(validators, fmt.Sprintf("int64validator.AtMost(%v)", maxValue(prop)))
-		uv.Int64validator = true
+		uv.Int64Validator = true
 	}
 	if prop.Type == "number" && prop.Minimum != nil {
 		validators = append(validators, fmt.Sprintf("float64validator.AtLeast(%v)", minValue(prop)))
-		uv.Float64validator = true
+		uv.Float64Validator = true
 	}
 	if prop.Type == "number" && prop.Maximum != nil {
 		validators = append(validators, fmt.Sprintf("float64validator.AtMost(%v)", maxValue(prop)))
-		uv.Float64validator = true
+		uv.Float64Validator = true
 	}
 	if prop.Type == "string" && prop.Format == "byte" {
 		validators = append(validators, "validators.Base64Validator()")
+	}
+	if prop.Type == "string" && prop.MinLength != nil {
+		validators = append(validators, fmt.Sprintf("stringvalidator.LengthAtLeast(%v)", *prop.MinLength))
+		uv.StringValidator = true
+	}
+	if prop.Type == "string" && prop.MaxLength != nil {
+		validators = append(validators, fmt.Sprintf("stringvalidator.LengthAtMost(%v)", *prop.MaxLength))
+		uv.StringValidator = true
 	}
 
 	return validators

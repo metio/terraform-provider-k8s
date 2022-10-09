@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -334,6 +336,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtMost(253),
+								},
 							},
 
 							"kind": {
@@ -345,6 +352,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+
+									stringvalidator.LengthAtMost(63),
+								},
 							},
 
 							"name": {
@@ -356,6 +370,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+
+									stringvalidator.LengthAtMost(253),
+								},
 							},
 
 							"namespace": {
@@ -367,6 +388,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+
+									stringvalidator.LengthAtMost(63),
+								},
 							},
 
 							"section_name": {
@@ -378,6 +406,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+
+									stringvalidator.LengthAtMost(253),
+								},
 							},
 						}),
 
@@ -419,6 +454,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtMost(253),
+														},
 													},
 
 													"kind": {
@@ -430,6 +470,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+
+															stringvalidator.LengthAtMost(63),
+														},
 													},
 
 													"name": {
@@ -441,6 +488,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+
+															stringvalidator.LengthAtMost(253),
+														},
 													},
 												}),
 
@@ -470,6 +524,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 																Required: true,
 																Optional: false,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.LengthAtLeast(1),
+
+																	stringvalidator.LengthAtMost(256),
+																},
 															},
 
 															"value": {
@@ -481,6 +542,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 																Required: true,
 																Optional: false,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.LengthAtLeast(1),
+
+																	stringvalidator.LengthAtMost(4096),
+																},
 															},
 														}),
 
@@ -515,6 +583,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 																Required: true,
 																Optional: false,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.LengthAtLeast(1),
+
+																	stringvalidator.LengthAtMost(256),
+																},
 															},
 
 															"value": {
@@ -526,6 +601,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 																Required: true,
 																Optional: false,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.LengthAtLeast(1),
+
+																	stringvalidator.LengthAtMost(4096),
+																},
 															},
 														}),
 
@@ -561,6 +643,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 																Required: false,
 																Optional: true,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.LengthAtMost(253),
+																},
 															},
 
 															"kind": {
@@ -572,6 +659,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 																Required: false,
 																Optional: true,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.LengthAtLeast(1),
+
+																	stringvalidator.LengthAtMost(63),
+																},
 															},
 
 															"name": {
@@ -583,6 +677,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 																Required: true,
 																Optional: false,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.LengthAtLeast(1),
+
+																	stringvalidator.LengthAtMost(253),
+																},
 															},
 
 															"namespace": {
@@ -594,6 +695,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 																Required: false,
 																Optional: true,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.LengthAtLeast(1),
+
+																	stringvalidator.LengthAtMost(63),
+																},
 															},
 
 															"port": {
@@ -641,6 +749,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+
+															stringvalidator.LengthAtMost(253),
+														},
 													},
 
 													"port": {
@@ -715,6 +830,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtMost(253),
+										},
 									},
 
 									"kind": {
@@ -726,6 +846,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+
+											stringvalidator.LengthAtMost(63),
+										},
 									},
 
 									"name": {
@@ -737,6 +864,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+
+											stringvalidator.LengthAtMost(253),
+										},
 									},
 
 									"namespace": {
@@ -748,6 +882,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+
+											stringvalidator.LengthAtMost(63),
+										},
 									},
 
 									"port": {
@@ -813,6 +954,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtMost(253),
+												},
 											},
 
 											"kind": {
@@ -824,6 +970,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+
+													stringvalidator.LengthAtMost(63),
+												},
 											},
 
 											"name": {
@@ -835,6 +988,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+
+													stringvalidator.LengthAtMost(253),
+												},
 											},
 										}),
 
@@ -864,6 +1024,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+
+															stringvalidator.LengthAtMost(256),
+														},
 													},
 
 													"value": {
@@ -875,6 +1042,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+
+															stringvalidator.LengthAtMost(4096),
+														},
 													},
 												}),
 
@@ -909,6 +1083,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+
+															stringvalidator.LengthAtMost(256),
+														},
 													},
 
 													"value": {
@@ -920,6 +1101,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+
+															stringvalidator.LengthAtMost(4096),
+														},
 													},
 												}),
 
@@ -955,6 +1143,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtMost(253),
+														},
 													},
 
 													"kind": {
@@ -966,6 +1159,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+
+															stringvalidator.LengthAtMost(63),
+														},
 													},
 
 													"name": {
@@ -977,6 +1177,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+
+															stringvalidator.LengthAtMost(253),
+														},
 													},
 
 													"namespace": {
@@ -988,6 +1195,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+
+															stringvalidator.LengthAtMost(63),
+														},
 													},
 
 													"port": {
@@ -1035,6 +1249,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+
+													stringvalidator.LengthAtMost(253),
+												},
 											},
 
 											"port": {
@@ -1121,6 +1342,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+
+													stringvalidator.LengthAtMost(256),
+												},
 											},
 
 											"type": {
@@ -1143,6 +1371,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+
+													stringvalidator.LengthAtMost(4096),
+												},
 											},
 										}),
 
@@ -1188,6 +1423,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtMost(1024),
+												},
 											},
 										}),
 
@@ -1211,6 +1451,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+
+													stringvalidator.LengthAtMost(256),
+												},
 											},
 
 											"type": {
@@ -1233,6 +1480,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+
+													stringvalidator.LengthAtMost(1024),
+												},
 											},
 										}),
 

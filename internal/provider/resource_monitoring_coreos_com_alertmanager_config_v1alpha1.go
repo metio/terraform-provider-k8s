@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -1875,6 +1877,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 
 									"regex": {
@@ -1931,6 +1938,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 
 									"regex": {
@@ -2267,6 +2279,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 
 											"value": {
@@ -2661,6 +2678,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+								},
 							},
 
 							"opsgenie_configs": {
@@ -2762,6 +2784,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 
 											"value": {
@@ -3208,6 +3235,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+														},
 													},
 												}),
 
@@ -3586,6 +3618,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 
 											"username": {
@@ -3731,6 +3768,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 
 											"value": {
@@ -4177,6 +4219,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+														},
 													},
 												}),
 
@@ -5137,6 +5184,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+														},
 													},
 												}),
 
@@ -5678,6 +5730,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+														},
 													},
 
 													"title": {
@@ -5728,6 +5785,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 
 											"type": {
@@ -5739,6 +5801,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 
 											"url": {
@@ -5884,6 +5951,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 
 											"value": {
@@ -5895,6 +5967,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 										}),
 
@@ -6330,6 +6407,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+														},
 													},
 												}),
 
@@ -7231,6 +7313,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+														},
 													},
 												}),
 
@@ -8246,6 +8333,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+														},
 													},
 												}),
 
@@ -8670,6 +8762,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 
 											"value": {
@@ -9116,6 +9213,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+														},
 													},
 												}),
 
@@ -9907,6 +10009,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+														},
 													},
 												}),
 
@@ -10804,6 +10911,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+														},
 													},
 												}),
 
@@ -11266,6 +11378,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+										},
 									},
 
 									"regex": {
