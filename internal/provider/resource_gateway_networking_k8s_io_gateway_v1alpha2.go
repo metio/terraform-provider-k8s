@@ -12,6 +12,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -303,6 +305,8 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 												Validators: []tfsdk.AttributeValidator{
 
 													stringvalidator.LengthAtMost(253),
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 												},
 											},
 
@@ -321,6 +325,8 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 													stringvalidator.LengthAtLeast(1),
 
 													stringvalidator.LengthAtMost(63),
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$`), ""),
 												},
 											},
 										}),
@@ -447,6 +453,8 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 									stringvalidator.LengthAtLeast(1),
 
 									stringvalidator.LengthAtMost(253),
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\*\.)?[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 								},
 							},
 
@@ -465,6 +473,8 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 									stringvalidator.LengthAtLeast(1),
 
 									stringvalidator.LengthAtMost(253),
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 								},
 							},
 
@@ -501,6 +511,8 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 									stringvalidator.LengthAtLeast(1),
 
 									stringvalidator.LengthAtMost(255),
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9]([-a-zSA-Z0-9]*[a-zA-Z0-9])?$|[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*\/[A-Za-z0-9]+$`), ""),
 								},
 							},
 
@@ -529,6 +541,8 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 												Validators: []tfsdk.AttributeValidator{
 
 													stringvalidator.LengthAtMost(253),
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 												},
 											},
 
@@ -547,6 +561,8 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 													stringvalidator.LengthAtLeast(1),
 
 													stringvalidator.LengthAtMost(63),
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$`), ""),
 												},
 											},
 
@@ -583,6 +599,8 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 													stringvalidator.LengthAtLeast(1),
 
 													stringvalidator.LengthAtMost(63),
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
 												},
 											},
 										}),

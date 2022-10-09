@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -242,6 +244,11 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^\*$|^[a-zA-Z0-9-_%\.]+$`), ""),
+								},
 							},
 
 							"buckets": {
@@ -406,6 +413,8 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 													stringvalidator.LengthAtLeast(1),
 
 													stringvalidator.LengthAtMost(251),
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9\-][a-zA-Z0-9\-%_]{0,250}$`), ""),
 												},
 											},
 										}),
@@ -548,6 +557,8 @@ func (r *CouchbaseComCouchbaseGroupV2Resource) GetSchema(_ context.Context) (tfs
 													stringvalidator.LengthAtLeast(1),
 
 													stringvalidator.LengthAtMost(251),
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9\-][a-zA-Z0-9\-%_]{0,250}$`), ""),
 												},
 											},
 										}),

@@ -29,7 +29,7 @@ resource "k8s_flagger_app_alert_provider_v1beta1" "big" {
       name = "abc"
     }
     username = "user"
-    type     = "some-type"
+    type     = "rocket"
     proxy    = "localhost"
     channel  = "channel1"
     address  = "https://example.com"
@@ -41,7 +41,7 @@ resource "k8s_flagger_app_alert_provider_v1beta1" "small" {
     name = "test"
   }
   spec = {
-    type    = "some-type"
+    type    = "slack"
     address = "https://example.com"
   }
 }

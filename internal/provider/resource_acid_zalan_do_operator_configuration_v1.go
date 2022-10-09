@@ -12,6 +12,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -652,6 +654,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$`), ""),
+								},
 							},
 
 							"connection_pooler_default_cpu_request": {
@@ -663,6 +670,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$`), ""),
+								},
 							},
 
 							"connection_pooler_default_memory_limit": {
@@ -674,6 +686,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+								},
 							},
 
 							"connection_pooler_default_memory_request": {
@@ -685,6 +702,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+								},
 							},
 
 							"connection_pooler_image": {
@@ -1810,6 +1832,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+|\*)(/\d+)?(\s+(\d+|\*)(/\d+)?){4}$`), ""),
+								},
 							},
 						}),
 
@@ -1921,6 +1948,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$`), ""),
+								},
 							},
 
 							"default_cpu_request": {
@@ -1932,6 +1964,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$`), ""),
+								},
 							},
 
 							"default_memory_limit": {
@@ -1943,6 +1980,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+								},
 							},
 
 							"default_memory_request": {
@@ -1954,6 +1996,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+								},
 							},
 
 							"max_cpu_request": {
@@ -1965,6 +2012,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$`), ""),
+								},
 							},
 
 							"max_memory_request": {
@@ -1976,6 +2028,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+								},
 							},
 
 							"min_cpu_limit": {
@@ -1987,6 +2044,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$`), ""),
+								},
 							},
 
 							"min_memory_limit": {
@@ -1998,6 +2060,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+								},
 							},
 						}),
 
@@ -2054,6 +2121,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$`), ""),
+								},
 							},
 
 							"scalyr_cpu_request": {
@@ -2065,6 +2137,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$`), ""),
+								},
 							},
 
 							"scalyr_image": {
@@ -2087,6 +2164,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+								},
 							},
 
 							"scalyr_memory_request": {
@@ -2098,6 +2180,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+								},
 							},
 
 							"scalyr_server_url": {

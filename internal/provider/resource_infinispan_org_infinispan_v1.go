@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -1441,6 +1443,11 @@ func (r *InfinispanOrgInfinispanV1Resource) GetSchema(_ context.Context) (tfsdk.
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(sha1|sha224|sha256|sha384|sha512|md5):[a-z0-9]+`), ""),
+										},
 									},
 
 									"maven": {
@@ -1452,6 +1459,11 @@ func (r *InfinispanOrgInfinispanV1Resource) GetSchema(_ context.Context) (tfsdk.
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^$|^([-_a-zA-Z0-9.]+):([-_a-zA-Z0-9.]+):([-_a-zA-Z0-9.]+)(?::([-_a-zA-Z0-9.]+))?$`), ""),
+										},
 									},
 
 									"type": {
@@ -1479,6 +1491,11 @@ func (r *InfinispanOrgInfinispanV1Resource) GetSchema(_ context.Context) (tfsdk.
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^$|^(https?|ftp)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]`), ""),
+										},
 									},
 								}),
 
@@ -2235,6 +2252,11 @@ func (r *InfinispanOrgInfinispanV1Resource) GetSchema(_ context.Context) (tfsdk.
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`(^(kubernetes|minikube|openshift):\/\/(([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])\.)*([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])*(:[0-9]+)+$)|(^(infinispan\+xsite):\/\/(([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])\.)*([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])*(:[0-9]+)*$)`), ""),
+												},
 											},
 										}),
 
@@ -2303,6 +2325,11 @@ func (r *InfinispanOrgInfinispanV1Resource) GetSchema(_ context.Context) (tfsdk.
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^$|^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$`), ""),
+						},
 					},
 				}),
 

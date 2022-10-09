@@ -3,6 +3,6 @@ resource "k8s_notification_toolkit_fluxcd_io_provider_v1beta1" "minimal" {
     name = "test"
   }
   spec = {
-    type = "some-type"
+    type = "matrix"
   }
 }

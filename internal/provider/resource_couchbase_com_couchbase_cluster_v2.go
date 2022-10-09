@@ -12,6 +12,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -972,6 +974,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+								},
 							},
 
 							"cpu_requests": {
@@ -983,6 +990,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+								},
 							},
 
 							"enabled": {
@@ -1461,6 +1473,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+								},
 							},
 
 							"auto_compaction": {
@@ -1502,6 +1519,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+												},
 											},
 										}),
 
@@ -1547,6 +1569,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$`), ""),
+												},
 											},
 
 											"start": {
@@ -1558,6 +1585,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$`), ""),
+												},
 											},
 										}),
 
@@ -1610,6 +1642,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+												},
 											},
 										}),
 
@@ -1754,6 +1791,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+								},
 							},
 
 							"eventing_service_memory_quota": {
@@ -1765,6 +1807,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+								},
 							},
 
 							"index_service_memory_quota": {
@@ -1776,6 +1823,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+								},
 							},
 
 							"index_storage_setting": {
@@ -1918,6 +1970,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+										},
 									},
 
 									"temporary_space_unlimited": {
@@ -1946,6 +2003,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+								},
 							},
 
 							"search_service_memory_quota": {
@@ -1957,6 +2019,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+								},
 							},
 						}),
 
@@ -2023,6 +2090,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(.*?(:\d+)?/)?.*?/.*?(:.*?\d+\.\d+\.\d+.*|@sha256:[0-9a-f]{64})$`), ""),
+						},
 					},
 
 					"logging": {
@@ -2198,6 +2270,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+												},
 											},
 										}),
 
@@ -2237,6 +2314,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^\d+(ns|us|ms|s|m|h)$`), ""),
+								},
 							},
 
 							"server": {
@@ -3194,6 +3276,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^subject\.cn|san\.uri|san\.dnsname|san\.email$`), ""),
+												},
 											},
 
 											"prefix": {
@@ -3448,6 +3535,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(100|[1-9][0-9]|[1-9])%$`), ""),
+								},
 							},
 						}),
 
@@ -5432,6 +5524,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^((couchbase|couchbases|http|https)://)?[0-9a-zA-Z\-\.]+(:\d+)?(\?network=[^&]+)?$`), ""),
+										},
 									},
 
 									"name": {
@@ -5557,6 +5654,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9a-f]{32}$`), ""),
+										},
 									},
 								}),
 

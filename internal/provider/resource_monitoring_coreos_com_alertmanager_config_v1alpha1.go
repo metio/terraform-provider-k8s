@@ -12,6 +12,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -2086,6 +2088,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^((([01][0-9])|(2[0-3])):[0-5][0-9])$|(^24:00$)`), ""),
+												},
 											},
 
 											"start_time": {
@@ -2097,6 +2104,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^((([01][0-9])|(2[0-3])):[0-5][0-9])$|(^24:00$)`), ""),
+												},
 											},
 										}),
 
@@ -4767,6 +4779,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$`), ""),
+										},
 									},
 
 									"html": {
@@ -5540,6 +5557,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$`), ""),
+										},
 									},
 
 									"send_resolved": {

@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -857,6 +859,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(true|false)$`), ""),
+						},
 					},
 
 					"appinfo": {
@@ -874,6 +881,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(^$|deployment|statefulset|daemonset|deploymentconfig|rollout)$`), ""),
+								},
 							},
 
 							"applabel": {
@@ -1036,6 +1048,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(go)$`), ""),
+										},
 									},
 								}),
 
@@ -1059,6 +1076,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(true|false)$`), ""),
+						},
 					},
 
 					"engine_state": {
@@ -1070,6 +1092,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(active|stop)$`), ""),
+						},
 					},
 
 					"experiments": {
@@ -1582,6 +1609,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 																Validators: []tfsdk.AttributeValidator{
 
 																	stringvalidator.LengthAtLeast(1),
+
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(int|float|string)$`), ""),
 																},
 															},
 
@@ -4571,6 +4600,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 														Validators: []tfsdk.AttributeValidator{
 
 															stringvalidator.LengthAtLeast(1),
+
+															stringvalidator.RegexMatches(regexp.MustCompile(`^(present|absent|create|delete)$`), ""),
 														},
 													},
 
@@ -4615,6 +4646,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 												Validators: []tfsdk.AttributeValidator{
 
 													stringvalidator.LengthAtLeast(1),
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^(SOT|EOT|Edge|Continuous|OnChaos)$`), ""),
 												},
 											},
 
@@ -4799,6 +4832,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 												Validators: []tfsdk.AttributeValidator{
 
 													stringvalidator.LengthAtLeast(1),
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^(k8sProbe|httpProbe|cmdProbe|promProbe)$`), ""),
 												},
 											},
 										}),
@@ -4829,6 +4864,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(delete|retain)$`), ""),
+						},
 					},
 
 					"termination_grace_period_seconds": {

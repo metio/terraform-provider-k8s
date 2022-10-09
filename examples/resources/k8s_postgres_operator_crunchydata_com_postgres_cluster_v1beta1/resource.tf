@@ -9,7 +9,7 @@ resource "k8s_postgres_operator_crunchydata_com_postgres_cluster_v1beta1" "minim
       pgbackrest = {
         repos = [
           {
-            name = "some-name"
+            name = "repo1"
           }
         ]
       }

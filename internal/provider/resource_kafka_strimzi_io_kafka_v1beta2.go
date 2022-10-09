@@ -12,6 +12,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -3861,6 +3863,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+([.][0-9]{0,3}|[m]?)$`), ""),
+										},
 									},
 
 									"cpu_utilization": {
@@ -3890,6 +3897,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+([.][0-9]*)?([KMGTPE]i?|e[0-9]+)?$`), ""),
+										},
 									},
 
 									"inbound_network": {
@@ -3901,6 +3913,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+([KMG]i?)?B/s$`), ""),
+										},
 									},
 
 									"outbound_network": {
@@ -3912,6 +3929,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+([KMG]i?)?B/s$`), ""),
+										},
 									},
 
 									"overrides": {
@@ -3940,6 +3962,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+([.][0-9]{0,3}|[m]?)$`), ""),
+												},
 											},
 
 											"inbound_network": {
@@ -3951,6 +3978,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+([KMG]i?)?B/s$`), ""),
+												},
 											},
 
 											"outbound_network": {
@@ -3962,6 +3994,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+([KMG]i?)?B/s$`), ""),
+												},
 											},
 										}),
 
@@ -4024,6 +4061,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+[mMgG]?$`), ""),
+										},
 									},
 
 									"___xmx": {
@@ -4035,6 +4077,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+[mMgG]?$`), ""),
+										},
 									},
 
 									"gc_logging_enabled": {
@@ -6353,6 +6400,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$`), ""),
+												},
 											},
 
 											"tolerations": {
@@ -8728,6 +8780,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$`), ""),
+												},
 											},
 
 											"tolerations": {
@@ -10224,6 +10281,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+[mMgG]?$`), ""),
+												},
 											},
 
 											"___xmx": {
@@ -10235,6 +10297,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+[mMgG]?$`), ""),
+												},
 											},
 
 											"gc_logging_enabled": {
@@ -10802,6 +10869,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+[mMgG]?$`), ""),
+												},
 											},
 
 											"___xmx": {
@@ -10813,6 +10885,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+[mMgG]?$`), ""),
+												},
 											},
 
 											"gc_logging_enabled": {
@@ -13224,6 +13301,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$`), ""),
+												},
 											},
 
 											"tolerations": {
@@ -13855,6 +13937,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+[mMgG]?$`), ""),
+										},
 									},
 
 									"___xmx": {
@@ -13866,6 +13953,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+[mMgG]?$`), ""),
+										},
 									},
 
 									"gc_logging_enabled": {
@@ -14791,6 +14883,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]{1,11}$`), ""),
+										},
 									},
 
 									"network_policy_peers": {
@@ -15571,6 +15668,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$`), ""),
+										},
 									},
 
 									"type": {
@@ -15698,6 +15800,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$`), ""),
+												},
 											},
 
 											"type": {
@@ -18396,6 +18503,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$`), ""),
+												},
 											},
 
 											"tolerations": {
@@ -20895,6 +21007,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$`), ""),
+												},
 											},
 
 											"tolerations": {
@@ -21314,6 +21431,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+[mMgG]?$`), ""),
+										},
 									},
 
 									"___xmx": {
@@ -21325,6 +21447,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+[mMgG]?$`), ""),
+										},
 									},
 
 									"gc_logging_enabled": {
@@ -21902,6 +22029,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$`), ""),
+										},
 									},
 
 									"type": {
@@ -23596,6 +23728,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$`), ""),
+												},
 											},
 
 											"tolerations": {

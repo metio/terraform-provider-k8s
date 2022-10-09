@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -3968,6 +3970,11 @@ func (r *MonitoringCoreosComAlertmanagerV1Resource) GetSchema(_ context.Context)
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+										},
 									},
 								}),
 
@@ -4029,6 +4036,11 @@ func (r *MonitoringCoreosComAlertmanagerV1Resource) GetSchema(_ context.Context)
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+						},
 					},
 
 					"cluster_peer_timeout": {
@@ -4040,6 +4052,11 @@ func (r *MonitoringCoreosComAlertmanagerV1Resource) GetSchema(_ context.Context)
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+						},
 					},
 
 					"cluster_pushpull_interval": {
@@ -4051,6 +4068,11 @@ func (r *MonitoringCoreosComAlertmanagerV1Resource) GetSchema(_ context.Context)
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+						},
 					},
 
 					"config_maps": {
@@ -8418,6 +8440,11 @@ func (r *MonitoringCoreosComAlertmanagerV1Resource) GetSchema(_ context.Context)
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+						},
 					},
 
 					"route_prefix": {
