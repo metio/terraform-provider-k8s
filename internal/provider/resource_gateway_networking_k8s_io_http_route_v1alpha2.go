@@ -801,6 +801,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															int64validator.OneOf(301, 302),
+														},
 													},
 												}),
 
@@ -1311,6 +1316,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													int64validator.OneOf(301, 302),
+												},
 											},
 										}),
 
