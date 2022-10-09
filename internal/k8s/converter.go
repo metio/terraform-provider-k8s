@@ -367,6 +367,9 @@ func Validators(prop apiextensionsv1.JSONSchemaProps, uv *UsedValidators) []stri
 	if prop.Type == "string" && prop.Format == "byte" {
 		validators = append(validators, "validators.Base64Validator()")
 	}
+	if prop.Type == "string" && prop.Format == "date-time" {
+		validators = append(validators, "validators.DateTime64Validator()")
+	}
 	if prop.Type == "string" && prop.MinLength != nil {
 		validators = append(validators, fmt.Sprintf("stringvalidator.LengthAtLeast(%v)", *prop.MinLength))
 		uv.StringValidator = true
