@@ -103,9 +103,6 @@ func (r *GatewayNetworkingK8SIoGatewayClassV1Alpha2Resource) GetSchema(_ context
 						MarkdownDescription: "Unique identifier for this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names for more details.",
 						Type:                types.StringType,
 						Required:            true,
-						PlanModifiers: []tfsdk.AttributePlanModifier{
-							resource.RequiresReplace(),
-						},
 						Validators: []tfsdk.AttributeValidator{
 							validators.NameValidator(),
 						},
