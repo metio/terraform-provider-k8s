@@ -12,6 +12,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -290,6 +292,11 @@ func (r *KafkaStrimziIoKafkaUserV1Beta2Resource) GetSchema(_ context.Context) (t
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("tls", "tls-external", "scram-sha-512"),
+								},
 							},
 						}),
 
@@ -330,6 +337,11 @@ func (r *KafkaStrimziIoKafkaUserV1Beta2Resource) GetSchema(_ context.Context) (t
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Read", "Write", "Create", "Delete", "Alter", "Describe", "ClusterAction", "AlterConfigs", "DescribeConfigs", "IdempotentWrite", "All"),
+										},
 									},
 
 									"resource": {
@@ -358,6 +370,11 @@ func (r *KafkaStrimziIoKafkaUserV1Beta2Resource) GetSchema(_ context.Context) (t
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("literal", "prefix"),
+												},
 											},
 
 											"type": {
@@ -369,6 +386,11 @@ func (r *KafkaStrimziIoKafkaUserV1Beta2Resource) GetSchema(_ context.Context) (t
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("topic", "group", "cluster", "transactionalId"),
+												},
 											},
 										}),
 
@@ -386,6 +408,11 @@ func (r *KafkaStrimziIoKafkaUserV1Beta2Resource) GetSchema(_ context.Context) (t
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("allow", "deny"),
+										},
 									},
 								}),
 
@@ -403,6 +430,11 @@ func (r *KafkaStrimziIoKafkaUserV1Beta2Resource) GetSchema(_ context.Context) (t
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("simple"),
+								},
 							},
 						}),
 

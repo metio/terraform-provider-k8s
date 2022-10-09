@@ -785,6 +785,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("http", "https"),
+														},
 													},
 
 													"status_code": {
@@ -813,6 +818,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("RequestHeaderModifier", "RequestMirror", "RequestRedirect", "ExtensionRef"),
+												},
 											},
 										}),
 
@@ -1285,6 +1295,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("http", "https"),
+												},
 											},
 
 											"status_code": {
@@ -1313,6 +1328,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("RequestHeaderModifier", "RequestMirror", "RequestRedirect", "ExtensionRef"),
+										},
 									},
 								}),
 
@@ -1360,6 +1380,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("Exact", "RegularExpression"),
+												},
 											},
 
 											"value": {
@@ -1395,6 +1420,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("GET", "HEAD", "POST", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH"),
+										},
 									},
 
 									"path": {
@@ -1412,6 +1442,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("Exact", "PathPrefix", "RegularExpression"),
+												},
 											},
 
 											"value": {
@@ -1469,6 +1504,11 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) GetSchema(_ context.Co
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("Exact", "RegularExpression"),
+												},
 											},
 
 											"value": {

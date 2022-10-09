@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -639,6 +641,11 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("session", "transaction"),
+								},
 							},
 
 							"number_of_instances": {
@@ -1356,6 +1363,11 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("9.5", "9.6", "10", "11", "12", "13", "14"),
+								},
 							},
 						}),
 
@@ -1748,6 +1760,11 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("NoExecute", "NoSchedule", "PreferNoSchedule"),
+								},
 							},
 
 							"key": {
@@ -1770,6 +1787,11 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Equal", "Exists"),
+								},
 							},
 
 							"toleration_seconds": {
@@ -1893,6 +1915,11 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("DoesNotExist", "Exists", "In", "NotIn"),
+												},
 											},
 
 											"values": {

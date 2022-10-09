@@ -217,6 +217,11 @@ func (r *CouchbaseComCouchbaseScopeGroupV2Resource) GetSchema(_ context.Context)
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("CouchbaseCollection", "CouchbaseCollectionGroup"),
+										},
 									},
 
 									"name": {

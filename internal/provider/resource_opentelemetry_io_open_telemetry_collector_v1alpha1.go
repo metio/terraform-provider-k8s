@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -1540,6 +1542,11 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Resource) GetSchema(_ cont
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("daemonset", "deployment", "sidecar", "statefulset"),
+						},
 					},
 
 					"node_selector": {
@@ -2391,6 +2398,11 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Resource) GetSchema(_ cont
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("automatic", "none"),
+						},
 					},
 
 					"volume_claim_templates": {

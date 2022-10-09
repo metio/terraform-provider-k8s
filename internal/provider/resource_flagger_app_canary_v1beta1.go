@@ -584,6 +584,11 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("", "info", "warn", "error"),
+										},
 									},
 								}),
 
@@ -930,6 +935,11 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("", "confirm-rollout", "pre-rollout", "rollout", "confirm-promotion", "post-rollout", "event", "rollback", "confirm-traffic-increase"),
+										},
 									},
 
 									"url": {
@@ -981,6 +991,11 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("HorizontalPodAutoscaler", "ScaledObject"),
+								},
 							},
 
 							"name": {
@@ -1037,6 +1052,11 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Ingress"),
+								},
 							},
 
 							"name": {
@@ -2051,6 +2071,11 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("DEFAULT", "DO_NOT_UPGRADE", "UPGRADE"),
+														},
 													},
 
 													"http1_max_pending_requests": {
@@ -2327,6 +2352,11 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("ROUND_ROBIN", "LEAST_CONN", "RANDOM", "PASSTHROUGH"),
+												},
 											},
 										}),
 
@@ -2461,6 +2491,11 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("DISABLE", "SIMPLE", "MUTUAL", "ISTIO_MUTUAL"),
+												},
 											},
 
 											"private_key": {
@@ -2551,6 +2586,11 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("DaemonSet", "Deployment", "Service"),
+								},
 							},
 
 							"name": {
@@ -2596,6 +2636,11 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Upstream"),
+								},
 							},
 
 							"name": {

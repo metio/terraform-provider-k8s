@@ -201,6 +201,11 @@ func (r *CouchbaseComCouchbaseEphemeralBucketV2Resource) GetSchema(_ context.Con
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("off", "passive", "active"),
+						},
 					},
 
 					"conflict_resolution": {
@@ -212,6 +217,11 @@ func (r *CouchbaseComCouchbaseEphemeralBucketV2Resource) GetSchema(_ context.Con
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("seqno", "lww"),
+						},
 					},
 
 					"enable_flush": {
@@ -234,6 +244,11 @@ func (r *CouchbaseComCouchbaseEphemeralBucketV2Resource) GetSchema(_ context.Con
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("noEviction", "nruEviction"),
+						},
 					},
 
 					"io_priority": {
@@ -245,6 +260,11 @@ func (r *CouchbaseComCouchbaseEphemeralBucketV2Resource) GetSchema(_ context.Con
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("low", "high"),
+						},
 					},
 
 					"max_ttl": {
@@ -278,6 +298,11 @@ func (r *CouchbaseComCouchbaseEphemeralBucketV2Resource) GetSchema(_ context.Con
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("none", "majority"),
+						},
 					},
 
 					"name": {
@@ -346,6 +371,11 @@ func (r *CouchbaseComCouchbaseEphemeralBucketV2Resource) GetSchema(_ context.Con
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("CouchbaseScope", "CouchbaseScopeGroup"),
+										},
 									},
 
 									"name": {

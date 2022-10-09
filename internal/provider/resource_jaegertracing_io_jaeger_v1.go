@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -45974,6 +45976,11 @@ func (r *JaegertracingIoJaegerV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("FullRedundancy", "MultipleRedundancy", "SingleRedundancy", "ZeroRedundancy"),
+										},
 									},
 
 									"resources": {

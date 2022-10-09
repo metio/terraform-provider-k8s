@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -252,6 +254,11 @@ func (r *NetworkingIstioIoSidecarV1Beta1Resource) GetSchema(_ context.Context) (
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("DEFAULT", "IPTABLES", "NONE"),
+								},
 							},
 
 							"hosts": {
@@ -353,6 +360,11 @@ func (r *NetworkingIstioIoSidecarV1Beta1Resource) GetSchema(_ context.Context) (
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("DEFAULT", "IPTABLES", "NONE"),
+								},
 							},
 
 							"default_endpoint": {
@@ -481,6 +493,11 @@ func (r *NetworkingIstioIoSidecarV1Beta1Resource) GetSchema(_ context.Context) (
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("TLS_AUTO", "TLSV1_0", "TLSV1_1", "TLSV1_2", "TLSV1_3"),
+										},
 									},
 
 									"min_protocol_version": {
@@ -492,6 +509,11 @@ func (r *NetworkingIstioIoSidecarV1Beta1Resource) GetSchema(_ context.Context) (
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("TLS_AUTO", "TLSV1_0", "TLSV1_1", "TLSV1_2", "TLSV1_3"),
+										},
 									},
 
 									"mode": {
@@ -503,6 +525,11 @@ func (r *NetworkingIstioIoSidecarV1Beta1Resource) GetSchema(_ context.Context) (
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("PASSTHROUGH", "SIMPLE", "MUTUAL", "AUTO_PASSTHROUGH", "ISTIO_MUTUAL"),
+										},
 									},
 
 									"private_key": {
@@ -644,6 +671,11 @@ func (r *NetworkingIstioIoSidecarV1Beta1Resource) GetSchema(_ context.Context) (
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("REGISTRY_ONLY", "ALLOW_ANY"),
+								},
 							},
 						}),
 

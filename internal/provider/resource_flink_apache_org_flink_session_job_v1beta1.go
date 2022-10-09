@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -286,6 +288,11 @@ func (r *FlinkApacheOrgFlinkSessionJobV1Beta1Resource) GetSchema(_ context.Conte
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("running", "suspended"),
+								},
 							},
 
 							"upgrade_mode": {
@@ -297,6 +304,11 @@ func (r *FlinkApacheOrgFlinkSessionJobV1Beta1Resource) GetSchema(_ context.Conte
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("savepoint", "last-state", "stateless"),
+								},
 							},
 						}),
 

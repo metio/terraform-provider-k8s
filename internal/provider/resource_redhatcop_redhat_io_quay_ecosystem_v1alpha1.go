@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -1597,6 +1599,11 @@ func (r *RedhatcopRedhatIoQuayEcosystemV1Alpha1Resource) GetSchema(_ context.Con
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("config", "extraCaCert"),
+												},
 											},
 										}),
 
@@ -1681,6 +1688,11 @@ func (r *RedhatcopRedhatIoQuayEcosystemV1Alpha1Resource) GetSchema(_ context.Con
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Recreate", "RollingUpdate"),
+										},
 									},
 
 									"env_vars": {
@@ -2878,6 +2890,11 @@ func (r *RedhatcopRedhatIoQuayEcosystemV1Alpha1Resource) GetSchema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Recreate", "RollingUpdate"),
+								},
 							},
 
 							"enabled": {
@@ -4335,6 +4352,11 @@ func (r *RedhatcopRedhatIoQuayEcosystemV1Alpha1Resource) GetSchema(_ context.Con
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("config", "extraCaCert"),
+												},
 											},
 										}),
 
@@ -4531,6 +4553,11 @@ func (r *RedhatcopRedhatIoQuayEcosystemV1Alpha1Resource) GetSchema(_ context.Con
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Recreate", "RollingUpdate"),
+										},
 									},
 
 									"env_vars": {
@@ -5728,6 +5755,11 @@ func (r *RedhatcopRedhatIoQuayEcosystemV1Alpha1Resource) GetSchema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Recreate", "RollingUpdate"),
+								},
 							},
 
 							"enable_repo_mirroring": {
@@ -6082,6 +6114,11 @@ func (r *RedhatcopRedhatIoQuayEcosystemV1Alpha1Resource) GetSchema(_ context.Con
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Route", "LoadBalancer", "NodePort", "Ingress"),
+										},
 									},
 								}),
 
@@ -6391,6 +6428,11 @@ func (r *RedhatcopRedhatIoQuayEcosystemV1Alpha1Resource) GetSchema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("new-installation", "add-new-fields", "backfill-then-read-only-new", "remove-old-field"),
+								},
 							},
 
 							"mirror_replicas": {
@@ -8161,6 +8203,11 @@ func (r *RedhatcopRedhatIoQuayEcosystemV1Alpha1Resource) GetSchema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Recreate", "RollingUpdate"),
+								},
 							},
 
 							"env_vars": {

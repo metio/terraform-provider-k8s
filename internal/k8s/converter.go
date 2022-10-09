@@ -363,8 +363,39 @@ func Validators(prop apiextensionsv1.JSONSchemaProps, uv *UsedValidators) []stri
 		validators = append(validators, fmt.Sprintf("stringvalidator.LengthAtMost(%v)", *prop.MaxLength))
 		uv.StringValidator = true
 	}
+	if prop.Type == "string" && len(prop.Enum) > 0 {
+		enums := stringEnums(prop.Enum)
+		validators = append(validators, fmt.Sprintf("stringvalidator.OneOf(%s)", concatEnums(enums)))
+		uv.StringValidator = true
+	}
 
 	return validators
+}
+
+func stringEnums(enums []apiextensionsv1.JSON) []string {
+	var values []string
+
+	for _, val := range enums {
+		if str := string(val.Raw); str != "" {
+			values = append(values, str)
+		}
+	}
+
+	return values
+}
+
+func concatEnums[T any](enums []T) string {
+	output := ""
+
+	for index, value := range enums {
+		if index < len(enums) {
+			output = output + fmt.Sprintf("%v, ", value)
+		} else {
+			output = output + fmt.Sprintf("%v", value)
+		}
+	}
+
+	return output
 }
 
 func maxValue(prop apiextensionsv1.JSONSchemaProps) float64 {

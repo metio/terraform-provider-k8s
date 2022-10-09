@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -3689,6 +3691,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("renew-certificate", "replace-key"),
+								},
 							},
 
 							"generate_certificate_authority": {
@@ -3766,6 +3773,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("renew-certificate", "replace-key"),
+								},
 							},
 
 							"generate_certificate_authority": {
@@ -4194,6 +4206,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("inline", "external"),
+										},
 									},
 
 									"value_from": {
@@ -4274,6 +4291,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("jmxPrometheusExporter"),
+										},
 									},
 
 									"value_from": {
@@ -4497,6 +4519,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("SingleStack", "PreferDualStack", "RequireDualStack"),
+												},
 											},
 
 											"metadata": {
@@ -7072,6 +7099,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug"),
+										},
 									},
 
 									"readiness_probe": {
@@ -10010,6 +10042,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("emerg", "alert", "crit", "err", "warning", "notice", "info", "debug"),
+										},
 									},
 
 									"readiness_probe": {
@@ -10369,6 +10406,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("inline", "external"),
+												},
 											},
 
 											"value_from": {
@@ -10942,6 +10984,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("inline", "external"),
+												},
 											},
 
 											"value_from": {
@@ -13685,6 +13732,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("simple", "opa", "keycloak", "custom"),
+										},
 									},
 
 									"url": {
@@ -13758,6 +13810,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("password"),
+												},
 											},
 										}),
 
@@ -14297,6 +14354,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("tls", "scram-sha-512", "oauth", "custom"),
+												},
 											},
 
 											"user_info_endpoint_uri": {
@@ -14609,6 +14671,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("Local", "Cluster"),
+												},
 											},
 
 											"finalizers": {
@@ -14642,6 +14709,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("SingleStack", "PreferDualStack", "RequireDualStack"),
+												},
 											},
 
 											"load_balancer_source_ranges": {
@@ -14686,6 +14758,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("ExternalIP", "ExternalDNS", "InternalIP", "InternalDNS", "Hostname"),
+												},
 											},
 
 											"use_service_dns_domain": {
@@ -14934,6 +15011,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("internal", "route", "loadbalancer", "nodeport", "ingress"),
+										},
 									},
 								}),
 
@@ -15060,6 +15142,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("inline", "external"),
+										},
 									},
 
 									"value_from": {
@@ -15140,6 +15227,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("jmxPrometheusExporter"),
+										},
 									},
 
 									"value_from": {
@@ -15490,6 +15582,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("ephemeral", "persistent-claim", "jbod"),
+										},
 									},
 
 									"volumes": {
@@ -15612,6 +15709,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("ephemeral", "persistent-claim"),
+												},
 											},
 										}),
 
@@ -15658,6 +15760,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("SingleStack", "PreferDualStack", "RequireDualStack"),
+												},
 											},
 
 											"metadata": {
@@ -15726,6 +15833,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("SingleStack", "PreferDualStack", "RequireDualStack"),
+												},
 											},
 
 											"metadata": {
@@ -18686,6 +18798,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("OrderedReady", "Parallel"),
+												},
 											},
 										}),
 
@@ -21152,6 +21269,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("password"),
+												},
 											},
 										}),
 
@@ -21374,6 +21496,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("inline", "external"),
+										},
 									},
 
 									"value_from": {
@@ -21454,6 +21581,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("jmxPrometheusExporter"),
+										},
 									},
 
 									"value_from": {
@@ -21781,6 +21913,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("ephemeral", "persistent-claim"),
+										},
 									},
 								}),
 
@@ -21821,6 +21958,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("SingleStack", "PreferDualStack", "RequireDualStack"),
+												},
 											},
 
 											"metadata": {
@@ -21935,6 +22077,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("SingleStack", "PreferDualStack", "RequireDualStack"),
+												},
 											},
 
 											"metadata": {
@@ -23851,6 +23998,11 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("OrderedReady", "Parallel"),
+												},
 											},
 										}),
 

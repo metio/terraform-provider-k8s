@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -14956,6 +14958,11 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("cluster", "client"),
+						},
 					},
 
 					"monitoring": {
@@ -15119,6 +15126,11 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("2", "3"),
+						},
 					},
 
 					"restart_policy": {
@@ -15200,6 +15212,11 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Never", "Always", "OnFailure"),
+								},
 							},
 						}),
 
@@ -15373,6 +15390,11 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Resource) GetSchema(_ context.
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("Java", "Python", "Scala", "R"),
+						},
 					},
 
 					"volumes": {

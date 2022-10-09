@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -370,6 +372,11 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("TLS_AUTO", "TLSV1_0", "TLSV1_1", "TLSV1_2", "TLSV1_3"),
+										},
 									},
 
 									"min_protocol_version": {
@@ -381,6 +388,11 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("TLS_AUTO", "TLSV1_0", "TLSV1_1", "TLSV1_2", "TLSV1_3"),
+										},
 									},
 
 									"mode": {
@@ -392,6 +404,11 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) GetSchema(_ context.Context) 
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("PASSTHROUGH", "SIMPLE", "MUTUAL", "AUTO_PASSTHROUGH", "ISTIO_MUTUAL"),
+										},
 									},
 
 									"private_key": {

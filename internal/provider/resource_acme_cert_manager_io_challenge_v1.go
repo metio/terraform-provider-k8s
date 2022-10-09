@@ -896,6 +896,11 @@ func (r *AcmeCertManagerIoChallengeV1Resource) GetSchema(_ context.Context) (tfs
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("AzurePublicCloud", "AzureChinaCloud", "AzureGermanCloud", "AzureUSGovernmentCloud"),
+												},
 											},
 
 											"hosted_zone_name": {
@@ -1150,6 +1155,11 @@ func (r *AcmeCertManagerIoChallengeV1Resource) GetSchema(_ context.Context) (tfs
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("None", "Follow"),
+										},
 									},
 
 									"digitalocean": {
@@ -2931,6 +2941,11 @@ func (r *AcmeCertManagerIoChallengeV1Resource) GetSchema(_ context.Context) (tfs
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("HTTP-01", "DNS-01"),
+						},
 					},
 
 					"url": {

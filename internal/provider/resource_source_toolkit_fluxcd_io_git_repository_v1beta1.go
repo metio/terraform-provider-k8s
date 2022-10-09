@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -242,6 +244,11 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta1Resource) GetSchema(_ context.
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("go-git", "libgit2"),
+						},
 					},
 
 					"ignore": {
@@ -461,6 +468,11 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Beta1Resource) GetSchema(_ context.
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("head"),
+								},
 							},
 
 							"secret_ref": {

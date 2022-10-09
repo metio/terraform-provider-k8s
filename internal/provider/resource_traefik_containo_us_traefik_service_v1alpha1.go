@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -287,6 +289,11 @@ func (r *TraefikContainoUsTraefikServiceV1Alpha1Resource) GetSchema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Service", "TraefikService"),
+								},
 							},
 
 							"max_body_size": {
@@ -315,6 +322,11 @@ func (r *TraefikContainoUsTraefikServiceV1Alpha1Resource) GetSchema(_ context.Co
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Service", "TraefikService"),
+										},
 									},
 
 									"name": {
@@ -719,6 +731,11 @@ func (r *TraefikContainoUsTraefikServiceV1Alpha1Resource) GetSchema(_ context.Co
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Service", "TraefikService"),
+										},
 									},
 
 									"name": {

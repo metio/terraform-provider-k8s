@@ -631,6 +631,11 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("NodePortExternalIP", "NodePortNodeName", "LoadBalancer"),
+								},
 							},
 
 							"type": {
@@ -642,6 +647,11 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Smart", "Unisocket"),
+								},
 							},
 						}),
 
@@ -704,6 +714,11 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("OFF", "FATAL", "ERROR", "WARN", "INFO", "DEBUG", "TRACE", "ALL"),
+						},
 					},
 
 					"persistence": {
@@ -732,6 +747,11 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("External", "Local"),
+								},
 							},
 
 							"base_dir": {
@@ -754,6 +774,11 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("FullRecoveryOnly", "PartialRecoveryMostRecent", "PartialRecoveryMostComplete"),
+								},
 							},
 
 							"data_recovery_timeout": {

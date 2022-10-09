@@ -417,6 +417,11 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("ChartVersion", "Revision"),
+										},
 									},
 
 									"source_ref": {
@@ -445,6 +450,11 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("HelmRepository", "GitRepository", "Bucket"),
+												},
 											},
 
 											"name": {
@@ -583,6 +593,11 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Skip", "Create", "CreateReplace"),
+								},
 							},
 
 							"create_namespace": {
@@ -1004,6 +1019,11 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("test", "remove", "add", "replace", "move", "copy"),
+														},
 													},
 
 													"path": {
@@ -1455,6 +1475,11 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Skip", "Create", "CreateReplace"),
+								},
 							},
 
 							"disable_hooks": {
@@ -1571,6 +1596,11 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("rollback", "uninstall"),
+										},
 									},
 								}),
 
@@ -1622,6 +1652,11 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Secret", "ConfigMap"),
+								},
 							},
 
 							"name": {

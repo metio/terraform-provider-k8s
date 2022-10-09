@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -195,6 +197,11 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("UNSPECIFIED_POLICY", "IfNotPresent", "Always"),
+						},
 					},
 
 					"image_pull_secret": {
@@ -223,6 +230,11 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("UNDEFINED", "CLIENT", "SERVER", "CLIENT_AND_SERVER"),
+								},
 							},
 
 							"ports": {
@@ -263,6 +275,11 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("UNSPECIFIED_PHASE", "AUTHN", "AUTHZ", "STATS"),
+						},
 					},
 
 					"plugin_config": {
@@ -397,6 +414,11 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("INLINE", "HOST"),
+										},
 									},
 								}),
 

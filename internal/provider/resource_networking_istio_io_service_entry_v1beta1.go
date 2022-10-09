@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -319,6 +321,11 @@ func (r *NetworkingIstioIoServiceEntryV1Beta1Resource) GetSchema(_ context.Conte
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("MESH_EXTERNAL", "MESH_INTERNAL"),
+						},
 					},
 
 					"ports": {
@@ -386,6 +393,11 @@ func (r *NetworkingIstioIoServiceEntryV1Beta1Resource) GetSchema(_ context.Conte
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("NONE", "STATIC", "DNS", "DNS_ROUND_ROBIN"),
+						},
 					},
 
 					"subject_alt_names": {

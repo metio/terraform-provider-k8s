@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -184,6 +186,11 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Resource) GetSche
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("SeccompProfile", "SelinuxProfile"),
+						},
 					},
 
 					"pod_selector": {
@@ -263,6 +270,11 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Resource) GetSche
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("bpf", "logs"),
+						},
 					},
 				}),
 

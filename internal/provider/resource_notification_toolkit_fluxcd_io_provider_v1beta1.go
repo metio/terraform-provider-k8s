@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -278,6 +280,11 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta1Resource) GetSchema(_ context
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("slack", "discord", "msteams", "rocket", "generic", "github", "gitlab", "bitbucket", "azuredevops", "googlechat", "webex", "sentry", "azureeventhub", "telegram", "lark", "matrix", "opsgenie", "alertmanager", "grafana", "githubdispatch"),
+						},
 					},
 
 					"username": {

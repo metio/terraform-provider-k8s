@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -274,6 +276,11 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) GetSchema(_ context.
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("extract", "copy"),
+								},
 							},
 						}),
 
@@ -291,6 +298,11 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) GetSchema(_ context.
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("generic", "aws", "azure", "gcp"),
+						},
 					},
 
 					"ref": {
@@ -420,6 +432,11 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) GetSchema(_ context.
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("cosign"),
+								},
 							},
 
 							"secret_ref": {

@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -1002,6 +1004,11 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("", "anonymous", "token", "openshift", "openid", "header"),
+								},
 							},
 						}),
 
@@ -1390,6 +1397,11 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("text", "json"),
+										},
 									},
 
 									"log_level": {
@@ -1401,6 +1413,11 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("trace", "debug", "info", "warn", "error", "fatal"),
+										},
 									},
 
 									"sampler_rate": {
@@ -3235,6 +3252,11 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("none", "requests", "sent", "received", "total"),
+														},
 													},
 
 													"http": {
@@ -3246,6 +3268,11 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("none", "requests"),
+														},
 													},
 
 													"tcp": {
@@ -3257,6 +3284,11 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("none", "sent", "received", "total"),
+														},
 													},
 												}),
 
@@ -3372,6 +3404,11 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("1m", "2m", "5m", "10m", "30m", "1h", "3h", "6h", "12h", "1d", "7d", "30d"),
+										},
 									},
 
 									"namespaces": {
@@ -3394,6 +3431,11 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("pause", "10s", "15s", "30s", "1m", "5m", "15m"),
+										},
 									},
 								}),
 
@@ -3759,6 +3801,11 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("", "http", "https"),
+								},
 							},
 						}),
 

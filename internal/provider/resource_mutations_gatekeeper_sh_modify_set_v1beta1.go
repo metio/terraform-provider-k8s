@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -496,6 +498,11 @@ func (r *MutationsGatekeeperShModifySetV1Beta1Resource) GetSchema(_ context.Cont
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("merge", "prune"),
+								},
 							},
 
 							"path_tests": {
@@ -513,6 +520,11 @@ func (r *MutationsGatekeeperShModifySetV1Beta1Resource) GetSchema(_ context.Cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("MustExist", "MustNotExist"),
+										},
 									},
 
 									"sub_path": {
