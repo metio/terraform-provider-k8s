@@ -5465,6 +5465,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									validators.Base64Validator(),
+								},
 							},
 
 							"key_algorithm": {

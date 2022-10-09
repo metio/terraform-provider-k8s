@@ -351,6 +351,9 @@ func Validators(prop apiextensionsv1.JSONSchemaProps, uv *UsedValidators) []stri
 		validators = append(validators, fmt.Sprintf("float64validator.AtMost(%v)", maxValue(prop)))
 		uv.Float64validator = true
 	}
+	if prop.Type == "string" && prop.Format == "byte" {
+		validators = append(validators, "validators.Base64Validator()")
+	}
 
 	return validators
 }

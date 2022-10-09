@@ -268,6 +268,11 @@ func (r *CertManagerIoCertificateRequestV1Resource) GetSchema(_ context.Context)
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							validators.Base64Validator(),
+						},
 					},
 
 					"uid": {

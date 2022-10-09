@@ -262,6 +262,11 @@ func (r *AcmeCertManagerIoOrderV1Resource) GetSchema(_ context.Context) (tfsdk.S
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							validators.Base64Validator(),
+						},
 					},
 				}),
 

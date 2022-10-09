@@ -3331,6 +3331,11 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									validators.Base64Validator(),
+								},
 							},
 
 							"namespace": {
@@ -3450,6 +3455,11 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											validators.Base64Validator(),
+										},
 									},
 
 									"credentials_ref": {
