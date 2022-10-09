@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -754,6 +756,11 @@ func (r *AppsM88IIoNexusV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("Always", "IfNotPresent", "Never"),
+						},
 					},
 
 					"liveness_probe": {
@@ -885,6 +892,11 @@ func (r *AppsM88IIoNexusV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("NodePort", "Route", "Ingress"),
+								},
 							},
 
 							"host": {

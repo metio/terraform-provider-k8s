@@ -8241,6 +8241,11 @@ func (r *MonitoringCoreosComAlertmanagerV1Resource) GetSchema(_ context.Context)
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("", "logfmt", "json"),
+						},
 					},
 
 					"log_level": {
@@ -8252,6 +8257,11 @@ func (r *MonitoringCoreosComAlertmanagerV1Resource) GetSchema(_ context.Context)
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("", "debug", "info", "warn", "error"),
+						},
 					},
 
 					"min_ready_seconds": {
@@ -12454,6 +12464,11 @@ func (r *MonitoringCoreosComAlertmanagerV1Resource) GetSchema(_ context.Context)
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("", "NoSniff"),
+												},
 											},
 
 											"x_frame_options": {
@@ -12465,6 +12480,11 @@ func (r *MonitoringCoreosComAlertmanagerV1Resource) GetSchema(_ context.Context)
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("", "Deny", "SameOrigin"),
+												},
 											},
 
 											"x_xss_protection": {

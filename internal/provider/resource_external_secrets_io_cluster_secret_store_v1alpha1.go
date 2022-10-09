@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -1198,6 +1200,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Resource) GetSchema(_ contex
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("SecretsManager", "ParameterStore"),
+										},
 									},
 								}),
 
@@ -1323,6 +1330,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Resource) GetSchema(_ contex
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("ServicePrincipal", "ManagedIdentity", "WorkloadIdentity"),
+										},
 									},
 
 									"identity_id": {
@@ -2169,6 +2181,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Resource) GetSchema(_ contex
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("Secret", "ConfigMap"),
+														},
 													},
 												}),
 
@@ -3039,6 +3056,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Resource) GetSchema(_ contex
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("Secret", "ConfigMap"),
+												},
 											},
 										}),
 
@@ -3111,6 +3133,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Resource) GetSchema(_ contex
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("v1", "v2"),
+										},
 									},
 								}),
 
@@ -3200,6 +3227,11 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Resource) GetSchema(_ contex
 												Required: true,
 												Optional: false,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("Secret", "ConfigMap"),
+												},
 											},
 										}),
 

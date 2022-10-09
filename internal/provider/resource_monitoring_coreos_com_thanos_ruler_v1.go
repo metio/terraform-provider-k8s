@@ -5150,6 +5150,11 @@ func (r *MonitoringCoreosComThanosRulerV1Resource) GetSchema(_ context.Context) 
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("monitoring.coreos.com"),
+								},
 							},
 
 							"name": {
@@ -5188,6 +5193,11 @@ func (r *MonitoringCoreosComThanosRulerV1Resource) GetSchema(_ context.Context) 
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("prometheusrules", "servicemonitors", "podmonitors", "probes"),
+								},
 							},
 						}),
 
@@ -7650,6 +7660,11 @@ func (r *MonitoringCoreosComThanosRulerV1Resource) GetSchema(_ context.Context) 
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("", "logfmt", "json"),
+						},
 					},
 
 					"log_level": {
@@ -7661,6 +7676,11 @@ func (r *MonitoringCoreosComThanosRulerV1Resource) GetSchema(_ context.Context) 
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("", "debug", "info", "warn", "error"),
+						},
 					},
 
 					"min_ready_seconds": {

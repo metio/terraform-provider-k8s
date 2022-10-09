@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -716,6 +718,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("session", "transaction"),
+								},
 							},
 
 							"connection_pooler_number_of_instances": {
@@ -1241,6 +1248,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("AND", "OR"),
+								},
 							},
 
 							"oauth_token_secret_name": {
@@ -1307,6 +1319,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("ordered_ready", "parallel"),
+								},
 							},
 
 							"pod_priority_class_name": {
@@ -1450,6 +1467,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("ebs", "mixed", "pvc", "off"),
+								},
 							},
 
 							"toleration": {
@@ -1572,6 +1594,11 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Cluster", "Local"),
+								},
 							},
 
 							"master_dns_name_format": {

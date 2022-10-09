@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -1461,6 +1463,11 @@ func (r *InfinispanOrgInfinispanV1Resource) GetSchema(_ context.Context) (tfsdk.
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("file", "zip", "tgz"),
+										},
 									},
 
 									"url": {
@@ -1556,6 +1563,11 @@ func (r *InfinispanOrgInfinispanV1Resource) GetSchema(_ context.Context) (tfsdk.
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("NodePort", "LoadBalancer", "Route"),
+								},
 							},
 						}),
 
@@ -1720,6 +1732,11 @@ func (r *InfinispanOrgInfinispanV1Resource) GetSchema(_ context.Context) (tfsdk.
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("None", "Authenticate", "Validate"),
+										},
 									},
 
 									"client_cert_secret_name": {
@@ -1742,6 +1759,11 @@ func (r *InfinispanOrgInfinispanV1Resource) GetSchema(_ context.Context) (tfsdk.
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Service", "service", "Secret", "secret", "None"),
+										},
 									},
 								}),
 
@@ -1867,6 +1889,11 @@ func (r *InfinispanOrgInfinispanV1Resource) GetSchema(_ context.Context) (tfsdk.
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("gossiprouter"),
+														},
 													},
 												}),
 
@@ -1890,6 +1917,11 @@ func (r *InfinispanOrgInfinispanV1Resource) GetSchema(_ context.Context) (tfsdk.
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("TLSv1.2", "TLSv1.3"),
+														},
 													},
 
 													"router_key_store": {
@@ -2081,6 +2113,11 @@ func (r *InfinispanOrgInfinispanV1Resource) GetSchema(_ context.Context) (tfsdk.
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("NodePort", "LoadBalancer", "ClusterIP", "Route"),
+														},
 													},
 												}),
 
@@ -2221,6 +2258,11 @@ func (r *InfinispanOrgInfinispanV1Resource) GetSchema(_ context.Context) (tfsdk.
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("DataGrid", "Cache"),
+								},
 							},
 						}),
 

@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -757,6 +759,11 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("DEFAULT", "DO_NOT_UPGRADE", "UPGRADE"),
+														},
 													},
 
 													"http1_max_pending_requests": {
@@ -1191,6 +1198,11 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("UNSPECIFIED", "LEAST_CONN", "RANDOM", "PASSTHROUGH", "ROUND_ROBIN", "LEAST_REQUEST"),
+												},
 											},
 
 											"warmup_duration_secs": {
@@ -1348,6 +1360,11 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 																Required: false,
 																Optional: true,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.OneOf("DEFAULT", "DO_NOT_UPGRADE", "UPGRADE"),
+																},
 															},
 
 															"http1_max_pending_requests": {
@@ -1782,6 +1799,11 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("UNSPECIFIED", "LEAST_CONN", "RANDOM", "PASSTHROUGH", "ROUND_ROBIN", "LEAST_REQUEST"),
+														},
 													},
 
 													"warmup_duration_secs": {
@@ -1994,6 +2016,11 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("DISABLE", "SIMPLE", "MUTUAL", "ISTIO_MUTUAL"),
+														},
 													},
 
 													"private_key": {
@@ -2100,6 +2127,11 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("DISABLE", "SIMPLE", "MUTUAL", "ISTIO_MUTUAL"),
+												},
 											},
 
 											"private_key": {
@@ -2225,6 +2257,11 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("DEFAULT", "DO_NOT_UPGRADE", "UPGRADE"),
+												},
 											},
 
 											"http1_max_pending_requests": {
@@ -2659,6 +2696,11 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("UNSPECIFIED", "LEAST_CONN", "RANDOM", "PASSTHROUGH", "ROUND_ROBIN", "LEAST_REQUEST"),
+										},
 									},
 
 									"warmup_duration_secs": {
@@ -2816,6 +2858,11 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("DEFAULT", "DO_NOT_UPGRADE", "UPGRADE"),
+														},
 													},
 
 													"http1_max_pending_requests": {
@@ -3250,6 +3297,11 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("UNSPECIFIED", "LEAST_CONN", "RANDOM", "PASSTHROUGH", "ROUND_ROBIN", "LEAST_REQUEST"),
+												},
 											},
 
 											"warmup_duration_secs": {
@@ -3462,6 +3514,11 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("DISABLE", "SIMPLE", "MUTUAL", "ISTIO_MUTUAL"),
+												},
 											},
 
 											"private_key": {
@@ -3568,6 +3625,11 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Resource) GetSchema(_ context.C
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("DISABLE", "SIMPLE", "MUTUAL", "ISTIO_MUTUAL"),
+										},
 									},
 
 									"private_key": {

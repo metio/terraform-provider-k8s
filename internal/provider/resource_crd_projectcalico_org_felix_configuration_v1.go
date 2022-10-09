@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -424,6 +426,11 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Resource) GetSchema(_ context.Co
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("DoNothing", "Enable", "Disable"),
+						},
 					},
 
 					"bpf_connect_time_load_balancing_enabled": {
@@ -921,6 +928,11 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Resource) GetSchema(_ context.Co
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("Enabled", "Disabled"),
+						},
 					},
 
 					"generic_xdp_enabled": {

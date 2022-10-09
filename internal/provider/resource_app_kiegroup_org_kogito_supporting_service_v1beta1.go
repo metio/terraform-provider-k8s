@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -1545,6 +1547,11 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Resource) GetSchema(_ conte
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("DataIndex", "Explainability", "JobsService", "MgmtConsole", "TaskConsole", "TrustyAI", "TrustyUI"),
+						},
 					},
 
 					"trust_store_secret": {

@@ -293,6 +293,11 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) GetSchema(_ conte
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("sops"),
+								},
 							},
 
 							"secret_ref": {
@@ -671,6 +676,11 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) GetSchema(_ conte
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("test", "remove", "add", "replace", "move", "copy"),
+										},
 									},
 
 									"path": {
@@ -850,6 +860,11 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) GetSchema(_ conte
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Secret", "ConfigMap"),
+										},
 									},
 
 									"name": {
@@ -941,6 +956,11 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) GetSchema(_ conte
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("GitRepository", "Bucket"),
+								},
 							},
 
 							"name": {
@@ -1020,6 +1040,11 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) GetSchema(_ conte
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("none", "client", "server"),
+						},
 					},
 				}),
 

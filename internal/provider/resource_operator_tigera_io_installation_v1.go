@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -2373,6 +2375,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 																Required: true,
 																Optional: false,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.OneOf("calico-kube-controllers"),
+																},
 															},
 
 															"resources": {
@@ -2532,6 +2539,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Enabled", "Disabled"),
+								},
 							},
 
 							"container_ip_forwarding": {
@@ -2543,6 +2555,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Enabled", "Disabled"),
+								},
 							},
 
 							"host_ports": {
@@ -2554,6 +2571,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Enabled", "Disabled"),
+								},
 							},
 
 							"ip_pools": {
@@ -2604,6 +2626,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("IPIPCrossSubnet", "IPIP", "VXLAN", "VXLANCrossSubnet", "None"),
+										},
 									},
 
 									"nat_outgoing": {
@@ -2615,6 +2642,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Enabled", "Disabled"),
+										},
 									},
 
 									"node_selector": {
@@ -2643,6 +2675,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Iptables", "BPF", "VPP"),
+								},
 							},
 
 							"mtu": {
@@ -2665,6 +2702,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("None", "Multus"),
+								},
 							},
 
 							"node_address_autodetection_v4": {
@@ -2726,6 +2768,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("NodeInternalIP"),
+										},
 									},
 
 									"skip_interface": {
@@ -2804,6 +2851,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("NodeInternalIP"),
+										},
 									},
 
 									"skip_interface": {
@@ -3967,6 +4019,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 																Required: true,
 																Optional: false,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.OneOf("calico-node"),
+																},
 															},
 
 															"resources": {
@@ -4024,6 +4081,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 																Required: true,
 																Optional: false,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.OneOf("install-cni", "hostpath-init", "flexvol-driver", "mount-bpffs", "node-certs-key-cert-provisioner", "calico-node-prometheus-server-tls-key-cert-provisioner"),
+																},
 															},
 
 															"resources": {
@@ -5306,6 +5368,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 																Required: true,
 																Optional: false,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.OneOf("calico-windows-upgrade"),
+																},
 															},
 
 															"resources": {
@@ -5481,6 +5548,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("", "RSAWithSize2048", "RSAWithSize4096", "RSAWithSize8192", "ECDSAWithCurve256", "ECDSAWithCurve384", "ECDSAWithCurve521"),
+								},
 							},
 
 							"signature_algorithm": {
@@ -5492,6 +5564,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("", "SHA256WithRSA", "SHA384WithRSA", "SHA512WithRSA", "ECDSAWithSHA256", "ECDSAWithSHA384", "ECDSAWithSHA512"),
+								},
 							},
 
 							"signer_name": {
@@ -5532,6 +5609,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Calico", "HostLocal", "AmazonVPC", "AzureVNET"),
+										},
 									},
 								}),
 
@@ -5549,6 +5631,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Calico", "GKE", "AmazonVPC", "AzureVNET"),
+								},
 							},
 						}),
 
@@ -5572,6 +5659,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Node", "Typha", "KubeControllers"),
+								},
 							},
 
 							"resource_requirements": {
@@ -5779,6 +5871,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("", "EKS", "GKE", "AKS", "OpenShift", "DockerEnterprise", "RKE2"),
+						},
 					},
 
 					"node_metrics_port": {
@@ -7272,6 +7369,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 																Required: true,
 																Optional: false,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.OneOf("calico-typha"),
+																},
 															},
 
 															"resources": {
@@ -7329,6 +7431,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 																Required: true,
 																Optional: false,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.OneOf("typha-certs-key-cert-provisioner"),
+																},
 															},
 
 															"resources": {
@@ -7493,6 +7600,11 @@ func (r *OperatorTigeraIoInstallationV1Resource) GetSchema(_ context.Context) (t
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("Calico", "TigeraSecureEnterprise"),
+						},
 					},
 				}),
 

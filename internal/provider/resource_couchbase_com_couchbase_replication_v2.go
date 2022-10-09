@@ -388,6 +388,11 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("None", "Auto"),
+						},
 					},
 
 					"filter_expression": {

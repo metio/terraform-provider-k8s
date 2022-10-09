@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -6968,6 +6970,11 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("v1_13", "v1_14", "v1_15", "v1_16"),
+						},
 					},
 
 					"image": {
@@ -7129,6 +7136,11 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("running", "suspended"),
+								},
 							},
 
 							"upgrade_mode": {
@@ -7140,6 +7152,11 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("savepoint", "last-state", "stateless"),
+								},
 							},
 						}),
 
@@ -19869,6 +19886,11 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("native", "standalone"),
+						},
 					},
 
 					"pod_template": {

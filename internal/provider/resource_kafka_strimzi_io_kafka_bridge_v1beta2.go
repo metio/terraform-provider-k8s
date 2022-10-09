@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -1050,6 +1052,11 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("tls", "scram-sha-256", "scram-sha-512", "plain", "oauth"),
+								},
 							},
 
 							"username": {
@@ -1395,6 +1402,11 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("inline", "external"),
+								},
 							},
 
 							"value_from": {
@@ -1657,6 +1669,11 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("SingleStack", "PreferDualStack", "RequireDualStack"),
+										},
 									},
 
 									"metadata": {
@@ -2029,6 +2046,11 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("RollingUpdate", "Recreate"),
+										},
 									},
 
 									"metadata": {
@@ -3871,6 +3893,11 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("jaeger"),
+								},
 							},
 						}),
 

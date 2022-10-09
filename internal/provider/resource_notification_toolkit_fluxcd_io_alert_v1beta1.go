@@ -181,6 +181,11 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta1Resource) GetSchema(_ context.Co
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("info", "error"),
+						},
 					},
 
 					"event_sources": {
@@ -209,6 +214,11 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta1Resource) GetSchema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Bucket", "GitRepository", "Kustomization", "HelmRelease", "HelmChart", "HelmRepository", "ImageRepository", "ImagePolicy", "ImageUpdateAutomation", "OCIRepository"),
+								},
 							},
 
 							"match_labels": {

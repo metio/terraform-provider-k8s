@@ -223,6 +223,11 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("IPAddress", "Hostname", "NamedAddress"),
+								},
 							},
 
 							"value": {
@@ -340,6 +345,11 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("All", "Selector", "Same"),
+												},
 											},
 
 											"selector": {
@@ -591,6 +601,11 @@ func (r *GatewayNetworkingK8SIoGatewayV1Alpha2Resource) GetSchema(_ context.Cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Terminate", "Passthrough"),
+										},
 									},
 
 									"options": {

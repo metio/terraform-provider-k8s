@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -654,6 +656,11 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Resource) GetSchema(_ cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Owner", "Orphan", "Merge", "None"),
+										},
 									},
 
 									"deletion_policy": {
@@ -665,6 +672,11 @@ func (r *ExternalSecretsIoClusterExternalSecretV1Beta1Resource) GetSchema(_ cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Delete", "Merge", "Retain"),
+										},
 									},
 
 									"immutable": {

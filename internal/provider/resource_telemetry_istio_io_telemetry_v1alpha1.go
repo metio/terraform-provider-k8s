@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -259,6 +261,11 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Resource) GetSchema(_ context.Context)
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("CLIENT_AND_SERVER", "CLIENT", "SERVER"),
+										},
 									},
 								}),
 
@@ -345,6 +352,11 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Resource) GetSchema(_ context.Context)
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("ALL_METRICS", "REQUEST_COUNT", "REQUEST_DURATION", "REQUEST_SIZE", "RESPONSE_SIZE", "TCP_OPENED_CONNECTIONS", "TCP_CLOSED_CONNECTIONS", "TCP_SENT_BYTES", "TCP_RECEIVED_BYTES", "GRPC_REQUEST_MESSAGES", "GRPC_RESPONSE_MESSAGES"),
+												},
 											},
 
 											"mode": {
@@ -356,6 +368,11 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Resource) GetSchema(_ context.Context)
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("CLIENT_AND_SERVER", "CLIENT", "SERVER"),
+												},
 											},
 										}),
 
@@ -476,6 +493,11 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Resource) GetSchema(_ context.Context)
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("CLIENT_AND_SERVER", "CLIENT", "SERVER"),
+										},
 									},
 								}),
 

@@ -1866,6 +1866,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("!=", "=", "=~", "!~"),
+										},
 									},
 
 									"name": {
@@ -1927,6 +1932,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("!=", "=", "=~", "!~"),
+										},
 									},
 
 									"name": {
@@ -3622,6 +3632,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 												Validators: []tfsdk.AttributeValidator{
 
 													stringvalidator.LengthAtLeast(1),
+
+													stringvalidator.OneOf("team", "teams", "user", "escalation", "schedule"),
 												},
 											},
 
@@ -8666,6 +8678,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("MarkdownV2", "Markdown", "HTML"),
+										},
 									},
 
 									"send_resolved": {
@@ -11367,6 +11384,11 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("!=", "=", "=~", "!~"),
+										},
 									},
 
 									"name": {

@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -633,6 +635,11 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("quarkus", "springboot"),
+						},
 					},
 
 					"runtime_image": {
@@ -666,6 +673,11 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("Binary", "RemoteSource", "LocalSource"),
+						},
 					},
 
 					"web_hooks": {
@@ -694,6 +706,11 @@ func (r *AppKiegroupOrgKogitoBuildV1Beta1Resource) GetSchema(_ context.Context) 
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("GitHub", "Generic"),
+								},
 							},
 						}),
 

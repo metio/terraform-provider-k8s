@@ -279,6 +279,11 @@ func (r *CouchbaseComCouchbaseMigrationReplicationV2Resource) GetSchema(_ contex
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("None", "Auto"),
+						},
 					},
 
 					"filter_expression": {

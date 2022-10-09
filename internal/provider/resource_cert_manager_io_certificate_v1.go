@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -255,6 +257,11 @@ func (r *CertManagerIoCertificateV1Resource) GetSchema(_ context.Context) (tfsdk
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("DER", "CombinedPEM"),
+								},
 							},
 						}),
 
@@ -537,6 +544,11 @@ func (r *CertManagerIoCertificateV1Resource) GetSchema(_ context.Context) (tfsdk
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("RSA", "ECDSA", "Ed25519"),
+								},
 							},
 
 							"encoding": {
@@ -548,6 +560,11 @@ func (r *CertManagerIoCertificateV1Resource) GetSchema(_ context.Context) (tfsdk
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("PKCS1", "PKCS8"),
+								},
 							},
 
 							"rotation_policy": {
@@ -559,6 +576,11 @@ func (r *CertManagerIoCertificateV1Resource) GetSchema(_ context.Context) (tfsdk
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Never", "Always"),
+								},
 							},
 
 							"size": {

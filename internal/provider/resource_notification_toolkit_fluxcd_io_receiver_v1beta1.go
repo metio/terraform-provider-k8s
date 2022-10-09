@@ -207,6 +207,11 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Bucket", "GitRepository", "Kustomization", "HelmRelease", "HelmChart", "HelmRepository", "ImageRepository", "ImagePolicy", "ImageUpdateAutomation", "OCIRepository"),
+								},
 							},
 
 							"match_labels": {
@@ -305,6 +310,11 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Resource) GetSchema(_ context
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("generic", "generic-hmac", "github", "gitlab", "bitbucket", "harbor", "dockerhub", "quay", "gcr", "nexus", "acr"),
+						},
 					},
 				}),
 

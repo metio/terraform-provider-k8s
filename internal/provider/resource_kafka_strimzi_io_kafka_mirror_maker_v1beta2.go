@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -1105,6 +1107,11 @@ func (r *KafkaStrimziIoKafkaMirrorMakerV1Beta2Resource) GetSchema(_ context.Cont
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("tls", "scram-sha-256", "scram-sha-512", "plain", "oauth"),
+										},
 									},
 
 									"username": {
@@ -1466,6 +1473,11 @@ func (r *KafkaStrimziIoKafkaMirrorMakerV1Beta2Resource) GetSchema(_ context.Cont
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("inline", "external"),
+								},
 							},
 
 							"value_from": {
@@ -1546,6 +1558,11 @@ func (r *KafkaStrimziIoKafkaMirrorMakerV1Beta2Resource) GetSchema(_ context.Cont
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("jmxPrometheusExporter"),
+								},
 							},
 
 							"value_from": {
@@ -1957,6 +1974,11 @@ func (r *KafkaStrimziIoKafkaMirrorMakerV1Beta2Resource) GetSchema(_ context.Cont
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("tls", "scram-sha-256", "scram-sha-512", "plain", "oauth"),
+										},
 									},
 
 									"username": {
@@ -2213,6 +2235,11 @@ func (r *KafkaStrimziIoKafkaMirrorMakerV1Beta2Resource) GetSchema(_ context.Cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("RollingUpdate", "Recreate"),
+										},
 									},
 
 									"metadata": {
@@ -4324,6 +4351,11 @@ func (r *KafkaStrimziIoKafkaMirrorMakerV1Beta2Resource) GetSchema(_ context.Cont
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("jaeger"),
+								},
 							},
 						}),
 

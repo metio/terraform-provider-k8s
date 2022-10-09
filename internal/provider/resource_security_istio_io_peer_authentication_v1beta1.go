@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -171,6 +173,11 @@ func (r *SecurityIstioIoPeerAuthenticationV1Beta1Resource) GetSchema(_ context.C
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("UNSET", "DISABLE", "PERMISSIVE", "STRICT"),
+								},
 							},
 						}),
 

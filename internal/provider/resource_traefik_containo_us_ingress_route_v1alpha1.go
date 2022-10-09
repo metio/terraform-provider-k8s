@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -248,6 +250,11 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Rule"),
+								},
 							},
 
 							"match": {
@@ -321,6 +328,11 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Service", "TraefikService"),
+										},
 									},
 
 									"name": {

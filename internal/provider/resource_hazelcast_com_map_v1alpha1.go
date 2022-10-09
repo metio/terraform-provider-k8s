@@ -226,6 +226,11 @@ func (r *HazelcastComMapV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("NONE", "LRU", "LFU", "RANDOM"),
+								},
 							},
 
 							"max_size": {
@@ -248,6 +253,11 @@ func (r *HazelcastComMapV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("PER_NODE", "PER_PARTITION", "USED_HEAP_SIZE", "USED_HEAP_PERCENTAGE", "FREE_HEAP_SIZE", "FREE_HEAP_PERCENTAGE", "USED_NATIVE_MEMORY_SIZE", "USED_NATIVE_MEMORY_PERCENTAGE", "FREE_NATIVE_MEMORY_SIZE", "FREE_NATIVE_MEMORY_PERCENTAGE"),
+								},
 							},
 						}),
 
@@ -281,6 +291,11 @@ func (r *HazelcastComMapV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("BINARY", "OBJECT"),
+						},
 					},
 
 					"indexes": {
@@ -326,6 +341,11 @@ func (r *HazelcastComMapV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("OBJECT", "LONG", "RAW"),
+										},
 									},
 								}),
 
@@ -354,6 +374,11 @@ func (r *HazelcastComMapV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("SORTED", "HASH", "BITMAP"),
+								},
 							},
 						}),
 
@@ -388,6 +413,11 @@ func (r *HazelcastComMapV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("LAZY", "EAGER"),
+								},
 							},
 
 							"properties_secret_name": {

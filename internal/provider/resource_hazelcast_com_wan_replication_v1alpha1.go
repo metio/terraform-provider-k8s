@@ -202,6 +202,11 @@ func (r *HazelcastComWanReplicationV1Alpha1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("ACK_ON_OPERATION_COMPLETE", "ACK_ON_RECEIPT"),
+								},
 							},
 						}),
 
@@ -286,6 +291,11 @@ func (r *HazelcastComWanReplicationV1Alpha1Resource) GetSchema(_ context.Context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("DISCARD_AFTER_MUTATION", "THROW_EXCEPTION", "THROW_EXCEPTION_ONLY_IF_REPLICATION_ACTIVE"),
+								},
 							},
 						}),
 
@@ -309,6 +319,11 @@ func (r *HazelcastComWanReplicationV1Alpha1Resource) GetSchema(_ context.Context
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Map", "Hazelcast"),
+								},
 							},
 
 							"name": {

@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -1715,6 +1717,11 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Always", "Never", "IfNotPresent"),
+								},
 							},
 
 							"podannotations": {
@@ -1886,6 +1893,11 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Always", "Never", "IfNotPresent"),
+								},
 							},
 
 							"resources": {

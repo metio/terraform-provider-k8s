@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -247,6 +249,11 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("INVALID", "LISTENER", "FILTER_CHAIN", "NETWORK_FILTER", "HTTP_FILTER", "ROUTE_CONFIGURATION", "VIRTUAL_HOST", "HTTP_ROUTE", "CLUSTER", "EXTENSION_CONFIG", "BOOTSTRAP"),
+								},
 							},
 
 							"match": {
@@ -320,6 +327,11 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("ANY", "SIDECAR_INBOUND", "SIDECAR_OUTBOUND", "GATEWAY"),
+										},
 									},
 
 									"listener": {
@@ -596,6 +608,11 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 																Required: false,
 																Optional: true,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.OneOf("ANY", "ROUTE", "REDIRECT", "DIRECT_RESPONSE"),
+																},
 															},
 
 															"name": {
@@ -648,6 +665,11 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("UNSPECIFIED", "AUTHN", "AUTHZ", "STATS"),
+										},
 									},
 
 									"operation": {
@@ -659,6 +681,11 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("INVALID", "MERGE", "ADD", "REMOVE", "INSERT_BEFORE", "INSERT_AFTER", "INSERT_FIRST", "REPLACE"),
+										},
 									},
 
 									"value": {

@@ -7218,6 +7218,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("monitoring.coreos.com"),
+								},
 							},
 
 							"name": {
@@ -7256,6 +7261,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("prometheusrules", "servicemonitors", "podmonitors", "probes"),
+								},
 							},
 						}),
 
@@ -9436,6 +9446,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("", "logfmt", "json"),
+						},
 					},
 
 					"log_level": {
@@ -9447,6 +9462,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("", "debug", "info", "warn", "error"),
+						},
 					},
 
 					"min_ready_seconds": {
@@ -11843,6 +11863,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("replace", "Replace", "keep", "Keep", "drop", "Drop", "hashmod", "HashMod", "labelmap", "LabelMap", "labeldrop", "LabelDrop", "labelkeep", "LabelKeep", "lowercase", "Lowercase", "uppercase", "Uppercase"),
+										},
 									},
 
 									"modulus": {
@@ -13891,6 +13916,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("", "logfmt", "json"),
+								},
 							},
 
 							"log_level": {
@@ -13902,6 +13932,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("", "debug", "info", "warn", "error"),
+								},
 							},
 
 							"min_time": {
@@ -17119,6 +17154,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("", "NoSniff"),
+												},
 											},
 
 											"x_frame_options": {
@@ -17130,6 +17170,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("", "Deny", "SameOrigin"),
+												},
 											},
 
 											"x_xss_protection": {

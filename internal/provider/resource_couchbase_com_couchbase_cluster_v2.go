@@ -10,6 +10,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -1785,6 +1787,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("memory_optimized", "plasma"),
+								},
 							},
 
 							"indexer": {
@@ -1802,6 +1809,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("silent", "fatal", "error", "warn", "info", "verbose", "timing", "debug", "trace"),
+										},
 									},
 
 									"max_rollback_points": {
@@ -1851,6 +1863,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("memory_optimized", "plasma"),
+										},
 									},
 
 									"threads": {
@@ -1990,6 +2007,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("Immediate"),
+						},
 					},
 
 					"image": {
@@ -2442,6 +2464,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("IPv4", "IPv6"),
+								},
 							},
 
 							"admin_console_service_template": {
@@ -2711,6 +2738,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("NodePort", "LoadBalancer"),
+								},
 							},
 
 							"admin_console_services": {
@@ -3047,6 +3079,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("NodePort", "LoadBalancer"),
+								},
 							},
 
 							"exposed_feature_traffic_policy": {
@@ -3058,6 +3095,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Cluster", "Local"),
+								},
 							},
 
 							"exposed_features": {
@@ -3091,6 +3133,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("Istio"),
+								},
 							},
 
 							"service_annotations": {
@@ -3175,6 +3222,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("enable", "mandatory"),
+										},
 									},
 
 									"node_to_node_encryption": {
@@ -3186,6 +3238,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("ControlPlaneOnly", "All", "Strict"),
+										},
 									},
 
 									"root_c_as": {
@@ -3276,6 +3333,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("TLS1.0", "TLS1.1", "TLS1.2", "TLS1.3"),
+										},
 									},
 								}),
 
@@ -3332,6 +3394,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("aws", "gce", "azure"),
+						},
 					},
 
 					"recovery_policy": {
@@ -3343,6 +3410,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("PrioritizeDataIntegrity", "PrioritizeUptime"),
+						},
 					},
 
 					"rolling_upgrade": {
@@ -3482,6 +3554,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("None", "StartTLSExtension", "TLS"),
+										},
 									},
 
 									"groups_query": {
@@ -5045,6 +5122,11 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("RollingUpgrade", "ImmediateUpgrade"),
+						},
 					},
 
 					"volume_claim_templates": {

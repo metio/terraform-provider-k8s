@@ -12126,6 +12126,11 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("Always", "Never", "IfNotPresent"),
+						},
 					},
 
 					"image_pull_secrets": {
@@ -16618,6 +16623,11 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Switchover", "Failover"),
+										},
 									},
 								}),
 
@@ -20414,6 +20424,11 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("ClusterIP", "NodePort", "LoadBalancer"),
+												},
 											},
 										}),
 
@@ -20743,6 +20758,11 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("ClusterIP", "NodePort", "LoadBalancer"),
+								},
 							},
 						}),
 
@@ -22683,6 +22703,11 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("ClusterIP", "NodePort", "LoadBalancer"),
+												},
 											},
 										}),
 
@@ -22955,6 +22980,11 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("ASCII", "AlphaNumeric"),
+										},
 									},
 								}),
 

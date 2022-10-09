@@ -697,6 +697,11 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("HS256", "HS384", "HS512"),
+										},
 									},
 
 									"key_id": {
@@ -1076,6 +1081,11 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("AzurePublicCloud", "AzureChinaCloud", "AzureGermanCloud", "AzureUSGovernmentCloud"),
+														},
 													},
 
 													"hosted_zone_name": {
@@ -1330,6 +1340,11 @@ func (r *CertManagerIoClusterIssuerV1Resource) GetSchema(_ context.Context) (tfs
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("None", "Follow"),
+												},
 											},
 
 											"digitalocean": {
