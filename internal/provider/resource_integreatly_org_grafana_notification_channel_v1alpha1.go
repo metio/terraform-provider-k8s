@@ -95,9 +95,6 @@ func (r *IntegreatlyOrgGrafanaNotificationChannelV1Alpha1Resource) GetSchema(_ c
 						MarkdownDescription: "Unique identifier for this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names for more details.",
 						Type:                types.StringType,
 						Required:            true,
-						PlanModifiers: []tfsdk.AttributePlanModifier{
-							resource.RequiresReplace(),
-						},
 						Validators: []tfsdk.AttributeValidator{
 							validators.NameValidator(),
 						},

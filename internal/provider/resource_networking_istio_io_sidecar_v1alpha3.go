@@ -171,9 +171,6 @@ func (r *NetworkingIstioIoSidecarV1Alpha3Resource) GetSchema(_ context.Context) 
 						MarkdownDescription: "Unique identifier for this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names for more details.",
 						Type:                types.StringType,
 						Required:            true,
-						PlanModifiers: []tfsdk.AttributePlanModifier{
-							resource.RequiresReplace(),
-						},
 						Validators: []tfsdk.AttributeValidator{
 							validators.NameValidator(),
 						},
