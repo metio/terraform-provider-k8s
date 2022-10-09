@@ -32,7 +32,7 @@ type TemplateData struct {
 	TerraformModelType    string
 	GoModelType           string
 	TerraformResourceName string
-	Properties            []Property
+	Properties            []*Property
 	UsedValidators        UsedValidators
 }
 
@@ -41,6 +41,7 @@ type UsedValidators struct {
 	Float64Validator bool
 	StringValidator  bool
 	Regex            bool
+	SchemaValidator  bool
 }
 
 type Property struct {
@@ -55,7 +56,7 @@ type Property struct {
 	Required               bool
 	Optional               bool
 	Computed               bool
-	Properties             []Property
+	Properties             []*Property
 	Validators             []string
 }
 
@@ -96,24 +97,25 @@ func AsTemplateData(crd *apiextensionsv1.CustomResourceDefinition, pkg string) *
 		TerraformResourceType: TerraformResourceType(&crd.Spec, &version),
 		TerraformModelType:    TerraformModelType(&crd.Spec, &version),
 		GoModelType:           GoModelType(&crd.Spec, &version),
+		Properties:            Properties2(schema, &validators),
+		//Properties:            Properties(schema.Properties, schema.Required, &validators),
 		TerraformResourceName: TerraformResourceName(&crd.Spec),
-		Properties:            Properties(schema.Properties, schema.Required, &validators),
 		UsedValidators:        validators,
 	}
 }
 
-func Properties(properties map[string]apiextensionsv1.JSONSchemaProps, required []string, uv *UsedValidators) []Property {
-	props := make([]Property, 0)
+func Properties2(schema *apiextensionsv1.JSONSchemaProps, uv *UsedValidators) []*Property {
+	props := make([]*Property, 0)
 
-	for name, prop := range properties {
-		var nestedProperties []Property
+	for name, prop := range schema.Properties {
+		var nestedProperties []*Property
 		if prop.Type == "array" && prop.Items.Schema.Type == "object" {
-			nestedProperties = Properties(prop.Items.Schema.Properties, prop.Items.Schema.Required, uv)
+			nestedProperties = Properties2(prop.Items.Schema, uv)
 		} else {
-			nestedProperties = Properties(prop.Properties, prop.Required, uv)
+			nestedProperties = Properties2(&prop, uv)
 		}
 
-		props = append(props, Property{
+		props = append(props, &Property{
 			BT:                     "`",
 			Name:                   name,
 			GoName:                 GoName(name),
@@ -122,8 +124,8 @@ func Properties(properties map[string]apiextensionsv1.JSONSchemaProps, required 
 			TerraformAttributeType: TerraformAttributeType(prop),
 			TerraformValueType:     TerraformValueType(prop),
 			Description:            Description(prop.Description),
-			Required:               slices.Contains(required, name),
-			Optional:               !slices.Contains(required, name),
+			Required:               slices.Contains(schema.Required, name),
+			Optional:               !slices.Contains(schema.Required, name),
 			Computed:               false,
 			Properties:             nestedProperties,
 			Validators:             Validators(prop, uv),
@@ -134,8 +136,82 @@ func Properties(properties map[string]apiextensionsv1.JSONSchemaProps, required 
 		return props[i].Name < props[j].Name
 	})
 
+	if schema.MinProperties != nil && schema.MaxProperties != nil {
+		min := *schema.MinProperties
+		max := *schema.MaxProperties
+
+		if min == 1 && max == 1 {
+			uv.SchemaValidator = true
+
+			for _, outer := range props {
+				for _, inner := range props {
+					if outer.Name != inner.Name {
+						validator := fmt.Sprintf(`schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("%s"))`, inner.TerraformAttributeName)
+						outer.Validators = append(outer.Validators, validator)
+					}
+				}
+			}
+		}
+	} else if schema.MinProperties != nil && schema.MaxProperties == nil {
+		min := *schema.MinProperties
+
+		if min == 1 {
+			uv.SchemaValidator = true
+
+			for _, outer := range props {
+				for _, inner := range props {
+					if outer.Name != inner.Name {
+						validator := fmt.Sprintf(`schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("%s"))`, inner.TerraformAttributeName)
+						outer.Validators = append(outer.Validators, validator)
+					}
+				}
+			}
+		} else if min > 1 && min == int64(len(props)) {
+			for _, prop := range props {
+				prop.Required = true
+				prop.Optional = false
+			}
+		}
+	}
+
 	return props
 }
+
+//
+//func Properties(properties map[string]apiextensionsv1.JSONSchemaProps, required []string, uv *UsedValidators) []Property {
+//	props := make([]Property, 0)
+//
+//	for name, prop := range properties {
+//		var nestedProperties []Property
+//		if prop.Type == "array" && prop.Items.Schema.Type == "object" {
+//			nestedProperties = Properties(prop.Items.Schema.Properties, prop.Items.Schema.Required, uv)
+//		} else {
+//			nestedProperties = Properties(prop.Properties, prop.Required, uv)
+//		}
+//
+//		props = append(props, Property{
+//			BT:                     "`",
+//			Name:                   name,
+//			GoName:                 GoName(name),
+//			GoType:                 GoType(prop),
+//			TerraformAttributeName: TerraformAttributeName(name),
+//			TerraformAttributeType: TerraformAttributeType(prop),
+//			TerraformValueType:     TerraformValueType(prop),
+//			Description:            Description(prop.Description),
+//			Required:               slices.Contains(required, name),
+//			Optional:               !slices.Contains(required, name),
+//			Computed:               false,
+//			Properties:             nestedProperties,
+//			Validators:             Validators(prop, uv),
+//		})
+//	}
+//
+//	sort.SliceStable(props, func(i, j int) bool {
+//		return props[i].Name < props[j].Name
+//	})
+//
+//	return props
+//}
 
 var matchFirstCap = regexp.MustCompile("(.)([A-Z][a-z]+)")
 var matchAllCap = regexp.MustCompile("([a-z0-9])([A-Z])")

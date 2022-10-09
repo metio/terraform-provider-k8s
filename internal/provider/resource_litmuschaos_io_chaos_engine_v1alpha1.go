@@ -12,6 +12,9 @@ import (
 
 	"regexp"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	"github.com/hashicorp/terraform-plugin-framework/path"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -4425,6 +4428,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 																Required: false,
 																Optional: true,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("post")),
+																},
 															},
 
 															"post": {
@@ -4507,6 +4515,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 																Required: false,
 																Optional: true,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("get")),
+																},
 															},
 														}),
 

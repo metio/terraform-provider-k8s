@@ -292,8 +292,8 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 
 										Type: types.StringType,
 
-										Required: false,
-										Optional: true,
+										Required: true,
+										Optional: false,
 										Computed: false,
 
 										Validators: []tfsdk.AttributeValidator{
@@ -308,8 +308,8 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 
 										Type: types.StringType,
 
-										Required: false,
-										Optional: true,
+										Required: true,
+										Optional: false,
 										Computed: false,
 
 										Validators: []tfsdk.AttributeValidator{
@@ -551,8 +551,8 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 
 										Type: types.StringType,
 
-										Required: false,
-										Optional: true,
+										Required: true,
+										Optional: false,
 										Computed: false,
 
 										Validators: []tfsdk.AttributeValidator{
@@ -567,8 +567,8 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 
 										Type: types.StringType,
 
-										Required: false,
-										Optional: true,
+										Required: true,
+										Optional: false,
 										Computed: false,
 
 										Validators: []tfsdk.AttributeValidator{
@@ -583,8 +583,8 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 
 										Type: types.StringType,
 
-										Required: false,
-										Optional: true,
+										Required: true,
+										Optional: false,
 										Computed: false,
 
 										Validators: []tfsdk.AttributeValidator{
@@ -738,8 +738,8 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 
 										Type: types.StringType,
 
-										Required: false,
-										Optional: true,
+										Required: true,
+										Optional: false,
 										Computed: false,
 
 										Validators: []tfsdk.AttributeValidator{
@@ -754,8 +754,8 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 
 										Type: types.StringType,
 
-										Required: false,
-										Optional: true,
+										Required: true,
+										Optional: false,
 										Computed: false,
 
 										Validators: []tfsdk.AttributeValidator{

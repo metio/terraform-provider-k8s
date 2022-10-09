@@ -82,7 +82,7 @@ Optional:
 <a id="nestedatt--spec--definition--config_maps"></a>
 ### Nested Schema for `spec.definition.config_maps`
 
-Optional:
+Required:
 
 - `mount_path` (String)
 - `name` (String)
@@ -166,7 +166,7 @@ Optional:
 <a id="nestedatt--spec--definition--host_file_volumes"></a>
 ### Nested Schema for `spec.definition.host_file_volumes`
 
-Optional:
+Required:
 
 - `mount_path` (String)
 - `name` (String)
@@ -191,7 +191,7 @@ Optional:
 <a id="nestedatt--spec--definition--secrets"></a>
 ### Nested Schema for `spec.definition.secrets`
 
-Optional:
+Required:
 
 - `mount_path` (String)
 - `name` (String)
