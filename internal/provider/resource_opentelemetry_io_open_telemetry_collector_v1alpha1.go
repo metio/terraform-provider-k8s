@@ -2802,6 +2802,11 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Resource) GetSchema(_ cont
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													validators.DateTime64Validator(),
+												},
 											},
 
 											"last_transition_time": {
@@ -2813,6 +2818,11 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Resource) GetSchema(_ cont
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													validators.DateTime64Validator(),
+												},
 											},
 
 											"message": {

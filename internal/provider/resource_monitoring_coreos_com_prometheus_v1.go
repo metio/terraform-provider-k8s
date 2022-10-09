@@ -13456,6 +13456,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															validators.DateTime64Validator(),
+														},
 													},
 
 													"last_transition_time": {
@@ -13467,6 +13472,11 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															validators.DateTime64Validator(),
+														},
 													},
 
 													"message": {

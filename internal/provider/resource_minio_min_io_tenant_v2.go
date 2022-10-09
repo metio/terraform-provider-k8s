@@ -7790,6 +7790,11 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Required: false,
 																Optional: true,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	validators.DateTime64Validator(),
+																},
 															},
 
 															"last_transition_time": {
@@ -7801,6 +7806,11 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Required: false,
 																Optional: true,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	validators.DateTime64Validator(),
+																},
 															},
 
 															"message": {
@@ -10290,6 +10300,11 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															validators.DateTime64Validator(),
+														},
 													},
 
 													"last_transition_time": {
@@ -10301,6 +10316,11 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															validators.DateTime64Validator(),
+														},
 													},
 
 													"message": {
@@ -14487,6 +14507,11 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															validators.DateTime64Validator(),
+														},
 													},
 
 													"last_transition_time": {
@@ -14498,6 +14523,11 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															validators.DateTime64Validator(),
+														},
 													},
 
 													"message": {

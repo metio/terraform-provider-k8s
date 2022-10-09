@@ -2704,6 +2704,11 @@ func (r *RocketmqApacheOrgNameServiceV1Alpha1Resource) GetSchema(_ context.Conte
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													validators.DateTime64Validator(),
+												},
 											},
 
 											"last_transition_time": {
@@ -2715,6 +2720,11 @@ func (r *RocketmqApacheOrgNameServiceV1Alpha1Resource) GetSchema(_ context.Conte
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													validators.DateTime64Validator(),
+												},
 											},
 
 											"message": {
