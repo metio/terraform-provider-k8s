@@ -8,6 +8,9 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	"github.com/hashicorp/terraform-plugin-framework/path"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -549,6 +552,11 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Resource) GetSchema(_ context.Co
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("secret")),
+												},
 											},
 
 											"secret": {
@@ -595,6 +603,11 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Resource) GetSchema(_ context.Co
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("config_map")),
+												},
 											},
 										}),
 
