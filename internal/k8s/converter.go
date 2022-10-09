@@ -358,6 +358,11 @@ func Validators(prop apiextensionsv1.JSONSchemaProps, uv *UsedValidators) []stri
 		validators = append(validators, fmt.Sprintf("float64validator.AtMost(%v)", maxValue(prop)))
 		uv.Float64Validator = true
 	}
+	if prop.Type == "number" && len(prop.Enum) > 0 {
+		enums := floatEnums(prop.Enum)
+		validators = append(validators, fmt.Sprintf("float64validator.OneOf(%v)", concatEnums(enums)))
+		uv.Int64Validator = true
+	}
 	if prop.Type == "string" && prop.Format == "byte" {
 		validators = append(validators, "validators.Base64Validator()")
 	}
@@ -396,6 +401,21 @@ func intEnums(enums []apiextensionsv1.JSON) []int64 {
 	for _, val := range enums {
 		if str := string(val.Raw); str != "" {
 			i, err := strconv.ParseInt(str, 10, 64)
+			if err == nil {
+				values = append(values, i)
+			}
+		}
+	}
+
+	return values
+}
+
+func floatEnums(enums []apiextensionsv1.JSON) []float64 {
+	var values []float64
+
+	for _, val := range enums {
+		if str := string(val.Raw); str != "" {
+			i, err := strconv.ParseFloat(str, 64)
 			if err == nil {
 				values = append(values, i)
 			}
