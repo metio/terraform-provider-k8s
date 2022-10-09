@@ -2239,6 +2239,11 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													validators.Base64Validator(),
+												},
 											},
 
 											"ca_provider": {
@@ -3320,6 +3325,11 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											validators.Base64Validator(),
+										},
 									},
 
 									"ca_provider": {
@@ -3476,6 +3486,11 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											validators.Base64Validator(),
+										},
 									},
 
 									"ca_provider": {

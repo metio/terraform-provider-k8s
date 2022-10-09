@@ -1581,6 +1581,11 @@ func (r *RedhatcopRedhatIoQuayEcosystemV1Alpha1Resource) GetSchema(_ context.Con
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													validators.Base64Validator(),
+												},
 											},
 
 											"type": {
@@ -4314,6 +4319,11 @@ func (r *RedhatcopRedhatIoQuayEcosystemV1Alpha1Resource) GetSchema(_ context.Con
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													validators.Base64Validator(),
+												},
 											},
 
 											"type": {
