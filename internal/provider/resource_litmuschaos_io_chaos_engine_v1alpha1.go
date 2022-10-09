@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -1543,6 +1545,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+														},
 													},
 
 													"comparator": {
@@ -1571,6 +1578,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 																Required: false,
 																Optional: true,
 																Computed: false,
+
+																Validators: []tfsdk.AttributeValidator{
+
+																	stringvalidator.LengthAtLeast(1),
+																},
 															},
 
 															"value": {
@@ -4357,6 +4369,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+
+																		Validators: []tfsdk.AttributeValidator{
+
+																			stringvalidator.LengthAtLeast(1),
+																		},
 																	},
 
 																	"response_code": {
@@ -4368,6 +4385,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+
+																		Validators: []tfsdk.AttributeValidator{
+
+																			stringvalidator.LengthAtLeast(1),
+																		},
 																	},
 																}),
 
@@ -4413,6 +4435,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+
+																		Validators: []tfsdk.AttributeValidator{
+
+																			stringvalidator.LengthAtLeast(1),
+																		},
 																	},
 
 																	"criteria": {
@@ -4424,6 +4451,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+
+																		Validators: []tfsdk.AttributeValidator{
+
+																			stringvalidator.LengthAtLeast(1),
+																		},
 																	},
 
 																	"response_code": {
@@ -4435,6 +4467,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+
+																		Validators: []tfsdk.AttributeValidator{
+
+																			stringvalidator.LengthAtLeast(1),
+																		},
 																	},
 																}),
 
@@ -4458,6 +4495,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+														},
 													},
 												}),
 
@@ -4525,6 +4567,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.LengthAtLeast(1),
+														},
 													},
 
 													"resource": {
@@ -4564,6 +4611,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 
 											"name": {
@@ -4743,6 +4795,11 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 										}),
 

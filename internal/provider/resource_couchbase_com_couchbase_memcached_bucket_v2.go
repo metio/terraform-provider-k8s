@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -183,6 +185,11 @@ func (r *CouchbaseComCouchbaseMemcachedBucketV2Resource) GetSchema(_ context.Con
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.LengthAtMost(100),
+						},
 					},
 				}),
 

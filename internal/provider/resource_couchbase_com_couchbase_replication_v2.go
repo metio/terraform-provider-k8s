@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -202,6 +204,13 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+
+											stringvalidator.LengthAtMost(251),
+										},
 									},
 
 									"scope": {
@@ -213,6 +222,13 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+
+											stringvalidator.LengthAtMost(251),
+										},
 									},
 								}),
 
@@ -236,6 +252,13 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+
+											stringvalidator.LengthAtMost(251),
+										},
 									},
 
 									"scope": {
@@ -247,6 +270,13 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+
+											stringvalidator.LengthAtMost(251),
+										},
 									},
 								}),
 
@@ -282,6 +312,13 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+
+											stringvalidator.LengthAtMost(251),
+										},
 									},
 
 									"scope": {
@@ -293,6 +330,13 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 										Required: true,
 										Optional: false,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.LengthAtLeast(1),
+
+											stringvalidator.LengthAtMost(251),
+										},
 									},
 								}),
 
@@ -328,6 +372,11 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.LengthAtMost(100),
+						},
 					},
 
 					"compression_type": {
@@ -372,6 +421,11 @@ func (r *CouchbaseComCouchbaseReplicationV2Resource) GetSchema(_ context.Context
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.LengthAtMost(100),
+						},
 					},
 				}),
 

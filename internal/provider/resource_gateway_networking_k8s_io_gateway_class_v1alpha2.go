@@ -8,6 +8,8 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -160,6 +162,13 @@ func (r *GatewayNetworkingK8SIoGatewayClassV1Alpha2Resource) GetSchema(_ context
 						Required: true,
 						Optional: false,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.LengthAtLeast(1),
+
+							stringvalidator.LengthAtMost(253),
+						},
 					},
 
 					"description": {
@@ -171,6 +180,11 @@ func (r *GatewayNetworkingK8SIoGatewayClassV1Alpha2Resource) GetSchema(_ context
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.LengthAtMost(64),
+						},
 					},
 
 					"parameters_ref": {
@@ -188,6 +202,11 @@ func (r *GatewayNetworkingK8SIoGatewayClassV1Alpha2Resource) GetSchema(_ context
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtMost(253),
+								},
 							},
 
 							"kind": {
@@ -199,6 +218,13 @@ func (r *GatewayNetworkingK8SIoGatewayClassV1Alpha2Resource) GetSchema(_ context
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+
+									stringvalidator.LengthAtMost(63),
+								},
 							},
 
 							"name": {
@@ -210,6 +236,13 @@ func (r *GatewayNetworkingK8SIoGatewayClassV1Alpha2Resource) GetSchema(_ context
 								Required: true,
 								Optional: false,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+
+									stringvalidator.LengthAtMost(253),
+								},
 							},
 
 							"namespace": {
@@ -221,6 +254,13 @@ func (r *GatewayNetworkingK8SIoGatewayClassV1Alpha2Resource) GetSchema(_ context
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+
+									stringvalidator.LengthAtMost(63),
+								},
 							},
 						}),
 
