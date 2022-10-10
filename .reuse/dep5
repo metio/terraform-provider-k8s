@@ -51,6 +51,10 @@ Files: custom-resource-definitions/argoproj.io/*
 Copyright: The Argo CD Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/asdb.aerospike.com/*
+Copyright: The Aerospike Kubernetes Operator Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/cert-manager.io/*
 Copyright: The cert-manager Authors
 License: Apache-2.0
