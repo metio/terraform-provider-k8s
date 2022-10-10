@@ -60,6 +60,7 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewArgoprojIoApplicationV1Alpha1Resource,
 		NewArgoprojIoApplicationSetV1Alpha1Resource,
 		NewArgoprojIoAppProjectV1Alpha1Resource,
+		NewAsdbAerospikeComAerospikeClusterV1Beta1Resource,
 		NewCertManagerIoCertificateRequestV1Resource,
 		NewCertManagerIoCertificateV1Resource,
 		NewAcmeCertManagerIoChallengeV1Resource,
