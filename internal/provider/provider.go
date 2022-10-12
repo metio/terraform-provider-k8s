@@ -234,6 +234,7 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewPostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource,
 		NewQuayRedhatComQuayRegistryV1Resource,
 		NewRedhatcopRedhatIoQuayEcosystemV1Alpha1Resource,
+		NewRegistryApicurIoApicurioRegistryV1Resource,
 		NewRipsawCloudbulldozerIoBenchmarkV1Alpha1Resource,
 		NewRocketmqApacheOrgBrokerV1Alpha1Resource,
 		NewRocketmqApacheOrgConsoleV1Alpha1Resource,
