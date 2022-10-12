@@ -411,7 +411,7 @@ type JaegertracingIoJaegerV1GoModel struct {
 
 			Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
-			Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+			Config utilities.Dynamic `tfsdk:"config" yaml:"config,omitempty"`
 
 			ContainerSecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
@@ -521,7 +521,7 @@ type JaegertracingIoJaegerV1GoModel struct {
 				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
 			} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
 
-			Options *map[string]string `tfsdk:"options" yaml:"options,omitempty"`
+			Options utilities.Dynamic `tfsdk:"options" yaml:"options,omitempty"`
 
 			PriorityClassName *string `tfsdk:"priority_class_name" yaml:"priorityClassName,omitempty"`
 
@@ -1301,7 +1301,7 @@ type JaegertracingIoJaegerV1GoModel struct {
 
 			Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
-			Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+			Config utilities.Dynamic `tfsdk:"config" yaml:"config,omitempty"`
 
 			ContainerSecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
@@ -1411,7 +1411,7 @@ type JaegertracingIoJaegerV1GoModel struct {
 				Type *string `tfsdk:"type" yaml:"type,omitempty"`
 			} `tfsdk:"metrics_storage" yaml:"metricsStorage,omitempty"`
 
-			Options *map[string]string `tfsdk:"options" yaml:"options,omitempty"`
+			Options utilities.Dynamic `tfsdk:"options" yaml:"options,omitempty"`
 
 			Resources *struct {
 				Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
@@ -2155,7 +2155,7 @@ type JaegertracingIoJaegerV1GoModel struct {
 
 			Autoscale *bool `tfsdk:"autoscale" yaml:"autoscale,omitempty"`
 
-			Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+			Config utilities.Dynamic `tfsdk:"config" yaml:"config,omitempty"`
 
 			ContainerSecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
@@ -2267,7 +2267,7 @@ type JaegertracingIoJaegerV1GoModel struct {
 
 			MinReplicas *int64 `tfsdk:"min_replicas" yaml:"minReplicas,omitempty"`
 
-			Options *map[string]string `tfsdk:"options" yaml:"options,omitempty"`
+			Options utilities.Dynamic `tfsdk:"options" yaml:"options,omitempty"`
 
 			PriorityClassName *string `tfsdk:"priority_class_name" yaml:"priorityClassName,omitempty"`
 
@@ -3067,7 +3067,7 @@ type JaegertracingIoJaegerV1GoModel struct {
 
 			Autoscale *bool `tfsdk:"autoscale" yaml:"autoscale,omitempty"`
 
-			Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+			Config utilities.Dynamic `tfsdk:"config" yaml:"config,omitempty"`
 
 			ContainerSecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
@@ -3179,7 +3179,7 @@ type JaegertracingIoJaegerV1GoModel struct {
 
 			MinReplicas *int64 `tfsdk:"min_replicas" yaml:"minReplicas,omitempty"`
 
-			Options *map[string]string `tfsdk:"options" yaml:"options,omitempty"`
+			Options utilities.Dynamic `tfsdk:"options" yaml:"options,omitempty"`
 
 			Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
 
@@ -4037,7 +4037,7 @@ type JaegertracingIoJaegerV1GoModel struct {
 				SkipLogout *bool `tfsdk:"skip_logout" yaml:"skipLogout,omitempty"`
 			} `tfsdk:"openshift" yaml:"openshift,omitempty"`
 
-			Options *map[string]string `tfsdk:"options" yaml:"options,omitempty"`
+			Options utilities.Dynamic `tfsdk:"options" yaml:"options,omitempty"`
 
 			PathType *string `tfsdk:"path_type" yaml:"pathType,omitempty"`
 
@@ -4937,7 +4937,7 @@ type JaegertracingIoJaegerV1GoModel struct {
 
 			NodePort *int64 `tfsdk:"node_port" yaml:"nodePort,omitempty"`
 
-			Options *map[string]string `tfsdk:"options" yaml:"options,omitempty"`
+			Options utilities.Dynamic `tfsdk:"options" yaml:"options,omitempty"`
 
 			PriorityClassName *string `tfsdk:"priority_class_name" yaml:"priorityClassName,omitempty"`
 
@@ -5509,7 +5509,7 @@ type JaegertracingIoJaegerV1GoModel struct {
 		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 		Sampling *struct {
-			Options *map[string]string `tfsdk:"options" yaml:"options,omitempty"`
+			Options utilities.Dynamic `tfsdk:"options" yaml:"options,omitempty"`
 		} `tfsdk:"sampling" yaml:"sampling,omitempty"`
 
 		SecurityContext *struct {
@@ -8337,7 +8337,7 @@ type JaegertracingIoJaegerV1GoModel struct {
 				Image *string `tfsdk:"image" yaml:"image,omitempty"`
 			} `tfsdk:"grpc_plugin" yaml:"grpcPlugin,omitempty"`
 
-			Options *map[string]string `tfsdk:"options" yaml:"options,omitempty"`
+			Options utilities.Dynamic `tfsdk:"options" yaml:"options,omitempty"`
 
 			SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
 
@@ -8359,7 +8359,7 @@ type JaegertracingIoJaegerV1GoModel struct {
 		} `tfsdk:"tolerations" yaml:"tolerations,omitempty"`
 
 		Ui *struct {
-			Options *map[string]string `tfsdk:"options" yaml:"options,omitempty"`
+			Options utilities.Dynamic `tfsdk:"options" yaml:"options,omitempty"`
 		} `tfsdk:"ui" yaml:"ui,omitempty"`
 
 		VolumeMounts *[]struct {
@@ -10983,7 +10983,7 @@ func (r *JaegertracingIoJaegerV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -11600,7 +11600,7 @@ func (r *JaegertracingIoJaegerV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -15999,7 +15999,7 @@ func (r *JaegertracingIoJaegerV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -16617,7 +16617,7 @@ func (r *JaegertracingIoJaegerV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -20815,7 +20815,7 @@ func (r *JaegertracingIoJaegerV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -21443,7 +21443,7 @@ func (r *JaegertracingIoJaegerV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -25955,7 +25955,7 @@ func (r *JaegertracingIoJaegerV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -26583,7 +26583,7 @@ func (r *JaegertracingIoJaegerV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -31421,7 +31421,7 @@ func (r *JaegertracingIoJaegerV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -36495,7 +36495,7 @@ func (r *JaegertracingIoJaegerV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -39714,7 +39714,7 @@ func (r *JaegertracingIoJaegerV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -55667,7 +55667,7 @@ func (r *JaegertracingIoJaegerV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -55790,7 +55790,7 @@ func (r *JaegertracingIoJaegerV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,

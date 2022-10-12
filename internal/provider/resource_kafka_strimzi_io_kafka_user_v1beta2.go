@@ -105,9 +105,9 @@ type KafkaStrimziIoKafkaUserV1Beta2GoModel struct {
 		Template *struct {
 			Secret *struct {
 				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+					Annotations utilities.Dynamic `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+					Labels utilities.Dynamic `tfsdk:"labels" yaml:"labels,omitempty"`
 				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 			} `tfsdk:"secret" yaml:"secret,omitempty"`
 		} `tfsdk:"template" yaml:"template,omitempty"`
@@ -541,7 +541,7 @@ func (r *KafkaStrimziIoKafkaUserV1Beta2Resource) GetSchema(_ context.Context) (t
 												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -552,7 +552,7 @@ func (r *KafkaStrimziIoKafkaUserV1Beta2Resource) GetSchema(_ context.Context) (t
 												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,

@@ -148,7 +148,7 @@ Optional:
 
 - `operation` (String) Operation describes whether values should be merged in ('merge'), or pruned ('prune'). Default value is 'merge'
 - `path_tests` (Attributes List) PathTests are a series of existence tests that can be checked before a mutation is applied (see [below for nested schema](#nestedatt--spec--parameters--path_tests))
-- `values` (Map of String) Values describes the values provided to the operation as 'values.fromList'.
+- `values` (Dynamic) Values describes the values provided to the operation as 'values.fromList'.
 
 <a id="nestedatt--spec--parameters--path_tests"></a>
 ### Nested Schema for `spec.parameters.path_tests`

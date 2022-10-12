@@ -59,9 +59,9 @@ type IntegreatlyOrgGrafanaDataSourceV1Alpha1GoModel struct {
 
 			BasicAuthUser *string `tfsdk:"basic_auth_user" yaml:"basicAuthUser,omitempty"`
 
-			CustomJsonData *map[string]string `tfsdk:"custom_json_data" yaml:"customJsonData,omitempty"`
+			CustomJsonData utilities.Dynamic `tfsdk:"custom_json_data" yaml:"customJsonData,omitempty"`
 
-			CustomSecureJsonData *map[string]string `tfsdk:"custom_secure_json_data" yaml:"customSecureJsonData,omitempty"`
+			CustomSecureJsonData utilities.Dynamic `tfsdk:"custom_secure_json_data" yaml:"customSecureJsonData,omitempty"`
 
 			Database *string `tfsdk:"database" yaml:"database,omitempty"`
 
@@ -504,7 +504,7 @@ func (r *IntegreatlyOrgGrafanaDataSourceV1Alpha1Resource) GetSchema(_ context.Co
 								Description:         "CustomJsonData will be used in place of jsonData, if present, and supports arbitrary JSON, not just those of official datasources",
 								MarkdownDescription: "CustomJsonData will be used in place of jsonData, if present, and supports arbitrary JSON, not just those of official datasources",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -515,7 +515,7 @@ func (r *IntegreatlyOrgGrafanaDataSourceV1Alpha1Resource) GetSchema(_ context.Co
 								Description:         "SecureCustomJsonData will be used in place of secureJsonData, if present, and supports arbitrary JSON, not just those of official datasources",
 								MarkdownDescription: "SecureCustomJsonData will be used in place of secureJsonData, if present, and supports arbitrary JSON, not just those of official datasources",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,

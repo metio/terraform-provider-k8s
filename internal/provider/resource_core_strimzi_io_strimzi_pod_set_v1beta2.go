@@ -61,7 +61,7 @@ type CoreStrimziIoStrimziPodSetV1Beta2GoModel struct {
 				Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 			} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+			MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 		} `tfsdk:"selector" yaml:"selector,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -226,7 +226,7 @@ func (r *CoreStrimziIoStrimziPodSetV1Beta2Resource) GetSchema(_ context.Context)
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,

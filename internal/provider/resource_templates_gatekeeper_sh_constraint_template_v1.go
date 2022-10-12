@@ -59,7 +59,7 @@ type TemplatesGatekeeperShConstraintTemplateV1GoModel struct {
 				Validation *struct {
 					LegacySchema *bool `tfsdk:"legacy_schema" yaml:"legacySchema,omitempty"`
 
-					OpenAPIV3Schema *map[string]string `tfsdk:"open_apiv3_schema" yaml:"openAPIV3Schema,omitempty"`
+					OpenAPIV3Schema utilities.Dynamic `tfsdk:"open_apiv3_schema" yaml:"openAPIV3Schema,omitempty"`
 				} `tfsdk:"validation" yaml:"validation,omitempty"`
 			} `tfsdk:"spec" yaml:"spec,omitempty"`
 		} `tfsdk:"crd" yaml:"crd,omitempty"`
@@ -228,7 +228,7 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Resource) GetSchema(_ context.
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,

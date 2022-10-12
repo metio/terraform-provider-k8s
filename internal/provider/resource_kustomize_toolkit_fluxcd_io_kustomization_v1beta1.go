@@ -124,7 +124,7 @@ type KustomizeToolkitFluxcdIoKustomizationV1Beta1GoModel struct {
 
 				Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-				Value *map[string]string `tfsdk:"value" yaml:"value,omitempty"`
+				Value utilities.Dynamic `tfsdk:"value" yaml:"value,omitempty"`
 			} `tfsdk:"patch" yaml:"patch,omitempty"`
 
 			Target *struct {
@@ -698,7 +698,7 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) GetSchema(_ conte
 										Description:         "Value contains a valid JSON structure. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.",
 										MarkdownDescription: "Value contains a valid JSON structure. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,

@@ -77,7 +77,7 @@ Optional:
 - `timeout` (String) Timeout is the time to wait for any individual Kubernetes operation (like Jobs for hooks) during the performance of a Helm action. Defaults to '5m0s'.
 - `uninstall` (Attributes) Uninstall holds the configuration for Helm uninstall actions for this HelmRelease. (see [below for nested schema](#nestedatt--spec--uninstall))
 - `upgrade` (Attributes) Upgrade holds the configuration for Helm upgrade actions for this HelmRelease. (see [below for nested schema](#nestedatt--spec--upgrade))
-- `values` (Map of String) Values holds the values for this Helm release.
+- `values` (Dynamic) Values holds the values for this Helm release.
 - `values_from` (Attributes List) ValuesFrom holds references to resources containing Helm values for this HelmRelease, and information about how they should be merged. (see [below for nested schema](#nestedatt--spec--values_from))
 
 <a id="nestedatt--spec--chart"></a>
@@ -251,7 +251,7 @@ Required:
 Optional:
 
 - `from` (String) From contains a JSON-pointer value that references a location within the target document where the operation is performed. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.
-- `value` (Map of String) Value contains a valid JSON structure. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.
+- `value` (Dynamic) Value contains a valid JSON structure. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.
 
 
 <a id="nestedatt--spec--post_renderers--kustomize--patches_strategic_merge--target"></a>

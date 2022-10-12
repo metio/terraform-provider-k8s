@@ -220,7 +220,7 @@ type CertManagerIoIssuerV1GoModel struct {
 					} `tfsdk:"route53" yaml:"route53,omitempty"`
 
 					Webhook *struct {
-						Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+						Config utilities.Dynamic `tfsdk:"config" yaml:"config,omitempty"`
 
 						GroupName *string `tfsdk:"group_name" yaml:"groupName,omitempty"`
 
@@ -1617,7 +1617,7 @@ func (r *CertManagerIoIssuerV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 														Description:         "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
 														MarkdownDescription: "Additional configuration that should be passed to the webhook apiserver when challenges are processed. This can contain arbitrary JSON data. Secret values should not be specified in this stanza. If secret values are needed (e.g. credentials for a DNS service), you should use a SecretKeySelector to reference a Secret resource. For details on the schema of this field, consult the webhook provider implementation's documentation.",
 
-														Type: types.MapType{ElemType: types.StringType},
+														Type: utilities.DynamicType{},
 
 														Required: false,
 														Optional: true,

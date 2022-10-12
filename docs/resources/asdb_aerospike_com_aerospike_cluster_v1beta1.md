@@ -19,7 +19,9 @@ resource "k8s_asdb_aerospike_com_aerospike_cluster_v1beta1" "minimal" {
     namespace = "some-namespace"
   }
   spec = {
-
+    aerospike_config = {}
+    image = "aerospike/aerospike-server-enterprise:6.1.0.1"
+    size = 123
   }
 }
 
@@ -32,10 +34,10 @@ resource "k8s_asdb_aerospike_com_aerospike_cluster_v1beta1" "example" {
     aerospike_config = {
       namespaces = [
         {
-          memory_size = 3000000000
+          memory-size = 3000000000
           name = "test"
-          replication_factor = 2
-          storage_engine = {
+          replication-factor = 2
+          storage-engine = {
             type = "memory"
           }
         }
@@ -52,7 +54,7 @@ resource "k8s_asdb_aerospike_com_aerospike_cluster_v1beta1" "example" {
         }
       }
       service = {
-        feature_key_file = "/etc/aerospike/secret/features.conf"
+        feature-key-file = "/etc/aerospike/secret/features.conf"
       }
     }
     image = "aerospike/aerospike-server-enterprise:6.1.0.1"
@@ -120,7 +122,7 @@ Optional:
 
 Required:
 
-- `aerospike_config` (Map of String) Sets config in aerospike.conf file. Other configs are taken as default
+- `aerospike_config` (Dynamic) Sets config in aerospike.conf file. Other configs are taken as default
 - `image` (String) Aerospike server image
 - `size` (Number) Aerospike cluster size
 
@@ -1966,8 +1968,8 @@ Required:
 
 Optional:
 
-- `aerospike_config` (Map of String) AerospikeConfig overrides the common AerospikeConfig for this Rack.
-- `effective_aerospike_config` (Map of String) Effective/operative Aerospike config.
+- `aerospike_config` (Dynamic) AerospikeConfig overrides the common AerospikeConfig for this Rack.
+- `effective_aerospike_config` (Dynamic) Effective/operative Aerospike config.
 - `effective_pod_spec` (Attributes) Effective/operative PodSpec. (see [below for nested schema](#nestedatt--spec--rack_config--racks--effective_pod_spec))
 - `effective_storage` (Attributes) Effective/operative storage. (see [below for nested schema](#nestedatt--spec--rack_config--racks--effective_storage))
 - `node_name` (String) K8s Node name for setting rack affinity.

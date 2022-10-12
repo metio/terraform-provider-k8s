@@ -52,7 +52,7 @@ type KafkaStrimziIoKafkaTopicV1Beta2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+		Config utilities.Dynamic `tfsdk:"config" yaml:"config,omitempty"`
 
 		Partitions *int64 `tfsdk:"partitions" yaml:"partitions,omitempty"`
 
@@ -160,7 +160,7 @@ func (r *KafkaStrimziIoKafkaTopicV1Beta2Resource) GetSchema(_ context.Context) (
 						Description:         "The topic configuration.",
 						MarkdownDescription: "The topic configuration.",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Type: utilities.DynamicType{},
 
 						Required: false,
 						Optional: true,

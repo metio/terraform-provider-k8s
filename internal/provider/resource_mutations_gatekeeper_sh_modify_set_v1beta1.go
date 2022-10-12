@@ -111,7 +111,7 @@ type MutationsGatekeeperShModifySetV1Beta1GoModel struct {
 				SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
 			} `tfsdk:"path_tests" yaml:"pathTests,omitempty"`
 
-			Values *map[string]string `tfsdk:"values" yaml:"values,omitempty"`
+			Values utilities.Dynamic `tfsdk:"values" yaml:"values,omitempty"`
 		} `tfsdk:"parameters" yaml:"parameters,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -555,7 +555,7 @@ func (r *MutationsGatekeeperShModifySetV1Beta1Resource) GetSchema(_ context.Cont
 								Description:         "Values describes the values provided to the operation as 'values.fromList'.",
 								MarkdownDescription: "Values describes the values provided to the operation as 'values.fromList'.",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,

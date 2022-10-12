@@ -60,7 +60,7 @@ type CouchbaseComCouchbaseBackupRestoreV2GoModel struct {
 
 		Backup *string `tfsdk:"backup" yaml:"backup,omitempty"`
 
-		Buckets *map[string]string `tfsdk:"buckets" yaml:"buckets,omitempty"`
+		Buckets utilities.Dynamic `tfsdk:"buckets" yaml:"buckets,omitempty"`
 
 		Data *struct {
 			Exclude *[]string `tfsdk:"exclude" yaml:"exclude,omitempty"`
@@ -246,7 +246,7 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Resource) GetSchema(_ context.Conte
 						Description:         "DEPRECATED - by spec.data. Specific buckets can be explicitly included or excluded in the restore, as well as bucket mappings.  This field is now ignored.",
 						MarkdownDescription: "DEPRECATED - by spec.data. Specific buckets can be explicitly included or excluded in the restore, as well as bucket mappings.  This field is now ignored.",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Type: utilities.DynamicType{},
 
 						Required: false,
 						Optional: true,

@@ -166,7 +166,7 @@ type HelmToolkitFluxcdIoHelmReleaseV2Beta1GoModel struct {
 
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-						Value *map[string]string `tfsdk:"value" yaml:"value,omitempty"`
+						Value utilities.Dynamic `tfsdk:"value" yaml:"value,omitempty"`
 					} `tfsdk:"patch" yaml:"patch,omitempty"`
 
 					Target *struct {
@@ -266,7 +266,7 @@ type HelmToolkitFluxcdIoHelmReleaseV2Beta1GoModel struct {
 			Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 		} `tfsdk:"upgrade" yaml:"upgrade,omitempty"`
 
-		Values *map[string]string `tfsdk:"values" yaml:"values,omitempty"`
+		Values utilities.Dynamic `tfsdk:"values" yaml:"values,omitempty"`
 
 		ValuesFrom *[]struct {
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
@@ -1058,7 +1058,7 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 														Description:         "Value contains a valid JSON structure. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.",
 														MarkdownDescription: "Value contains a valid JSON structure. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.",
 
-														Type: types.MapType{ElemType: types.StringType},
+														Type: utilities.DynamicType{},
 
 														Required: false,
 														Optional: true,
@@ -1672,7 +1672,7 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 						Description:         "Values holds the values for this Helm release.",
 						MarkdownDescription: "Values holds the values for this Helm release.",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Type: utilities.DynamicType{},
 
 						Required: false,
 						Optional: true,

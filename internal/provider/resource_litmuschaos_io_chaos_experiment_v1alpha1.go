@@ -142,7 +142,7 @@ type LitmuschaosIoChaosExperimentV1Alpha1GoModel struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 			} `tfsdk:"secrets" yaml:"secrets,omitempty"`
 
-			SecurityContext *map[string]string `tfsdk:"security_context" yaml:"securityContext,omitempty"`
+			SecurityContext utilities.Dynamic `tfsdk:"security_context" yaml:"securityContext,omitempty"`
 		} `tfsdk:"definition" yaml:"definition,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -774,7 +774,7 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,

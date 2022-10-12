@@ -74,8 +74,8 @@ Optional:
 - `basic_auth` (Boolean)
 - `basic_auth_password` (String)
 - `basic_auth_user` (String)
-- `custom_json_data` (Map of String) CustomJsonData will be used in place of jsonData, if present, and supports arbitrary JSON, not just those of official datasources
-- `custom_secure_json_data` (Map of String) SecureCustomJsonData will be used in place of secureJsonData, if present, and supports arbitrary JSON, not just those of official datasources
+- `custom_json_data` (Dynamic) CustomJsonData will be used in place of jsonData, if present, and supports arbitrary JSON, not just those of official datasources
+- `custom_secure_json_data` (Dynamic) SecureCustomJsonData will be used in place of secureJsonData, if present, and supports arbitrary JSON, not just those of official datasources
 - `database` (String)
 - `editable` (Boolean)
 - `is_default` (Boolean)

@@ -29,7 +29,7 @@ resource "k8s_helm_sigstore_dev_rekor_v1alpha1" "minimal" {
 
 ### Optional
 
-- `spec` (Map of String) Spec defines the desired state of Rekor
+- `spec` (Dynamic) Spec defines the desired state of Rekor
 
 ### Read-Only
 

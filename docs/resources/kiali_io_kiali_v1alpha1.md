@@ -118,7 +118,7 @@ Optional:
 
 Optional:
 
-- `additional_request_params` (Map of String)
+- `additional_request_params` (Dynamic)
 - `allowed_domains` (List of String)
 - `api_proxy` (String)
 - `api_proxy_ca_data` (String)
@@ -150,9 +150,9 @@ Optional:
 Optional:
 
 - `accessible_namespaces` (List of String) A list of namespaces Kiali is to be given access to. These namespaces have service mesh components that are to be observed by Kiali. You can provide names using regex expressions matched against all namespaces the operator can see. The default makes all namespaces accessible except for some internal namespaces that typically should be ignored. NOTE! If this has an entry with the special value of ''**'' (two asterisks), that will denote you want Kiali to be given access to all namespaces via a single cluster role (if using this special value of ''**'', you are required to have already granted the operator permissions to create cluster roles and cluster role bindings).
-- `additional_service_yaml` (Map of String) Additional custom yaml to add to the service definition. This is used mainly to customize the service type. For example, if the 'deployment.service_type' is set to 'LoadBalancer' and you want to set the loadBalancerIP, you can do so here with: 'additional_service_yaml: { 'loadBalancerIP': '78.11.24.19' }'. Another example would be if the 'deployment.service_type' is set to 'ExternalName' you will need to configure the name via: 'additional_service_yaml: { 'externalName': 'my.kiali.example.com' }'. A final example would be if external IPs need to be set: 'additional_service_yaml: { 'externalIPs': ['80.11.12.10'] }'
+- `additional_service_yaml` (Dynamic) Additional custom yaml to add to the service definition. This is used mainly to customize the service type. For example, if the 'deployment.service_type' is set to 'LoadBalancer' and you want to set the loadBalancerIP, you can do so here with: 'additional_service_yaml: { 'loadBalancerIP': '78.11.24.19' }'. Another example would be if the 'deployment.service_type' is set to 'ExternalName' you will need to configure the name via: 'additional_service_yaml: { 'externalName': 'my.kiali.example.com' }'. A final example would be if external IPs need to be set: 'additional_service_yaml: { 'externalIPs': ['80.11.12.10'] }'
 - `affinity` (Attributes) Affinity definitions that are to be used to define the nodes where the Kiali pod should be constrained. See the Kubernetes documentation on Assigning Pods to Nodes for the proper syntax for these three different affinity types. (see [below for nested schema](#nestedatt--spec--deployment--affinity))
-- `configmap_annotations` (Map of String) Custom annotations to be created on the Kiali ConfigMap.
+- `configmap_annotations` (Dynamic) Custom annotations to be created on the Kiali ConfigMap.
 - `custom_secrets` (Attributes List) Defines additional secrets that are to be mounted in the Kiali pod.These are useful to contain certs that are used by Kiali to securely connect to third party systems(for example, see 'external_services.tracing.auth.ca_file').These secrets must be created by an external mechanism. Kiali will not generate these secrets; itis assumed these secrets are externally managed. You can define 0, 1, or more secrets.An example configuration is,'''custom_secrets:- name: mysecret  mount: /mysecret-path- name: my-other-secret  mount: /my-other-secret-location  optional: true''' (see [below for nested schema](#nestedatt--spec--deployment--custom_secrets))
 - `host_aliases` (Attributes List) This is content for the Kubernetes 'hostAliases' setting for the Kiali server.This allows you to modify the Kiali server pod '/etc/hosts' file.A typical way to configure this setting is,'''host_aliases:- ip: 192.168.1.100  hostnames:  - 'foo.local'  - 'bar.local''''For details on the content of this setting, see https://kubernetes.io/docs/tasks/network/customize-hosts-file-for-pods/#adding-additional-entries-with-hostaliases (see [below for nested schema](#nestedatt--spec--deployment--host_aliases))
 - `hpa` (Attributes) Determines what (if any) HorizontalPodAutoscaler should be created to autoscale the Kiali pod.A typical way to configure HPA for Kiali is,'''hpa:  api_version: 'autoscaling/v2'  spec:    maxReplicas: 2    minReplicas: 1    metrics:    - type: Resource      resource:        name: cpu        target:          type: Utilization          averageUtilization: 50''' (see [below for nested schema](#nestedatt--spec--deployment--hpa))
@@ -165,15 +165,15 @@ Optional:
 - `instance_name` (String) The instance name of this Kiali installation. This instance name will be the prefix prepended to the names of all Kiali resources created by the operator and will be used to label those resources as belonging to this Kiali installation instance. You cannot change this instance name after a Kiali CR is created. If you attempt to change it, the operator will abort with an error. If you want to change it, you must first delete the original Kiali CR and create a new one. Note that this does not affect the name of the auto-generated signing key secret. If you do not supply a signing key, the operator will create one for you in a secret, but that secret will always be named 'kiali-signing-key' and shared across all Kiali instances in the same deployment namespace. If you want a different signing key secret, you are free to create your own and tell the operator about it via 'login_token.signing_key'. See the docs on that setting for more details. Note also that if you are setting this value, you may also want to change the 'installation_tag' setting, but this is not required.
 - `logger` (Attributes) Configures the logger that emits messages to the Kiali server pod logs. (see [below for nested schema](#nestedatt--spec--deployment--logger))
 - `namespace` (String) The namespace into which Kiali is to be installed. If this is empty or not defined, the default will be the namespace where the Kiali CR is located.
-- `node_selector` (Map of String) A set of node labels that dictate onto which node the Kiali pod will be deployed.
-- `pod_annotations` (Map of String) Custom annotations to be created on the Kiali pod.
-- `pod_labels` (Map of String) Custom labels to be created on the Kiali pod.An example use for this setting is to inject an Istio sidecar such as,'''sidecar.istio.io/inject: 'true''''
+- `node_selector` (Dynamic) A set of node labels that dictate onto which node the Kiali pod will be deployed.
+- `pod_annotations` (Dynamic) Custom annotations to be created on the Kiali pod.
+- `pod_labels` (Dynamic) Custom labels to be created on the Kiali pod.An example use for this setting is to inject an Istio sidecar such as,'''sidecar.istio.io/inject: 'true''''
 - `priority_class_name` (String) The priorityClassName used to assign the priority of the Kiali pod.
 - `replicas` (Number) The replica count for the Kiail deployment.
-- `resources` (Map of String) Defines compute resources that are to be given to the Kiali pod's container. The value is a dict as defined by Kubernetes. See the Kubernetes documentation (https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container).If you set this to an empty dict ('{}') then no resources will be defined in the Deployment.If you do not set this at all, the default is,'''requests:  cpu: '10m'  memory: '64Mi'limits:  memory: '1Gi''''
+- `resources` (Dynamic) Defines compute resources that are to be given to the Kiali pod's container. The value is a dict as defined by Kubernetes. See the Kubernetes documentation (https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container).If you set this to an empty dict ('{}') then no resources will be defined in the Deployment.If you do not set this at all, the default is,'''requests:  cpu: '10m'  memory: '64Mi'limits:  memory: '1Gi''''
 - `secret_name` (String) The name of a secret used by the Kiali. This secret is optionally used when configuring the OpenID authentication strategy. Consult the OpenID docs for more information at https://kiali.io/docs/configuration/authentication/openid/
-- `security_context` (Map of String) Custom security context to be placed on the server container. The entire security context on the container will be the value of this setting if the operator is configured to allow it. Note that, as a security measure, a cluster admin may have configured the Kiali operator to not allow portions of this override setting - in this case you can specify additional security context settings but you cannot replace existing, default ones.
-- `service_annotations` (Map of String) Custom annotations to be created on the Kiali Service resource.
+- `security_context` (Dynamic) Custom security context to be placed on the server container. The entire security context on the container will be the value of this setting if the operator is configured to allow it. Note that, as a security measure, a cluster admin may have configured the Kiali operator to not allow portions of this override setting - in this case you can specify additional security context settings but you cannot replace existing, default ones.
+- `service_annotations` (Dynamic) Custom annotations to be created on the Kiali Service resource.
 - `service_type` (String) The Kiali service type. Kubernetes determines what values are valid. Common values are 'NodePort', 'ClusterIP', and 'LoadBalancer'.
 - `tolerations` (List of Map of String) A list of tolerations which declare which node taints Kiali can tolerate. See the Kubernetes documentation on Taints and Tolerations for more details.
 - `verbose_mode` (String) DEPRECATED! Determines which priority levels of log messages Kiali will output. Use 'deployment.logger' settings instead.
@@ -185,9 +185,9 @@ Optional:
 
 Optional:
 
-- `node` (Map of String)
-- `pod` (Map of String)
-- `pod_anti` (Map of String)
+- `node` (Dynamic)
+- `pod` (Dynamic)
+- `pod_anti` (Dynamic)
 
 
 <a id="nestedatt--spec--deployment--custom_secrets"></a>
@@ -218,7 +218,7 @@ Optional:
 Optional:
 
 - `api_version` (String) A specific HPA API version that can be specified in case there is some HPA feature you want to use that is only supported in that specific version. If value is an empty string, an attempt will be made to determine a valid version.
-- `spec` (Map of String) The 'spec' specified here will be placed in the created HPA resource's 'spec' section. If 'spec' is left empty, no HPA resource will be created. Note that you must not specify the 'scaleTargetRef' section in 'spec'; the Kiali Operator will populate that for you.
+- `spec` (Dynamic) The 'spec' specified here will be placed in the created HPA resource's 'spec' section. If 'spec' is left empty, no HPA resource will be created. Note that you must not specify the 'scaleTargetRef' section in 'spec'; the Kiali Operator will populate that for you.
 
 
 <a id="nestedatt--spec--deployment--ingress"></a>
@@ -226,7 +226,7 @@ Optional:
 
 Optional:
 
-- `additional_labels` (Map of String) Additional labels to add to the Ingress (or Route if on OpenShift). These are added to the labels that are created by default; these do not override the default labels.
+- `additional_labels` (Dynamic) Additional labels to add to the Ingress (or Route if on OpenShift). These are added to the labels that are created by default; these do not override the default labels.
 - `class_name` (String) If 'class_name' is a non-empty string, it will be used as the 'spec.ingressClassName' in the created Kubernetes Ingress resource. This setting is ignored if on OpenShift. This is also ignored if 'override_yaml.spec' is defined (i.e. you must define the 'ingressClassName' directly in your override yaml).
 - `enabled` (Boolean) Determines if the Kiali endpoint should be exposed externally. If 'true', an Ingress will be created if on Kubernetes or a Route if on OpenShift. If left undefined, this will be 'false' on Kubernetes and 'true' on OpenShift.
 - `override_yaml` (Attributes) Because an Ingress into a cluster can vary wildly in its desired configuration,this setting provides a way to override complete portions of the Ingress resourceconfiguration (Ingress on Kubernetes and Route on OpenShift). It is up to the userto ensure this override YAML configuration is valid and supports the cluster environmentsince the operator will blindly copy this custom configuration into the resource itcreates.This setting is not used if 'deployment.ingress.enabled' is set to 'false'.Note that only 'metadata.annotations' and 'spec' is valid and only they willbe used to override those same sections in the created resource. You can defineeither one or both.Note that 'override_yaml.metadata.labels' is not allowed - you cannot override the labels; to addlabels to the default set of labels, use the 'deployment.ingress.additional_labels' setting.Example,'''override_yaml:  metadata:    annotations:      nginx.ingress.kubernetes.io/secure-backends: 'true'      nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS'  spec:    rules:    - http:        paths:        - path: /kiali          pathType: Prefix          backend:            service              name: 'kiali'              port:                number: 20001''' (see [below for nested schema](#nestedatt--spec--deployment--ingress--override_yaml))
@@ -237,14 +237,14 @@ Optional:
 Optional:
 
 - `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--ingress--override_yaml--metadata))
-- `spec` (Map of String)
+- `spec` (Dynamic)
 
 <a id="nestedatt--spec--deployment--ingress--override_yaml--metadata"></a>
 ### Nested Schema for `spec.deployment.ingress.override_yaml.metadata`
 
 Optional:
 
-- `annotations` (Map of String)
+- `annotations` (Dynamic)
 
 
 
@@ -293,10 +293,10 @@ Optional:
 - `cache_duration` (Number) Prometheus caching duration expressed in seconds.
 - `cache_enabled` (Boolean) Enable/disable Prometheus caching used for Health services.
 - `cache_expiration` (Number) Prometheus caching expiration expressed in seconds.
-- `custom_headers` (Map of String) A set of name/value settings that will be passed as headers when requests are sent to Prometheus.
+- `custom_headers` (Dynamic) A set of name/value settings that will be passed as headers when requests are sent to Prometheus.
 - `health_check_url` (String) Used in the Components health feature. This is the url which Kiali will ping to determine whether the component is reachable or not. It defaults to 'url' when not provided.
 - `is_core` (Boolean) Used in the Components health feature. When true, the unhealthy scenarios will be raised as errors. Otherwise, they will be raised as a warning.
-- `query_scope` (Map of String) A set of labelName/labelValue settings applied to every Prometheus query. Used to narrow unified metrics to only those scoped to the Kiali instance.
+- `query_scope` (Dynamic) A set of labelName/labelValue settings applied to every Prometheus query. Used to narrow unified metrics to only those scoped to the Kiali instance.
 - `thanos_proxy` (Attributes) Define this section if Prometheus is to be queried through a Thanos proxy. Kiali will still use the 'url' setting to query for Prometheus metrics so make sure that is set appropriately. (see [below for nested schema](#nestedatt--spec--external_services--custom_dashboards--prometheus--thanos_proxy))
 - `url` (String) The URL used to query the Prometheus Server. This URL must be accessible from the Kiali pod. If empty, the default will assume Prometheus is in the Istio control plane namespace; e.g. 'http://prometheus.<istio_namespace>:9090'.
 
@@ -431,10 +431,10 @@ Optional:
 - `cache_duration` (Number) Prometheus caching duration expressed in seconds.
 - `cache_enabled` (Boolean) Enable/disable Prometheus caching used for Health services.
 - `cache_expiration` (Number) Prometheus caching expiration expressed in seconds.
-- `custom_headers` (Map of String) A set of name/value settings that will be passed as headers when requests are sent to Prometheus.
+- `custom_headers` (Dynamic) A set of name/value settings that will be passed as headers when requests are sent to Prometheus.
 - `health_check_url` (String) Used in the Components health feature. This is the url which Kiali will ping to determine whether the component is reachable or not. It defaults to 'url' when not provided.
 - `is_core` (Boolean) Used in the Components health feature. When true, the unhealthy scenarios will be raised as errors. Otherwise, they will be raised as a warning.
-- `query_scope` (Map of String) A set of labelName/labelValue settings applied to every Prometheus query. Used to narrow unified metrics to only those scoped to the Kiali instance.
+- `query_scope` (Dynamic) A set of labelName/labelValue settings applied to every Prometheus query. Used to narrow unified metrics to only those scoped to the Kiali instance.
 - `thanos_proxy` (Attributes) Define this section if Prometheus is to be queried through a Thanos proxy. Kiali will still use the 'url' setting to query for Prometheus metrics so make sure that is set appropriately. (see [below for nested schema](#nestedatt--spec--external_services--prometheus--thanos_proxy))
 - `url` (String) The URL used to query the Prometheus Server. This URL must be accessible from the Kiali pod. If empty, the default will assume Prometheus is in the Istio control plane namespace; e.g. 'http://prometheus.<istio_namespace>:9090'.
 
@@ -473,7 +473,7 @@ Optional:
 - `in_cluster_url` (String) Set URL for in-cluster access, which enables further integration between Kiali and Jaeger. When not provided, Kiali will only show external links using the 'url' setting. Note: Jaeger v1.20+ has separated ports for GRPC(16685) and HTTP(16686) requests. Make sure you use the appropriate port according to the 'use_grpc' value. Example: http://tracing.istio-system:16685
 - `is_core` (Boolean) Used in the Components health feature. When true, the unhealthy scenarios will be raised as errors. Otherwise, they will be raised as a warning.
 - `namespace_selector` (Boolean) Kiali use this boolean to find traces with a namespace selector : service.namespace.
-- `query_scope` (Map of String) A set of tagKey/tagValue settings applied to every Jaeger query. Used to narrow unified traces to only those scoped to the Kiali instance.
+- `query_scope` (Dynamic) A set of tagKey/tagValue settings applied to every Jaeger query. Used to narrow unified traces to only those scoped to the Kiali instance.
 - `url` (String) The external URL that will be used to generate links to Jaeger. It must be accessible to clients external to the cluster (e.g: a browser) in order to generate valid links. If the tracing service is deployed with a QUERY_BASE_PATH set, set this URL like https://<hostname>/<QUERY_BASE_PATH>. For example, https://tracing-service:8080/jaeger
 - `use_grpc` (Boolean) Set to true in order to enable GRPC connections between Kiali and Jaeger which will speed up the queries. In some setups you might not be able to use GRPC (e.g. if Jaeger is behind some reverse proxy that doesn't support it). If not specified, this will defalt to 'false' if deployed within a Maistra/OSSM+OpenShift environment, 'true' otherwise.
 - `whitelist_istio_system` (List of String) Kiali will get the traces of these services found in the Istio control plane namespace.

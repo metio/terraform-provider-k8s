@@ -80,7 +80,7 @@ Required:
 
 Optional:
 
-- `metadata` (Map of String) Standard object's metadata of the hot backups created from this template.
+- `metadata` (Dynamic) Standard object's metadata of the hot backups created from this template.
 
 <a id="nestedatt--spec--hot_backup_template--spec"></a>
 ### Nested Schema for `spec.hot_backup_template.spec`

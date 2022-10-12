@@ -118,7 +118,7 @@ type MutationsGatekeeperShAssignV1Alpha1GoModel struct {
 					Field *string `tfsdk:"field" yaml:"field,omitempty"`
 				} `tfsdk:"from_metadata" yaml:"fromMetadata,omitempty"`
 
-				Value *map[string]string `tfsdk:"value" yaml:"value,omitempty"`
+				Value utilities.Dynamic `tfsdk:"value" yaml:"value,omitempty"`
 			} `tfsdk:"assign" yaml:"assign,omitempty"`
 
 			PathTests *[]struct {
@@ -609,7 +609,7 @@ func (r *MutationsGatekeeperShAssignV1Alpha1Resource) GetSchema(_ context.Contex
 										Description:         "Value is a constant value that will be assigned to 'location'",
 										MarkdownDescription: "Value is a constant value that will be assigned to 'location'",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,

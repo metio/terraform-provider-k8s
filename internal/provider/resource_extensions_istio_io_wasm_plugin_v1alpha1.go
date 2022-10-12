@@ -66,7 +66,7 @@ type ExtensionsIstioIoWasmPluginV1Alpha1GoModel struct {
 
 		Phase *string `tfsdk:"phase" yaml:"phase,omitempty"`
 
-		PluginConfig *map[string]string `tfsdk:"plugin_config" yaml:"pluginConfig,omitempty"`
+		PluginConfig utilities.Dynamic `tfsdk:"plugin_config" yaml:"pluginConfig,omitempty"`
 
 		PluginName *string `tfsdk:"plugin_name" yaml:"pluginName,omitempty"`
 
@@ -286,7 +286,7 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) GetSchema(_ context.Contex
 						Description:         "The configuration that will be passed on to the plugin.",
 						MarkdownDescription: "The configuration that will be passed on to the plugin.",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Type: utilities.DynamicType{},
 
 						Required: false,
 						Optional: true,

@@ -72,7 +72,7 @@ type KialiIoKialiV1Alpha1GoModel struct {
 
 		Auth *struct {
 			Openid *struct {
-				Additional_request_params *map[string]string `tfsdk:"additional_request_params" yaml:"additional_request_params,omitempty"`
+				Additional_request_params utilities.Dynamic `tfsdk:"additional_request_params" yaml:"additional_request_params,omitempty"`
 
 				Allowed_domains *[]string `tfsdk:"allowed_domains" yaml:"allowed_domains,omitempty"`
 
@@ -115,17 +115,17 @@ type KialiIoKialiV1Alpha1GoModel struct {
 		Deployment *struct {
 			Accessible_namespaces *[]string `tfsdk:"accessible_namespaces" yaml:"accessible_namespaces,omitempty"`
 
-			Additional_service_yaml *map[string]string `tfsdk:"additional_service_yaml" yaml:"additional_service_yaml,omitempty"`
+			Additional_service_yaml utilities.Dynamic `tfsdk:"additional_service_yaml" yaml:"additional_service_yaml,omitempty"`
 
 			Affinity *struct {
-				Node *map[string]string `tfsdk:"node" yaml:"node,omitempty"`
+				Node utilities.Dynamic `tfsdk:"node" yaml:"node,omitempty"`
 
-				Pod *map[string]string `tfsdk:"pod" yaml:"pod,omitempty"`
+				Pod utilities.Dynamic `tfsdk:"pod" yaml:"pod,omitempty"`
 
-				Pod_anti *map[string]string `tfsdk:"pod_anti" yaml:"pod_anti,omitempty"`
+				Pod_anti utilities.Dynamic `tfsdk:"pod_anti" yaml:"pod_anti,omitempty"`
 			} `tfsdk:"affinity" yaml:"affinity,omitempty"`
 
-			Configmap_annotations *map[string]string `tfsdk:"configmap_annotations" yaml:"configmap_annotations,omitempty"`
+			Configmap_annotations utilities.Dynamic `tfsdk:"configmap_annotations" yaml:"configmap_annotations,omitempty"`
 
 			Custom_secrets *[]struct {
 				Mount *string `tfsdk:"mount" yaml:"mount,omitempty"`
@@ -144,7 +144,7 @@ type KialiIoKialiV1Alpha1GoModel struct {
 			Hpa *struct {
 				Api_version *string `tfsdk:"api_version" yaml:"api_version,omitempty"`
 
-				Spec *map[string]string `tfsdk:"spec" yaml:"spec,omitempty"`
+				Spec utilities.Dynamic `tfsdk:"spec" yaml:"spec,omitempty"`
 			} `tfsdk:"hpa" yaml:"hpa,omitempty"`
 
 			Image_digest *string `tfsdk:"image_digest" yaml:"image_digest,omitempty"`
@@ -158,7 +158,7 @@ type KialiIoKialiV1Alpha1GoModel struct {
 			Image_version *string `tfsdk:"image_version" yaml:"image_version,omitempty"`
 
 			Ingress *struct {
-				Additional_labels *map[string]string `tfsdk:"additional_labels" yaml:"additional_labels,omitempty"`
+				Additional_labels utilities.Dynamic `tfsdk:"additional_labels" yaml:"additional_labels,omitempty"`
 
 				Class_name *string `tfsdk:"class_name" yaml:"class_name,omitempty"`
 
@@ -166,10 +166,10 @@ type KialiIoKialiV1Alpha1GoModel struct {
 
 				Override_yaml *struct {
 					Metadata *struct {
-						Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+						Annotations utilities.Dynamic `tfsdk:"annotations" yaml:"annotations,omitempty"`
 					} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
-					Spec *map[string]string `tfsdk:"spec" yaml:"spec,omitempty"`
+					Spec utilities.Dynamic `tfsdk:"spec" yaml:"spec,omitempty"`
 				} `tfsdk:"override_yaml" yaml:"override_yaml,omitempty"`
 			} `tfsdk:"ingress" yaml:"ingress,omitempty"`
 
@@ -187,23 +187,23 @@ type KialiIoKialiV1Alpha1GoModel struct {
 
 			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 
-			Node_selector *map[string]string `tfsdk:"node_selector" yaml:"node_selector,omitempty"`
+			Node_selector utilities.Dynamic `tfsdk:"node_selector" yaml:"node_selector,omitempty"`
 
-			Pod_annotations *map[string]string `tfsdk:"pod_annotations" yaml:"pod_annotations,omitempty"`
+			Pod_annotations utilities.Dynamic `tfsdk:"pod_annotations" yaml:"pod_annotations,omitempty"`
 
-			Pod_labels *map[string]string `tfsdk:"pod_labels" yaml:"pod_labels,omitempty"`
+			Pod_labels utilities.Dynamic `tfsdk:"pod_labels" yaml:"pod_labels,omitempty"`
 
 			Priority_class_name *string `tfsdk:"priority_class_name" yaml:"priority_class_name,omitempty"`
 
 			Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
 
-			Resources *map[string]string `tfsdk:"resources" yaml:"resources,omitempty"`
+			Resources utilities.Dynamic `tfsdk:"resources" yaml:"resources,omitempty"`
 
 			Secret_name *string `tfsdk:"secret_name" yaml:"secret_name,omitempty"`
 
-			Security_context *map[string]string `tfsdk:"security_context" yaml:"security_context,omitempty"`
+			Security_context utilities.Dynamic `tfsdk:"security_context" yaml:"security_context,omitempty"`
 
-			Service_annotations *map[string]string `tfsdk:"service_annotations" yaml:"service_annotations,omitempty"`
+			Service_annotations utilities.Dynamic `tfsdk:"service_annotations" yaml:"service_annotations,omitempty"`
 
 			Service_type *string `tfsdk:"service_type" yaml:"service_type,omitempty"`
 
@@ -251,13 +251,13 @@ type KialiIoKialiV1Alpha1GoModel struct {
 
 					Cache_expiration *int64 `tfsdk:"cache_expiration" yaml:"cache_expiration,omitempty"`
 
-					Custom_headers *map[string]string `tfsdk:"custom_headers" yaml:"custom_headers,omitempty"`
+					Custom_headers utilities.Dynamic `tfsdk:"custom_headers" yaml:"custom_headers,omitempty"`
 
 					Health_check_url *string `tfsdk:"health_check_url" yaml:"health_check_url,omitempty"`
 
 					Is_core *bool `tfsdk:"is_core" yaml:"is_core,omitempty"`
 
-					Query_scope *map[string]string `tfsdk:"query_scope" yaml:"query_scope,omitempty"`
+					Query_scope utilities.Dynamic `tfsdk:"query_scope" yaml:"query_scope,omitempty"`
 
 					Thanos_proxy *struct {
 						Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
@@ -378,13 +378,13 @@ type KialiIoKialiV1Alpha1GoModel struct {
 
 				Cache_expiration *int64 `tfsdk:"cache_expiration" yaml:"cache_expiration,omitempty"`
 
-				Custom_headers *map[string]string `tfsdk:"custom_headers" yaml:"custom_headers,omitempty"`
+				Custom_headers utilities.Dynamic `tfsdk:"custom_headers" yaml:"custom_headers,omitempty"`
 
 				Health_check_url *string `tfsdk:"health_check_url" yaml:"health_check_url,omitempty"`
 
 				Is_core *bool `tfsdk:"is_core" yaml:"is_core,omitempty"`
 
-				Query_scope *map[string]string `tfsdk:"query_scope" yaml:"query_scope,omitempty"`
+				Query_scope utilities.Dynamic `tfsdk:"query_scope" yaml:"query_scope,omitempty"`
 
 				Thanos_proxy *struct {
 					Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
@@ -422,7 +422,7 @@ type KialiIoKialiV1Alpha1GoModel struct {
 
 				Namespace_selector *bool `tfsdk:"namespace_selector" yaml:"namespace_selector,omitempty"`
 
-				Query_scope *map[string]string `tfsdk:"query_scope" yaml:"query_scope,omitempty"`
+				Query_scope utilities.Dynamic `tfsdk:"query_scope" yaml:"query_scope,omitempty"`
 
 				Url *string `tfsdk:"url" yaml:"url,omitempty"`
 
@@ -807,7 +807,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,
@@ -1051,7 +1051,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Description:         "Additional custom yaml to add to the service definition. This is used mainly to customize the service type. For example, if the 'deployment.service_type' is set to 'LoadBalancer' and you want to set the loadBalancerIP, you can do so here with: 'additional_service_yaml: { 'loadBalancerIP': '78.11.24.19' }'. Another example would be if the 'deployment.service_type' is set to 'ExternalName' you will need to configure the name via: 'additional_service_yaml: { 'externalName': 'my.kiali.example.com' }'. A final example would be if external IPs need to be set: 'additional_service_yaml: { 'externalIPs': ['80.11.12.10'] }'",
 								MarkdownDescription: "Additional custom yaml to add to the service definition. This is used mainly to customize the service type. For example, if the 'deployment.service_type' is set to 'LoadBalancer' and you want to set the loadBalancerIP, you can do so here with: 'additional_service_yaml: { 'loadBalancerIP': '78.11.24.19' }'. Another example would be if the 'deployment.service_type' is set to 'ExternalName' you will need to configure the name via: 'additional_service_yaml: { 'externalName': 'my.kiali.example.com' }'. A final example would be if external IPs need to be set: 'additional_service_yaml: { 'externalIPs': ['80.11.12.10'] }'",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -1068,7 +1068,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,
@@ -1079,7 +1079,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,
@@ -1090,7 +1090,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,
@@ -1107,7 +1107,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Description:         "Custom annotations to be created on the Kiali ConfigMap.",
 								MarkdownDescription: "Custom annotations to be created on the Kiali ConfigMap.",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -1214,7 +1214,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 										Description:         "The 'spec' specified here will be placed in the created HPA resource's 'spec' section. If 'spec' is left empty, no HPA resource will be created. Note that you must not specify the 'scaleTargetRef' section in 'spec'; the Kiali Operator will populate that for you.",
 										MarkdownDescription: "The 'spec' specified here will be placed in the created HPA resource's 'spec' section. If 'spec' is left empty, no HPA resource will be created. Note that you must not specify the 'scaleTargetRef' section in 'spec'; the Kiali Operator will populate that for you.",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,
@@ -1292,7 +1292,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 										Description:         "Additional labels to add to the Ingress (or Route if on OpenShift). These are added to the labels that are created by default; these do not override the default labels.",
 										MarkdownDescription: "Additional labels to add to the Ingress (or Route if on OpenShift). These are added to the labels that are created by default; these do not override the default labels.",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,
@@ -1337,7 +1337,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.MapType{ElemType: types.StringType},
+														Type: utilities.DynamicType{},
 
 														Required: false,
 														Optional: true,
@@ -1354,7 +1354,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -1470,7 +1470,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Description:         "A set of node labels that dictate onto which node the Kiali pod will be deployed.",
 								MarkdownDescription: "A set of node labels that dictate onto which node the Kiali pod will be deployed.",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -1481,7 +1481,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Description:         "Custom annotations to be created on the Kiali pod.",
 								MarkdownDescription: "Custom annotations to be created on the Kiali pod.",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -1492,7 +1492,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Description:         "Custom labels to be created on the Kiali pod.An example use for this setting is to inject an Istio sidecar such as,'''sidecar.istio.io/inject: 'true''''",
 								MarkdownDescription: "Custom labels to be created on the Kiali pod.An example use for this setting is to inject an Istio sidecar such as,'''sidecar.istio.io/inject: 'true''''",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -1525,7 +1525,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Description:         "Defines compute resources that are to be given to the Kiali pod's container. The value is a dict as defined by Kubernetes. See the Kubernetes documentation (https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container).If you set this to an empty dict ('{}') then no resources will be defined in the Deployment.If you do not set this at all, the default is,'''requests:  cpu: '10m'  memory: '64Mi'limits:  memory: '1Gi''''",
 								MarkdownDescription: "Defines compute resources that are to be given to the Kiali pod's container. The value is a dict as defined by Kubernetes. See the Kubernetes documentation (https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container).If you set this to an empty dict ('{}') then no resources will be defined in the Deployment.If you do not set this at all, the default is,'''requests:  cpu: '10m'  memory: '64Mi'limits:  memory: '1Gi''''",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -1547,7 +1547,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Description:         "Custom security context to be placed on the server container. The entire security context on the container will be the value of this setting if the operator is configured to allow it. Note that, as a security measure, a cluster admin may have configured the Kiali operator to not allow portions of this override setting - in this case you can specify additional security context settings but you cannot replace existing, default ones.",
 								MarkdownDescription: "Custom security context to be placed on the server container. The entire security context on the container will be the value of this setting if the operator is configured to allow it. Note that, as a security measure, a cluster admin may have configured the Kiali operator to not allow portions of this override setting - in this case you can specify additional security context settings but you cannot replace existing, default ones.",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -1558,7 +1558,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Description:         "Custom annotations to be created on the Kiali Service resource.",
 								MarkdownDescription: "Custom annotations to be created on the Kiali Service resource.",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -1825,7 +1825,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 												Description:         "A set of name/value settings that will be passed as headers when requests are sent to Prometheus.",
 												MarkdownDescription: "A set of name/value settings that will be passed as headers when requests are sent to Prometheus.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -1858,7 +1858,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 												Description:         "A set of labelName/labelValue settings applied to every Prometheus query. Used to narrow unified metrics to only those scoped to the Kiali instance.",
 												MarkdownDescription: "A set of labelName/labelValue settings applied to every Prometheus query. Used to narrow unified metrics to only those scoped to the Kiali instance.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -2535,7 +2535,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 										Description:         "A set of name/value settings that will be passed as headers when requests are sent to Prometheus.",
 										MarkdownDescription: "A set of name/value settings that will be passed as headers when requests are sent to Prometheus.",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,
@@ -2568,7 +2568,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 										Description:         "A set of labelName/labelValue settings applied to every Prometheus query. Used to narrow unified metrics to only those scoped to the Kiali instance.",
 										MarkdownDescription: "A set of labelName/labelValue settings applied to every Prometheus query. Used to narrow unified metrics to only those scoped to the Kiali instance.",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,
@@ -2780,7 +2780,7 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 										Description:         "A set of tagKey/tagValue settings applied to every Jaeger query. Used to narrow unified traces to only those scoped to the Kiali instance.",
 										MarkdownDescription: "A set of tagKey/tagValue settings applied to every Jaeger query. Used to narrow unified traces to only those scoped to the Kiali instance.",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,

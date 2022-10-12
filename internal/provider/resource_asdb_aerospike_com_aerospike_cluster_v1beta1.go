@@ -80,7 +80,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 			} `tfsdk:"users" yaml:"users,omitempty"`
 		} `tfsdk:"aerospike_access_control" yaml:"aerospikeAccessControl,omitempty"`
 
-		AerospikeConfig *map[string]string `tfsdk:"aerospike_config" yaml:"aerospikeConfig,omitempty"`
+		AerospikeConfig utilities.Dynamic `tfsdk:"aerospike_config" yaml:"aerospikeConfig,omitempty"`
 
 		AerospikeNetworkPolicy *struct {
 			Access *string `tfsdk:"access" yaml:"access,omitempty"`
@@ -1168,9 +1168,9 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 			Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 			Racks *[]struct {
-				AerospikeConfig *map[string]string `tfsdk:"aerospike_config" yaml:"aerospikeConfig,omitempty"`
+				AerospikeConfig utilities.Dynamic `tfsdk:"aerospike_config" yaml:"aerospikeConfig,omitempty"`
 
-				EffectiveAerospikeConfig *map[string]string `tfsdk:"effective_aerospike_config" yaml:"effectiveAerospikeConfig,omitempty"`
+				EffectiveAerospikeConfig utilities.Dynamic `tfsdk:"effective_aerospike_config" yaml:"effectiveAerospikeConfig,omitempty"`
 
 				EffectivePodSpec *struct {
 					Affinity *struct {
@@ -2321,7 +2321,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 						Description:         "Sets config in aerospike.conf file. Other configs are taken as default",
 						MarkdownDescription: "Sets config in aerospike.conf file. Other configs are taken as default",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Type: utilities.DynamicType{},
 
 						Required: true,
 						Optional: false,
@@ -8477,7 +8477,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 										Description:         "AerospikeConfig overrides the common AerospikeConfig for this Rack.",
 										MarkdownDescription: "AerospikeConfig overrides the common AerospikeConfig for this Rack.",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,
@@ -8488,7 +8488,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 										Description:         "Effective/operative Aerospike config.",
 										MarkdownDescription: "Effective/operative Aerospike config.",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,

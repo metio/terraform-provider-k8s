@@ -57,7 +57,7 @@ Optional:
 
 Optional:
 
-- `config` (Map of String) The topic configuration.
+- `config` (Dynamic) The topic configuration.
 - `partitions` (Number) The number of partitions the topic should have. This cannot be decreased after topic creation. It can be increased after topic creation, but it is important to understand the consequences that has, especially for topics with semantic partitioning. When absent this will default to the broker configuration for 'num.partitions'.
 - `replicas` (Number) The number of replicas the topic should have. When absent this will default to the broker configuration for 'default.replication.factor'.
 - `topic_name` (String) The name of the topic. When absent this will default to the metadata.name of the topic. It is recommended to not set this unless the topic name is not a valid Kubernetes resource name.

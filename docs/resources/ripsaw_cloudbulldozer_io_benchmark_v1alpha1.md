@@ -95,7 +95,7 @@ Optional:
 - `collection` (Boolean)
 - `force` (Boolean)
 - `image` (String)
-- `label` (Map of String)
+- `label` (Dynamic)
 - `privileged` (Boolean)
 - `ssl` (Boolean)
 - `stockpile_skip_tags` (List of String)

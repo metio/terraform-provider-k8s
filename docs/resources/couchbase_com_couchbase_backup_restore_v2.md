@@ -65,7 +65,7 @@ Required:
 Optional:
 
 - `backoff_limit` (Number) Number of times the restore job should try to execute.
-- `buckets` (Map of String) DEPRECATED - by spec.data. Specific buckets can be explicitly included or excluded in the restore, as well as bucket mappings.  This field is now ignored.
+- `buckets` (Dynamic) DEPRECATED - by spec.data. Specific buckets can be explicitly included or excluded in the restore, as well as bucket mappings.  This field is now ignored.
 - `data` (Attributes) Data allows control over what key-value/document data is included in the restore.  By default, all data is included. (see [below for nested schema](#nestedatt--spec--data))
 - `end` (Attributes) End denotes the last backup to restore from.  Omitting this field will only restore the backup referenced by start.  This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords. (see [below for nested schema](#nestedatt--spec--end))
 - `force_updates` (Boolean) Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer than the restore

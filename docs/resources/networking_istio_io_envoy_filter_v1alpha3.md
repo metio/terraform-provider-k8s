@@ -183,7 +183,7 @@ Optional:
 
 - `filter_class` (String) Determines the filter insertion order.
 - `operation` (String) Determines how the patch should be applied.
-- `value` (Map of String) The JSON config of the object being patched.
+- `value` (Dynamic) The JSON config of the object being patched.
 
 
 

@@ -462,7 +462,7 @@ Optional:
 
 - `affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--agent--affinity))
 - `annotations` (Map of String)
-- `config` (Map of String)
+- `config` (Dynamic)
 - `container_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--agent--container_security_context))
 - `dns_policy` (String)
 - `host_network` (Boolean)
@@ -471,7 +471,7 @@ Optional:
 - `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--agent--image_pull_secrets))
 - `labels` (Map of String)
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--agent--liveness_probe))
-- `options` (Map of String)
+- `options` (Dynamic)
 - `priority_class_name` (String)
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--agent--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--agent--security_context))
@@ -1930,7 +1930,7 @@ Optional:
 
 - `affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--all_in_one--affinity))
 - `annotations` (Map of String)
-- `config` (Map of String)
+- `config` (Dynamic)
 - `container_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--all_in_one--container_security_context))
 - `image` (String)
 - `image_pull_policy` (String)
@@ -1938,7 +1938,7 @@ Optional:
 - `labels` (Map of String)
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--all_in_one--liveness_probe))
 - `metrics_storage` (Attributes) (see [below for nested schema](#nestedatt--spec--all_in_one--metrics_storage))
-- `options` (Map of String)
+- `options` (Dynamic)
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--all_in_one--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--all_in_one--security_context))
 - `service_account` (String)
@@ -3362,7 +3362,7 @@ Optional:
 - `affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--collector--affinity))
 - `annotations` (Map of String)
 - `autoscale` (Boolean)
-- `config` (Map of String)
+- `config` (Dynamic)
 - `container_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--collector--container_security_context))
 - `image` (String)
 - `image_pull_policy` (String)
@@ -3372,7 +3372,7 @@ Optional:
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--collector--liveness_probe))
 - `max_replicas` (Number)
 - `min_replicas` (Number)
-- `options` (Map of String)
+- `options` (Dynamic)
 - `priority_class_name` (String)
 - `replicas` (Number)
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--collector--resources))
@@ -4859,7 +4859,7 @@ Optional:
 - `affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--ingester--affinity))
 - `annotations` (Map of String)
 - `autoscale` (Boolean)
-- `config` (Map of String)
+- `config` (Dynamic)
 - `container_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ingester--container_security_context))
 - `image` (String)
 - `image_pull_policy` (String)
@@ -4869,7 +4869,7 @@ Optional:
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ingester--liveness_probe))
 - `max_replicas` (Number)
 - `min_replicas` (Number)
-- `options` (Map of String)
+- `options` (Dynamic)
 - `replicas` (Number)
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ingester--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--ingester--security_context))
@@ -6293,7 +6293,7 @@ Optional:
 - `labels` (Map of String)
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--ingress--liveness_probe))
 - `openshift` (Attributes) (see [below for nested schema](#nestedatt--spec--ingress--openshift))
-- `options` (Map of String)
+- `options` (Dynamic)
 - `path_type` (String)
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--ingress--resources))
 - `secret_name` (String)
@@ -7794,7 +7794,7 @@ Optional:
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--query--liveness_probe))
 - `metrics_storage` (Attributes) (see [below for nested schema](#nestedatt--spec--query--metrics_storage))
 - `node_port` (Number)
-- `options` (Map of String)
+- `options` (Dynamic)
 - `priority_class_name` (String)
 - `replicas` (Number)
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--query--resources))
@@ -9227,7 +9227,7 @@ Optional:
 
 Optional:
 
-- `options` (Map of String)
+- `options` (Dynamic)
 
 
 <a id="nestedatt--spec--security_context"></a>
@@ -9301,7 +9301,7 @@ Optional:
 - `es_index_cleaner` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--es_index_cleaner))
 - `es_rollover` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--es_rollover))
 - `grpc_plugin` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--grpc_plugin))
-- `options` (Map of String)
+- `options` (Dynamic)
 - `secret_name` (String)
 - `type` (String)
 
@@ -13991,7 +13991,7 @@ Optional:
 
 Optional:
 
-- `options` (Map of String)
+- `options` (Dynamic)
 
 
 <a id="nestedatt--spec--volume_mounts"></a>

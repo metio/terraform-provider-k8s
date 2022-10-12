@@ -77,7 +77,7 @@ Optional:
 - `permissions` (Attributes List) (see [below for nested schema](#nestedatt--spec--definition--permissions))
 - `scope` (String)
 - `secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--definition--secrets))
-- `security_context` (Map of String)
+- `security_context` (Dynamic)
 
 <a id="nestedatt--spec--definition--config_maps"></a>
 ### Nested Schema for `spec.definition.config_maps`

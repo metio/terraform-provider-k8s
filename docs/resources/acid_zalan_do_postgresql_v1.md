@@ -206,7 +206,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--volume--selector--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--volume--selector--match_expressions"></a>
 ### Nested Schema for `spec.volume.selector.match_labels`
@@ -230,7 +230,7 @@ Required:
 
 - `mount_path` (String)
 - `name` (String)
-- `volume_source` (Map of String)
+- `volume_source` (Dynamic)
 
 Optional:
 
