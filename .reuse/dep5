@@ -231,6 +231,10 @@ Files: custom-resource-definitions/redhatcop.redhat.io/*
 Copyright: The Quay Operator Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/registry.apicur.io/*
+Copyright: The Apicurio Registry Operator Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/ripsaw.cloudbulldozer.io/*
 Copyright: The Benchmark Operator Authors
 License: Apache-2.0
