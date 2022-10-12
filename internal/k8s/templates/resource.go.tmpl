@@ -59,7 +59,7 @@ type {{ .GoModelType }} struct {
 	Metadata struct {
 		Name string {{ .BT }}tfsdk:"name" yaml:"name"{{ .BT }}
 		{{ if .Namespaced }}
-		Namespace *string {{ .BT }}tfsdk:"namespace" yaml:"namespace"{{ .BT }}
+		Namespace *string {{ .BT }}tfsdk:"namespace" yaml:"namespace,omitempty"{{ .BT }}
 		{{ end }}
 		Labels map[string]string {{ .BT }}tfsdk:"labels" yaml:",omitempty"{{ .BT }}
 		Annotations map[string]string {{ .BT }}tfsdk:"annotations" yaml:",omitempty"{{ .BT }}

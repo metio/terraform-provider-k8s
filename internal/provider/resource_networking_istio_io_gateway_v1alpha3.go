@@ -45,7 +45,7 @@ type NetworkingIstioIoGatewayV1Alpha3GoModel struct {
 	Metadata struct {
 		Name string `tfsdk:"name" yaml:"name"`
 
-		Namespace *string `tfsdk:"namespace" yaml:"namespace"`
+		Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 
 		Labels      map[string]string `tfsdk:"labels" yaml:",omitempty"`
 		Annotations map[string]string `tfsdk:"annotations" yaml:",omitempty"`
