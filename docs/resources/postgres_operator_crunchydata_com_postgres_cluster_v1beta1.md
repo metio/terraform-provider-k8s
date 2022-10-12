@@ -4471,7 +4471,7 @@ Optional:
 
 Optional:
 
-- `dynamic_configuration` (Map of String) Patroni dynamic configuration settings. Changes to this value will be automatically reloaded without validation. Changes to certain PostgreSQL parameters cause PostgreSQL to restart. More info: https://patroni.readthedocs.io/en/latest/SETTINGS.html
+- `dynamic_configuration` (Dynamic) Patroni dynamic configuration settings. Changes to this value will be automatically reloaded without validation. Changes to certain PostgreSQL parameters cause PostgreSQL to restart. More info: https://patroni.readthedocs.io/en/latest/SETTINGS.html
 - `leader_lease_duration_seconds` (Number) TTL of the cluster leader lock. 'Think of it as the length of time before initiation of the automatic failover process.' Changing this value causes PostgreSQL to restart.
 - `port` (Number) The port on which Patroni should listen. Changing this value causes PostgreSQL to restart.
 - `switchover` (Attributes) Switchover gives options to perform ad hoc switchovers in a PostgresCluster. (see [below for nested schema](#nestedatt--spec--patroni--switchover))
@@ -6248,7 +6248,7 @@ Optional:
 
 - `files` (Attributes List) Files allows the user to mount projected volumes into the pgAdmin container so that files can be referenced by pgAdmin as needed. (see [below for nested schema](#nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--files))
 - `ldap_bind_password` (Attributes) A Secret containing the value for the LDAP_BIND_PASSWORD setting. More info: https://www.pgadmin.org/docs/pgadmin4/latest/ldap.html (see [below for nested schema](#nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--ldap_bind_password))
-- `settings` (Map of String) Settings for the pgAdmin server process. Keys should be uppercase and values must be constants. More info: https://www.pgadmin.org/docs/pgadmin4/latest/config_py.html
+- `settings` (Dynamic) Settings for the pgAdmin server process. Keys should be uppercase and values must be constants. More info: https://www.pgadmin.org/docs/pgadmin4/latest/config_py.html
 
 <a id="nestedatt--spec--user_interface--pg_admin--topology_spread_constraints--files"></a>
 ### Nested Schema for `spec.user_interface.pg_admin.topology_spread_constraints.files`

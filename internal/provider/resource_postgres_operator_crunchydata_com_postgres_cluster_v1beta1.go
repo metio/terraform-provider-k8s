@@ -2339,7 +2339,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 		Openshift *bool `tfsdk:"openshift" yaml:"openshift,omitempty"`
 
 		Patroni *struct {
-			DynamicConfiguration *map[string]string `tfsdk:"dynamic_configuration" yaml:"dynamicConfiguration,omitempty"`
+			DynamicConfiguration utilities.Dynamic `tfsdk:"dynamic_configuration" yaml:"dynamicConfiguration,omitempty"`
 
 			LeaderLeaseDurationSeconds *int64 `tfsdk:"leader_lease_duration_seconds" yaml:"leaderLeaseDurationSeconds,omitempty"`
 
@@ -3341,7 +3341,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
 					} `tfsdk:"ldap_bind_password" yaml:"ldapBindPassword,omitempty"`
 
-					Settings *map[string]string `tfsdk:"settings" yaml:"settings,omitempty"`
+					Settings utilities.Dynamic `tfsdk:"settings" yaml:"settings,omitempty"`
 				} `tfsdk:"config" yaml:"config,omitempty"`
 
 				DataVolumeClaimSpec *struct {
@@ -16579,7 +16579,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 								Description:         "Patroni dynamic configuration settings. Changes to this value will be automatically reloaded without validation. Changes to certain PostgreSQL parameters cause PostgreSQL to restart. More info: https://patroni.readthedocs.io/en/latest/SETTINGS.html",
 								MarkdownDescription: "Patroni dynamic configuration settings. Changes to this value will be automatically reloaded without validation. Changes to certain PostgreSQL parameters cause PostgreSQL to restart. More info: https://patroni.readthedocs.io/en/latest/SETTINGS.html",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -22311,7 +22311,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 												Description:         "Settings for the pgAdmin server process. Keys should be uppercase and values must be constants. More info: https://www.pgadmin.org/docs/pgadmin4/latest/config_py.html",
 												MarkdownDescription: "Settings for the pgAdmin server process. Keys should be uppercase and values must be constants. More info: https://www.pgadmin.org/docs/pgadmin4/latest/config_py.html",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,

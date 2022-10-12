@@ -61,7 +61,7 @@ Optional:
 - `image_pull_secret` (String) Credentials to use for OCI image pulling.
 - `match` (Attributes List) (see [below for nested schema](#nestedatt--spec--match))
 - `phase` (String) Determines where in the filter chain this 'WasmPlugin' is to be injected.
-- `plugin_config` (Map of String) The configuration that will be passed on to the plugin.
+- `plugin_config` (Dynamic) The configuration that will be passed on to the plugin.
 - `plugin_name` (String)
 - `priority` (Number) Determines ordering of 'WasmPlugins' in the same 'phase'.
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--selector))

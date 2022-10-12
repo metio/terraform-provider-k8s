@@ -64,7 +64,7 @@ Optional:
 - `authentication` (Attributes) Authentication configuration for Kafka Connect. (see [below for nested schema](#nestedatt--spec--authentication))
 - `build` (Attributes) Configures how the Connect container image should be built. Optional. (see [below for nested schema](#nestedatt--spec--build))
 - `client_rack_init_image` (String) The image of the init container used for initializing the 'client.rack'.
-- `config` (Map of String) The Kafka Connect configuration. Properties with the following prefixes cannot be set: ssl., sasl., security., listeners, plugin.path, rest., bootstrap.servers, consumer.interceptor.classes, producer.interceptor.classes (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols).
+- `config` (Dynamic) The Kafka Connect configuration. Properties with the following prefixes cannot be set: ssl., sasl., security., listeners, plugin.path, rest., bootstrap.servers, consumer.interceptor.classes, producer.interceptor.classes (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols).
 - `external_configuration` (Attributes) Pass data from Secrets or ConfigMaps to the Kafka Connect pods and use them to configure connectors. (see [below for nested schema](#nestedatt--spec--external_configuration))
 - `image` (String) The docker image for the pods.
 - `jmx_options` (Attributes) JMX Options. (see [below for nested schema](#nestedatt--spec--jmx_options))
@@ -222,8 +222,8 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String)
-- `requests` (Map of String)
+- `limits` (Dynamic)
+- `requests` (Dynamic)
 
 
 
@@ -352,7 +352,7 @@ Optional:
 
 - `___xms` (String) -Xms option to to the JVM.
 - `___xmx` (String) -Xmx option to to the JVM.
-- `__xx` (Map of String) A map of -XX options to the JVM.
+- `__xx` (Dynamic) A map of -XX options to the JVM.
 - `gc_logging_enabled` (Boolean) Specifies whether the Garbage Collection logging is enabled. The default is false.
 - `java_system_properties` (Attributes List) A map of additional system properties which will be passed using the '-D' option to the JVM. (see [below for nested schema](#nestedatt--spec--jvm_options--java_system_properties))
 
@@ -387,7 +387,7 @@ Required:
 
 Optional:
 
-- `loggers` (Map of String) A Map from logger name to logger level.
+- `loggers` (Dynamic) A Map from logger name to logger level.
 - `value_from` (Attributes) 'ConfigMap' entry where the logging configuration is stored. (see [below for nested schema](#nestedatt--spec--logging--value_from))
 
 <a id="nestedatt--spec--logging--value_from"></a>
@@ -461,8 +461,8 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String)
-- `requests` (Map of String)
+- `limits` (Dynamic)
+- `requests` (Dynamic)
 
 
 <a id="nestedatt--spec--template"></a>
@@ -498,8 +498,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
-- `labels` (Map of String) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `annotations` (Dynamic) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `labels` (Dynamic) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
 
 
 
@@ -516,8 +516,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
-- `labels` (Map of String) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `annotations` (Dynamic) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `labels` (Dynamic) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
 
 
 
@@ -740,7 +740,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
@@ -759,7 +759,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
@@ -790,7 +790,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_labels`
@@ -809,7 +809,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_labels`
@@ -856,7 +856,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
@@ -875,7 +875,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
@@ -906,7 +906,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_labels`
@@ -925,7 +925,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--build_pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.build_pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_labels`
@@ -963,8 +963,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
-- `labels` (Map of String) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `annotations` (Dynamic) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `labels` (Dynamic) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
 
 
 <a id="nestedatt--spec--template--build_pod--security_context"></a>
@@ -1053,7 +1053,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints--label_selector--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--build_pod--topology_spread_constraints--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.template.build_pod.topology_spread_constraints.label_selector.match_labels`
@@ -1080,8 +1080,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
-- `labels` (Map of String) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `annotations` (Dynamic) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `labels` (Dynamic) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
 
 
 
@@ -1097,8 +1097,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
-- `labels` (Map of String) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `annotations` (Dynamic) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `labels` (Dynamic) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
 
 
 
@@ -1191,8 +1191,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
-- `labels` (Map of String) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `annotations` (Dynamic) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `labels` (Dynamic) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
 
 
 
@@ -1284,8 +1284,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
-- `labels` (Map of String) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `annotations` (Dynamic) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `labels` (Dynamic) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
 
 
 
@@ -1432,7 +1432,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
@@ -1451,7 +1451,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
@@ -1482,7 +1482,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_labels`
@@ -1501,7 +1501,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_labels`
@@ -1548,7 +1548,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
@@ -1567,7 +1567,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.topology_key.match_expressions`
@@ -1598,7 +1598,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_labels`
@@ -1617,7 +1617,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
 ### Nested Schema for `spec.template.pod.topology_spread_constraints.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_labels`
@@ -1655,8 +1655,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
-- `labels` (Map of String) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `annotations` (Dynamic) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `labels` (Dynamic) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
 
 
 <a id="nestedatt--spec--template--pod--security_context"></a>
@@ -1745,7 +1745,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--label_selector--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--template--pod--topology_spread_constraints--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.template.pod.topology_spread_constraints.label_selector.match_labels`
@@ -1773,8 +1773,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
-- `labels` (Map of String) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `annotations` (Dynamic) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `labels` (Dynamic) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
 
 
 
@@ -1790,8 +1790,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
-- `labels` (Map of String) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `annotations` (Dynamic) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `labels` (Dynamic) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
 
 
 

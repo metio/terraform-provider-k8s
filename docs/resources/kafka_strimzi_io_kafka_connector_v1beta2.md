@@ -58,7 +58,7 @@ Optional:
 Optional:
 
 - `class` (String) The Class for the Kafka Connector.
-- `config` (Map of String) The Kafka Connector configuration. The following properties cannot be set: connector.class, tasks.max.
+- `config` (Dynamic) The Kafka Connector configuration. The following properties cannot be set: connector.class, tasks.max.
 - `pause` (Boolean) Whether the connector should be paused. Defaults to false.
 - `tasks_max` (Number) The maximum number of tasks for the Kafka Connector.
 

@@ -1533,9 +1533,9 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 						} `tfsdk:"template" yaml:"template,omitempty"`
 					} `tfsdk:"list" yaml:"list,omitempty"`
 
-					Matrix *map[string]string `tfsdk:"matrix" yaml:"matrix,omitempty"`
+					Matrix utilities.Dynamic `tfsdk:"matrix" yaml:"matrix,omitempty"`
 
-					Merge *map[string]string `tfsdk:"merge" yaml:"merge,omitempty"`
+					Merge utilities.Dynamic `tfsdk:"merge" yaml:"merge,omitempty"`
 
 					PullRequest *struct {
 						BitbucketServer *struct {
@@ -2993,9 +2993,9 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 						} `tfsdk:"template" yaml:"template,omitempty"`
 					} `tfsdk:"list" yaml:"list,omitempty"`
 
-					Matrix *map[string]string `tfsdk:"matrix" yaml:"matrix,omitempty"`
+					Matrix utilities.Dynamic `tfsdk:"matrix" yaml:"matrix,omitempty"`
 
-					Merge *map[string]string `tfsdk:"merge" yaml:"merge,omitempty"`
+					Merge utilities.Dynamic `tfsdk:"merge" yaml:"merge,omitempty"`
 
 					PullRequest *struct {
 						BitbucketServer *struct {
@@ -12878,7 +12878,7 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -12889,7 +12889,7 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -21095,7 +21095,7 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -21106,7 +21106,7 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,

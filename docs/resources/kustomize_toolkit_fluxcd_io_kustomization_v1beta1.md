@@ -213,7 +213,7 @@ Required:
 Optional:
 
 - `from` (String) From contains a JSON-pointer value that references a location within the target document where the operation is performed. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.
-- `value` (Map of String) Value contains a valid JSON structure. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.
+- `value` (Dynamic) Value contains a valid JSON structure. The meaning of the value depends on the value of Op, and is NOT taken into account by all operations.
 
 
 <a id="nestedatt--spec--patches_json6902--target"></a>

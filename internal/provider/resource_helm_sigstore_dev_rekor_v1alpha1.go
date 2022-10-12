@@ -26,12 +26,12 @@ var (
 )
 
 type HelmSigstoreDevRekorV1Alpha1TerraformModel struct {
-	Id         types.Int64  `tfsdk:"id"`
-	YAML       types.String `tfsdk:"yaml"`
-	ApiVersion types.String `tfsdk:"api_version"`
-	Kind       types.String `tfsdk:"kind"`
-	Metadata   types.Object `tfsdk:"metadata"`
-	Spec       types.Map    `tfsdk:"spec"`
+	Id         types.Int64       `tfsdk:"id"`
+	YAML       types.String      `tfsdk:"yaml"`
+	ApiVersion types.String      `tfsdk:"api_version"`
+	Kind       types.String      `tfsdk:"kind"`
+	Metadata   types.Object      `tfsdk:"metadata"`
+	Spec       utilities.Dynamic `tfsdk:"spec"`
 }
 
 type HelmSigstoreDevRekorV1Alpha1GoModel struct {
@@ -49,7 +49,7 @@ type HelmSigstoreDevRekorV1Alpha1GoModel struct {
 		Annotations map[string]string `tfsdk:"annotations" yaml:",omitempty"`
 	} `tfsdk:"metadata" yaml:"metadata"`
 
-	Spec *map[string]string `tfsdk:"spec" yaml:"spec,omitempty"`
+	Spec utilities.Dynamic `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
 func NewHelmSigstoreDevRekorV1Alpha1Resource() resource.Resource {
@@ -144,7 +144,7 @@ func (r *HelmSigstoreDevRekorV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 				Description:         "Spec defines the desired state of Rekor",
 				MarkdownDescription: "Spec defines the desired state of Rekor",
 
-				Type: types.MapType{ElemType: types.StringType},
+				Type: utilities.DynamicType{},
 
 				Required: false,
 				Optional: true,

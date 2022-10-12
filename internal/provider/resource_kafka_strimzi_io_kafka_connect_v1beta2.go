@@ -156,15 +156,15 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 			} `tfsdk:"plugins" yaml:"plugins,omitempty"`
 
 			Resources *struct {
-				Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+				Limits utilities.Dynamic `tfsdk:"limits" yaml:"limits,omitempty"`
 
-				Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+				Requests utilities.Dynamic `tfsdk:"requests" yaml:"requests,omitempty"`
 			} `tfsdk:"resources" yaml:"resources,omitempty"`
 		} `tfsdk:"build" yaml:"build,omitempty"`
 
 		ClientRackInitImage *string `tfsdk:"client_rack_init_image" yaml:"clientRackInitImage,omitempty"`
 
-		Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+		Config utilities.Dynamic `tfsdk:"config" yaml:"config,omitempty"`
 
 		ExternalConfiguration *struct {
 			Env *[]struct {
@@ -235,7 +235,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 		} `tfsdk:"jmx_options" yaml:"jmxOptions,omitempty"`
 
 		JvmOptions *struct {
-			_XX *map[string]string `tfsdk:"__xx" yaml:"-XX,omitempty"`
+			_XX utilities.Dynamic `tfsdk:"__xx" yaml:"-XX,omitempty"`
 
 			_Xms *string `tfsdk:"___xms" yaml:"-Xms,omitempty"`
 
@@ -263,7 +263,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 		} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
 
 		Logging *struct {
-			Loggers *map[string]string `tfsdk:"loggers" yaml:"loggers,omitempty"`
+			Loggers utilities.Dynamic `tfsdk:"loggers" yaml:"loggers,omitempty"`
 
 			Type *string `tfsdk:"type" yaml:"type,omitempty"`
 
@@ -311,9 +311,9 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 		Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
 
 		Resources *struct {
-			Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+			Limits utilities.Dynamic `tfsdk:"limits" yaml:"limits,omitempty"`
 
-			Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+			Requests utilities.Dynamic `tfsdk:"requests" yaml:"requests,omitempty"`
 		} `tfsdk:"resources" yaml:"resources,omitempty"`
 
 		Template *struct {
@@ -323,17 +323,17 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 				IpFamilyPolicy *string `tfsdk:"ip_family_policy" yaml:"ipFamilyPolicy,omitempty"`
 
 				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+					Annotations utilities.Dynamic `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+					Labels utilities.Dynamic `tfsdk:"labels" yaml:"labels,omitempty"`
 				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 			} `tfsdk:"api_service" yaml:"apiService,omitempty"`
 
 			BuildConfig *struct {
 				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+					Annotations utilities.Dynamic `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+					Labels utilities.Dynamic `tfsdk:"labels" yaml:"labels,omitempty"`
 				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
 				PullSecret *string `tfsdk:"pull_secret" yaml:"pullSecret,omitempty"`
@@ -453,7 +453,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+									MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 								NamespaceSelector *struct {
@@ -465,7 +465,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+									MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 								} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 								Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
@@ -486,7 +486,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+								MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 							NamespaceSelector *struct {
@@ -498,7 +498,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+								MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
@@ -519,7 +519,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+									MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 								NamespaceSelector *struct {
@@ -531,7 +531,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+									MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 								} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 								Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
@@ -552,7 +552,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+								MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 							NamespaceSelector *struct {
@@ -564,7 +564,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+								MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
@@ -587,9 +587,9 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 				} `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
 
 				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+					Annotations utilities.Dynamic `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+					Labels utilities.Dynamic `tfsdk:"labels" yaml:"labels,omitempty"`
 				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
 				PriorityClassName *string `tfsdk:"priority_class_name" yaml:"priorityClassName,omitempty"`
@@ -668,7 +668,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 							Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 						} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-						MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+						MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 					MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
@@ -683,17 +683,17 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 
 			BuildServiceAccount *struct {
 				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+					Annotations utilities.Dynamic `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+					Labels utilities.Dynamic `tfsdk:"labels" yaml:"labels,omitempty"`
 				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 			} `tfsdk:"build_service_account" yaml:"buildServiceAccount,omitempty"`
 
 			ClusterRoleBinding *struct {
 				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+					Annotations utilities.Dynamic `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+					Labels utilities.Dynamic `tfsdk:"labels" yaml:"labels,omitempty"`
 				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 			} `tfsdk:"cluster_role_binding" yaml:"clusterRoleBinding,omitempty"`
 
@@ -757,9 +757,9 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 				DeploymentStrategy *string `tfsdk:"deployment_strategy" yaml:"deploymentStrategy,omitempty"`
 
 				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+					Annotations utilities.Dynamic `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+					Labels utilities.Dynamic `tfsdk:"labels" yaml:"labels,omitempty"`
 				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 			} `tfsdk:"deployment" yaml:"deployment,omitempty"`
 
@@ -821,9 +821,9 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 
 			JmxSecret *struct {
 				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+					Annotations utilities.Dynamic `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+					Labels utilities.Dynamic `tfsdk:"labels" yaml:"labels,omitempty"`
 				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 			} `tfsdk:"jmx_secret" yaml:"jmxSecret,omitempty"`
 
@@ -885,7 +885,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+									MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 								NamespaceSelector *struct {
@@ -897,7 +897,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+									MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 								} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 								Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
@@ -918,7 +918,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+								MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 							NamespaceSelector *struct {
@@ -930,7 +930,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+								MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
@@ -951,7 +951,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+									MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 								NamespaceSelector *struct {
@@ -963,7 +963,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+									MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 								} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 								Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
@@ -984,7 +984,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+								MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 							NamespaceSelector *struct {
@@ -996,7 +996,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+								MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
@@ -1019,9 +1019,9 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 				} `tfsdk:"image_pull_secrets" yaml:"imagePullSecrets,omitempty"`
 
 				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+					Annotations utilities.Dynamic `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+					Labels utilities.Dynamic `tfsdk:"labels" yaml:"labels,omitempty"`
 				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
 				PriorityClassName *string `tfsdk:"priority_class_name" yaml:"priorityClassName,omitempty"`
@@ -1100,7 +1100,7 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 							Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 						} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-						MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+						MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
 					MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
@@ -1117,17 +1117,17 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 				MaxUnavailable *int64 `tfsdk:"max_unavailable" yaml:"maxUnavailable,omitempty"`
 
 				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+					Annotations utilities.Dynamic `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+					Labels utilities.Dynamic `tfsdk:"labels" yaml:"labels,omitempty"`
 				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 			} `tfsdk:"pod_disruption_budget" yaml:"podDisruptionBudget,omitempty"`
 
 			ServiceAccount *struct {
 				Metadata *struct {
-					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+					Annotations utilities.Dynamic `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
-					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
+					Labels utilities.Dynamic `tfsdk:"labels" yaml:"labels,omitempty"`
 				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 			} `tfsdk:"service_account" yaml:"serviceAccount,omitempty"`
 		} `tfsdk:"template" yaml:"template,omitempty"`
@@ -1832,7 +1832,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,
@@ -1843,7 +1843,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,
@@ -1877,7 +1877,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 						Description:         "The Kafka Connect configuration. Properties with the following prefixes cannot be set: ssl., sasl., security., listeners, plugin.path, rest., bootstrap.servers, consumer.interceptor.classes, producer.interceptor.classes (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols).",
 						MarkdownDescription: "The Kafka Connect configuration. Properties with the following prefixes cannot be set: ssl., sasl., security., listeners, plugin.path, rest., bootstrap.servers, consumer.interceptor.classes, producer.interceptor.classes (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols).",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Type: utilities.DynamicType{},
 
 						Required: false,
 						Optional: true,
@@ -2285,7 +2285,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 								Description:         "A map of -XX options to the JVM.",
 								MarkdownDescription: "A map of -XX options to the JVM.",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -2477,7 +2477,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 								Description:         "A Map from logger name to logger level.",
 								MarkdownDescription: "A Map from logger name to logger level.",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -2784,7 +2784,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -2795,7 +2795,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,
@@ -2857,7 +2857,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -2868,7 +2868,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -2903,7 +2903,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -2914,7 +2914,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -3595,7 +3595,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																				Description:         "",
 																				MarkdownDescription: "",
 
-																				Type: types.MapType{ElemType: types.StringType},
+																				Type: utilities.DynamicType{},
 
 																				Required: false,
 																				Optional: true,
@@ -3663,7 +3663,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																				Description:         "",
 																				MarkdownDescription: "",
 
-																				Type: types.MapType{ElemType: types.StringType},
+																				Type: utilities.DynamicType{},
 
 																				Required: false,
 																				Optional: true,
@@ -3782,7 +3782,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																		Description:         "",
 																		MarkdownDescription: "",
 
-																		Type: types.MapType{ElemType: types.StringType},
+																		Type: utilities.DynamicType{},
 
 																		Required: false,
 																		Optional: true,
@@ -3850,7 +3850,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																		Description:         "",
 																		MarkdownDescription: "",
 
-																		Type: types.MapType{ElemType: types.StringType},
+																		Type: utilities.DynamicType{},
 
 																		Required: false,
 																		Optional: true,
@@ -3970,7 +3970,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																				Description:         "",
 																				MarkdownDescription: "",
 
-																				Type: types.MapType{ElemType: types.StringType},
+																				Type: utilities.DynamicType{},
 
 																				Required: false,
 																				Optional: true,
@@ -4038,7 +4038,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																				Description:         "",
 																				MarkdownDescription: "",
 
-																				Type: types.MapType{ElemType: types.StringType},
+																				Type: utilities.DynamicType{},
 
 																				Required: false,
 																				Optional: true,
@@ -4157,7 +4157,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																		Description:         "",
 																		MarkdownDescription: "",
 
-																		Type: types.MapType{ElemType: types.StringType},
+																		Type: utilities.DynamicType{},
 
 																		Required: false,
 																		Optional: true,
@@ -4225,7 +4225,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																		Description:         "",
 																		MarkdownDescription: "",
 
-																		Type: types.MapType{ElemType: types.StringType},
+																		Type: utilities.DynamicType{},
 
 																		Required: false,
 																		Optional: true,
@@ -4356,7 +4356,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -4367,7 +4367,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -4820,7 +4820,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.MapType{ElemType: types.StringType},
+														Type: utilities.DynamicType{},
 
 														Required: false,
 														Optional: true,
@@ -4905,7 +4905,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -4916,7 +4916,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -4951,7 +4951,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -4962,7 +4962,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -5328,7 +5328,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -5339,7 +5339,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -5689,7 +5689,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -5700,7 +5700,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -6055,7 +6055,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																				Description:         "",
 																				MarkdownDescription: "",
 
-																				Type: types.MapType{ElemType: types.StringType},
+																				Type: utilities.DynamicType{},
 
 																				Required: false,
 																				Optional: true,
@@ -6123,7 +6123,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																				Description:         "",
 																				MarkdownDescription: "",
 
-																				Type: types.MapType{ElemType: types.StringType},
+																				Type: utilities.DynamicType{},
 
 																				Required: false,
 																				Optional: true,
@@ -6242,7 +6242,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																		Description:         "",
 																		MarkdownDescription: "",
 
-																		Type: types.MapType{ElemType: types.StringType},
+																		Type: utilities.DynamicType{},
 
 																		Required: false,
 																		Optional: true,
@@ -6310,7 +6310,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																		Description:         "",
 																		MarkdownDescription: "",
 
-																		Type: types.MapType{ElemType: types.StringType},
+																		Type: utilities.DynamicType{},
 
 																		Required: false,
 																		Optional: true,
@@ -6430,7 +6430,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																				Description:         "",
 																				MarkdownDescription: "",
 
-																				Type: types.MapType{ElemType: types.StringType},
+																				Type: utilities.DynamicType{},
 
 																				Required: false,
 																				Optional: true,
@@ -6498,7 +6498,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																				Description:         "",
 																				MarkdownDescription: "",
 
-																				Type: types.MapType{ElemType: types.StringType},
+																				Type: utilities.DynamicType{},
 
 																				Required: false,
 																				Optional: true,
@@ -6617,7 +6617,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																		Description:         "",
 																		MarkdownDescription: "",
 
-																		Type: types.MapType{ElemType: types.StringType},
+																		Type: utilities.DynamicType{},
 
 																		Required: false,
 																		Optional: true,
@@ -6685,7 +6685,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 																		Description:         "",
 																		MarkdownDescription: "",
 
-																		Type: types.MapType{ElemType: types.StringType},
+																		Type: utilities.DynamicType{},
 
 																		Required: false,
 																		Optional: true,
@@ -6816,7 +6816,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -6827,7 +6827,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -7280,7 +7280,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.MapType{ElemType: types.StringType},
+														Type: utilities.DynamicType{},
 
 														Required: false,
 														Optional: true,
@@ -7381,7 +7381,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -7392,7 +7392,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -7427,7 +7427,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,
@@ -7438,7 +7438,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Description:         "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 												MarkdownDescription: "Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.",
 
-												Type: types.MapType{ElemType: types.StringType},
+												Type: utilities.DynamicType{},
 
 												Required: false,
 												Optional: true,

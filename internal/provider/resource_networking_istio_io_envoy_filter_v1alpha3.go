@@ -128,7 +128,7 @@ type NetworkingIstioIoEnvoyFilterV1Alpha3GoModel struct {
 
 				Operation *string `tfsdk:"operation" yaml:"operation,omitempty"`
 
-				Value *map[string]string `tfsdk:"value" yaml:"value,omitempty"`
+				Value utilities.Dynamic `tfsdk:"value" yaml:"value,omitempty"`
 			} `tfsdk:"patch" yaml:"patch,omitempty"`
 		} `tfsdk:"config_patches" yaml:"configPatches,omitempty"`
 
@@ -692,7 +692,7 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 										Description:         "The JSON config of the object being patched.",
 										MarkdownDescription: "The JSON config of the object being patched.",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,

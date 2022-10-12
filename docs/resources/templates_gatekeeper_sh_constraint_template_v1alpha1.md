@@ -92,7 +92,7 @@ Optional:
 Optional:
 
 - `legacy_schema` (Boolean)
-- `open_apiv3_schema` (Map of String)
+- `open_apiv3_schema` (Dynamic)
 
 
 

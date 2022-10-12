@@ -81,7 +81,7 @@ type RipsawCloudbulldozerIoBenchmarkV1Alpha1GoModel struct {
 
 			Image *string `tfsdk:"image" yaml:"image,omitempty"`
 
-			Label *map[string]string `tfsdk:"label" yaml:"label,omitempty"`
+			Label utilities.Dynamic `tfsdk:"label" yaml:"label,omitempty"`
 
 			Privileged *bool `tfsdk:"privileged" yaml:"privileged,omitempty"`
 
@@ -416,7 +416,7 @@ func (r *RipsawCloudbulldozerIoBenchmarkV1Alpha1Resource) GetSchema(_ context.Co
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,

@@ -166,7 +166,7 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
-- `labels` (Map of String) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `annotations` (Dynamic) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+- `labels` (Dynamic) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
 
 

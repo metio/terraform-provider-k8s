@@ -251,7 +251,7 @@ func TerraformAttributeType(prop apiextensionsv1.JSONSchemaProps) string {
 		if len(prop.Properties) > 0 {
 			return "types.ObjectType"
 		}
-		return "types.MapType{ElemType: types.StringType}"
+		return "utilities.DynamicType{}"
 	}
 	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Schema.Type == "string" {
 		return "types.MapType{ElemType: types.StringType}"
@@ -300,7 +300,7 @@ func GoType(prop apiextensionsv1.JSONSchemaProps) string {
 		if len(prop.Properties) > 0 {
 			return "struct"
 		}
-		return "map[string]string"
+		return "utilities.Dynamic"
 	}
 	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Schema.Type == "string" {
 		return "map[string]string"
@@ -349,7 +349,7 @@ func TerraformValueType(prop apiextensionsv1.JSONSchemaProps) string {
 		if len(prop.Properties) > 0 {
 			return "types.Object"
 		}
-		return "types.Map"
+		return "utilities.Dynamic"
 	}
 	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Schema.Type == "string" {
 		return "types.Map"

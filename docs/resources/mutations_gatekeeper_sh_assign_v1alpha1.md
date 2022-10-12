@@ -156,7 +156,7 @@ Optional:
 
 - `external_data` (Attributes) ExternalData describes the external data provider to be used for mutation. (see [below for nested schema](#nestedatt--spec--parameters--assign--external_data))
 - `from_metadata` (Attributes) FromMetadata assigns a value from the specified metadata field. (see [below for nested schema](#nestedatt--spec--parameters--assign--from_metadata))
-- `value` (Map of String) Value is a constant value that will be assigned to 'location'
+- `value` (Dynamic) Value is a constant value that will be assigned to 'location'
 
 <a id="nestedatt--spec--parameters--assign--external_data"></a>
 ### Nested Schema for `spec.parameters.assign.value`

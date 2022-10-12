@@ -55,7 +55,7 @@ type HazelcastComCronHotBackupV1Alpha1GoModel struct {
 		FailedHotBackupsHistoryLimit *int64 `tfsdk:"failed_hot_backups_history_limit" yaml:"failedHotBackupsHistoryLimit,omitempty"`
 
 		HotBackupTemplate *struct {
-			Metadata *map[string]string `tfsdk:"metadata" yaml:"metadata,omitempty"`
+			Metadata utilities.Dynamic `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
 			Spec *struct {
 				BucketURI *string `tfsdk:"bucket_uri" yaml:"bucketURI,omitempty"`
@@ -189,7 +189,7 @@ func (r *HazelcastComCronHotBackupV1Alpha1Resource) GetSchema(_ context.Context)
 								Description:         "Standard object's metadata of the hot backups created from this template.",
 								MarkdownDescription: "Standard object's metadata of the hot backups created from this template.",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: false,
 								Optional: true,

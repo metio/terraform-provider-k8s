@@ -67,7 +67,7 @@ Required:
 Optional:
 
 - `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--selector--match_expressions))
-- `match_labels` (Map of String)
+- `match_labels` (Dynamic)
 
 <a id="nestedatt--spec--selector--match_expressions"></a>
 ### Nested Schema for `spec.selector.match_expressions`

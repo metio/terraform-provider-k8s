@@ -54,7 +54,7 @@ type KafkaStrimziIoKafkaConnectorV1Beta2GoModel struct {
 	Spec *struct {
 		Class *string `tfsdk:"class" yaml:"class,omitempty"`
 
-		Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+		Config utilities.Dynamic `tfsdk:"config" yaml:"config,omitempty"`
 
 		Pause *bool `tfsdk:"pause" yaml:"pause,omitempty"`
 
@@ -171,7 +171,7 @@ func (r *KafkaStrimziIoKafkaConnectorV1Beta2Resource) GetSchema(_ context.Contex
 						Description:         "The Kafka Connector configuration. The following properties cannot be set: connector.class, tasks.max.",
 						MarkdownDescription: "The Kafka Connector configuration. The following properties cannot be set: connector.class, tasks.max.",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Type: utilities.DynamicType{},
 
 						Required: false,
 						Optional: true,

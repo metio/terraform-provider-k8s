@@ -30,7 +30,7 @@ resource "k8s_charts_opdev_io_synapse_v1alpha1" "minimal" {
 
 ### Optional
 
-- `spec` (Map of String) Spec defines the desired state of Synapse
+- `spec` (Dynamic) Spec defines the desired state of Synapse
 
 ### Read-Only
 

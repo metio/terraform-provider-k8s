@@ -65,7 +65,7 @@ type AcidZalanDoPostgresqlV1GoModel struct {
 
 			TargetContainers *[]string `tfsdk:"target_containers" yaml:"targetContainers,omitempty"`
 
-			VolumeSource *map[string]string `tfsdk:"volume_source" yaml:"volumeSource,omitempty"`
+			VolumeSource utilities.Dynamic `tfsdk:"volume_source" yaml:"volumeSource,omitempty"`
 		} `tfsdk:"additional_volumes" yaml:"additionalVolumes,omitempty"`
 
 		AllowedSourceRanges *[]string `tfsdk:"allowed_source_ranges" yaml:"allowedSourceRanges,omitempty"`
@@ -320,7 +320,7 @@ type AcidZalanDoPostgresqlV1GoModel struct {
 					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
 				} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
 
-				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+				MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 			} `tfsdk:"selector" yaml:"selector,omitempty"`
 
 			Size *string `tfsdk:"size" yaml:"size,omitempty"`
@@ -482,7 +482,7 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Type: utilities.DynamicType{},
 
 								Required: true,
 								Optional: false,
@@ -1995,7 +1995,7 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Type: utilities.DynamicType{},
 
 										Required: false,
 										Optional: true,
