@@ -49,6 +49,7 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewAcidZalanDoOperatorConfigurationV1Resource,
 		NewAcidZalanDoPostgresqlV1Resource,
 		NewAcidZalanDoPostgresTeamV1Resource,
+		NewApicodegenApimaticIoAPIMaticV1Beta1Resource,
 		NewAppKiegroupOrgKogitoBuildV1Beta1Resource,
 		NewAppKiegroupOrgKogitoInfraV1Beta1Resource,
 		NewAppKiegroupOrgKogitoRuntimeV1Beta1Resource,

@@ -5,8 +5,8 @@ resource "k8s_asdb_aerospike_com_aerospike_cluster_v1beta1" "minimal" {
   }
   spec = {
     aerospike_config = {}
-    image = "aerospike/aerospike-server-enterprise:6.1.0.1"
-    size = 123
+    image            = "aerospike/aerospike-server-enterprise:6.1.0.1"
+    size             = 123
   }
 }
 
@@ -19,8 +19,8 @@ resource "k8s_asdb_aerospike_com_aerospike_cluster_v1beta1" "example" {
     aerospike_config = {
       namespaces = [
         {
-          memory-size = 3000000000
-          name = "test"
+          memory-size        = 3000000000
+          name               = "test"
           replication-factor = 2
           storage-engine = {
             type = "memory"
@@ -63,7 +63,7 @@ resource "k8s_asdb_aerospike_com_aerospike_cluster_v1beta1" "example" {
       ]
     }
     validation_policy = {
-      skip_work_dir_validate = true
+      skip_work_dir_validate      = true
       skip_xdr_dlog_file_validate = true
     }
   }

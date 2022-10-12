@@ -20,7 +20,7 @@ resource "k8s_notification_toolkit_fluxcd_io_alert_v1beta1" "big" {
     summary        = "some critical alert"
     suspend        = true
     event_severity = "error"
-    event_sources = []
+    event_sources  = []
   }
 }
 
@@ -34,6 +34,6 @@ resource "k8s_notification_toolkit_fluxcd_io_alert_v1beta1" "small" {
     }
     summary        = "some minor alert"
     event_severity = "info"
-    event_sources = []
+    event_sources  = []
   }
 }
