@@ -27,6 +27,10 @@ Files: custom-resource-definitions/acid.zalan.do/*
 Copyright: The Postgres Operator Authors
 License: MIT
 
+Files: custom-resource-definitions/apicodegen.apimatic.io/*
+Copyright: The APIMatic Operator Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/app.kiegroup.org/*
 Copyright: The Kogito Operator Authors
 License: Apache-2.0
