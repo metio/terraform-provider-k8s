@@ -35,6 +35,10 @@ Files: custom-resource-definitions/app.lightbend.com/*
 Copyright: The Akka Cluster Operator Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/apps.3scale.net/*
+Copyright: The APIcast Operator Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/apps.gitlab.com/*
 Copyright: The GitLab Runner Operator Authors
 License: Apache-2.0
