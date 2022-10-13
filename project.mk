@@ -12,7 +12,7 @@ out/${PROVIDER}: $(shell find ./internal -type f -name '*.go' -and -not -name '*
 	mkdir --parents $(@D)
 	go build -o out/${PROVIDER}
 
-out/docs-sentinel: $(shell find ./internal -type f -name '*.go') $(shell find ./examples -type f -name '*.tf' -or -name '*.sh') $(shell find ./templates -type f -name '*.tmpl')
+out/docs-sentinel: out/tf-format-sentinel $(shell find ./internal -type f -name '*.go') $(shell find ./examples -type f -name '*.tf' -or -name '*.sh') $(shell find ./templates -type f -name '*.tmpl')
 	mkdir --parents $(@D)
 	go generate ./...
 	touch $@
