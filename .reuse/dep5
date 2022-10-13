@@ -287,6 +287,10 @@ Files: custom-resource-definitions/quay.redhat.com/*
 Copyright: The Quay Operator Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/rds.services.k8s.aws/*
+Copyright: The ACK service controller for Amazon Relational Database Service Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/redhatcop.redhat.io/*
 Copyright: The Quay Operator Authors
 License: Apache-2.0
