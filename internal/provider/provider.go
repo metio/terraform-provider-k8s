@@ -273,6 +273,7 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewNotificationToolkitFluxcdIoAlertV1Beta1Resource,
 		NewNotificationToolkitFluxcdIoProviderV1Beta1Resource,
 		NewNotificationToolkitFluxcdIoReceiverV1Beta1Resource,
+		NewOpensearchserviceServicesK8SAwsDomainV1Alpha1Resource,
 		NewOpentelemetryIoInstrumentationV1Alpha1Resource,
 		NewOpentelemetryIoOpenTelemetryCollectorV1Alpha1Resource,
 		NewOperatorAquasecComAquaCspV1Alpha1Resource,
