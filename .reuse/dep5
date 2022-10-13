@@ -31,6 +31,10 @@ Files: custom-resource-definitions/apicodegen.apimatic.io/*
 Copyright: The APIMatic Operator Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/apigatewayv2.services.k8s.aws/*
+Copyright: The ACK service controller for Amazon API Gateway v2 Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/app.kiegroup.org/*
 Copyright: The Kogito Operator Authors
 License: Apache-2.0
