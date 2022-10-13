@@ -309,6 +309,7 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewRocketmqApacheOrgConsoleV1Alpha1Resource,
 		NewRocketmqApacheOrgNameServiceV1Alpha1Resource,
 		NewRocketmqApacheOrgTopicTransferV1Alpha1Resource,
+		NewS3ServicesK8SAwsBucketV1Alpha1Resource,
 		NewSecscanQuayRedhatComImageManifestVulnV1Alpha1Resource,
 		NewSecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1Resource,
 		NewSecurityProfilesOperatorXK8SIoProfileBindingV1Alpha1Resource,
