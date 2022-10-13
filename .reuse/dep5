@@ -327,6 +327,10 @@ Files: custom-resource-definitions/services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Elastic Kubernetes Service Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/sfn.services.k8s.aws/*
+Copyright: The ACK service controller for AWS Step Functions Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/source.toolkit.fluxcd.io/*
 Copyright: The Flux2 Authors
 License: Apache-2.0
