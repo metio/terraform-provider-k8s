@@ -123,6 +123,10 @@ Files: custom-resource-definitions/elasticache.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon ElastiCache Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/emrcontainers.services.k8s.aws/*
+Copyright: The ACK service controller for EMR on EKS Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/extensions.istio.io/*
 Copyright: The Istio Authors
 License: Apache-2.0

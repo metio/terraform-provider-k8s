@@ -144,6 +144,8 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewElasticacheServicesK8SAwsSnapshotV1Alpha1Resource,
 		NewElasticacheServicesK8SAwsUserGroupV1Alpha1Resource,
 		NewElasticacheServicesK8SAwsUserV1Alpha1Resource,
+		NewEmrcontainersServicesK8SAwsJobRunV1Alpha1Resource,
+		NewEmrcontainersServicesK8SAwsVirtualClusterV1Alpha1Resource,
 		NewTelemetryIstioIoTelemetryV1Alpha1Resource,
 		NewExtensionsIstioIoWasmPluginV1Alpha1Resource,
 		NewExternalSecretsIoClusterSecretStoreV1Alpha1Resource,
