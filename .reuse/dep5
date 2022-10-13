@@ -279,6 +279,10 @@ Files: custom-resource-definitions/postgres-operator.crunchydata.com/*
 Copyright: The PGO Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/prometheusservice.services.k8s.aws/*
+Copyright: The ACK service controller for Amazon Managed Service for Prometheus Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/quay.redhat.com/*
 Copyright: The Quay Operator Authors
 License: Apache-2.0
