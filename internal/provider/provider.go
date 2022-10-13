@@ -62,6 +62,8 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewAppKiegroupOrgKogitoRuntimeV1Beta1Resource,
 		NewAppKiegroupOrgKogitoSupportingServiceV1Beta1Resource,
 		NewAppLightbendComAkkaClusterV1Alpha1Resource,
+		NewApplicationautoscalingServicesK8SAwsScalableTargetV1Alpha1Resource,
+		NewApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1Resource,
 		NewApps3ScaleNetAPIcastV1Alpha1Resource,
 		NewAppsGitlabComRunnerV1Beta2Resource,
 		NewAppsM88IIoNexusV1Alpha1Resource,
