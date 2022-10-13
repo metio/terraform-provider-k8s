@@ -211,6 +211,10 @@ Files: custom-resource-definitions/kustomize.toolkit.fluxcd.io/*
 Copyright: The Flux2 Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/lambda.services.k8s.aws/*
+Copyright: The ACK service controller for AWS Lambda Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/litmuschaos.io/*
 Copyright: The Litmus Chaos Operator Authors
 License: Apache-2.0
