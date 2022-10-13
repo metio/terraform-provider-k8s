@@ -135,6 +135,10 @@ Files: custom-resource-definitions/image.toolkit.fluxcd.io/*
 Copyright: The Flux2 Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/imaging-ingestion.alvearie.org/*
+Copyright: The Alvearie Imaging Ingestion Operator Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/infinispan.org/*
 Copyright: The Infinispan Operator Authors
 License: Apache-2.0
