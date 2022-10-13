@@ -341,6 +341,8 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewSecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Resource,
 		NewServicesK8SAwsAdoptedResourceV1Alpha1Resource,
 		NewServicesK8SAwsFieldExportV1Alpha1Resource,
+		NewSfnServicesK8SAwsActivityV1Alpha1Resource,
+		NewSfnServicesK8SAwsStateMachineV1Alpha1Resource,
 		NewSourceToolkitFluxcdIoBucketV1Beta1Resource,
 		NewSourceToolkitFluxcdIoGitRepositoryV1Beta1Resource,
 		NewSourceToolkitFluxcdIoHelmChartV1Beta1Resource,
