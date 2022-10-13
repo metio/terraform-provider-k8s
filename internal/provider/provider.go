@@ -245,6 +245,7 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewMonitoringCoreosComServiceMonitorV1Resource,
 		NewMonitoringCoreosComThanosRulerV1Resource,
 		NewMonitoringCoreosComAlertmanagerConfigV1Alpha1Resource,
+		NewMqServicesK8SAwsBrokerV1Alpha1Resource,
 		NewMutationsGatekeeperShAssignV1Alpha1Resource,
 		NewMutationsGatekeeperShAssignMetadataV1Alpha1Resource,
 		NewMutationsGatekeeperShModifySetV1Alpha1Resource,
