@@ -235,6 +235,10 @@ Files: custom-resource-definitions/monitoring.coreos.com/*
 Copyright: The Prometheus Operator Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/mq.services.k8s.aws/*
+Copyright: The ACK service controller for AmazonMQ Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/mutations.gatekeeper.sh/*
 Copyright: The Gatekeeper Authors
 License: Apache-2.0
