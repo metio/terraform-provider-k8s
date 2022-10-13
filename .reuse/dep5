@@ -203,6 +203,10 @@ Files: custom-resource-definitions/kiali.io/*
 Copyright: The Kiali Operator Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/kms.services.k8s.aws/*
+Copyright: The ACK service controller for Amazon Key Management Service Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/kustomize.toolkit.fluxcd.io/*
 Copyright: The Flux2 Authors
 License: Apache-2.0
