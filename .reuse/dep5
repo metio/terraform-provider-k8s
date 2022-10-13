@@ -43,6 +43,10 @@ Files: custom-resource-definitions/app.lightbend.com/*
 Copyright: The Akka Cluster Operator Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/applicationautoscaling.services.k8s.aws/*
+Copyright: The ACK service controller for Amazon Application Auto Scaling Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/apps.3scale.net/*
 Copyright: The APIcast Operator Authors
 License: Apache-2.0
