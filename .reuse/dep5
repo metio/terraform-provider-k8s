@@ -311,6 +311,10 @@ Files: custom-resource-definitions/s3.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Simple Storage Service Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/sagemaker.services.k8s.aws/*
+Copyright: The ACK service controller for Amazon SageMaker Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/secscan.quay.redhat.com/*
 Copyright: The Container Security Operator Authors
 License: Apache-2.0
