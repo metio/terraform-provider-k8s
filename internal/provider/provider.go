@@ -132,6 +132,8 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewEc2ServicesK8SAwsTransitGatewayV1Alpha1Resource,
 		NewEc2ServicesK8SAwsVPCEndpointV1Alpha1Resource,
 		NewEc2ServicesK8SAwsVPCV1Alpha1Resource,
+		NewEcrServicesK8SAwsPullThroughCacheRuleV1Alpha1Resource,
+		NewEcrServicesK8SAwsRepositoryV1Alpha1Resource,
 		NewTelemetryIstioIoTelemetryV1Alpha1Resource,
 		NewExtensionsIstioIoWasmPluginV1Alpha1Resource,
 		NewExternalSecretsIoClusterSecretStoreV1Alpha1Resource,

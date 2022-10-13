@@ -111,6 +111,10 @@ Files: custom-resource-definitions/ec2.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Elastic Compute Cloud Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/ecr.services.k8s.aws/*
+Copyright: The ACK service controller for Amazon Elastic Container Registry Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/extensions.istio.io/*
 Copyright: The Istio Authors
 License: Apache-2.0
