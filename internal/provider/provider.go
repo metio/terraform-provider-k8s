@@ -209,6 +209,7 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewHiveinternalOpenshiftIoClusterSyncV1Alpha1Resource,
 		NewHiveinternalOpenshiftIoFakeClusterInstallV1Alpha1Resource,
 		NewHyperfoilIoHorreumV1Alpha1Resource,
+		NewHyperfoilIoHyperfoilV1Alpha2Resource,
 		NewIamServicesK8SAwsGroupV1Alpha1Resource,
 		NewIamServicesK8SAwsPolicyV1Alpha1Resource,
 		NewIamServicesK8SAwsRoleV1Alpha1Resource,
