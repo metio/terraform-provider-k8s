@@ -219,6 +219,10 @@ Files: custom-resource-definitions/iam.services.k8s.aws/*
 Copyright: The ACK service controller for AWS Identity & Access Management Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/ibmcloud.ibm.com/*
+Copyright: The Composable Operator Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/image.toolkit.fluxcd.io/*
 Copyright: The Flux2 Authors
 License: Apache-2.0
