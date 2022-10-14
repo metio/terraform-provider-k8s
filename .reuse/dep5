@@ -91,6 +91,10 @@ Files: custom-resource-definitions/cert-manager.io/*
 Copyright: The cert-manager Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/charts.flagsmith.com/*
+Copyright: The Flagsmith Operator Authors
+License: LicenseRef-Flagsmith
+
 Files: custom-resource-definitions/charts.helm.k8s.io/*
 Copyright: Snyk Ldt.
 License: Apache-2.0

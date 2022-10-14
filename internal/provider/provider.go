@@ -84,6 +84,7 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewCertManagerIoClusterIssuerV1Resource,
 		NewCertManagerIoIssuerV1Resource,
 		NewAcmeCertManagerIoOrderV1Resource,
+		NewChartsFlagsmithComFlagsmithV1Alpha1Resource,
 		NewChartsHelmK8SIoSnykMonitorV1Alpha1Resource,
 		NewChartsOpdevIoSynapseV1Alpha1Resource,
 		NewCheEclipseOrgKubernetesImagePullerV1Alpha1Resource,
