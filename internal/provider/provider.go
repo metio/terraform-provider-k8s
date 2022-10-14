@@ -67,6 +67,7 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewApplicationautoscalingServicesK8SAwsScalableTargetV1Alpha1Resource,
 		NewApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1Resource,
 		NewApps3ScaleNetAPIcastV1Alpha1Resource,
+		NewAppsGitlabComGitLabV1Beta1Resource,
 		NewAppsGitlabComRunnerV1Beta2Resource,
 		NewAppsM88IIoNexusV1Alpha1Resource,
 		NewAquasecurityGithubIoAquaStarboardV1Alpha1Resource,
