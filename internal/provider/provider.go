@@ -210,6 +210,7 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewIntegreatlyOrgGrafanaFolderV1Alpha1Resource,
 		NewIntegreatlyOrgGrafanaNotificationChannelV1Alpha1Resource,
 		NewIntegreatlyOrgGrafanaV1Alpha1Resource,
+		NewIotEclipseOrgDittoV1Alpha1Resource,
 		NewJaegertracingIoJaegerV1Resource,
 		NewKafkaStrimziIoKafkaBridgeV1Beta2Resource,
 		NewKafkaStrimziIoKafkaConnectorV1Beta2Resource,
