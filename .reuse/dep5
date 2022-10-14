@@ -27,6 +27,10 @@ Files: custom-resource-definitions/acid.zalan.do/*
 Copyright: The Postgres Operator Authors
 License: MIT
 
+Files: custom-resource-definitions/agent.k8s.elastic.co/*
+Copyright: The Elastic Cloud on Kubernetes Authors
+License: LicenseRef-Elastic
+
 Files: custom-resource-definitions/apicodegen.apimatic.io/*
 Copyright: The APIMatic Operator Authors
 License: Apache-2.0
@@ -34,6 +38,10 @@ License: Apache-2.0
 Files: custom-resource-definitions/apigatewayv2.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon API Gateway v2 Authors
 License: Apache-2.0
+
+Files: custom-resource-definitions/apm.k8s.elastic.co/*
+Copyright: The Elastic Cloud on Kubernetes Authors
+License: LicenseRef-Elastic
 
 Files: custom-resource-definitions/app.kiegroup.org/*
 Copyright: The Kogito Operator Authors
@@ -70,6 +78,14 @@ License: Apache-2.0
 Files: custom-resource-definitions/asdb.aerospike.com/*
 Copyright: The Aerospike Kubernetes Operator Authors
 License: Apache-2.0
+
+Files: custom-resource-definitions/autoscaling.k8s.elastic.co/*
+Copyright: The Elastic Cloud on Kubernetes Authors
+License: LicenseRef-Elastic
+
+Files: custom-resource-definitions/beat.k8s.elastic.co/*
+Copyright: The Elastic Cloud on Kubernetes Authors
+License: LicenseRef-Elastic
 
 Files: custom-resource-definitions/cert-manager.io/*
 Copyright: The cert-manager Authors
@@ -123,9 +139,17 @@ Files: custom-resource-definitions/elasticache.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon ElastiCache Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/elasticsearch.k8s.elastic.co/*
+Copyright: The Elastic Cloud on Kubernetes Authors
+License: LicenseRef-Elastic
+
 Files: custom-resource-definitions/emrcontainers.services.k8s.aws/*
 Copyright: The ACK service controller for EMR on EKS Authors
 License: Apache-2.0
+
+Files: custom-resource-definitions/enterprisesearch.k8s.elastic.co/*
+Copyright: The Elastic Cloud on Kubernetes Authors
+License: LicenseRef-Elastic
 
 Files: custom-resource-definitions/extensions.istio.io/*
 Copyright: The Istio Authors
@@ -203,6 +227,10 @@ Files: custom-resource-definitions/kiali.io/*
 Copyright: The Kiali Operator Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/kibana.k8s.elastic.co/*
+Copyright: The Elastic Cloud on Kubernetes Authors
+License: LicenseRef-Elastic
+
 Files: custom-resource-definitions/kms.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Key Management Service Authors
 License: Apache-2.0
@@ -218,6 +246,10 @@ License: Apache-2.0
 Files: custom-resource-definitions/litmuschaos.io/*
 Copyright: The Litmus Chaos Operator Authors
 License: Apache-2.0
+
+Files: custom-resource-definitions/maps.k8s.elastic.co/*
+Copyright: The Elastic Cloud on Kubernetes Authors
+License: LicenseRef-Elastic
 
 Files: custom-resource-definitions/mattermost.com/*
 Copyright: The Mattermost Operator for Kubernetes Authors
