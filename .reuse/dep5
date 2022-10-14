@@ -195,6 +195,14 @@ Files: custom-resource-definitions/helm.toolkit.fluxcd.io/*
 Copyright: The Flux2 Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/hive.openshift.io/*
+Copyright: The Hive Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/hiveinternal.openshift.io/*
+Copyright: The Hive Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/iam.services.k8s.aws/*
 Copyright: The ACK service controller for AWS Identity & Access Management Authors
 License: Apache-2.0
