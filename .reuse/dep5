@@ -211,6 +211,10 @@ Files: custom-resource-definitions/integreatly.org/*
 Copyright: The Grafana Operator Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/iot.eclipse.org/*
+Copyright: The Operator for Eclipse Ditto Authors
+License: EPL-2.0
+
 Files: custom-resource-definitions/jaegertracing.io/*
 Copyright: The Jaeger Operator for Kubernetes Authors
 License: Apache-2.0
