@@ -50,7 +50,7 @@ func ParseCustomResourceDefinition(data []byte) (*apiextensionsv1.CustomResource
 
 	crd, ok := object.(*apiextensionsv1.CustomResourceDefinition)
 	if !ok {
-		return nil, fmt.Errorf("could not cast to CRD")
+		return nil, fmt.Errorf("could not cast to apiextensionsv1.CustomResourceDefinition")
 	}
 
 	return crd, nil
