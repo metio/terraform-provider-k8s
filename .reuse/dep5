@@ -175,6 +175,10 @@ Files: custom-resource-definitions/flink.apache.org/*
 Copyright: The Apache Flink Kubernetes Operator Authors
 License: Apache-2.0
 
+Files: custom-resource-definitions/fossul.io/*
+Copyright: The Fossul Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/gateway.networking.k8s.io/*
 Copyright: The Traefik Authors
 License: MIT
