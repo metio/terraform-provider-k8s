@@ -325,6 +325,7 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewOperatorAquasecComAquaKubeEnforcerV1Alpha1Resource,
 		NewOperatorAquasecComAquaScannerV1Alpha1Resource,
 		NewOperatorAquasecComAquaServerV1Alpha1Resource,
+		NewOperatorCryostatIoCryostatV1Beta1Resource,
 		NewOperatorKnativeDevKnativeEventingV1Beta1Resource,
 		NewOperatorKnativeDevKnativeServingV1Beta1Resource,
 		NewOperatorTektonDevTektonResultV1Alpha1Resource,

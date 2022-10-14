@@ -335,6 +335,10 @@ Files: custom-resource-definitions/operator.aquasec.com/*
 Copyright: The Aqua Security Operator Authors
 License: LicenseRef-Aqua
 
+Files: custom-resource-definitions/operator.cryostat.io/*
+Copyright: The Cryostat Operator Authors
+License: UPL-1.0
+
 Files: custom-resource-definitions/operator.knative.dev/*
 Copyright: The Knative Operator Authors
 License: Apache-2.0
