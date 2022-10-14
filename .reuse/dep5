@@ -203,8 +203,12 @@ Files: custom-resource-definitions/hiveinternal.openshift.io/*
 Copyright: The Hive Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/hyperfoil.io/*
+Files: custom-resource-definitions/hyperfoil.io/v1alpha1/horreums.yaml
 Copyright: The Horreum Operator Authors
+License: Apache-2.0
+
+Files: custom-resource-definitions/hyperfoil.io/v1alpha2/hyperfoils.yaml
+Copyright: The Hyperfoil Operator Authors
 License: Apache-2.0
 
 Files: custom-resource-definitions/iam.services.k8s.aws/*
