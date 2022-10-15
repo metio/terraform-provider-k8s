@@ -7,6 +7,7 @@ package validators
 
 import (
 	"context"
+	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	apiValidation "k8s.io/apimachinery/pkg/api/validation"
@@ -42,6 +43,10 @@ func (v nameValidator) Validate(ctx context.Context, req tfsdk.ValidateAttribute
 	}
 
 	for _, msg := range apiValidation.NameIsDNSSubdomain(value.Value, false) {
-		resp.Diagnostics.AddError(value.Value, msg)
+		resp.Diagnostics.AddAttributeError(
+			req.AttributePath,
+			fmt.Sprintf("Invalid Object Name '%s'", value.Value),
+			msg,
+		)
 	}
 }

@@ -51,7 +51,11 @@ func (v dateTimeValidator) Validate(ctx context.Context, req tfsdk.ValidateAttri
 	}
 	for _, format := range formats {
 		if _, err := time.Parse(format, value.Value); err != nil {
-			resp.Diagnostics.AddError(value.Value, fmt.Sprintf("'%s' is not a valid date/time value", value.Value))
+			resp.Diagnostics.AddAttributeError(
+				req.AttributePath,
+				"Invalid Date/Time Value",
+				fmt.Sprintf("The value '%s' is not a valid date/time value", value.Value),
+			)
 			return
 		}
 	}

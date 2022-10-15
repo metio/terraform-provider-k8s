@@ -7,6 +7,7 @@ package validators
 
 import (
 	"context"
+	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
 	utilValidation "k8s.io/apimachinery/pkg/util/validation"
 )
@@ -35,7 +36,11 @@ func (v annotationValidator) Validate(ctx context.Context, req tfsdk.ValidateAtt
 
 	for key := range elems {
 		for _, msg := range utilValidation.IsQualifiedName(key) {
-			resp.Diagnostics.AddError(key, msg)
+			resp.Diagnostics.AddAttributeError(
+				req.AttributePath,
+				fmt.Sprintf("Invalid Annotation Name '%s'", key),
+				msg,
+			)
 		}
 	}
 }
