@@ -5,7 +5,7 @@ SPDX-License-Identifier: 0BSD
 
 # terraform-provider-k8s [![Chat](https://img.shields.io/badge/matrix-%23community.metio.wtf:matrix.org-brightgreen.svg?style=social&label=Matrix)](https://matrix.to/#/#community.metio.wtf:matrix.org)
 
-[Terraform](https://www.terraform.io/) provider for custom [Kubernetes](https://kubernetes.io/) resources.
+[Terraform](https://www.terraform.io/) provider for [Kubernetes](https://kubernetes.io/) resources.
 
 Available in the [Terraform Registry](https://registry.terraform.io/providers/metio/k8s/).
 
