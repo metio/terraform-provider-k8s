@@ -31,8 +31,8 @@ func (p *K8sProvider) Metadata(_ context.Context, _ provider.MetadataRequest, re
 
 func (p *K8sProvider) GetSchema(_ context.Context) (tfsdk.Schema, diag.Diagnostics) {
 	return tfsdk.Schema{
-		Description:         "Provider for custom Kubernetes resources. Requires Terraform 1.0 or later.",
-		MarkdownDescription: "Provider for custom [Kubernetes](https://kubernetes.io/) resources. Requires Terraform 1.0 or later.",
+		Description:         "Provider for Kubernetes resources. Requires Terraform 1.0 or later.",
+		MarkdownDescription: "Provider for [Kubernetes](https://kubernetes.io/) resources. Requires Terraform 1.0 or later.",
 	}, nil
 }
 
@@ -410,5 +410,37 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewTraefikContainoUsTLSStoreV1Alpha1Resource,
 		NewTraefikContainoUsTraefikServiceV1Alpha1Resource,
 		NewWildflyOrgWildFlyServerV1Alpha1Resource,
+		NewNamespaceV1Resource,
+		NewBatchCronJobV1Resource,
+		NewStorageK8SIoCSIDriverV1Resource,
+		NewSchedulingK8SIoPriorityClassV1Resource,
+		NewLimitRangeV1Resource,
+		NewPersistentVolumeClaimV1Resource,
+		NewAdmissionregistrationK8SIoMutatingWebhookConfigurationV1Resource,
+		NewServiceV1Resource,
+		NewNetworkingK8SIoIngressClassV1Resource,
+		NewServiceAccountV1Resource,
+		NewAppsDeploymentV1Resource,
+		NewAutoscalingHorizontalPodAutoscalerV1Resource,
+		NewRbacAuthorizationK8SIoRoleBindingV1Resource,
+		NewAppsStatefulSetV1Resource,
+		NewPersistentVolumeV1Resource,
+		NewCertificatesK8SIoCertificateSigningRequestV1Resource,
+		NewPodV1Resource,
+		NewBatchJobV1Resource,
+		NewSecretV1Resource,
+		NewPolicyPodDisruptionBudgetV1Resource,
+		NewAutoscalingHorizontalPodAutoscalerV2Resource,
+		NewNetworkingK8SIoIngressV1Resource,
+		NewConfigMapV1Resource,
+		NewReplicationControllerV1Resource,
+		NewAdmissionregistrationK8SIoValidatingWebhookConfigurationV1Resource,
+		NewStorageK8SIoStorageClassV1Resource,
+		NewRbacAuthorizationK8SIoClusterRoleV1Resource,
+		NewRbacAuthorizationK8SIoRoleV1Resource,
+		NewEndpointsV1Resource,
+		NewNetworkingK8SIoNetworkPolicyV1Resource,
+		NewRbacAuthorizationK8SIoClusterRoleBindingV1Resource,
+		NewAppsDaemonSetV1Resource,
 	}
 }

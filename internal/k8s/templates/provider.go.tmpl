@@ -31,8 +31,8 @@ func (p *K8sProvider) Metadata(_ context.Context, _ provider.MetadataRequest, re
 
 func (p *K8sProvider) GetSchema(_ context.Context) (tfsdk.Schema, diag.Diagnostics) {
 	return tfsdk.Schema{
-		Description:         "Provider for custom Kubernetes resources. Requires Terraform 1.0 or later.",
-		MarkdownDescription: "Provider for custom [Kubernetes](https://kubernetes.io/) resources. Requires Terraform 1.0 or later.",
+		Description:         "Provider for Kubernetes resources. Requires Terraform 1.0 or later.",
+		MarkdownDescription: "Provider for [Kubernetes](https://kubernetes.io/) resources. Requires Terraform 1.0 or later.",
 	}, nil
 }
 
