@@ -7,6 +7,7 @@ package validators
 
 import (
 	"context"
+	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	utilValidation "k8s.io/apimachinery/pkg/util/validation"
@@ -36,15 +37,27 @@ func (v labelValidator) Validate(ctx context.Context, req tfsdk.ValidateAttribut
 
 	for key, value := range elems {
 		for _, msg := range utilValidation.IsQualifiedName(key) {
-			resp.Diagnostics.AddError(key, msg)
+			resp.Diagnostics.AddAttributeError(
+				req.AttributePath,
+				fmt.Sprintf("Invalid Label Name '%s'", key),
+				msg,
+			)
 		}
 		val, isString := value.(types.String)
 		if !isString {
-			resp.Diagnostics.AddError(key, "Expected value to be string")
+			resp.Diagnostics.AddAttributeError(
+				req.AttributePath,
+				"Invalid Label Value",
+				fmt.Sprintf("Label values must be types.String but was %s", value.Type(ctx).String()),
+			)
 			continue
 		}
 		for _, msg := range utilValidation.IsValidLabelValue(val.Value) {
-			resp.Diagnostics.AddError(key, msg)
+			resp.Diagnostics.AddAttributeError(
+				req.AttributePath,
+				fmt.Sprintf("Invalid Label Value '%s'", key),
+				msg,
+			)
 		}
 	}
 }

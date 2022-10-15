@@ -44,6 +44,10 @@ func (v base64Validator) Validate(ctx context.Context, req tfsdk.ValidateAttribu
 
 	_, err := base64.StdEncoding.DecodeString(value.Value)
 	if err != nil {
-		resp.Diagnostics.AddError(value.Value, fmt.Sprintf("'%s' is not a valid base64 value", value.Value))
+		resp.Diagnostics.AddAttributeError(
+			req.AttributePath,
+			"Invalid Base64 Value",
+			fmt.Sprintf("The value '%s' is not a valid base64 value", value.Value),
+		)
 	}
 }
