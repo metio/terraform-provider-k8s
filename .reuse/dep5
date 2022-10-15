@@ -23,6 +23,10 @@ Files: internal/k8s/templates/*.tmpl
 Copyright: The terraform-provider-k8s Authors
 License: 0BSD
 
+Files: openapi-specs/*
+Copyright: The Kubernetes Authors
+License: Apache-2.0
+
 Files: custom-resource-definitions/acid.zalan.do/*
 Copyright: The Postgres Operator Authors
 License: MIT
