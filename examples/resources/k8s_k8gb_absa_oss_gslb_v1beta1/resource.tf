@@ -6,7 +6,7 @@ resource "k8s_k8gb_absa_oss_gslb_v1beta1" "minimal" {
 
 resource "k8s_k8gb_absa_oss_gslb_v1beta1" "example" {
   metadata = {
-    name = "test-gslb-failover"
+    name      = "test-gslb-failover"
     namespace = "test-gslb"
   }
   spec = {
@@ -17,7 +17,7 @@ resource "k8s_k8gb_absa_oss_gslb_v1beta1" "example" {
           http = {
             paths = [
               {
-                path = "/"
+                path      = "/"
                 path_type = "Prefix"
                 backend = {
                   service = {
@@ -34,8 +34,8 @@ resource "k8s_k8gb_absa_oss_gslb_v1beta1" "example" {
       ]
     }
     strategy = {
-    primary_geo_tag = "eu-west-1"
-    type = "failover"
+      primary_geo_tag = "eu-west-1"
+      type            = "failover"
     }
   }
 }
