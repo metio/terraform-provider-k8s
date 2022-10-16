@@ -3,19 +3,6 @@
 
 name: Verify Commits
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - .github/workflows/verify.yml
-      - go.mod
-      - go.sum
-      - main.go
-      - docs/**
-      - examples/**
-      - internal/**
-      - templates/**
-      - terratest/**
-      - tools/**
   pull_request:
     branches: [ main ]
     paths:
@@ -27,7 +14,6 @@ on:
       - examples/**
       - internal/**
       - templates/**
-      - terratest/**
       - tools/**
 jobs:
   build:
@@ -59,36 +45,3 @@ jobs:
       - id: build
         name: Build Provider
         run: go build -v ./...
-  terratest:
-    name: Terratest Tests with TF ${{ matrix.terraform }}
-    needs: build
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        terraform:
-          - 1.0.*
-          - 1.1.*
-          - 1.2.*
-          - 1.3.*
-    steps:
-      - id: checkout
-        name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - id: setup_go
-        name: Set up Go
-        uses: actions/setup-go@v3
-        with:
-          go-version-file: go.mod
-          cache: true
-      - id: setup_terraform
-        name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: ${{ matrix.terraform }}
-          terraform_wrapper: false
-      - id: terratest
-        name: Run Terratest Tests
-        run: make terratests
