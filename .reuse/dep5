@@ -175,6 +175,10 @@ Files: schemas/crd_v1/externaldata.gatekeeper.sh/*
 Copyright: The Gatekeeper Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/externaldns.k8s.io/*
+Copyright: The K8GB Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/flagger.app/*
 Copyright: The Flagger Authors
 License: Apache-2.0
@@ -257,6 +261,10 @@ License: EPL-2.0
 
 Files: schemas/crd_v1/jaegertracing.io/*
 Copyright: The Jaeger Operator for Kubernetes Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/k8gb.absa.oss/*
+Copyright: The K8GB Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/kafka.strimzi.io/*
