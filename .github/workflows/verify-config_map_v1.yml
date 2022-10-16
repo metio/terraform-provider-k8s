@@ -37,6 +37,9 @@ jobs:
         with:
           terraform_version: ${{ matrix.terraform }}
           terraform_wrapper: false
+      - id: install
+        name: Install Provider
+        run: make install
       - id: terratest
         name: Run Terratest Tests
-        run: make terratest TestConfigMapV1Resource
+        run: go test -v -timeout=120s -count=1 -tags testing -run TestConfigMapV1Resource ./terratest
