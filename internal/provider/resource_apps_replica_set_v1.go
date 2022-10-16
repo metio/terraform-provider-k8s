@@ -19,13 +19,13 @@ import (
 	"time"
 )
 
-type AppsStatefulSetV1Resource struct{}
+type AppsReplicaSetV1Resource struct{}
 
 var (
-	_ resource.Resource = (*AppsStatefulSetV1Resource)(nil)
+	_ resource.Resource = (*AppsReplicaSetV1Resource)(nil)
 )
 
-type AppsStatefulSetV1TerraformModel struct {
+type AppsReplicaSetV1TerraformModel struct {
 	Id         types.Int64  `tfsdk:"id"`
 	YAML       types.String `tfsdk:"yaml"`
 	ApiVersion types.String `tfsdk:"api_version"`
@@ -34,7 +34,7 @@ type AppsStatefulSetV1TerraformModel struct {
 	Spec       types.Object `tfsdk:"spec"`
 }
 
-type AppsStatefulSetV1GoModel struct {
+type AppsReplicaSetV1GoModel struct {
 	Id         *int64  `tfsdk:"id" yaml:",omitempty"`
 	YAML       *string `tfsdk:"yaml" yaml:",omitempty"`
 	ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion"`
@@ -52,17 +52,7 @@ type AppsStatefulSetV1GoModel struct {
 	Spec *struct {
 		MinReadySeconds *int64 `tfsdk:"min_ready_seconds" yaml:"minReadySeconds,omitempty"`
 
-		PersistentVolumeClaimRetentionPolicy *struct {
-			WhenDeleted *string `tfsdk:"when_deleted" yaml:"whenDeleted,omitempty"`
-
-			WhenScaled *string `tfsdk:"when_scaled" yaml:"whenScaled,omitempty"`
-		} `tfsdk:"persistent_volume_claim_retention_policy" yaml:"persistentVolumeClaimRetentionPolicy,omitempty"`
-
-		PodManagementPolicy *string `tfsdk:"pod_management_policy" yaml:"podManagementPolicy,omitempty"`
-
 		Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
-
-		RevisionHistoryLimit *int64 `tfsdk:"revision_history_limit" yaml:"revisionHistoryLimit,omitempty"`
 
 		Selector *struct {
 			MatchExpressions *[]struct {
@@ -75,8 +65,6 @@ type AppsStatefulSetV1GoModel struct {
 
 			MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 		} `tfsdk:"selector" yaml:"selector,omitempty"`
-
-		ServiceName *string `tfsdk:"service_name" yaml:"serviceName,omitempty"`
 
 		Template *struct {
 			Metadata *struct {
@@ -2073,165 +2061,21 @@ type AppsStatefulSetV1GoModel struct {
 				} `tfsdk:"volumes" yaml:"volumes,omitempty"`
 			} `tfsdk:"spec" yaml:"spec,omitempty"`
 		} `tfsdk:"template" yaml:"template,omitempty"`
-
-		UpdateStrategy *struct {
-			RollingUpdate *struct {
-				MaxUnavailable *string `tfsdk:"max_unavailable" yaml:"maxUnavailable,omitempty"`
-
-				Partition *int64 `tfsdk:"partition" yaml:"partition,omitempty"`
-			} `tfsdk:"rolling_update" yaml:"rollingUpdate,omitempty"`
-
-			Type *string `tfsdk:"type" yaml:"type,omitempty"`
-		} `tfsdk:"update_strategy" yaml:"updateStrategy,omitempty"`
-
-		VolumeClaimTemplates *[]struct {
-			ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-			Metadata *struct {
-				Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-				CreationTimestamp *string `tfsdk:"creation_timestamp" yaml:"creationTimestamp,omitempty"`
-
-				DeletionGracePeriodSeconds *int64 `tfsdk:"deletion_grace_period_seconds" yaml:"deletionGracePeriodSeconds,omitempty"`
-
-				DeletionTimestamp *string `tfsdk:"deletion_timestamp" yaml:"deletionTimestamp,omitempty"`
-
-				Finalizers *[]string `tfsdk:"finalizers" yaml:"finalizers,omitempty"`
-
-				GenerateName *string `tfsdk:"generate_name" yaml:"generateName,omitempty"`
-
-				Generation *int64 `tfsdk:"generation" yaml:"generation,omitempty"`
-
-				Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
-
-				ManagedFields *[]struct {
-					ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-					FieldsType *string `tfsdk:"fields_type" yaml:"fieldsType,omitempty"`
-
-					FieldsV1 *map[string]string `tfsdk:"fields_v1" yaml:"fieldsV1,omitempty"`
-
-					Manager *string `tfsdk:"manager" yaml:"manager,omitempty"`
-
-					Operation *string `tfsdk:"operation" yaml:"operation,omitempty"`
-
-					Subresource *string `tfsdk:"subresource" yaml:"subresource,omitempty"`
-
-					Time *string `tfsdk:"time" yaml:"time,omitempty"`
-				} `tfsdk:"managed_fields" yaml:"managedFields,omitempty"`
-
-				Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-				OwnerReferences *[]struct {
-					ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-					BlockOwnerDeletion *bool `tfsdk:"block_owner_deletion" yaml:"blockOwnerDeletion,omitempty"`
-
-					Controller *bool `tfsdk:"controller" yaml:"controller,omitempty"`
-
-					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Uid *string `tfsdk:"uid" yaml:"uid,omitempty"`
-				} `tfsdk:"owner_references" yaml:"ownerReferences,omitempty"`
-
-				ResourceVersion *string `tfsdk:"resource_version" yaml:"resourceVersion,omitempty"`
-
-				SelfLink *string `tfsdk:"self_link" yaml:"selfLink,omitempty"`
-
-				Uid *string `tfsdk:"uid" yaml:"uid,omitempty"`
-			} `tfsdk:"metadata" yaml:"metadata,omitempty"`
-
-			Spec *struct {
-				AccessModes *[]string `tfsdk:"access_modes" yaml:"accessModes,omitempty"`
-
-				DataSource *struct {
-					ApiGroup *string `tfsdk:"api_group" yaml:"apiGroup,omitempty"`
-
-					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"data_source" yaml:"dataSource,omitempty"`
-
-				DataSourceRef *struct {
-					ApiGroup *string `tfsdk:"api_group" yaml:"apiGroup,omitempty"`
-
-					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-				} `tfsdk:"data_source_ref" yaml:"dataSourceRef,omitempty"`
-
-				Resources *struct {
-					Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
-
-					Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
-				} `tfsdk:"resources" yaml:"resources,omitempty"`
-
-				Selector *struct {
-					MatchExpressions *[]struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-						Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-					} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-				} `tfsdk:"selector" yaml:"selector,omitempty"`
-
-				StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
-
-				VolumeMode *string `tfsdk:"volume_mode" yaml:"volumeMode,omitempty"`
-
-				VolumeName *string `tfsdk:"volume_name" yaml:"volumeName,omitempty"`
-			} `tfsdk:"spec" yaml:"spec,omitempty"`
-
-			Status *struct {
-				AccessModes *[]string `tfsdk:"access_modes" yaml:"accessModes,omitempty"`
-
-				AllocatedResources *map[string]string `tfsdk:"allocated_resources" yaml:"allocatedResources,omitempty"`
-
-				Capacity *map[string]string `tfsdk:"capacity" yaml:"capacity,omitempty"`
-
-				Conditions *[]struct {
-					LastProbeTime *string `tfsdk:"last_probe_time" yaml:"lastProbeTime,omitempty"`
-
-					LastTransitionTime *string `tfsdk:"last_transition_time" yaml:"lastTransitionTime,omitempty"`
-
-					Message *string `tfsdk:"message" yaml:"message,omitempty"`
-
-					Reason *string `tfsdk:"reason" yaml:"reason,omitempty"`
-
-					Status *string `tfsdk:"status" yaml:"status,omitempty"`
-
-					Type *string `tfsdk:"type" yaml:"type,omitempty"`
-				} `tfsdk:"conditions" yaml:"conditions,omitempty"`
-
-				Phase *string `tfsdk:"phase" yaml:"phase,omitempty"`
-
-				ResizeStatus *string `tfsdk:"resize_status" yaml:"resizeStatus,omitempty"`
-			} `tfsdk:"status" yaml:"status,omitempty"`
-		} `tfsdk:"volume_claim_templates" yaml:"volumeClaimTemplates,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
-func NewAppsStatefulSetV1Resource() resource.Resource {
-	return &AppsStatefulSetV1Resource{}
+func NewAppsReplicaSetV1Resource() resource.Resource {
+	return &AppsReplicaSetV1Resource{}
 }
 
-func (r *AppsStatefulSetV1Resource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
-	resp.TypeName = req.ProviderTypeName + "_apps_stateful_set_v1"
+func (r *AppsReplicaSetV1Resource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+	resp.TypeName = req.ProviderTypeName + "_apps_replica_set_v1"
 }
 
-func (r *AppsStatefulSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, diag.Diagnostics) {
+func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, diag.Diagnostics) {
 	return tfsdk.Schema{
-		Description:         "StatefulSet represents a set of pods with consistent identities. Identities are defined as:  - Network: A single stable DNS and hostname.  - Storage: As many VolumeClaims as requested.The StatefulSet guarantees that a given network identity will always map to the same storage identity.",
-		MarkdownDescription: "StatefulSet represents a set of pods with consistent identities. Identities are defined as:  - Network: A single stable DNS and hostname.  - Storage: As many VolumeClaims as requested.The StatefulSet guarantees that a given network identity will always map to the same storage identity.",
+		Description:         "ReplicaSet ensures that a specified number of pod replicas are running at any given time.",
+		MarkdownDescription: "ReplicaSet ensures that a specified number of pod replicas are running at any given time.",
 		Attributes: map[string]tfsdk.Attribute{
 			"id": {
 				Description:         "The timestamp of the last change to this resource.",
@@ -2309,61 +2153,16 @@ func (r *AppsStatefulSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, 
 			},
 
 			"spec": {
-				Description:         "A StatefulSetSpec is the specification of a StatefulSet.",
-				MarkdownDescription: "A StatefulSetSpec is the specification of a StatefulSet.",
+				Description:         "ReplicaSetSpec is the specification of a ReplicaSet.",
+				MarkdownDescription: "ReplicaSetSpec is the specification of a ReplicaSet.",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 					"min_ready_seconds": {
-						Description:         "Minimum number of seconds for which a newly created pod should be ready without any of its container crashing for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)",
-						MarkdownDescription: "Minimum number of seconds for which a newly created pod should be ready without any of its container crashing for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)",
+						Description:         "Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)",
+						MarkdownDescription: "Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)",
 
 						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"persistent_volume_claim_retention_policy": {
-						Description:         "StatefulSetPersistentVolumeClaimRetentionPolicy describes the policy used for PVCs created from the StatefulSet VolumeClaimTemplates.",
-						MarkdownDescription: "StatefulSetPersistentVolumeClaimRetentionPolicy describes the policy used for PVCs created from the StatefulSet VolumeClaimTemplates.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"when_deleted": {
-								Description:         "WhenDeleted specifies what happens to PVCs created from StatefulSet VolumeClaimTemplates when the StatefulSet is deleted. The default policy of 'Retain' causes PVCs to not be affected by StatefulSet deletion. The 'Delete' policy causes those PVCs to be deleted.",
-								MarkdownDescription: "WhenDeleted specifies what happens to PVCs created from StatefulSet VolumeClaimTemplates when the StatefulSet is deleted. The default policy of 'Retain' causes PVCs to not be affected by StatefulSet deletion. The 'Delete' policy causes those PVCs to be deleted.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"when_scaled": {
-								Description:         "WhenScaled specifies what happens to PVCs created from StatefulSet VolumeClaimTemplates when the StatefulSet is scaled down. The default policy of 'Retain' causes PVCs to not be affected by a scaledown. The 'Delete' policy causes the associated PVCs for any excess pods above the replica count to be deleted.",
-								MarkdownDescription: "WhenScaled specifies what happens to PVCs created from StatefulSet VolumeClaimTemplates when the StatefulSet is scaled down. The default policy of 'Retain' causes PVCs to not be affected by a scaledown. The 'Delete' policy causes the associated PVCs for any excess pods above the replica count to be deleted.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"pod_management_policy": {
-						Description:         "podManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down. The default policy is 'OrderedReady', where pods are created in increasing order (pod-0, then pod-1, etc) and the controller will wait until each pod is ready before continuing. When scaling down, the pods are removed in the opposite order. The alternative policy is 'Parallel' which will create pods in parallel to match the desired scale without waiting, and on scale down will delete all pods at once.",
-						MarkdownDescription: "podManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down. The default policy is 'OrderedReady', where pods are created in increasing order (pod-0, then pod-1, etc) and the controller will wait until each pod is ready before continuing. When scaling down, the pods are removed in the opposite order. The alternative policy is 'Parallel' which will create pods in parallel to match the desired scale without waiting, and on scale down will delete all pods at once.",
-
-						Type: types.StringType,
 
 						Required: false,
 						Optional: true,
@@ -2371,19 +2170,8 @@ func (r *AppsStatefulSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, 
 					},
 
 					"replicas": {
-						Description:         "replicas is the desired number of replicas of the given Template. These are replicas in the sense that they are instantiations of the same Template, but individual replicas also have a consistent identity. If unspecified, defaults to 1.",
-						MarkdownDescription: "replicas is the desired number of replicas of the given Template. These are replicas in the sense that they are instantiations of the same Template, but individual replicas also have a consistent identity. If unspecified, defaults to 1.",
-
-						Type: types.Int64Type,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"revision_history_limit": {
-						Description:         "revisionHistoryLimit is the maximum number of revisions that will be maintained in the StatefulSet's revision history. The revision history consists of all revisions not represented by a currently applied StatefulSetSpec version. The default value is 10.",
-						MarkdownDescription: "revisionHistoryLimit is the maximum number of revisions that will be maintained in the StatefulSet's revision history. The revision history consists of all revisions not represented by a currently applied StatefulSetSpec version. The default value is 10.",
+						Description:         "Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller",
+						MarkdownDescription: "Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller",
 
 						Type: types.Int64Type,
 
@@ -2454,17 +2242,6 @@ func (r *AppsStatefulSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, 
 								Computed: false,
 							},
 						}),
-
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"service_name": {
-						Description:         "serviceName is the name of the service that governs this StatefulSet. This service must exist before the StatefulSet, and is responsible for the network identity of the set. Pods get DNS/hostnames that follow the pattern: pod-specific-string.serviceName.default.svc.cluster.local where 'pod-specific-string' is managed by the StatefulSet controller.",
-						MarkdownDescription: "serviceName is the name of the service that governs this StatefulSet. This service must exist before the StatefulSet, and is responsible for the network identity of the set. Pods get DNS/hostnames that follow the pattern: pod-specific-string.serviceName.default.svc.cluster.local where 'pod-specific-string' is managed by the StatefulSet controller.",
-
-						Type: types.StringType,
 
 						Required: true,
 						Optional: false,
@@ -13735,837 +13512,6 @@ func (r *AppsStatefulSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, 
 							},
 						}),
 
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
-					"update_strategy": {
-						Description:         "StatefulSetUpdateStrategy indicates the strategy that the StatefulSet controller will use to perform updates. It includes any additional parameters necessary to perform the update for the indicated strategy.",
-						MarkdownDescription: "StatefulSetUpdateStrategy indicates the strategy that the StatefulSet controller will use to perform updates. It includes any additional parameters necessary to perform the update for the indicated strategy.",
-
-						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-							"rolling_update": {
-								Description:         "RollingUpdateStatefulSetStrategy is used to communicate parameter for RollingUpdateStatefulSetStrategyType.",
-								MarkdownDescription: "RollingUpdateStatefulSetStrategy is used to communicate parameter for RollingUpdateStatefulSetStrategyType.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"max_unavailable": {
-										Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
-										MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"partition": {
-										Description:         "Partition indicates the ordinal at which the StatefulSet should be partitioned for updates. During a rolling update, all pods from ordinal Replicas-1 to Partition are updated. All pods from ordinal Partition-1 to 0 remain untouched. This is helpful in being able to do a canary based deployment. The default value is 0.",
-										MarkdownDescription: "Partition indicates the ordinal at which the StatefulSet should be partitioned for updates. During a rolling update, all pods from ordinal Replicas-1 to Partition are updated. All pods from ordinal Partition-1 to 0 remain untouched. This is helpful in being able to do a canary based deployment. The default value is 0.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"type": {
-								Description:         "Type indicates the type of the StatefulSetUpdateStrategy. Default is RollingUpdate.",
-								MarkdownDescription: "Type indicates the type of the StatefulSetUpdateStrategy. Default is RollingUpdate.",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"volume_claim_templates": {
-						Description:         "volumeClaimTemplates is a list of claims that pods are allowed to reference. The StatefulSet controller is responsible for mapping network identities to claims in a way that maintains the identity of a pod. Every claim in this list must have at least one matching (by name) volumeMount in one container in the template. A claim in this list takes precedence over any volumes in the template, with the same name.",
-						MarkdownDescription: "volumeClaimTemplates is a list of claims that pods are allowed to reference. The StatefulSet controller is responsible for mapping network identities to claims in a way that maintains the identity of a pod. Every claim in this list must have at least one matching (by name) volumeMount in one container in the template. A claim in this list takes precedence over any volumes in the template, with the same name.",
-
-						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-							"api_version": {
-								Description:         "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-								MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"kind": {
-								Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"metadata": {
-								Description:         "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-								MarkdownDescription: "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"annotations": {
-										Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"creation_timestamp": {
-										Description:         "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
-										MarkdownDescription: "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-
-										Validators: []tfsdk.AttributeValidator{
-
-											validators.DateTime64Validator(),
-										},
-									},
-
-									"deletion_grace_period_seconds": {
-										Description:         "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
-										MarkdownDescription: "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"deletion_timestamp": {
-										Description:         "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
-										MarkdownDescription: "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-
-										Validators: []tfsdk.AttributeValidator{
-
-											validators.DateTime64Validator(),
-										},
-									},
-
-									"finalizers": {
-										Description:         "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-										MarkdownDescription: "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"generate_name": {
-										Description:         "GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.If this field is specified and the generated name exists, the server will return a 409.Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency",
-										MarkdownDescription: "GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.If this field is specified and the generated name exists, the server will return a 409.Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"generation": {
-										Description:         "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
-										MarkdownDescription: "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
-
-										Type: types.Int64Type,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"labels": {
-										Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"managed_fields": {
-										Description:         "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like 'ci-cd'. The set of fields is always in the version that the workflow used when modifying the object.",
-										MarkdownDescription: "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like 'ci-cd'. The set of fields is always in the version that the workflow used when modifying the object.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"api_version": {
-												Description:         "APIVersion defines the version of this resource that this field set applies to. The format is 'group/version' just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
-												MarkdownDescription: "APIVersion defines the version of this resource that this field set applies to. The format is 'group/version' just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"fields_type": {
-												Description:         "FieldsType is the discriminator for the different fields format and version. There is currently only one possible value: 'FieldsV1'",
-												MarkdownDescription: "FieldsType is the discriminator for the different fields format and version. There is currently only one possible value: 'FieldsV1'",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"fields_v1": {
-												Description:         "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.Each key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.The exact format is defined in sigs.k8s.io/structured-merge-diff",
-												MarkdownDescription: "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.Each key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.The exact format is defined in sigs.k8s.io/structured-merge-diff",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"manager": {
-												Description:         "Manager is an identifier of the workflow managing these fields.",
-												MarkdownDescription: "Manager is an identifier of the workflow managing these fields.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"operation": {
-												Description:         "Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.",
-												MarkdownDescription: "Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"subresource": {
-												Description:         "Subresource is the name of the subresource used to update that object, or empty string if the object was updated through the main resource. The value of this field is used to distinguish between managers, even if they share the same name. For example, a status update will be distinct from a regular update using the same manager name. Note that the APIVersion field is not related to the Subresource field and it always corresponds to the version of the main resource.",
-												MarkdownDescription: "Subresource is the name of the subresource used to update that object, or empty string if the object was updated through the main resource. The value of this field is used to distinguish between managers, even if they share the same name. For example, a status update will be distinct from a regular update using the same manager name. Note that the APIVersion field is not related to the Subresource field and it always corresponds to the version of the main resource.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"time": {
-												Description:         "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
-												MarkdownDescription: "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-
-												Validators: []tfsdk.AttributeValidator{
-
-													validators.DateTime64Validator(),
-												},
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": {
-										Description:         "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
-										MarkdownDescription: "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"namespace": {
-										Description:         "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the 'default' namespace, but 'default' is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
-										MarkdownDescription: "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the 'default' namespace, but 'default' is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"owner_references": {
-										Description:         "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-										MarkdownDescription: "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"api_version": {
-												Description:         "API version of the referent.",
-												MarkdownDescription: "API version of the referent.",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"block_owner_deletion": {
-												Description:         "If true, AND if the owner has the 'foregroundDeletion' finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs 'delete' permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.",
-												MarkdownDescription: "If true, AND if the owner has the 'foregroundDeletion' finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs 'delete' permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"controller": {
-												Description:         "If true, this reference points to the managing controller.",
-												MarkdownDescription: "If true, this reference points to the managing controller.",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"kind": {
-												Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-												MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
-												MarkdownDescription: "Name of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"uid": {
-												Description:         "UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
-												MarkdownDescription: "UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"resource_version": {
-										Description:         "An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources.Populated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-										MarkdownDescription: "An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources.Populated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"self_link": {
-										Description:         "Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.",
-										MarkdownDescription: "Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"uid": {
-										Description:         "UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.Populated by the system. Read-only. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
-										MarkdownDescription: "UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.Populated by the system. Read-only. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"spec": {
-								Description:         "PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes",
-								MarkdownDescription: "PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"access_modes": {
-										Description:         "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-										MarkdownDescription: "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"data_source": {
-										Description:         "TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace.",
-										MarkdownDescription: "TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"api_group": {
-												Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-												MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"kind": {
-												Description:         "Kind is the type of resource being referenced",
-												MarkdownDescription: "Kind is the type of resource being referenced",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name is the name of resource being referenced",
-												MarkdownDescription: "Name is the name of resource being referenced",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"data_source_ref": {
-										Description:         "TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace.",
-										MarkdownDescription: "TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"api_group": {
-												Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-												MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"kind": {
-												Description:         "Kind is the type of resource being referenced",
-												MarkdownDescription: "Kind is the type of resource being referenced",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name is the name of resource being referenced",
-												MarkdownDescription: "Name is the name of resource being referenced",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"resources": {
-										Description:         "ResourceRequirements describes the compute resource requirements.",
-										MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"limits": {
-												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"requests": {
-												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"selector": {
-										Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-										MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"match_expressions": {
-												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-
-												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-													"key": {
-														Description:         "key is the label key that the selector applies to.",
-														MarkdownDescription: "key is the label key that the selector applies to.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"operator": {
-														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"values": {
-														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-
-														Type: types.ListType{ElemType: types.StringType},
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"match_labels": {
-												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-
-												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"storage_class_name": {
-										Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-										MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"volume_mode": {
-										Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
-										MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"volume_name": {
-										Description:         "volumeName is the binding reference to the PersistentVolume backing this claim.",
-										MarkdownDescription: "volumeName is the binding reference to the PersistentVolume backing this claim.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"status": {
-								Description:         "PersistentVolumeClaimStatus is the current status of a persistent volume claim.",
-								MarkdownDescription: "PersistentVolumeClaimStatus is the current status of a persistent volume claim.",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"access_modes": {
-										Description:         "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-										MarkdownDescription: "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-
-										Type: types.ListType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"allocated_resources": {
-										Description:         "allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-										MarkdownDescription: "allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"capacity": {
-										Description:         "capacity represents the actual resources of the underlying volume.",
-										MarkdownDescription: "capacity represents the actual resources of the underlying volume.",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"conditions": {
-										Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
-										MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"last_probe_time": {
-												Description:         "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
-												MarkdownDescription: "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-
-												Validators: []tfsdk.AttributeValidator{
-
-													validators.DateTime64Validator(),
-												},
-											},
-
-											"last_transition_time": {
-												Description:         "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
-												MarkdownDescription: "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-
-												Validators: []tfsdk.AttributeValidator{
-
-													validators.DateTime64Validator(),
-												},
-											},
-
-											"message": {
-												Description:         "message is the human-readable message indicating details about last transition.",
-												MarkdownDescription: "message is the human-readable message indicating details about last transition.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"reason": {
-												Description:         "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
-												MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"status": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"type": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"phase": {
-										Description:         "phase represents the current phase of PersistentVolumeClaim.",
-										MarkdownDescription: "phase represents the current phase of PersistentVolumeClaim.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"resize_status": {
-										Description:         "resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-										MarkdownDescription: "resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						}),
-
 						Required: false,
 						Optional: true,
 						Computed: false,
@@ -14580,16 +13526,16 @@ func (r *AppsStatefulSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, 
 	}, nil
 }
 
-func (r *AppsStatefulSetV1Resource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	tflog.Debug(ctx, "Create resource k8s_apps_stateful_set_v1")
+func (r *AppsReplicaSetV1Resource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+	tflog.Debug(ctx, "Create resource k8s_apps_replica_set_v1")
 
-	var state AppsStatefulSetV1TerraformModel
+	var state AppsReplicaSetV1TerraformModel
 	diags := req.Config.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
-	var goModel AppsStatefulSetV1GoModel
+	var goModel AppsReplicaSetV1GoModel
 	diags = req.Config.Get(ctx, &goModel)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -14597,7 +13543,7 @@ func (r *AppsStatefulSetV1Resource) Create(ctx context.Context, req resource.Cre
 	}
 
 	goModel.ApiVersion = utilities.Ptr("apps/v1")
-	goModel.Kind = utilities.Ptr("StatefulSet")
+	goModel.Kind = utilities.Ptr("ReplicaSet")
 
 	state.Id = types.Int64{Value: time.Now().UnixNano()}
 	state.ApiVersion = types.String{Value: *goModel.ApiVersion}
@@ -14617,21 +13563,21 @@ func (r *AppsStatefulSetV1Resource) Create(ctx context.Context, req resource.Cre
 	}
 }
 
-func (r *AppsStatefulSetV1Resource) Read(ctx context.Context, _ resource.ReadRequest, _ *resource.ReadResponse) {
-	tflog.Debug(ctx, "Read resource k8s_apps_stateful_set_v1")
+func (r *AppsReplicaSetV1Resource) Read(ctx context.Context, _ resource.ReadRequest, _ *resource.ReadResponse) {
+	tflog.Debug(ctx, "Read resource k8s_apps_replica_set_v1")
 	// NO-OP: All data is already in Terraform state
 }
 
-func (r *AppsStatefulSetV1Resource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	tflog.Debug(ctx, "Update resource k8s_apps_stateful_set_v1")
+func (r *AppsReplicaSetV1Resource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+	tflog.Debug(ctx, "Update resource k8s_apps_replica_set_v1")
 
-	var state AppsStatefulSetV1TerraformModel
+	var state AppsReplicaSetV1TerraformModel
 	diags := req.Config.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
-	var goModel AppsStatefulSetV1GoModel
+	var goModel AppsReplicaSetV1GoModel
 	diags = req.Config.Get(ctx, &goModel)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -14639,7 +13585,7 @@ func (r *AppsStatefulSetV1Resource) Update(ctx context.Context, req resource.Upd
 	}
 
 	goModel.ApiVersion = utilities.Ptr("apps/v1")
-	goModel.Kind = utilities.Ptr("StatefulSet")
+	goModel.Kind = utilities.Ptr("ReplicaSet")
 
 	state.Id = types.Int64{Value: time.Now().UnixNano()}
 	state.ApiVersion = types.String{Value: *goModel.ApiVersion}
@@ -14659,7 +13605,7 @@ func (r *AppsStatefulSetV1Resource) Update(ctx context.Context, req resource.Upd
 	}
 }
 
-func (r *AppsStatefulSetV1Resource) Delete(ctx context.Context, _ resource.DeleteRequest, _ *resource.DeleteResponse) {
-	tflog.Debug(ctx, "Delete resource k8s_apps_stateful_set_v1")
+func (r *AppsReplicaSetV1Resource) Delete(ctx context.Context, _ resource.DeleteRequest, _ *resource.DeleteResponse) {
+	tflog.Debug(ctx, "Delete resource k8s_apps_replica_set_v1")
 	// NO-OP: Terraform removes the state automatically for us
 }
