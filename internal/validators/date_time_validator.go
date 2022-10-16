@@ -49,14 +49,19 @@ func (v dateTimeValidator) Validate(ctx context.Context, req tfsdk.ValidateAttri
 		time.RFC3339,
 		time.RFC3339Nano,
 	}
+
+	matched := false
 	for _, format := range formats {
-		if _, err := time.Parse(format, value.Value); err != nil {
-			resp.Diagnostics.AddAttributeError(
-				req.AttributePath,
-				"Invalid Date/Time Value",
-				fmt.Sprintf("The value '%s' is not a valid date/time value", value.Value),
-			)
-			return
+		if _, err := time.Parse(format, value.Value); err == nil {
+			matched = true
+			break
 		}
+	}
+	if !matched {
+		resp.Diagnostics.AddAttributeError(
+			req.AttributePath,
+			"Invalid Date/Time Value",
+			fmt.Sprintf("The value '%s' is not a valid date/time value", value.Value),
+		)
 	}
 }
