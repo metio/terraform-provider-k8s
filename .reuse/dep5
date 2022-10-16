@@ -23,414 +23,414 @@ Files: internal/k8s/templates/*.tmpl
 Copyright: The terraform-provider-k8s Authors
 License: 0BSD
 
-Files: openapi-specs/*
+Files: schemas/openapi_v2/io.kubernetes/kubernetes-swagger.json
 Copyright: The Kubernetes Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/acid.zalan.do/*
+Files: schemas/crd_v1/acid.zalan.do/*
 Copyright: The Postgres Operator Authors
 License: MIT
 
-Files: custom-resource-definitions/agent.k8s.elastic.co/*
+Files: schemas/crd_v1/agent.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
 License: LicenseRef-Elastic
 
-Files: custom-resource-definitions/apicodegen.apimatic.io/*
+Files: schemas/crd_v1/apicodegen.apimatic.io/*
 Copyright: The APIMatic Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/apigatewayv2.services.k8s.aws/*
+Files: schemas/crd_v1/apigatewayv2.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon API Gateway v2 Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/apm.k8s.elastic.co/*
+Files: schemas/crd_v1/apm.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
 License: LicenseRef-Elastic
 
-Files: custom-resource-definitions/app.kiegroup.org/*
+Files: schemas/crd_v1/app.kiegroup.org/*
 Copyright: The Kogito Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/app.lightbend.com/*
+Files: schemas/crd_v1/app.lightbend.com/*
 Copyright: The Akka Cluster Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/applicationautoscaling.services.k8s.aws/*
+Files: schemas/crd_v1/applicationautoscaling.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Application Auto Scaling Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/apps.3scale.net/*
+Files: schemas/crd_v1/apps.3scale.net/*
 Copyright: The APIcast Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/apps.gitlab.com/*
+Files: schemas/crd_v1/apps.gitlab.com/*
 Copyright: The GitLab Runner Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/apps.m88i.io/*
+Files: schemas/crd_v1/apps.m88i.io/*
 Copyright: The Nexus Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/aquasecurity.github.io/*
+Files: schemas/crd_v1/aquasecurity.github.io/*
 Copyright: The Aqua Security Operator Authors
 License: LicenseRef-Aqua
 
-Files: custom-resource-definitions/argoproj.io/*
+Files: schemas/crd_v1/argoproj.io/*
 Copyright: The Argo CD Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/asdb.aerospike.com/*
+Files: schemas/crd_v1/asdb.aerospike.com/*
 Copyright: The Aerospike Kubernetes Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/autoscaling.k8s.elastic.co/*
+Files: schemas/crd_v1/autoscaling.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
 License: LicenseRef-Elastic
 
-Files: custom-resource-definitions/beat.k8s.elastic.co/*
+Files: schemas/crd_v1/beat.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
 License: LicenseRef-Elastic
 
-Files: custom-resource-definitions/cert-manager.io/*
+Files: schemas/crd_v1/cert-manager.io/*
 Copyright: The cert-manager Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/charts.flagsmith.com/*
+Files: schemas/crd_v1/charts.flagsmith.com/*
 Copyright: The Flagsmith Operator Authors
 License: LicenseRef-Flagsmith
 
-Files: custom-resource-definitions/charts.helm.k8s.io/*
+Files: schemas/crd_v1/charts.helm.k8s.io/*
 Copyright: Snyk Ldt.
 License: Apache-2.0
 
-Files: custom-resource-definitions/charts.opdev.io/*
+Files: schemas/crd_v1/charts.opdev.io/*
 Copyright: The Synapse Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/charts.operatorhub.io/v1alpha1/cockroachdbs.yaml
+Files: schemas/crd_v1/charts.operatorhub.io/v1alpha1/cockroachdbs.yaml
 Copyright: The CockroachDB Helm Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/che.eclipse.org/*
+Files: schemas/crd_v1/che.eclipse.org/*
 Copyright: The Kubernetes Image Puller Operator Authors
 License: EPL-2.0
 
-Files: custom-resource-definitions/config.gatekeeper.sh/*
+Files: schemas/crd_v1/config.gatekeeper.sh/*
 Copyright: The Gatekeeper Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/core.strimzi.io/*
+Files: schemas/crd_v1/core.strimzi.io/*
 Copyright: The Strimzi Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/couchbase.com/*
+Files: schemas/crd_v1/couchbase.com/*
 Copyright: The Couchbase Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/crd.projectcalico.org/*
+Files: schemas/crd_v1/crd.projectcalico.org/*
 Copyright: The Calico Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/dynamodb.services.k8s.aws/*
+Files: schemas/crd_v1/dynamodb.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon DynamoDB Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/ec2.services.k8s.aws/*
+Files: schemas/crd_v1/ec2.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Elastic Compute Cloud Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/ecr.services.k8s.aws/*
+Files: schemas/crd_v1/ecr.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Elastic Container Registry Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/eks.services.k8s.aws/*
+Files: schemas/crd_v1/eks.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Elastic Kubernetes Service Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/elasticache.services.k8s.aws/*
+Files: schemas/crd_v1/elasticache.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon ElastiCache Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/elasticsearch.k8s.elastic.co/*
+Files: schemas/crd_v1/elasticsearch.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
 License: LicenseRef-Elastic
 
-Files: custom-resource-definitions/emrcontainers.services.k8s.aws/*
+Files: schemas/crd_v1/emrcontainers.services.k8s.aws/*
 Copyright: The ACK service controller for EMR on EKS Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/enterprisesearch.k8s.elastic.co/*
+Files: schemas/crd_v1/enterprisesearch.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
 License: LicenseRef-Elastic
 
-Files: custom-resource-definitions/extensions.istio.io/*
+Files: schemas/crd_v1/extensions.istio.io/*
 Copyright: The Istio Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/external-secrets.io/*
+Files: schemas/crd_v1/external-secrets.io/*
 Copyright: The External Secrets Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/externaldata.gatekeeper.sh/*
+Files: schemas/crd_v1/externaldata.gatekeeper.sh/*
 Copyright: The Gatekeeper Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/flagger.app/*
+Files: schemas/crd_v1/flagger.app/*
 Copyright: The Flagger Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/flink.apache.org/*
+Files: schemas/crd_v1/flink.apache.org/*
 Copyright: The Apache Flink Kubernetes Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/fossul.io/*
+Files: schemas/crd_v1/fossul.io/*
 Copyright: The Fossul Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/gateway.networking.k8s.io/*
+Files: schemas/crd_v1/gateway.networking.k8s.io/*
 Copyright: The Traefik Authors
 License: MIT
 
-Files: custom-resource-definitions/hazelcast.com/*
+Files: schemas/crd_v1/hazelcast.com/*
 Copyright: The Hazelcast Platform Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/helm.sigstore.dev/*
+Files: schemas/crd_v1/helm.sigstore.dev/*
 Copyright: The Sigstore Helm Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/helm.toolkit.fluxcd.io/*
+Files: schemas/crd_v1/helm.toolkit.fluxcd.io/*
 Copyright: The Flux2 Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/hive.openshift.io/*
+Files: schemas/crd_v1/hive.openshift.io/*
 Copyright: The Hive Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/hiveinternal.openshift.io/*
+Files: schemas/crd_v1/hiveinternal.openshift.io/*
 Copyright: The Hive Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/hyperfoil.io/v1alpha1/horreums.yaml
+Files: schemas/crd_v1/hyperfoil.io/v1alpha1/horreums.yaml
 Copyright: The Horreum Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/hyperfoil.io/v1alpha2/hyperfoils.yaml
+Files: schemas/crd_v1/hyperfoil.io/v1alpha2/hyperfoils.yaml
 Copyright: The Hyperfoil Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/iam.services.k8s.aws/*
+Files: schemas/crd_v1/iam.services.k8s.aws/*
 Copyright: The ACK service controller for AWS Identity & Access Management Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/ibmcloud.ibm.com/*
+Files: schemas/crd_v1/ibmcloud.ibm.com/*
 Copyright: The Composable Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/image.toolkit.fluxcd.io/*
+Files: schemas/crd_v1/image.toolkit.fluxcd.io/*
 Copyright: The Flux2 Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/imaging-ingestion.alvearie.org/*
+Files: schemas/crd_v1/imaging-ingestion.alvearie.org/*
 Copyright: The Alvearie Imaging Ingestion Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/infinispan.org/*
+Files: schemas/crd_v1/infinispan.org/*
 Copyright: The Infinispan Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/installation.mattermost.com/*
+Files: schemas/crd_v1/installation.mattermost.com/*
 Copyright: The Mattermost Operator for Kubernetes Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/integreatly.org/*
+Files: schemas/crd_v1/integreatly.org/*
 Copyright: The Grafana Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/iot.eclipse.org/v1alpha1/dittos.yaml
+Files: schemas/crd_v1/iot.eclipse.org/v1alpha1/dittos.yaml
 Copyright: The Operator for Eclipse Ditto Authors
 License: EPL-2.0
 
-Files: custom-resource-definitions/iot.eclipse.org/v1alpha1/hawkbits.yaml
+Files: schemas/crd_v1/iot.eclipse.org/v1alpha1/hawkbits.yaml
 Copyright: The Hawkbit Operator Authors
 License: EPL-2.0
 
-Files: custom-resource-definitions/jaegertracing.io/*
+Files: schemas/crd_v1/jaegertracing.io/*
 Copyright: The Jaeger Operator for Kubernetes Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/kafka.strimzi.io/*
+Files: schemas/crd_v1/kafka.strimzi.io/*
 Copyright: The Strimzi Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/keycloak.org/*
+Files: schemas/crd_v1/keycloak.org/*
 Copyright: The Keycloak Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/kiali.io/*
+Files: schemas/crd_v1/kiali.io/*
 Copyright: The Kiali Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/kibana.k8s.elastic.co/*
+Files: schemas/crd_v1/kibana.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
 License: LicenseRef-Elastic
 
-Files: custom-resource-definitions/kms.services.k8s.aws/*
+Files: schemas/crd_v1/kms.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Key Management Service Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/kustomize.toolkit.fluxcd.io/*
+Files: schemas/crd_v1/kustomize.toolkit.fluxcd.io/*
 Copyright: The Flux2 Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/lambda.services.k8s.aws/*
+Files: schemas/crd_v1/lambda.services.k8s.aws/*
 Copyright: The ACK service controller for AWS Lambda Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/litmuschaos.io/*
+Files: schemas/crd_v1/litmuschaos.io/*
 Copyright: The Litmus Chaos Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/maps.k8s.elastic.co/*
+Files: schemas/crd_v1/maps.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
 License: LicenseRef-Elastic
 
-Files: custom-resource-definitions/mattermost.com/*
+Files: schemas/crd_v1/mattermost.com/*
 Copyright: The Mattermost Operator for Kubernetes Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/microcks.github.io/*
+Files: schemas/crd_v1/microcks.github.io/*
 Copyright: The Microcks Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/minio.min.io/*
+Files: schemas/crd_v1/minio.min.io/*
 Copyright: The MinIO Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/monitoring.coreos.com/*
+Files: schemas/crd_v1/monitoring.coreos.com/*
 Copyright: The Prometheus Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/mq.services.k8s.aws/*
+Files: schemas/crd_v1/mq.services.k8s.aws/*
 Copyright: The ACK service controller for AmazonMQ Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/mutations.gatekeeper.sh/*
+Files: schemas/crd_v1/mutations.gatekeeper.sh/*
 Copyright: The Gatekeeper Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/networking.istio.io/*
+Files: schemas/crd_v1/networking.istio.io/*
 Copyright: The Istio Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/notification.toolkit.fluxcd.io/*
+Files: schemas/crd_v1/notification.toolkit.fluxcd.io/*
 Copyright: The Flux2 Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/opensearchservice.services.k8s.aws/*
+Files: schemas/crd_v1/opensearchservice.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon OpenSearch Service Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/opentelemetry.io/*
+Files: schemas/crd_v1/opentelemetry.io/*
 Copyright: The OpenTelemetry Operator for Kubernetes Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/operator.aquasec.com/*
+Files: schemas/crd_v1/operator.aquasec.com/*
 Copyright: The Aqua Security Operator Authors
 License: LicenseRef-Aqua
 
-Files: custom-resource-definitions/operator.cryostat.io/*
+Files: schemas/crd_v1/operator.cryostat.io/*
 Copyright: The Cryostat Operator Authors
 License: UPL-1.0
 
-Files: custom-resource-definitions/operator.knative.dev/*
+Files: schemas/crd_v1/operator.knative.dev/*
 Copyright: The Knative Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/operator.tekton.dev/*
+Files: schemas/crd_v1/operator.tekton.dev/*
 Copyright: The Tektoncd Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/operator.tigera.io/*
+Files: schemas/crd_v1/operator.tigera.io/*
 Copyright: The Calico Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/postgres-operator.crunchydata.com/*
+Files: schemas/crd_v1/postgres-operator.crunchydata.com/*
 Copyright: The PGO Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/prometheusservice.services.k8s.aws/*
+Files: schemas/crd_v1/prometheusservice.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Managed Service for Prometheus Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/quay.redhat.com/*
+Files: schemas/crd_v1/quay.redhat.com/*
 Copyright: The Quay Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/rds.services.k8s.aws/*
+Files: schemas/crd_v1/rds.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Relational Database Service Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/redhatcop.redhat.io/*
+Files: schemas/crd_v1/redhatcop.redhat.io/*
 Copyright: The Quay Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/registry.apicur.io/*
+Files: schemas/crd_v1/registry.apicur.io/*
 Copyright: The Apicurio Registry Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/ripsaw.cloudbulldozer.io/*
+Files: schemas/crd_v1/ripsaw.cloudbulldozer.io/*
 Copyright: The Benchmark Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/rocketmq.apache.org/*
+Files: schemas/crd_v1/rocketmq.apache.org/*
 Copyright: The RocketMQ Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/s3.services.k8s.aws/*
+Files: schemas/crd_v1/s3.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Simple Storage Service Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/sagemaker.services.k8s.aws/*
+Files: schemas/crd_v1/sagemaker.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon SageMaker Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/secscan.quay.redhat.com/*
+Files: schemas/crd_v1/secscan.quay.redhat.com/*
 Copyright: The Container Security Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/security-profiles-operator.x-k8s.io/*
+Files: schemas/crd_v1/security-profiles-operator.x-k8s.io/*
 Copyright: The Kubernetes Security Profiles Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/services.k8s.aws/*
+Files: schemas/crd_v1/services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Elastic Kubernetes Service Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/sfn.services.k8s.aws/*
+Files: schemas/crd_v1/sfn.services.k8s.aws/*
 Copyright: The ACK service controller for AWS Step Functions Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/source.toolkit.fluxcd.io/*
+Files: schemas/crd_v1/source.toolkit.fluxcd.io/*
 Copyright: The Flux2 Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/sparkoperator.k8s.io/*
+Files: schemas/crd_v1/sparkoperator.k8s.io/*
 Copyright: The Spark Operator Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/status.gatekeeper.sh/*
+Files: schemas/crd_v1/status.gatekeeper.sh/*
 Copyright: The Gatekeeper Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/templates.gatekeeper.sh/*
+Files: schemas/crd_v1/templates.gatekeeper.sh/*
 Copyright: The Gatekeeper Authors
 License: Apache-2.0
 
-Files: custom-resource-definitions/traefik.containo.us/*
+Files: schemas/crd_v1/traefik.containo.us/*
 Copyright: The Traefik Authors
 License: MIT
 
-Files: custom-resource-definitions/wildfly.org/*
+Files: schemas/crd_v1/wildfly.org/*
 Copyright: The WildFly Operator for Kubernetes/OpenShift Authors
 License: Apache-2.0
