@@ -11,6 +11,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/getkin/kin-openapi/openapi2"
+	"github.com/getkin/kin-openapi/openapi2conv"
 	"github.com/getkin/kin-openapi/openapi3"
 	"io/fs"
 	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
@@ -25,7 +26,7 @@ var deserializer = clientschema.Codecs.UniversalDeserializer()
 func ParseAllCustomResourceDefinitions() []*apiextensionsv1.CustomResourceDefinition {
 	crds := make([]*apiextensionsv1.CustomResourceDefinition, 0)
 
-	err := filepath.WalkDir("../../custom-resource-definitions/", func(path string, d fs.DirEntry, err error) error {
+	err := filepath.WalkDir("../../schemas/crd_v1/", func(path string, d fs.DirEntry, err error) error {
 		if !d.IsDir() {
 			file, fileErr := os.ReadFile(path)
 			if fileErr != nil {
@@ -61,47 +62,30 @@ func ParseCustomResourceDefinition(data []byte) (*apiextensionsv1.CustomResource
 }
 
 func ParseKubernetesSwagger() map[string]*openapi3.SchemaRef {
-	input, err := os.ReadFile("../../openapi-specs/kubernetes-swagger.json")
+	input, err := os.ReadFile("../../schemas/openapi_v2/io.kubernetes/kubernetes-swagger.json")
 	if err != nil {
-		fmt.Println(err)
-		return nil
+		panic(err)
 	}
 
-	definitions, err := ParseOpenApiV2Definitions(input)
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-
-	return definitions
-}
-
-func ParseOpenApiV2Definitions(data []byte) (map[string]*openapi3.SchemaRef, error) {
 	var doc openapi2.T
-	if err := json.Unmarshal(data, &doc); err != nil {
-		return nil, err
+	err = json.Unmarshal(input, &doc)
+	if err != nil {
+		panic(err)
 	}
-	return doc.Definitions, nil
-}
-
-func ParseKubernetesOpenApi() map[string]*openapi3.SchemaRef {
 	loader := openapi3.NewLoader()
 	loader.IsExternalRefsAllowed = true
-	openapi3.CircularReferenceCounter = 10
 	loader.ReadFromURIFunc = func(loader *openapi3.Loader, uri *url.URL) ([]byte, error) {
 		return os.ReadFile(uri.Path)
 	}
-
-	doc, err := loader.LoadFromFile(filepath.ToSlash("../../openapi-specs/kubernetes-openapi.json"))
+	openapi3.CircularReferenceCounter = 10
+	v3, err := openapi2conv.ToV3(&doc)
 	if err != nil {
 		panic(err)
 	}
-	err = loader.ResolveRefsIn(doc, &url.URL{Path: filepath.ToSlash("../../openapi-specs/kubernetes-openapi.json")})
+	err = loader.ResolveRefsIn(v3, &url.URL{Path: filepath.ToSlash("../../schemas/openapi_v2/io.kubernetes/kubernetes-swagger.json")})
 	if err != nil {
 		panic(err)
 	}
 
-	schemas := doc.Components.Schemas
-
-	return schemas
+	return v3.Components.Schemas
 }

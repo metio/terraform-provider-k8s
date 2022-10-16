@@ -77,6 +77,7 @@ var allowedDefinitions = []string{
 	"io.k8s.api.admissionregistration.v1.ValidatingWebhookConfiguration",
 	"io.k8s.api.apps.v1.DaemonSet",
 	"io.k8s.api.apps.v1.Deployment",
+	"io.k8s.api.apps.v1.ReplicaSet",
 	"io.k8s.api.apps.v1.StatefulSet",
 	"io.k8s.api.autoscaling.v1.HorizontalPodAutoscaler",
 	"io.k8s.api.autoscaling.v2.HorizontalPodAutoscaler",
@@ -94,6 +95,12 @@ var allowedDefinitions = []string{
 	"io.k8s.api.core.v1.Secret",
 	"io.k8s.api.core.v1.Service",
 	"io.k8s.api.core.v1.ServiceAccount",
+	"io.k8s.api.discovery.v1.EndpointSlice",
+	"io.k8s.api.events.v1.Event",
+	"io.k8s.api.flowcontrol.v1beta2.FlowSchema",
+	"io.k8s.api.flowcontrol.v1beta2.PriorityLevelConfiguration",
+	"io.k8s.api.flowcontrol.v1beta3.FlowSchema",
+	"io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfiguration",
 	"io.k8s.api.networking.v1.Ingress",
 	"io.k8s.api.networking.v1.IngressClass",
 	"io.k8s.api.networking.v1.NetworkPolicy",
@@ -104,7 +111,9 @@ var allowedDefinitions = []string{
 	"io.k8s.api.rbac.v1.RoleBinding",
 	"io.k8s.api.scheduling.v1.PriorityClass",
 	"io.k8s.api.storage.v1.CSIDriver",
+	"io.k8s.api.storage.v1.CSINode",
 	"io.k8s.api.storage.v1.StorageClass",
+	"io.k8s.api.storage.v1.VolumeAttachment",
 }
 
 func OpenApiToTemplateData(definitions map[string]*openapi3.SchemaRef, pkg string) []*TemplateData {
@@ -118,6 +127,9 @@ func OpenApiToTemplateData(definitions map[string]*openapi3.SchemaRef, pkg strin
 			}
 		}
 	}
+	sort.SliceStable(data, func(i, j int) bool {
+		return data[i].Kind < data[j].Kind
+	})
 	return data
 }
 
