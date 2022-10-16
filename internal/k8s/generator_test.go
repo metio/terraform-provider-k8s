@@ -14,19 +14,19 @@ import (
 func TestGenerateTerraformResourcesFromCustomResourceDefinitions(t *testing.T) {
 	crds := ParseAllCustomResourceDefinitions()
 	data := CRDsToTemplateData(crds, "provider")
-	GenerateAllTheFiles("../provider", data)
+	GenerateAllTheFiles(data)
 }
 
 func TestGenerateTerraformResourcesFromOpenApiSpec(t *testing.T) {
-	definitions := ParseKubernetesOpenApi()
+	definitions := ParseKubernetesSwagger()
 	data := OpenApiToTemplateData(definitions, "provider")
-	GenerateAllTheFiles("../provider", data)
+	GenerateAllTheFiles(data)
 }
 
 func TestGenerateAllTerraformResources(t *testing.T) {
 	crds := ParseAllCustomResourceDefinitions()
-	definitions := ParseKubernetesOpenApi()
+	definitions := ParseKubernetesSwagger()
 	data := CRDsToTemplateData(crds, "provider")
 	data = append(data, OpenApiToTemplateData(definitions, "provider")...)
-	GenerateAllTheFiles("../provider", data)
+	GenerateAllTheFiles(data)
 }

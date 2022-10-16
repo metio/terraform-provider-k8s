@@ -21,7 +21,7 @@ func TestParseAllCustomResourceDefinitions(t *testing.T) {
 }
 
 func TestParseOpenApi(t *testing.T) {
-	definitions := ParseKubernetesOpenApi()
+	definitions := ParseKubernetesSwagger()
 
 	names := make([]string, 0)
 	for name, definition := range definitions {

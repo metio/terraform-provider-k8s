@@ -57,17 +57,17 @@ func init() {
 	}
 }
 
-func GenerateAllTheFiles(baseDirectory string, data []*TemplateData) {
-	generateResources(baseDirectory, data)
-	generateProvider(baseDirectory, data)
+func GenerateAllTheFiles(data []*TemplateData) {
+	generateResources(data)
+	generateProvider(data)
 	generateResourcesDocTemplates(data)
 	generateResourcesDocsDirectory(data)
 	generateResourceTests(data)
 }
 
-func generateResources(baseDirectory string, crds []*TemplateData) {
+func generateResources(crds []*TemplateData) {
 	for _, crd := range crds {
-		file := generateCode(baseDirectory+"/"+crd.File, resourceTemplate, crd)
+		file := generateCode("../provider/"+crd.File, resourceTemplate, crd)
 		formatCode(file)
 	}
 }
@@ -97,8 +97,8 @@ func generateResourcesDocsDirectory(crds []*TemplateData) {
 	}
 }
 
-func generateProvider(baseDirectory string, crds []*TemplateData) {
-	file := generateCode(baseDirectory+"/provider.go", providerTemplate, crds)
+func generateProvider(crds []*TemplateData) {
+	file := generateCode("../provider/provider.go", providerTemplate, crds)
 	formatCode(file)
 }
 
