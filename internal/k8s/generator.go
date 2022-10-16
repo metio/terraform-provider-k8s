@@ -19,6 +19,7 @@ var providerTemplate *template.Template
 var resourceDocsTemplate *template.Template
 var resourceMainTemplate *template.Template
 var resourceTestTemplate *template.Template
+var resourceVerifyTemplate *template.Template
 
 func init() {
 	var err error
@@ -55,6 +56,11 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	resourceVerifyTemplate, err = template.New("verify-resource.yaml.tmpl").Funcs(functions).
+		ParseFiles("templates/verify-resource.yaml.tmpl")
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func GenerateAllTheFiles(data []*TemplateData) {
@@ -63,6 +69,13 @@ func GenerateAllTheFiles(data []*TemplateData) {
 	generateResourcesDocTemplates(data)
 	generateResourcesDocsDirectory(data)
 	generateResourceTests(data)
+	generateResourceGitHubWorkflows(data)
+}
+
+func generateResourceGitHubWorkflows(data []*TemplateData) {
+	for _, resource := range data {
+		generateCode("../../.github/workflows/verify-"+resource.TerraformResourceName+".yml", resourceVerifyTemplate, resource)
+	}
 }
 
 func generateResources(crds []*TemplateData) {
