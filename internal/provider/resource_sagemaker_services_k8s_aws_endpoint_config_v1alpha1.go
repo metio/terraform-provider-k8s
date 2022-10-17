@@ -105,7 +105,7 @@ type SagemakerServicesK8SAwsEndpointConfigV1Alpha1GoModel struct {
 
 			InitialInstanceCount *int64 `tfsdk:"initial_instance_count" yaml:"initialInstanceCount,omitempty"`
 
-			InitialVariantWeight *float64 `tfsdk:"initial_variant_weight" yaml:"initialVariantWeight,omitempty"`
+			InitialVariantWeight utilities.DynamicNumber `tfsdk:"initial_variant_weight" yaml:"initialVariantWeight,omitempty"`
 
 			InstanceType *string `tfsdk:"instance_type" yaml:"instanceType,omitempty"`
 
@@ -535,7 +535,7 @@ func (r *SagemakerServicesK8SAwsEndpointConfigV1Alpha1Resource) GetSchema(_ cont
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: false,
 								Optional: true,

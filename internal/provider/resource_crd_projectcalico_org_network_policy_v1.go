@@ -234,7 +234,7 @@ type CrdProjectcalicoOrgNetworkPolicyV1GoModel struct {
 			} `tfsdk:"source" yaml:"source,omitempty"`
 		} `tfsdk:"ingress" yaml:"ingress,omitempty"`
 
-		Order *float64 `tfsdk:"order" yaml:"order,omitempty"`
+		Order utilities.DynamicNumber `tfsdk:"order" yaml:"order,omitempty"`
 
 		Selector *string `tfsdk:"selector" yaml:"selector,omitempty"`
 
@@ -1378,7 +1378,7 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 						Description:         "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order.  If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last.  Policies with identical order will be applied in alphanumerical order based on the Policy 'Name'.",
 						MarkdownDescription: "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order.  If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last.  Policies with identical order will be applied in alphanumerical order based on the Policy 'Name'.",
 
-						Type: types.NumberType,
+						Type: utilities.DynamicNumberType{},
 
 						Required: false,
 						Optional: true,

@@ -105,7 +105,7 @@ type TelemetryIstioIoTelemetryV1Alpha1GoModel struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 			} `tfsdk:"providers" yaml:"providers,omitempty"`
 
-			RandomSamplingPercentage *float64 `tfsdk:"random_sampling_percentage" yaml:"randomSamplingPercentage,omitempty"`
+			RandomSamplingPercentage utilities.DynamicNumber `tfsdk:"random_sampling_percentage" yaml:"randomSamplingPercentage,omitempty"`
 
 			UseRequestIdForTraceSampling *bool `tfsdk:"use_request_id_for_trace_sampling" yaml:"useRequestIdForTraceSampling,omitempty"`
 		} `tfsdk:"tracing" yaml:"tracing,omitempty"`
@@ -533,7 +533,7 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Resource) GetSchema(_ context.Context)
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: false,
 								Optional: true,

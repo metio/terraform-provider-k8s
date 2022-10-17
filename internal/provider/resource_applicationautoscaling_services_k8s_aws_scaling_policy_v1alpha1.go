@@ -70,9 +70,9 @@ type ApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1GoModel struct {
 			MinAdjustmentMagnitude *int64 `tfsdk:"min_adjustment_magnitude" yaml:"minAdjustmentMagnitude,omitempty"`
 
 			StepAdjustments *[]struct {
-				MetricIntervalLowerBound *float64 `tfsdk:"metric_interval_lower_bound" yaml:"metricIntervalLowerBound,omitempty"`
+				MetricIntervalLowerBound utilities.DynamicNumber `tfsdk:"metric_interval_lower_bound" yaml:"metricIntervalLowerBound,omitempty"`
 
-				MetricIntervalUpperBound *float64 `tfsdk:"metric_interval_upper_bound" yaml:"metricIntervalUpperBound,omitempty"`
+				MetricIntervalUpperBound utilities.DynamicNumber `tfsdk:"metric_interval_upper_bound" yaml:"metricIntervalUpperBound,omitempty"`
 
 				ScalingAdjustment *int64 `tfsdk:"scaling_adjustment" yaml:"scalingAdjustment,omitempty"`
 			} `tfsdk:"step_adjustments" yaml:"stepAdjustments,omitempty"`
@@ -107,7 +107,7 @@ type ApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1GoModel struct {
 
 			ScaleOutCooldown *int64 `tfsdk:"scale_out_cooldown" yaml:"scaleOutCooldown,omitempty"`
 
-			TargetValue *float64 `tfsdk:"target_value" yaml:"targetValue,omitempty"`
+			TargetValue utilities.DynamicNumber `tfsdk:"target_value" yaml:"targetValue,omitempty"`
 		} `tfsdk:"target_tracking_scaling_policy_configuration" yaml:"targetTrackingScalingPolicyConfiguration,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -321,7 +321,7 @@ func (r *ApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1Resource) GetS
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.NumberType,
+										Type: utilities.DynamicNumberType{},
 
 										Required: false,
 										Optional: true,
@@ -332,7 +332,7 @@ func (r *ApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1Resource) GetS
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.NumberType,
+										Type: utilities.DynamicNumberType{},
 
 										Required: false,
 										Optional: true,
@@ -529,7 +529,7 @@ func (r *ApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1Resource) GetS
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: false,
 								Optional: true,
