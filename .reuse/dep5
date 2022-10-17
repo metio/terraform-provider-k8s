@@ -71,6 +71,10 @@ Files: schemas/crd_v1/apps.m88i.io/*
 Copyright: The Nexus Operator Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/apps.redhat.com/*
+Copyright: The cluster-impairment-operator Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/aquasecurity.github.io/*
 Copyright: The Aqua Security Operator Authors
 License: LicenseRef-Aqua

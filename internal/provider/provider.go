@@ -70,6 +70,7 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewAppsGitlabComGitLabV1Beta1Resource,
 		NewAppsGitlabComRunnerV1Beta2Resource,
 		NewAppsM88IIoNexusV1Alpha1Resource,
+		NewAppsRedhatComClusterImpairmentV1Alpha1Resource,
 		NewAquasecurityGithubIoAquaStarboardV1Alpha1Resource,
 		NewArgoprojIoApplicationV1Alpha1Resource,
 		NewArgoprojIoApplicationSetV1Alpha1Resource,
