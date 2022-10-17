@@ -70,13 +70,7 @@ func CRDsToTemplateData(crds []*apiextensionsv1.CustomResourceDefinition, pkg st
 		}
 	}
 	sort.SliceStable(data, func(i, j int) bool {
-		return data[i].Group < data[j].Group
-	})
-	sort.SliceStable(data, func(i, j int) bool {
-		return data[i].Version < data[j].Version
-	})
-	sort.SliceStable(data, func(i, j int) bool {
-		return data[i].Kind < data[j].Kind
+		return data[i].TerraformResourceType < data[j].TerraformResourceType
 	})
 	return data
 }
@@ -137,13 +131,7 @@ func OpenApiToTemplateData(definitions map[string]*openapi3.SchemaRef, pkg strin
 		}
 	}
 	sort.SliceStable(data, func(i, j int) bool {
-		return data[i].Group < data[j].Group
-	})
-	sort.SliceStable(data, func(i, j int) bool {
-		return data[i].Version < data[j].Version
-	})
-	sort.SliceStable(data, func(i, j int) bool {
-		return data[i].Kind < data[j].Kind
+		return data[i].TerraformResourceType < data[j].TerraformResourceType
 	})
 	return data
 }
@@ -349,6 +337,44 @@ func OpenApiProperties(schema *openapi3.Schema, uv *UsedValidators) []*Property 
 	sort.SliceStable(props, func(i, j int) bool {
 		return props[i].Name < props[j].Name
 	})
+
+	if schema.MinProps > 0 && schema.MaxProps != nil {
+		min := schema.MinProps
+		max := schema.MaxProps
+
+		if min == 1 && *max == 1 {
+			uv.SchemaValidator = true
+
+			for _, outer := range props {
+				for _, inner := range props {
+					if outer.Name != inner.Name {
+						validator := fmt.Sprintf(`schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("%s"))`, inner.TerraformAttributeName)
+						outer.Validators = append(outer.Validators, validator)
+					}
+				}
+			}
+		}
+	} else if schema.MinProps > 0 && schema.MaxProps == nil {
+		min := schema.MinProps
+
+		if min == 1 {
+			uv.SchemaValidator = true
+
+			for _, outer := range props {
+				for _, inner := range props {
+					if outer.Name != inner.Name {
+						validator := fmt.Sprintf(`schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("%s"))`, inner.TerraformAttributeName)
+						outer.Validators = append(outer.Validators, validator)
+					}
+				}
+			}
+		} else if min > 1 && min == uint64(len(props)) {
+			for _, prop := range props {
+				prop.Required = true
+				prop.Optional = false
+			}
+		}
+	}
 
 	return props
 }
