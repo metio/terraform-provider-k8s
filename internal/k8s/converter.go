@@ -69,6 +69,15 @@ func CRDsToTemplateData(crds []*apiextensionsv1.CustomResourceDefinition, pkg st
 			data = append(data, templateData)
 		}
 	}
+	sort.SliceStable(data, func(i, j int) bool {
+		return data[i].Group < data[j].Group
+	})
+	sort.SliceStable(data, func(i, j int) bool {
+		return data[i].Version < data[j].Version
+	})
+	sort.SliceStable(data, func(i, j int) bool {
+		return data[i].Kind < data[j].Kind
+	})
 	return data
 }
 
@@ -127,6 +136,12 @@ func OpenApiToTemplateData(definitions map[string]*openapi3.SchemaRef, pkg strin
 			}
 		}
 	}
+	sort.SliceStable(data, func(i, j int) bool {
+		return data[i].Group < data[j].Group
+	})
+	sort.SliceStable(data, func(i, j int) bool {
+		return data[i].Version < data[j].Version
+	})
 	sort.SliceStable(data, func(i, j int) bool {
 		return data[i].Kind < data[j].Kind
 	})
