@@ -238,7 +238,7 @@ type CrdProjectcalicoOrgGlobalNetworkPolicyV1GoModel struct {
 
 		NamespaceSelector *string `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
-		Order *float64 `tfsdk:"order" yaml:"order,omitempty"`
+		Order utilities.DynamicNumber `tfsdk:"order" yaml:"order,omitempty"`
 
 		PreDNAT *bool `tfsdk:"pre_dnat" yaml:"preDNAT,omitempty"`
 
@@ -1410,7 +1410,7 @@ func (r *CrdProjectcalicoOrgGlobalNetworkPolicyV1Resource) GetSchema(_ context.C
 						Description:         "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order.  If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last.  Policies with identical order will be applied in alphanumerical order based on the Policy 'Name'.",
 						MarkdownDescription: "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order.  If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last.  Policies with identical order will be applied in alphanumerical order based on the Policy 'Name'.",
 
-						Type: types.NumberType,
+						Type: utilities.DynamicNumberType{},
 
 						Required: false,
 						Optional: true,

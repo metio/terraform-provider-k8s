@@ -235,20 +235,21 @@ func CrdProperties(schema *apiextensionsv1.JSONSchemaProps, uv *UsedValidators) 
 			nestedProperties = CrdProperties(&prop, uv)
 		}
 
+		attributeType, valueType, goType := CRDv1Types(prop)
 		props = append(props, &Property{
 			BT:                     "`",
 			Name:                   name,
 			GoName:                 GoName(name),
-			GoType:                 GoType(prop),
+			GoType:                 goType,
 			TerraformAttributeName: TerraformAttributeName(name),
-			TerraformAttributeType: TerraformAttributeType(prop),
-			TerraformValueType:     TerraformValueType(prop),
+			TerraformAttributeType: attributeType,
+			TerraformValueType:     valueType,
 			Description:            Description(prop.Description),
 			Required:               slices.Contains(schema.Required, name),
 			Optional:               !slices.Contains(schema.Required, name),
 			Computed:               false,
 			Properties:             nestedProperties,
-			Validators:             Validators(prop, uv),
+			Validators:             CRDv1Validators(prop, uv),
 		})
 	}
 
@@ -310,14 +311,15 @@ func OpenApiProperties(schema *openapi3.Schema, uv *UsedValidators) []*Property 
 					nestedProperties = OpenApiProperties(prop.Value, uv)
 				}
 
+				attributeType, valueType, goType := OpenApiTypes(prop.Value)
 				props = append(props, &Property{
 					BT:                     "`",
 					Name:                   name,
 					GoName:                 GoName(name),
-					GoType:                 OpenApiGoType(prop.Value),
+					GoType:                 goType,
 					TerraformAttributeName: TerraformAttributeName(name),
-					TerraformAttributeType: OpenApiTerraformAttributeType(prop.Value),
-					TerraformValueType:     OpenApiTerraformValueType(prop.Value),
+					TerraformAttributeType: attributeType,
+					TerraformValueType:     valueType,
 					Description:            Description(prop.Value.Description),
 					Required:               slices.Contains(schema.Required, name),
 					Optional:               !slices.Contains(schema.Required, name),
@@ -418,270 +420,213 @@ func Description(description string) string {
 	return clean
 }
 
-func TerraformAttributeType(prop apiextensionsv1.JSONSchemaProps) string {
+func CRDv1Types(prop apiextensionsv1.JSONSchemaProps) (attributeType string, valueType string, goType string) {
 	if prop.XIntOrString {
-		return "types.StringType"
+		attributeType = "types.StringType"
+		valueType = "types.String"
+		goType = "string"
+		return
 	}
 	if prop.XPreserveUnknownFields != nil && *prop.XPreserveUnknownFields {
 		if len(prop.Properties) > 0 {
-			return "types.ObjectType"
+			attributeType = "types.ObjectType"
+			valueType = "types.Object"
+			goType = "struct"
+			return
 		}
-		return "utilities.DynamicType{}"
+		attributeType = "utilities.DynamicType{}"
+		valueType = "utilities.Dynamic"
+		goType = "utilities.Dynamic"
+		return
 	}
 	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Schema.Type == "string" {
-		return "types.MapType{ElemType: types.StringType}"
+		attributeType = "types.MapType{ElemType: types.StringType}"
+		valueType = "types.Map"
+		goType = "map[string]string"
+		return
 	}
 	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Schema.Type == "object" {
 		if prop.AdditionalProperties.Schema.AdditionalProperties != nil && prop.AdditionalProperties.Schema.AdditionalProperties.Schema.Type == "string" {
-			return "types.MapType{ElemType: types.MapType{ElemType: types.StringType}}"
+			attributeType = "types.MapType{ElemType: types.MapType{ElemType: types.StringType}}"
+			valueType = "types.Map"
+			goType = "map[string]map[string]string"
+			return
 		}
 	}
 	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Schema.Type == "array" {
 		if prop.AdditionalProperties.Schema.Items.Schema.Type == "string" {
-			return "types.MapType{ElemType: types.ListType{ElemType: types.StringType}}"
+			attributeType = "types.MapType{ElemType: types.ListType{ElemType: types.StringType}}"
+			valueType = "types.Map"
+			goType = "map[string][]string"
+			return
 		}
 	}
 	if prop.Type == "array" && prop.Items.Schema.Type == "object" {
 		if prop.Items.Schema.XPreserveUnknownFields != nil && *prop.Items.Schema.XPreserveUnknownFields {
-			return "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}"
+			attributeType = "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}"
+			valueType = "types.List"
+			goType = "[]map[string]string"
+			return
 		}
-		return "types.ListType{ElemType: types.ObjectType}"
+		attributeType = "types.ListType{ElemType: types.ObjectType}"
+		valueType = "types.List"
+		goType = "[]struct"
+		return
 	}
 	switch prop.Type {
 	case "boolean":
-		return "types.BoolType"
+		attributeType = "types.BoolType"
+		valueType = "types.Bool"
+		goType = "bool"
+		return
 	case "string":
-		return "types.StringType"
+		attributeType = "types.StringType"
+		valueType = "types.String"
+		goType = "string"
+		return
 	case "integer":
-		return "types.Int64Type"
+		attributeType = "types.Int64Type"
+		valueType = "types.Int64"
+		goType = "int64"
+		return
 	case "number":
-		return "types.NumberType"
+		if prop.Format == "float" || prop.Format == "double" {
+			attributeType = "types.Float64Type"
+			valueType = "types.Float64"
+			goType = "float64"
+			return
+		}
+		attributeType = "utilities.DynamicNumberType{}"
+		valueType = "utilities.DynamicNumber"
+		goType = "utilities.DynamicNumber"
+		return
 	case "array":
-		return "types.ListType{ElemType: types.StringType}"
+		attributeType = "types.ListType{ElemType: types.StringType}"
+		valueType = "types.List"
+		goType = "[]string"
+		return
 	case "object":
 		if len(prop.Properties) > 0 {
-			return "types.ObjectType"
+			attributeType = "types.ObjectType"
+			valueType = "types.Object"
+			goType = "struct"
+			return
 		}
-		return "types.MapType{ElemType: types.StringType}"
+		attributeType = "types.MapType{ElemType: types.StringType}"
+		valueType = "types.Map"
+		goType = "map[string]string"
+		return
 	}
-	return "UNKNOWN"
+	attributeType = "UNKNOWN"
+	valueType = "UNKNOWN"
+	goType = "UNKNOWN"
+	return
 }
 
-func OpenApiTerraformAttributeType(prop *openapi3.Schema) string {
+func OpenApiTypes(prop *openapi3.Schema) (attributeType string, valueType string, goType string) {
 	if _, ok := prop.Extensions["x-kubernetes-int-or-string"]; ok {
-		return "types.StringType"
+		attributeType = "types.StringType"
+		valueType = "types.String"
+		goType = "string"
+		return
 	}
 	if _, ok := prop.Extensions["x-kubernetes-preserve-unknown-fields"]; ok {
 		if len(prop.Properties) > 0 {
-			return "types.ObjectType"
+			attributeType = "types.ObjectType"
+			valueType = "types.Object"
+			goType = "struct"
+			return
 		}
-		return "utilities.DynamicType{}"
+		attributeType = "utilities.DynamicType{}"
+		valueType = "utilities.Dynamic"
+		goType = "utilities.Dynamic"
+		return
 	}
 	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Value.Type == "string" {
-		return "types.MapType{ElemType: types.StringType}"
+		attributeType = "types.MapType{ElemType: types.StringType}"
+		valueType = "types.Map"
+		goType = "map[string]string"
+		return
 	}
 	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Value.Type == "object" {
 		if prop.AdditionalProperties.Value.AdditionalProperties != nil && prop.AdditionalProperties.Value.AdditionalProperties.Value.Type == "string" {
-			return "types.MapType{ElemType: types.MapType{ElemType: types.StringType}}"
+			attributeType = "types.MapType{ElemType: types.MapType{ElemType: types.StringType}}"
+			valueType = "types.Map"
+			goType = "map[string]map[string]string"
+			return
 		}
 	}
 	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Value.Type == "array" {
 		if prop.AdditionalProperties.Value.Items.Value.Type == "string" {
-			return "types.MapType{ElemType: types.ListType{ElemType: types.StringType}}"
+			attributeType = "types.MapType{ElemType: types.ListType{ElemType: types.StringType}}"
+			valueType = "types.Map"
+			goType = "map[string][]string"
+			return
 		}
 	}
 	if prop.Type == "array" && prop.Items != nil && prop.Items.Value != nil && prop.Items.Value.Type == "object" {
 		if _, ok := prop.Items.Value.Extensions["x-kubernetes-preserve-unknown-fields"]; ok {
-			return "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}"
+			attributeType = "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}"
+			valueType = "types.List"
+			goType = "[]map[string]string"
+			return
 		}
-		return "types.ListType{ElemType: types.ObjectType}"
+		attributeType = "types.ListType{ElemType: types.ObjectType}"
+		valueType = "types.List"
+		goType = "[]struct"
+		return
 	}
 	switch prop.Type {
 	case "boolean":
-		return "types.BoolType"
+		attributeType = "types.BoolType"
+		valueType = "types.Bool"
+		goType = "bool"
+		return
 	case "string":
-		return "types.StringType"
+		attributeType = "types.StringType"
+		valueType = "types.String"
+		goType = "string"
+		return
 	case "integer":
-		return "types.Int64Type"
+		attributeType = "types.Int64Type"
+		valueType = "types.Int64"
+		goType = "int64"
+		return
 	case "number":
-		return "types.NumberType"
+		if prop.Format == "float" || prop.Format == "double" {
+			attributeType = "types.Float64Type"
+			valueType = "types.Float64"
+			goType = "float64"
+			return
+		}
+		attributeType = "utilities.DynamicNumberType{}"
+		valueType = "utilities.DynamicNumber"
+		goType = "utilities.DynamicNumber"
+		return
 	case "array":
-		return "types.ListType{ElemType: types.StringType}"
+		attributeType = "types.ListType{ElemType: types.StringType}"
+		valueType = "types.List"
+		goType = "[]string"
+		return
 	case "object":
 		if len(prop.Properties) > 0 {
-			return "types.ObjectType"
+			attributeType = "types.ObjectType"
+			valueType = "types.Object"
+			goType = "struct"
+			return
 		}
-		return "types.MapType{ElemType: types.StringType}"
+		attributeType = "types.MapType{ElemType: types.StringType}"
+		valueType = "types.Map"
+		goType = "map[string]string"
+		return
 	}
-	return "UNKNOWN"
+	attributeType = "UNKNOWN"
+	valueType = "UNKNOWN"
+	goType = "UNKNOWN"
+	return
 }
 
-func GoType(prop apiextensionsv1.JSONSchemaProps) string {
-	if prop.XIntOrString {
-		return "string"
-	}
-	if prop.XPreserveUnknownFields != nil && *prop.XPreserveUnknownFields {
-		if len(prop.Properties) > 0 {
-			return "struct"
-		}
-		return "utilities.Dynamic"
-	}
-	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Schema.Type == "string" {
-		return "map[string]string"
-	}
-	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Schema.Type == "object" {
-		if prop.AdditionalProperties.Schema.AdditionalProperties != nil && prop.AdditionalProperties.Schema.AdditionalProperties.Schema.Type == "string" {
-			return "map[string]map[string]string"
-		}
-	}
-	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Schema.Type == "array" {
-		if prop.AdditionalProperties.Schema.Items.Schema.Type == "string" {
-			return "map[string][]string"
-		}
-	}
-	if prop.Type == "array" && prop.Items.Schema.Type == "object" {
-		if prop.Items.Schema.XPreserveUnknownFields != nil && *prop.Items.Schema.XPreserveUnknownFields {
-			return "[]map[string]string"
-		}
-		return "[]struct"
-	}
-	switch prop.Type {
-	case "boolean":
-		return "bool"
-	case "string":
-		return "string"
-	case "integer":
-		return "int64"
-	case "number":
-		return "float64"
-	case "array":
-		return "[]string"
-	case "object":
-		if len(prop.Properties) > 0 {
-			return "struct"
-		}
-		return "map[string]string"
-	}
-	return "UNKNOWN"
-}
-
-func OpenApiGoType(prop *openapi3.Schema) string {
-	if _, ok := prop.Extensions["x-kubernetes-int-or-string"]; ok {
-		return "string"
-	}
-	if _, ok := prop.Extensions["x-kubernetes-preserve-unknown-fields"]; ok {
-		if len(prop.Properties) > 0 {
-			return "struct"
-		}
-		return "utilities.Dynamic"
-	}
-	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Value.Type == "string" {
-		return "map[string]string"
-	}
-
-	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Value.Type == "object" {
-		if prop.AdditionalProperties.Value.AdditionalProperties != nil && prop.AdditionalProperties.Value.AdditionalProperties.Value.Type == "string" {
-			return "map[string]map[string]string"
-		}
-	}
-	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Value.Type == "array" {
-		if prop.AdditionalProperties.Value.Items.Value.Type == "string" {
-			return "map[string][]string"
-		}
-	}
-	if prop.Type == "array" && prop.Items != nil && prop.Items.Value != nil && prop.Items.Value.Type == "object" {
-		if _, ok := prop.Items.Value.Extensions["x-kubernetes-preserve-unknown-fields"]; ok {
-			return "[]map[string]string"
-		}
-		return "[]struct"
-	}
-	switch prop.Type {
-	case "boolean":
-		return "bool"
-	case "string":
-		return "string"
-	case "integer":
-		return "int64"
-	case "number":
-		return "float64"
-	case "array":
-		return "[]string"
-	case "object":
-		if len(prop.Properties) > 0 {
-			return "struct"
-		}
-		return "map[string]string"
-	}
-	return "UNKNOWN"
-}
-
-func TerraformValueType(prop apiextensionsv1.JSONSchemaProps) string {
-	if prop.XIntOrString {
-		return "types.String"
-	}
-	if prop.XPreserveUnknownFields != nil && *prop.XPreserveUnknownFields {
-		if len(prop.Properties) > 0 {
-			return "types.Object"
-		}
-		return "utilities.Dynamic"
-	}
-	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Schema.Type == "string" {
-		return "types.Map"
-	}
-	switch prop.Type {
-	case "boolean":
-		return "types.Bool"
-	case "string":
-		return "types.String"
-	case "integer":
-		return "types.Int64"
-	case "number":
-		return "types.Number"
-	case "array":
-		return "types.List"
-	case "object":
-		if len(prop.Properties) > 0 {
-			return "types.Object"
-		}
-		return "types.Map"
-	}
-	return "UNKNOWN"
-}
-
-func OpenApiTerraformValueType(prop *openapi3.Schema) string {
-	if _, ok := prop.Extensions["x-kubernetes-int-or-string"]; ok {
-		return "types.String"
-	}
-	if _, ok := prop.Extensions["x-kubernetes-preserve-unknown-fields"]; ok {
-		if len(prop.Properties) > 0 {
-			return "types.Object"
-		}
-		return "utilities.Dynamic"
-	}
-	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Value.Type == "string" {
-		return "types.Map"
-	}
-	switch prop.Type {
-	case "boolean":
-		return "types.Bool"
-	case "string":
-		return "types.String"
-	case "integer":
-		return "types.Int64"
-	case "number":
-		return "types.Number"
-	case "array":
-		return "types.List"
-	case "object":
-		if len(prop.Properties) > 0 {
-			return "types.Object"
-		}
-		return "types.Map"
-	}
-	return "UNKNOWN"
-}
-
-func Validators(prop apiextensionsv1.JSONSchemaProps, uv *UsedValidators) []string {
+func CRDv1Validators(prop apiextensionsv1.JSONSchemaProps, uv *UsedValidators) []string {
 	validators := make([]string, 0)
 
 	if prop.Type == "integer" && prop.Minimum != nil {

@@ -77,7 +77,7 @@ type Apigatewayv2ServicesK8SAwsStageV1Alpha1GoModel struct {
 
 			ThrottlingBurstLimit *int64 `tfsdk:"throttling_burst_limit" yaml:"throttlingBurstLimit,omitempty"`
 
-			ThrottlingRateLimit *float64 `tfsdk:"throttling_rate_limit" yaml:"throttlingRateLimit,omitempty"`
+			ThrottlingRateLimit utilities.DynamicNumber `tfsdk:"throttling_rate_limit" yaml:"throttlingRateLimit,omitempty"`
 		} `tfsdk:"default_route_settings" yaml:"defaultRouteSettings,omitempty"`
 
 		DeploymentID *string `tfsdk:"deployment_id" yaml:"deploymentID,omitempty"`
@@ -350,7 +350,7 @@ func (r *Apigatewayv2ServicesK8SAwsStageV1Alpha1Resource) GetSchema(_ context.Co
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: false,
 								Optional: true,

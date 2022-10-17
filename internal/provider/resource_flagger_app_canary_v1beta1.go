@@ -67,11 +67,11 @@ type FlaggerAppCanaryV1Beta1GoModel struct {
 				Severity *string `tfsdk:"severity" yaml:"severity,omitempty"`
 			} `tfsdk:"alerts" yaml:"alerts,omitempty"`
 
-			CanaryReadyThreshold *float64 `tfsdk:"canary_ready_threshold" yaml:"canaryReadyThreshold,omitempty"`
+			CanaryReadyThreshold utilities.DynamicNumber `tfsdk:"canary_ready_threshold" yaml:"canaryReadyThreshold,omitempty"`
 
 			Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 
-			Iterations *float64 `tfsdk:"iterations" yaml:"iterations,omitempty"`
+			Iterations utilities.DynamicNumber `tfsdk:"iterations" yaml:"iterations,omitempty"`
 
 			Match *[]struct {
 				Headers *map[string]string `tfsdk:"headers" yaml:"headers,omitempty"`
@@ -79,7 +79,7 @@ type FlaggerAppCanaryV1Beta1GoModel struct {
 				SourceLabels *map[string]string `tfsdk:"source_labels" yaml:"sourceLabels,omitempty"`
 			} `tfsdk:"match" yaml:"match,omitempty"`
 
-			MaxWeight *float64 `tfsdk:"max_weight" yaml:"maxWeight,omitempty"`
+			MaxWeight utilities.DynamicNumber `tfsdk:"max_weight" yaml:"maxWeight,omitempty"`
 
 			Metrics *[]struct {
 				Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
@@ -94,28 +94,28 @@ type FlaggerAppCanaryV1Beta1GoModel struct {
 					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 				} `tfsdk:"template_ref" yaml:"templateRef,omitempty"`
 
-				Threshold *float64 `tfsdk:"threshold" yaml:"threshold,omitempty"`
+				Threshold utilities.DynamicNumber `tfsdk:"threshold" yaml:"threshold,omitempty"`
 
 				ThresholdRange *struct {
-					Max *float64 `tfsdk:"max" yaml:"max,omitempty"`
+					Max utilities.DynamicNumber `tfsdk:"max" yaml:"max,omitempty"`
 
-					Min *float64 `tfsdk:"min" yaml:"min,omitempty"`
+					Min utilities.DynamicNumber `tfsdk:"min" yaml:"min,omitempty"`
 				} `tfsdk:"threshold_range" yaml:"thresholdRange,omitempty"`
 			} `tfsdk:"metrics" yaml:"metrics,omitempty"`
 
 			Mirror *bool `tfsdk:"mirror" yaml:"mirror,omitempty"`
 
-			MirrorWeight *float64 `tfsdk:"mirror_weight" yaml:"mirrorWeight,omitempty"`
+			MirrorWeight utilities.DynamicNumber `tfsdk:"mirror_weight" yaml:"mirrorWeight,omitempty"`
 
-			PrimaryReadyThreshold *float64 `tfsdk:"primary_ready_threshold" yaml:"primaryReadyThreshold,omitempty"`
+			PrimaryReadyThreshold utilities.DynamicNumber `tfsdk:"primary_ready_threshold" yaml:"primaryReadyThreshold,omitempty"`
 
-			StepWeight *float64 `tfsdk:"step_weight" yaml:"stepWeight,omitempty"`
+			StepWeight utilities.DynamicNumber `tfsdk:"step_weight" yaml:"stepWeight,omitempty"`
 
-			StepWeightPromotion *float64 `tfsdk:"step_weight_promotion" yaml:"stepWeightPromotion,omitempty"`
+			StepWeightPromotion utilities.DynamicNumber `tfsdk:"step_weight_promotion" yaml:"stepWeightPromotion,omitempty"`
 
 			StepWeights *[]string `tfsdk:"step_weights" yaml:"stepWeights,omitempty"`
 
-			Threshold *float64 `tfsdk:"threshold" yaml:"threshold,omitempty"`
+			Threshold utilities.DynamicNumber `tfsdk:"threshold" yaml:"threshold,omitempty"`
 
 			Webhooks *[]struct {
 				Metadata *map[string]string `tfsdk:"metadata" yaml:"metadata,omitempty"`
@@ -152,7 +152,7 @@ type FlaggerAppCanaryV1Beta1GoModel struct {
 
 		MetricsServer *string `tfsdk:"metrics_server" yaml:"metricsServer,omitempty"`
 
-		ProgressDeadlineSeconds *float64 `tfsdk:"progress_deadline_seconds" yaml:"progressDeadlineSeconds,omitempty"`
+		ProgressDeadlineSeconds utilities.DynamicNumber `tfsdk:"progress_deadline_seconds" yaml:"progressDeadlineSeconds,omitempty"`
 
 		Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
 
@@ -289,7 +289,7 @@ type FlaggerAppCanaryV1Beta1GoModel struct {
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
-			Port *float64 `tfsdk:"port" yaml:"port,omitempty"`
+			Port utilities.DynamicNumber `tfsdk:"port" yaml:"port,omitempty"`
 
 			PortDiscovery *bool `tfsdk:"port_discovery" yaml:"portDiscovery,omitempty"`
 
@@ -603,7 +603,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "Percentage of pods that need to be available to consider canary as ready",
 								MarkdownDescription: "Percentage of pods that need to be available to consider canary as ready",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: false,
 								Optional: true,
@@ -630,7 +630,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "Number of checks to run for A/B Testing and Blue/Green",
 								MarkdownDescription: "Number of checks to run for A/B Testing and Blue/Green",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: false,
 								Optional: true,
@@ -675,7 +675,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "Max traffic weight routed to canary",
 								MarkdownDescription: "Max traffic weight routed to canary",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: false,
 								Optional: true,
@@ -764,7 +764,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 										Description:         "Max value accepted for this metric",
 										MarkdownDescription: "Max value accepted for this metric",
 
-										Type: types.NumberType,
+										Type: utilities.DynamicNumberType{},
 
 										Required: false,
 										Optional: true,
@@ -781,7 +781,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 												Description:         "Max value accepted for this metric",
 												MarkdownDescription: "Max value accepted for this metric",
 
-												Type: types.NumberType,
+												Type: utilities.DynamicNumberType{},
 
 												Required: false,
 												Optional: true,
@@ -792,7 +792,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 												Description:         "Min value accepted for this metric",
 												MarkdownDescription: "Min value accepted for this metric",
 
-												Type: types.NumberType,
+												Type: utilities.DynamicNumberType{},
 
 												Required: false,
 												Optional: true,
@@ -826,7 +826,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "Weight of traffic to be mirrored",
 								MarkdownDescription: "Weight of traffic to be mirrored",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: false,
 								Optional: true,
@@ -837,7 +837,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "Percentage of pods that need to be available to consider primary as ready",
 								MarkdownDescription: "Percentage of pods that need to be available to consider primary as ready",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: false,
 								Optional: true,
@@ -848,7 +848,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "Incremental traffic step weight for the analysis phase",
 								MarkdownDescription: "Incremental traffic step weight for the analysis phase",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: false,
 								Optional: true,
@@ -859,7 +859,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "Incremental traffic step weight for the promotion phase",
 								MarkdownDescription: "Incremental traffic step weight for the promotion phase",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: false,
 								Optional: true,
@@ -881,7 +881,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "Max number of failed checks before rollback",
 								MarkdownDescription: "Max number of failed checks before rollback",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: false,
 								Optional: true,
@@ -1108,7 +1108,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						Description:         "Deployment progress deadline",
 						MarkdownDescription: "Deployment progress deadline",
 
-						Type: types.NumberType,
+						Type: utilities.DynamicNumberType{},
 
 						Required: false,
 						Optional: true,
@@ -1916,7 +1916,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "Container port number",
 								MarkdownDescription: "Container port number",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: true,
 								Optional: false,

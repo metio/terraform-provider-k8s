@@ -171,9 +171,9 @@ type RdsServicesK8SAwsDBClusterV1Alpha1GoModel struct {
 		} `tfsdk:"scaling_configuration" yaml:"scalingConfiguration,omitempty"`
 
 		ServerlessV2ScalingConfiguration *struct {
-			MaxCapacity *float64 `tfsdk:"max_capacity" yaml:"maxCapacity,omitempty"`
+			MaxCapacity utilities.DynamicNumber `tfsdk:"max_capacity" yaml:"maxCapacity,omitempty"`
 
-			MinCapacity *float64 `tfsdk:"min_capacity" yaml:"minCapacity,omitempty"`
+			MinCapacity utilities.DynamicNumber `tfsdk:"min_capacity" yaml:"minCapacity,omitempty"`
 		} `tfsdk:"serverless_v2_scaling_configuration" yaml:"serverlessV2ScalingConfiguration,omitempty"`
 
 		SnapshotIdentifier *string `tfsdk:"snapshot_identifier" yaml:"snapshotIdentifier,omitempty"`
@@ -972,7 +972,7 @@ func (r *RdsServicesK8SAwsDBClusterV1Alpha1Resource) GetSchema(_ context.Context
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: false,
 								Optional: true,
@@ -983,7 +983,7 @@ func (r *RdsServicesK8SAwsDBClusterV1Alpha1Resource) GetSchema(_ context.Context
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: false,
 								Optional: true,

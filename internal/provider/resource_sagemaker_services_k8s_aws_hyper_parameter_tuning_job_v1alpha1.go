@@ -96,7 +96,7 @@ type SagemakerServicesK8SAwsHyperParameterTuningJobV1Alpha1GoModel struct {
 			TrainingJobEarlyStoppingType *string `tfsdk:"training_job_early_stopping_type" yaml:"trainingJobEarlyStoppingType,omitempty"`
 
 			TuningJobCompletionCriteria *struct {
-				TargetObjectiveMetricValue *float64 `tfsdk:"target_objective_metric_value" yaml:"targetObjectiveMetricValue,omitempty"`
+				TargetObjectiveMetricValue utilities.DynamicNumber `tfsdk:"target_objective_metric_value" yaml:"targetObjectiveMetricValue,omitempty"`
 			} `tfsdk:"tuning_job_completion_criteria" yaml:"tuningJobCompletionCriteria,omitempty"`
 		} `tfsdk:"hyper_parameter_tuning_job_config" yaml:"hyperParameterTuningJobConfig,omitempty"`
 
@@ -744,7 +744,7 @@ func (r *SagemakerServicesK8SAwsHyperParameterTuningJobV1Alpha1Resource) GetSche
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.NumberType,
+										Type: utilities.DynamicNumberType{},
 
 										Required: false,
 										Optional: true,

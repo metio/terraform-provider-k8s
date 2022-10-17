@@ -742,7 +742,7 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Resource) GetSchema(_ context.Con
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.NumberType,
+														Type: types.Float64Type,
 
 														Required: false,
 														Optional: true,
@@ -810,7 +810,7 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Resource) GetSchema(_ context.Con
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.NumberType,
+														Type: types.Float64Type,
 
 														Required: false,
 														Optional: true,
@@ -1317,7 +1317,7 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Resource) GetSchema(_ context.Con
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.NumberType,
+										Type: types.Float64Type,
 
 										Required: false,
 										Optional: true,

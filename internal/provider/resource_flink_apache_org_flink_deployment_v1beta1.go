@@ -2338,7 +2338,7 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1GoModel struct {
 			Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
 
 			Resource *struct {
-				Cpu *float64 `tfsdk:"cpu" yaml:"cpu,omitempty"`
+				Cpu utilities.DynamicNumber `tfsdk:"cpu" yaml:"cpu,omitempty"`
 
 				Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
 			} `tfsdk:"resource" yaml:"resource,omitempty"`
@@ -6848,7 +6848,7 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1GoModel struct {
 			Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
 
 			Resource *struct {
-				Cpu *float64 `tfsdk:"cpu" yaml:"cpu,omitempty"`
+				Cpu utilities.DynamicNumber `tfsdk:"cpu" yaml:"cpu,omitempty"`
 
 				Memory *string `tfsdk:"memory" yaml:"memory,omitempty"`
 			} `tfsdk:"resource" yaml:"resource,omitempty"`
@@ -19836,7 +19836,7 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.NumberType,
+										Type: utilities.DynamicNumberType{},
 
 										Required: false,
 										Optional: true,
@@ -45230,7 +45230,7 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.NumberType,
+										Type: utilities.DynamicNumberType{},
 
 										Required: false,
 										Optional: true,

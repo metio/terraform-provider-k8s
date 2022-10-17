@@ -95,7 +95,7 @@ type KafkaStrimziIoKafkaUserV1Beta2GoModel struct {
 		Quotas *struct {
 			ConsumerByteRate *int64 `tfsdk:"consumer_byte_rate" yaml:"consumerByteRate,omitempty"`
 
-			ControllerMutationRate *float64 `tfsdk:"controller_mutation_rate" yaml:"controllerMutationRate,omitempty"`
+			ControllerMutationRate utilities.DynamicNumber `tfsdk:"controller_mutation_rate" yaml:"controllerMutationRate,omitempty"`
 
 			ProducerByteRate *int64 `tfsdk:"producer_byte_rate" yaml:"producerByteRate,omitempty"`
 
@@ -469,7 +469,7 @@ func (r *KafkaStrimziIoKafkaUserV1Beta2Resource) GetSchema(_ context.Context) (t
 								Description:         "A quota on the rate at which mutations are accepted for the create topics request, the create partitions request and the delete topics request. The rate is accumulated by the number of partitions created or deleted.",
 								MarkdownDescription: "A quota on the rate at which mutations are accepted for the create topics request, the create partitions request and the delete topics request. The rate is accumulated by the number of partitions created or deleted.",
 
-								Type: types.NumberType,
+								Type: utilities.DynamicNumberType{},
 
 								Required: false,
 								Optional: true,

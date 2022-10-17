@@ -92,7 +92,7 @@ type SagemakerServicesK8SAwsMonitoringScheduleV1Alpha1GoModel struct {
 
 						ProbabilityAttribute *string `tfsdk:"probability_attribute" yaml:"probabilityAttribute,omitempty"`
 
-						ProbabilityThresholdAttribute *float64 `tfsdk:"probability_threshold_attribute" yaml:"probabilityThresholdAttribute,omitempty"`
+						ProbabilityThresholdAttribute utilities.DynamicNumber `tfsdk:"probability_threshold_attribute" yaml:"probabilityThresholdAttribute,omitempty"`
 
 						S3DataDistributionType *string `tfsdk:"s3_data_distribution_type" yaml:"s3DataDistributionType,omitempty"`
 
@@ -501,7 +501,7 @@ func (r *SagemakerServicesK8SAwsMonitoringScheduleV1Alpha1Resource) GetSchema(_ 
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.NumberType,
+														Type: utilities.DynamicNumberType{},
 
 														Required: false,
 														Optional: true,
