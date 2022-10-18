@@ -208,7 +208,7 @@ Optional:
 - `primary` (Attributes) Metadata to add to the primary service (see [below for nested schema](#nestedatt--spec--service--primary))
 - `retries` (Attributes) Retry policy for HTTP requests (see [below for nested schema](#nestedatt--spec--service--retries))
 - `rewrite` (Attributes) Rewrite HTTP URIs (see [below for nested schema](#nestedatt--spec--service--rewrite))
-- `target_port` (String) Container target port name
+- `target_port` (Dynamic) Container target port name
 - `timeout` (String) HTTP or gRPC request timeout
 - `traffic_policy` (Attributes) Istio traffic policy (see [below for nested schema](#nestedatt--spec--service--traffic_policy))
 

@@ -147,7 +147,7 @@ Optional:
 Optional:
 
 - `access_modes` (List of String) AccessModes contains the actual access modes of the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `request_storage` (String) A description of the PVC request capacity.
+- `request_storage` (Dynamic) A description of the PVC request capacity.
 - `storage_class_name` (String) Name of StorageClass which this persistent volume belongs to.
 
 

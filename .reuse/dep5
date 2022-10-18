@@ -359,6 +359,10 @@ Files: schemas/crd_v1/operator.knative.dev/*
 Copyright: The Knative Operator Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/operator.open-cluster-management.io/*
+Copyright: The Registration Operator Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/operator.tekton.dev/*
 Copyright: The Tektoncd Operator Authors
 License: Apache-2.0

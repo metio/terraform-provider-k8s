@@ -454,7 +454,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 <a id="nestedatt--spec--deployments--env--env_vars--value_from--secret_key_ref"></a>
@@ -631,7 +631,7 @@ Optional:
 
 Optional:
 
-- `min_available` (String) An eviction is allowed if at least 'minAvailable' pods selected by 'selector' will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying '100%'.
+- `min_available` (Dynamic) An eviction is allowed if at least 'minAvailable' pods selected by 'selector' will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying '100%'.
 - `name` (String) The name of the podDisruptionBudget
 
 

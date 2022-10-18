@@ -70,6 +70,6 @@ Required:
 
 - `name` (String)
 - `port` (Number)
-- `protocol` (String)
+- `protocol` (Dynamic)
 
 

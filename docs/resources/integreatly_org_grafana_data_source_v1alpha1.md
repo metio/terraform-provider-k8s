@@ -116,7 +116,7 @@ Optional:
 - `default_region` (String)
 - `derived_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--datasources--json_data--derived_fields))
 - `encrypt` (String)
-- `es_version` (String)
+- `es_version` (Dynamic)
 - `exemplar_trace_id_destinations` (Attributes List) (see [below for nested schema](#nestedatt--spec--datasources--json_data--exemplar_trace_id_destinations))
 - `github_url` (String) Fields for Github data sources
 - `graphite_version` (String)

@@ -71,10 +71,10 @@ Optional:
 
 Optional:
 
-- `dial_timeout` (String) DialTimeout is the amount of time to wait until a connection to a backend server can be established.
-- `idle_conn_timeout` (String) IdleConnTimeout is the maximum period for which an idle HTTP keep-alive connection will remain open before closing itself.
-- `ping_timeout` (String) PingTimeout is the timeout after which the HTTP/2 connection will be closed if a response to ping is not received.
-- `read_idle_timeout` (String) ReadIdleTimeout is the timeout after which a health check using ping frame will be carried out if no frame is received on the HTTP/2 connection.
-- `response_header_timeout` (String) ResponseHeaderTimeout is the amount of time to wait for a server's response headers after fully writing the request (including its body, if any).
+- `dial_timeout` (Dynamic) DialTimeout is the amount of time to wait until a connection to a backend server can be established.
+- `idle_conn_timeout` (Dynamic) IdleConnTimeout is the maximum period for which an idle HTTP keep-alive connection will remain open before closing itself.
+- `ping_timeout` (Dynamic) PingTimeout is the timeout after which the HTTP/2 connection will be closed if a response to ping is not received.
+- `read_idle_timeout` (Dynamic) ReadIdleTimeout is the timeout after which a health check using ping frame will be carried out if no frame is received on the HTTP/2 connection.
+- `response_header_timeout` (Dynamic) ResponseHeaderTimeout is the amount of time to wait for a server's response headers after fully writing the request (including its body, if any).
 
 

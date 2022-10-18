@@ -74,7 +74,7 @@ Optional:
 - `mirrors` (Attributes List) Mirrors defines the list of mirrors where Traefik will duplicate the traffic. (see [below for nested schema](#nestedatt--spec--mirroring--mirrors))
 - `namespace` (String) Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.
 - `pass_host_header` (Boolean) PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.
-- `port` (String) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
+- `port` (Dynamic) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
 - `response_forwarding` (Attributes) ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client. (see [below for nested schema](#nestedatt--spec--mirroring--response_forwarding))
 - `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.
 - `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.
@@ -95,7 +95,7 @@ Optional:
 - `namespace` (String) Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.
 - `pass_host_header` (Boolean) PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.
 - `percent` (Number) Percent defines the part of the traffic to mirror. Supported values: 0 to 100.
-- `port` (String) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
+- `port` (Dynamic) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
 - `response_forwarding` (Attributes) ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client. (see [below for nested schema](#nestedatt--spec--mirroring--mirrors--response_forwarding))
 - `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.
 - `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.
@@ -179,7 +179,7 @@ Optional:
 - `kind` (String) Kind defines the kind of the Service.
 - `namespace` (String) Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.
 - `pass_host_header` (Boolean) PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.
-- `port` (String) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
+- `port` (Dynamic) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
 - `response_forwarding` (Attributes) ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client. (see [below for nested schema](#nestedatt--spec--weighted--services--response_forwarding))
 - `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.
 - `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.

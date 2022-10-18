@@ -966,7 +966,7 @@ Optional:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -990,7 +990,7 @@ Required:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -1374,7 +1374,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -1385,7 +1385,7 @@ Optional:
 Optional:
 
 - `medium` (String)
-- `size_limit` (String)
+- `size_limit` (Dynamic)
 
 
 <a id="nestedatt--spec--agent--volumes--ephemeral"></a>
@@ -1750,7 +1750,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -2432,7 +2432,7 @@ Optional:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -2456,7 +2456,7 @@ Required:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -2554,8 +2554,8 @@ Optional:
 
 Optional:
 
-- `max_surge` (String)
-- `max_unavailable` (String)
+- `max_surge` (Dynamic)
+- `max_unavailable` (Dynamic)
 
 
 
@@ -2805,7 +2805,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -2816,7 +2816,7 @@ Optional:
 Optional:
 
 - `medium` (String)
-- `size_limit` (String)
+- `size_limit` (Dynamic)
 
 
 <a id="nestedatt--spec--all_in_one--volumes--ephemeral"></a>
@@ -3181,7 +3181,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -3868,7 +3868,7 @@ Optional:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -3892,7 +3892,7 @@ Required:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -3982,8 +3982,8 @@ Optional:
 
 Optional:
 
-- `max_surge` (String)
-- `max_unavailable` (String)
+- `max_surge` (Dynamic)
+- `max_unavailable` (Dynamic)
 
 
 
@@ -4233,7 +4233,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -4244,7 +4244,7 @@ Optional:
 Optional:
 
 - `medium` (String)
-- `size_limit` (String)
+- `size_limit` (Dynamic)
 
 
 <a id="nestedatt--spec--collector--volumes--ephemeral"></a>
@@ -4609,7 +4609,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -5363,7 +5363,7 @@ Optional:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -5387,7 +5387,7 @@ Required:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -5477,8 +5477,8 @@ Optional:
 
 Optional:
 
-- `max_surge` (String)
-- `max_unavailable` (String)
+- `max_surge` (Dynamic)
+- `max_unavailable` (Dynamic)
 
 
 
@@ -5728,7 +5728,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -5739,7 +5739,7 @@ Optional:
 Optional:
 
 - `medium` (String)
-- `size_limit` (String)
+- `size_limit` (Dynamic)
 
 
 <a id="nestedatt--spec--ingester--volumes--ephemeral"></a>
@@ -6104,7 +6104,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -6789,7 +6789,7 @@ Optional:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -6813,7 +6813,7 @@ Required:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -7156,7 +7156,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -7167,7 +7167,7 @@ Optional:
 Optional:
 
 - `medium` (String)
-- `size_limit` (String)
+- `size_limit` (Dynamic)
 
 
 <a id="nestedatt--spec--ingress--volumes--ephemeral"></a>
@@ -7532,7 +7532,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -7746,7 +7746,7 @@ Optional:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -7770,7 +7770,7 @@ Required:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -8291,7 +8291,7 @@ Optional:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -8315,7 +8315,7 @@ Required:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -8413,8 +8413,8 @@ Optional:
 
 Optional:
 
-- `max_surge` (String)
-- `max_unavailable` (String)
+- `max_surge` (Dynamic)
+- `max_unavailable` (Dynamic)
 
 
 
@@ -8664,7 +8664,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -8675,7 +8675,7 @@ Optional:
 Optional:
 
 - `medium` (String)
-- `size_limit` (String)
+- `size_limit` (Dynamic)
 
 
 <a id="nestedatt--spec--query--volumes--ephemeral"></a>
@@ -9040,7 +9040,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -10209,7 +10209,7 @@ Optional:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -10233,7 +10233,7 @@ Required:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -10556,7 +10556,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -10567,7 +10567,7 @@ Optional:
 Optional:
 
 - `medium` (String)
-- `size_limit` (String)
+- `size_limit` (Dynamic)
 
 
 <a id="nestedatt--spec--storage--dependencies--volumes--ephemeral"></a>
@@ -10932,7 +10932,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -11135,7 +11135,7 @@ Optional:
 
 Optional:
 
-- `size` (String)
+- `size` (Dynamic)
 - `storage_class_name` (String)
 
 
@@ -11663,7 +11663,7 @@ Optional:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -11687,7 +11687,7 @@ Required:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -12010,7 +12010,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -12021,7 +12021,7 @@ Optional:
 Optional:
 
 - `medium` (String)
-- `size_limit` (String)
+- `size_limit` (Dynamic)
 
 
 <a id="nestedatt--spec--storage--es_index_cleaner--volumes--ephemeral"></a>
@@ -12386,7 +12386,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -13069,7 +13069,7 @@ Optional:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -13093,7 +13093,7 @@ Required:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -13416,7 +13416,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -13427,7 +13427,7 @@ Optional:
 Optional:
 
 - `medium` (String)
-- `size_limit` (String)
+- `size_limit` (Dynamic)
 
 
 <a id="nestedatt--spec--storage--es_rollover--volumes--ephemeral"></a>
@@ -13792,7 +13792,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -14228,7 +14228,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -14239,7 +14239,7 @@ Optional:
 Optional:
 
 - `medium` (String)
-- `size_limit` (String)
+- `size_limit` (Dynamic)
 
 
 <a id="nestedatt--spec--volumes--ephemeral"></a>
@@ -14604,7 +14604,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 

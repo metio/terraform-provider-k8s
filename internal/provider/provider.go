@@ -327,6 +327,8 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewOperatorCryostatIoCryostatV1Beta1Resource,
 		NewOperatorKnativeDevKnativeEventingV1Beta1Resource,
 		NewOperatorKnativeDevKnativeServingV1Beta1Resource,
+		NewOperatorOpenClusterManagementIoClusterManagerV1Resource,
+		NewOperatorOpenClusterManagementIoKlusterletV1Resource,
 		NewOperatorTektonDevTektonResultV1Alpha1Resource,
 		NewOperatorTigeraIoAPIServerV1Resource,
 		NewOperatorTigeraIoImageSetV1Resource,

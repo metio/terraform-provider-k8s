@@ -260,7 +260,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 <a id="nestedatt--spec--servers--env--value_from--secret_key_ref"></a>
@@ -466,8 +466,8 @@ Optional:
 
 Optional:
 
-- `cpu_limits` (String) CPULimits automatically populates the CPU limits across all Couchbase server pods.  This field defaults to '4' CPUs.  Explicitly specifying the CPU limit for a particular server class will override this value.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-- `cpu_requests` (String) CPURequests automatically populates the CPU requests across all Couchbase server pods.  The default value of '2', is the minimum recommended number of CPUs required to run Couchbase Server.  Explicitly specifying the CPU request for a particular server class will override this value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `cpu_limits` (Dynamic) CPULimits automatically populates the CPU limits across all Couchbase server pods.  This field defaults to '4' CPUs.  Explicitly specifying the CPU limit for a particular server class will override this value.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `cpu_requests` (Dynamic) CPURequests automatically populates the CPU requests across all Couchbase server pods.  The default value of '2', is the minimum recommended number of CPUs required to run Couchbase Server.  Explicitly specifying the CPU request for a particular server class will override this value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 - `enabled` (Boolean) Enabled defines whether auto-resource allocation is enabled.
 - `overhead_percent` (Number) OverheadPercent defines the amount of memory above that required for individual services on a pod.  For Couchbase Server this should be approximately 25%.
 
@@ -591,7 +591,7 @@ Optional:
 
 Optional:
 
-- `analytics_service_memory_quota` (String) AnalyticsServiceMemQuota is the amount of memory that should be allocated to the analytics service. This value is per-pod, and only applicable to pods belonging to server classes running the analytics service.  This field must be a quantity greater than or equal to 1Gi.  This field defaults to 1Gi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `analytics_service_memory_quota` (Dynamic) AnalyticsServiceMemQuota is the amount of memory that should be allocated to the analytics service. This value is per-pod, and only applicable to pods belonging to server classes running the analytics service.  This field must be a quantity greater than or equal to 1Gi.  This field defaults to 1Gi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 - `auto_compaction` (Attributes) AutoCompaction allows the configuration of auto-compaction, including on what conditions disk space is reclaimed and when it is allowed to run. (see [below for nested schema](#nestedatt--spec--cluster--auto_compaction))
 - `auto_failover_max_count` (Number) AutoFailoverMaxCount is the maximum number of automatic failovers Couchbase server will allow before not allowing any more.  This field must be between 1-3, default 3.
 - `auto_failover_on_data_disk_issues` (Boolean) AutoFailoverOnDataDiskIssues defines whether Couchbase server should failover a pod if a disk issue was detected.
@@ -600,14 +600,14 @@ Optional:
 - `auto_failover_timeout` (String) AutoFailoverTimeout defines how long Couchbase server will wait between a pod being witnessed as down, until when it will failover the pod.  Couchbase server will only failover pods if it deems it safe to do so, and not result in data loss.  This field must be in the range 5-3600s, defaulting to 120s. More info:  https://golang.org/pkg/time/#ParseDuration
 - `cluster_name` (String) ClusterName defines the name of the cluster, as displayed in the Couchbase UI. By default, the cluster name is that specified in the CouchbaseCluster resource's metadata.
 - `data` (Attributes) Data allows the data service to be configured. (see [below for nested schema](#nestedatt--spec--cluster--data))
-- `data_service_memory_quota` (String) DataServiceMemQuota is the amount of memory that should be allocated to the data service. This value is per-pod, and only applicable to pods belonging to server classes running the data service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-- `eventing_service_memory_quota` (String) EventingServiceMemQuota is the amount of memory that should be allocated to the eventing service. This value is per-pod, and only applicable to pods belonging to server classes running the eventing service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-- `index_service_memory_quota` (String) IndexServiceMemQuota is the amount of memory that should be allocated to the index service. This value is per-pod, and only applicable to pods belonging to server classes running the index service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `data_service_memory_quota` (Dynamic) DataServiceMemQuota is the amount of memory that should be allocated to the data service. This value is per-pod, and only applicable to pods belonging to server classes running the data service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `eventing_service_memory_quota` (Dynamic) EventingServiceMemQuota is the amount of memory that should be allocated to the eventing service. This value is per-pod, and only applicable to pods belonging to server classes running the eventing service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `index_service_memory_quota` (Dynamic) IndexServiceMemQuota is the amount of memory that should be allocated to the index service. This value is per-pod, and only applicable to pods belonging to server classes running the index service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 - `index_storage_setting` (String) DEPRECATED - by indexer. The index storage mode to use for secondary indexing.  This field must be one of 'memory_optimized' or 'plasma', defaulting to 'memory_optimized'.  This field is immutable and cannot be changed unless there are no server classes running the index service in the cluster.
 - `indexer` (Attributes) Indexer allows the indexer to be configured. (see [below for nested schema](#nestedatt--spec--cluster--indexer))
 - `query` (Attributes) Query allows the query service to be configured. (see [below for nested schema](#nestedatt--spec--cluster--query))
-- `query_service_memory_quota` (String) QueryServiceMemQuota is a dummy field.  By default, Couchbase server provides no memory resource constraints for the query service, so this has no effect on Couchbase server.  It is, however, used when the spec.autoResourceAllocation feature is enabled, and is used to define the amount of memory reserved by the query service for use with Kubernetes resource scheduling. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-- `search_service_memory_quota` (String) SearchServiceMemQuota is the amount of memory that should be allocated to the search service. This value is per-pod, and only applicable to pods belonging to server classes running the search service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `query_service_memory_quota` (Dynamic) QueryServiceMemQuota is a dummy field.  By default, Couchbase server provides no memory resource constraints for the query service, so this has no effect on Couchbase server.  It is, however, used when the spec.autoResourceAllocation feature is enabled, and is used to define the amount of memory reserved by the query service for use with Kubernetes resource scheduling. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `search_service_memory_quota` (Dynamic) SearchServiceMemQuota is the amount of memory that should be allocated to the search service. This value is per-pod, and only applicable to pods belonging to server classes running the search service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 
 <a id="nestedatt--spec--cluster--auto_compaction"></a>
 ### Nested Schema for `spec.cluster.auto_compaction`
@@ -626,7 +626,7 @@ Optional:
 Optional:
 
 - `percent` (Number) Percent is the percentage of disk fragmentation after which to decompaction will be triggered. This field must be in the range 2-100, defaulting to 30.
-- `size` (String) Size is the amount of disk framentation, that once exceeded, will trigger decompaction. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `size` (Dynamic) Size is the amount of disk framentation, that once exceeded, will trigger decompaction. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 
 
 <a id="nestedatt--spec--cluster--auto_compaction--time_window"></a>
@@ -645,7 +645,7 @@ Optional:
 Optional:
 
 - `percent` (Number) Percent is the percentage of disk fragmentation after which to decompaction will be triggered. This field must be in the range 2-100, defaulting to 30.
-- `size` (String) Size is the amount of disk framentation, that once exceeded, will trigger decompaction. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `size` (Dynamic) Size is the amount of disk framentation, that once exceeded, will trigger decompaction. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 
 
 
@@ -677,7 +677,7 @@ Optional:
 Optional:
 
 - `backfill_enabled` (Boolean) BackfillEnabled allows the query service to backfill.
-- `temporary_space` (String) TemporarySpace allows the temporary storage used by the query service backfill, per-pod, to be modified.  This field requires 'backfillEnabled' to be set to true in order to have any effect. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `temporary_space` (Dynamic) TemporarySpace allows the temporary storage used by the query service backfill, per-pod, to be modified.  This field requires 'backfillEnabled' to be set to true in order to have any effect. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 - `temporary_space_unlimited` (Boolean) TemporarySpaceUnlimited allows the temporary storage used by the query service backfill, per-pod, to be unconstrained.  This field requires 'backfillEnabled' to be set to true in order to have any effect. This field overrides 'temporarySpace'.
 
 
@@ -738,7 +738,7 @@ Optional:
 Optional:
 
 - `interval` (String) The interval at which to rotate log files, defaults to 15 minutes.
-- `size` (String) Size allows the specification of a rotation size for the log, defaults to 20Mi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `size` (Dynamic) Size allows the specification of a rotation size for the log, defaults to 20Mi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 
 
 

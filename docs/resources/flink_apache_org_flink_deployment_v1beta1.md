@@ -607,7 +607,7 @@ Optional:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 - `resource` (String)
 
 
@@ -684,7 +684,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--working_dir--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
@@ -703,7 +703,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -732,7 +732,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--working_dir--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
@@ -751,7 +751,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -797,7 +797,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers"></a>
@@ -816,7 +816,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -873,7 +873,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers"></a>
@@ -892,7 +892,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -1004,7 +1004,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers"></a>
@@ -1023,7 +1023,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -1142,7 +1142,7 @@ Optional:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 - `resource` (String)
 
 
@@ -1219,7 +1219,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
@@ -1238,7 +1238,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -1267,7 +1267,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
@@ -1286,7 +1286,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -1332,7 +1332,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
@@ -1351,7 +1351,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -1408,7 +1408,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
@@ -1427,7 +1427,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -1539,7 +1539,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
@@ -1558,7 +1558,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -1674,7 +1674,7 @@ Optional:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 - `resource` (String)
 
 
@@ -1751,7 +1751,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
@@ -1770,7 +1770,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -1799,7 +1799,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
@@ -1818,7 +1818,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -1864,7 +1864,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers"></a>
@@ -1883,7 +1883,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -1940,7 +1940,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers"></a>
@@ -1959,7 +1959,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -2071,7 +2071,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers"></a>
@@ -2090,7 +2090,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -2416,7 +2416,7 @@ Optional:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 - `resource` (String)
 
 
@@ -2428,7 +2428,7 @@ Optional:
 Optional:
 
 - `medium` (String)
-- `size_limit` (String)
+- `size_limit` (Dynamic)
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--volumes--ephemeral"></a>
@@ -2776,7 +2776,7 @@ Optional:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 - `resource` (String)
 
 
@@ -3776,7 +3776,7 @@ Optional:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 - `resource` (String)
 
 
@@ -3853,7 +3853,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
@@ -3872,7 +3872,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -3901,7 +3901,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
@@ -3920,7 +3920,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -3966,7 +3966,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--liveness_probe--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--timeout_seconds--http_headers"></a>
@@ -3985,7 +3985,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -4042,7 +4042,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--readiness_probe--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--timeout_seconds--http_headers"></a>
@@ -4061,7 +4061,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -4173,7 +4173,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--startup_probe--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--timeout_seconds--http_headers"></a>
@@ -4192,7 +4192,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -4311,7 +4311,7 @@ Optional:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 - `resource` (String)
 
 
@@ -4388,7 +4388,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
@@ -4407,7 +4407,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -4436,7 +4436,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
@@ -4455,7 +4455,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -4501,7 +4501,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--liveness_probe--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--timeout_seconds--http_headers"></a>
@@ -4520,7 +4520,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -4577,7 +4577,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--readiness_probe--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--timeout_seconds--http_headers"></a>
@@ -4596,7 +4596,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -4708,7 +4708,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--startup_probe--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--timeout_seconds--http_headers"></a>
@@ -4727,7 +4727,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -4843,7 +4843,7 @@ Optional:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 - `resource` (String)
 
 
@@ -4920,7 +4920,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
@@ -4939,7 +4939,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -4968,7 +4968,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--lifecycle--pre_stop--tcp_socket--http_headers"></a>
@@ -4987,7 +4987,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -5033,7 +5033,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--liveness_probe--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--liveness_probe--timeout_seconds--http_headers"></a>
@@ -5052,7 +5052,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -5109,7 +5109,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--readiness_probe--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--readiness_probe--timeout_seconds--http_headers"></a>
@@ -5128,7 +5128,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -5240,7 +5240,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--startup_probe--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--pod_template--spec--volumes--startup_probe--timeout_seconds--http_headers"></a>
@@ -5259,7 +5259,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -5585,7 +5585,7 @@ Optional:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 - `resource` (String)
 
 
@@ -5597,7 +5597,7 @@ Optional:
 Optional:
 
 - `medium` (String)
-- `size_limit` (String)
+- `size_limit` (Dynamic)
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--ephemeral"></a>
@@ -5945,7 +5945,7 @@ Optional:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 - `resource` (String)
 
 
@@ -6944,7 +6944,7 @@ Optional:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 - `resource` (String)
 
 
@@ -7021,7 +7021,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--working_dir--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
@@ -7040,7 +7040,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -7069,7 +7069,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--working_dir--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
@@ -7088,7 +7088,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -7134,7 +7134,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers"></a>
@@ -7153,7 +7153,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -7210,7 +7210,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers"></a>
@@ -7229,7 +7229,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -7341,7 +7341,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--working_dir--timeout_seconds--http_headers"></a>
@@ -7360,7 +7360,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -7479,7 +7479,7 @@ Optional:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 - `resource` (String)
 
 
@@ -7556,7 +7556,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
@@ -7575,7 +7575,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -7604,7 +7604,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
@@ -7623,7 +7623,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -7669,7 +7669,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
@@ -7688,7 +7688,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -7745,7 +7745,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
@@ -7764,7 +7764,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -7876,7 +7876,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--working_dir--timeout_seconds--http_headers"></a>
@@ -7895,7 +7895,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -8011,7 +8011,7 @@ Optional:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 - `resource` (String)
 
 
@@ -8088,7 +8088,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
@@ -8107,7 +8107,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -8136,7 +8136,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--pre_stop--tcp_socket--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--pre_stop--tcp_socket--http_headers"></a>
@@ -8155,7 +8155,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -8201,7 +8201,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers"></a>
@@ -8220,7 +8220,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -8277,7 +8277,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers"></a>
@@ -8296,7 +8296,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -8408,7 +8408,7 @@ Optional:
 - `host` (String)
 - `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers))
 - `path` (String)
-- `port` (String)
+- `port` (Dynamic)
 - `scheme` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--working_dir--timeout_seconds--http_headers"></a>
@@ -8427,7 +8427,7 @@ Optional:
 Optional:
 
 - `host` (String)
-- `port` (String)
+- `port` (Dynamic)
 
 
 
@@ -8753,7 +8753,7 @@ Optional:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 - `resource` (String)
 
 
@@ -8765,7 +8765,7 @@ Optional:
 Optional:
 
 - `medium` (String)
-- `size_limit` (String)
+- `size_limit` (Dynamic)
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--volumes--ephemeral"></a>
@@ -9113,7 +9113,7 @@ Optional:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 - `resource` (String)
 
 

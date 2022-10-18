@@ -104,12 +104,12 @@ Required:
 
 Required:
 
-- `max` (String) Max represents the upper limit for the resources managed by the autoscaler.
-- `min` (String) Min represents the lower limit for the resources managed by the autoscaler.
+- `max` (Dynamic) Max represents the upper limit for the resources managed by the autoscaler.
+- `min` (Dynamic) Min represents the lower limit for the resources managed by the autoscaler.
 
 Optional:
 
-- `requests_to_limits_ratio` (String) RequestsToLimitsRatio allows to customize Kubernetes resource Limit based on the Request.
+- `requests_to_limits_ratio` (Dynamic) RequestsToLimitsRatio allows to customize Kubernetes resource Limit based on the Request.
 
 
 <a id="nestedatt--spec--policies--resources--memory"></a>
@@ -117,12 +117,12 @@ Optional:
 
 Required:
 
-- `max` (String) Max represents the upper limit for the resources managed by the autoscaler.
-- `min` (String) Min represents the lower limit for the resources managed by the autoscaler.
+- `max` (Dynamic) Max represents the upper limit for the resources managed by the autoscaler.
+- `min` (Dynamic) Min represents the lower limit for the resources managed by the autoscaler.
 
 Optional:
 
-- `requests_to_limits_ratio` (String) RequestsToLimitsRatio allows to customize Kubernetes resource Limit based on the Request.
+- `requests_to_limits_ratio` (Dynamic) RequestsToLimitsRatio allows to customize Kubernetes resource Limit based on the Request.
 
 
 <a id="nestedatt--spec--policies--resources--storage"></a>
@@ -130,12 +130,12 @@ Optional:
 
 Required:
 
-- `max` (String) Max represents the upper limit for the resources managed by the autoscaler.
-- `min` (String) Min represents the lower limit for the resources managed by the autoscaler.
+- `max` (Dynamic) Max represents the upper limit for the resources managed by the autoscaler.
+- `min` (Dynamic) Min represents the lower limit for the resources managed by the autoscaler.
 
 Optional:
 
-- `requests_to_limits_ratio` (String) RequestsToLimitsRatio allows to customize Kubernetes resource Limit based on the Request.
+- `requests_to_limits_ratio` (Dynamic) RequestsToLimitsRatio allows to customize Kubernetes resource Limit based on the Request.
 
 
 
