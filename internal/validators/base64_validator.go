@@ -26,7 +26,7 @@ func (validator base64Validator) Description(_ context.Context) string {
 }
 
 func (validator base64Validator) MarkdownDescription(ctx context.Context) string {
-	return validator.MarkdownDescription(ctx)
+	return validator.Description(ctx)
 }
 
 func (validator base64Validator) Validate(ctx context.Context, req tfsdk.ValidateAttributeRequest, resp *tfsdk.ValidateAttributeResponse) {
