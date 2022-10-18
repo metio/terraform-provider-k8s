@@ -239,7 +239,7 @@ type KeycloakOrgKeycloakV1Alpha1GoModel struct {
 						ResourceFieldRef *struct {
 							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+							Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -1486,7 +1486,7 @@ func (r *KeycloakOrgKeycloakV1Alpha1Resource) GetSchema(_ context.Context) (tfsd
 																Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: false,
 																Optional: true,

@@ -122,7 +122,7 @@ type IntegreatlyOrgGrafanaDataSourceV1Alpha1GoModel struct {
 
 				Encrypt *string `tfsdk:"encrypt" yaml:"encrypt,omitempty"`
 
-				EsVersion *string `tfsdk:"es_version" yaml:"esVersion,omitempty"`
+				EsVersion utilities.IntOrString `tfsdk:"es_version" yaml:"esVersion,omitempty"`
 
 				ExemplarTraceIdDestinations *[]struct {
 					DatasourceUid *string `tfsdk:"datasource_uid" yaml:"datasourceUid,omitempty"`
@@ -852,7 +852,7 @@ func (r *IntegreatlyOrgGrafanaDataSourceV1Alpha1Resource) GetSchema(_ context.Co
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: false,
 										Optional: true,

@@ -75,7 +75,7 @@ type HazelcastComManagementCenterV1Alpha1GoModel struct {
 
 			ExistingVolumeClaimName *string `tfsdk:"existing_volume_claim_name" yaml:"existingVolumeClaimName,omitempty"`
 
-			Size *string `tfsdk:"size" yaml:"size,omitempty"`
+			Size utilities.IntOrString `tfsdk:"size" yaml:"size,omitempty"`
 
 			StorageClass *string `tfsdk:"storage_class" yaml:"storageClass,omitempty"`
 		} `tfsdk:"persistence" yaml:"persistence,omitempty"`
@@ -491,7 +491,7 @@ func (r *HazelcastComManagementCenterV1Alpha1Resource) GetSchema(_ context.Conte
 								Description:         "Size of the created PersistentVolumeClaim.",
 								MarkdownDescription: "Size of the created PersistentVolumeClaim.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,

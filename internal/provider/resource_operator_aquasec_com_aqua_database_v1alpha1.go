@@ -315,7 +315,7 @@ type OperatorAquasecComAquaDatabaseV1Alpha1GoModel struct {
 
 					Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 					Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 				} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -329,7 +329,7 @@ type OperatorAquasecComAquaDatabaseV1Alpha1GoModel struct {
 				TcpSocket *struct {
 					Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 				} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -363,7 +363,7 @@ type OperatorAquasecComAquaDatabaseV1Alpha1GoModel struct {
 
 					Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 					Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 				} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -377,7 +377,7 @@ type OperatorAquasecComAquaDatabaseV1Alpha1GoModel struct {
 				TcpSocket *struct {
 					Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 				} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -529,7 +529,7 @@ type OperatorAquasecComAquaDatabaseV1Alpha1GoModel struct {
 						ResourceFieldRef *struct {
 							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+							Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -539,7 +539,7 @@ type OperatorAquasecComAquaDatabaseV1Alpha1GoModel struct {
 				EmptyDir *struct {
 					Medium *string `tfsdk:"medium" yaml:"medium,omitempty"`
 
-					SizeLimit *string `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
+					SizeLimit utilities.IntOrString `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
 				} `tfsdk:"empty_dir" yaml:"emptyDir,omitempty"`
 
 				Ephemeral *struct {
@@ -745,7 +745,7 @@ type OperatorAquasecComAquaDatabaseV1Alpha1GoModel struct {
 								ResourceFieldRef *struct {
 									ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-									Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+									Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 									Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 								} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -2496,7 +2496,7 @@ func (r *OperatorAquasecComAquaDatabaseV1Alpha1Resource) GetSchema(_ context.Con
 												Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 												MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,
@@ -2574,7 +2574,7 @@ func (r *OperatorAquasecComAquaDatabaseV1Alpha1Resource) GetSchema(_ context.Con
 												Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 												MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,
@@ -2766,7 +2766,7 @@ func (r *OperatorAquasecComAquaDatabaseV1Alpha1Resource) GetSchema(_ context.Con
 												Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 												MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,
@@ -2844,7 +2844,7 @@ func (r *OperatorAquasecComAquaDatabaseV1Alpha1Resource) GetSchema(_ context.Con
 												Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 												MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,
@@ -3698,7 +3698,7 @@ func (r *OperatorAquasecComAquaDatabaseV1Alpha1Resource) GetSchema(_ context.Con
 																Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: false,
 																Optional: true,
@@ -3755,7 +3755,7 @@ func (r *OperatorAquasecComAquaDatabaseV1Alpha1Resource) GetSchema(_ context.Con
 												Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
 												MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: false,
 												Optional: true,
@@ -4916,7 +4916,7 @@ func (r *OperatorAquasecComAquaDatabaseV1Alpha1Resource) GetSchema(_ context.Con
 																				Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																				MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: false,
 																				Optional: true,

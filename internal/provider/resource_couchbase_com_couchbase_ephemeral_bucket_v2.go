@@ -68,7 +68,7 @@ type CouchbaseComCouchbaseEphemeralBucketV2GoModel struct {
 
 		MaxTTL *string `tfsdk:"max_ttl" yaml:"maxTTL,omitempty"`
 
-		MemoryQuota *string `tfsdk:"memory_quota" yaml:"memoryQuota,omitempty"`
+		MemoryQuota utilities.IntOrString `tfsdk:"memory_quota" yaml:"memoryQuota,omitempty"`
 
 		MinimumDurability *string `tfsdk:"minimum_durability" yaml:"minimumDurability,omitempty"`
 
@@ -284,7 +284,7 @@ func (r *CouchbaseComCouchbaseEphemeralBucketV2Resource) GetSchema(_ context.Con
 						Description:         "MemoryQuota is a memory limit to the size of a bucket.  When this limit is exceeded, documents will be evicted from memory defined by the eviction policy.  The memory quota is defined per Couchbase pod running the data service.  This field defaults to, and must be greater than or equal to 100Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 						MarkdownDescription: "MemoryQuota is a memory limit to the size of a bucket.  When this limit is exceeded, documents will be evicted from memory defined by the eviction policy.  The memory quota is defined per Couchbase pod running the data service.  This field defaults to, and must be greater than or equal to 100Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-						Type: types.StringType,
+						Type: utilities.IntOrStringType{},
 
 						Required: false,
 						Optional: true,
@@ -292,7 +292,7 @@ func (r *CouchbaseComCouchbaseEphemeralBucketV2Resource) GetSchema(_ context.Con
 
 						Validators: []tfsdk.AttributeValidator{
 
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+							validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 						},
 					},
 

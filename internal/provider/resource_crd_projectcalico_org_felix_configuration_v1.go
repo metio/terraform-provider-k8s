@@ -92,7 +92,7 @@ type CrdProjectcalicoOrgFelixConfigurationV1GoModel struct {
 
 		BpfMapSizeRoute *int64 `tfsdk:"bpf_map_size_route" yaml:"bpfMapSizeRoute,omitempty"`
 
-		BpfPSNATPorts *string `tfsdk:"bpf_psnat_ports" yaml:"bpfPSNATPorts,omitempty"`
+		BpfPSNATPorts utilities.IntOrString `tfsdk:"bpf_psnat_ports" yaml:"bpfPSNATPorts,omitempty"`
 
 		BpfPolicyDebugEnabled *bool `tfsdk:"bpf_policy_debug_enabled" yaml:"bpfPolicyDebugEnabled,omitempty"`
 
@@ -212,7 +212,7 @@ type CrdProjectcalicoOrgFelixConfigurationV1GoModel struct {
 
 		NatOutgoingAddress *string `tfsdk:"nat_outgoing_address" yaml:"natOutgoingAddress,omitempty"`
 
-		NatPortRange *string `tfsdk:"nat_port_range" yaml:"natPortRange,omitempty"`
+		NatPortRange utilities.IntOrString `tfsdk:"nat_port_range" yaml:"natPortRange,omitempty"`
 
 		NetlinkTimeout *string `tfsdk:"netlink_timeout" yaml:"netlinkTimeout,omitempty"`
 
@@ -635,7 +635,7 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Resource) GetSchema(_ context.Co
 						Description:         "BPFPSNATPorts sets the range from which we randomly pick a port if there is a source port collision. This should be within the ephemeral range as defined by RFC 6056 (1024–65535) and preferably outside the  ephemeral ranges used by common operating systems. Linux uses 32768–60999, while others mostly use the IANA defined range 49152–65535. It is not necessarily a problem if this range overlaps with the operating systems. Both ends of the range are inclusive. [Default: 20000:29999]",
 						MarkdownDescription: "BPFPSNATPorts sets the range from which we randomly pick a port if there is a source port collision. This should be within the ephemeral range as defined by RFC 6056 (1024–65535) and preferably outside the  ephemeral ranges used by common operating systems. Linux uses 32768–60999, while others mostly use the IANA defined range 49152–65535. It is not necessarily a problem if this range overlaps with the operating systems. Both ends of the range are inclusive. [Default: 20000:29999]",
 
-						Type: types.StringType,
+						Type: utilities.IntOrStringType{},
 
 						Required: false,
 						Optional: true,
@@ -1302,7 +1302,7 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Resource) GetSchema(_ context.Co
 						Description:         "NATPortRange specifies the range of ports that is used for port mapping when doing outgoing NAT. When unset the default behavior of the network stack is used.",
 						MarkdownDescription: "NATPortRange specifies the range of ports that is used for port mapping when doing outgoing NAT. When unset the default behavior of the network stack is used.",
 
-						Type: types.StringType,
+						Type: utilities.IntOrStringType{},
 
 						Required: false,
 						Optional: true,

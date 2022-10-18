@@ -183,7 +183,7 @@ type MonitoringCoreosComServiceMonitorV1GoModel struct {
 
 			ScrapeTimeout *string `tfsdk:"scrape_timeout" yaml:"scrapeTimeout,omitempty"`
 
-			TargetPort *string `tfsdk:"target_port" yaml:"targetPort,omitempty"`
+			TargetPort utilities.IntOrString `tfsdk:"target_port" yaml:"targetPort,omitempty"`
 
 			TlsConfig *struct {
 				Ca *struct {
@@ -1124,7 +1124,7 @@ func (r *MonitoringCoreosComServiceMonitorV1Resource) GetSchema(_ context.Contex
 								Description:         "Name or number of the target port of the Pod behind the Service, the port must be specified with container port property. Mutually exclusive with port.",
 								MarkdownDescription: "Name or number of the target port of the Pod behind the Service, the port must be specified with container port property. Mutually exclusive with port.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,

@@ -14,6 +14,8 @@
 {{ .GoName }} {{ .GoType }} {{ .BT }}tfsdk:"{{ .TerraformAttributeName }}" yaml:"{{ .Name }},omitempty"{{ .BT }}
 {{ else if eq .GoType "utilities.DynamicNumber" }}
 {{ .GoName }} {{ .GoType }} {{ .BT }}tfsdk:"{{ .TerraformAttributeName }}" yaml:"{{ .Name }},omitempty"{{ .BT }}
+{{ else if eq .GoType "utilities.IntOrString" }}
+{{ .GoName }} {{ .GoType }} {{ .BT }}tfsdk:"{{ .TerraformAttributeName }}" yaml:"{{ .Name }},omitempty"{{ .BT }}
 {{ else }}
 {{ .GoName }} *{{ .GoType }} {{ .BT }}tfsdk:"{{ .TerraformAttributeName }}" yaml:"{{ .Name }},omitempty"{{ .BT }}
 {{ end }}

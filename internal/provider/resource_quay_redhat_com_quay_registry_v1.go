@@ -259,7 +259,7 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 						ResourceFieldRef *struct {
 							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+							Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -278,7 +278,7 @@ type QuayRedhatComQuayRegistryV1GoModel struct {
 
 				Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
 
-				VolumeSize *string `tfsdk:"volume_size" yaml:"volumeSize,omitempty"`
+				VolumeSize utilities.IntOrString `tfsdk:"volume_size" yaml:"volumeSize,omitempty"`
 			} `tfsdk:"overrides" yaml:"overrides,omitempty"`
 		} `tfsdk:"components" yaml:"components,omitempty"`
 
@@ -1572,7 +1572,7 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 																Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: false,
 																Optional: true,
@@ -1679,7 +1679,7 @@ func (r *QuayRedhatComQuayRegistryV1Resource) GetSchema(_ context.Context) (tfsd
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: false,
 										Optional: true,

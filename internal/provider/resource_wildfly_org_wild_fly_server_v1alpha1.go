@@ -83,7 +83,7 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 				ResourceFieldRef *struct {
 					ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-					Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+					Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 					Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 				} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -138,7 +138,7 @@ type WildflyOrgWildFlyServerV1Alpha1GoModel struct {
 			EmptyDir *struct {
 				Medium *string `tfsdk:"medium" yaml:"medium,omitempty"`
 
-				SizeLimit *string `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
+				SizeLimit utilities.IntOrString `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
 			} `tfsdk:"empty_dir" yaml:"emptyDir,omitempty"`
 
 			VolumeClaimTemplate *struct {
@@ -482,7 +482,7 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 												Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 												MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: false,
 												Optional: true,
@@ -798,7 +798,7 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Resource) GetSchema(_ context.Context) (
 										Description:         "Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
 										MarkdownDescription: "Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: false,
 										Optional: true,

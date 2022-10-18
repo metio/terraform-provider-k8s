@@ -59,7 +59,7 @@ type CouchbaseComCouchbaseBackupV2GoModel struct {
 		AutoScaling *struct {
 			IncrementPercent *int64 `tfsdk:"increment_percent" yaml:"incrementPercent,omitempty"`
 
-			Limit *string `tfsdk:"limit" yaml:"limit,omitempty"`
+			Limit utilities.IntOrString `tfsdk:"limit" yaml:"limit,omitempty"`
 
 			ThresholdPercent *int64 `tfsdk:"threshold_percent" yaml:"thresholdPercent,omitempty"`
 		} `tfsdk:"auto_scaling" yaml:"autoScaling,omitempty"`
@@ -112,7 +112,7 @@ type CouchbaseComCouchbaseBackupV2GoModel struct {
 			Views *bool `tfsdk:"views" yaml:"views,omitempty"`
 		} `tfsdk:"services" yaml:"services,omitempty"`
 
-		Size *string `tfsdk:"size" yaml:"size,omitempty"`
+		Size utilities.IntOrString `tfsdk:"size" yaml:"size,omitempty"`
 
 		StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
 
@@ -244,7 +244,7 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) GetSchema(_ context.Context) (tf
 								Description:         "Limit imposes a hard limit on the size we can autoscale to.  When not specified no bounds are imposed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								MarkdownDescription: "Limit imposes a hard limit on the size we can autoscale to.  When not specified no bounds are imposed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -252,7 +252,7 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) GetSchema(_ context.Context) (tf
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+									validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 								},
 							},
 
@@ -562,7 +562,7 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) GetSchema(_ context.Context) (tf
 						Description:         "Size allows the specification of a backup persistent volume, when using volume based backup. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 						MarkdownDescription: "Size allows the specification of a backup persistent volume, when using volume based backup. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-						Type: types.StringType,
+						Type: utilities.IntOrStringType{},
 
 						Required: false,
 						Optional: true,
@@ -570,7 +570,7 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) GetSchema(_ context.Context) (tf
 
 						Validators: []tfsdk.AttributeValidator{
 
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+							validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 						},
 					},
 

@@ -7,7 +7,7 @@ package validators
 
 import (
 	"context"
-	"fmt"
+	"github.com/hashicorp/terraform-plugin-framework-validators/helpers/validatordiag"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"time"
@@ -21,15 +21,15 @@ func DateTime64Validator() tfsdk.AttributeValidator {
 	return &dateTimeValidator{}
 }
 
-func (v dateTimeValidator) Description(ctx context.Context) string {
-	return v.MarkdownDescription(ctx)
+func (validator dateTimeValidator) Description(_ context.Context) string {
+	return "value must be date/time formatted as per RFC3339 5.6"
 }
 
-func (v dateTimeValidator) MarkdownDescription(_ context.Context) string {
-	return "Validates that strings are date/time values formatted as per RFC3339 5.6"
+func (validator dateTimeValidator) MarkdownDescription(ctx context.Context) string {
+	return validator.Description(ctx)
 }
 
-func (v dateTimeValidator) Validate(ctx context.Context, req tfsdk.ValidateAttributeRequest, resp *tfsdk.ValidateAttributeResponse) {
+func (validator dateTimeValidator) Validate(ctx context.Context, req tfsdk.ValidateAttributeRequest, resp *tfsdk.ValidateAttributeResponse) {
 	var value types.String
 
 	diags := tfsdk.ValueAs(ctx, req.AttributeConfig, &value)
@@ -58,10 +58,10 @@ func (v dateTimeValidator) Validate(ctx context.Context, req tfsdk.ValidateAttri
 		}
 	}
 	if !matched {
-		resp.Diagnostics.AddAttributeError(
+		resp.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
 			req.AttributePath,
-			"Invalid Date/Time Value",
-			fmt.Sprintf("The value '%s' is not a valid date/time value", value.Value),
-		)
+			validator.Description(ctx),
+			value.Value,
+		))
 	}
 }

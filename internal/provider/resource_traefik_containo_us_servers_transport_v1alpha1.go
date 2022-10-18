@@ -55,15 +55,15 @@ type TraefikContainoUsServersTransportV1Alpha1GoModel struct {
 		DisableHTTP2 *bool `tfsdk:"disable_http2" yaml:"disableHTTP2,omitempty"`
 
 		ForwardingTimeouts *struct {
-			DialTimeout *string `tfsdk:"dial_timeout" yaml:"dialTimeout,omitempty"`
+			DialTimeout utilities.IntOrString `tfsdk:"dial_timeout" yaml:"dialTimeout,omitempty"`
 
-			IdleConnTimeout *string `tfsdk:"idle_conn_timeout" yaml:"idleConnTimeout,omitempty"`
+			IdleConnTimeout utilities.IntOrString `tfsdk:"idle_conn_timeout" yaml:"idleConnTimeout,omitempty"`
 
-			PingTimeout *string `tfsdk:"ping_timeout" yaml:"pingTimeout,omitempty"`
+			PingTimeout utilities.IntOrString `tfsdk:"ping_timeout" yaml:"pingTimeout,omitempty"`
 
-			ReadIdleTimeout *string `tfsdk:"read_idle_timeout" yaml:"readIdleTimeout,omitempty"`
+			ReadIdleTimeout utilities.IntOrString `tfsdk:"read_idle_timeout" yaml:"readIdleTimeout,omitempty"`
 
-			ResponseHeaderTimeout *string `tfsdk:"response_header_timeout" yaml:"responseHeaderTimeout,omitempty"`
+			ResponseHeaderTimeout utilities.IntOrString `tfsdk:"response_header_timeout" yaml:"responseHeaderTimeout,omitempty"`
 		} `tfsdk:"forwarding_timeouts" yaml:"forwardingTimeouts,omitempty"`
 
 		InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" yaml:"insecureSkipVerify,omitempty"`
@@ -204,7 +204,7 @@ func (r *TraefikContainoUsServersTransportV1Alpha1Resource) GetSchema(_ context.
 								Description:         "DialTimeout is the amount of time to wait until a connection to a backend server can be established.",
 								MarkdownDescription: "DialTimeout is the amount of time to wait until a connection to a backend server can be established.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -215,7 +215,7 @@ func (r *TraefikContainoUsServersTransportV1Alpha1Resource) GetSchema(_ context.
 								Description:         "IdleConnTimeout is the maximum period for which an idle HTTP keep-alive connection will remain open before closing itself.",
 								MarkdownDescription: "IdleConnTimeout is the maximum period for which an idle HTTP keep-alive connection will remain open before closing itself.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -226,7 +226,7 @@ func (r *TraefikContainoUsServersTransportV1Alpha1Resource) GetSchema(_ context.
 								Description:         "PingTimeout is the timeout after which the HTTP/2 connection will be closed if a response to ping is not received.",
 								MarkdownDescription: "PingTimeout is the timeout after which the HTTP/2 connection will be closed if a response to ping is not received.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -237,7 +237,7 @@ func (r *TraefikContainoUsServersTransportV1Alpha1Resource) GetSchema(_ context.
 								Description:         "ReadIdleTimeout is the timeout after which a health check using ping frame will be carried out if no frame is received on the HTTP/2 connection.",
 								MarkdownDescription: "ReadIdleTimeout is the timeout after which a health check using ping frame will be carried out if no frame is received on the HTTP/2 connection.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -248,7 +248,7 @@ func (r *TraefikContainoUsServersTransportV1Alpha1Resource) GetSchema(_ context.
 								Description:         "ResponseHeaderTimeout is the amount of time to wait for a server's response headers after fully writing the request (including its body, if any).",
 								MarkdownDescription: "ResponseHeaderTimeout is the amount of time to wait for a server's response headers after fully writing the request (including its body, if any).",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,

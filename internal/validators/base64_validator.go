@@ -8,7 +8,7 @@ package validators
 import (
 	"context"
 	"encoding/base64"
-	"fmt"
+	"github.com/hashicorp/terraform-plugin-framework-validators/helpers/validatordiag"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
@@ -21,15 +21,15 @@ func Base64Validator() tfsdk.AttributeValidator {
 	return &base64Validator{}
 }
 
-func (v base64Validator) Description(ctx context.Context) string {
-	return v.MarkdownDescription(ctx)
+func (validator base64Validator) Description(_ context.Context) string {
+	return "value must be base64 encoded."
 }
 
-func (v base64Validator) MarkdownDescription(_ context.Context) string {
-	return "Validates that strings hold base64 values."
+func (validator base64Validator) MarkdownDescription(ctx context.Context) string {
+	return validator.MarkdownDescription(ctx)
 }
 
-func (v base64Validator) Validate(ctx context.Context, req tfsdk.ValidateAttributeRequest, resp *tfsdk.ValidateAttributeResponse) {
+func (validator base64Validator) Validate(ctx context.Context, req tfsdk.ValidateAttributeRequest, resp *tfsdk.ValidateAttributeResponse) {
 	var value types.String
 
 	diags := tfsdk.ValueAs(ctx, req.AttributeConfig, &value)
@@ -44,10 +44,10 @@ func (v base64Validator) Validate(ctx context.Context, req tfsdk.ValidateAttribu
 
 	_, err := base64.StdEncoding.DecodeString(value.Value)
 	if err != nil {
-		resp.Diagnostics.AddAttributeError(
+		resp.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
 			req.AttributePath,
-			"Invalid Base64 Value",
-			fmt.Sprintf("The value '%s' is not a valid base64 value", value.Value),
-		)
+			validator.Description(ctx),
+			value.Value,
+		))
 	}
 }

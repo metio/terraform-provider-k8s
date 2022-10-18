@@ -116,7 +116,7 @@ type HazelcastComHazelcastV1Alpha1GoModel struct {
 			Pvc *struct {
 				AccessModes *[]string `tfsdk:"access_modes" yaml:"accessModes,omitempty"`
 
-				RequestStorage *string `tfsdk:"request_storage" yaml:"requestStorage,omitempty"`
+				RequestStorage utilities.IntOrString `tfsdk:"request_storage" yaml:"requestStorage,omitempty"`
 
 				StorageClassName *string `tfsdk:"storage_class_name" yaml:"storageClassName,omitempty"`
 			} `tfsdk:"pvc" yaml:"pvc,omitempty"`
@@ -824,7 +824,7 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 										Description:         "A description of the PVC request capacity.",
 										MarkdownDescription: "A description of the PVC request capacity.",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: false,
 										Optional: true,

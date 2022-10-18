@@ -227,7 +227,7 @@ type OperatorKnativeDevKnativeServingV1Beta1GoModel struct {
 						ResourceFieldRef *struct {
 							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+							Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -343,7 +343,7 @@ type OperatorKnativeDevKnativeServingV1Beta1GoModel struct {
 		} `tfsdk:"manifests" yaml:"manifests,omitempty"`
 
 		PodDisruptionBudgets *[]struct {
-			MinAvailable *string `tfsdk:"min_available" yaml:"minAvailable,omitempty"`
+			MinAvailable utilities.IntOrString `tfsdk:"min_available" yaml:"minAvailable,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"pod_disruption_budgets" yaml:"podDisruptionBudgets,omitempty"`
@@ -1448,7 +1448,7 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 																Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: false,
 																Optional: true,
@@ -2136,7 +2136,7 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Resource) GetSchema(_ context.Co
 								Description:         "An eviction is allowed if at least 'minAvailable' pods selected by 'selector' will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying '100%'.",
 								MarkdownDescription: "An eviction is allowed if at least 'minAvailable' pods selected by 'selector' will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying '100%'.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,

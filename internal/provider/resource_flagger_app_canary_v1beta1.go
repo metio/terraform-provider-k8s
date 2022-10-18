@@ -313,7 +313,7 @@ type FlaggerAppCanaryV1Beta1GoModel struct {
 				Uri *string `tfsdk:"uri" yaml:"uri,omitempty"`
 			} `tfsdk:"rewrite" yaml:"rewrite,omitempty"`
 
-			TargetPort *string `tfsdk:"target_port" yaml:"targetPort,omitempty"`
+			TargetPort utilities.IntOrString `tfsdk:"target_port" yaml:"targetPort,omitempty"`
 
 			Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
 
@@ -2051,7 +2051,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "Container target port name",
 								MarkdownDescription: "Container target port name",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,

@@ -76,7 +76,7 @@ type TraefikContainoUsIngressRouteV1Alpha1GoModel struct {
 
 				PassHostHeader *bool `tfsdk:"pass_host_header" yaml:"passHostHeader,omitempty"`
 
-				Port *string `tfsdk:"port" yaml:"port,omitempty"`
+				Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 				ResponseForwarding *struct {
 					FlushInterval *string `tfsdk:"flush_interval" yaml:"flushInterval,omitempty"`
@@ -372,7 +372,7 @@ func (r *TraefikContainoUsIngressRouteV1Alpha1Resource) GetSchema(_ context.Cont
 										Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
 										MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: false,
 										Optional: true,
