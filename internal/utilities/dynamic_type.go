@@ -79,10 +79,10 @@ func (d Dynamic) IsZero() bool {
 }
 
 func (d Dynamic) MarshalYAML() (interface{}, error) {
-	return asYamlValue(d.Value)
+	return dynamicAsYamlValue(d.Value)
 }
 
-func asYamlValue(value tftypes.Value) (interface{}, error) {
+func dynamicAsYamlValue(value tftypes.Value) (interface{}, error) {
 	if !value.IsKnown() {
 		return nil, nil
 	}
@@ -129,7 +129,7 @@ func asYamlValue(value tftypes.Value) (interface{}, error) {
 			return nil, fmt.Errorf("[%s] cannot extract contents of attribute: %s", value.String(), err)
 		}
 		for _, v := range internalValues {
-			yamlValue, err := asYamlValue(v)
+			yamlValue, err := dynamicAsYamlValue(v)
 			if err != nil {
 				return nil, fmt.Errorf("[%s] cannot convert list element: %s", v.String(), err)
 			}
@@ -144,7 +144,7 @@ func asYamlValue(value tftypes.Value) (interface{}, error) {
 			return nil, fmt.Errorf("[%s] cannot extract contents of attribute: %s", value.String(), err)
 		}
 		for k, v := range internalValues {
-			yamlValue, err := asYamlValue(v)
+			yamlValue, err := dynamicAsYamlValue(v)
 			if err != nil {
 				return nil, fmt.Errorf("[%s] cannot convert list element: %s", v.String(), err)
 			}
