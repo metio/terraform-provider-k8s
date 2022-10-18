@@ -308,7 +308,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 
@@ -319,7 +319,7 @@ Optional:
 Optional:
 
 - `medium` (String) What type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
+- `size_limit` (Dynamic) Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
 
 
 <a id="nestedatt--spec--persistence--extra_volumes--ephemeral"></a>
@@ -662,7 +662,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 

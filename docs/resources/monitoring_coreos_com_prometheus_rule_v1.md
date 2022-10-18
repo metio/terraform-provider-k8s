@@ -77,7 +77,7 @@ Optional:
 
 Required:
 
-- `expr` (String)
+- `expr` (Dynamic)
 
 Optional:
 

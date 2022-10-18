@@ -703,7 +703,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 <a id="nestedatt--spec--env--value_from--secret_key_ref"></a>
@@ -1171,7 +1171,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 <a id="nestedatt--spec--kes--env--value_from--secret_key_ref"></a>
@@ -2097,7 +2097,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 <a id="nestedatt--spec--log--db--topology_spread_constraints--value_from--secret_key_ref"></a>
@@ -2289,7 +2289,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 <a id="nestedatt--spec--log--env--value_from--secret_key_ref"></a>
@@ -2784,7 +2784,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 <a id="nestedatt--spec--prometheus--env--value_from--secret_key_ref"></a>
@@ -3086,7 +3086,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 <a id="nestedatt--spec--side_cars--containers--working_dir--value_from--secret_key_ref"></a>
@@ -3162,7 +3162,7 @@ Optional:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -3186,7 +3186,7 @@ Required:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -3216,7 +3216,7 @@ Optional:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -3240,7 +3240,7 @@ Required:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -3276,7 +3276,7 @@ Optional:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -3300,7 +3300,7 @@ Required:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -3350,7 +3350,7 @@ Optional:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -3374,7 +3374,7 @@ Required:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -3478,7 +3478,7 @@ Optional:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -3502,7 +3502,7 @@ Required:
 
 Required:
 
-- `port` (String)
+- `port` (Dynamic)
 
 Optional:
 
@@ -3863,7 +3863,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 
@@ -3874,7 +3874,7 @@ Optional:
 Optional:
 
 - `medium` (String)
-- `size_limit` (String)
+- `size_limit` (Dynamic)
 
 
 <a id="nestedatt--spec--side_cars--volumes--ephemeral"></a>
@@ -4226,7 +4226,7 @@ Required:
 Optional:
 
 - `container_name` (String)
-- `divisor` (String)
+- `divisor` (Dynamic)
 
 
 

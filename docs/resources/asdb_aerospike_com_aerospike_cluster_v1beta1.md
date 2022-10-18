@@ -876,7 +876,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 <a id="nestedatt--spec--pod_spec--init_containers--working_dir--value_from--secret_key_ref"></a>
@@ -952,7 +952,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container.
+- `port` (Dynamic) Name or number of the port to access on the container.
 
 Optional:
 
@@ -976,7 +976,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container.
+- `port` (Dynamic) Number or name of the port to access on the container.
 
 Optional:
 
@@ -1006,7 +1006,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container.
+- `port` (Dynamic) Name or number of the port to access on the container.
 
 Optional:
 
@@ -1030,7 +1030,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container.
+- `port` (Dynamic) Number or name of the port to access on the container.
 
 Optional:
 
@@ -1067,7 +1067,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container.
+- `port` (Dynamic) Name or number of the port to access on the container.
 
 Optional:
 
@@ -1091,7 +1091,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container.
+- `port` (Dynamic) Number or name of the port to access on the container.
 
 Optional:
 
@@ -1142,7 +1142,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container.
+- `port` (Dynamic) Name or number of the port to access on the container.
 
 Optional:
 
@@ -1166,7 +1166,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container.
+- `port` (Dynamic) Number or name of the port to access on the container.
 
 Optional:
 
@@ -1271,7 +1271,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container.
+- `port` (Dynamic) Name or number of the port to access on the container.
 
 Optional:
 
@@ -1295,7 +1295,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container.
+- `port` (Dynamic) Number or name of the port to access on the container.
 
 Optional:
 
@@ -1485,7 +1485,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 <a id="nestedatt--spec--pod_spec--sidecars--working_dir--value_from--secret_key_ref"></a>
@@ -1561,7 +1561,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container.
+- `port` (Dynamic) Name or number of the port to access on the container.
 
 Optional:
 
@@ -1585,7 +1585,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container.
+- `port` (Dynamic) Number or name of the port to access on the container.
 
 Optional:
 
@@ -1615,7 +1615,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container.
+- `port` (Dynamic) Name or number of the port to access on the container.
 
 Optional:
 
@@ -1639,7 +1639,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container.
+- `port` (Dynamic) Number or name of the port to access on the container.
 
 Optional:
 
@@ -1676,7 +1676,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container.
+- `port` (Dynamic) Name or number of the port to access on the container.
 
 Optional:
 
@@ -1700,7 +1700,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container.
+- `port` (Dynamic) Number or name of the port to access on the container.
 
 Optional:
 
@@ -1751,7 +1751,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container.
+- `port` (Dynamic) Name or number of the port to access on the container.
 
 Optional:
 
@@ -1775,7 +1775,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container.
+- `port` (Dynamic) Number or name of the port to access on the container.
 
 Optional:
 
@@ -1880,7 +1880,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container.
+- `port` (Dynamic) Name or number of the port to access on the container.
 
 Optional:
 
@@ -1904,7 +1904,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container.
+- `port` (Dynamic) Number or name of the port to access on the container.
 
 Optional:
 
@@ -2541,7 +2541,7 @@ Optional:
 Optional:
 
 - `medium` (String) What type of storage medium should back this directory.
-- `size_limit` (String) Total amount of local storage required for this EmptyDir volume.
+- `size_limit` (Dynamic) Total amount of local storage required for this EmptyDir volume.
 
 
 <a id="nestedatt--spec--rack_config--racks--zone--volumes--wipe_method--persistent_volume"></a>
@@ -2549,7 +2549,7 @@ Optional:
 
 Required:
 
-- `size` (String) Size of volume.
+- `size` (Dynamic) Size of volume.
 - `storage_class` (String) StorageClass should be pre-created by user.
 - `volume_mode` (String) VolumeMode specifies if the volume is block/raw or a filesystem.
 
@@ -3180,7 +3180,7 @@ Optional:
 Optional:
 
 - `medium` (String) What type of storage medium should back this directory.
-- `size_limit` (String) Total amount of local storage required for this EmptyDir volume.
+- `size_limit` (Dynamic) Total amount of local storage required for this EmptyDir volume.
 
 
 <a id="nestedatt--spec--rack_config--racks--zone--volumes--wipe_method--persistent_volume"></a>
@@ -3188,7 +3188,7 @@ Optional:
 
 Required:
 
-- `size` (String) Size of volume.
+- `size` (Dynamic) Size of volume.
 - `storage_class` (String) StorageClass should be pre-created by user.
 - `volume_mode` (String) VolumeMode specifies if the volume is block/raw or a filesystem.
 
@@ -3445,7 +3445,7 @@ Optional:
 Optional:
 
 - `medium` (String) What type of storage medium should back this directory.
-- `size_limit` (String) Total amount of local storage required for this EmptyDir volume.
+- `size_limit` (Dynamic) Total amount of local storage required for this EmptyDir volume.
 
 
 <a id="nestedatt--spec--storage--volumes--wipe_method--persistent_volume"></a>
@@ -3453,7 +3453,7 @@ Optional:
 
 Required:
 
-- `size` (String) Size of volume.
+- `size` (Dynamic) Size of volume.
 - `storage_class` (String) StorageClass should be pre-created by user.
 - `volume_mode` (String) VolumeMode specifies if the volume is block/raw or a filesystem.
 

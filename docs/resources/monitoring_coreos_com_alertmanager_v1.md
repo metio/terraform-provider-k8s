@@ -868,7 +868,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 <a id="nestedatt--spec--containers--env--value_from--secret_key_ref"></a>
@@ -944,7 +944,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -968,7 +968,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -998,7 +998,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1022,7 +1022,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1072,7 +1072,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1096,7 +1096,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1160,7 +1160,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1184,7 +1184,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1303,7 +1303,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1327,7 +1327,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1466,7 +1466,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 <a id="nestedatt--spec--init_containers--env--value_from--secret_key_ref"></a>
@@ -1542,7 +1542,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1566,7 +1566,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1596,7 +1596,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1620,7 +1620,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1670,7 +1670,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1694,7 +1694,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1758,7 +1758,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1782,7 +1782,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1901,7 +1901,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1925,7 +1925,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -2054,7 +2054,7 @@ Optional:
 Optional:
 
 - `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
+- `size_limit` (Dynamic) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
 
 
 <a id="nestedatt--spec--storage--ephemeral"></a>
@@ -2559,7 +2559,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 
@@ -2570,7 +2570,7 @@ Optional:
 Optional:
 
 - `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
+- `size_limit` (Dynamic) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
 
 
 <a id="nestedatt--spec--volumes--ephemeral"></a>
@@ -2923,7 +2923,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 

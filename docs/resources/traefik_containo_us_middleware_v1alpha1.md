@@ -137,10 +137,10 @@ Optional:
 
 Optional:
 
-- `check_period` (String) CheckPeriod is the interval between successive checks of the circuit breaker condition (when in standby state).
+- `check_period` (Dynamic) CheckPeriod is the interval between successive checks of the circuit breaker condition (when in standby state).
 - `expression` (String) Expression is the condition that triggers the tripped state.
-- `fallback_duration` (String) FallbackDuration is the duration for which the circuit breaker will wait before trying to recover (from a tripped state).
-- `recovery_duration` (String) RecoveryDuration is the duration for which the circuit breaker will try to recover (as soon as it is in recovering state).
+- `fallback_duration` (Dynamic) FallbackDuration is the duration for which the circuit breaker will wait before trying to recover (from a tripped state).
+- `recovery_duration` (Dynamic) RecoveryDuration is the duration for which the circuit breaker will try to recover (as soon as it is in recovering state).
 
 
 <a id="nestedatt--spec--compress"></a>
@@ -192,7 +192,7 @@ Optional:
 - `kind` (String) Kind defines the kind of the Service.
 - `namespace` (String) Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.
 - `pass_host_header` (Boolean) PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.
-- `port` (String) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
+- `port` (Dynamic) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
 - `response_forwarding` (Attributes) ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client. (see [below for nested schema](#nestedatt--spec--errors--service--response_forwarding))
 - `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.
 - `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.
@@ -396,7 +396,7 @@ Optional:
 
 - `average` (Number) Average is the maximum rate, by default in requests/s, allowed for the given source. It defaults to 0, which means no rate limiting. The rate is actually defined by dividing Average by Period. So for a rate below 1req/s, one needs to define a Period larger than a second.
 - `burst` (Number) Burst is the maximum number of requests allowed to arrive in the same arbitrarily small period of time. It defaults to 1.
-- `period` (String) Period, in combination with Average, defines the actual maximum rate, such as: r = Average / Period. It defaults to a second.
+- `period` (Dynamic) Period, in combination with Average, defines the actual maximum rate, such as: r = Average / Period. It defaults to a second.
 - `source_criterion` (Attributes) SourceCriterion defines what criterion is used to group requests as originating from a common source. If several strategies are defined at the same time, an error will be raised. If none are set, the default is to use the request's remote address field (as an ipStrategy). (see [below for nested schema](#nestedatt--spec--rate_limit--source_criterion))
 
 <a id="nestedatt--spec--rate_limit--source_criterion"></a>
@@ -462,7 +462,7 @@ Optional:
 Optional:
 
 - `attempts` (Number) Attempts defines how many times the request should be retried.
-- `initial_interval` (String) InitialInterval defines the first wait time in the exponential backoff series. The maximum interval is calculated as twice the initialInterval. If unspecified, requests will be retried immediately. The value of initialInterval should be provided in seconds or as a valid duration format, see https://pkg.go.dev/time#ParseDuration.
+- `initial_interval` (Dynamic) InitialInterval defines the first wait time in the exponential backoff series. The maximum interval is calculated as twice the initialInterval. If unspecified, requests will be retried immediately. The value of initialInterval should be provided in seconds or as a valid duration format, see https://pkg.go.dev/time#ParseDuration.
 
 
 <a id="nestedatt--spec--strip_prefix"></a>

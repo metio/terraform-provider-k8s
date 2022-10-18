@@ -59,7 +59,7 @@ Optional:
 Optional:
 
 - `enable_flush` (Boolean) EnableFlush defines whether a client can delete all documents in a bucket. This field defaults to false.
-- `memory_quota` (String) MemoryQuota is a memory limit to the size of a bucket. The memory quota is defined per Couchbase pod running the data service.  This field defaults to, and must be greater than or equal to 100Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `memory_quota` (Dynamic) MemoryQuota is a memory limit to the size of a bucket. The memory quota is defined per Couchbase pod running the data service.  This field defaults to, and must be greater than or equal to 100Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 - `name` (String) Name is the name of the bucket within Couchbase server.  By default the Operator will use the 'metadata.name' field to define the bucket name.  The 'metadata.name' field only supports a subset of the supported character set.  When specified, this field overrides 'metadata.name'.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.
 
 

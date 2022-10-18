@@ -104,7 +104,7 @@ Optional:
 - `relabelings` (Attributes List) RelabelConfigs to apply to samples before scraping. Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--relabelings))
 - `scheme` (String) HTTP scheme to use for scraping.
 - `scrape_timeout` (String) Timeout after which the scrape is ended If not specified, the Prometheus global scrape interval is used.
-- `target_port` (String) Deprecated: Use 'port' instead.
+- `target_port` (Dynamic) Deprecated: Use 'port' instead.
 - `tls_config` (Attributes) TLS configuration to use when scraping the endpoint. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--tls_config))
 
 <a id="nestedatt--spec--pod_metrics_endpoints--authorization"></a>

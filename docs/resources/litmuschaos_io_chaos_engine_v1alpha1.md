@@ -205,7 +205,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 <a id="nestedatt--spec--experiments--spec--probe--env--value_from--secret_key_ref"></a>

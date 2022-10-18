@@ -83,8 +83,8 @@ Optional:
 - `ip_version` (Number) IPVersion is an optional field that restricts the rule to only match a specific IP version.
 - `metadata` (Attributes) Metadata contains additional information for this rule (see [below for nested schema](#nestedatt--spec--egress--metadata))
 - `not_icmp` (Attributes) NotICMP is the negated version of the ICMP field. (see [below for nested schema](#nestedatt--spec--egress--not_icmp))
-- `not_protocol` (String) NotProtocol is the negated version of the Protocol field.
-- `protocol` (String) Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols).  Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.
+- `not_protocol` (Dynamic) NotProtocol is the negated version of the Protocol field.
+- `protocol` (Dynamic) Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols).  Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.
 - `source` (Attributes) Source contains the match criteria that apply to source entity. (see [below for nested schema](#nestedatt--spec--egress--source))
 
 <a id="nestedatt--spec--egress--destination"></a>
@@ -215,8 +215,8 @@ Optional:
 - `ip_version` (Number) IPVersion is an optional field that restricts the rule to only match a specific IP version.
 - `metadata` (Attributes) Metadata contains additional information for this rule (see [below for nested schema](#nestedatt--spec--ingress--metadata))
 - `not_icmp` (Attributes) NotICMP is the negated version of the ICMP field. (see [below for nested schema](#nestedatt--spec--ingress--not_icmp))
-- `not_protocol` (String) NotProtocol is the negated version of the Protocol field.
-- `protocol` (String) Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols).  Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.
+- `not_protocol` (Dynamic) NotProtocol is the negated version of the Protocol field.
+- `protocol` (Dynamic) Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols).  Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.
 - `source` (Attributes) Source contains the match criteria that apply to source entity. (see [below for nested schema](#nestedatt--spec--ingress--source))
 
 <a id="nestedatt--spec--ingress--destination"></a>

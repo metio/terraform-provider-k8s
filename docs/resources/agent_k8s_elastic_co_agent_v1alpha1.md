@@ -294,7 +294,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 <a id="nestedatt--spec--daemon_set--pod_template--spec--containers--working_dir--value_from--secret_key_ref"></a>
@@ -370,7 +370,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -394,7 +394,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -424,7 +424,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -448,7 +448,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -498,7 +498,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -522,7 +522,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -586,7 +586,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -610,7 +610,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -729,7 +729,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -753,7 +753,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1269,7 +1269,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 <a id="nestedatt--spec--daemon_set--pod_template--spec--ephemeral_containers--working_dir--value_from--secret_key_ref"></a>
@@ -1345,7 +1345,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1369,7 +1369,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1399,7 +1399,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1423,7 +1423,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1473,7 +1473,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1497,7 +1497,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1561,7 +1561,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1585,7 +1585,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1704,7 +1704,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1728,7 +1728,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1867,7 +1867,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 <a id="nestedatt--spec--daemon_set--pod_template--spec--init_containers--working_dir--value_from--secret_key_ref"></a>
@@ -1943,7 +1943,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1967,7 +1967,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -1997,7 +1997,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -2021,7 +2021,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -2071,7 +2071,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -2095,7 +2095,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -2159,7 +2159,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -2183,7 +2183,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -2302,7 +2302,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -2326,7 +2326,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -2706,7 +2706,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 
@@ -2717,7 +2717,7 @@ Optional:
 Optional:
 
 - `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
+- `size_limit` (Dynamic) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
 
 
 <a id="nestedatt--spec--daemon_set--pod_template--spec--volumes--ephemeral"></a>
@@ -3082,7 +3082,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 
@@ -3269,8 +3269,8 @@ Optional:
 
 Optional:
 
-- `max_surge` (String) The maximum number of nodes with an existing available DaemonSet pod that can have an updated DaemonSet pod during during an update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up to a minimum of 1. Default value is 0. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their a new pod created before the old pod is marked as deleted. The update starts by launching new pods on 30% of nodes. Once an updated pod is available (Ready for at least minReadySeconds) the old DaemonSet pod on that node is marked deleted. If the old pod becomes unavailable for any reason (Ready transitions to false, is evicted, or is drained) an updated pod is immediatedly created on that node without considering surge limits. Allowing surge implies the possibility that the resources consumed by the daemonset on any given node can double if the readiness check fails, and so resource intensive daemonsets should take into account that they may cause evictions during disruption.
-- `max_unavailable` (String) The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0 if MaxSurge is 0 Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update.
+- `max_surge` (Dynamic) The maximum number of nodes with an existing available DaemonSet pod that can have an updated DaemonSet pod during during an update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up to a minimum of 1. Default value is 0. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their a new pod created before the old pod is marked as deleted. The update starts by launching new pods on 30% of nodes. Once an updated pod is available (Ready for at least minReadySeconds) the old DaemonSet pod on that node is marked deleted. If the old pod becomes unavailable for any reason (Ready transitions to false, is evicted, or is drained) an updated pod is immediatedly created on that node without considering surge limits. Allowing surge implies the possibility that the resources consumed by the daemonset on any given node can double if the readiness check fails, and so resource intensive daemonsets should take into account that they may cause evictions during disruption.
+- `max_unavailable` (Dynamic) The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0 if MaxSurge is 0 Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update.
 
 
 
@@ -3438,7 +3438,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 <a id="nestedatt--spec--deployment--pod_template--spec--containers--working_dir--value_from--secret_key_ref"></a>
@@ -3514,7 +3514,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -3538,7 +3538,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -3568,7 +3568,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -3592,7 +3592,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -3642,7 +3642,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -3666,7 +3666,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -3730,7 +3730,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -3754,7 +3754,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -3873,7 +3873,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -3897,7 +3897,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -4413,7 +4413,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 <a id="nestedatt--spec--deployment--pod_template--spec--ephemeral_containers--working_dir--value_from--secret_key_ref"></a>
@@ -4489,7 +4489,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -4513,7 +4513,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -4543,7 +4543,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -4567,7 +4567,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -4617,7 +4617,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -4641,7 +4641,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -4705,7 +4705,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -4729,7 +4729,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -4848,7 +4848,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -4872,7 +4872,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -5011,7 +5011,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 <a id="nestedatt--spec--deployment--pod_template--spec--init_containers--working_dir--value_from--secret_key_ref"></a>
@@ -5087,7 +5087,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -5111,7 +5111,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -5141,7 +5141,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -5165,7 +5165,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -5215,7 +5215,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -5239,7 +5239,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -5303,7 +5303,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -5327,7 +5327,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -5446,7 +5446,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -5470,7 +5470,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -5850,7 +5850,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 
@@ -5861,7 +5861,7 @@ Optional:
 Optional:
 
 - `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
+- `size_limit` (Dynamic) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
 
 
 <a id="nestedatt--spec--deployment--pod_template--spec--volumes--ephemeral"></a>
@@ -6226,7 +6226,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 
@@ -6413,8 +6413,8 @@ Optional:
 
 Optional:
 
-- `max_surge` (String) The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%. Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods.
-- `max_unavailable` (String) The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 25%. Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired pods immediately when the rolling update starts. Once new pods are ready, old ReplicaSet can be scaled down further, followed by scaling up the new ReplicaSet, ensuring that the total number of pods available at all times during the update is at least 70% of desired pods.
+- `max_surge` (Dynamic) The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%. Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods.
+- `max_unavailable` (Dynamic) The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 25%. Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired pods immediately when the rolling update starts. Once new pods are ready, old ReplicaSet can be scaled down further, followed by scaling up the new ReplicaSet, ensuring that the total number of pods available at all times during the update is at least 70% of desired pods.
 
 
 
@@ -6508,7 +6508,7 @@ Optional:
 - `name` (String) The name of this port within the service. This must be a DNS_LABEL. All ports within a ServiceSpec must have unique names. When considering the endpoints for a Service, this must match the 'name' field in the EndpointPort. Optional if only one ServicePort is defined on this service.
 - `node_port` (Number) The port on each node on which this service is exposed when type is NodePort or LoadBalancer.  Usually assigned by the system. If a value is specified, in-range, and not in use it will be used, otherwise the operation will fail.  If not specified, a port will be allocated if this Service requires one.  If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type from NodePort to ClusterIP). More info: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 - `protocol` (String) The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'. Default is TCP.
-- `target_port` (String) Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. If this is a string, it will be looked up as a named port in the target Pod's container ports. If this is not specified, the value of the 'port' field is used (an identity map). This field is ignored for services with clusterIP=None, and should be omitted or set equal to the 'port' field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
+- `target_port` (Dynamic) Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. If this is a string, it will be looked up as a named port in the target Pod's container ports. If this is not specified, the value of the 'port' field is used (an identity map). This field is ignored for services with clusterIP=None, and should be omitted or set equal to the 'port' field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
 
 
 <a id="nestedatt--spec--http--service--spec--session_affinity_config"></a>

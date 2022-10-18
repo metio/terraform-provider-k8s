@@ -103,7 +103,7 @@ Optional:
 
 - `enabled` (Boolean) When true, MC will use a PersistentVolumeClaim to store data.
 - `existing_volume_claim_name` (String) Name of the PersistentVolumeClaim MC will use for persistence. If not empty, MC will use the existing claim instead of creating a new one.
-- `size` (String) Size of the created PersistentVolumeClaim.
+- `size` (Dynamic) Size of the created PersistentVolumeClaim.
 - `storage_class` (String) StorageClass from which PersistentVolumeClaim will be created.
 
 

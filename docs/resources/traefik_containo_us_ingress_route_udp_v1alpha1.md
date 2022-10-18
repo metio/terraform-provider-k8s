@@ -76,7 +76,7 @@ Optional:
 Required:
 
 - `name` (String) Name defines the name of the referenced Kubernetes Service.
-- `port` (String) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
+- `port` (Dynamic) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
 
 Optional:
 

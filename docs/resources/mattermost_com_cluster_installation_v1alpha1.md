@@ -593,7 +593,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -617,7 +617,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -682,7 +682,7 @@ Required:
 Optional:
 
 - `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `divisor` (Dynamic) Specifies the output format of the exposed resources, defaults to '1'
 
 
 <a id="nestedatt--spec--mattermost_env--value_from--secret_key_ref"></a>
@@ -763,7 +763,7 @@ Optional:
 
 Required:
 
-- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
@@ -787,7 +787,7 @@ Required:
 
 Required:
 
-- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+- `port` (Dynamic) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
 
 Optional:
 
