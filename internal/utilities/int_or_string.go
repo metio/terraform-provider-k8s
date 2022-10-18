@@ -95,10 +95,10 @@ func (d IntOrString) IsZero() bool {
 }
 
 func (d IntOrString) MarshalYAML() (interface{}, error) {
-	return asYamlIntOrString(d.Value)
+	return intOrStringAsYaml(d.Value)
 }
 
-func asYamlIntOrString(value tftypes.Value) (interface{}, error) {
+func intOrStringAsYaml(value tftypes.Value) (interface{}, error) {
 	if !value.IsKnown() {
 		return nil, nil
 	}
@@ -154,6 +154,12 @@ func (d IntOrString) Equal(value attr.Value) bool {
 		return false
 	}
 	if d.Null != other.Null {
+		return false
+	}
+	if d.StringType != other.StringType {
+		return false
+	}
+	if d.NumberType != other.NumberType {
 		return false
 	}
 	return d.Value.Equal(other.Value)

@@ -82,10 +82,10 @@ func (d DynamicNumber) IsZero() bool {
 }
 
 func (d DynamicNumber) MarshalYAML() (interface{}, error) {
-	return asYamlNumber(d.Value)
+	return numberAsYamlValue(d.Value)
 }
 
-func asYamlNumber(value tftypes.Value) (interface{}, error) {
+func numberAsYamlValue(value tftypes.Value) (interface{}, error) {
 	if !value.IsKnown() {
 		return nil, nil
 	}

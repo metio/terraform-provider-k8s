@@ -15,7 +15,7 @@ import (
 	"testing"
 )
 
-func TestDynamicTypeTerraformType_Empty(t *testing.T) {
+func TestDynamicTypeTerraformType(t *testing.T) {
 	t.Parallel()
 	result := DynamicType{}.TerraformType(context.Background())
 	if diff := cmp.Diff(result, tftypes.DynamicPseudoType); diff != "" {
@@ -91,7 +91,6 @@ func TestDynamicTypeValueFromTerraform(t *testing.T) {
 	}
 
 	for name, test := range tests {
-		name, test := name, test
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
@@ -196,13 +195,13 @@ func TestDynamicTypeToTerraformValue(t *testing.T) {
 			receiver: Dynamic{
 				Unknown: true,
 			},
-			expected: tftypes.NewValue(nil, nil),
+			expected: tftypes.NewValue(tftypes.DynamicPseudoType, tftypes.UnknownValue),
 		},
 		"null": {
 			receiver: Dynamic{
 				Null: true,
 			},
-			expected: tftypes.NewValue(nil, nil),
+			expected: tftypes.NewValue(tftypes.DynamicPseudoType, nil),
 		},
 		"partial-unknown": {
 			receiver: Dynamic{
@@ -487,8 +486,6 @@ func TestDynamicTypeToTerraformValue(t *testing.T) {
 	}
 
 	for name, test := range tests {
-		name, test := name, test
-
 		t.Run(name, func(t *testing.T) {
 			got, gotErr := test.receiver.ToTerraformValue(context.Background())
 
@@ -553,7 +550,7 @@ func TestDynamicTypeYamlMarshaller_Object(t *testing.T) {
 	if err != nil {
 		return
 	}
-	if diff := cmp.Diff("", string(marshal)); diff != "" {
+	if diff := cmp.Diff("a:\n    - hello\n    - world\nb: woohoo\nc: true\nd: 1234\ne:\n    name: testing123\nf:\n    - hello\n    - world\n", string(marshal)); diff != "" {
 		t.Errorf("unexpected result (-expected, +got): %s", diff)
 	}
 }
