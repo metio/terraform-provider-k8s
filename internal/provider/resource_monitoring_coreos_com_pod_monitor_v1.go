@@ -199,7 +199,7 @@ type MonitoringCoreosComPodMonitorV1GoModel struct {
 
 			ScrapeTimeout *string `tfsdk:"scrape_timeout" yaml:"scrapeTimeout,omitempty"`
 
-			TargetPort *string `tfsdk:"target_port" yaml:"targetPort,omitempty"`
+			TargetPort utilities.IntOrString `tfsdk:"target_port" yaml:"targetPort,omitempty"`
 
 			TlsConfig *struct {
 				Ca *struct {
@@ -1208,7 +1208,7 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 								Description:         "Deprecated: Use 'port' instead.",
 								MarkdownDescription: "Deprecated: Use 'port' instead.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,

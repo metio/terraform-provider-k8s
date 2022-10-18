@@ -63,19 +63,19 @@ type AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1GoModel struct {
 
 			Resources *struct {
 				Cpu *struct {
-					Max *string `tfsdk:"max" yaml:"max,omitempty"`
+					Max utilities.IntOrString `tfsdk:"max" yaml:"max,omitempty"`
 
-					Min *string `tfsdk:"min" yaml:"min,omitempty"`
+					Min utilities.IntOrString `tfsdk:"min" yaml:"min,omitempty"`
 
-					RequestsToLimitsRatio *string `tfsdk:"requests_to_limits_ratio" yaml:"requestsToLimitsRatio,omitempty"`
+					RequestsToLimitsRatio utilities.IntOrString `tfsdk:"requests_to_limits_ratio" yaml:"requestsToLimitsRatio,omitempty"`
 				} `tfsdk:"cpu" yaml:"cpu,omitempty"`
 
 				Memory *struct {
-					Max *string `tfsdk:"max" yaml:"max,omitempty"`
+					Max utilities.IntOrString `tfsdk:"max" yaml:"max,omitempty"`
 
-					Min *string `tfsdk:"min" yaml:"min,omitempty"`
+					Min utilities.IntOrString `tfsdk:"min" yaml:"min,omitempty"`
 
-					RequestsToLimitsRatio *string `tfsdk:"requests_to_limits_ratio" yaml:"requestsToLimitsRatio,omitempty"`
+					RequestsToLimitsRatio utilities.IntOrString `tfsdk:"requests_to_limits_ratio" yaml:"requestsToLimitsRatio,omitempty"`
 				} `tfsdk:"memory" yaml:"memory,omitempty"`
 
 				NodeCount *struct {
@@ -85,11 +85,11 @@ type AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1GoModel struct {
 				} `tfsdk:"node_count" yaml:"nodeCount,omitempty"`
 
 				Storage *struct {
-					Max *string `tfsdk:"max" yaml:"max,omitempty"`
+					Max utilities.IntOrString `tfsdk:"max" yaml:"max,omitempty"`
 
-					Min *string `tfsdk:"min" yaml:"min,omitempty"`
+					Min utilities.IntOrString `tfsdk:"min" yaml:"min,omitempty"`
 
-					RequestsToLimitsRatio *string `tfsdk:"requests_to_limits_ratio" yaml:"requestsToLimitsRatio,omitempty"`
+					RequestsToLimitsRatio utilities.IntOrString `tfsdk:"requests_to_limits_ratio" yaml:"requestsToLimitsRatio,omitempty"`
 				} `tfsdk:"storage" yaml:"storage,omitempty"`
 			} `tfsdk:"resources" yaml:"resources,omitempty"`
 
@@ -266,7 +266,7 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Resource) GetSche
 												Description:         "Max represents the upper limit for the resources managed by the autoscaler.",
 												MarkdownDescription: "Max represents the upper limit for the resources managed by the autoscaler.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,
@@ -277,7 +277,7 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Resource) GetSche
 												Description:         "Min represents the lower limit for the resources managed by the autoscaler.",
 												MarkdownDescription: "Min represents the lower limit for the resources managed by the autoscaler.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,
@@ -288,7 +288,7 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Resource) GetSche
 												Description:         "RequestsToLimitsRatio allows to customize Kubernetes resource Limit based on the Request.",
 												MarkdownDescription: "RequestsToLimitsRatio allows to customize Kubernetes resource Limit based on the Request.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: false,
 												Optional: true,
@@ -311,7 +311,7 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Resource) GetSche
 												Description:         "Max represents the upper limit for the resources managed by the autoscaler.",
 												MarkdownDescription: "Max represents the upper limit for the resources managed by the autoscaler.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,
@@ -322,7 +322,7 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Resource) GetSche
 												Description:         "Min represents the lower limit for the resources managed by the autoscaler.",
 												MarkdownDescription: "Min represents the lower limit for the resources managed by the autoscaler.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,
@@ -333,7 +333,7 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Resource) GetSche
 												Description:         "RequestsToLimitsRatio allows to customize Kubernetes resource Limit based on the Request.",
 												MarkdownDescription: "RequestsToLimitsRatio allows to customize Kubernetes resource Limit based on the Request.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: false,
 												Optional: true,
@@ -390,7 +390,7 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Resource) GetSche
 												Description:         "Max represents the upper limit for the resources managed by the autoscaler.",
 												MarkdownDescription: "Max represents the upper limit for the resources managed by the autoscaler.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,
@@ -401,7 +401,7 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Resource) GetSche
 												Description:         "Min represents the lower limit for the resources managed by the autoscaler.",
 												MarkdownDescription: "Min represents the lower limit for the resources managed by the autoscaler.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,
@@ -412,7 +412,7 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Resource) GetSche
 												Description:         "RequestsToLimitsRatio allows to customize Kubernetes resource Limit based on the Request.",
 												MarkdownDescription: "RequestsToLimitsRatio allows to customize Kubernetes resource Limit based on the Request.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: false,
 												Optional: true,

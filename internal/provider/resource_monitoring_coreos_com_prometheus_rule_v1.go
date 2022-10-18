@@ -62,7 +62,7 @@ type MonitoringCoreosComPrometheusRuleV1GoModel struct {
 
 				Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
-				Expr *string `tfsdk:"expr" yaml:"expr,omitempty"`
+				Expr utilities.IntOrString `tfsdk:"expr" yaml:"expr,omitempty"`
 
 				For *string `tfsdk:"for" yaml:"for,omitempty"`
 
@@ -239,7 +239,7 @@ func (r *MonitoringCoreosComPrometheusRuleV1Resource) GetSchema(_ context.Contex
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: true,
 										Optional: false,

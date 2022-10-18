@@ -59,9 +59,9 @@ type CouchbaseComCouchbaseClusterV2GoModel struct {
 		AntiAffinity *bool `tfsdk:"anti_affinity" yaml:"antiAffinity,omitempty"`
 
 		AutoResourceAllocation *struct {
-			CpuLimits *string `tfsdk:"cpu_limits" yaml:"cpuLimits,omitempty"`
+			CpuLimits utilities.IntOrString `tfsdk:"cpu_limits" yaml:"cpuLimits,omitempty"`
 
-			CpuRequests *string `tfsdk:"cpu_requests" yaml:"cpuRequests,omitempty"`
+			CpuRequests utilities.IntOrString `tfsdk:"cpu_requests" yaml:"cpuRequests,omitempty"`
 
 			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
 
@@ -145,13 +145,13 @@ type CouchbaseComCouchbaseClusterV2GoModel struct {
 		} `tfsdk:"buckets" yaml:"buckets,omitempty"`
 
 		Cluster *struct {
-			AnalyticsServiceMemoryQuota *string `tfsdk:"analytics_service_memory_quota" yaml:"analyticsServiceMemoryQuota,omitempty"`
+			AnalyticsServiceMemoryQuota utilities.IntOrString `tfsdk:"analytics_service_memory_quota" yaml:"analyticsServiceMemoryQuota,omitempty"`
 
 			AutoCompaction *struct {
 				DatabaseFragmentationThreshold *struct {
 					Percent *int64 `tfsdk:"percent" yaml:"percent,omitempty"`
 
-					Size *string `tfsdk:"size" yaml:"size,omitempty"`
+					Size utilities.IntOrString `tfsdk:"size" yaml:"size,omitempty"`
 				} `tfsdk:"database_fragmentation_threshold" yaml:"databaseFragmentationThreshold,omitempty"`
 
 				ParallelCompaction *bool `tfsdk:"parallel_compaction" yaml:"parallelCompaction,omitempty"`
@@ -169,7 +169,7 @@ type CouchbaseComCouchbaseClusterV2GoModel struct {
 				ViewFragmentationThreshold *struct {
 					Percent *int64 `tfsdk:"percent" yaml:"percent,omitempty"`
 
-					Size *string `tfsdk:"size" yaml:"size,omitempty"`
+					Size utilities.IntOrString `tfsdk:"size" yaml:"size,omitempty"`
 				} `tfsdk:"view_fragmentation_threshold" yaml:"viewFragmentationThreshold,omitempty"`
 			} `tfsdk:"auto_compaction" yaml:"autoCompaction,omitempty"`
 
@@ -191,11 +191,11 @@ type CouchbaseComCouchbaseClusterV2GoModel struct {
 				WriterThreads *int64 `tfsdk:"writer_threads" yaml:"writerThreads,omitempty"`
 			} `tfsdk:"data" yaml:"data,omitempty"`
 
-			DataServiceMemoryQuota *string `tfsdk:"data_service_memory_quota" yaml:"dataServiceMemoryQuota,omitempty"`
+			DataServiceMemoryQuota utilities.IntOrString `tfsdk:"data_service_memory_quota" yaml:"dataServiceMemoryQuota,omitempty"`
 
-			EventingServiceMemoryQuota *string `tfsdk:"eventing_service_memory_quota" yaml:"eventingServiceMemoryQuota,omitempty"`
+			EventingServiceMemoryQuota utilities.IntOrString `tfsdk:"eventing_service_memory_quota" yaml:"eventingServiceMemoryQuota,omitempty"`
 
-			IndexServiceMemoryQuota *string `tfsdk:"index_service_memory_quota" yaml:"indexServiceMemoryQuota,omitempty"`
+			IndexServiceMemoryQuota utilities.IntOrString `tfsdk:"index_service_memory_quota" yaml:"indexServiceMemoryQuota,omitempty"`
 
 			IndexStorageSetting *string `tfsdk:"index_storage_setting" yaml:"indexStorageSetting,omitempty"`
 
@@ -216,14 +216,14 @@ type CouchbaseComCouchbaseClusterV2GoModel struct {
 			Query *struct {
 				BackfillEnabled *bool `tfsdk:"backfill_enabled" yaml:"backfillEnabled,omitempty"`
 
-				TemporarySpace *string `tfsdk:"temporary_space" yaml:"temporarySpace,omitempty"`
+				TemporarySpace utilities.IntOrString `tfsdk:"temporary_space" yaml:"temporarySpace,omitempty"`
 
 				TemporarySpaceUnlimited *bool `tfsdk:"temporary_space_unlimited" yaml:"temporarySpaceUnlimited,omitempty"`
 			} `tfsdk:"query" yaml:"query,omitempty"`
 
-			QueryServiceMemoryQuota *string `tfsdk:"query_service_memory_quota" yaml:"queryServiceMemoryQuota,omitempty"`
+			QueryServiceMemoryQuota utilities.IntOrString `tfsdk:"query_service_memory_quota" yaml:"queryServiceMemoryQuota,omitempty"`
 
-			SearchServiceMemoryQuota *string `tfsdk:"search_service_memory_quota" yaml:"searchServiceMemoryQuota,omitempty"`
+			SearchServiceMemoryQuota utilities.IntOrString `tfsdk:"search_service_memory_quota" yaml:"searchServiceMemoryQuota,omitempty"`
 		} `tfsdk:"cluster" yaml:"cluster,omitempty"`
 
 		EnableOnlineVolumeExpansion *bool `tfsdk:"enable_online_volume_expansion" yaml:"enableOnlineVolumeExpansion,omitempty"`
@@ -265,7 +265,7 @@ type CouchbaseComCouchbaseClusterV2GoModel struct {
 				Rotation *struct {
 					Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
 
-					Size *string `tfsdk:"size" yaml:"size,omitempty"`
+					Size utilities.IntOrString `tfsdk:"size" yaml:"size,omitempty"`
 				} `tfsdk:"rotation" yaml:"rotation,omitempty"`
 			} `tfsdk:"audit" yaml:"audit,omitempty"`
 
@@ -610,7 +610,7 @@ type CouchbaseComCouchbaseClusterV2GoModel struct {
 					ResourceFieldRef *struct {
 						ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-						Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+						Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 						Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 					} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -969,7 +969,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Description:         "CPULimits automatically populates the CPU limits across all Couchbase server pods.  This field defaults to '4' CPUs.  Explicitly specifying the CPU limit for a particular server class will override this value.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								MarkdownDescription: "CPULimits automatically populates the CPU limits across all Couchbase server pods.  This field defaults to '4' CPUs.  Explicitly specifying the CPU limit for a particular server class will override this value.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -977,7 +977,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+									validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 								},
 							},
 
@@ -985,7 +985,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Description:         "CPURequests automatically populates the CPU requests across all Couchbase server pods.  The default value of '2', is the minimum recommended number of CPUs required to run Couchbase Server.  Explicitly specifying the CPU request for a particular server class will override this value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								MarkdownDescription: "CPURequests automatically populates the CPU requests across all Couchbase server pods.  The default value of '2', is the minimum recommended number of CPUs required to run Couchbase Server.  Explicitly specifying the CPU request for a particular server class will override this value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -993,7 +993,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+									validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 								},
 							},
 
@@ -1468,7 +1468,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Description:         "AnalyticsServiceMemQuota is the amount of memory that should be allocated to the analytics service. This value is per-pod, and only applicable to pods belonging to server classes running the analytics service.  This field must be a quantity greater than or equal to 1Gi.  This field defaults to 1Gi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								MarkdownDescription: "AnalyticsServiceMemQuota is the amount of memory that should be allocated to the analytics service. This value is per-pod, and only applicable to pods belonging to server classes running the analytics service.  This field must be a quantity greater than or equal to 1Gi.  This field defaults to 1Gi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -1476,7 +1476,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+									validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 								},
 							},
 
@@ -1514,7 +1514,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 												Description:         "Size is the amount of disk framentation, that once exceeded, will trigger decompaction. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 												MarkdownDescription: "Size is the amount of disk framentation, that once exceeded, will trigger decompaction. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: false,
 												Optional: true,
@@ -1522,7 +1522,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 
 												Validators: []tfsdk.AttributeValidator{
 
-													stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+													validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 												},
 											},
 										}),
@@ -1637,7 +1637,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 												Description:         "Size is the amount of disk framentation, that once exceeded, will trigger decompaction. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 												MarkdownDescription: "Size is the amount of disk framentation, that once exceeded, will trigger decompaction. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: false,
 												Optional: true,
@@ -1645,7 +1645,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 
 												Validators: []tfsdk.AttributeValidator{
 
-													stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+													validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 												},
 											},
 										}),
@@ -1786,7 +1786,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Description:         "DataServiceMemQuota is the amount of memory that should be allocated to the data service. This value is per-pod, and only applicable to pods belonging to server classes running the data service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								MarkdownDescription: "DataServiceMemQuota is the amount of memory that should be allocated to the data service. This value is per-pod, and only applicable to pods belonging to server classes running the data service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -1794,7 +1794,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+									validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 								},
 							},
 
@@ -1802,7 +1802,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Description:         "EventingServiceMemQuota is the amount of memory that should be allocated to the eventing service. This value is per-pod, and only applicable to pods belonging to server classes running the eventing service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								MarkdownDescription: "EventingServiceMemQuota is the amount of memory that should be allocated to the eventing service. This value is per-pod, and only applicable to pods belonging to server classes running the eventing service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -1810,7 +1810,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+									validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 								},
 							},
 
@@ -1818,7 +1818,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Description:         "IndexServiceMemQuota is the amount of memory that should be allocated to the index service. This value is per-pod, and only applicable to pods belonging to server classes running the index service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								MarkdownDescription: "IndexServiceMemQuota is the amount of memory that should be allocated to the index service. This value is per-pod, and only applicable to pods belonging to server classes running the index service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -1826,7 +1826,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+									validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 								},
 							},
 
@@ -1965,7 +1965,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 										Description:         "TemporarySpace allows the temporary storage used by the query service backfill, per-pod, to be modified.  This field requires 'backfillEnabled' to be set to true in order to have any effect. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 										MarkdownDescription: "TemporarySpace allows the temporary storage used by the query service backfill, per-pod, to be modified.  This field requires 'backfillEnabled' to be set to true in order to have any effect. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: false,
 										Optional: true,
@@ -1973,7 +1973,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 
 										Validators: []tfsdk.AttributeValidator{
 
-											stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+											validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 										},
 									},
 
@@ -1998,7 +1998,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Description:         "QueryServiceMemQuota is a dummy field.  By default, Couchbase server provides no memory resource constraints for the query service, so this has no effect on Couchbase server.  It is, however, used when the spec.autoResourceAllocation feature is enabled, and is used to define the amount of memory reserved by the query service for use with Kubernetes resource scheduling. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								MarkdownDescription: "QueryServiceMemQuota is a dummy field.  By default, Couchbase server provides no memory resource constraints for the query service, so this has no effect on Couchbase server.  It is, however, used when the spec.autoResourceAllocation feature is enabled, and is used to define the amount of memory reserved by the query service for use with Kubernetes resource scheduling. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -2006,7 +2006,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+									validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 								},
 							},
 
@@ -2014,7 +2014,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 								Description:         "SearchServiceMemQuota is the amount of memory that should be allocated to the search service. This value is per-pod, and only applicable to pods belonging to server classes running the search service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 								MarkdownDescription: "SearchServiceMemQuota is the amount of memory that should be allocated to the search service. This value is per-pod, and only applicable to pods belonging to server classes running the search service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -2022,7 +2022,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+									validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 								},
 							},
 						}),
@@ -2265,7 +2265,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 												Description:         "Size allows the specification of a rotation size for the log, defaults to 20Mi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 												MarkdownDescription: "Size allows the specification of a rotation size for the log, defaults to 20Mi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: false,
 												Optional: true,
@@ -2273,7 +2273,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 
 												Validators: []tfsdk.AttributeValidator{
 
-													stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+													validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 												},
 											},
 										}),
@@ -4294,7 +4294,7 @@ func (r *CouchbaseComCouchbaseClusterV2Resource) GetSchema(_ context.Context) (t
 														Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 														MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: false,
 														Optional: true,

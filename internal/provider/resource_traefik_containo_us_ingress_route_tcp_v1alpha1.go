@@ -68,7 +68,7 @@ type TraefikContainoUsIngressRouteTCPV1Alpha1GoModel struct {
 
 				Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 
-				Port *string `tfsdk:"port" yaml:"port,omitempty"`
+				Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 				ProxyProtocol *struct {
 					Version *int64 `tfsdk:"version" yaml:"version,omitempty"`
@@ -307,7 +307,7 @@ func (r *TraefikContainoUsIngressRouteTCPV1Alpha1Resource) GetSchema(_ context.C
 										Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
 										MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: true,
 										Optional: false,

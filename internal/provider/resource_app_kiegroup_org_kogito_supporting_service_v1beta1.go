@@ -83,7 +83,7 @@ type AppKiegroupOrgKogitoSupportingServiceV1Beta1GoModel struct {
 				ResourceFieldRef *struct {
 					ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-					Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+					Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 					Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 				} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -135,7 +135,7 @@ type AppKiegroupOrgKogitoSupportingServiceV1Beta1GoModel struct {
 
 					Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 					Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 				} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -149,7 +149,7 @@ type AppKiegroupOrgKogitoSupportingServiceV1Beta1GoModel struct {
 				TcpSocket *struct {
 					Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 				} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -181,7 +181,7 @@ type AppKiegroupOrgKogitoSupportingServiceV1Beta1GoModel struct {
 
 					Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 					Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 				} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -195,7 +195,7 @@ type AppKiegroupOrgKogitoSupportingServiceV1Beta1GoModel struct {
 				TcpSocket *struct {
 					Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 				} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -227,7 +227,7 @@ type AppKiegroupOrgKogitoSupportingServiceV1Beta1GoModel struct {
 
 					Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 					Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 				} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -241,7 +241,7 @@ type AppKiegroupOrgKogitoSupportingServiceV1Beta1GoModel struct {
 				TcpSocket *struct {
 					Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-					Port *string `tfsdk:"port" yaml:"port,omitempty"`
+					Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 				} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -529,7 +529,7 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Resource) GetSchema(_ conte
 												Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 												MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: false,
 												Optional: true,
@@ -823,7 +823,7 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Resource) GetSchema(_ conte
 												Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 												MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,
@@ -901,7 +901,7 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Resource) GetSchema(_ conte
 												Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 												MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,
@@ -1082,7 +1082,7 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Resource) GetSchema(_ conte
 												Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 												MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,
@@ -1160,7 +1160,7 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Resource) GetSchema(_ conte
 												Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 												MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,
@@ -1341,7 +1341,7 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Resource) GetSchema(_ conte
 												Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 												MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,
@@ -1419,7 +1419,7 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Resource) GetSchema(_ conte
 												Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 												MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: true,
 												Optional: false,

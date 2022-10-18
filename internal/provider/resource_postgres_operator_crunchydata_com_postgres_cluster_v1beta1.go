@@ -88,7 +88,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 							ResourceFieldRef *struct {
 								ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-								Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+								Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 								Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 							} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -919,7 +919,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 						ResourceFieldRef *struct {
 							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+							Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -1188,7 +1188,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 							ResourceFieldRef *struct {
 								ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-								Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+								Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 								Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 							} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -1771,7 +1771,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 						ResourceFieldRef *struct {
 							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+							Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -1823,7 +1823,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1831,7 +1831,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 					} `tfsdk:"post_start" yaml:"postStart,omitempty"`
 
@@ -1851,7 +1851,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1859,7 +1859,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 					} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
 				} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
@@ -1888,7 +1888,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1902,7 +1902,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -1948,7 +1948,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1962,7 +1962,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -2048,7 +2048,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -2062,7 +2062,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -2153,7 +2153,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 				Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
 			} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
-			MinAvailable *string `tfsdk:"min_available" yaml:"minAvailable,omitempty"`
+			MinAvailable utilities.IntOrString `tfsdk:"min_available" yaml:"minAvailable,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
@@ -2295,7 +2295,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 								ResourceFieldRef *struct {
 									ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-									Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+									Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 									Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 								} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -2577,7 +2577,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 								ResourceFieldRef *struct {
 									ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-									Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+									Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 									Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 								} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -2640,7 +2640,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 							ResourceFieldRef *struct {
 								ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-								Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+								Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 								Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 							} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -2692,7 +2692,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -2700,7 +2700,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 						} `tfsdk:"post_start" yaml:"postStart,omitempty"`
 
@@ -2720,7 +2720,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -2728,7 +2728,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 						} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
 					} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
@@ -2757,7 +2757,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -2771,7 +2771,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 						TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -2817,7 +2817,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -2831,7 +2831,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 						TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -2917,7 +2917,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -2931,7 +2931,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 						TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -2994,7 +2994,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 					Labels *map[string]string `tfsdk:"labels" yaml:"labels,omitempty"`
 				} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
-				MinAvailable *string `tfsdk:"min_available" yaml:"minAvailable,omitempty"`
+				MinAvailable utilities.IntOrString `tfsdk:"min_available" yaml:"minAvailable,omitempty"`
 
 				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 
@@ -3303,7 +3303,7 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 								ResourceFieldRef *struct {
 									ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-									Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+									Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 									Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 								} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -3748,7 +3748,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																		Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																		MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: false,
 																		Optional: true,
@@ -8497,7 +8497,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: false,
 																Optional: true,
@@ -10026,7 +10026,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																		Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																		MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: false,
 																		Optional: true,
@@ -13364,7 +13364,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: false,
 																Optional: true,
@@ -13659,7 +13659,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -13704,7 +13704,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -13818,7 +13818,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -13863,7 +13863,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -14028,7 +14028,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 														Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 														MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -14106,7 +14106,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 														Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 														MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -14365,7 +14365,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 														Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 														MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -14443,7 +14443,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 														Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 														MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -14927,7 +14927,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 														Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 														MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -15005,7 +15005,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 														Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 														MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -15516,7 +15516,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 								Description:         "Minimum number of pods that should be available at a time. Defaults to one when the replicas field is greater than one.",
 								MarkdownDescription: "Minimum number of pods that should be available at a time. Defaults to one when the replicas field is greater than one.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -16329,7 +16329,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																				Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																				MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: false,
 																				Optional: true,
@@ -17962,7 +17962,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																				Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																				MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: false,
 																				Optional: true,
@@ -18318,7 +18318,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																		Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																		MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: false,
 																		Optional: true,
@@ -18613,7 +18613,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																		Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -18658,7 +18658,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																		Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -18772,7 +18772,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																		Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -18817,7 +18817,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																		Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -18982,7 +18982,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -19060,7 +19060,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -19319,7 +19319,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -19397,7 +19397,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -19881,7 +19881,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -19959,7 +19959,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -20312,7 +20312,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 										Description:         "Minimum number of pods that should be available at a time. Defaults to one when the replicas field is greater than one.",
 										MarkdownDescription: "Minimum number of pods that should be available at a time. Defaults to one when the replicas field is greater than one.",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: false,
 										Optional: true,
@@ -22096,7 +22096,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																				Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																				MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: false,
 																				Optional: true,

@@ -109,9 +109,9 @@ type CrdProjectcalicoOrgNetworkPolicyV1GoModel struct {
 				Type *int64 `tfsdk:"type" yaml:"type,omitempty"`
 			} `tfsdk:"not_icmp" yaml:"notICMP,omitempty"`
 
-			NotProtocol *string `tfsdk:"not_protocol" yaml:"notProtocol,omitempty"`
+			NotProtocol utilities.IntOrString `tfsdk:"not_protocol" yaml:"notProtocol,omitempty"`
 
-			Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+			Protocol utilities.IntOrString `tfsdk:"protocol" yaml:"protocol,omitempty"`
 
 			Source *struct {
 				NamespaceSelector *string `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
@@ -201,9 +201,9 @@ type CrdProjectcalicoOrgNetworkPolicyV1GoModel struct {
 				Type *int64 `tfsdk:"type" yaml:"type,omitempty"`
 			} `tfsdk:"not_icmp" yaml:"notICMP,omitempty"`
 
-			NotProtocol *string `tfsdk:"not_protocol" yaml:"notProtocol,omitempty"`
+			NotProtocol utilities.IntOrString `tfsdk:"not_protocol" yaml:"notProtocol,omitempty"`
 
-			Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+			Protocol utilities.IntOrString `tfsdk:"protocol" yaml:"protocol,omitempty"`
 
 			Source *struct {
 				NamespaceSelector *string `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
@@ -675,7 +675,7 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 								Description:         "NotProtocol is the negated version of the Protocol field.",
 								MarkdownDescription: "NotProtocol is the negated version of the Protocol field.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -686,7 +686,7 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 								Description:         "Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols).  Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.",
 								MarkdownDescription: "Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols).  Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -1193,7 +1193,7 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 								Description:         "NotProtocol is the negated version of the Protocol field.",
 								MarkdownDescription: "NotProtocol is the negated version of the Protocol field.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -1204,7 +1204,7 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Resource) GetSchema(_ context.Context
 								Description:         "Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols).  Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.",
 								MarkdownDescription: "Protocol is an optional field that restricts the rule to only apply to traffic of a specific IP protocol. Required if any of the EntityRules contain Ports (because ports only apply to certain protocols).  Must be one of these string values: 'TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite' or an integer in the range 1-255.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,

@@ -59,7 +59,7 @@ type CrdProjectcalicoOrgHostEndpointV1GoModel struct {
 
 			Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 
-			Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
+			Protocol utilities.IntOrString `tfsdk:"protocol" yaml:"protocol,omitempty"`
 		} `tfsdk:"ports" yaml:"ports,omitempty"`
 
 		Profiles *[]string `tfsdk:"profiles" yaml:"profiles,omitempty"`
@@ -218,7 +218,7 @@ func (r *CrdProjectcalicoOrgHostEndpointV1Resource) GetSchema(_ context.Context)
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: true,
 								Optional: false,

@@ -87,13 +87,13 @@ type TraefikContainoUsMiddlewareV1Alpha1GoModel struct {
 		} `tfsdk:"chain" yaml:"chain,omitempty"`
 
 		CircuitBreaker *struct {
-			CheckPeriod *string `tfsdk:"check_period" yaml:"checkPeriod,omitempty"`
+			CheckPeriod utilities.IntOrString `tfsdk:"check_period" yaml:"checkPeriod,omitempty"`
 
 			Expression *string `tfsdk:"expression" yaml:"expression,omitempty"`
 
-			FallbackDuration *string `tfsdk:"fallback_duration" yaml:"fallbackDuration,omitempty"`
+			FallbackDuration utilities.IntOrString `tfsdk:"fallback_duration" yaml:"fallbackDuration,omitempty"`
 
-			RecoveryDuration *string `tfsdk:"recovery_duration" yaml:"recoveryDuration,omitempty"`
+			RecoveryDuration utilities.IntOrString `tfsdk:"recovery_duration" yaml:"recoveryDuration,omitempty"`
 		} `tfsdk:"circuit_breaker" yaml:"circuitBreaker,omitempty"`
 
 		Compress *struct {
@@ -128,7 +128,7 @@ type TraefikContainoUsMiddlewareV1Alpha1GoModel struct {
 
 				PassHostHeader *bool `tfsdk:"pass_host_header" yaml:"passHostHeader,omitempty"`
 
-				Port *string `tfsdk:"port" yaml:"port,omitempty"`
+				Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 				ResponseForwarding *struct {
 					FlushInterval *string `tfsdk:"flush_interval" yaml:"flushInterval,omitempty"`
@@ -327,7 +327,7 @@ type TraefikContainoUsMiddlewareV1Alpha1GoModel struct {
 
 			Burst *int64 `tfsdk:"burst" yaml:"burst,omitempty"`
 
-			Period *string `tfsdk:"period" yaml:"period,omitempty"`
+			Period utilities.IntOrString `tfsdk:"period" yaml:"period,omitempty"`
 
 			SourceCriterion *struct {
 				IpStrategy *struct {
@@ -371,7 +371,7 @@ type TraefikContainoUsMiddlewareV1Alpha1GoModel struct {
 		Retry *struct {
 			Attempts *int64 `tfsdk:"attempts" yaml:"attempts,omitempty"`
 
-			InitialInterval *string `tfsdk:"initial_interval" yaml:"initialInterval,omitempty"`
+			InitialInterval utilities.IntOrString `tfsdk:"initial_interval" yaml:"initialInterval,omitempty"`
 		} `tfsdk:"retry" yaml:"retry,omitempty"`
 
 		StripPrefix *struct {
@@ -682,7 +682,7 @@ func (r *TraefikContainoUsMiddlewareV1Alpha1Resource) GetSchema(_ context.Contex
 								Description:         "CheckPeriod is the interval between successive checks of the circuit breaker condition (when in standby state).",
 								MarkdownDescription: "CheckPeriod is the interval between successive checks of the circuit breaker condition (when in standby state).",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -704,7 +704,7 @@ func (r *TraefikContainoUsMiddlewareV1Alpha1Resource) GetSchema(_ context.Contex
 								Description:         "FallbackDuration is the duration for which the circuit breaker will wait before trying to recover (from a tripped state).",
 								MarkdownDescription: "FallbackDuration is the duration for which the circuit breaker will wait before trying to recover (from a tripped state).",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -715,7 +715,7 @@ func (r *TraefikContainoUsMiddlewareV1Alpha1Resource) GetSchema(_ context.Contex
 								Description:         "RecoveryDuration is the duration for which the circuit breaker will try to recover (as soon as it is in recovering state).",
 								MarkdownDescription: "RecoveryDuration is the duration for which the circuit breaker will try to recover (as soon as it is in recovering state).",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -917,7 +917,7 @@ func (r *TraefikContainoUsMiddlewareV1Alpha1Resource) GetSchema(_ context.Contex
 										Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
 										MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: false,
 										Optional: true,
@@ -2028,7 +2028,7 @@ func (r *TraefikContainoUsMiddlewareV1Alpha1Resource) GetSchema(_ context.Contex
 								Description:         "Period, in combination with Average, defines the actual maximum rate, such as: r = Average / Period. It defaults to a second.",
 								MarkdownDescription: "Period, in combination with Average, defines the actual maximum rate, such as: r = Average / Period. It defaults to a second.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
@@ -2277,7 +2277,7 @@ func (r *TraefikContainoUsMiddlewareV1Alpha1Resource) GetSchema(_ context.Contex
 								Description:         "InitialInterval defines the first wait time in the exponential backoff series. The maximum interval is calculated as twice the initialInterval. If unspecified, requests will be retried immediately. The value of initialInterval should be provided in seconds or as a valid duration format, see https://pkg.go.dev/time#ParseDuration.",
 								MarkdownDescription: "InitialInterval defines the first wait time in the exponential backoff series. The maximum interval is calculated as twice the initialInterval. If unspecified, requests will be retried immediately. The value of initialInterval should be provided in seconds or as a valid duration format, see https://pkg.go.dev/time#ParseDuration.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,

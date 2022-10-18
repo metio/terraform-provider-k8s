@@ -463,9 +463,9 @@ func Description(description string) string {
 
 func CRDv1Types(prop apiextensionsv1.JSONSchemaProps) (attributeType string, valueType string, goType string) {
 	if prop.XIntOrString {
-		attributeType = "types.StringType"
-		valueType = "types.String"
-		goType = "string"
+		attributeType = "utilities.IntOrStringType{}"
+		valueType = "utilities.IntOrString"
+		goType = "utilities.IntOrString"
 		return
 	}
 	if prop.XPreserveUnknownFields != nil && *prop.XPreserveUnknownFields {
@@ -566,9 +566,9 @@ func CRDv1Types(prop apiextensionsv1.JSONSchemaProps) (attributeType string, val
 
 func OpenApiTypes(prop *openapi3.Schema) (attributeType string, valueType string, goType string) {
 	if _, ok := prop.Extensions["x-kubernetes-int-or-string"]; ok {
-		attributeType = "types.StringType"
-		valueType = "types.String"
-		goType = "string"
+		attributeType = "utilities.IntOrStringType{}"
+		valueType = "utilities.IntOrString"
+		goType = "utilities.IntOrString"
 		return
 	}
 	if _, ok := prop.Extensions["x-kubernetes-preserve-unknown-fields"]; ok {
@@ -716,7 +716,12 @@ func CRDv1Validators(prop apiextensionsv1.JSONSchemaProps, uv *UsedValidators) [
 		uv.StringValidator = true
 	}
 	if prop.Type == "string" && prop.Pattern != "" {
-		validators = append(validators, fmt.Sprintf(`stringvalidator.RegexMatches(regexp.MustCompile(%c%s%c), "")`, '`', prop.Pattern, '`'))
+		attributeType, _, _ := CRDv1Types(prop)
+		if attributeType == "utilities.IntOrStringType{}" {
+			validators = append(validators, fmt.Sprintf(`validators.RegexValidator(regexp.MustCompile(%c%s%c))`, '`', prop.Pattern, '`'))
+		} else {
+			validators = append(validators, fmt.Sprintf(`stringvalidator.RegexMatches(regexp.MustCompile(%c%s%c), "")`, '`', prop.Pattern, '`'))
+		}
 		uv.StringValidator = true
 		uv.Regex = true
 	}
@@ -773,6 +778,12 @@ func OpenApiValidators(prop *openapi3.Schema, uv *UsedValidators) []string {
 	//	uv.StringValidator = true
 	//}
 	if prop.Type == "string" && prop.Pattern != "" {
+		attributeType, _, _ := OpenApiTypes(prop)
+		if attributeType == "utilities.IntOrStringType{}" {
+			validators = append(validators, fmt.Sprintf(`validators.RegexValidator(regexp.MustCompile(%c%s%c))`, '`', prop.Pattern, '`'))
+		} else {
+			validators = append(validators, fmt.Sprintf(`stringvalidator.RegexMatches(regexp.MustCompile(%c%s%c), "")`, '`', prop.Pattern, '`'))
+		}
 		validators = append(validators, fmt.Sprintf(`stringvalidator.RegexMatches(regexp.MustCompile(%c%s%c), "")`, '`', prop.Pattern, '`'))
 		uv.StringValidator = true
 		uv.Regex = true

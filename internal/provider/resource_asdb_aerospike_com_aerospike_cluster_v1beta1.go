@@ -445,7 +445,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 						ResourceFieldRef *struct {
 							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+							Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -497,7 +497,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -505,7 +505,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 					} `tfsdk:"post_start" yaml:"postStart,omitempty"`
 
@@ -525,7 +525,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -533,7 +533,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 					} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
 				} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
@@ -556,7 +556,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -570,7 +570,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -610,7 +610,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -624,7 +624,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -702,7 +702,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -716,7 +716,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -839,7 +839,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 						ResourceFieldRef *struct {
 							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+							Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -891,7 +891,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -899,7 +899,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 					} `tfsdk:"post_start" yaml:"postStart,omitempty"`
 
@@ -919,7 +919,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -927,7 +927,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 					} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
 				} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
@@ -950,7 +950,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -964,7 +964,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -1004,7 +1004,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1018,7 +1018,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -1096,7 +1096,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1110,7 +1110,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -1474,7 +1474,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 							EmptyDir *struct {
 								Medium *string `tfsdk:"medium" yaml:"medium,omitempty"`
 
-								SizeLimit *string `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
+								SizeLimit utilities.IntOrString `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
 							} `tfsdk:"empty_dir" yaml:"emptyDir,omitempty"`
 
 							PersistentVolume *struct {
@@ -1498,7 +1498,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 								} `tfsdk:"selector" yaml:"selector,omitempty"`
 
-								Size *string `tfsdk:"size" yaml:"size,omitempty"`
+								Size utilities.IntOrString `tfsdk:"size" yaml:"size,omitempty"`
 
 								StorageClass *string `tfsdk:"storage_class" yaml:"storageClass,omitempty"`
 
@@ -1836,7 +1836,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 							EmptyDir *struct {
 								Medium *string `tfsdk:"medium" yaml:"medium,omitempty"`
 
-								SizeLimit *string `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
+								SizeLimit utilities.IntOrString `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
 							} `tfsdk:"empty_dir" yaml:"emptyDir,omitempty"`
 
 							PersistentVolume *struct {
@@ -1860,7 +1860,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 								} `tfsdk:"selector" yaml:"selector,omitempty"`
 
-								Size *string `tfsdk:"size" yaml:"size,omitempty"`
+								Size utilities.IntOrString `tfsdk:"size" yaml:"size,omitempty"`
 
 								StorageClass *string `tfsdk:"storage_class" yaml:"storageClass,omitempty"`
 
@@ -2016,7 +2016,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 					EmptyDir *struct {
 						Medium *string `tfsdk:"medium" yaml:"medium,omitempty"`
 
-						SizeLimit *string `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
+						SizeLimit utilities.IntOrString `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
 					} `tfsdk:"empty_dir" yaml:"emptyDir,omitempty"`
 
 					PersistentVolume *struct {
@@ -2040,7 +2040,7 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"selector" yaml:"selector,omitempty"`
 
-						Size *string `tfsdk:"size" yaml:"size,omitempty"`
+						Size utilities.IntOrString `tfsdk:"size" yaml:"size,omitempty"`
 
 						StorageClass *string `tfsdk:"storage_class" yaml:"storageClass,omitempty"`
 
@@ -4406,7 +4406,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 																Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: false,
 																Optional: true,
@@ -4701,7 +4701,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 																Description:         "Name or number of the port to access on the container.",
 																MarkdownDescription: "Name or number of the port to access on the container.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -4746,7 +4746,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 																Description:         "Number or name of the port to access on the container.",
 																MarkdownDescription: "Number or name of the port to access on the container.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -4860,7 +4860,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 																Description:         "Name or number of the port to access on the container.",
 																MarkdownDescription: "Name or number of the port to access on the container.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -4905,7 +4905,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 																Description:         "Number or name of the port to access on the container.",
 																MarkdownDescription: "Number or name of the port to access on the container.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -5036,7 +5036,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 														Description:         "Name or number of the port to access on the container.",
 														MarkdownDescription: "Name or number of the port to access on the container.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -5114,7 +5114,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 														Description:         "Number or name of the port to access on the container.",
 														MarkdownDescription: "Number or name of the port to access on the container.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -5339,7 +5339,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 														Description:         "Name or number of the port to access on the container.",
 														MarkdownDescription: "Name or number of the port to access on the container.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -5417,7 +5417,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 														Description:         "Number or name of the port to access on the container.",
 														MarkdownDescription: "Number or name of the port to access on the container.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -5856,7 +5856,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 														Description:         "Name or number of the port to access on the container.",
 														MarkdownDescription: "Name or number of the port to access on the container.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -5934,7 +5934,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 														Description:         "Number or name of the port to access on the container.",
 														MarkdownDescription: "Number or name of the port to access on the container.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -6624,7 +6624,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 																Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: false,
 																Optional: true,
@@ -6919,7 +6919,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 																Description:         "Name or number of the port to access on the container.",
 																MarkdownDescription: "Name or number of the port to access on the container.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -6964,7 +6964,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 																Description:         "Number or name of the port to access on the container.",
 																MarkdownDescription: "Number or name of the port to access on the container.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -7078,7 +7078,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 																Description:         "Name or number of the port to access on the container.",
 																MarkdownDescription: "Name or number of the port to access on the container.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -7123,7 +7123,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 																Description:         "Number or name of the port to access on the container.",
 																MarkdownDescription: "Number or name of the port to access on the container.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -7254,7 +7254,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 														Description:         "Name or number of the port to access on the container.",
 														MarkdownDescription: "Name or number of the port to access on the container.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -7332,7 +7332,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 														Description:         "Number or name of the port to access on the container.",
 														MarkdownDescription: "Number or name of the port to access on the container.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -7557,7 +7557,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 														Description:         "Name or number of the port to access on the container.",
 														MarkdownDescription: "Name or number of the port to access on the container.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -7635,7 +7635,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 														Description:         "Number or name of the port to access on the container.",
 														MarkdownDescription: "Number or name of the port to access on the container.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -8074,7 +8074,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 														Description:         "Name or number of the port to access on the container.",
 														MarkdownDescription: "Name or number of the port to access on the container.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -8152,7 +8152,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 														Description:         "Number or name of the port to access on the container.",
 														MarkdownDescription: "Number or name of the port to access on the container.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -10263,7 +10263,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 																		Description:         "Total amount of local storage required for this EmptyDir volume.",
 																		MarkdownDescription: "Total amount of local storage required for this EmptyDir volume.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: false,
 																		Optional: true,
@@ -10399,7 +10399,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 																		Description:         "Size of volume.",
 																		MarkdownDescription: "Size of volume.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -12370,7 +12370,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 																		Description:         "Total amount of local storage required for this EmptyDir volume.",
 																		MarkdownDescription: "Total amount of local storage required for this EmptyDir volume.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: false,
 																		Optional: true,
@@ -12506,7 +12506,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 																		Description:         "Size of volume.",
 																		MarkdownDescription: "Size of volume.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -13462,7 +13462,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 														Description:         "Total amount of local storage required for this EmptyDir volume.",
 														MarkdownDescription: "Total amount of local storage required for this EmptyDir volume.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: false,
 														Optional: true,
@@ -13598,7 +13598,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 														Description:         "Size of volume.",
 														MarkdownDescription: "Size of volume.",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,

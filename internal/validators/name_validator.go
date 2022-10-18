@@ -8,6 +8,7 @@ package validators
 import (
 	"context"
 	"fmt"
+	"github.com/hashicorp/terraform-plugin-framework-validators/helpers/validatordiag"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	apiValidation "k8s.io/apimachinery/pkg/api/validation"
@@ -21,15 +22,15 @@ func NameValidator() tfsdk.AttributeValidator {
 	return &nameValidator{}
 }
 
-func (v nameValidator) Description(ctx context.Context) string {
-	return v.MarkdownDescription(ctx)
-}
-
-func (v nameValidator) MarkdownDescription(_ context.Context) string {
+func (validator nameValidator) Description(_ context.Context) string {
 	return "Validate metadata.name according to the upstream k8s spec"
 }
 
-func (v nameValidator) Validate(ctx context.Context, req tfsdk.ValidateAttributeRequest, resp *tfsdk.ValidateAttributeResponse) {
+func (validator nameValidator) MarkdownDescription(ctx context.Context) string {
+	return validator.Description(ctx)
+}
+
+func (validator nameValidator) Validate(ctx context.Context, req tfsdk.ValidateAttributeRequest, resp *tfsdk.ValidateAttributeResponse) {
 	var value types.String
 
 	diags := tfsdk.ValueAs(ctx, req.AttributeConfig, &value)
@@ -43,10 +44,10 @@ func (v nameValidator) Validate(ctx context.Context, req tfsdk.ValidateAttribute
 	}
 
 	for _, msg := range apiValidation.NameIsDNSSubdomain(value.Value, false) {
-		resp.Diagnostics.AddAttributeError(
+		resp.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
 			req.AttributePath,
 			fmt.Sprintf("Invalid Object Name '%s'", value.Value),
 			msg,
-		)
+		))
 	}
 }

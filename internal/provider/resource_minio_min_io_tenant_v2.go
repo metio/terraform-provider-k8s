@@ -102,7 +102,7 @@ type MinioMinIoTenantV2GoModel struct {
 				ResourceFieldRef *struct {
 					ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-					Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+					Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 					Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 				} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -327,7 +327,7 @@ type MinioMinIoTenantV2GoModel struct {
 					ResourceFieldRef *struct {
 						ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-						Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+						Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 						Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 					} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -467,7 +467,7 @@ type MinioMinIoTenantV2GoModel struct {
 
 				Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-				Port *string `tfsdk:"port" yaml:"port,omitempty"`
+				Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 				Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 			} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -481,7 +481,7 @@ type MinioMinIoTenantV2GoModel struct {
 			TcpSocket *struct {
 				Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-				Port *string `tfsdk:"port" yaml:"port,omitempty"`
+				Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 			} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
@@ -780,7 +780,7 @@ type MinioMinIoTenantV2GoModel struct {
 						ResourceFieldRef *struct {
 							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+							Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -987,7 +987,7 @@ type MinioMinIoTenantV2GoModel struct {
 					ResourceFieldRef *struct {
 						ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-						Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+						Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 						Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 					} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -1569,7 +1569,7 @@ type MinioMinIoTenantV2GoModel struct {
 					ResourceFieldRef *struct {
 						ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-						Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+						Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 						Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 					} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -1701,7 +1701,7 @@ type MinioMinIoTenantV2GoModel struct {
 
 				Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-				Port *string `tfsdk:"port" yaml:"port,omitempty"`
+				Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 				Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 			} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1715,7 +1715,7 @@ type MinioMinIoTenantV2GoModel struct {
 			TcpSocket *struct {
 				Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-				Port *string `tfsdk:"port" yaml:"port,omitempty"`
+				Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 			} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
@@ -1768,7 +1768,7 @@ type MinioMinIoTenantV2GoModel struct {
 						ResourceFieldRef *struct {
 							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+							Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -1820,7 +1820,7 @@ type MinioMinIoTenantV2GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1828,7 +1828,7 @@ type MinioMinIoTenantV2GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 					} `tfsdk:"post_start" yaml:"postStart,omitempty"`
 
@@ -1848,7 +1848,7 @@ type MinioMinIoTenantV2GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1856,7 +1856,7 @@ type MinioMinIoTenantV2GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 					} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
 				} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
@@ -1879,7 +1879,7 @@ type MinioMinIoTenantV2GoModel struct {
 
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1893,7 +1893,7 @@ type MinioMinIoTenantV2GoModel struct {
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
@@ -1931,7 +1931,7 @@ type MinioMinIoTenantV2GoModel struct {
 
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1945,7 +1945,7 @@ type MinioMinIoTenantV2GoModel struct {
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
@@ -2021,7 +2021,7 @@ type MinioMinIoTenantV2GoModel struct {
 
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 						Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 					} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -2035,7 +2035,7 @@ type MinioMinIoTenantV2GoModel struct {
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-						Port *string `tfsdk:"port" yaml:"port,omitempty"`
+						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
@@ -2258,7 +2258,7 @@ type MinioMinIoTenantV2GoModel struct {
 						ResourceFieldRef *struct {
 							ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-							Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+							Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 							Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 						} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -2268,7 +2268,7 @@ type MinioMinIoTenantV2GoModel struct {
 				EmptyDir *struct {
 					Medium *string `tfsdk:"medium" yaml:"medium,omitempty"`
 
-					SizeLimit *string `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
+					SizeLimit utilities.IntOrString `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
 				} `tfsdk:"empty_dir" yaml:"emptyDir,omitempty"`
 
 				Ephemeral *struct {
@@ -2478,7 +2478,7 @@ type MinioMinIoTenantV2GoModel struct {
 								ResourceFieldRef *struct {
 									ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-									Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+									Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 									Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 								} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -3004,7 +3004,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: false,
 												Optional: true,
@@ -4283,7 +4283,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: false,
 														Optional: true,
@@ -5071,7 +5071,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: true,
 										Optional: false,
@@ -5149,7 +5149,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: true,
 										Optional: false,
@@ -6852,7 +6852,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Description:         "",
 																MarkdownDescription: "",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: false,
 																Optional: true,
@@ -8026,7 +8026,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: false,
 														Optional: true,
@@ -11327,7 +11327,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: false,
 														Optional: true,
@@ -12069,7 +12069,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: true,
 										Optional: false,
@@ -12147,7 +12147,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: true,
 										Optional: false,
@@ -12446,7 +12446,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Description:         "",
 																MarkdownDescription: "",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: false,
 																Optional: true,
@@ -12741,7 +12741,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Description:         "",
 																MarkdownDescription: "",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -12786,7 +12786,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Description:         "",
 																MarkdownDescription: "",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -12900,7 +12900,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Description:         "",
 																MarkdownDescription: "",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -12945,7 +12945,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Description:         "",
 																MarkdownDescription: "",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -13076,7 +13076,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -13154,7 +13154,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -13368,7 +13368,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -13446,7 +13446,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -13874,7 +13874,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -13952,7 +13952,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Description:         "",
 														MarkdownDescription: "",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: true,
 														Optional: false,
@@ -15215,7 +15215,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Description:         "",
 																MarkdownDescription: "",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: false,
 																Optional: true,
@@ -15272,7 +15272,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Description:         "",
 												MarkdownDescription: "",
 
-												Type: types.StringType,
+												Type: utilities.IntOrStringType{},
 
 												Required: false,
 												Optional: true,
@@ -16455,7 +16455,7 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																				Description:         "",
 																				MarkdownDescription: "",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: false,
 																				Optional: true,

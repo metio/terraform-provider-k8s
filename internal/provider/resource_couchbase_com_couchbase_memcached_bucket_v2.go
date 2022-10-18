@@ -56,7 +56,7 @@ type CouchbaseComCouchbaseMemcachedBucketV2GoModel struct {
 	Spec *struct {
 		EnableFlush *bool `tfsdk:"enable_flush" yaml:"enableFlush,omitempty"`
 
-		MemoryQuota *string `tfsdk:"memory_quota" yaml:"memoryQuota,omitempty"`
+		MemoryQuota utilities.IntOrString `tfsdk:"memory_quota" yaml:"memoryQuota,omitempty"`
 
 		Name *string `tfsdk:"name" yaml:"name,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -171,7 +171,7 @@ func (r *CouchbaseComCouchbaseMemcachedBucketV2Resource) GetSchema(_ context.Con
 						Description:         "MemoryQuota is a memory limit to the size of a bucket. The memory quota is defined per Couchbase pod running the data service.  This field defaults to, and must be greater than or equal to 100Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 						MarkdownDescription: "MemoryQuota is a memory limit to the size of a bucket. The memory quota is defined per Couchbase pod running the data service.  This field defaults to, and must be greater than or equal to 100Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 
-						Type: types.StringType,
+						Type: utilities.IntOrStringType{},
 
 						Required: false,
 						Optional: true,
@@ -179,7 +179,7 @@ func (r *CouchbaseComCouchbaseMemcachedBucketV2Resource) GetSchema(_ context.Con
 
 						Validators: []tfsdk.AttributeValidator{
 
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+							validators.RegexValidator(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`)),
 						},
 					},
 

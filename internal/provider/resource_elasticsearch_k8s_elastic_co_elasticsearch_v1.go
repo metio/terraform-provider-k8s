@@ -116,7 +116,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 						Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
 
-						TargetPort *string `tfsdk:"target_port" yaml:"targetPort,omitempty"`
+						TargetPort utilities.IntOrString `tfsdk:"target_port" yaml:"targetPort,omitempty"`
 					} `tfsdk:"ports" yaml:"ports,omitempty"`
 
 					PublishNotReadyAddresses *bool `tfsdk:"publish_not_ready_addresses" yaml:"publishNotReadyAddresses,omitempty"`
@@ -411,7 +411,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 								ResourceFieldRef *struct {
 									ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-									Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+									Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 									Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 								} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -463,7 +463,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 									Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+									Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -471,7 +471,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+									Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 							} `tfsdk:"post_start" yaml:"postStart,omitempty"`
 
@@ -491,7 +491,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 									Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+									Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -499,7 +499,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+									Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 							} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
 						} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
@@ -528,7 +528,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -542,7 +542,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 							TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -588,7 +588,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -602,7 +602,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 							TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -688,7 +688,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -702,7 +702,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 							TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -787,7 +787,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 								ResourceFieldRef *struct {
 									ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-									Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+									Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 									Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 								} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -839,7 +839,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 									Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+									Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -847,7 +847,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+									Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 							} `tfsdk:"post_start" yaml:"postStart,omitempty"`
 
@@ -867,7 +867,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 									Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+									Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -875,7 +875,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+									Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 							} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
 						} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
@@ -904,7 +904,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -918,7 +918,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 							TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -964,7 +964,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -978,7 +978,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 							TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -1064,7 +1064,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1078,7 +1078,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 							TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -1169,7 +1169,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 								ResourceFieldRef *struct {
 									ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-									Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+									Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 									Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 								} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -1221,7 +1221,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 									Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+									Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1229,7 +1229,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+									Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 							} `tfsdk:"post_start" yaml:"postStart,omitempty"`
 
@@ -1249,7 +1249,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 									Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+									Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 									Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 								} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1257,7 +1257,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 								TcpSocket *struct {
 									Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-									Port *string `tfsdk:"port" yaml:"port,omitempty"`
+									Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 								} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 							} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
 						} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
@@ -1286,7 +1286,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1300,7 +1300,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 							TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -1346,7 +1346,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1360,7 +1360,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 							TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -1446,7 +1446,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1460,7 +1460,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 							TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -1733,7 +1733,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 								ResourceFieldRef *struct {
 									ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-									Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+									Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 									Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 								} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -1743,7 +1743,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 						EmptyDir *struct {
 							Medium *string `tfsdk:"medium" yaml:"medium,omitempty"`
 
-							SizeLimit *string `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
+							SizeLimit utilities.IntOrString `tfsdk:"size_limit" yaml:"sizeLimit,omitempty"`
 						} `tfsdk:"empty_dir" yaml:"emptyDir,omitempty"`
 
 						Ephemeral *struct {
@@ -1959,7 +1959,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 										ResourceFieldRef *struct {
 											ContainerName *string `tfsdk:"container_name" yaml:"containerName,omitempty"`
 
-											Divisor *string `tfsdk:"divisor" yaml:"divisor,omitempty"`
+											Divisor utilities.IntOrString `tfsdk:"divisor" yaml:"divisor,omitempty"`
 
 											Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 										} `tfsdk:"resource_field_ref" yaml:"resourceFieldRef,omitempty"`
@@ -2194,9 +2194,9 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 			} `tfsdk:"metadata" yaml:"metadata,omitempty"`
 
 			Spec *struct {
-				MaxUnavailable *string `tfsdk:"max_unavailable" yaml:"maxUnavailable,omitempty"`
+				MaxUnavailable utilities.IntOrString `tfsdk:"max_unavailable" yaml:"maxUnavailable,omitempty"`
 
-				MinAvailable *string `tfsdk:"min_available" yaml:"minAvailable,omitempty"`
+				MinAvailable utilities.IntOrString `tfsdk:"min_available" yaml:"minAvailable,omitempty"`
 
 				Selector *struct {
 					MatchExpressions *[]struct {
@@ -2290,7 +2290,7 @@ type ElasticsearchK8SElasticCoElasticsearchV1GoModel struct {
 
 						Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
 
-						TargetPort *string `tfsdk:"target_port" yaml:"targetPort,omitempty"`
+						TargetPort utilities.IntOrString `tfsdk:"target_port" yaml:"targetPort,omitempty"`
 					} `tfsdk:"ports" yaml:"ports,omitempty"`
 
 					PublishNotReadyAddresses *bool `tfsdk:"publish_not_ready_addresses" yaml:"publishNotReadyAddresses,omitempty"`
@@ -2783,7 +2783,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 														Description:         "Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. If this is a string, it will be looked up as a named port in the target Pod's container ports. If this is not specified, the value of the 'port' field is used (an identity map). This field is ignored for services with clusterIP=None, and should be omitted or set equal to the 'port' field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service",
 														MarkdownDescription: "Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. If this is a string, it will be looked up as a named port in the target Pod's container ports. If this is not specified, the value of the 'port' field is used (an identity map). This field is ignored for services with clusterIP=None, and should be omitted or set equal to the 'port' field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: false,
 														Optional: true,
@@ -4466,7 +4466,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																				MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: false,
 																				Optional: true,
@@ -4761,7 +4761,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: true,
 																				Optional: false,
@@ -4806,7 +4806,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: true,
 																				Optional: false,
@@ -4920,7 +4920,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: true,
 																				Optional: false,
@@ -4965,7 +4965,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: true,
 																				Optional: false,
@@ -5130,7 +5130,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -5208,7 +5208,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -5467,7 +5467,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -5545,7 +5545,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -6029,7 +6029,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -6107,7 +6107,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -6584,7 +6584,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																				MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: false,
 																				Optional: true,
@@ -6879,7 +6879,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: true,
 																				Optional: false,
@@ -6924,7 +6924,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: true,
 																				Optional: false,
@@ -7038,7 +7038,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: true,
 																				Optional: false,
@@ -7083,7 +7083,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: true,
 																				Optional: false,
@@ -7248,7 +7248,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -7326,7 +7326,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -7585,7 +7585,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -7663,7 +7663,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -8147,7 +8147,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -8225,7 +8225,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -8735,7 +8735,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																				MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: false,
 																				Optional: true,
@@ -9030,7 +9030,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: true,
 																				Optional: false,
@@ -9075,7 +9075,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: true,
 																				Optional: false,
@@ -9189,7 +9189,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																				MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: true,
 																				Optional: false,
@@ -9234,7 +9234,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																				MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: true,
 																				Optional: false,
@@ -9399,7 +9399,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -9477,7 +9477,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -9736,7 +9736,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -9814,7 +9814,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -10298,7 +10298,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -10376,7 +10376,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																		Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 																		MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -11906,7 +11906,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																				Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																				MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																				Type: types.StringType,
+																				Type: utilities.IntOrStringType{},
 
 																				Required: false,
 																				Optional: true,
@@ -11963,7 +11963,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
 																MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: false,
 																Optional: true,
@@ -13180,7 +13180,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 																								Description:         "Specifies the output format of the exposed resources, defaults to '1'",
 																								MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
 
-																								Type: types.StringType,
+																								Type: utilities.IntOrStringType{},
 
 																								Required: false,
 																								Optional: true,
@@ -14512,7 +14512,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 										Description:         "An eviction is allowed if at most 'maxUnavailable' pods selected by 'selector' are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with 'minAvailable'.",
 										MarkdownDescription: "An eviction is allowed if at most 'maxUnavailable' pods selected by 'selector' are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with 'minAvailable'.",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: false,
 										Optional: true,
@@ -14523,7 +14523,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 										Description:         "An eviction is allowed if at least 'minAvailable' pods selected by 'selector' will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying '100%'.",
 										MarkdownDescription: "An eviction is allowed if at least 'minAvailable' pods selected by 'selector' will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying '100%'.",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: false,
 										Optional: true,
@@ -15055,7 +15055,7 @@ func (r *ElasticsearchK8SElasticCoElasticsearchV1Resource) GetSchema(_ context.C
 														Description:         "Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. If this is a string, it will be looked up as a named port in the target Pod's container ports. If this is not specified, the value of the 'port' field is used (an identity map). This field is ignored for services with clusterIP=None, and should be omitted or set equal to the 'port' field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service",
 														MarkdownDescription: "Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. If this is a string, it will be looked up as a named port in the target Pod's container ports. If this is not specified, the value of the 'port' field is used (an identity map). This field is ignored for services with clusterIP=None, and should be omitted or set equal to the 'port' field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service",
 
-														Type: types.StringType,
+														Type: utilities.IntOrStringType{},
 
 														Required: false,
 														Optional: true,
