@@ -733,31 +733,47 @@ func OpenApiValidators(prop *openapi3.Schema, uv *UsedValidators) []string {
 	validators := make([]string, 0)
 
 	if prop.Type == "integer" && prop.Min != nil {
-		validators = append(validators, fmt.Sprintf("int64validator.AtLeast(%v)", prop.Min))
+		min := *prop.Min
+		if prop.ExclusiveMin {
+			min = min + float64(1)
+		}
+		validators = append(validators, fmt.Sprintf("int64validator.AtLeast(%v)", min))
 		uv.Int64Validator = true
 	}
 	if prop.Type == "integer" && prop.Max != nil {
-		validators = append(validators, fmt.Sprintf("int64validator.AtMost(%v)", prop.Max))
+		max := *prop.Max
+		if prop.ExclusiveMax {
+			max = max - float64(1)
+		}
+		validators = append(validators, fmt.Sprintf("int64validator.AtMost(%v)", max))
 		uv.Int64Validator = true
 	}
-	//if prop.Type == "integer" && len(prop.Enum) > 0 {
-	//	enums := intEnums(prop.Enum)
-	//	validators = append(validators, fmt.Sprintf("int64validator.OneOf(%v)", concatEnums(enums)))
-	//	uv.Int64Validator = true
-	//}
+	if prop.Type == "integer" && len(prop.Enum) > 0 {
+		enums := openapiIntEnums(prop.Enum)
+		validators = append(validators, fmt.Sprintf("int64validator.OneOf(%v)", concatEnums(enums)))
+		uv.Int64Validator = true
+	}
 	if prop.Type == "number" && prop.Min != nil {
-		validators = append(validators, fmt.Sprintf("float64validator.AtLeast(%v)", prop.Min))
+		min := *prop.Min
+		if prop.ExclusiveMin {
+			min = min + float64(1)
+		}
+		validators = append(validators, fmt.Sprintf("float64validator.AtLeast(%v)", min))
 		uv.Float64Validator = true
 	}
 	if prop.Type == "number" && prop.Max != nil {
-		validators = append(validators, fmt.Sprintf("float64validator.AtMost(%v)", prop.Max))
+		max := *prop.Max
+		if prop.ExclusiveMax {
+			max = max - float64(1)
+		}
+		validators = append(validators, fmt.Sprintf("float64validator.AtMost(%v)", max))
 		uv.Float64Validator = true
 	}
-	//if prop.Type == "number" && len(prop.Enum) > 0 {
-	//	enums := floatEnums(prop.Enum)
-	//	validators = append(validators, fmt.Sprintf("float64validator.OneOf(%v)", concatEnums(enums)))
-	//	uv.Float64Validator = true
-	//}
+	if prop.Type == "number" && len(prop.Enum) > 0 {
+		enums := openapiFloatEnums(prop.Enum)
+		validators = append(validators, fmt.Sprintf("float64validator.OneOf(%v)", concatEnums(enums)))
+		uv.Float64Validator = true
+	}
 	if prop.Type == "string" && prop.Format == "byte" {
 		validators = append(validators, "validators.Base64Validator()")
 	}
@@ -772,11 +788,11 @@ func OpenApiValidators(prop *openapi3.Schema, uv *UsedValidators) []string {
 		validators = append(validators, fmt.Sprintf("stringvalidator.LengthAtMost(%v)", *prop.MaxLength))
 		uv.StringValidator = true
 	}
-	//if prop.Type == "string" && len(prop.Enum) > 0 {
-	//	enums := stringEnums(prop.Enum)
-	//	validators = append(validators, fmt.Sprintf("stringvalidator.OneOf(%s)", concatEnums(enums)))
-	//	uv.StringValidator = true
-	//}
+	if prop.Type == "string" && len(prop.Enum) > 0 {
+		enums := openapiStringEnums(prop.Enum)
+		validators = append(validators, fmt.Sprintf("stringvalidator.OneOf(%s)", concatEnums(enums)))
+		uv.StringValidator = true
+	}
 	if prop.Type == "string" && prop.Pattern != "" {
 		attributeType, _, _ := OpenApiTypes(prop)
 		if attributeType == "utilities.IntOrStringType{}" {
@@ -790,6 +806,42 @@ func OpenApiValidators(prop *openapi3.Schema, uv *UsedValidators) []string {
 	}
 
 	return validators
+}
+
+func openapiIntEnums(enums []interface{}) []int64 {
+	var values []int64
+
+	for _, val := range enums {
+		if number, ok := val.(int64); ok {
+			values = append(values, number)
+		}
+	}
+
+	return values
+}
+
+func openapiFloatEnums(enums []interface{}) []float64 {
+	var values []float64
+
+	for _, val := range enums {
+		if number, ok := val.(float64); ok {
+			values = append(values, number)
+		}
+	}
+
+	return values
+}
+
+func openapiStringEnums(enums []interface{}) []string {
+	var values []string
+
+	for _, val := range enums {
+		if str, ok := val.(string); ok {
+			values = append(values, str)
+		}
+	}
+
+	return values
 }
 
 func stringEnums(enums []apiextensionsv1.JSON) []string {
