@@ -153,6 +153,7 @@ func CrdAsTemplateData(crd *apiextensionsv1.CustomResourceDefinition, pkg string
 	}
 
 	validators := UsedValidators{}
+	terraformResourceName := TerraformResourceName(group, kind, version.Name)
 
 	return &TemplateData{
 		BT:                    "`",
@@ -166,8 +167,8 @@ func CrdAsTemplateData(crd *apiextensionsv1.CustomResourceDefinition, pkg string
 		TerraformResourceType: TerraformResourceType(group, kind, version.Name),
 		TerraformModelType:    TerraformModelType(group, kind, version.Name),
 		GoModelType:           GoModelType(group, kind, version.Name),
-		Properties:            CrdProperties(schema, &validators),
-		TerraformResourceName: TerraformResourceName(group, kind, version.Name),
+		Properties:            CrdProperties(schema, &validators, "", terraformResourceName),
+		TerraformResourceName: terraformResourceName,
 		UsedValidators:        validators,
 	}
 }
@@ -208,6 +209,7 @@ func OpenApiAsTemplateData(definition *openapi3.SchemaRef, pkg string) *Template
 	}
 
 	validators := UsedValidators{}
+	terraformResourceName := TerraformResourceName(group, kind, version)
 
 	return &TemplateData{
 		BT:                    "`",
@@ -221,30 +223,36 @@ func OpenApiAsTemplateData(definition *openapi3.SchemaRef, pkg string) *Template
 		TerraformResourceType: TerraformResourceType(group, kind, version),
 		TerraformModelType:    TerraformModelType(group, kind, version),
 		GoModelType:           GoModelType(group, kind, version),
-		Properties:            OpenApiProperties(schema, &validators),
-		TerraformResourceName: TerraformResourceName(group, kind, version),
+		Properties:            OpenApiProperties(schema, &validators, "", terraformResourceName),
+		TerraformResourceName: terraformResourceName,
 		UsedValidators:        validators,
 	}
 }
 
-func CrdProperties(schema *apiextensionsv1.JSONSchemaProps, uv *UsedValidators) []*Property {
+func CrdProperties(schema *apiextensionsv1.JSONSchemaProps, uv *UsedValidators, path string, terraformResourceName string) []*Property {
 	props := make([]*Property, 0)
 
 	for name, prop := range schema.Properties {
+		attributeName := TerraformAttributeName(name)
+		propPath := propertyPath(path, attributeName)
+
 		var nestedProperties []*Property
 		if prop.Type == "array" && prop.Items.Schema.Type == "object" {
-			nestedProperties = CrdProperties(prop.Items.Schema, uv)
+			nestedProperties = CrdProperties(prop.Items.Schema, uv, propPath, terraformResourceName)
 		} else {
-			nestedProperties = CrdProperties(&prop, uv)
+			nestedProperties = CrdProperties(&prop, uv, propPath, terraformResourceName)
 		}
 
 		attributeType, valueType, goType := CRDv1Types(prop)
+		validators := CRDv1Validators(prop, uv)
+		validators = customValidators(terraformResourceName, propPath, uv, validators)
+
 		props = append(props, &Property{
 			BT:                     "`",
 			Name:                   name,
 			GoName:                 GoName(name),
 			GoType:                 goType,
-			TerraformAttributeName: TerraformAttributeName(name),
+			TerraformAttributeName: attributeName,
 			TerraformAttributeType: attributeType,
 			TerraformValueType:     valueType,
 			Description:            Description(prop.Description),
@@ -252,7 +260,7 @@ func CrdProperties(schema *apiextensionsv1.JSONSchemaProps, uv *UsedValidators) 
 			Optional:               !slices.Contains(schema.Required, name),
 			Computed:               false,
 			Properties:             nestedProperties,
-			Validators:             CRDv1Validators(prop, uv),
+			Validators:             validators,
 		})
 	}
 
@@ -301,26 +309,32 @@ func CrdProperties(schema *apiextensionsv1.JSONSchemaProps, uv *UsedValidators) 
 	return props
 }
 
-func OpenApiProperties(schema *openapi3.Schema, uv *UsedValidators) []*Property {
+func OpenApiProperties(schema *openapi3.Schema, uv *UsedValidators, path string, terraformResourceName string) []*Property {
 	props := make([]*Property, 0)
 
 	if schema != nil {
 		for name, prop := range schema.Properties {
 			if prop.Value != nil {
+				attributeName := TerraformAttributeName(name)
+				propPath := propertyPath(path, attributeName)
+
 				var nestedProperties []*Property
 				if prop.Value.Type == "array" && prop.Value.Items != nil && prop.Value.Items.Value != nil && prop.Value.Items.Value.Type == "object" {
-					nestedProperties = OpenApiProperties(prop.Value.Items.Value, uv)
+					nestedProperties = OpenApiProperties(prop.Value.Items.Value, uv, propPath, terraformResourceName)
 				} else {
-					nestedProperties = OpenApiProperties(prop.Value, uv)
+					nestedProperties = OpenApiProperties(prop.Value, uv, propPath, terraformResourceName)
 				}
 
 				attributeType, valueType, goType := OpenApiTypes(prop.Value)
+				validators := OpenApiValidators(prop.Value, uv)
+				validators = customValidators(terraformResourceName, propPath, uv, validators)
+
 				props = append(props, &Property{
 					BT:                     "`",
 					Name:                   name,
 					GoName:                 GoName(name),
 					GoType:                 goType,
-					TerraformAttributeName: TerraformAttributeName(name),
+					TerraformAttributeName: attributeName,
 					TerraformAttributeType: attributeType,
 					TerraformValueType:     valueType,
 					Description:            Description(prop.Value.Description),
@@ -328,7 +342,7 @@ func OpenApiProperties(schema *openapi3.Schema, uv *UsedValidators) []*Property 
 					Optional:               !slices.Contains(schema.Required, name),
 					Computed:               false,
 					Properties:             nestedProperties,
-					Validators:             OpenApiValidators(prop.Value, uv),
+					Validators:             validators,
 				})
 			}
 		}
@@ -377,6 +391,40 @@ func OpenApiProperties(schema *openapi3.Schema, uv *UsedValidators) []*Property 
 	}
 
 	return props
+}
+
+func customValidators(terraformResourceName string, propPath string, uv *UsedValidators, validators []string) []string {
+	if cvs, ok := customValidations[terraformResourceName]; ok {
+		if cv, ok := cvs[propPath]; ok {
+			if usesValidatorPackage(cv, "int64validator") {
+				uv.Int64Validator = true
+			}
+			if usesValidatorPackage(cv, "float64validator") {
+				uv.Float64Validator = true
+			}
+			if usesValidatorPackage(cv, "stringvalidator") {
+				uv.StringValidator = true
+			}
+			validators = append(validators, cv...)
+		}
+	}
+	return validators
+}
+
+func usesValidatorPackage(validators []string, pkg string) bool {
+	for _, validator := range validators {
+		if strings.Contains(validator, pkg) {
+			return true
+		}
+	}
+	return false
+}
+
+func propertyPath(path string, attributeName string) string {
+	if len(path) == 0 {
+		return attributeName
+	}
+	return fmt.Sprintf("%s.%s", path, attributeName)
 }
 
 var matchFirstCap = regexp.MustCompile("(.)([A-Z][a-z]+)")

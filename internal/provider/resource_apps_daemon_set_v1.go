@@ -8,6 +8,10 @@ package provider
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -2177,6 +2181,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(0),
+						},
 					},
 
 					"revision_history_limit": {
@@ -2188,6 +2197,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 						Required: false,
 						Optional: true,
 						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							int64validator.AtLeast(0),
+						},
 					},
 
 					"selector": {
@@ -2250,6 +2264,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									validators.LabelValidator(),
+								},
 							},
 						}),
 
@@ -2279,6 +2298,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											validators.AnnotationValidator(),
+										},
 									},
 
 									"creation_timestamp": {
@@ -2366,6 +2390,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											validators.LabelValidator(),
+										},
 									},
 
 									"managed_fields": {
@@ -2616,6 +2645,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											int64validator.AtLeast(0),
+										},
 									},
 
 									"affinity": {
@@ -3996,6 +4030,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("Always", "Never", "IfNotPresent"),
+												},
 											},
 
 											"lifecycle": {
@@ -4613,6 +4652,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															validators.PortValidator(),
+														},
 													},
 
 													"host_ip": {
@@ -4635,6 +4679,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															validators.PortValidator(),
+														},
 													},
 
 													"name": {
@@ -4657,6 +4706,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("UDP", "TCP", "SCTP"),
+														},
 													},
 												}),
 
@@ -5747,6 +5801,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("ClusterFirstWithHostNet", "ClusterFirst", "Default", "None"),
+										},
 									},
 
 									"enable_service_links": {
@@ -6114,6 +6173,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("Always", "Never", "IfNotPresent"),
+												},
 											},
 
 											"lifecycle": {
@@ -6731,6 +6795,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															validators.PortValidator(),
+														},
 													},
 
 													"host_ip": {
@@ -6753,6 +6822,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															validators.PortValidator(),
+														},
 													},
 
 													"name": {
@@ -6775,6 +6849,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("UDP", "TCP", "SCTP"),
+														},
 													},
 												}),
 
@@ -8265,6 +8344,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 												Required: false,
 												Optional: true,
 												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("Always", "Never", "IfNotPresent"),
+												},
 											},
 
 											"lifecycle": {
@@ -8882,6 +8966,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 														Required: true,
 														Optional: false,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															validators.PortValidator(),
+														},
 													},
 
 													"host_ip": {
@@ -8904,6 +8993,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															validators.PortValidator(),
+														},
 													},
 
 													"name": {
@@ -8926,6 +9020,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 														Required: false,
 														Optional: true,
 														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("UDP", "TCP", "SCTP"),
+														},
 													},
 												}),
 
@@ -10004,6 +10103,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Never", "PreemptLowerPriority"),
+										},
 									},
 
 									"priority": {
@@ -10060,6 +10164,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("Always", "OnFailure", "Never"),
+										},
 									},
 
 									"runtime_class_name": {
@@ -10406,6 +10515,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 										Required: false,
 										Optional: true,
 										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											int64validator.AtLeast(0),
+										},
 									},
 
 									"tolerations": {
@@ -13576,6 +13690,11 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 								Required: false,
 								Optional: true,
 								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("RollingUpdate", "OnDelete"),
+								},
 							},
 						}),
 
