@@ -14,7 +14,7 @@ import (
 	"testing"
 )
 
-func TestAnnotationValidator(t *testing.T) {
+func TestPortValidator(t *testing.T) {
 	t.Parallel()
 
 	type testCase struct {
@@ -22,31 +22,25 @@ func TestAnnotationValidator(t *testing.T) {
 		expectError bool
 	}
 	tests := map[string]testCase{
+		"valid port": {
+			val:         types.Int64{Value: 12345},
+			expectError: false,
+		},
+		"invalid port": {
+			val:         types.Int64{Value: -12345},
+			expectError: true,
+		},
 		"wrong type": {
-			val:         types.String{Value: "ok"},
+			val:         types.Bool{Value: true},
 			expectError: true,
 		},
-		"null map": {
-			val:         types.Map{Null: true, ElemType: types.StringType},
+		"null int": {
+			val:         types.Int64{Null: true},
 			expectError: false,
 		},
-		"unknown map": {
-			val:         types.Map{Unknown: true, ElemType: types.StringType},
+		"unknown int": {
+			val:         types.Int64{Unknown: true},
 			expectError: false,
-		},
-		"valid annotations map": {
-			val: types.Map{ElemType: types.StringType, Elems: map[string]attr.Value{
-				"some":                                 types.String{Value: "value"},
-				"nginx.ingress.kubernetes.io/app-root": types.String{Value: "/"},
-				"sidecar.jaegertracing.io/inject":      types.String{Value: "jaeger"},
-			}},
-			expectError: false,
-		},
-		"invalid annotations": {
-			val: types.Map{ElemType: types.StringType, Elems: map[string]attr.Value{
-				"/some/value": types.String{Value: "value"},
-			}},
-			expectError: true,
 		},
 	}
 
@@ -58,7 +52,7 @@ func TestAnnotationValidator(t *testing.T) {
 				AttributeConfig:         test.val,
 			}
 			response := tfsdk.ValidateAttributeResponse{}
-			AnnotationValidator().Validate(context.TODO(), request, &response)
+			PortValidator().Validate(context.TODO(), request, &response)
 
 			if !response.Diagnostics.HasError() && test.expectError {
 				t.Fatal("expected error, got no error")
