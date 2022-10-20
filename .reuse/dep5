@@ -167,6 +167,10 @@ Files: schemas/crd_v1/enterprisesearch.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
 License: LicenseRef-Elastic
 
+Files: schemas/crd_v1/execution.furiko.io/*
+Copyright: The Furiko Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/extensions.istio.io/*
 Copyright: The Istio Authors
 License: Apache-2.0
