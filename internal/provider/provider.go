@@ -156,6 +156,8 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewEmrcontainersServicesK8SAwsJobRunV1Alpha1Resource,
 		NewEmrcontainersServicesK8SAwsVirtualClusterV1Alpha1Resource,
 		NewEnterprisesearchK8SElasticCoEnterpriseSearchV1Resource,
+		NewExecutionFurikoIoJobConfigV1Alpha1Resource,
+		NewExecutionFurikoIoJobV1Alpha1Resource,
 		NewExtensionsIstioIoWasmPluginV1Alpha1Resource,
 		NewExternalSecretsIoClusterExternalSecretV1Beta1Resource,
 		NewExternalSecretsIoClusterSecretStoreV1Alpha1Resource,
