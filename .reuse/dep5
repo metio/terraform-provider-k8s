@@ -419,6 +419,10 @@ Files: schemas/crd_v1/sagemaker.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon SageMaker Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/scylla.scylladb.com/*
+Copyright: The Scylla Operator Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/secscan.quay.redhat.com/*
 Copyright: The Container Security Operator Authors
 License: Apache-2.0
