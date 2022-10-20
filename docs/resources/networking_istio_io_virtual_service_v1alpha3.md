@@ -222,18 +222,18 @@ Optional:
 
 - `authority` (Attributes) (see [below for nested schema](#nestedatt--spec--http--match--authority))
 - `gateways` (List of String) Names of gateways where the rule should be applied.
-- `headers` (Map of String)
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--http--match--headers))
 - `ignore_uri_case` (Boolean) Flag to specify whether the URI matching should be case-insensitive.
 - `method` (Attributes) (see [below for nested schema](#nestedatt--spec--http--match--method))
 - `name` (String) The name assigned to a match.
 - `port` (Number) Specifies the ports on the host that is being addressed.
-- `query_params` (Map of String) Query parameters for matching.
+- `query_params` (Attributes) Query parameters for matching. (see [below for nested schema](#nestedatt--spec--http--match--query_params))
 - `scheme` (Attributes) (see [below for nested schema](#nestedatt--spec--http--match--scheme))
 - `source_labels` (Map of String)
 - `source_namespace` (String) Source namespace constraining the applicability of a rule to workloads in that namespace.
 - `stat_prefix` (String) The human readable prefix to use when emitting statistics for this route.
 - `uri` (Attributes) (see [below for nested schema](#nestedatt--spec--http--match--uri))
-- `without_headers` (Map of String) withoutHeader has the same syntax with the header, but has opposite meaning.
+- `without_headers` (Attributes) withoutHeader has the same syntax with the header, but has opposite meaning. (see [below for nested schema](#nestedatt--spec--http--match--without_headers))
 
 <a id="nestedatt--spec--http--match--authority"></a>
 ### Nested Schema for `spec.http.match.without_headers`
@@ -245,7 +245,27 @@ Optional:
 - `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
 
 
+<a id="nestedatt--spec--http--match--headers"></a>
+### Nested Schema for `spec.http.match.without_headers`
+
+Optional:
+
+- `exact` (String)
+- `prefix` (String)
+- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
+
+
 <a id="nestedatt--spec--http--match--method"></a>
+### Nested Schema for `spec.http.match.without_headers`
+
+Optional:
+
+- `exact` (String)
+- `prefix` (String)
+- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
+
+
+<a id="nestedatt--spec--http--match--query_params"></a>
 ### Nested Schema for `spec.http.match.without_headers`
 
 Optional:
@@ -266,6 +286,16 @@ Optional:
 
 
 <a id="nestedatt--spec--http--match--uri"></a>
+### Nested Schema for `spec.http.match.without_headers`
+
+Optional:
+
+- `exact` (String)
+- `prefix` (String)
+- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
+
+
+<a id="nestedatt--spec--http--match--without_headers"></a>
 ### Nested Schema for `spec.http.match.without_headers`
 
 Optional:

@@ -115,7 +115,7 @@ Optional:
 
 - `disabled` (Boolean) Optional.
 - `match` (Attributes) Match allows provides the scope of the override. (see [below for nested schema](#nestedatt--spec--metrics--overrides--match))
-- `tag_overrides` (Map of String) Optional.
+- `tag_overrides` (Attributes) Optional. (see [below for nested schema](#nestedatt--spec--metrics--overrides--tag_overrides))
 
 <a id="nestedatt--spec--metrics--overrides--match"></a>
 ### Nested Schema for `spec.metrics.overrides.tag_overrides`
@@ -125,6 +125,15 @@ Optional:
 - `custom_metric` (String) Allows free-form specification of a metric.
 - `metric` (String) One of the well-known Istio Standard Metrics.
 - `mode` (String)
+
+
+<a id="nestedatt--spec--metrics--overrides--tag_overrides"></a>
+### Nested Schema for `spec.metrics.overrides.tag_overrides`
+
+Optional:
+
+- `operation` (String) Operation controls whether or not to update/add a tag, or to remove it.
+- `value` (String) Value is only considered if the operation is 'UPSERT'.
 
 
 
@@ -150,12 +159,48 @@ Optional:
 
 Optional:
 
-- `custom_tags` (Map of String) Optional.
+- `custom_tags` (Attributes) Optional. (see [below for nested schema](#nestedatt--spec--tracing--custom_tags))
 - `disable_span_reporting` (Boolean) Controls span reporting.
 - `match` (Attributes) Allows tailoring of behavior to specific conditions. (see [below for nested schema](#nestedatt--spec--tracing--match))
 - `providers` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--tracing--providers))
 - `random_sampling_percentage` (Number)
 - `use_request_id_for_trace_sampling` (Boolean)
+
+<a id="nestedatt--spec--tracing--custom_tags"></a>
+### Nested Schema for `spec.tracing.custom_tags`
+
+Optional:
+
+- `environment` (Attributes) Environment adds the value of an environment variable to each span. (see [below for nested schema](#nestedatt--spec--tracing--custom_tags--environment))
+- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--tracing--custom_tags--header))
+- `literal` (Attributes) Literal adds the same, hard-coded value to each span. (see [below for nested schema](#nestedatt--spec--tracing--custom_tags--literal))
+
+<a id="nestedatt--spec--tracing--custom_tags--environment"></a>
+### Nested Schema for `spec.tracing.custom_tags.literal`
+
+Optional:
+
+- `default_value` (String) Optional.
+- `name` (String) Name of the environment variable from which to extract the tag value.
+
+
+<a id="nestedatt--spec--tracing--custom_tags--header"></a>
+### Nested Schema for `spec.tracing.custom_tags.literal`
+
+Optional:
+
+- `default_value` (String) Optional.
+- `name` (String) Name of the header from which to extract the tag value.
+
+
+<a id="nestedatt--spec--tracing--custom_tags--literal"></a>
+### Nested Schema for `spec.tracing.custom_tags.literal`
+
+Optional:
+
+- `value` (String) The tag value to use.
+
+
 
 <a id="nestedatt--spec--tracing--match"></a>
 ### Nested Schema for `spec.tracing.match`

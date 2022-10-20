@@ -95,6 +95,10 @@ Files: schemas/crd_v1/beat.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
 License: LicenseRef-Elastic
 
+Files: schemas/crd_v1/camel.apache.org/*
+Copyright: The Apache Camel Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/cert-manager.io/*
 Copyright: The cert-manager Authors
 License: Apache-2.0

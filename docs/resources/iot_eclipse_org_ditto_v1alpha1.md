@@ -411,7 +411,19 @@ Optional:
 
 Optional:
 
-- `issuers` (Map of String)
+- `issuers` (Attributes) (see [below for nested schema](#nestedatt--spec--oauth--issuers))
+
+<a id="nestedatt--spec--oauth--issuers"></a>
+### Nested Schema for `spec.oauth.issuers`
+
+Required:
+
+- `url` (String)
+
+Optional:
+
+- `subjects` (List of String)
+
 
 
 <a id="nestedatt--spec--open_api"></a>

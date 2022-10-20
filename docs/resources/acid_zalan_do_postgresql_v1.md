@@ -155,7 +155,7 @@ Optional:
 - `patroni` (Attributes) (see [below for nested schema](#nestedatt--spec--patroni))
 - `pod_annotations` (Map of String)
 - `pod_priority_class_name` (String)
-- `prepared_databases` (Map of String)
+- `prepared_databases` (Attributes) (see [below for nested schema](#nestedatt--spec--prepared_databases))
 - `replica_load_balancer` (Boolean) deprecated
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--resources))
 - `scheduler_name` (String)
@@ -410,6 +410,26 @@ Optional:
 - `ttl` (Number)
 
 
+<a id="nestedatt--spec--prepared_databases"></a>
+### Nested Schema for `spec.prepared_databases`
+
+Optional:
+
+- `default_users` (Boolean)
+- `extensions` (Map of String)
+- `schemas` (Attributes) (see [below for nested schema](#nestedatt--spec--prepared_databases--schemas))
+- `secret_namespace` (String)
+
+<a id="nestedatt--spec--prepared_databases--schemas"></a>
+### Nested Schema for `spec.prepared_databases.schemas`
+
+Optional:
+
+- `default_roles` (Boolean)
+- `default_users` (Boolean)
+
+
+
 <a id="nestedatt--spec--resources"></a>
 ### Nested Schema for `spec.resources`
 
@@ -455,12 +475,25 @@ Required:
 
 - `application_id` (String)
 - `database` (String)
-- `tables` (Map of String)
+- `tables` (Attributes) (see [below for nested schema](#nestedatt--spec--streams--tables))
 
 Optional:
 
 - `batch_size` (Number)
 - `filter` (Map of String)
+
+<a id="nestedatt--spec--streams--tables"></a>
+### Nested Schema for `spec.streams.tables`
+
+Required:
+
+- `event_type` (String)
+
+Optional:
+
+- `id_column` (String)
+- `payload_column` (String)
+
 
 
 <a id="nestedatt--spec--tls"></a>

@@ -90,7 +90,11 @@ type IotEclipseOrgHawkbitV1Alpha1GoModel struct {
 			} `tfsdk:"postgres" yaml:"postgres,omitempty"`
 		} `tfsdk:"database" yaml:"database,omitempty"`
 
-		ImageOverrides *map[string]string `tfsdk:"image_overrides" yaml:"imageOverrides,omitempty"`
+		ImageOverrides *struct {
+			Image *string `tfsdk:"image" yaml:"image,omitempty"`
+
+			PullPolicy *string `tfsdk:"pull_policy" yaml:"pullPolicy,omitempty"`
+		} `tfsdk:"image_overrides" yaml:"imageOverrides,omitempty"`
 
 		Rabbit *struct {
 			External *struct {
@@ -457,7 +461,30 @@ func (r *IotEclipseOrgHawkbitV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 						Description:         "",
 						MarkdownDescription: "",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"image": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"pull_policy": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

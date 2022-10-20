@@ -52,7 +52,7 @@ type SecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Allow *map[string]string `tfsdk:"allow" yaml:"allow,omitempty"`
+		Allow *map[string]map[string][]string `tfsdk:"allow" yaml:"allow,omitempty"`
 
 		Inherit *[]struct {
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
@@ -160,7 +160,7 @@ func (r *SecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2Resource) GetSchema
 						Description:         "Defines the allow policy for the profile",
 						MarkdownDescription: "Defines the allow policy for the profile",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Type: types.MapType{ElemType: types.MapType{ElemType: types.ListType{ElemType: types.StringType}}},
 
 						Required: false,
 						Optional: true,

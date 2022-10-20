@@ -315,8 +315,45 @@ Optional:
 
 Optional:
 
-- `client_mappings` (Map of String) Client Mappings
+- `client_mappings` (Attributes) Client Mappings (see [below for nested schema](#nestedatt--spec--scope_mappings--client_mappings))
 - `realm_mappings` (Attributes List) Realm Mappings (see [below for nested schema](#nestedatt--spec--scope_mappings--realm_mappings))
+
+<a id="nestedatt--spec--scope_mappings--client_mappings"></a>
+### Nested Schema for `spec.scope_mappings.client_mappings`
+
+Optional:
+
+- `client` (String) Client
+- `id` (String) ID
+- `mappings` (Attributes List) Mappings (see [below for nested schema](#nestedatt--spec--scope_mappings--client_mappings--mappings))
+
+<a id="nestedatt--spec--scope_mappings--client_mappings--mappings"></a>
+### Nested Schema for `spec.scope_mappings.client_mappings.mappings`
+
+Required:
+
+- `name` (String) Name
+
+Optional:
+
+- `attributes` (Map of List of String) Role Attributes
+- `client_role` (Boolean) Client Role
+- `composite` (Boolean) Composite
+- `composites` (Attributes) Composites (see [below for nested schema](#nestedatt--spec--scope_mappings--client_mappings--mappings--composites))
+- `container_id` (String) Container Id
+- `description` (String) Description
+- `id` (String) Id
+
+<a id="nestedatt--spec--scope_mappings--client_mappings--mappings--composites"></a>
+### Nested Schema for `spec.scope_mappings.client_mappings.mappings.composites`
+
+Optional:
+
+- `client` (Map of List of String) Map client => []role
+- `realm` (List of String) Realm roles
+
+
+
 
 <a id="nestedatt--spec--scope_mappings--realm_mappings"></a>
 ### Nested Schema for `spec.scope_mappings.realm_mappings`

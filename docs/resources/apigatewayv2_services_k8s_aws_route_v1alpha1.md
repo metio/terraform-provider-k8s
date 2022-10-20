@@ -71,7 +71,7 @@ Optional:
 - `model_selection_expression` (String)
 - `operation_name` (String)
 - `request_models` (Map of String)
-- `request_parameters` (Map of String)
+- `request_parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--request_parameters))
 - `route_response_selection_expression` (String)
 - `target` (String)
 - `target_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:   from:     name: my-api (see [below for nested schema](#nestedatt--spec--target_ref))
@@ -106,6 +106,14 @@ Optional:
 
 - `name` (String)
 
+
+
+<a id="nestedatt--spec--request_parameters"></a>
+### Nested Schema for `spec.request_parameters`
+
+Optional:
+
+- `required` (Boolean)
 
 
 <a id="nestedatt--spec--target_ref"></a>

@@ -329,7 +329,33 @@ type KeycloakOrgKeycloakClientV1Alpha1GoModel struct {
 		} `tfsdk:"roles" yaml:"roles,omitempty"`
 
 		ScopeMappings *struct {
-			ClientMappings *map[string]string `tfsdk:"client_mappings" yaml:"clientMappings,omitempty"`
+			ClientMappings *struct {
+				Client *string `tfsdk:"client" yaml:"client,omitempty"`
+
+				Id *string `tfsdk:"id" yaml:"id,omitempty"`
+
+				Mappings *[]struct {
+					Attributes *map[string][]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
+
+					ClientRole *bool `tfsdk:"client_role" yaml:"clientRole,omitempty"`
+
+					Composite *bool `tfsdk:"composite" yaml:"composite,omitempty"`
+
+					Composites *struct {
+						Client *map[string][]string `tfsdk:"client" yaml:"client,omitempty"`
+
+						Realm *[]string `tfsdk:"realm" yaml:"realm,omitempty"`
+					} `tfsdk:"composites" yaml:"composites,omitempty"`
+
+					ContainerId *string `tfsdk:"container_id" yaml:"containerId,omitempty"`
+
+					Description *string `tfsdk:"description" yaml:"description,omitempty"`
+
+					Id *string `tfsdk:"id" yaml:"id,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"mappings" yaml:"mappings,omitempty"`
+			} `tfsdk:"client_mappings" yaml:"clientMappings,omitempty"`
 
 			RealmMappings *[]struct {
 				Attributes *map[string][]string `tfsdk:"attributes" yaml:"attributes,omitempty"`
@@ -2007,7 +2033,153 @@ func (r *KeycloakOrgKeycloakClientV1Alpha1Resource) GetSchema(_ context.Context)
 								Description:         "Client Mappings",
 								MarkdownDescription: "Client Mappings",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"client": {
+										Description:         "Client",
+										MarkdownDescription: "Client",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"id": {
+										Description:         "ID",
+										MarkdownDescription: "ID",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"mappings": {
+										Description:         "Mappings",
+										MarkdownDescription: "Mappings",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"attributes": {
+												Description:         "Role Attributes",
+												MarkdownDescription: "Role Attributes",
+
+												Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"client_role": {
+												Description:         "Client Role",
+												MarkdownDescription: "Client Role",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"composite": {
+												Description:         "Composite",
+												MarkdownDescription: "Composite",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"composites": {
+												Description:         "Composites",
+												MarkdownDescription: "Composites",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"client": {
+														Description:         "Map client => []role",
+														MarkdownDescription: "Map client => []role",
+
+														Type: types.MapType{ElemType: types.ListType{ElemType: types.StringType}},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"realm": {
+														Description:         "Realm roles",
+														MarkdownDescription: "Realm roles",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"container_id": {
+												Description:         "Container Id",
+												MarkdownDescription: "Container Id",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"description": {
+												Description:         "Description",
+												MarkdownDescription: "Description",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"id": {
+												Description:         "Id",
+												MarkdownDescription: "Id",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name",
+												MarkdownDescription: "Name",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,

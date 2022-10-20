@@ -152,7 +152,13 @@ type NetworkingIstioIoVirtualServiceV1Beta1GoModel struct {
 
 				Gateways *[]string `tfsdk:"gateways" yaml:"gateways,omitempty"`
 
-				Headers *map[string]string `tfsdk:"headers" yaml:"headers,omitempty"`
+				Headers *struct {
+					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
+
+					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
+				} `tfsdk:"headers" yaml:"headers,omitempty"`
 
 				IgnoreUriCase *bool `tfsdk:"ignore_uri_case" yaml:"ignoreUriCase,omitempty"`
 
@@ -168,7 +174,13 @@ type NetworkingIstioIoVirtualServiceV1Beta1GoModel struct {
 
 				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 
-				QueryParams *map[string]string `tfsdk:"query_params" yaml:"queryParams,omitempty"`
+				QueryParams *struct {
+					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
+
+					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
+				} `tfsdk:"query_params" yaml:"queryParams,omitempty"`
 
 				Scheme *struct {
 					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
@@ -192,7 +204,13 @@ type NetworkingIstioIoVirtualServiceV1Beta1GoModel struct {
 					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
 				} `tfsdk:"uri" yaml:"uri,omitempty"`
 
-				WithoutHeaders *map[string]string `tfsdk:"without_headers" yaml:"withoutHeaders,omitempty"`
+				WithoutHeaders *struct {
+					Exact *string `tfsdk:"exact" yaml:"exact,omitempty"`
+
+					Prefix *string `tfsdk:"prefix" yaml:"prefix,omitempty"`
+
+					Regex *string `tfsdk:"regex" yaml:"regex,omitempty"`
+				} `tfsdk:"without_headers" yaml:"withoutHeaders,omitempty"`
 			} `tfsdk:"match" yaml:"match,omitempty"`
 
 			Mirror *struct {
@@ -1003,7 +1021,41 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Resource) GetSchema(_ context.Con
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"exact": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"prefix": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"regex": {
+												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
 
 										Required: false,
 										Optional: true,
@@ -1092,7 +1144,41 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Resource) GetSchema(_ context.Con
 										Description:         "Query parameters for matching.",
 										MarkdownDescription: "Query parameters for matching.",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"exact": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"prefix": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"regex": {
+												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
 
 										Required: false,
 										Optional: true,
@@ -1226,7 +1312,41 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Resource) GetSchema(_ context.Con
 										Description:         "withoutHeader has the same syntax with the header, but has opposite meaning.",
 										MarkdownDescription: "withoutHeader has the same syntax with the header, but has opposite meaning.",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"exact": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"prefix": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"regex": {
+												Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
 
 										Required: false,
 										Optional: true,

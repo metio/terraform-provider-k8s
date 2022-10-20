@@ -108,7 +108,7 @@ Optional:
 - `dns_config` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--dns_config))
 - `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--driver--env))
 - `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--driver--env_from))
-- `env_secret_key_refs` (Map of String)
+- `env_secret_key_refs` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--env_secret_key_refs))
 - `env_vars` (Map of String)
 - `gpu` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--gpu))
 - `host_aliases` (Attributes List) (see [below for nested schema](#nestedatt--spec--driver--host_aliases))
@@ -546,6 +546,15 @@ Optional:
 - `name` (String)
 - `optional` (Boolean)
 
+
+
+<a id="nestedatt--spec--driver--env_secret_key_refs"></a>
+### Nested Schema for `spec.driver.env_secret_key_refs`
+
+Required:
+
+- `key` (String)
+- `name` (String)
 
 
 <a id="nestedatt--spec--driver--gpu"></a>
@@ -1879,7 +1888,7 @@ Optional:
 - `dns_config` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--dns_config))
 - `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--executor--env))
 - `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--executor--env_from))
-- `env_secret_key_refs` (Map of String)
+- `env_secret_key_refs` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--env_secret_key_refs))
 - `env_vars` (Map of String)
 - `gpu` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--gpu))
 - `host_aliases` (Attributes List) (see [below for nested schema](#nestedatt--spec--executor--host_aliases))
@@ -2314,6 +2323,15 @@ Optional:
 - `name` (String)
 - `optional` (Boolean)
 
+
+
+<a id="nestedatt--spec--executor--env_secret_key_refs"></a>
+### Nested Schema for `spec.executor.env_secret_key_refs`
+
+Required:
+
+- `key` (String)
+- `name` (String)
 
 
 <a id="nestedatt--spec--executor--gpu"></a>

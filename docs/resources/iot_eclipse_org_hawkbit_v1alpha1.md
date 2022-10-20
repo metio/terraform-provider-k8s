@@ -72,7 +72,7 @@ Optional:
 Optional:
 
 - `database` (Attributes) (see [below for nested schema](#nestedatt--spec--database))
-- `image_overrides` (Map of String)
+- `image_overrides` (Attributes) (see [below for nested schema](#nestedatt--spec--image_overrides))
 - `rabbit` (Attributes) (see [below for nested schema](#nestedatt--spec--rabbit))
 - `sign_on` (Attributes) (see [below for nested schema](#nestedatt--spec--sign_on))
 
@@ -128,6 +128,15 @@ Optional:
 - `name` (String)
 
 
+
+
+<a id="nestedatt--spec--image_overrides"></a>
+### Nested Schema for `spec.image_overrides`
+
+Optional:
+
+- `image` (String)
+- `pull_policy` (String)
 
 
 <a id="nestedatt--spec--rabbit"></a>

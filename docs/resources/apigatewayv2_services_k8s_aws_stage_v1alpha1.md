@@ -70,7 +70,7 @@ Optional:
 - `deployment_id` (String)
 - `deployment_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:   from:     name: my-api (see [below for nested schema](#nestedatt--spec--deployment_ref))
 - `description` (String)
-- `route_settings` (Map of String)
+- `route_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--route_settings))
 - `stage_variables` (Map of String)
 - `tags` (Map of String)
 
@@ -124,5 +124,18 @@ Optional:
 Optional:
 
 - `name` (String)
+
+
+
+<a id="nestedatt--spec--route_settings"></a>
+### Nested Schema for `spec.route_settings`
+
+Optional:
+
+- `data_trace_enabled` (Boolean)
+- `detailed_metrics_enabled` (Boolean)
+- `logging_level` (String) The logging level.
+- `throttling_burst_limit` (Number)
+- `throttling_rate_limit` (Number)
 
 

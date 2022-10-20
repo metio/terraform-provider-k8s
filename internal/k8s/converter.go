@@ -239,6 +239,8 @@ func CrdProperties(schema *apiextensionsv1.JSONSchemaProps, uv *UsedValidators, 
 		var nestedProperties []*Property
 		if prop.Type == "array" && prop.Items.Schema.Type == "object" {
 			nestedProperties = CrdProperties(prop.Items.Schema, uv, propPath, terraformResourceName)
+		} else if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Schema.Type == "object" {
+			nestedProperties = CrdProperties(prop.AdditionalProperties.Schema, uv, propPath, terraformResourceName)
 		} else {
 			nestedProperties = CrdProperties(&prop, uv, propPath, terraformResourceName)
 		}
@@ -321,6 +323,8 @@ func OpenApiProperties(schema *openapi3.Schema, uv *UsedValidators, path string,
 				var nestedProperties []*Property
 				if prop.Value.Type == "array" && prop.Value.Items != nil && prop.Value.Items.Value != nil && prop.Value.Items.Value.Type == "object" {
 					nestedProperties = OpenApiProperties(prop.Value.Items.Value, uv, propPath, terraformResourceName)
+				} else if prop.Value.Type == "object" && prop.Value.AdditionalProperties != nil && prop.Value.AdditionalProperties.Value.Type == "object" {
+					nestedProperties = OpenApiProperties(prop.Value.AdditionalProperties.Value, uv, propPath, terraformResourceName)
 				} else {
 					nestedProperties = OpenApiProperties(prop.Value, uv, propPath, terraformResourceName)
 				}
@@ -489,12 +493,24 @@ func GoModelType(group string, kind string, version string) string {
 
 func TerraformAttributeName(str string) string {
 	clean := matchDashes.ReplaceAllString(str, "__")
+	if strings.HasPrefix(clean, "3") {
+		clean = strings.Replace(clean, "3", "Three", 1)
+	}
+	if strings.HasPrefix(clean, "$") {
+		clean = strings.Replace(clean, "$", "Dollar", 1)
+	}
 	clean = toSnakeCase(clean)
 	return clean
 }
 
 func GoName(s string) string {
 	clean := upperCaseFirstLetter(s)
+	if strings.HasPrefix(clean, "3") {
+		clean = strings.Replace(clean, "3", "Three", 1)
+	}
+	if strings.HasPrefix(clean, "$") {
+		clean = strings.Replace(clean, "$", "Dollar", 1)
+	}
 	clean = matchDashes.ReplaceAllString(clean, "_")
 	clean = matchDots.ReplaceAllString(clean, "_")
 	clean = matchSlashes.ReplaceAllString(clean, "_")
@@ -541,6 +557,26 @@ func CRDv1Types(prop apiextensionsv1.JSONSchemaProps) (attributeType string, val
 			goType = "map[string]map[string]string"
 			return
 		}
+		if prop.AdditionalProperties.Schema.AdditionalProperties != nil && prop.AdditionalProperties.Schema.AdditionalProperties.Schema.Type == "array" {
+			if prop.AdditionalProperties.Schema.AdditionalProperties.Schema.Items.Schema.Type == "string" {
+				attributeType = "types.MapType{ElemType: types.MapType{ElemType: types.ListType{ElemType: types.StringType}}}"
+				valueType = "types.Map"
+				goType = "map[string]map[string][]string"
+				return
+			}
+		}
+		if prop.AdditionalProperties.Schema.XPreserveUnknownFields != nil && *prop.AdditionalProperties.Schema.XPreserveUnknownFields {
+			if len(prop.AdditionalProperties.Schema.Properties) == 0 {
+				attributeType = "utilities.DynamicType{}"
+				valueType = "utilities.Dynamic"
+				goType = "utilities.Dynamic"
+				return
+			}
+		}
+		attributeType = "types.ObjectType"
+		valueType = "types.Object"
+		goType = "struct"
+		return
 	}
 	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Schema.Type == "array" {
 		if prop.AdditionalProperties.Schema.Items.Schema.Type == "string" {
@@ -644,6 +680,29 @@ func OpenApiTypes(prop *openapi3.Schema) (attributeType string, valueType string
 			goType = "map[string]map[string]string"
 			return
 		}
+		if prop.AdditionalProperties.Value.AdditionalProperties != nil && prop.AdditionalProperties.Value.AdditionalProperties.Value.Type == "array" {
+			if prop.AdditionalProperties.Value.AdditionalProperties.Value.AdditionalProperties != nil && prop.AdditionalProperties.Value.AdditionalProperties.Value.AdditionalProperties.Value.Type == "string" {
+				attributeType = "types.MapType{ElemType: types.MapType{ElemType: types.ListType{ElemType: types.StringType}e}}"
+				valueType = "types.Map"
+				goType = "map[string]map[string][]string"
+			}
+			attributeType = "types.MapType{ElemType: types.MapType{ElemType: types.StringType}}"
+			valueType = "types.Map"
+			goType = "map[string]map[string]string"
+			return
+		}
+		if _, ok := prop.AdditionalProperties.Value.Extensions["x-kubernetes-preserve-unknown-fields"]; ok {
+			if len(prop.AdditionalProperties.Value.Properties) == 0 {
+				attributeType = "utilities.DynamicType{}"
+				valueType = "utilities.Dynamic"
+				goType = "utilities.Dynamic"
+				return
+			}
+		}
+		attributeType = "types.ObjectType"
+		valueType = "types.Object"
+		goType = "struct"
+		return
 	}
 	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Value.Type == "array" {
 		if prop.AdditionalProperties.Value.Items.Value.Type == "string" {

@@ -123,8 +123,19 @@ Optional:
 
 Optional:
 
-- `headers` (Map of String)
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--analysis--match--headers))
 - `source_labels` (Map of String) Applicable only when the 'mesh' gateway is included in the service.gateways list
+
+<a id="nestedatt--spec--analysis--match--headers"></a>
+### Nested Schema for `spec.analysis.match.source_labels`
+
+Optional:
+
+- `exact` (String)
+- `prefix` (String)
+- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax)
+- `suffix` (String)
+
 
 
 <a id="nestedatt--spec--analysis--metrics"></a>
@@ -305,17 +316,17 @@ Optional:
 
 - `authority` (Attributes) (see [below for nested schema](#nestedatt--spec--service--match--authority))
 - `gateways` (List of String) Names of gateways where the rule should be applied.
-- `headers` (Map of String)
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--service--match--headers))
 - `ignore_uri_case` (Boolean) Flag to specify whether the URI matching should be case-insensitive.
 - `method` (Attributes) (see [below for nested schema](#nestedatt--spec--service--match--method))
 - `name` (String) The name assigned to a match.
 - `port` (Number) Specifies the ports on the host that is being addressed.
-- `query_params` (Map of String) Query parameters for matching.
+- `query_params` (Attributes) Query parameters for matching. (see [below for nested schema](#nestedatt--spec--service--match--query_params))
 - `scheme` (Attributes) (see [below for nested schema](#nestedatt--spec--service--match--scheme))
 - `source_labels` (Map of String)
 - `source_namespace` (String) Source namespace constraining the applicability of a rule to workloads in that namespace.
 - `uri` (Attributes) (see [below for nested schema](#nestedatt--spec--service--match--uri))
-- `without_headers` (Map of String) withoutHeader has the same syntax with the header, but has opposite meaning.
+- `without_headers` (Attributes) withoutHeader has the same syntax with the header, but has opposite meaning. (see [below for nested schema](#nestedatt--spec--service--match--without_headers))
 
 <a id="nestedatt--spec--service--match--authority"></a>
 ### Nested Schema for `spec.service.match.without_headers`
@@ -327,7 +338,27 @@ Optional:
 - `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
 
 
+<a id="nestedatt--spec--service--match--headers"></a>
+### Nested Schema for `spec.service.match.without_headers`
+
+Optional:
+
+- `exact` (String)
+- `prefix` (String)
+- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
+
+
 <a id="nestedatt--spec--service--match--method"></a>
+### Nested Schema for `spec.service.match.without_headers`
+
+Optional:
+
+- `exact` (String)
+- `prefix` (String)
+- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
+
+
+<a id="nestedatt--spec--service--match--query_params"></a>
 ### Nested Schema for `spec.service.match.without_headers`
 
 Optional:
@@ -348,6 +379,16 @@ Optional:
 
 
 <a id="nestedatt--spec--service--match--uri"></a>
+### Nested Schema for `spec.service.match.without_headers`
+
+Optional:
+
+- `exact` (String)
+- `prefix` (String)
+- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
+
+
+<a id="nestedatt--spec--service--match--without_headers"></a>
 ### Nested Schema for `spec.service.match.without_headers`
 
 Optional:

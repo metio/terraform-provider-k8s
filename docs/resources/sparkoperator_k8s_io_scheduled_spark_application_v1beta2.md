@@ -126,7 +126,7 @@ Optional:
 - `dns_config` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--dns_config))
 - `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--driver--env))
 - `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--driver--env_from))
-- `env_secret_key_refs` (Map of String)
+- `env_secret_key_refs` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--env_secret_key_refs))
 - `env_vars` (Map of String)
 - `gpu` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--gpu))
 - `host_aliases` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--driver--host_aliases))
@@ -564,6 +564,15 @@ Optional:
 - `name` (String)
 - `optional` (Boolean)
 
+
+
+<a id="nestedatt--spec--template--driver--env_secret_key_refs"></a>
+### Nested Schema for `spec.template.driver.volume_mounts`
+
+Required:
+
+- `key` (String)
+- `name` (String)
 
 
 <a id="nestedatt--spec--template--driver--gpu"></a>
@@ -1897,7 +1906,7 @@ Optional:
 - `dns_config` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--dns_config))
 - `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--executor--env))
 - `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--executor--env_from))
-- `env_secret_key_refs` (Map of String)
+- `env_secret_key_refs` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--env_secret_key_refs))
 - `env_vars` (Map of String)
 - `gpu` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--gpu))
 - `host_aliases` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--executor--host_aliases))
@@ -2332,6 +2341,15 @@ Optional:
 - `name` (String)
 - `optional` (Boolean)
 
+
+
+<a id="nestedatt--spec--template--executor--env_secret_key_refs"></a>
+### Nested Schema for `spec.template.executor.volume_mounts`
+
+Required:
+
+- `key` (String)
+- `name` (String)
 
 
 <a id="nestedatt--spec--template--executor--gpu"></a>

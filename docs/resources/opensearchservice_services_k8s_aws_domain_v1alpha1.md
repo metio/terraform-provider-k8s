@@ -71,7 +71,7 @@ Optional:
 - `ebs_options` (Attributes) Options to enable, disable, and specify the type and size of EBS storage volumes. (see [below for nested schema](#nestedatt--spec--ebs_options))
 - `encryption_at_rest_options` (Attributes) Options for encryption of data at rest. (see [below for nested schema](#nestedatt--spec--encryption_at_rest_options))
 - `engine_version` (String) String of format Elasticsearch_X.Y or OpenSearch_X.Y to specify the engine version for the Amazon OpenSearch Service domain. For example, 'OpenSearch_1.0' or 'Elasticsearch_7.9'. For more information, see Creating and managing Amazon OpenSearch Service domains (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains).
-- `log_publishing_options` (Map of String) Map of LogType and LogPublishingOption, each containing options to publish a given type of OpenSearch log.
+- `log_publishing_options` (Attributes) Map of LogType and LogPublishingOption, each containing options to publish a given type of OpenSearch log. (see [below for nested schema](#nestedatt--spec--log_publishing_options))
 - `node_to_node_encryption_options` (Attributes) Node-to-node encryption options. (see [below for nested schema](#nestedatt--spec--node_to_node_encryption_options))
 - `tags` (Attributes List) A list of Tag added during domain creation. (see [below for nested schema](#nestedatt--spec--tags))
 - `vpc_options` (Attributes) Options to specify the subnets and security groups for a VPC endpoint. For more information, see Launching your Amazon OpenSearch Service domains using a VPC (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html). (see [below for nested schema](#nestedatt--spec--vpc_options))
@@ -238,6 +238,15 @@ Optional:
 
 - `enabled` (Boolean)
 - `kms_key_id` (String)
+
+
+<a id="nestedatt--spec--log_publishing_options"></a>
+### Nested Schema for `spec.log_publishing_options`
+
+Optional:
+
+- `cloud_watch_logs_log_group_arn` (String) ARN of the Cloudwatch log group to publish logs to.
+- `enabled` (Boolean)
 
 
 <a id="nestedatt--spec--node_to_node_encryption_options"></a>
