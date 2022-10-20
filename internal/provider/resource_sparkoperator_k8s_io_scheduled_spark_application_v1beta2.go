@@ -304,7 +304,11 @@ type SparkoperatorK8SIoScheduledSparkApplicationV1Beta2GoModel struct {
 					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 				} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
 
-				EnvSecretKeyRefs *map[string]string `tfsdk:"env_secret_key_refs" yaml:"envSecretKeyRefs,omitempty"`
+				EnvSecretKeyRefs *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"env_secret_key_refs" yaml:"envSecretKeyRefs,omitempty"`
 
 				EnvVars *map[string]string `tfsdk:"env_vars" yaml:"envVars,omitempty"`
 
@@ -1398,7 +1402,11 @@ type SparkoperatorK8SIoScheduledSparkApplicationV1Beta2GoModel struct {
 					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 				} `tfsdk:"env_from" yaml:"envFrom,omitempty"`
 
-				EnvSecretKeyRefs *map[string]string `tfsdk:"env_secret_key_refs" yaml:"envSecretKeyRefs,omitempty"`
+				EnvSecretKeyRefs *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"env_secret_key_refs" yaml:"envSecretKeyRefs,omitempty"`
 
 				EnvVars *map[string]string `tfsdk:"env_vars" yaml:"envVars,omitempty"`
 
@@ -4208,7 +4216,30 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Resource) GetSchema(_
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
 
 										Required: false,
 										Optional: true,
@@ -10387,7 +10418,30 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Resource) GetSchema(_
 										Description:         "",
 										MarkdownDescription: "",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
 
 										Required: false,
 										Optional: true,

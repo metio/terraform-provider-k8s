@@ -182,7 +182,11 @@ type OpensearchserviceServicesK8SAwsDomainV1Alpha1GoModel struct {
 
 		EngineVersion *string `tfsdk:"engine_version" yaml:"engineVersion,omitempty"`
 
-		LogPublishingOptions *map[string]string `tfsdk:"log_publishing_options" yaml:"logPublishingOptions,omitempty"`
+		LogPublishingOptions *struct {
+			CloudWatchLogsLogGroupARN *string `tfsdk:"cloud_watch_logs_log_group_arn" yaml:"cloudWatchLogsLogGroupARN,omitempty"`
+
+			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+		} `tfsdk:"log_publishing_options" yaml:"logPublishingOptions,omitempty"`
 
 		Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
@@ -1048,7 +1052,30 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Resource) GetSchema(_ cont
 						Description:         "Map of LogType and LogPublishingOption, each containing options to publish a given type of OpenSearch log.",
 						MarkdownDescription: "Map of LogType and LogPublishingOption, each containing options to publish a given type of OpenSearch log.",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"cloud_watch_logs_log_group_arn": {
+								Description:         "ARN of the Cloudwatch log group to publish logs to.",
+								MarkdownDescription: "ARN of the Cloudwatch log group to publish logs to.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"enabled": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

@@ -245,7 +245,11 @@ type IotEclipseOrgDittoV1Alpha1GoModel struct {
 		} `tfsdk:"mongo_db" yaml:"mongoDb,omitempty"`
 
 		Oauth *struct {
-			Issuers *map[string]string `tfsdk:"issuers" yaml:"issuers,omitempty"`
+			Issuers *struct {
+				Subjects *[]string `tfsdk:"subjects" yaml:"subjects,omitempty"`
+
+				Url *string `tfsdk:"url" yaml:"url,omitempty"`
+			} `tfsdk:"issuers" yaml:"issuers,omitempty"`
 		} `tfsdk:"oauth" yaml:"oauth,omitempty"`
 
 		OpenApi *struct {
@@ -1562,7 +1566,30 @@ func (r *IotEclipseOrgDittoV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"subjects": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"url": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,

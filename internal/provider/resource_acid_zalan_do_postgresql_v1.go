@@ -222,7 +222,19 @@ type AcidZalanDoPostgresqlV1GoModel struct {
 			Version *string `tfsdk:"version" yaml:"version,omitempty"`
 		} `tfsdk:"postgresql" yaml:"postgresql,omitempty"`
 
-		PreparedDatabases *map[string]string `tfsdk:"prepared_databases" yaml:"preparedDatabases,omitempty"`
+		PreparedDatabases *struct {
+			DefaultUsers *bool `tfsdk:"default_users" yaml:"defaultUsers,omitempty"`
+
+			Extensions *map[string]string `tfsdk:"extensions" yaml:"extensions,omitempty"`
+
+			Schemas *struct {
+				DefaultRoles *bool `tfsdk:"default_roles" yaml:"defaultRoles,omitempty"`
+
+				DefaultUsers *bool `tfsdk:"default_users" yaml:"defaultUsers,omitempty"`
+			} `tfsdk:"schemas" yaml:"schemas,omitempty"`
+
+			SecretNamespace *string `tfsdk:"secret_namespace" yaml:"secretNamespace,omitempty"`
+		} `tfsdk:"prepared_databases" yaml:"preparedDatabases,omitempty"`
 
 		ReplicaLoadBalancer *bool `tfsdk:"replica_load_balancer" yaml:"replicaLoadBalancer,omitempty"`
 
@@ -271,7 +283,13 @@ type AcidZalanDoPostgresqlV1GoModel struct {
 
 			Filter *map[string]string `tfsdk:"filter" yaml:"filter,omitempty"`
 
-			Tables *map[string]string `tfsdk:"tables" yaml:"tables,omitempty"`
+			Tables *struct {
+				EventType *string `tfsdk:"event_type" yaml:"eventType,omitempty"`
+
+				IdColumn *string `tfsdk:"id_column" yaml:"idColumn,omitempty"`
+
+				PayloadColumn *string `tfsdk:"payload_column" yaml:"payloadColumn,omitempty"`
+			} `tfsdk:"tables" yaml:"tables,omitempty"`
 		} `tfsdk:"streams" yaml:"streams,omitempty"`
 
 		TeamId *string `tfsdk:"team_id" yaml:"teamId,omitempty"`
@@ -1412,7 +1430,75 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						Description:         "",
 						MarkdownDescription: "",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"default_users": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"extensions": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"schemas": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"default_roles": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"default_users": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"secret_namespace": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,
@@ -1706,7 +1792,41 @@ func (r *AcidZalanDoPostgresqlV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 								Description:         "",
 								MarkdownDescription: "",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"event_type": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"id_column": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"payload_column": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: true,
 								Optional: false,

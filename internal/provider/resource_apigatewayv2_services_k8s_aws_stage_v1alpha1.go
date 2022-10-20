@@ -90,7 +90,17 @@ type Apigatewayv2ServicesK8SAwsStageV1Alpha1GoModel struct {
 
 		Description *string `tfsdk:"description" yaml:"description,omitempty"`
 
-		RouteSettings *map[string]string `tfsdk:"route_settings" yaml:"routeSettings,omitempty"`
+		RouteSettings *struct {
+			DataTraceEnabled *bool `tfsdk:"data_trace_enabled" yaml:"dataTraceEnabled,omitempty"`
+
+			DetailedMetricsEnabled *bool `tfsdk:"detailed_metrics_enabled" yaml:"detailedMetricsEnabled,omitempty"`
+
+			LoggingLevel *string `tfsdk:"logging_level" yaml:"loggingLevel,omitempty"`
+
+			ThrottlingBurstLimit *int64 `tfsdk:"throttling_burst_limit" yaml:"throttlingBurstLimit,omitempty"`
+
+			ThrottlingRateLimit utilities.DynamicNumber `tfsdk:"throttling_rate_limit" yaml:"throttlingRateLimit,omitempty"`
+		} `tfsdk:"route_settings" yaml:"routeSettings,omitempty"`
 
 		StageName *string `tfsdk:"stage_name" yaml:"stageName,omitempty"`
 
@@ -424,7 +434,63 @@ func (r *Apigatewayv2ServicesK8SAwsStageV1Alpha1Resource) GetSchema(_ context.Co
 						Description:         "",
 						MarkdownDescription: "",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"data_trace_enabled": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"detailed_metrics_enabled": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"logging_level": {
+								Description:         "The logging level.",
+								MarkdownDescription: "The logging level.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"throttling_burst_limit": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"throttling_rate_limit": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: utilities.DynamicNumberType{},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

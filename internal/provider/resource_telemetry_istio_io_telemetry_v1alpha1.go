@@ -80,7 +80,11 @@ type TelemetryIstioIoTelemetryV1Alpha1GoModel struct {
 					Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
 				} `tfsdk:"match" yaml:"match,omitempty"`
 
-				TagOverrides *map[string]string `tfsdk:"tag_overrides" yaml:"tagOverrides,omitempty"`
+				TagOverrides *struct {
+					Operation *string `tfsdk:"operation" yaml:"operation,omitempty"`
+
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+				} `tfsdk:"tag_overrides" yaml:"tagOverrides,omitempty"`
 			} `tfsdk:"overrides" yaml:"overrides,omitempty"`
 
 			Providers *[]struct {
@@ -93,7 +97,23 @@ type TelemetryIstioIoTelemetryV1Alpha1GoModel struct {
 		} `tfsdk:"selector" yaml:"selector,omitempty"`
 
 		Tracing *[]struct {
-			CustomTags *map[string]string `tfsdk:"custom_tags" yaml:"customTags,omitempty"`
+			CustomTags *struct {
+				Environment *struct {
+					DefaultValue *string `tfsdk:"default_value" yaml:"defaultValue,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"environment" yaml:"environment,omitempty"`
+
+				Header *struct {
+					DefaultValue *string `tfsdk:"default_value" yaml:"defaultValue,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"header" yaml:"header,omitempty"`
+
+				Literal *struct {
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+				} `tfsdk:"literal" yaml:"literal,omitempty"`
+			} `tfsdk:"custom_tags" yaml:"customTags,omitempty"`
 
 			DisableSpanReporting *bool `tfsdk:"disable_span_reporting" yaml:"disableSpanReporting,omitempty"`
 
@@ -385,7 +405,35 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Resource) GetSchema(_ context.Context)
 										Description:         "Optional.",
 										MarkdownDescription: "Optional.",
 
-										Type: types.MapType{ElemType: types.StringType},
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"operation": {
+												Description:         "Operation controls whether or not to update/add a tag, or to remove it.",
+												MarkdownDescription: "Operation controls whether or not to update/add a tag, or to remove it.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("UPSERT", "REMOVE"),
+												},
+											},
+
+											"value": {
+												Description:         "Value is only considered if the operation is 'UPSERT'.",
+												MarkdownDescription: "Value is only considered if the operation is 'UPSERT'.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
 
 										Required: false,
 										Optional: true,
@@ -460,7 +508,99 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Resource) GetSchema(_ context.Context)
 								Description:         "Optional.",
 								MarkdownDescription: "Optional.",
 
-								Type: types.MapType{ElemType: types.StringType},
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"environment": {
+										Description:         "Environment adds the value of an environment variable to each span.",
+										MarkdownDescription: "Environment adds the value of an environment variable to each span.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"default_value": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the environment variable from which to extract the tag value.",
+												MarkdownDescription: "Name of the environment variable from which to extract the tag value.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"header": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"default_value": {
+												Description:         "Optional.",
+												MarkdownDescription: "Optional.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the header from which to extract the tag value.",
+												MarkdownDescription: "Name of the header from which to extract the tag value.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"literal": {
+										Description:         "Literal adds the same, hard-coded value to each span.",
+										MarkdownDescription: "Literal adds the same, hard-coded value to each span.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"value": {
+												Description:         "The tag value to use.",
+												MarkdownDescription: "The tag value to use.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,

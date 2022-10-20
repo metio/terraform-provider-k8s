@@ -78,7 +78,9 @@ type Apigatewayv2ServicesK8SAwsRouteV1Alpha1GoModel struct {
 
 		RequestModels *map[string]string `tfsdk:"request_models" yaml:"requestModels,omitempty"`
 
-		RequestParameters *map[string]string `tfsdk:"request_parameters" yaml:"requestParameters,omitempty"`
+		RequestParameters *struct {
+			Required *bool `tfsdk:"required" yaml:"required,omitempty"`
+		} `tfsdk:"request_parameters" yaml:"requestParameters,omitempty"`
 
 		RouteKey *string `tfsdk:"route_key" yaml:"routeKey,omitempty"`
 
@@ -350,7 +352,19 @@ func (r *Apigatewayv2ServicesK8SAwsRouteV1Alpha1Resource) GetSchema(_ context.Co
 						Description:         "",
 						MarkdownDescription: "",
 
-						Type: types.MapType{ElemType: types.StringType},
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"required": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

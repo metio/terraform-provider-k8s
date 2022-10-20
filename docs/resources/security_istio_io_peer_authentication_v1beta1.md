@@ -61,11 +61,19 @@ Optional:
 Optional:
 
 - `mtls` (Attributes) Mutual TLS settings for workload. (see [below for nested schema](#nestedatt--spec--mtls))
-- `port_level_mtls` (Map of String) Port specific mutual TLS settings.
+- `port_level_mtls` (Attributes) Port specific mutual TLS settings. (see [below for nested schema](#nestedatt--spec--port_level_mtls))
 - `selector` (Attributes) The selector determines the workloads to apply the ChannelAuthentication on. (see [below for nested schema](#nestedatt--spec--selector))
 
 <a id="nestedatt--spec--mtls"></a>
 ### Nested Schema for `spec.mtls`
+
+Optional:
+
+- `mode` (String) Defines the mTLS mode used for peer authentication.
+
+
+<a id="nestedatt--spec--port_level_mtls"></a>
+### Nested Schema for `spec.port_level_mtls`
 
 Optional:
 
