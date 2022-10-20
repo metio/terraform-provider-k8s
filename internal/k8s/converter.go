@@ -685,11 +685,8 @@ func OpenApiTypes(prop *openapi3.Schema) (attributeType string, valueType string
 				attributeType = "types.MapType{ElemType: types.MapType{ElemType: types.ListType{ElemType: types.StringType}e}}"
 				valueType = "types.Map"
 				goType = "map[string]map[string][]string"
+				return
 			}
-			attributeType = "types.MapType{ElemType: types.MapType{ElemType: types.StringType}}"
-			valueType = "types.Map"
-			goType = "map[string]map[string]string"
-			return
 		}
 		if _, ok := prop.AdditionalProperties.Value.Extensions["x-kubernetes-preserve-unknown-fields"]; ok {
 			if len(prop.AdditionalProperties.Value.Properties) == 0 {
