@@ -307,6 +307,10 @@ Files: schemas/crd_v1/lambda.services.k8s.aws/*
 Copyright: The ACK service controller for AWS Lambda Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/linkerd.io/*
+Copyright: The Linkerd Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/litmuschaos.io/*
 Copyright: The Litmus Chaos Operator Authors
 License: Apache-2.0
@@ -377,6 +381,10 @@ License: Apache-2.0
 
 Files: schemas/crd_v1/operator.tigera.io/*
 Copyright: The Calico Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/policy.linkerd.io/*
+Copyright: The Linkerd Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/postgres-operator.crunchydata.com/*
