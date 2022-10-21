@@ -307,6 +307,10 @@ Files: schemas/crd_v1/kustomize.toolkit.fluxcd.io/*
 Copyright: The Flux2 Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/kyverno.io/*
+Copyright: The Kyverno Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/lambda.services.k8s.aws/*
 Copyright: The ACK service controller for AWS Lambda Authors
 License: Apache-2.0
@@ -470,6 +474,10 @@ License: Apache-2.0
 Files: schemas/crd_v1/traefik.containo.us/*
 Copyright: The Traefik Authors
 License: MIT
+
+Files: schemas/crd_v1/wgpolicyk8s.io/*
+Copyright: The Kyverno Authors
+License: Apache-2.0
 
 Files: schemas/crd_v1/wildfly.org/*
 Copyright: The WildFly Operator for Kubernetes/OpenShift Authors
