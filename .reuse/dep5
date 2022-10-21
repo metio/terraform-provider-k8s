@@ -127,6 +127,10 @@ Files: schemas/crd_v1/che.eclipse.org/*
 Copyright: The Kubernetes Image Puller Operator Authors
 License: EPL-2.0
 
+Files: schemas/crd_v1/cilium.io/*
+Copyright: The Cilium Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/config.gatekeeper.sh/*
 Copyright: The Gatekeeper Authors
 License: Apache-2.0
