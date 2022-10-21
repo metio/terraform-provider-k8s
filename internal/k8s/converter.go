@@ -544,6 +544,22 @@ func CRDv1Types(prop apiextensionsv1.JSONSchemaProps) (attributeType string, val
 		goType = "utilities.Dynamic"
 		return
 	}
+	if len(prop.OneOf) > 0 {
+		for _, oneOf := range prop.OneOf {
+			if oneOf.Type == "array" {
+				attributeType = "types.ListType{ElemType: types.StringType}"
+				valueType = "types.List"
+				goType = "[]string"
+				return
+			}
+			if oneOf.Type == "boolean" {
+				attributeType = "types.BoolType"
+				valueType = "types.Bool"
+				goType = "bool"
+				return
+			}
+		}
+	}
 	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Schema.Type == "string" {
 		attributeType = "types.MapType{ElemType: types.StringType}"
 		valueType = "types.Map"
@@ -666,6 +682,22 @@ func OpenApiTypes(prop *openapi3.Schema) (attributeType string, valueType string
 		valueType = "utilities.Dynamic"
 		goType = "utilities.Dynamic"
 		return
+	}
+	if len(prop.OneOf) > 0 {
+		for _, oneOf := range prop.OneOf {
+			if oneOf.Value.Type == "array" {
+				attributeType = "types.ListType{ElemType: types.StringType}"
+				valueType = "types.List"
+				goType = "[]string"
+				return
+			}
+			if oneOf.Value.Type == "boolean" {
+				attributeType = "types.BoolType"
+				valueType = "types.Bool"
+				goType = "bool"
+				return
+			}
+		}
 	}
 	if prop.Type == "object" && prop.AdditionalProperties != nil && prop.AdditionalProperties.Value.Type == "string" {
 		attributeType = "types.MapType{ElemType: types.StringType}"
