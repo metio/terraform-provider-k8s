@@ -58,7 +58,7 @@ Optional:
 
 - `cluster_name` (String) ClusterName is the name of the managed cluster to be created on hub. The Klusterlet agent generates a random name if it is not set, or discovers the appropriate cluster name on OpenShift.
 - `deploy_option` (Attributes) DeployOption contains the options of deploying a klusterlet (see [below for nested schema](#nestedatt--spec--deploy_option))
-- `external_server_ur_ls` (Attributes List) ExternalServerURLs represents the a list of apiserver urls and ca bundles that is accessible externally If it is set empty, managed cluster has no externally accessible url that hub cluster can visit. (see [below for nested schema](#nestedatt--spec--external_server_ur_ls))
+- `external_server_urls` (Attributes List) ExternalServerURLs represents the a list of apiserver urls and ca bundles that is accessible externally If it is set empty, managed cluster has no externally accessible url that hub cluster can visit. (see [below for nested schema](#nestedatt--spec--external_server_urls))
 - `hub_api_server_host_alias` (Attributes) HubApiServerHostAlias contains the host alias for hub api server. registration-agent and work-agent will use it to communicate with hub api server. (see [below for nested schema](#nestedatt--spec--hub_api_server_host_alias))
 - `namespace` (String) Namespace is the namespace to deploy the agent on the managed cluster. The namespace must have a prefix of 'open-cluster-management-', and if it is not set, the namespace of 'open-cluster-management-agent' is used to deploy agent. In addition, the add-ons are deployed to the namespace of '{Namespace}-addon'. In the Hosted mode, this namespace still exists on the managed cluster to contain necessary resources, like service accounts, roles and rolebindings, while the agent is deployed to the namespace with the same name as klusterlet on the management cluster.
 - `node_placement` (Attributes) NodePlacement enables explicit control over the scheduling of the deployed pods. (see [below for nested schema](#nestedatt--spec--node_placement))
@@ -74,8 +74,8 @@ Optional:
 - `mode` (String) Mode can be Default or Hosted. It is Default mode if not specified In Default mode, all klusterlet related resources are deployed on the managed cluster. In Hosted mode, only crd and configurations are installed on the spoke/managed cluster. Controllers run in another cluster (defined as management-cluster) and connect to the mangaged cluster with the kubeconfig in secret of 'external-managed-kubeconfig'(a kubeconfig of managed-cluster with cluster-admin permission). Note: Do not modify the Mode field once it's applied.
 
 
-<a id="nestedatt--spec--external_server_ur_ls"></a>
-### Nested Schema for `spec.external_server_ur_ls`
+<a id="nestedatt--spec--external_server_urls"></a>
+### Nested Schema for `spec.external_server_urls`
 
 Optional:
 

@@ -499,6 +499,7 @@ func TerraformAttributeName(str string) string {
 	if strings.HasPrefix(clean, "$") {
 		clean = strings.Replace(clean, "$", "Dollar", 1)
 	}
+	clean = strings.ReplaceAll(clean, "URL", "Url")
 	clean = toSnakeCase(clean)
 	return clean
 }

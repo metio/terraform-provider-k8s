@@ -17,8 +17,8 @@ resource "k8s_flowcontrol_apiserver_k8s_io_flow_schema_v1beta2" "example" {
       {
         non_resource_rules = [
           {
-            non_resource_ur_ls = ["/healthz", "/livez", "/readyz"]
-            verbs              = ["*"]
+            non_resource_urls = ["/healthz", "/livez", "/readyz"]
+            verbs             = ["*"]
           }
         ]
         subjects = [
