@@ -395,6 +395,10 @@ Files: schemas/crd_v1/operator.tigera.io/*
 Copyright: The Calico Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/org.eclipse.che/*
+Copyright: Red Hat Inc.
+License: EPL-2.0
+
 Files: schemas/crd_v1/policy.linkerd.io/*
 Copyright: The Linkerd Authors
 License: Apache-2.0
