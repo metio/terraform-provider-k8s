@@ -207,6 +207,10 @@ Files: schemas/crd_v1/gateway.networking.k8s.io/*
 Copyright: The Traefik Authors
 License: MIT
 
+Files: schemas/crd_v1/getambassador.io/*
+Copyright: The Emissary-Ingress Authors
+License: MIT
+
 Files: schemas/crd_v1/hazelcast.com/*
 Copyright: The Hazelcast Platform Operator Authors
 License: Apache-2.0
