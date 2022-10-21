@@ -103,6 +103,10 @@ Files: schemas/crd_v1/cert-manager.io/*
 Copyright: The cert-manager Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/chaos-mesh.org/*
+Copyright: The Chaos Mesh Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/charts.flagsmith.com/*
 Copyright: The Flagsmith Operator Authors
 License: LicenseRef-Flagsmith
