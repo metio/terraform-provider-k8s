@@ -418,6 +418,7 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewOperatorTigeraIoImageSetV1Resource,
 		NewOperatorTigeraIoInstallationV1Resource,
 		NewOperatorTigeraIoTigeraStatusV1Resource,
+		NewOrgEclipseCheCheClusterV2Resource,
 		NewPolicyLinkerdIoAuthorizationPolicyV1Alpha1Resource,
 		NewPolicyLinkerdIoHTTPRouteV1Alpha1Resource,
 		NewPolicyLinkerdIoHTTPRouteV1Beta1Resource,
