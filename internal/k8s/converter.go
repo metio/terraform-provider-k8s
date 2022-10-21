@@ -610,6 +610,12 @@ func CRDv1Types(prop apiextensionsv1.JSONSchemaProps) (attributeType string, val
 			goType = "[]map[string]string"
 			return
 		}
+		if prop.Items.Schema.AdditionalProperties != nil && prop.Items.Schema.AdditionalProperties.Schema.Type == "string" {
+			attributeType = "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}"
+			valueType = "types.List"
+			goType = "[]map[string]string"
+			return
+		}
 		attributeType = "types.ListType{ElemType: types.ObjectType}"
 		valueType = "types.List"
 		goType = "[]struct"
