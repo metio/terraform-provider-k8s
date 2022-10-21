@@ -184,7 +184,7 @@ Required:
 
 Optional:
 
-- `non_resource_ur_ls` (List of String)
+- `non_resource_urls` (List of String)
 - `resource_names` (List of String)
 
 

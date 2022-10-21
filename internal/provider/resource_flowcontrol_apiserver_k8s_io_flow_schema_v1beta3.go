@@ -62,7 +62,7 @@ type FlowcontrolApiserverK8SIoFlowSchemaV1Beta3GoModel struct {
 
 		Rules *[]struct {
 			NonResourceRules *[]struct {
-				NonResourceURLs *[]string `tfsdk:"non_resource_ur_ls" yaml:"nonResourceURLs,omitempty"`
+				NonResourceURLs *[]string `tfsdk:"non_resource_urls" yaml:"nonResourceURLs,omitempty"`
 
 				Verbs *[]string `tfsdk:"verbs" yaml:"verbs,omitempty"`
 			} `tfsdk:"non_resource_rules" yaml:"nonResourceRules,omitempty"`
@@ -263,7 +263,7 @@ func (r *FlowcontrolApiserverK8SIoFlowSchemaV1Beta3Resource) GetSchema(_ context
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
-									"non_resource_ur_ls": {
+									"non_resource_urls": {
 										Description:         "'nonResourceURLs' is a set of url prefixes that a user should have access to and may not be empty. For example:  - '/healthz' is legal  - '/hea*' is illegal  - '/hea' is legal but matches nothing  - '/hea/*' also matches nothing  - '/healthz/*' matches all per-component health checks.'*' matches all non-resource urls. if it is present, it must be the only entry. Required.",
 										MarkdownDescription: "'nonResourceURLs' is a set of url prefixes that a user should have access to and may not be empty. For example:  - '/healthz' is legal  - '/hea*' is illegal  - '/hea' is legal but matches nothing  - '/hea/*' also matches nothing  - '/healthz/*' matches all per-component health checks.'*' matches all non-resource urls. if it is present, it must be the only entry. Required.",
 

@@ -125,7 +125,7 @@ type LitmuschaosIoChaosExperimentV1Alpha1GoModel struct {
 			Permissions *[]struct {
 				ApiGroups *[]string `tfsdk:"api_groups" yaml:"apiGroups,omitempty"`
 
-				NonResourceURLs *[]string `tfsdk:"non_resource_ur_ls" yaml:"nonResourceURLs,omitempty"`
+				NonResourceURLs *[]string `tfsdk:"non_resource_urls" yaml:"nonResourceURLs,omitempty"`
 
 				ResourceNames *[]string `tfsdk:"resource_names" yaml:"resourceNames,omitempty"`
 
@@ -660,7 +660,7 @@ func (r *LitmuschaosIoChaosExperimentV1Alpha1Resource) GetSchema(_ context.Conte
 										Computed: false,
 									},
 
-									"non_resource_ur_ls": {
+									"non_resource_urls": {
 										Description:         "",
 										MarkdownDescription: "",
 

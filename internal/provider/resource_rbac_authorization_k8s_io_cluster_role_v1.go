@@ -67,7 +67,7 @@ type RbacAuthorizationK8SIoClusterRoleV1GoModel struct {
 	Rules *[]struct {
 		ApiGroups *[]string `tfsdk:"api_groups" yaml:"apiGroups,omitempty"`
 
-		NonResourceURLs *[]string `tfsdk:"non_resource_ur_ls" yaml:"nonResourceURLs,omitempty"`
+		NonResourceURLs *[]string `tfsdk:"non_resource_urls" yaml:"nonResourceURLs,omitempty"`
 
 		ResourceNames *[]string `tfsdk:"resource_names" yaml:"resourceNames,omitempty"`
 
@@ -262,7 +262,7 @@ func (r *RbacAuthorizationK8SIoClusterRoleV1Resource) GetSchema(_ context.Contex
 						Computed: false,
 					},
 
-					"non_resource_ur_ls": {
+					"non_resource_urls": {
 						Description:         "NonResourceURLs is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as 'pods' or 'secrets') or non-resource URL paths (such as '/api'),  but not both.",
 						MarkdownDescription: "NonResourceURLs is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as 'pods' or 'secrets') or non-resource URL paths (such as '/api'),  but not both.",
 

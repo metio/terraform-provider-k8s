@@ -32,8 +32,8 @@ resource "k8s_flowcontrol_apiserver_k8s_io_flow_schema_v1beta3" "example" {
       {
         non_resource_rules = [
           {
-            non_resource_ur_ls = ["/healthz", "/livez", "/readyz"]
-            verbs              = ["*"]
+            non_resource_urls = ["/healthz", "/livez", "/readyz"]
+            verbs             = ["*"]
           }
         ]
         subjects = [
@@ -167,7 +167,7 @@ Required:
 
 Required:
 
-- `non_resource_ur_ls` (List of String) 'nonResourceURLs' is a set of url prefixes that a user should have access to and may not be empty. For example:  - '/healthz' is legal  - '/hea*' is illegal  - '/hea' is legal but matches nothing  - '/hea/*' also matches nothing  - '/healthz/*' matches all per-component health checks.'*' matches all non-resource urls. if it is present, it must be the only entry. Required.
+- `non_resource_urls` (List of String) 'nonResourceURLs' is a set of url prefixes that a user should have access to and may not be empty. For example:  - '/healthz' is legal  - '/hea*' is illegal  - '/hea' is legal but matches nothing  - '/hea/*' also matches nothing  - '/healthz/*' matches all per-component health checks.'*' matches all non-resource urls. if it is present, it must be the only entry. Required.
 - `verbs` (List of String) 'verbs' is a list of matching verbs and may not be empty. '*' matches all verbs. If it is present, it must be the only entry. Required.
 
 

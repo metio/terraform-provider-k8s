@@ -62,7 +62,7 @@ type OperatorOpenClusterManagementIoKlusterletV1GoModel struct {
 			CaBundle *string `tfsdk:"ca_bundle" yaml:"caBundle,omitempty"`
 
 			Url *string `tfsdk:"url" yaml:"url,omitempty"`
-		} `tfsdk:"external_server_ur_ls" yaml:"externalServerURLs,omitempty"`
+		} `tfsdk:"external_server_urls" yaml:"externalServerURLs,omitempty"`
 
 		HubApiServerHostAlias *struct {
 			Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
@@ -223,7 +223,7 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Resource) GetSchema(_ contex
 						Computed: false,
 					},
 
-					"external_server_ur_ls": {
+					"external_server_urls": {
 						Description:         "ExternalServerURLs represents the a list of apiserver urls and ca bundles that is accessible externally If it is set empty, managed cluster has no externally accessible url that hub cluster can visit.",
 						MarkdownDescription: "ExternalServerURLs represents the a list of apiserver urls and ca bundles that is accessible externally If it is set empty, managed cluster has no externally accessible url that hub cluster can visit.",
 
