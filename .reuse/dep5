@@ -55,6 +55,10 @@ Files: schemas/crd_v1/app.lightbend.com/*
 Copyright: The Akka Cluster Operator Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/app.redislabs.com/*
+Copyright: Redis Labs, Inc
+License: Apache-2.0
+
 Files: schemas/crd_v1/applicationautoscaling.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Application Auto Scaling Authors
 License: Apache-2.0
