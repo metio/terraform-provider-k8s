@@ -95,6 +95,10 @@ Files: schemas/crd_v1/beat.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
 License: LicenseRef-Elastic
 
+Files: schemas/crd_v1/binding.operators.coreos.com/*
+Copyright: The Service Binding Operator Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/caching.ibm.com/*
 Copyright: The Varnish Operator Authors
 License: Apache-2.0
@@ -481,6 +485,10 @@ License: Apache-2.0
 
 Files: schemas/crd_v1/sematext.com/*
 Copyright: The Sematext Operator Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/servicebinding.io/*
+Copyright: The Service Binding Operator Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/services.k8s.aws/*
