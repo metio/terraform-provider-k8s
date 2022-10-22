@@ -531,6 +531,7 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewSecurityProfilesOperatorXK8SIoSecurityProfileNodeStatusV1Alpha1Resource,
 		NewSecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1Resource,
 		NewSecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2Resource,
+		NewSematextComSematextAgentV1Resource,
 		NewServiceAccountV1Resource,
 		NewServiceV1Resource,
 		NewServicesK8SAwsAdoptedResourceV1Alpha1Resource,
