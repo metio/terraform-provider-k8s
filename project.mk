@@ -12,9 +12,14 @@ out/${PROVIDER}: $(shell find ./internal -type f -name '*.go' -and -not -name '*
 	mkdir --parents $(@D)
 	go build -o out/${PROVIDER}
 
-out/docs-sentinel: out/tf-format-sentinel $(shell find ./internal -type f -name '*.go') $(shell find ./examples -type f -name '*.tf' -or -name '*.sh') $(shell find ./templates -type f -name '*.tmpl')
+out/generate-sentinel: $(shell find ./generators -type f -name '*.go') $(shell find ./generators/templates -type f -name '*.tmpl') $(shell find ./schemas/crd_v1 -type f -name '*.yaml') $(shell find ./schemas/openapi_v2 -type f -name '*.json')
 	mkdir --parents $(@D)
-	go generate ./...
+	go run -tags generators ./generators
+	touch $@
+
+out/docs-sentinel: out/generate-sentinel out/tf-format-sentinel $(shell find ./internal -type f -name '*.go') $(shell find ./examples -type f -name '*.tf' -or -name '*.sh') $(shell find ./templates -type f -name '*.tmpl')
+	mkdir --parents $(@D)
+	go generate
 	touch $@
 
 # see https://www.terraform.io/cli/config/config-file#implied-local-mirror-directories
@@ -29,9 +34,10 @@ out/terratests-run-sentinel: out/install-sentinel $(shell find ./terratest -type
 	find ./terratest -type f -name 'k8s_*_test.go' | xargs --max-args=1 --max-procs=4 go test
 	touch $@
 
-out/tests-sentinel: $(shell find ./internal -type f -name '*.go')
+out/tests-sentinel: $(shell find ./internal -type f -name '*.go') $(shell find ./generators -type f -name '*.go')
 	mkdir --parents $(@D)
 	gotestsum --format=testname -- -v -cover -timeout=120s -parallel=4 ./internal/...
+	gotestsum --format=testname -- -v -cover -timeout=120s -parallel=4 -tags generators ./generators/...
 	touch $@
 
 out/coverage.out: $(shell find ./internal -type f -name '*.go')
@@ -58,6 +64,9 @@ out/tf-format-sentinel: $(shell find ./examples -type f -name '*.tf')
 
 .PHONY: install
 install: out/install-sentinel ## install the provider locally
+
+.PHONY: generate
+generate: out/generate-sentinel ## generate the code
 
 .PHONY: docs
 docs: out/docs-sentinel ## generate the documentation

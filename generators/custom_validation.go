@@ -1,9 +1,11 @@
+//go:build generators
+
 /*
  * SPDX-FileCopyrightText: The terraform-provider-k8s Authors
  * SPDX-License-Identifier: 0BSD
  */
 
-package k8s
+package main
 
 var customValidations = map[string]map[string][]string{
 	"apps_daemon_set_v1": {

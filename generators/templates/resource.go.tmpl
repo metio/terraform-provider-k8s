@@ -7,19 +7,19 @@ package {{ .Package }}
 
 import (
 	"context"
-	{{ if .UsedValidators.Int64Validator }}
+	{{ if .AdditionalImports.Int64Validator }}
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	{{ end }}
-	{{ if .UsedValidators.Float64Validator }}
+	{{ if .AdditionalImports.Float64Validator }}
 	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 	{{ end }}
-	{{ if .UsedValidators.StringValidator }}
+	{{ if .AdditionalImports.StringValidator }}
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	{{ end }}
-	{{ if .UsedValidators.Regex }}
+	{{ if .AdditionalImports.Regex }}
 	"regexp"
 	{{ end }}
-	{{ if .UsedValidators.SchemaValidator }}
+	{{ if .AdditionalImports.SchemaValidator }}
 	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	{{ end }}

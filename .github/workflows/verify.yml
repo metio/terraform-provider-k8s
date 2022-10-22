@@ -13,6 +13,7 @@ on:
       - docs/**
       - examples/**
       - internal/**
+      - generators/**
       - templates/**
       - tools/**
 jobs:
@@ -34,9 +35,12 @@ jobs:
         uses: golangci/golangci-lint-action@v3
         with:
           version: latest
-      - id: tests
-        name: Unit Tests
-        run: go test -v -timeout=120s -tags testing ./internal/...
+      - id: generator_tests
+        name: Generator Tests
+        run: go test -v -timeout=120s -tags generators ./internal/...
+      - id: provider_tests
+        name: Provider Tests
+        run: go test -v -timeout=120s ./internal/...
       - id: generate_docs
         name: Generate Documentation
         run: go generate
