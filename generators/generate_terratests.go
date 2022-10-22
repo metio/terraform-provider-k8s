@@ -17,6 +17,9 @@ var terratestTemplate *template.Template
 
 func init() {
 	cwd, err := currentDirectory()
+	if err != nil {
+		log.Fatal(err)
+	}
 	terratestTemplate, err = template.ParseFiles(fmt.Sprintf("%s/generators/templates/resource_test.go.tmpl", cwd))
 	if err != nil {
 		log.Fatal(err)

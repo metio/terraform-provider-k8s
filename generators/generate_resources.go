@@ -17,6 +17,9 @@ var resourceTemplate *template.Template
 
 func init() {
 	cwd, err := currentDirectory()
+	if err != nil {
+		log.Fatal(err)
+	}
 	resourceTemplate, err = template.ParseFiles(
 		fmt.Sprintf("%s/generators/templates/resource.go.tmpl", cwd),
 		fmt.Sprintf("%s/generators/templates/schema_attribute.tmpl", cwd),
