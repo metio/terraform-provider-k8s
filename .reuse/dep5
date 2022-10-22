@@ -179,6 +179,10 @@ Files: schemas/crd_v1/emrcontainers.services.k8s.aws/*
 Copyright: The ACK service controller for EMR on EKS Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/enterprise.gloo.solo.io/*
+Copyright: The Gloo Edge Authors
+License: MIT
+
 Files: schemas/crd_v1/enterprisesearch.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
 License: LicenseRef-Elastic
@@ -219,8 +223,20 @@ Files: schemas/crd_v1/gateway.networking.k8s.io/*
 Copyright: The Traefik Authors
 License: MIT
 
+Files: schemas/crd_v1/gateway.solo.io/*
+Copyright: The Gloo Edge Authors
+License: MIT
+
 Files: schemas/crd_v1/getambassador.io/*
 Copyright: The Emissary-Ingress Authors
+License: MIT
+
+Files: schemas/crd_v1/gloo.solo.io/*
+Copyright: The Gloo Edge Authors
+License: MIT
+
+Files: schemas/crd_v1/graphql.gloo.solo.io/*
+Copyright: The Gloo Edge Authors
 License: MIT
 
 Files: schemas/crd_v1/hazelcast.com/*
