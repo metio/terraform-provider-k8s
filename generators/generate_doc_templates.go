@@ -17,6 +17,9 @@ var docsTemplate *template.Template
 
 func init() {
 	cwd, err := currentDirectory()
+	if err != nil {
+		log.Fatal(err)
+	}
 	docsTemplate, err = template.ParseFiles(fmt.Sprintf("%s/generators/templates/resource.md.tmpl", cwd))
 	if err != nil {
 		log.Fatal(err)

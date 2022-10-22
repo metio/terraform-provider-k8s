@@ -18,6 +18,9 @@ var exampleMainTemplate *template.Template
 
 func init() {
 	cwd, err := currentDirectory()
+	if err != nil {
+		log.Fatal(err)
+	}
 	exampleMainTemplate, err = template.ParseFiles(fmt.Sprintf("%s/generators/templates/main.tf.tmpl", cwd))
 	if err != nil {
 		log.Fatal(err)
