@@ -92,6 +92,7 @@ func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
 		NewBatchCronJobV1Resource,
 		NewBatchJobV1Resource,
 		NewBeatK8SElasticCoBeatV1Beta1Resource,
+		NewCachingIbmComVarnishClusterV1Alpha1Resource,
 		NewCamelApacheOrgBuildV1Resource,
 		NewCamelApacheOrgCamelCatalogV1Resource,
 		NewCamelApacheOrgIntegrationKitV1Resource,
