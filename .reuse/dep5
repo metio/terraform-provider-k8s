@@ -479,6 +479,10 @@ Files: schemas/crd_v1/security-profiles-operator.x-k8s.io/*
 Copyright: The Kubernetes Security Profiles Operator Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/sematext.com/*
+Copyright: The Sematext Operator Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Elastic Kubernetes Service Authors
 License: Apache-2.0
