@@ -55,6 +55,22 @@ type ExternalSecretsIoSecretStoreV1Beta1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		Conditions *[]struct {
+			NamespaceSelector *struct {
+				MatchExpressions *[]struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+				} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+			} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
+			Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
+		} `tfsdk:"conditions" yaml:"conditions,omitempty"`
+
 		Controller *string `tfsdk:"controller" yaml:"controller,omitempty"`
 
 		Provider *struct {
@@ -62,6 +78,28 @@ type ExternalSecretsIoSecretStoreV1Beta1GoModel struct {
 				AkeylessGWApiURL *string `tfsdk:"akeyless_gw_api_url" yaml:"akeylessGWApiURL,omitempty"`
 
 				AuthSecretRef *struct {
+					KubernetesAuth *struct {
+						AccessID *string `tfsdk:"access_id" yaml:"accessID,omitempty"`
+
+						K8sConfName *string `tfsdk:"k8s_conf_name" yaml:"k8sConfName,omitempty"`
+
+						SecretRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+						ServiceAccountRef *struct {
+							Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"service_account_ref" yaml:"serviceAccountRef,omitempty"`
+					} `tfsdk:"kubernetes_auth" yaml:"kubernetesAuth,omitempty"`
+
 					SecretRef *struct {
 						AccessID *struct {
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -192,6 +230,28 @@ type ExternalSecretsIoSecretStoreV1Beta1GoModel struct {
 				VaultUrl *string `tfsdk:"vault_url" yaml:"vaultUrl,omitempty"`
 			} `tfsdk:"azurekv" yaml:"azurekv,omitempty"`
 
+			Doppler *struct {
+				Auth *struct {
+					SecretRef *struct {
+						DopplerToken *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"doppler_token" yaml:"dopplerToken,omitempty"`
+					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+				} `tfsdk:"auth" yaml:"auth,omitempty"`
+
+				Config *string `tfsdk:"config" yaml:"config,omitempty"`
+
+				Format *string `tfsdk:"format" yaml:"format,omitempty"`
+
+				NameTransformer *string `tfsdk:"name_transformer" yaml:"nameTransformer,omitempty"`
+
+				Project *string `tfsdk:"project" yaml:"project,omitempty"`
+			} `tfsdk:"doppler" yaml:"doppler,omitempty"`
+
 			Fake *struct {
 				Data *[]struct {
 					Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -248,6 +308,8 @@ type ExternalSecretsIoSecretStoreV1Beta1GoModel struct {
 						} `tfsdk:"access_token" yaml:"accessToken,omitempty"`
 					} `tfsdk:"secret_ref" yaml:"SecretRef,omitempty"`
 				} `tfsdk:"auth" yaml:"auth,omitempty"`
+
+				Environment *string `tfsdk:"environment" yaml:"environment,omitempty"`
 
 				ProjectID *string `tfsdk:"project_id" yaml:"projectID,omitempty"`
 
@@ -729,6 +791,97 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+					"conditions": {
+						Description:         "Used to constraint a ClusterSecretStore to specific namespaces. Relevant only to ClusterSecretStore",
+						MarkdownDescription: "Used to constraint a ClusterSecretStore to specific namespaces. Relevant only to ClusterSecretStore",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"namespace_selector": {
+								Description:         "Choose namespace using a labelSelector",
+								MarkdownDescription: "Choose namespace using a labelSelector",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"match_expressions": {
+										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "key is the label key that the selector applies to.",
+												MarkdownDescription: "key is the label key that the selector applies to.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"operator": {
+												Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+												MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"values": {
+												Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+												MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"match_labels": {
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"namespaces": {
+								Description:         "Choose namespaces by name",
+								MarkdownDescription: "Choose namespaces by name",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"controller": {
 						Description:         "Used to select the correct KES controller (think: ingress.ingressClassName) The KES controller is instantiated with a specific controller name and filters ES based on this property",
 						MarkdownDescription: "Used to select the correct KES controller (think: ingress.ingressClassName) The KES controller is instantiated with a specific controller name and filters ES based on this property",
@@ -769,9 +922,133 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+											"kubernetes_auth": {
+												Description:         "Kubernetes authenticates with Akeyless by passing the ServiceAccount token stored in the named Secret resource.",
+												MarkdownDescription: "Kubernetes authenticates with Akeyless by passing the ServiceAccount token stored in the named Secret resource.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"access_id": {
+														Description:         "the Akeyless Kubernetes auth-method access-id",
+														MarkdownDescription: "the Akeyless Kubernetes auth-method access-id",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"k8s_conf_name": {
+														Description:         "Kubernetes-auth configuration name in Akeyless-Gateway",
+														MarkdownDescription: "Kubernetes-auth configuration name in Akeyless-Gateway",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"secret_ref": {
+														Description:         "Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless. If a name is specified without a key, 'token' is the default. If one is not specified, the one bound to the controller will be used.",
+														MarkdownDescription: "Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless. If a name is specified without a key, 'token' is the default. If one is not specified, the one bound to the controller will be used.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"service_account_ref": {
+														Description:         "Optional service account field containing the name of a kubernetes ServiceAccount. If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead.",
+														MarkdownDescription: "Optional service account field containing the name of a kubernetes ServiceAccount. If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"audiences": {
+																Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+																MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the ServiceAccount resource being referred to.",
+																MarkdownDescription: "The name of the ServiceAccount resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"secret_ref": {
-												Description:         "AkeylessAuthSecretRef AKEYLESS_ACCESS_TYPE_PARAM: AZURE_OBJ_ID OR GCP_AUDIENCE OR ACCESS_KEY OR KUB_CONFIG_NAME.",
-												MarkdownDescription: "AkeylessAuthSecretRef AKEYLESS_ACCESS_TYPE_PARAM: AZURE_OBJ_ID OR GCP_AUDIENCE OR ACCESS_KEY OR KUB_CONFIG_NAME.",
+												Description:         "Reference to a Secret that contains the details to authenticate with Akeyless.",
+												MarkdownDescription: "Reference to a Secret that contains the details to authenticate with Akeyless.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -911,8 +1188,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 													},
 												}),
 
-												Required: true,
-												Optional: false,
+												Required: false,
+												Optional: true,
 												Computed: false,
 											},
 										}),
@@ -934,6 +1211,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
 
@@ -1115,6 +1394,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
 
@@ -1369,6 +1650,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
 
@@ -1627,6 +1910,178 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
 
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("ibm")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("kubernetes")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("onepassword")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("oracle")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("senhasegura")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("vault")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("webhook")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								},
+							},
+
+							"doppler": {
+								Description:         "Doppler configures this store to sync secrets using the Doppler provider",
+								MarkdownDescription: "Doppler configures this store to sync secrets using the Doppler provider",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"auth": {
+										Description:         "Auth configures how the Operator authenticates with the Doppler API",
+										MarkdownDescription: "Auth configures how the Operator authenticates with the Doppler API",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"secret_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"doppler_token": {
+														Description:         "The DopplerToken is used for authentication. See https://docs.doppler.com/reference/api#authentication for auth token types. The Key attribute defaults to dopplerToken if not specified.",
+														MarkdownDescription: "The DopplerToken is used for authentication. See https://docs.doppler.com/reference/api#authentication for auth token types. The Key attribute defaults to dopplerToken if not specified.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"config": {
+										Description:         "Doppler config (required if not using a Service Token)",
+										MarkdownDescription: "Doppler config (required if not using a Service Token)",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"format": {
+										Description:         "Format enables the downloading of secrets as a file (string)",
+										MarkdownDescription: "Format enables the downloading of secrets as a file (string)",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("json", "dotnet-json", "env", "yaml", "docker"),
+										},
+									},
+
+									"name_transformer": {
+										Description:         "Environment variable compatible name transforms that change secret names to a different format",
+										MarkdownDescription: "Environment variable compatible name transforms that change secret names to a different format",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("upper-camel", "camel", "lower-snake", "tf-var", "dotnet-env"),
+										},
+									},
+
+									"project": {
+										Description:         "Doppler project (required if not using a Service Token)",
+										MarkdownDescription: "Doppler project (required if not using a Service Token)",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
@@ -1729,6 +2184,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
 
@@ -1945,6 +2402,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
 
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
+
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gitlab")),
@@ -2044,6 +2503,17 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 										Computed: false,
 									},
 
+									"environment": {
+										Description:         "Environment environment_scope of gitlab CI/CD variables (Please see https://docs.gitlab.com/ee/ci/environments/#create-a-static-environment on how to create environments)",
+										MarkdownDescription: "Environment environment_scope of gitlab CI/CD variables (Please see https://docs.gitlab.com/ee/ci/environments/#create-a-static-environment on how to create environments)",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"project_id": {
 										Description:         "ProjectID specifies a project where secrets are located.",
 										MarkdownDescription: "ProjectID specifies a project where secrets are located.",
@@ -2080,6 +2550,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
 
@@ -2260,6 +2732,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
 
@@ -2654,6 +3128,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
 
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
+
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
@@ -2789,6 +3265,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
 
@@ -2993,6 +3471,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
 
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
+
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
@@ -3138,6 +3618,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
 
@@ -3931,6 +4413,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
 
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
+
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
@@ -4199,6 +4683,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
 
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
+
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
@@ -4369,6 +4855,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
 
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
+
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("gcpsm")),
@@ -4538,6 +5026,8 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Resource) GetSchema(_ context.Contex
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("aws")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("azurekv")),
+
+									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("doppler")),
 
 									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("fake")),
 

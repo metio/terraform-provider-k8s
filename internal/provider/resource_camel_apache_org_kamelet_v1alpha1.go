@@ -112,7 +112,7 @@ type CamelApacheOrgKameletV1Alpha1GoModel struct {
 
 				UniqueItems *bool `tfsdk:"unique_items" yaml:"uniqueItems,omitempty"`
 
-				X_descriptors *[]string `tfsdk:"x__descriptors" yaml:"x-descriptors,omitempty"`
+				X_descriptors *[]string `tfsdk:"x_descriptors" yaml:"x-descriptors,omitempty"`
 			} `tfsdk:"properties" yaml:"properties,omitempty"`
 
 			Required *[]string `tfsdk:"required" yaml:"required,omitempty"`
@@ -147,7 +147,7 @@ type CamelApacheOrgKameletV1Alpha1GoModel struct {
 
 			Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-			Property_names *[]string `tfsdk:"property__names" yaml:"property-names,omitempty"`
+			Property_names *[]string `tfsdk:"property_names" yaml:"property-names,omitempty"`
 
 			RawContent *string `tfsdk:"raw_content" yaml:"rawContent,omitempty"`
 
@@ -219,7 +219,7 @@ type CamelApacheOrgKameletV1Alpha1GoModel struct {
 
 					UniqueItems *bool `tfsdk:"unique_items" yaml:"uniqueItems,omitempty"`
 
-					X_descriptors *[]string `tfsdk:"x__descriptors" yaml:"x-descriptors,omitempty"`
+					X_descriptors *[]string `tfsdk:"x_descriptors" yaml:"x-descriptors,omitempty"`
 				} `tfsdk:"properties" yaml:"properties,omitempty"`
 
 				Required *[]string `tfsdk:"required" yaml:"required,omitempty"`
@@ -669,7 +669,7 @@ func (r *CamelApacheOrgKameletV1Alpha1Resource) GetSchema(_ context.Context) (tf
 										Computed: false,
 									},
 
-									"x__descriptors": {
+									"x_descriptors": {
 										Description:         "XDescriptors is a list of extended properties that trigger a custom behavior in external systems",
 										MarkdownDescription: "XDescriptors is a list of extended properties that trigger a custom behavior in external systems",
 
@@ -863,7 +863,7 @@ func (r *CamelApacheOrgKameletV1Alpha1Resource) GetSchema(_ context.Context) (tf
 								Computed: false,
 							},
 
-							"property__names": {
+							"property_names": {
 								Description:         "List of property names defined in the source (e.g. if type is 'template')",
 								MarkdownDescription: "List of property names defined in the source (e.g. if type is 'template')",
 
@@ -1267,7 +1267,7 @@ func (r *CamelApacheOrgKameletV1Alpha1Resource) GetSchema(_ context.Context) (tf
 												Computed: false,
 											},
 
-											"x__descriptors": {
+											"x_descriptors": {
 												Description:         "XDescriptors is a list of extended properties that trigger a custom behavior in external systems",
 												MarkdownDescription: "XDescriptors is a list of extended properties that trigger a custom behavior in external systems",
 

@@ -117,7 +117,7 @@ func openAPIv3AsTemplateData(definition *openapi3.SchemaRef, pkg string) *Templa
 	return &TemplateData{
 		BT:                    "`",
 		Package:               pkg,
-		File:                  file(group, kind, version),
+		File:                  terraformResourceFile(group, kind, version),
 		Group:                 group,
 		Version:               version,
 		Kind:                  kind,
@@ -138,8 +138,12 @@ func openAPIv3Properties(schema *openapi3.Schema, imports *AdditionalImports, pa
 	if schema != nil {
 		for name, prop := range schema.Properties {
 			if prop.Value != nil {
-				attributeName := terraformAttributeName(name)
-				propPath := propertyPath(path, attributeName)
+				propPath := propertyPath(path, name)
+				if ignored, ok := ignoredAttributes[terraformResourceName]; ok {
+					if slices.Contains(ignored, propPath) {
+						continue
+					}
+				}
 
 				var nestedProperties []*Property
 				if prop.Value.Type == "array" && prop.Value.Items != nil && prop.Value.Items.Value != nil && prop.Value.Items.Value.Type == "object" {
@@ -162,7 +166,7 @@ func openAPIv3Properties(schema *openapi3.Schema, imports *AdditionalImports, pa
 					Name:                   name,
 					GoName:                 goName(name),
 					GoType:                 goType,
-					TerraformAttributeName: attributeName,
+					TerraformAttributeName: terraformAttributeName(name),
 					TerraformAttributeType: attributeType,
 					TerraformValueType:     valueType,
 					Description:            description(prop.Value.Description),

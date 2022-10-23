@@ -70,11 +70,15 @@ type CrdProjectcalicoOrgFelixConfigurationV1GoModel struct {
 
 		BpfExternalServiceMode *string `tfsdk:"bpf_external_service_mode" yaml:"bpfExternalServiceMode,omitempty"`
 
+		BpfHostConntrackBypass *bool `tfsdk:"bpf_host_conntrack_bypass" yaml:"bpfHostConntrackBypass,omitempty"`
+
 		BpfKubeProxyEndpointSlicesEnabled *bool `tfsdk:"bpf_kube_proxy_endpoint_slices_enabled" yaml:"bpfKubeProxyEndpointSlicesEnabled,omitempty"`
 
 		BpfKubeProxyIptablesCleanupEnabled *bool `tfsdk:"bpf_kube_proxy_iptables_cleanup_enabled" yaml:"bpfKubeProxyIptablesCleanupEnabled,omitempty"`
 
 		BpfKubeProxyMinSyncPeriod *string `tfsdk:"bpf_kube_proxy_min_sync_period" yaml:"bpfKubeProxyMinSyncPeriod,omitempty"`
+
+		BpfL3IfacePattern *string `tfsdk:"bpf_l3_iface_pattern" yaml:"bpfL3IfacePattern,omitempty"`
 
 		BpfLogLevel *string `tfsdk:"bpf_log_level" yaml:"bpfLogLevel,omitempty"`
 
@@ -143,6 +147,8 @@ type CrdProjectcalicoOrgFelixConfigurationV1GoModel struct {
 		} `tfsdk:"failsafe_outbound_host_ports" yaml:"failsafeOutboundHostPorts,omitempty"`
 
 		FeatureDetectOverride *string `tfsdk:"feature_detect_override" yaml:"featureDetectOverride,omitempty"`
+
+		FeatureGates *string `tfsdk:"feature_gates" yaml:"featureGates,omitempty"`
 
 		FloatingIPs *string `tfsdk:"floating_i_ps" yaml:"floatingIPs,omitempty"`
 
@@ -510,6 +516,17 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Resource) GetSchema(_ context.Co
 						Computed: false,
 					},
 
+					"bpf_host_conntrack_bypass": {
+						Description:         "BPFHostConntrackBypass Controls whether to bypass Linux conntrack in BPF mode for workloads and services. [Default: true - bypass Linux conntrack]",
+						MarkdownDescription: "BPFHostConntrackBypass Controls whether to bypass Linux conntrack in BPF mode for workloads and services. [Default: true - bypass Linux conntrack]",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"bpf_kube_proxy_endpoint_slices_enabled": {
 						Description:         "BPFKubeProxyEndpointSlicesEnabled in BPF mode, controls whether Felix's embedded kube-proxy accepts EndpointSlices or not.",
 						MarkdownDescription: "BPFKubeProxyEndpointSlicesEnabled in BPF mode, controls whether Felix's embedded kube-proxy accepts EndpointSlices or not.",
@@ -535,6 +552,17 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Resource) GetSchema(_ context.Co
 					"bpf_kube_proxy_min_sync_period": {
 						Description:         "BPFKubeProxyMinSyncPeriod, in BPF mode, controls the minimum time between updates to the dataplane for Felix's embedded kube-proxy.  Lower values give reduced set-up latency.  Higher values reduce Felix CPU usage by batching up more work.  [Default: 1s]",
 						MarkdownDescription: "BPFKubeProxyMinSyncPeriod, in BPF mode, controls the minimum time between updates to the dataplane for Felix's embedded kube-proxy.  Lower values give reduced set-up latency.  Higher values reduce Felix CPU usage by batching up more work.  [Default: 1s]",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"bpf_l3_iface_pattern": {
+						Description:         "BPFL3IfacePattern is a regular expression that allows to list tunnel devices like wireguard or vxlan (i.e., L3 devices) in addition to BPFDataIfacePattern. That is, tunnel interfaces not created by Calico, that Calico workload traffic flows over as well as any interfaces that handle incoming traffic to nodeports and services from outside the cluster.",
+						MarkdownDescription: "BPFL3IfacePattern is a regular expression that allows to list tunnel devices like wireguard or vxlan (i.e., L3 devices) in addition to BPFDataIfacePattern. That is, tunnel interfaces not created by Calico, that Calico workload traffic flows over as well as any interfaces that handle incoming traffic to nodeports and services from outside the cluster.",
 
 						Type: types.StringType,
 
@@ -909,8 +937,19 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Resource) GetSchema(_ context.Co
 					},
 
 					"feature_detect_override": {
-						Description:         "FeatureDetectOverride is used to override the feature detection. Values are specified in a comma separated list with no spaces, example; 'SNATFullyRandom=true,MASQFullyRandom=false,RestoreSupportsLock='. 'true' or 'false' will force the feature, empty or omitted values are auto-detected.",
-						MarkdownDescription: "FeatureDetectOverride is used to override the feature detection. Values are specified in a comma separated list with no spaces, example; 'SNATFullyRandom=true,MASQFullyRandom=false,RestoreSupportsLock='. 'true' or 'false' will force the feature, empty or omitted values are auto-detected.",
+						Description:         "FeatureDetectOverride is used to override feature detection based on auto-detected platform capabilities.  Values are specified in a comma separated list with no spaces, example; 'SNATFullyRandom=true,MASQFullyRandom=false,RestoreSupportsLock='.  'true' or 'false' will force the feature, empty or omitted values are auto-detected.",
+						MarkdownDescription: "FeatureDetectOverride is used to override feature detection based on auto-detected platform capabilities.  Values are specified in a comma separated list with no spaces, example; 'SNATFullyRandom=true,MASQFullyRandom=false,RestoreSupportsLock='.  'true' or 'false' will force the feature, empty or omitted values are auto-detected.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"feature_gates": {
+						Description:         "FeatureGates is used to enable or disable tech-preview Calico features. Values are specified in a comma separated list with no spaces, example; 'BPFConnectTimeLoadBalancingWorkaround=enabled,XyZ=false'. This is used to enable features that are not fully production ready.",
+						MarkdownDescription: "FeatureGates is used to enable or disable tech-preview Calico features. Values are specified in a comma separated list with no spaces, example; 'BPFConnectTimeLoadBalancingWorkaround=enabled,XyZ=false'. This is used to enable features that are not fully production ready.",
 
 						Type: types.StringType,
 
@@ -920,8 +959,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Resource) GetSchema(_ context.Co
 					},
 
 					"floating_i_ps": {
-						Description:         "FloatingIPs configures whether or not Felix will program floating IP addresses.",
-						MarkdownDescription: "FloatingIPs configures whether or not Felix will program floating IP addresses.",
+						Description:         "FloatingIPs configures whether or not Felix will program non-OpenStack floating IP addresses.  (OpenStack-derived floating IPs are always programmed, regardless of this setting.)",
+						MarkdownDescription: "FloatingIPs configures whether or not Felix will program non-OpenStack floating IP addresses.  (OpenStack-derived floating IPs are always programmed, regardless of this setting.)",
 
 						Type: types.StringType,
 
@@ -1609,8 +1648,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Resource) GetSchema(_ context.Co
 					},
 
 					"vxlan_enabled": {
-						Description:         "VXLANEnabled overrides whether Felix should create the VXLAN tunnel device for VXLAN networking. Optional as Felix determines this based on the existing IP pools. [Default: nil (unset)]",
-						MarkdownDescription: "VXLANEnabled overrides whether Felix should create the VXLAN tunnel device for VXLAN networking. Optional as Felix determines this based on the existing IP pools. [Default: nil (unset)]",
+						Description:         "VXLANEnabled overrides whether Felix should create the VXLAN tunnel device for IPv4 VXLAN networking. Optional as Felix determines this based on the existing IP pools. [Default: nil (unset)]",
+						MarkdownDescription: "VXLANEnabled overrides whether Felix should create the VXLAN tunnel device for IPv4 VXLAN networking. Optional as Felix determines this based on the existing IP pools. [Default: nil (unset)]",
 
 						Type: types.BoolType,
 

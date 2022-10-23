@@ -921,8 +921,8 @@ func (r *KyvernoIoClusterPolicyV1Resource) GetSchema(_ context.Context) (tfsdk.S
 					},
 
 					"failure_policy": {
-						Description:         "FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled. Rules within the same policy share the same failure behavior. Allowed values are Ignore or Fail. Defaults to Fail.",
-						MarkdownDescription: "FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled. Rules within the same policy share the same failure behavior. Allowed values are Ignore or Fail. Defaults to Fail.",
+						Description:         "FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled. Rules within the same policy share the same failure behavior. This field should not be accessed directly, instead 'GetFailurePolicy()' should be used. Allowed values are Ignore or Fail. Defaults to Fail.",
+						MarkdownDescription: "FailurePolicy defines how unexpected policy errors and webhook response timeout errors are handled. Rules within the same policy share the same failure behavior. This field should not be accessed directly, instead 'GetFailurePolicy()' should be used. Allowed values are Ignore or Fail. Defaults to Fail.",
 
 						Type: types.StringType,
 

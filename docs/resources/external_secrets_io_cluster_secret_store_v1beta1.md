@@ -60,6 +60,7 @@ Required:
 
 Optional:
 
+- `conditions` (Attributes List) Used to constraint a ClusterSecretStore to specific namespaces. Relevant only to ClusterSecretStore (see [below for nested schema](#nestedatt--spec--conditions))
 - `controller` (String) Used to select the correct KES controller (think: ingress.ingressClassName) The KES controller is instantiated with a specific controller name and filters ES based on this property
 - `refresh_interval` (Number) Used to configure store refresh interval in seconds. Empty or 0 will default to the controller config.
 - `retry_settings` (Attributes) Used to configure http retries if failed (see [below for nested schema](#nestedatt--spec--retry_settings))
@@ -73,6 +74,7 @@ Optional:
 - `alibaba` (Attributes) Alibaba configures this store to sync secrets using Alibaba Cloud provider (see [below for nested schema](#nestedatt--spec--provider--alibaba))
 - `aws` (Attributes) AWS configures this store to sync secrets using AWS Secret Manager provider (see [below for nested schema](#nestedatt--spec--provider--aws))
 - `azurekv` (Attributes) AzureKV configures this store to sync secrets using Azure Key Vault provider (see [below for nested schema](#nestedatt--spec--provider--azurekv))
+- `doppler` (Attributes) Doppler configures this store to sync secrets using the Doppler provider (see [below for nested schema](#nestedatt--spec--provider--doppler))
 - `fake` (Attributes) Fake configures a store with static key/value pairs (see [below for nested schema](#nestedatt--spec--provider--fake))
 - `gcpsm` (Attributes) GCPSM configures this store to sync secrets using Google Cloud Platform Secret Manager provider (see [below for nested schema](#nestedatt--spec--provider--gcpsm))
 - `gitlab` (Attributes) Gitlab configures this store to sync secrets using Gitlab Variables provider (see [below for nested schema](#nestedatt--spec--provider--gitlab))
@@ -97,9 +99,47 @@ Required:
 <a id="nestedatt--spec--provider--akeyless--auth_secret_ref"></a>
 ### Nested Schema for `spec.provider.akeyless.auth_secret_ref`
 
+Optional:
+
+- `kubernetes_auth` (Attributes) Kubernetes authenticates with Akeyless by passing the ServiceAccount token stored in the named Secret resource. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth))
+- `secret_ref` (Attributes) Reference to a Secret that contains the details to authenticate with Akeyless. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref))
+
+<a id="nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth"></a>
+### Nested Schema for `spec.provider.akeyless.auth_secret_ref.kubernetes_auth`
+
 Required:
 
-- `secret_ref` (Attributes) AkeylessAuthSecretRef AKEYLESS_ACCESS_TYPE_PARAM: AZURE_OBJ_ID OR GCP_AUDIENCE OR ACCESS_KEY OR KUB_CONFIG_NAME. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref))
+- `access_id` (String) the Akeyless Kubernetes auth-method access-id
+- `k8s_conf_name` (String) Kubernetes-auth configuration name in Akeyless-Gateway
+
+Optional:
+
+- `secret_ref` (Attributes) Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless. If a name is specified without a key, 'token' is the default. If one is not specified, the one bound to the controller will be used. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--secret_ref))
+- `service_account_ref` (Attributes) Optional service account field containing the name of a kubernetes ServiceAccount. If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--service_account_ref))
+
+<a id="nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--secret_ref"></a>
+### Nested Schema for `spec.provider.akeyless.auth_secret_ref.kubernetes_auth.service_account_ref`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+
+<a id="nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--service_account_ref"></a>
+### Nested Schema for `spec.provider.akeyless.auth_secret_ref.kubernetes_auth.service_account_ref`
+
+Required:
+
+- `name` (String) The name of the ServiceAccount resource being referred to.
+
+Optional:
+
+- `audiences` (List of String) Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+
 
 <a id="nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref"></a>
 ### Nested Schema for `spec.provider.akeyless.auth_secret_ref.secret_ref`
@@ -325,6 +365,47 @@ Optional:
 
 
 
+<a id="nestedatt--spec--provider--doppler"></a>
+### Nested Schema for `spec.provider.doppler`
+
+Required:
+
+- `auth` (Attributes) Auth configures how the Operator authenticates with the Doppler API (see [below for nested schema](#nestedatt--spec--provider--doppler--auth))
+
+Optional:
+
+- `config` (String) Doppler config (required if not using a Service Token)
+- `format` (String) Format enables the downloading of secrets as a file (string)
+- `name_transformer` (String) Environment variable compatible name transforms that change secret names to a different format
+- `project` (String) Doppler project (required if not using a Service Token)
+
+<a id="nestedatt--spec--provider--doppler--auth"></a>
+### Nested Schema for `spec.provider.doppler.project`
+
+Required:
+
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--doppler--project--secret_ref))
+
+<a id="nestedatt--spec--provider--doppler--project--secret_ref"></a>
+### Nested Schema for `spec.provider.doppler.project.secret_ref`
+
+Required:
+
+- `doppler_token` (Attributes) The DopplerToken is used for authentication. See https://docs.doppler.com/reference/api#authentication for auth token types. The Key attribute defaults to dopplerToken if not specified. (see [below for nested schema](#nestedatt--spec--provider--doppler--project--secret_ref--doppler_token))
+
+<a id="nestedatt--spec--provider--doppler--project--secret_ref--doppler_token"></a>
+### Nested Schema for `spec.provider.doppler.project.secret_ref.doppler_token`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+
+
+
+
 <a id="nestedatt--spec--provider--fake"></a>
 ### Nested Schema for `spec.provider.fake`
 
@@ -419,6 +500,7 @@ Required:
 
 Optional:
 
+- `environment` (String) Environment environment_scope of gitlab CI/CD variables (Please see https://docs.gitlab.com/ee/ci/environments/#create-a-static-environment on how to create environments)
 - `project_id` (String) ProjectID specifies a project where secrets are located.
 - `url` (String) URL configures the GitLab instance URL. Defaults to https://gitlab.com/.
 
@@ -1099,6 +1181,37 @@ Optional:
 - `name` (String) The name of the Secret resource being referred to.
 - `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
 
+
+
+
+
+<a id="nestedatt--spec--conditions"></a>
+### Nested Schema for `spec.conditions`
+
+Optional:
+
+- `namespace_selector` (Attributes) Choose namespace using a labelSelector (see [below for nested schema](#nestedatt--spec--conditions--namespace_selector))
+- `namespaces` (List of String) Choose namespaces by name
+
+<a id="nestedatt--spec--conditions--namespace_selector"></a>
+### Nested Schema for `spec.conditions.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--conditions--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--conditions--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.conditions.namespace_selector.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 

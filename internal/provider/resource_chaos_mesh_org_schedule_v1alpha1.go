@@ -620,36 +620,36 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 			Address *[]string `tfsdk:"address" yaml:"address,omitempty"`
 
 			Clock *struct {
-				Clock_ids_slice *string `tfsdk:"clock__ids__slice" yaml:"clock-ids-slice,omitempty"`
+				Clock_ids_slice *string `tfsdk:"clock_ids_slice" yaml:"clock-ids-slice,omitempty"`
 
 				Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
-				Time_offset *string `tfsdk:"time__offset" yaml:"time-offset,omitempty"`
+				Time_offset *string `tfsdk:"time_offset" yaml:"time-offset,omitempty"`
 			} `tfsdk:"clock" yaml:"clock,omitempty"`
 
 			Disk_fill *struct {
-				Fill_by_fallocate *bool `tfsdk:"fill__by__fallocate" yaml:"fill-by-fallocate,omitempty"`
+				Fill_by_fallocate *bool `tfsdk:"fill_by_fallocate" yaml:"fill-by-fallocate,omitempty"`
 
 				Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
 				Size *string `tfsdk:"size" yaml:"size,omitempty"`
-			} `tfsdk:"disk__fill" yaml:"disk-fill,omitempty"`
+			} `tfsdk:"disk_fill" yaml:"disk-fill,omitempty"`
 
 			Disk_read_payload *struct {
 				Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-				Payload_process_num *int64 `tfsdk:"payload__process__num" yaml:"payload-process-num,omitempty"`
+				Payload_process_num *int64 `tfsdk:"payload_process_num" yaml:"payload-process-num,omitempty"`
 
 				Size *string `tfsdk:"size" yaml:"size,omitempty"`
-			} `tfsdk:"disk__read__payload" yaml:"disk-read-payload,omitempty"`
+			} `tfsdk:"disk_read_payload" yaml:"disk-read-payload,omitempty"`
 
 			Disk_write_payload *struct {
 				Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-				Payload_process_num *int64 `tfsdk:"payload__process__num" yaml:"payload-process-num,omitempty"`
+				Payload_process_num *int64 `tfsdk:"payload_process_num" yaml:"payload-process-num,omitempty"`
 
 				Size *string `tfsdk:"size" yaml:"size,omitempty"`
-			} `tfsdk:"disk__write__payload" yaml:"disk-write-payload,omitempty"`
+			} `tfsdk:"disk_write_payload" yaml:"disk-write-payload,omitempty"`
 
 			Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
 
@@ -658,42 +658,42 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 
 				Data *string `tfsdk:"data" yaml:"data,omitempty"`
 
-				File_name *string `tfsdk:"file__name" yaml:"file-name,omitempty"`
-			} `tfsdk:"file__append" yaml:"file-append,omitempty"`
+				File_name *string `tfsdk:"file_name" yaml:"file-name,omitempty"`
+			} `tfsdk:"file_append" yaml:"file-append,omitempty"`
 
 			File_create *struct {
-				Dir_name *string `tfsdk:"dir__name" yaml:"dir-name,omitempty"`
+				Dir_name *string `tfsdk:"dir_name" yaml:"dir-name,omitempty"`
 
-				File_name *string `tfsdk:"file__name" yaml:"file-name,omitempty"`
-			} `tfsdk:"file__create" yaml:"file-create,omitempty"`
+				File_name *string `tfsdk:"file_name" yaml:"file-name,omitempty"`
+			} `tfsdk:"file_create" yaml:"file-create,omitempty"`
 
 			File_delete *struct {
-				Dir_name *string `tfsdk:"dir__name" yaml:"dir-name,omitempty"`
+				Dir_name *string `tfsdk:"dir_name" yaml:"dir-name,omitempty"`
 
-				File_name *string `tfsdk:"file__name" yaml:"file-name,omitempty"`
-			} `tfsdk:"file__delete" yaml:"file-delete,omitempty"`
+				File_name *string `tfsdk:"file_name" yaml:"file-name,omitempty"`
+			} `tfsdk:"file_delete" yaml:"file-delete,omitempty"`
 
 			File_modify *struct {
-				File_name *string `tfsdk:"file__name" yaml:"file-name,omitempty"`
+				File_name *string `tfsdk:"file_name" yaml:"file-name,omitempty"`
 
 				Privilege *int64 `tfsdk:"privilege" yaml:"privilege,omitempty"`
-			} `tfsdk:"file__modify" yaml:"file-modify,omitempty"`
+			} `tfsdk:"file_modify" yaml:"file-modify,omitempty"`
 
 			File_rename *struct {
-				Dest_file *string `tfsdk:"dest__file" yaml:"dest-file,omitempty"`
+				Dest_file *string `tfsdk:"dest_file" yaml:"dest-file,omitempty"`
 
-				Source_file *string `tfsdk:"source__file" yaml:"source-file,omitempty"`
-			} `tfsdk:"file__rename" yaml:"file-rename,omitempty"`
+				Source_file *string `tfsdk:"source_file" yaml:"source-file,omitempty"`
+			} `tfsdk:"file_rename" yaml:"file-rename,omitempty"`
 
 			File_replace *struct {
-				Dest_string *string `tfsdk:"dest__string" yaml:"dest-string,omitempty"`
+				Dest_string *string `tfsdk:"dest_string" yaml:"dest-string,omitempty"`
 
-				File_name *string `tfsdk:"file__name" yaml:"file-name,omitempty"`
+				File_name *string `tfsdk:"file_name" yaml:"file-name,omitempty"`
 
 				Line *int64 `tfsdk:"line" yaml:"line,omitempty"`
 
-				Origin_string *string `tfsdk:"origin__string" yaml:"origin-string,omitempty"`
-			} `tfsdk:"file__replace" yaml:"file-replace,omitempty"`
+				Origin_string *string `tfsdk:"origin_string" yaml:"origin-string,omitempty"`
+			} `tfsdk:"file_replace" yaml:"file-replace,omitempty"`
 
 			Http_abort *struct {
 				Code *string `tfsdk:"code" yaml:"code,omitempty"`
@@ -707,11 +707,11 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				Proxy_ports *[]string `tfsdk:"proxy_ports" yaml:"proxy_ports,omitempty"`
 
 				Target *string `tfsdk:"target" yaml:"target,omitempty"`
-			} `tfsdk:"http__abort" yaml:"http-abort,omitempty"`
+			} `tfsdk:"http_abort" yaml:"http-abort,omitempty"`
 
 			Http_config *struct {
 				File_path *string `tfsdk:"file_path" yaml:"file_path,omitempty"`
-			} `tfsdk:"http__config" yaml:"http-config,omitempty"`
+			} `tfsdk:"http_config" yaml:"http-config,omitempty"`
 
 			Http_delay *struct {
 				Code *string `tfsdk:"code" yaml:"code,omitempty"`
@@ -727,15 +727,15 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				Proxy_ports *[]string `tfsdk:"proxy_ports" yaml:"proxy_ports,omitempty"`
 
 				Target *string `tfsdk:"target" yaml:"target,omitempty"`
-			} `tfsdk:"http__delay" yaml:"http-delay,omitempty"`
+			} `tfsdk:"http_delay" yaml:"http-delay,omitempty"`
 
 			Http_request *struct {
 				Count *int64 `tfsdk:"count" yaml:"count,omitempty"`
 
-				Enable_conn_pool *bool `tfsdk:"enable__conn__pool" yaml:"enable-conn-pool,omitempty"`
+				Enable_conn_pool *bool `tfsdk:"enable_conn_pool" yaml:"enable-conn-pool,omitempty"`
 
 				Url *string `tfsdk:"url" yaml:"url,omitempty"`
-			} `tfsdk:"http__request" yaml:"http-request,omitempty"`
+			} `tfsdk:"http_request" yaml:"http-request,omitempty"`
 
 			Jvm_exception *struct {
 				Class *string `tfsdk:"class" yaml:"class,omitempty"`
@@ -747,13 +747,13 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
 				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-			} `tfsdk:"jvm__exception" yaml:"jvm-exception,omitempty"`
+			} `tfsdk:"jvm_exception" yaml:"jvm-exception,omitempty"`
 
 			Jvm_gc *struct {
 				Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
 				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-			} `tfsdk:"jvm__gc" yaml:"jvm-gc,omitempty"`
+			} `tfsdk:"jvm_gc" yaml:"jvm-gc,omitempty"`
 
 			Jvm_latency *struct {
 				Class *string `tfsdk:"class" yaml:"class,omitempty"`
@@ -765,7 +765,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
 				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-			} `tfsdk:"jvm__latency" yaml:"jvm-latency,omitempty"`
+			} `tfsdk:"jvm_latency" yaml:"jvm-latency,omitempty"`
 
 			Jvm_mysql *struct {
 				Database *string `tfsdk:"database" yaml:"database,omitempty"`
@@ -783,7 +783,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				SqlType *string `tfsdk:"sql_type" yaml:"sqlType,omitempty"`
 
 				Table *string `tfsdk:"table" yaml:"table,omitempty"`
-			} `tfsdk:"jvm__mysql" yaml:"jvm-mysql,omitempty"`
+			} `tfsdk:"jvm_mysql" yaml:"jvm-mysql,omitempty"`
 
 			Jvm_return *struct {
 				Class *string `tfsdk:"class" yaml:"class,omitempty"`
@@ -795,25 +795,25 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 
 				Value *string `tfsdk:"value" yaml:"value,omitempty"`
-			} `tfsdk:"jvm__return" yaml:"jvm-return,omitempty"`
+			} `tfsdk:"jvm_return" yaml:"jvm-return,omitempty"`
 
 			Jvm_rule_data *struct {
 				Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
 				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 
-				Rule_data *string `tfsdk:"rule__data" yaml:"rule-data,omitempty"`
-			} `tfsdk:"jvm__rule__data" yaml:"jvm-rule-data,omitempty"`
+				Rule_data *string `tfsdk:"rule_data" yaml:"rule-data,omitempty"`
+			} `tfsdk:"jvm_rule_data" yaml:"jvm-rule-data,omitempty"`
 
 			Jvm_stress *struct {
-				Cpu_count *int64 `tfsdk:"cpu__count" yaml:"cpu-count,omitempty"`
+				Cpu_count *int64 `tfsdk:"cpu_count" yaml:"cpu-count,omitempty"`
 
-				Mem_type *string `tfsdk:"mem__type" yaml:"mem-type,omitempty"`
+				Mem_type *string `tfsdk:"mem_type" yaml:"mem-type,omitempty"`
 
 				Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
 				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-			} `tfsdk:"jvm__stress" yaml:"jvm-stress,omitempty"`
+			} `tfsdk:"jvm_stress" yaml:"jvm-stress,omitempty"`
 
 			Kafka_fill *struct {
 				Host *string `tfsdk:"host" yaml:"host,omitempty"`
@@ -831,7 +831,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				Topic *string `tfsdk:"topic" yaml:"topic,omitempty"`
 
 				Username *string `tfsdk:"username" yaml:"username,omitempty"`
-			} `tfsdk:"kafka__fill" yaml:"kafka-fill,omitempty"`
+			} `tfsdk:"kafka_fill" yaml:"kafka-fill,omitempty"`
 
 			Kafka_flood *struct {
 				Host *string `tfsdk:"host" yaml:"host,omitempty"`
@@ -847,7 +847,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				Topic *string `tfsdk:"topic" yaml:"topic,omitempty"`
 
 				Username *string `tfsdk:"username" yaml:"username,omitempty"`
-			} `tfsdk:"kafka__flood" yaml:"kafka-flood,omitempty"`
+			} `tfsdk:"kafka_flood" yaml:"kafka-flood,omitempty"`
 
 			Kafka_io *struct {
 				ConfigFile *string `tfsdk:"config_file" yaml:"configFile,omitempty"`
@@ -857,7 +857,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				NonWritable *bool `tfsdk:"non_writable" yaml:"nonWritable,omitempty"`
 
 				Topic *string `tfsdk:"topic" yaml:"topic,omitempty"`
-			} `tfsdk:"kafka__io" yaml:"kafka-io,omitempty"`
+			} `tfsdk:"kafka_io" yaml:"kafka-io,omitempty"`
 
 			Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
 
@@ -868,7 +868,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 
 				Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-				Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+				Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
 				Limit *int64 `tfsdk:"limit" yaml:"limit,omitempty"`
 
@@ -877,112 +877,112 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				Peakrate *int64 `tfsdk:"peakrate" yaml:"peakrate,omitempty"`
 
 				Rate *string `tfsdk:"rate" yaml:"rate,omitempty"`
-			} `tfsdk:"network__bandwidth" yaml:"network-bandwidth,omitempty"`
+			} `tfsdk:"network_bandwidth" yaml:"network-bandwidth,omitempty"`
 
 			Network_corrupt *struct {
 				Correlation *string `tfsdk:"correlation" yaml:"correlation,omitempty"`
 
 				Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
-				Egress_port *string `tfsdk:"egress__port" yaml:"egress-port,omitempty"`
+				Egress_port *string `tfsdk:"egress_port" yaml:"egress-port,omitempty"`
 
 				Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-				Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+				Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
-				Ip_protocol *string `tfsdk:"ip__protocol" yaml:"ip-protocol,omitempty"`
+				Ip_protocol *string `tfsdk:"ip_protocol" yaml:"ip-protocol,omitempty"`
 
 				Percent *string `tfsdk:"percent" yaml:"percent,omitempty"`
 
-				Source_port *string `tfsdk:"source__port" yaml:"source-port,omitempty"`
-			} `tfsdk:"network__corrupt" yaml:"network-corrupt,omitempty"`
+				Source_port *string `tfsdk:"source_port" yaml:"source-port,omitempty"`
+			} `tfsdk:"network_corrupt" yaml:"network-corrupt,omitempty"`
 
 			Network_delay *struct {
-				Accept_tcp_flags *string `tfsdk:"accept__tcp__flags" yaml:"accept-tcp-flags,omitempty"`
+				Accept_tcp_flags *string `tfsdk:"accept_tcp_flags" yaml:"accept-tcp-flags,omitempty"`
 
 				Correlation *string `tfsdk:"correlation" yaml:"correlation,omitempty"`
 
 				Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
-				Egress_port *string `tfsdk:"egress__port" yaml:"egress-port,omitempty"`
+				Egress_port *string `tfsdk:"egress_port" yaml:"egress-port,omitempty"`
 
 				Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-				Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+				Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
-				Ip_protocol *string `tfsdk:"ip__protocol" yaml:"ip-protocol,omitempty"`
+				Ip_protocol *string `tfsdk:"ip_protocol" yaml:"ip-protocol,omitempty"`
 
 				Jitter *string `tfsdk:"jitter" yaml:"jitter,omitempty"`
 
 				Latency *string `tfsdk:"latency" yaml:"latency,omitempty"`
 
-				Source_port *string `tfsdk:"source__port" yaml:"source-port,omitempty"`
-			} `tfsdk:"network__delay" yaml:"network-delay,omitempty"`
+				Source_port *string `tfsdk:"source_port" yaml:"source-port,omitempty"`
+			} `tfsdk:"network_delay" yaml:"network-delay,omitempty"`
 
 			Network_dns *struct {
-				Dns_domain_name *string `tfsdk:"dns__domain__name" yaml:"dns-domain-name,omitempty"`
+				Dns_domain_name *string `tfsdk:"dns_domain_name" yaml:"dns-domain-name,omitempty"`
 
-				Dns_ip *string `tfsdk:"dns__ip" yaml:"dns-ip,omitempty"`
+				Dns_ip *string `tfsdk:"dns_ip" yaml:"dns-ip,omitempty"`
 
-				Dns_server *string `tfsdk:"dns__server" yaml:"dns-server,omitempty"`
-			} `tfsdk:"network__dns" yaml:"network-dns,omitempty"`
+				Dns_server *string `tfsdk:"dns_server" yaml:"dns-server,omitempty"`
+			} `tfsdk:"network_dns" yaml:"network-dns,omitempty"`
 
 			Network_down *struct {
 				Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
 				Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
-			} `tfsdk:"network__down" yaml:"network-down,omitempty"`
+			} `tfsdk:"network_down" yaml:"network-down,omitempty"`
 
 			Network_duplicate *struct {
 				Correlation *string `tfsdk:"correlation" yaml:"correlation,omitempty"`
 
 				Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
-				Egress_port *string `tfsdk:"egress__port" yaml:"egress-port,omitempty"`
+				Egress_port *string `tfsdk:"egress_port" yaml:"egress-port,omitempty"`
 
 				Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-				Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+				Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
-				Ip_protocol *string `tfsdk:"ip__protocol" yaml:"ip-protocol,omitempty"`
+				Ip_protocol *string `tfsdk:"ip_protocol" yaml:"ip-protocol,omitempty"`
 
 				Percent *string `tfsdk:"percent" yaml:"percent,omitempty"`
 
-				Source_port *string `tfsdk:"source__port" yaml:"source-port,omitempty"`
-			} `tfsdk:"network__duplicate" yaml:"network-duplicate,omitempty"`
+				Source_port *string `tfsdk:"source_port" yaml:"source-port,omitempty"`
+			} `tfsdk:"network_duplicate" yaml:"network-duplicate,omitempty"`
 
 			Network_flood *struct {
 				Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
 
-				Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+				Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
 				Parallel *int64 `tfsdk:"parallel" yaml:"parallel,omitempty"`
 
 				Port *string `tfsdk:"port" yaml:"port,omitempty"`
 
 				Rate *string `tfsdk:"rate" yaml:"rate,omitempty"`
-			} `tfsdk:"network__flood" yaml:"network-flood,omitempty"`
+			} `tfsdk:"network_flood" yaml:"network-flood,omitempty"`
 
 			Network_loss *struct {
 				Correlation *string `tfsdk:"correlation" yaml:"correlation,omitempty"`
 
 				Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
-				Egress_port *string `tfsdk:"egress__port" yaml:"egress-port,omitempty"`
+				Egress_port *string `tfsdk:"egress_port" yaml:"egress-port,omitempty"`
 
 				Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-				Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+				Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
-				Ip_protocol *string `tfsdk:"ip__protocol" yaml:"ip-protocol,omitempty"`
+				Ip_protocol *string `tfsdk:"ip_protocol" yaml:"ip-protocol,omitempty"`
 
 				Percent *string `tfsdk:"percent" yaml:"percent,omitempty"`
 
-				Source_port *string `tfsdk:"source__port" yaml:"source-port,omitempty"`
-			} `tfsdk:"network__loss" yaml:"network-loss,omitempty"`
+				Source_port *string `tfsdk:"source_port" yaml:"source-port,omitempty"`
+			} `tfsdk:"network_loss" yaml:"network-loss,omitempty"`
 
 			Network_partition *struct {
-				Accept_tcp_flags *string `tfsdk:"accept__tcp__flags" yaml:"accept-tcp-flags,omitempty"`
+				Accept_tcp_flags *string `tfsdk:"accept_tcp_flags" yaml:"accept-tcp-flags,omitempty"`
 
 				Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
@@ -990,10 +990,10 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 
 				Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-				Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+				Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
-				Ip_protocol *string `tfsdk:"ip__protocol" yaml:"ip-protocol,omitempty"`
-			} `tfsdk:"network__partition" yaml:"network-partition,omitempty"`
+				Ip_protocol *string `tfsdk:"ip_protocol" yaml:"ip-protocol,omitempty"`
+			} `tfsdk:"network_partition" yaml:"network-partition,omitempty"`
 
 			Process *struct {
 				Process *string `tfsdk:"process" yaml:"process,omitempty"`
@@ -1011,7 +1011,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				Password *string `tfsdk:"password" yaml:"password,omitempty"`
 
 				Percent *string `tfsdk:"percent" yaml:"percent,omitempty"`
-			} `tfsdk:"redis__cache_limit" yaml:"redis-cacheLimit,omitempty"`
+			} `tfsdk:"redis_cache_limit" yaml:"redis-cacheLimit,omitempty"`
 
 			Redis_expiration *struct {
 				Addr *string `tfsdk:"addr" yaml:"addr,omitempty"`
@@ -1023,7 +1023,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				Option *string `tfsdk:"option" yaml:"option,omitempty"`
 
 				Password *string `tfsdk:"password" yaml:"password,omitempty"`
-			} `tfsdk:"redis__expiration" yaml:"redis-expiration,omitempty"`
+			} `tfsdk:"redis_expiration" yaml:"redis-expiration,omitempty"`
 
 			Redis_penetration *struct {
 				Addr *string `tfsdk:"addr" yaml:"addr,omitempty"`
@@ -1031,7 +1031,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				Password *string `tfsdk:"password" yaml:"password,omitempty"`
 
 				RequestNum *int64 `tfsdk:"request_num" yaml:"requestNum,omitempty"`
-			} `tfsdk:"redis__penetration" yaml:"redis-penetration,omitempty"`
+			} `tfsdk:"redis_penetration" yaml:"redis-penetration,omitempty"`
 
 			Redis_restart *struct {
 				Addr *string `tfsdk:"addr" yaml:"addr,omitempty"`
@@ -1043,7 +1043,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				Password *string `tfsdk:"password" yaml:"password,omitempty"`
 
 				RedisPath *bool `tfsdk:"redis_path" yaml:"redisPath,omitempty"`
-			} `tfsdk:"redis__restart" yaml:"redis-restart,omitempty"`
+			} `tfsdk:"redis_restart" yaml:"redis-restart,omitempty"`
 
 			Redis_stop *struct {
 				Addr *string `tfsdk:"addr" yaml:"addr,omitempty"`
@@ -1055,7 +1055,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				Password *string `tfsdk:"password" yaml:"password,omitempty"`
 
 				RedisPath *bool `tfsdk:"redis_path" yaml:"redisPath,omitempty"`
-			} `tfsdk:"redis__stop" yaml:"redis-stop,omitempty"`
+			} `tfsdk:"redis_stop" yaml:"redis-stop,omitempty"`
 
 			Selector *struct {
 				AnnotationSelectors *map[string]string `tfsdk:"annotation_selectors" yaml:"annotationSelectors,omitempty"`
@@ -1083,13 +1083,13 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 				Options *[]string `tfsdk:"options" yaml:"options,omitempty"`
 
 				Workers *int64 `tfsdk:"workers" yaml:"workers,omitempty"`
-			} `tfsdk:"stress__cpu" yaml:"stress-cpu,omitempty"`
+			} `tfsdk:"stress_cpu" yaml:"stress-cpu,omitempty"`
 
 			Stress_mem *struct {
 				Options *[]string `tfsdk:"options" yaml:"options,omitempty"`
 
 				Size *string `tfsdk:"size" yaml:"size,omitempty"`
-			} `tfsdk:"stress__mem" yaml:"stress-mem,omitempty"`
+			} `tfsdk:"stress_mem" yaml:"stress-mem,omitempty"`
 
 			Uid *string `tfsdk:"uid" yaml:"uid,omitempty"`
 
@@ -1102,7 +1102,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 			Value *string `tfsdk:"value" yaml:"value,omitempty"`
 
 			Vm *struct {
-				Vm_name *string `tfsdk:"vm__name" yaml:"vm-name,omitempty"`
+				Vm_name *string `tfsdk:"vm_name" yaml:"vm-name,omitempty"`
 			} `tfsdk:"vm" yaml:"vm,omitempty"`
 		} `tfsdk:"physicalmachine_chaos" yaml:"physicalmachineChaos,omitempty"`
 
@@ -1830,36 +1830,36 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 					Address *[]string `tfsdk:"address" yaml:"address,omitempty"`
 
 					Clock *struct {
-						Clock_ids_slice *string `tfsdk:"clock__ids__slice" yaml:"clock-ids-slice,omitempty"`
+						Clock_ids_slice *string `tfsdk:"clock_ids_slice" yaml:"clock-ids-slice,omitempty"`
 
 						Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
-						Time_offset *string `tfsdk:"time__offset" yaml:"time-offset,omitempty"`
+						Time_offset *string `tfsdk:"time_offset" yaml:"time-offset,omitempty"`
 					} `tfsdk:"clock" yaml:"clock,omitempty"`
 
 					Disk_fill *struct {
-						Fill_by_fallocate *bool `tfsdk:"fill__by__fallocate" yaml:"fill-by-fallocate,omitempty"`
+						Fill_by_fallocate *bool `tfsdk:"fill_by_fallocate" yaml:"fill-by-fallocate,omitempty"`
 
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
 						Size *string `tfsdk:"size" yaml:"size,omitempty"`
-					} `tfsdk:"disk__fill" yaml:"disk-fill,omitempty"`
+					} `tfsdk:"disk_fill" yaml:"disk-fill,omitempty"`
 
 					Disk_read_payload *struct {
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-						Payload_process_num *int64 `tfsdk:"payload__process__num" yaml:"payload-process-num,omitempty"`
+						Payload_process_num *int64 `tfsdk:"payload_process_num" yaml:"payload-process-num,omitempty"`
 
 						Size *string `tfsdk:"size" yaml:"size,omitempty"`
-					} `tfsdk:"disk__read__payload" yaml:"disk-read-payload,omitempty"`
+					} `tfsdk:"disk_read_payload" yaml:"disk-read-payload,omitempty"`
 
 					Disk_write_payload *struct {
 						Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-						Payload_process_num *int64 `tfsdk:"payload__process__num" yaml:"payload-process-num,omitempty"`
+						Payload_process_num *int64 `tfsdk:"payload_process_num" yaml:"payload-process-num,omitempty"`
 
 						Size *string `tfsdk:"size" yaml:"size,omitempty"`
-					} `tfsdk:"disk__write__payload" yaml:"disk-write-payload,omitempty"`
+					} `tfsdk:"disk_write_payload" yaml:"disk-write-payload,omitempty"`
 
 					Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
 
@@ -1868,42 +1868,42 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 
 						Data *string `tfsdk:"data" yaml:"data,omitempty"`
 
-						File_name *string `tfsdk:"file__name" yaml:"file-name,omitempty"`
-					} `tfsdk:"file__append" yaml:"file-append,omitempty"`
+						File_name *string `tfsdk:"file_name" yaml:"file-name,omitempty"`
+					} `tfsdk:"file_append" yaml:"file-append,omitempty"`
 
 					File_create *struct {
-						Dir_name *string `tfsdk:"dir__name" yaml:"dir-name,omitempty"`
+						Dir_name *string `tfsdk:"dir_name" yaml:"dir-name,omitempty"`
 
-						File_name *string `tfsdk:"file__name" yaml:"file-name,omitempty"`
-					} `tfsdk:"file__create" yaml:"file-create,omitempty"`
+						File_name *string `tfsdk:"file_name" yaml:"file-name,omitempty"`
+					} `tfsdk:"file_create" yaml:"file-create,omitempty"`
 
 					File_delete *struct {
-						Dir_name *string `tfsdk:"dir__name" yaml:"dir-name,omitempty"`
+						Dir_name *string `tfsdk:"dir_name" yaml:"dir-name,omitempty"`
 
-						File_name *string `tfsdk:"file__name" yaml:"file-name,omitempty"`
-					} `tfsdk:"file__delete" yaml:"file-delete,omitempty"`
+						File_name *string `tfsdk:"file_name" yaml:"file-name,omitempty"`
+					} `tfsdk:"file_delete" yaml:"file-delete,omitempty"`
 
 					File_modify *struct {
-						File_name *string `tfsdk:"file__name" yaml:"file-name,omitempty"`
+						File_name *string `tfsdk:"file_name" yaml:"file-name,omitempty"`
 
 						Privilege *int64 `tfsdk:"privilege" yaml:"privilege,omitempty"`
-					} `tfsdk:"file__modify" yaml:"file-modify,omitempty"`
+					} `tfsdk:"file_modify" yaml:"file-modify,omitempty"`
 
 					File_rename *struct {
-						Dest_file *string `tfsdk:"dest__file" yaml:"dest-file,omitempty"`
+						Dest_file *string `tfsdk:"dest_file" yaml:"dest-file,omitempty"`
 
-						Source_file *string `tfsdk:"source__file" yaml:"source-file,omitempty"`
-					} `tfsdk:"file__rename" yaml:"file-rename,omitempty"`
+						Source_file *string `tfsdk:"source_file" yaml:"source-file,omitempty"`
+					} `tfsdk:"file_rename" yaml:"file-rename,omitempty"`
 
 					File_replace *struct {
-						Dest_string *string `tfsdk:"dest__string" yaml:"dest-string,omitempty"`
+						Dest_string *string `tfsdk:"dest_string" yaml:"dest-string,omitempty"`
 
-						File_name *string `tfsdk:"file__name" yaml:"file-name,omitempty"`
+						File_name *string `tfsdk:"file_name" yaml:"file-name,omitempty"`
 
 						Line *int64 `tfsdk:"line" yaml:"line,omitempty"`
 
-						Origin_string *string `tfsdk:"origin__string" yaml:"origin-string,omitempty"`
-					} `tfsdk:"file__replace" yaml:"file-replace,omitempty"`
+						Origin_string *string `tfsdk:"origin_string" yaml:"origin-string,omitempty"`
+					} `tfsdk:"file_replace" yaml:"file-replace,omitempty"`
 
 					Http_abort *struct {
 						Code *string `tfsdk:"code" yaml:"code,omitempty"`
@@ -1917,11 +1917,11 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Proxy_ports *[]string `tfsdk:"proxy_ports" yaml:"proxy_ports,omitempty"`
 
 						Target *string `tfsdk:"target" yaml:"target,omitempty"`
-					} `tfsdk:"http__abort" yaml:"http-abort,omitempty"`
+					} `tfsdk:"http_abort" yaml:"http-abort,omitempty"`
 
 					Http_config *struct {
 						File_path *string `tfsdk:"file_path" yaml:"file_path,omitempty"`
-					} `tfsdk:"http__config" yaml:"http-config,omitempty"`
+					} `tfsdk:"http_config" yaml:"http-config,omitempty"`
 
 					Http_delay *struct {
 						Code *string `tfsdk:"code" yaml:"code,omitempty"`
@@ -1937,15 +1937,15 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Proxy_ports *[]string `tfsdk:"proxy_ports" yaml:"proxy_ports,omitempty"`
 
 						Target *string `tfsdk:"target" yaml:"target,omitempty"`
-					} `tfsdk:"http__delay" yaml:"http-delay,omitempty"`
+					} `tfsdk:"http_delay" yaml:"http-delay,omitempty"`
 
 					Http_request *struct {
 						Count *int64 `tfsdk:"count" yaml:"count,omitempty"`
 
-						Enable_conn_pool *bool `tfsdk:"enable__conn__pool" yaml:"enable-conn-pool,omitempty"`
+						Enable_conn_pool *bool `tfsdk:"enable_conn_pool" yaml:"enable-conn-pool,omitempty"`
 
 						Url *string `tfsdk:"url" yaml:"url,omitempty"`
-					} `tfsdk:"http__request" yaml:"http-request,omitempty"`
+					} `tfsdk:"http_request" yaml:"http-request,omitempty"`
 
 					Jvm_exception *struct {
 						Class *string `tfsdk:"class" yaml:"class,omitempty"`
@@ -1957,13 +1957,13 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
 						Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"jvm__exception" yaml:"jvm-exception,omitempty"`
+					} `tfsdk:"jvm_exception" yaml:"jvm-exception,omitempty"`
 
 					Jvm_gc *struct {
 						Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
 						Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"jvm__gc" yaml:"jvm-gc,omitempty"`
+					} `tfsdk:"jvm_gc" yaml:"jvm-gc,omitempty"`
 
 					Jvm_latency *struct {
 						Class *string `tfsdk:"class" yaml:"class,omitempty"`
@@ -1975,7 +1975,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
 						Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"jvm__latency" yaml:"jvm-latency,omitempty"`
+					} `tfsdk:"jvm_latency" yaml:"jvm-latency,omitempty"`
 
 					Jvm_mysql *struct {
 						Database *string `tfsdk:"database" yaml:"database,omitempty"`
@@ -1993,7 +1993,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						SqlType *string `tfsdk:"sql_type" yaml:"sqlType,omitempty"`
 
 						Table *string `tfsdk:"table" yaml:"table,omitempty"`
-					} `tfsdk:"jvm__mysql" yaml:"jvm-mysql,omitempty"`
+					} `tfsdk:"jvm_mysql" yaml:"jvm-mysql,omitempty"`
 
 					Jvm_return *struct {
 						Class *string `tfsdk:"class" yaml:"class,omitempty"`
@@ -2005,25 +2005,25 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 
 						Value *string `tfsdk:"value" yaml:"value,omitempty"`
-					} `tfsdk:"jvm__return" yaml:"jvm-return,omitempty"`
+					} `tfsdk:"jvm_return" yaml:"jvm-return,omitempty"`
 
 					Jvm_rule_data *struct {
 						Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
 						Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 
-						Rule_data *string `tfsdk:"rule__data" yaml:"rule-data,omitempty"`
-					} `tfsdk:"jvm__rule__data" yaml:"jvm-rule-data,omitempty"`
+						Rule_data *string `tfsdk:"rule_data" yaml:"rule-data,omitempty"`
+					} `tfsdk:"jvm_rule_data" yaml:"jvm-rule-data,omitempty"`
 
 					Jvm_stress *struct {
-						Cpu_count *int64 `tfsdk:"cpu__count" yaml:"cpu-count,omitempty"`
+						Cpu_count *int64 `tfsdk:"cpu_count" yaml:"cpu-count,omitempty"`
 
-						Mem_type *string `tfsdk:"mem__type" yaml:"mem-type,omitempty"`
+						Mem_type *string `tfsdk:"mem_type" yaml:"mem-type,omitempty"`
 
 						Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
 						Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-					} `tfsdk:"jvm__stress" yaml:"jvm-stress,omitempty"`
+					} `tfsdk:"jvm_stress" yaml:"jvm-stress,omitempty"`
 
 					Kafka_fill *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
@@ -2041,7 +2041,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Topic *string `tfsdk:"topic" yaml:"topic,omitempty"`
 
 						Username *string `tfsdk:"username" yaml:"username,omitempty"`
-					} `tfsdk:"kafka__fill" yaml:"kafka-fill,omitempty"`
+					} `tfsdk:"kafka_fill" yaml:"kafka-fill,omitempty"`
 
 					Kafka_flood *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
@@ -2057,7 +2057,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Topic *string `tfsdk:"topic" yaml:"topic,omitempty"`
 
 						Username *string `tfsdk:"username" yaml:"username,omitempty"`
-					} `tfsdk:"kafka__flood" yaml:"kafka-flood,omitempty"`
+					} `tfsdk:"kafka_flood" yaml:"kafka-flood,omitempty"`
 
 					Kafka_io *struct {
 						ConfigFile *string `tfsdk:"config_file" yaml:"configFile,omitempty"`
@@ -2067,7 +2067,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						NonWritable *bool `tfsdk:"non_writable" yaml:"nonWritable,omitempty"`
 
 						Topic *string `tfsdk:"topic" yaml:"topic,omitempty"`
-					} `tfsdk:"kafka__io" yaml:"kafka-io,omitempty"`
+					} `tfsdk:"kafka_io" yaml:"kafka-io,omitempty"`
 
 					Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
 
@@ -2078,7 +2078,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 
 						Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-						Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+						Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
 						Limit *int64 `tfsdk:"limit" yaml:"limit,omitempty"`
 
@@ -2087,112 +2087,112 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Peakrate *int64 `tfsdk:"peakrate" yaml:"peakrate,omitempty"`
 
 						Rate *string `tfsdk:"rate" yaml:"rate,omitempty"`
-					} `tfsdk:"network__bandwidth" yaml:"network-bandwidth,omitempty"`
+					} `tfsdk:"network_bandwidth" yaml:"network-bandwidth,omitempty"`
 
 					Network_corrupt *struct {
 						Correlation *string `tfsdk:"correlation" yaml:"correlation,omitempty"`
 
 						Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
-						Egress_port *string `tfsdk:"egress__port" yaml:"egress-port,omitempty"`
+						Egress_port *string `tfsdk:"egress_port" yaml:"egress-port,omitempty"`
 
 						Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-						Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+						Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
-						Ip_protocol *string `tfsdk:"ip__protocol" yaml:"ip-protocol,omitempty"`
+						Ip_protocol *string `tfsdk:"ip_protocol" yaml:"ip-protocol,omitempty"`
 
 						Percent *string `tfsdk:"percent" yaml:"percent,omitempty"`
 
-						Source_port *string `tfsdk:"source__port" yaml:"source-port,omitempty"`
-					} `tfsdk:"network__corrupt" yaml:"network-corrupt,omitempty"`
+						Source_port *string `tfsdk:"source_port" yaml:"source-port,omitempty"`
+					} `tfsdk:"network_corrupt" yaml:"network-corrupt,omitempty"`
 
 					Network_delay *struct {
-						Accept_tcp_flags *string `tfsdk:"accept__tcp__flags" yaml:"accept-tcp-flags,omitempty"`
+						Accept_tcp_flags *string `tfsdk:"accept_tcp_flags" yaml:"accept-tcp-flags,omitempty"`
 
 						Correlation *string `tfsdk:"correlation" yaml:"correlation,omitempty"`
 
 						Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
-						Egress_port *string `tfsdk:"egress__port" yaml:"egress-port,omitempty"`
+						Egress_port *string `tfsdk:"egress_port" yaml:"egress-port,omitempty"`
 
 						Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-						Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+						Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
-						Ip_protocol *string `tfsdk:"ip__protocol" yaml:"ip-protocol,omitempty"`
+						Ip_protocol *string `tfsdk:"ip_protocol" yaml:"ip-protocol,omitempty"`
 
 						Jitter *string `tfsdk:"jitter" yaml:"jitter,omitempty"`
 
 						Latency *string `tfsdk:"latency" yaml:"latency,omitempty"`
 
-						Source_port *string `tfsdk:"source__port" yaml:"source-port,omitempty"`
-					} `tfsdk:"network__delay" yaml:"network-delay,omitempty"`
+						Source_port *string `tfsdk:"source_port" yaml:"source-port,omitempty"`
+					} `tfsdk:"network_delay" yaml:"network-delay,omitempty"`
 
 					Network_dns *struct {
-						Dns_domain_name *string `tfsdk:"dns__domain__name" yaml:"dns-domain-name,omitempty"`
+						Dns_domain_name *string `tfsdk:"dns_domain_name" yaml:"dns-domain-name,omitempty"`
 
-						Dns_ip *string `tfsdk:"dns__ip" yaml:"dns-ip,omitempty"`
+						Dns_ip *string `tfsdk:"dns_ip" yaml:"dns-ip,omitempty"`
 
-						Dns_server *string `tfsdk:"dns__server" yaml:"dns-server,omitempty"`
-					} `tfsdk:"network__dns" yaml:"network-dns,omitempty"`
+						Dns_server *string `tfsdk:"dns_server" yaml:"dns-server,omitempty"`
+					} `tfsdk:"network_dns" yaml:"network-dns,omitempty"`
 
 					Network_down *struct {
 						Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
 						Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
-					} `tfsdk:"network__down" yaml:"network-down,omitempty"`
+					} `tfsdk:"network_down" yaml:"network-down,omitempty"`
 
 					Network_duplicate *struct {
 						Correlation *string `tfsdk:"correlation" yaml:"correlation,omitempty"`
 
 						Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
-						Egress_port *string `tfsdk:"egress__port" yaml:"egress-port,omitempty"`
+						Egress_port *string `tfsdk:"egress_port" yaml:"egress-port,omitempty"`
 
 						Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-						Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+						Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
-						Ip_protocol *string `tfsdk:"ip__protocol" yaml:"ip-protocol,omitempty"`
+						Ip_protocol *string `tfsdk:"ip_protocol" yaml:"ip-protocol,omitempty"`
 
 						Percent *string `tfsdk:"percent" yaml:"percent,omitempty"`
 
-						Source_port *string `tfsdk:"source__port" yaml:"source-port,omitempty"`
-					} `tfsdk:"network__duplicate" yaml:"network-duplicate,omitempty"`
+						Source_port *string `tfsdk:"source_port" yaml:"source-port,omitempty"`
+					} `tfsdk:"network_duplicate" yaml:"network-duplicate,omitempty"`
 
 					Network_flood *struct {
 						Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
 
-						Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+						Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
 						Parallel *int64 `tfsdk:"parallel" yaml:"parallel,omitempty"`
 
 						Port *string `tfsdk:"port" yaml:"port,omitempty"`
 
 						Rate *string `tfsdk:"rate" yaml:"rate,omitempty"`
-					} `tfsdk:"network__flood" yaml:"network-flood,omitempty"`
+					} `tfsdk:"network_flood" yaml:"network-flood,omitempty"`
 
 					Network_loss *struct {
 						Correlation *string `tfsdk:"correlation" yaml:"correlation,omitempty"`
 
 						Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
-						Egress_port *string `tfsdk:"egress__port" yaml:"egress-port,omitempty"`
+						Egress_port *string `tfsdk:"egress_port" yaml:"egress-port,omitempty"`
 
 						Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-						Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+						Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
-						Ip_protocol *string `tfsdk:"ip__protocol" yaml:"ip-protocol,omitempty"`
+						Ip_protocol *string `tfsdk:"ip_protocol" yaml:"ip-protocol,omitempty"`
 
 						Percent *string `tfsdk:"percent" yaml:"percent,omitempty"`
 
-						Source_port *string `tfsdk:"source__port" yaml:"source-port,omitempty"`
-					} `tfsdk:"network__loss" yaml:"network-loss,omitempty"`
+						Source_port *string `tfsdk:"source_port" yaml:"source-port,omitempty"`
+					} `tfsdk:"network_loss" yaml:"network-loss,omitempty"`
 
 					Network_partition *struct {
-						Accept_tcp_flags *string `tfsdk:"accept__tcp__flags" yaml:"accept-tcp-flags,omitempty"`
+						Accept_tcp_flags *string `tfsdk:"accept_tcp_flags" yaml:"accept-tcp-flags,omitempty"`
 
 						Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
@@ -2200,10 +2200,10 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 
 						Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-						Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+						Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
-						Ip_protocol *string `tfsdk:"ip__protocol" yaml:"ip-protocol,omitempty"`
-					} `tfsdk:"network__partition" yaml:"network-partition,omitempty"`
+						Ip_protocol *string `tfsdk:"ip_protocol" yaml:"ip-protocol,omitempty"`
+					} `tfsdk:"network_partition" yaml:"network-partition,omitempty"`
 
 					Process *struct {
 						Process *string `tfsdk:"process" yaml:"process,omitempty"`
@@ -2221,7 +2221,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Password *string `tfsdk:"password" yaml:"password,omitempty"`
 
 						Percent *string `tfsdk:"percent" yaml:"percent,omitempty"`
-					} `tfsdk:"redis__cache_limit" yaml:"redis-cacheLimit,omitempty"`
+					} `tfsdk:"redis_cache_limit" yaml:"redis-cacheLimit,omitempty"`
 
 					Redis_expiration *struct {
 						Addr *string `tfsdk:"addr" yaml:"addr,omitempty"`
@@ -2233,7 +2233,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Option *string `tfsdk:"option" yaml:"option,omitempty"`
 
 						Password *string `tfsdk:"password" yaml:"password,omitempty"`
-					} `tfsdk:"redis__expiration" yaml:"redis-expiration,omitempty"`
+					} `tfsdk:"redis_expiration" yaml:"redis-expiration,omitempty"`
 
 					Redis_penetration *struct {
 						Addr *string `tfsdk:"addr" yaml:"addr,omitempty"`
@@ -2241,7 +2241,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Password *string `tfsdk:"password" yaml:"password,omitempty"`
 
 						RequestNum *int64 `tfsdk:"request_num" yaml:"requestNum,omitempty"`
-					} `tfsdk:"redis__penetration" yaml:"redis-penetration,omitempty"`
+					} `tfsdk:"redis_penetration" yaml:"redis-penetration,omitempty"`
 
 					Redis_restart *struct {
 						Addr *string `tfsdk:"addr" yaml:"addr,omitempty"`
@@ -2253,7 +2253,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Password *string `tfsdk:"password" yaml:"password,omitempty"`
 
 						RedisPath *bool `tfsdk:"redis_path" yaml:"redisPath,omitempty"`
-					} `tfsdk:"redis__restart" yaml:"redis-restart,omitempty"`
+					} `tfsdk:"redis_restart" yaml:"redis-restart,omitempty"`
 
 					Redis_stop *struct {
 						Addr *string `tfsdk:"addr" yaml:"addr,omitempty"`
@@ -2265,7 +2265,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Password *string `tfsdk:"password" yaml:"password,omitempty"`
 
 						RedisPath *bool `tfsdk:"redis_path" yaml:"redisPath,omitempty"`
-					} `tfsdk:"redis__stop" yaml:"redis-stop,omitempty"`
+					} `tfsdk:"redis_stop" yaml:"redis-stop,omitempty"`
 
 					Selector *struct {
 						AnnotationSelectors *map[string]string `tfsdk:"annotation_selectors" yaml:"annotationSelectors,omitempty"`
@@ -2293,13 +2293,13 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Options *[]string `tfsdk:"options" yaml:"options,omitempty"`
 
 						Workers *int64 `tfsdk:"workers" yaml:"workers,omitempty"`
-					} `tfsdk:"stress__cpu" yaml:"stress-cpu,omitempty"`
+					} `tfsdk:"stress_cpu" yaml:"stress-cpu,omitempty"`
 
 					Stress_mem *struct {
 						Options *[]string `tfsdk:"options" yaml:"options,omitempty"`
 
 						Size *string `tfsdk:"size" yaml:"size,omitempty"`
-					} `tfsdk:"stress__mem" yaml:"stress-mem,omitempty"`
+					} `tfsdk:"stress_mem" yaml:"stress-mem,omitempty"`
 
 					Uid *string `tfsdk:"uid" yaml:"uid,omitempty"`
 
@@ -2312,7 +2312,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 					Value *string `tfsdk:"value" yaml:"value,omitempty"`
 
 					Vm *struct {
-						Vm_name *string `tfsdk:"vm__name" yaml:"vm-name,omitempty"`
+						Vm_name *string `tfsdk:"vm_name" yaml:"vm-name,omitempty"`
 					} `tfsdk:"vm" yaml:"vm,omitempty"`
 				} `tfsdk:"physicalmachine_chaos" yaml:"physicalmachineChaos,omitempty"`
 
@@ -2923,36 +2923,36 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Address *[]string `tfsdk:"address" yaml:"address,omitempty"`
 
 						Clock *struct {
-							Clock_ids_slice *string `tfsdk:"clock__ids__slice" yaml:"clock-ids-slice,omitempty"`
+							Clock_ids_slice *string `tfsdk:"clock_ids_slice" yaml:"clock-ids-slice,omitempty"`
 
 							Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
-							Time_offset *string `tfsdk:"time__offset" yaml:"time-offset,omitempty"`
+							Time_offset *string `tfsdk:"time_offset" yaml:"time-offset,omitempty"`
 						} `tfsdk:"clock" yaml:"clock,omitempty"`
 
 						Disk_fill *struct {
-							Fill_by_fallocate *bool `tfsdk:"fill__by__fallocate" yaml:"fill-by-fallocate,omitempty"`
+							Fill_by_fallocate *bool `tfsdk:"fill_by_fallocate" yaml:"fill-by-fallocate,omitempty"`
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
 							Size *string `tfsdk:"size" yaml:"size,omitempty"`
-						} `tfsdk:"disk__fill" yaml:"disk-fill,omitempty"`
+						} `tfsdk:"disk_fill" yaml:"disk-fill,omitempty"`
 
 						Disk_read_payload *struct {
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Payload_process_num *int64 `tfsdk:"payload__process__num" yaml:"payload-process-num,omitempty"`
+							Payload_process_num *int64 `tfsdk:"payload_process_num" yaml:"payload-process-num,omitempty"`
 
 							Size *string `tfsdk:"size" yaml:"size,omitempty"`
-						} `tfsdk:"disk__read__payload" yaml:"disk-read-payload,omitempty"`
+						} `tfsdk:"disk_read_payload" yaml:"disk-read-payload,omitempty"`
 
 						Disk_write_payload *struct {
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Payload_process_num *int64 `tfsdk:"payload__process__num" yaml:"payload-process-num,omitempty"`
+							Payload_process_num *int64 `tfsdk:"payload_process_num" yaml:"payload-process-num,omitempty"`
 
 							Size *string `tfsdk:"size" yaml:"size,omitempty"`
-						} `tfsdk:"disk__write__payload" yaml:"disk-write-payload,omitempty"`
+						} `tfsdk:"disk_write_payload" yaml:"disk-write-payload,omitempty"`
 
 						Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
 
@@ -2961,42 +2961,42 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 
 							Data *string `tfsdk:"data" yaml:"data,omitempty"`
 
-							File_name *string `tfsdk:"file__name" yaml:"file-name,omitempty"`
-						} `tfsdk:"file__append" yaml:"file-append,omitempty"`
+							File_name *string `tfsdk:"file_name" yaml:"file-name,omitempty"`
+						} `tfsdk:"file_append" yaml:"file-append,omitempty"`
 
 						File_create *struct {
-							Dir_name *string `tfsdk:"dir__name" yaml:"dir-name,omitempty"`
+							Dir_name *string `tfsdk:"dir_name" yaml:"dir-name,omitempty"`
 
-							File_name *string `tfsdk:"file__name" yaml:"file-name,omitempty"`
-						} `tfsdk:"file__create" yaml:"file-create,omitempty"`
+							File_name *string `tfsdk:"file_name" yaml:"file-name,omitempty"`
+						} `tfsdk:"file_create" yaml:"file-create,omitempty"`
 
 						File_delete *struct {
-							Dir_name *string `tfsdk:"dir__name" yaml:"dir-name,omitempty"`
+							Dir_name *string `tfsdk:"dir_name" yaml:"dir-name,omitempty"`
 
-							File_name *string `tfsdk:"file__name" yaml:"file-name,omitempty"`
-						} `tfsdk:"file__delete" yaml:"file-delete,omitempty"`
+							File_name *string `tfsdk:"file_name" yaml:"file-name,omitempty"`
+						} `tfsdk:"file_delete" yaml:"file-delete,omitempty"`
 
 						File_modify *struct {
-							File_name *string `tfsdk:"file__name" yaml:"file-name,omitempty"`
+							File_name *string `tfsdk:"file_name" yaml:"file-name,omitempty"`
 
 							Privilege *int64 `tfsdk:"privilege" yaml:"privilege,omitempty"`
-						} `tfsdk:"file__modify" yaml:"file-modify,omitempty"`
+						} `tfsdk:"file_modify" yaml:"file-modify,omitempty"`
 
 						File_rename *struct {
-							Dest_file *string `tfsdk:"dest__file" yaml:"dest-file,omitempty"`
+							Dest_file *string `tfsdk:"dest_file" yaml:"dest-file,omitempty"`
 
-							Source_file *string `tfsdk:"source__file" yaml:"source-file,omitempty"`
-						} `tfsdk:"file__rename" yaml:"file-rename,omitempty"`
+							Source_file *string `tfsdk:"source_file" yaml:"source-file,omitempty"`
+						} `tfsdk:"file_rename" yaml:"file-rename,omitempty"`
 
 						File_replace *struct {
-							Dest_string *string `tfsdk:"dest__string" yaml:"dest-string,omitempty"`
+							Dest_string *string `tfsdk:"dest_string" yaml:"dest-string,omitempty"`
 
-							File_name *string `tfsdk:"file__name" yaml:"file-name,omitempty"`
+							File_name *string `tfsdk:"file_name" yaml:"file-name,omitempty"`
 
 							Line *int64 `tfsdk:"line" yaml:"line,omitempty"`
 
-							Origin_string *string `tfsdk:"origin__string" yaml:"origin-string,omitempty"`
-						} `tfsdk:"file__replace" yaml:"file-replace,omitempty"`
+							Origin_string *string `tfsdk:"origin_string" yaml:"origin-string,omitempty"`
+						} `tfsdk:"file_replace" yaml:"file-replace,omitempty"`
 
 						Http_abort *struct {
 							Code *string `tfsdk:"code" yaml:"code,omitempty"`
@@ -3010,11 +3010,11 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							Proxy_ports *[]string `tfsdk:"proxy_ports" yaml:"proxy_ports,omitempty"`
 
 							Target *string `tfsdk:"target" yaml:"target,omitempty"`
-						} `tfsdk:"http__abort" yaml:"http-abort,omitempty"`
+						} `tfsdk:"http_abort" yaml:"http-abort,omitempty"`
 
 						Http_config *struct {
 							File_path *string `tfsdk:"file_path" yaml:"file_path,omitempty"`
-						} `tfsdk:"http__config" yaml:"http-config,omitempty"`
+						} `tfsdk:"http_config" yaml:"http-config,omitempty"`
 
 						Http_delay *struct {
 							Code *string `tfsdk:"code" yaml:"code,omitempty"`
@@ -3030,15 +3030,15 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							Proxy_ports *[]string `tfsdk:"proxy_ports" yaml:"proxy_ports,omitempty"`
 
 							Target *string `tfsdk:"target" yaml:"target,omitempty"`
-						} `tfsdk:"http__delay" yaml:"http-delay,omitempty"`
+						} `tfsdk:"http_delay" yaml:"http-delay,omitempty"`
 
 						Http_request *struct {
 							Count *int64 `tfsdk:"count" yaml:"count,omitempty"`
 
-							Enable_conn_pool *bool `tfsdk:"enable__conn__pool" yaml:"enable-conn-pool,omitempty"`
+							Enable_conn_pool *bool `tfsdk:"enable_conn_pool" yaml:"enable-conn-pool,omitempty"`
 
 							Url *string `tfsdk:"url" yaml:"url,omitempty"`
-						} `tfsdk:"http__request" yaml:"http-request,omitempty"`
+						} `tfsdk:"http_request" yaml:"http-request,omitempty"`
 
 						Jvm_exception *struct {
 							Class *string `tfsdk:"class" yaml:"class,omitempty"`
@@ -3050,13 +3050,13 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
 							Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-						} `tfsdk:"jvm__exception" yaml:"jvm-exception,omitempty"`
+						} `tfsdk:"jvm_exception" yaml:"jvm-exception,omitempty"`
 
 						Jvm_gc *struct {
 							Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
 							Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-						} `tfsdk:"jvm__gc" yaml:"jvm-gc,omitempty"`
+						} `tfsdk:"jvm_gc" yaml:"jvm-gc,omitempty"`
 
 						Jvm_latency *struct {
 							Class *string `tfsdk:"class" yaml:"class,omitempty"`
@@ -3068,7 +3068,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
 							Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-						} `tfsdk:"jvm__latency" yaml:"jvm-latency,omitempty"`
+						} `tfsdk:"jvm_latency" yaml:"jvm-latency,omitempty"`
 
 						Jvm_mysql *struct {
 							Database *string `tfsdk:"database" yaml:"database,omitempty"`
@@ -3086,7 +3086,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							SqlType *string `tfsdk:"sql_type" yaml:"sqlType,omitempty"`
 
 							Table *string `tfsdk:"table" yaml:"table,omitempty"`
-						} `tfsdk:"jvm__mysql" yaml:"jvm-mysql,omitempty"`
+						} `tfsdk:"jvm_mysql" yaml:"jvm-mysql,omitempty"`
 
 						Jvm_return *struct {
 							Class *string `tfsdk:"class" yaml:"class,omitempty"`
@@ -3098,25 +3098,25 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 
 							Value *string `tfsdk:"value" yaml:"value,omitempty"`
-						} `tfsdk:"jvm__return" yaml:"jvm-return,omitempty"`
+						} `tfsdk:"jvm_return" yaml:"jvm-return,omitempty"`
 
 						Jvm_rule_data *struct {
 							Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
 							Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 
-							Rule_data *string `tfsdk:"rule__data" yaml:"rule-data,omitempty"`
-						} `tfsdk:"jvm__rule__data" yaml:"jvm-rule-data,omitempty"`
+							Rule_data *string `tfsdk:"rule_data" yaml:"rule-data,omitempty"`
+						} `tfsdk:"jvm_rule_data" yaml:"jvm-rule-data,omitempty"`
 
 						Jvm_stress *struct {
-							Cpu_count *int64 `tfsdk:"cpu__count" yaml:"cpu-count,omitempty"`
+							Cpu_count *int64 `tfsdk:"cpu_count" yaml:"cpu-count,omitempty"`
 
-							Mem_type *string `tfsdk:"mem__type" yaml:"mem-type,omitempty"`
+							Mem_type *string `tfsdk:"mem_type" yaml:"mem-type,omitempty"`
 
 							Pid *int64 `tfsdk:"pid" yaml:"pid,omitempty"`
 
 							Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
-						} `tfsdk:"jvm__stress" yaml:"jvm-stress,omitempty"`
+						} `tfsdk:"jvm_stress" yaml:"jvm-stress,omitempty"`
 
 						Kafka_fill *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
@@ -3134,7 +3134,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							Topic *string `tfsdk:"topic" yaml:"topic,omitempty"`
 
 							Username *string `tfsdk:"username" yaml:"username,omitempty"`
-						} `tfsdk:"kafka__fill" yaml:"kafka-fill,omitempty"`
+						} `tfsdk:"kafka_fill" yaml:"kafka-fill,omitempty"`
 
 						Kafka_flood *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
@@ -3150,7 +3150,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							Topic *string `tfsdk:"topic" yaml:"topic,omitempty"`
 
 							Username *string `tfsdk:"username" yaml:"username,omitempty"`
-						} `tfsdk:"kafka__flood" yaml:"kafka-flood,omitempty"`
+						} `tfsdk:"kafka_flood" yaml:"kafka-flood,omitempty"`
 
 						Kafka_io *struct {
 							ConfigFile *string `tfsdk:"config_file" yaml:"configFile,omitempty"`
@@ -3160,7 +3160,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							NonWritable *bool `tfsdk:"non_writable" yaml:"nonWritable,omitempty"`
 
 							Topic *string `tfsdk:"topic" yaml:"topic,omitempty"`
-						} `tfsdk:"kafka__io" yaml:"kafka-io,omitempty"`
+						} `tfsdk:"kafka_io" yaml:"kafka-io,omitempty"`
 
 						Mode *string `tfsdk:"mode" yaml:"mode,omitempty"`
 
@@ -3171,7 +3171,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 
 							Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-							Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+							Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
 							Limit *int64 `tfsdk:"limit" yaml:"limit,omitempty"`
 
@@ -3180,112 +3180,112 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							Peakrate *int64 `tfsdk:"peakrate" yaml:"peakrate,omitempty"`
 
 							Rate *string `tfsdk:"rate" yaml:"rate,omitempty"`
-						} `tfsdk:"network__bandwidth" yaml:"network-bandwidth,omitempty"`
+						} `tfsdk:"network_bandwidth" yaml:"network-bandwidth,omitempty"`
 
 						Network_corrupt *struct {
 							Correlation *string `tfsdk:"correlation" yaml:"correlation,omitempty"`
 
 							Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
-							Egress_port *string `tfsdk:"egress__port" yaml:"egress-port,omitempty"`
+							Egress_port *string `tfsdk:"egress_port" yaml:"egress-port,omitempty"`
 
 							Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-							Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+							Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
-							Ip_protocol *string `tfsdk:"ip__protocol" yaml:"ip-protocol,omitempty"`
+							Ip_protocol *string `tfsdk:"ip_protocol" yaml:"ip-protocol,omitempty"`
 
 							Percent *string `tfsdk:"percent" yaml:"percent,omitempty"`
 
-							Source_port *string `tfsdk:"source__port" yaml:"source-port,omitempty"`
-						} `tfsdk:"network__corrupt" yaml:"network-corrupt,omitempty"`
+							Source_port *string `tfsdk:"source_port" yaml:"source-port,omitempty"`
+						} `tfsdk:"network_corrupt" yaml:"network-corrupt,omitempty"`
 
 						Network_delay *struct {
-							Accept_tcp_flags *string `tfsdk:"accept__tcp__flags" yaml:"accept-tcp-flags,omitempty"`
+							Accept_tcp_flags *string `tfsdk:"accept_tcp_flags" yaml:"accept-tcp-flags,omitempty"`
 
 							Correlation *string `tfsdk:"correlation" yaml:"correlation,omitempty"`
 
 							Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
-							Egress_port *string `tfsdk:"egress__port" yaml:"egress-port,omitempty"`
+							Egress_port *string `tfsdk:"egress_port" yaml:"egress-port,omitempty"`
 
 							Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-							Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+							Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
-							Ip_protocol *string `tfsdk:"ip__protocol" yaml:"ip-protocol,omitempty"`
+							Ip_protocol *string `tfsdk:"ip_protocol" yaml:"ip-protocol,omitempty"`
 
 							Jitter *string `tfsdk:"jitter" yaml:"jitter,omitempty"`
 
 							Latency *string `tfsdk:"latency" yaml:"latency,omitempty"`
 
-							Source_port *string `tfsdk:"source__port" yaml:"source-port,omitempty"`
-						} `tfsdk:"network__delay" yaml:"network-delay,omitempty"`
+							Source_port *string `tfsdk:"source_port" yaml:"source-port,omitempty"`
+						} `tfsdk:"network_delay" yaml:"network-delay,omitempty"`
 
 						Network_dns *struct {
-							Dns_domain_name *string `tfsdk:"dns__domain__name" yaml:"dns-domain-name,omitempty"`
+							Dns_domain_name *string `tfsdk:"dns_domain_name" yaml:"dns-domain-name,omitempty"`
 
-							Dns_ip *string `tfsdk:"dns__ip" yaml:"dns-ip,omitempty"`
+							Dns_ip *string `tfsdk:"dns_ip" yaml:"dns-ip,omitempty"`
 
-							Dns_server *string `tfsdk:"dns__server" yaml:"dns-server,omitempty"`
-						} `tfsdk:"network__dns" yaml:"network-dns,omitempty"`
+							Dns_server *string `tfsdk:"dns_server" yaml:"dns-server,omitempty"`
+						} `tfsdk:"network_dns" yaml:"network-dns,omitempty"`
 
 						Network_down *struct {
 							Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
 							Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
-						} `tfsdk:"network__down" yaml:"network-down,omitempty"`
+						} `tfsdk:"network_down" yaml:"network-down,omitempty"`
 
 						Network_duplicate *struct {
 							Correlation *string `tfsdk:"correlation" yaml:"correlation,omitempty"`
 
 							Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
-							Egress_port *string `tfsdk:"egress__port" yaml:"egress-port,omitempty"`
+							Egress_port *string `tfsdk:"egress_port" yaml:"egress-port,omitempty"`
 
 							Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-							Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+							Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
-							Ip_protocol *string `tfsdk:"ip__protocol" yaml:"ip-protocol,omitempty"`
+							Ip_protocol *string `tfsdk:"ip_protocol" yaml:"ip-protocol,omitempty"`
 
 							Percent *string `tfsdk:"percent" yaml:"percent,omitempty"`
 
-							Source_port *string `tfsdk:"source__port" yaml:"source-port,omitempty"`
-						} `tfsdk:"network__duplicate" yaml:"network-duplicate,omitempty"`
+							Source_port *string `tfsdk:"source_port" yaml:"source-port,omitempty"`
+						} `tfsdk:"network_duplicate" yaml:"network-duplicate,omitempty"`
 
 						Network_flood *struct {
 							Duration *string `tfsdk:"duration" yaml:"duration,omitempty"`
 
-							Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+							Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
 							Parallel *int64 `tfsdk:"parallel" yaml:"parallel,omitempty"`
 
 							Port *string `tfsdk:"port" yaml:"port,omitempty"`
 
 							Rate *string `tfsdk:"rate" yaml:"rate,omitempty"`
-						} `tfsdk:"network__flood" yaml:"network-flood,omitempty"`
+						} `tfsdk:"network_flood" yaml:"network-flood,omitempty"`
 
 						Network_loss *struct {
 							Correlation *string `tfsdk:"correlation" yaml:"correlation,omitempty"`
 
 							Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
-							Egress_port *string `tfsdk:"egress__port" yaml:"egress-port,omitempty"`
+							Egress_port *string `tfsdk:"egress_port" yaml:"egress-port,omitempty"`
 
 							Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-							Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+							Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
-							Ip_protocol *string `tfsdk:"ip__protocol" yaml:"ip-protocol,omitempty"`
+							Ip_protocol *string `tfsdk:"ip_protocol" yaml:"ip-protocol,omitempty"`
 
 							Percent *string `tfsdk:"percent" yaml:"percent,omitempty"`
 
-							Source_port *string `tfsdk:"source__port" yaml:"source-port,omitempty"`
-						} `tfsdk:"network__loss" yaml:"network-loss,omitempty"`
+							Source_port *string `tfsdk:"source_port" yaml:"source-port,omitempty"`
+						} `tfsdk:"network_loss" yaml:"network-loss,omitempty"`
 
 						Network_partition *struct {
-							Accept_tcp_flags *string `tfsdk:"accept__tcp__flags" yaml:"accept-tcp-flags,omitempty"`
+							Accept_tcp_flags *string `tfsdk:"accept_tcp_flags" yaml:"accept-tcp-flags,omitempty"`
 
 							Device *string `tfsdk:"device" yaml:"device,omitempty"`
 
@@ -3293,10 +3293,10 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 
 							Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
-							Ip_address *string `tfsdk:"ip__address" yaml:"ip-address,omitempty"`
+							Ip_address *string `tfsdk:"ip_address" yaml:"ip-address,omitempty"`
 
-							Ip_protocol *string `tfsdk:"ip__protocol" yaml:"ip-protocol,omitempty"`
-						} `tfsdk:"network__partition" yaml:"network-partition,omitempty"`
+							Ip_protocol *string `tfsdk:"ip_protocol" yaml:"ip-protocol,omitempty"`
+						} `tfsdk:"network_partition" yaml:"network-partition,omitempty"`
 
 						Process *struct {
 							Process *string `tfsdk:"process" yaml:"process,omitempty"`
@@ -3314,7 +3314,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							Password *string `tfsdk:"password" yaml:"password,omitempty"`
 
 							Percent *string `tfsdk:"percent" yaml:"percent,omitempty"`
-						} `tfsdk:"redis__cache_limit" yaml:"redis-cacheLimit,omitempty"`
+						} `tfsdk:"redis_cache_limit" yaml:"redis-cacheLimit,omitempty"`
 
 						Redis_expiration *struct {
 							Addr *string `tfsdk:"addr" yaml:"addr,omitempty"`
@@ -3326,7 +3326,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							Option *string `tfsdk:"option" yaml:"option,omitempty"`
 
 							Password *string `tfsdk:"password" yaml:"password,omitempty"`
-						} `tfsdk:"redis__expiration" yaml:"redis-expiration,omitempty"`
+						} `tfsdk:"redis_expiration" yaml:"redis-expiration,omitempty"`
 
 						Redis_penetration *struct {
 							Addr *string `tfsdk:"addr" yaml:"addr,omitempty"`
@@ -3334,7 +3334,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							Password *string `tfsdk:"password" yaml:"password,omitempty"`
 
 							RequestNum *int64 `tfsdk:"request_num" yaml:"requestNum,omitempty"`
-						} `tfsdk:"redis__penetration" yaml:"redis-penetration,omitempty"`
+						} `tfsdk:"redis_penetration" yaml:"redis-penetration,omitempty"`
 
 						Redis_restart *struct {
 							Addr *string `tfsdk:"addr" yaml:"addr,omitempty"`
@@ -3346,7 +3346,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							Password *string `tfsdk:"password" yaml:"password,omitempty"`
 
 							RedisPath *bool `tfsdk:"redis_path" yaml:"redisPath,omitempty"`
-						} `tfsdk:"redis__restart" yaml:"redis-restart,omitempty"`
+						} `tfsdk:"redis_restart" yaml:"redis-restart,omitempty"`
 
 						Redis_stop *struct {
 							Addr *string `tfsdk:"addr" yaml:"addr,omitempty"`
@@ -3358,7 +3358,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							Password *string `tfsdk:"password" yaml:"password,omitempty"`
 
 							RedisPath *bool `tfsdk:"redis_path" yaml:"redisPath,omitempty"`
-						} `tfsdk:"redis__stop" yaml:"redis-stop,omitempty"`
+						} `tfsdk:"redis_stop" yaml:"redis-stop,omitempty"`
 
 						Selector *struct {
 							AnnotationSelectors *map[string]string `tfsdk:"annotation_selectors" yaml:"annotationSelectors,omitempty"`
@@ -3386,13 +3386,13 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 							Options *[]string `tfsdk:"options" yaml:"options,omitempty"`
 
 							Workers *int64 `tfsdk:"workers" yaml:"workers,omitempty"`
-						} `tfsdk:"stress__cpu" yaml:"stress-cpu,omitempty"`
+						} `tfsdk:"stress_cpu" yaml:"stress-cpu,omitempty"`
 
 						Stress_mem *struct {
 							Options *[]string `tfsdk:"options" yaml:"options,omitempty"`
 
 							Size *string `tfsdk:"size" yaml:"size,omitempty"`
-						} `tfsdk:"stress__mem" yaml:"stress-mem,omitempty"`
+						} `tfsdk:"stress_mem" yaml:"stress-mem,omitempty"`
 
 						Uid *string `tfsdk:"uid" yaml:"uid,omitempty"`
 
@@ -3405,7 +3405,7 @@ type ChaosMeshOrgScheduleV1Alpha1GoModel struct {
 						Value *string `tfsdk:"value" yaml:"value,omitempty"`
 
 						Vm *struct {
-							Vm_name *string `tfsdk:"vm__name" yaml:"vm-name,omitempty"`
+							Vm_name *string `tfsdk:"vm_name" yaml:"vm-name,omitempty"`
 						} `tfsdk:"vm" yaml:"vm,omitempty"`
 					} `tfsdk:"physicalmachine_chaos" yaml:"physicalmachineChaos,omitempty"`
 
@@ -7922,7 +7922,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"clock__ids__slice": {
+									"clock_ids_slice": {
 										Description:         "the identifier of the particular clock on which to act. More clock description in linux kernel can be found in man page of clock_getres, clock_gettime, clock_settime. Muti clock ids should be split with ','",
 										MarkdownDescription: "the identifier of the particular clock on which to act. More clock description in linux kernel can be found in man page of clock_getres, clock_gettime, clock_settime. Muti clock ids should be split with ','",
 
@@ -7944,7 +7944,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"time__offset": {
+									"time_offset": {
 										Description:         "specifies the length of time offset.",
 										MarkdownDescription: "specifies the length of time offset.",
 
@@ -7961,13 +7961,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"disk__fill": {
+							"disk_fill": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"fill__by__fallocate": {
+									"fill_by_fallocate": {
 										Description:         "fill disk by fallocate",
 										MarkdownDescription: "fill disk by fallocate",
 
@@ -8006,7 +8006,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"disk__read__payload": {
+							"disk_read_payload": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -8023,7 +8023,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"payload__process__num": {
+									"payload_process_num": {
 										Description:         "specifies the number of process work on writing, default 1, only 1-255 is valid value",
 										MarkdownDescription: "specifies the number of process work on writing, default 1, only 1-255 is valid value",
 
@@ -8051,7 +8051,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"disk__write__payload": {
+							"disk_write_payload": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -8068,7 +8068,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"payload__process__num": {
+									"payload_process_num": {
 										Description:         "specifies the number of process work on writing, default 1, only 1-255 is valid value",
 										MarkdownDescription: "specifies the number of process work on writing, default 1, only 1-255 is valid value",
 
@@ -8107,7 +8107,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"file__append": {
+							"file_append": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -8135,7 +8135,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"file__name": {
+									"file_name": {
 										Description:         "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 										MarkdownDescription: "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 
@@ -8152,13 +8152,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"file__create": {
+							"file_create": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"dir__name": {
+									"dir_name": {
 										Description:         "DirName is the directory name to create or delete.",
 										MarkdownDescription: "DirName is the directory name to create or delete.",
 
@@ -8169,7 +8169,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"file__name": {
+									"file_name": {
 										Description:         "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 										MarkdownDescription: "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 
@@ -8186,13 +8186,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"file__delete": {
+							"file_delete": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"dir__name": {
+									"dir_name": {
 										Description:         "DirName is the directory name to create or delete.",
 										MarkdownDescription: "DirName is the directory name to create or delete.",
 
@@ -8203,7 +8203,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"file__name": {
+									"file_name": {
 										Description:         "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 										MarkdownDescription: "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 
@@ -8220,13 +8220,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"file__modify": {
+							"file_modify": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"file__name": {
+									"file_name": {
 										Description:         "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 										MarkdownDescription: "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 
@@ -8254,13 +8254,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"file__rename": {
+							"file_rename": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"dest__file": {
+									"dest_file": {
 										Description:         "DestFile is the name to be renamed.",
 										MarkdownDescription: "DestFile is the name to be renamed.",
 
@@ -8271,7 +8271,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"source__file": {
+									"source_file": {
 										Description:         "SourceFile is the name need to be renamed.",
 										MarkdownDescription: "SourceFile is the name need to be renamed.",
 
@@ -8288,13 +8288,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"file__replace": {
+							"file_replace": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"dest__string": {
+									"dest_string": {
 										Description:         "DestStr is the destination string of the file.",
 										MarkdownDescription: "DestStr is the destination string of the file.",
 
@@ -8305,7 +8305,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"file__name": {
+									"file_name": {
 										Description:         "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 										MarkdownDescription: "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 
@@ -8327,7 +8327,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"origin__string": {
+									"origin_string": {
 										Description:         "OriginStr is the origin string of the file.",
 										MarkdownDescription: "OriginStr is the origin string of the file.",
 
@@ -8344,7 +8344,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"http__abort": {
+							"http_abort": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -8422,7 +8422,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"http__config": {
+							"http_config": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -8445,7 +8445,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"http__delay": {
+							"http_delay": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -8534,7 +8534,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"http__request": {
+							"http_request": {
 								Description:         "used for HTTP request, now only support GET",
 								MarkdownDescription: "used for HTTP request, now only support GET",
 
@@ -8551,7 +8551,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"enable__conn__pool": {
+									"enable_conn_pool": {
 										Description:         "Enable connection pool",
 										MarkdownDescription: "Enable connection pool",
 
@@ -8579,7 +8579,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"jvm__exception": {
+							"jvm_exception": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -8646,7 +8646,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"jvm__gc": {
+							"jvm_gc": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -8680,7 +8680,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"jvm__latency": {
+							"jvm_latency": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -8747,7 +8747,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"jvm__mysql": {
+							"jvm_mysql": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -8847,7 +8847,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"jvm__return": {
+							"jvm_return": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -8914,7 +8914,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"jvm__rule__data": {
+							"jvm_rule_data": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -8942,7 +8942,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"rule__data": {
+									"rule_data": {
 										Description:         "RuleData used to save the rule file's data, will use it when recover",
 										MarkdownDescription: "RuleData used to save the rule file's data, will use it when recover",
 
@@ -8959,13 +8959,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"jvm__stress": {
+							"jvm_stress": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"cpu__count": {
+									"cpu_count": {
 										Description:         "the CPU core number need to use, only set it when action is stress",
 										MarkdownDescription: "the CPU core number need to use, only set it when action is stress",
 
@@ -8976,7 +8976,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"mem__type": {
+									"mem_type": {
 										Description:         "the memory type need to locate, only set it when action is stress, the value can be 'stack' or 'heap'",
 										MarkdownDescription: "the memory type need to locate, only set it when action is stress, the value can be 'stack' or 'heap'",
 
@@ -9015,7 +9015,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"kafka__fill": {
+							"kafka_fill": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -9115,7 +9115,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"kafka__flood": {
+							"kafka_flood": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -9204,7 +9204,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"kafka__io": {
+							"kafka_io": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -9276,7 +9276,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								},
 							},
 
-							"network__bandwidth": {
+							"network_bandwidth": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -9320,7 +9320,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"ip__address": {
+									"ip_address": {
 										Description:         "",
 										MarkdownDescription: "",
 
@@ -9386,7 +9386,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"network__corrupt": {
+							"network_corrupt": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -9414,7 +9414,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"egress__port": {
+									"egress_port": {
 										Description:         "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 										MarkdownDescription: "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -9436,7 +9436,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"ip__address": {
+									"ip_address": {
 										Description:         "only impact egress traffic to these IP addresses",
 										MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -9447,7 +9447,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"ip__protocol": {
+									"ip_protocol": {
 										Description:         "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 										MarkdownDescription: "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 
@@ -9469,7 +9469,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"source__port": {
+									"source_port": {
 										Description:         "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 										MarkdownDescription: "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -9486,13 +9486,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"network__delay": {
+							"network_delay": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"accept__tcp__flags": {
+									"accept_tcp_flags": {
 										Description:         "only the packet which match the tcp flag can be accepted, others will be dropped. only set when the IPProtocol is tcp, used for partition.",
 										MarkdownDescription: "only the packet which match the tcp flag can be accepted, others will be dropped. only set when the IPProtocol is tcp, used for partition.",
 
@@ -9525,7 +9525,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"egress__port": {
+									"egress_port": {
 										Description:         "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 										MarkdownDescription: "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -9547,7 +9547,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"ip__address": {
+									"ip_address": {
 										Description:         "only impact egress traffic to these IP addresses",
 										MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -9558,7 +9558,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"ip__protocol": {
+									"ip_protocol": {
 										Description:         "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 										MarkdownDescription: "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 
@@ -9591,7 +9591,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"source__port": {
+									"source_port": {
 										Description:         "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 										MarkdownDescription: "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -9608,13 +9608,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"network__dns": {
+							"network_dns": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"dns__domain__name": {
+									"dns_domain_name": {
 										Description:         "map this host to specified IP",
 										MarkdownDescription: "map this host to specified IP",
 
@@ -9625,7 +9625,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"dns__ip": {
+									"dns_ip": {
 										Description:         "map specified host to this IP address",
 										MarkdownDescription: "map specified host to this IP address",
 
@@ -9636,7 +9636,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"dns__server": {
+									"dns_server": {
 										Description:         "update the DNS server in /etc/resolv.conf with this value",
 										MarkdownDescription: "update the DNS server in /etc/resolv.conf with this value",
 
@@ -9653,7 +9653,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"network__down": {
+							"network_down": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -9687,7 +9687,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"network__duplicate": {
+							"network_duplicate": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -9715,7 +9715,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"egress__port": {
+									"egress_port": {
 										Description:         "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 										MarkdownDescription: "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -9737,7 +9737,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"ip__address": {
+									"ip_address": {
 										Description:         "only impact egress traffic to these IP addresses",
 										MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -9748,7 +9748,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"ip__protocol": {
+									"ip_protocol": {
 										Description:         "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 										MarkdownDescription: "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 
@@ -9770,7 +9770,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"source__port": {
+									"source_port": {
 										Description:         "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 										MarkdownDescription: "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -9787,7 +9787,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"network__flood": {
+							"network_flood": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -9804,7 +9804,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"ip__address": {
+									"ip_address": {
 										Description:         "Generate traffic to this IP address",
 										MarkdownDescription: "Generate traffic to this IP address",
 
@@ -9854,7 +9854,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"network__loss": {
+							"network_loss": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -9882,7 +9882,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"egress__port": {
+									"egress_port": {
 										Description:         "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 										MarkdownDescription: "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -9904,7 +9904,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"ip__address": {
+									"ip_address": {
 										Description:         "only impact egress traffic to these IP addresses",
 										MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -9915,7 +9915,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"ip__protocol": {
+									"ip_protocol": {
 										Description:         "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 										MarkdownDescription: "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 
@@ -9937,7 +9937,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"source__port": {
+									"source_port": {
 										Description:         "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 										MarkdownDescription: "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -9954,13 +9954,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"network__partition": {
+							"network_partition": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"accept__tcp__flags": {
+									"accept_tcp_flags": {
 										Description:         "only the packet which match the tcp flag can be accepted, others will be dropped. only set when the IPProtocol is tcp, used for partition.",
 										MarkdownDescription: "only the packet which match the tcp flag can be accepted, others will be dropped. only set when the IPProtocol is tcp, used for partition.",
 
@@ -10004,7 +10004,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"ip__address": {
+									"ip_address": {
 										Description:         "only impact egress traffic to these IP addresses",
 										MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -10015,7 +10015,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 										Computed: false,
 									},
 
-									"ip__protocol": {
+									"ip_protocol": {
 										Description:         "only impact egress traffic to these IP addresses",
 										MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -10077,7 +10077,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"redis__cache_limit": {
+							"redis_cache_limit": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -10133,7 +10133,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"redis__expiration": {
+							"redis_expiration": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -10200,7 +10200,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"redis__penetration": {
+							"redis_penetration": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -10245,7 +10245,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"redis__restart": {
+							"redis_restart": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -10312,7 +10312,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"redis__stop": {
+							"redis_stop": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -10491,7 +10491,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"stress__cpu": {
+							"stress_cpu": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -10536,7 +10536,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 
-							"stress__mem": {
+							"stress_mem": {
 								Description:         "",
 								MarkdownDescription: "",
 
@@ -10632,7 +10632,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"vm__name": {
+									"vm_name": {
 										Description:         "The name of the VM to be injected",
 										MarkdownDescription: "The name of the VM to be injected",
 
@@ -14904,7 +14904,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"clock__ids__slice": {
+													"clock_ids_slice": {
 														Description:         "the identifier of the particular clock on which to act. More clock description in linux kernel can be found in man page of clock_getres, clock_gettime, clock_settime. Muti clock ids should be split with ','",
 														MarkdownDescription: "the identifier of the particular clock on which to act. More clock description in linux kernel can be found in man page of clock_getres, clock_gettime, clock_settime. Muti clock ids should be split with ','",
 
@@ -14926,7 +14926,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"time__offset": {
+													"time_offset": {
 														Description:         "specifies the length of time offset.",
 														MarkdownDescription: "specifies the length of time offset.",
 
@@ -14943,13 +14943,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"disk__fill": {
+											"disk_fill": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"fill__by__fallocate": {
+													"fill_by_fallocate": {
 														Description:         "fill disk by fallocate",
 														MarkdownDescription: "fill disk by fallocate",
 
@@ -14988,7 +14988,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"disk__read__payload": {
+											"disk_read_payload": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -15005,7 +15005,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"payload__process__num": {
+													"payload_process_num": {
 														Description:         "specifies the number of process work on writing, default 1, only 1-255 is valid value",
 														MarkdownDescription: "specifies the number of process work on writing, default 1, only 1-255 is valid value",
 
@@ -15033,7 +15033,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"disk__write__payload": {
+											"disk_write_payload": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -15050,7 +15050,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"payload__process__num": {
+													"payload_process_num": {
 														Description:         "specifies the number of process work on writing, default 1, only 1-255 is valid value",
 														MarkdownDescription: "specifies the number of process work on writing, default 1, only 1-255 is valid value",
 
@@ -15089,7 +15089,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"file__append": {
+											"file_append": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -15117,7 +15117,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"file__name": {
+													"file_name": {
 														Description:         "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 														MarkdownDescription: "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 
@@ -15134,13 +15134,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"file__create": {
+											"file_create": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"dir__name": {
+													"dir_name": {
 														Description:         "DirName is the directory name to create or delete.",
 														MarkdownDescription: "DirName is the directory name to create or delete.",
 
@@ -15151,7 +15151,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"file__name": {
+													"file_name": {
 														Description:         "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 														MarkdownDescription: "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 
@@ -15168,13 +15168,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"file__delete": {
+											"file_delete": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"dir__name": {
+													"dir_name": {
 														Description:         "DirName is the directory name to create or delete.",
 														MarkdownDescription: "DirName is the directory name to create or delete.",
 
@@ -15185,7 +15185,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"file__name": {
+													"file_name": {
 														Description:         "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 														MarkdownDescription: "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 
@@ -15202,13 +15202,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"file__modify": {
+											"file_modify": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"file__name": {
+													"file_name": {
 														Description:         "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 														MarkdownDescription: "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 
@@ -15236,13 +15236,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"file__rename": {
+											"file_rename": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"dest__file": {
+													"dest_file": {
 														Description:         "DestFile is the name to be renamed.",
 														MarkdownDescription: "DestFile is the name to be renamed.",
 
@@ -15253,7 +15253,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"source__file": {
+													"source_file": {
 														Description:         "SourceFile is the name need to be renamed.",
 														MarkdownDescription: "SourceFile is the name need to be renamed.",
 
@@ -15270,13 +15270,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"file__replace": {
+											"file_replace": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"dest__string": {
+													"dest_string": {
 														Description:         "DestStr is the destination string of the file.",
 														MarkdownDescription: "DestStr is the destination string of the file.",
 
@@ -15287,7 +15287,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"file__name": {
+													"file_name": {
 														Description:         "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 														MarkdownDescription: "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 
@@ -15309,7 +15309,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"origin__string": {
+													"origin_string": {
 														Description:         "OriginStr is the origin string of the file.",
 														MarkdownDescription: "OriginStr is the origin string of the file.",
 
@@ -15326,7 +15326,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"http__abort": {
+											"http_abort": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -15404,7 +15404,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"http__config": {
+											"http_config": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -15427,7 +15427,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"http__delay": {
+											"http_delay": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -15516,7 +15516,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"http__request": {
+											"http_request": {
 												Description:         "used for HTTP request, now only support GET",
 												MarkdownDescription: "used for HTTP request, now only support GET",
 
@@ -15533,7 +15533,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"enable__conn__pool": {
+													"enable_conn_pool": {
 														Description:         "Enable connection pool",
 														MarkdownDescription: "Enable connection pool",
 
@@ -15561,7 +15561,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"jvm__exception": {
+											"jvm_exception": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -15628,7 +15628,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"jvm__gc": {
+											"jvm_gc": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -15662,7 +15662,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"jvm__latency": {
+											"jvm_latency": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -15729,7 +15729,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"jvm__mysql": {
+											"jvm_mysql": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -15829,7 +15829,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"jvm__return": {
+											"jvm_return": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -15896,7 +15896,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"jvm__rule__data": {
+											"jvm_rule_data": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -15924,7 +15924,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"rule__data": {
+													"rule_data": {
 														Description:         "RuleData used to save the rule file's data, will use it when recover",
 														MarkdownDescription: "RuleData used to save the rule file's data, will use it when recover",
 
@@ -15941,13 +15941,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"jvm__stress": {
+											"jvm_stress": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"cpu__count": {
+													"cpu_count": {
 														Description:         "the CPU core number need to use, only set it when action is stress",
 														MarkdownDescription: "the CPU core number need to use, only set it when action is stress",
 
@@ -15958,7 +15958,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"mem__type": {
+													"mem_type": {
 														Description:         "the memory type need to locate, only set it when action is stress, the value can be 'stack' or 'heap'",
 														MarkdownDescription: "the memory type need to locate, only set it when action is stress, the value can be 'stack' or 'heap'",
 
@@ -15997,7 +15997,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"kafka__fill": {
+											"kafka_fill": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -16097,7 +16097,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"kafka__flood": {
+											"kafka_flood": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -16186,7 +16186,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"kafka__io": {
+											"kafka_io": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -16258,7 +16258,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												},
 											},
 
-											"network__bandwidth": {
+											"network_bandwidth": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -16302,7 +16302,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"ip__address": {
+													"ip_address": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -16368,7 +16368,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"network__corrupt": {
+											"network_corrupt": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -16396,7 +16396,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"egress__port": {
+													"egress_port": {
 														Description:         "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 														MarkdownDescription: "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -16418,7 +16418,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"ip__address": {
+													"ip_address": {
 														Description:         "only impact egress traffic to these IP addresses",
 														MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -16429,7 +16429,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"ip__protocol": {
+													"ip_protocol": {
 														Description:         "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 														MarkdownDescription: "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 
@@ -16451,7 +16451,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"source__port": {
+													"source_port": {
 														Description:         "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 														MarkdownDescription: "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -16468,13 +16468,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"network__delay": {
+											"network_delay": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"accept__tcp__flags": {
+													"accept_tcp_flags": {
 														Description:         "only the packet which match the tcp flag can be accepted, others will be dropped. only set when the IPProtocol is tcp, used for partition.",
 														MarkdownDescription: "only the packet which match the tcp flag can be accepted, others will be dropped. only set when the IPProtocol is tcp, used for partition.",
 
@@ -16507,7 +16507,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"egress__port": {
+													"egress_port": {
 														Description:         "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 														MarkdownDescription: "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -16529,7 +16529,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"ip__address": {
+													"ip_address": {
 														Description:         "only impact egress traffic to these IP addresses",
 														MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -16540,7 +16540,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"ip__protocol": {
+													"ip_protocol": {
 														Description:         "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 														MarkdownDescription: "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 
@@ -16573,7 +16573,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"source__port": {
+													"source_port": {
 														Description:         "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 														MarkdownDescription: "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -16590,13 +16590,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"network__dns": {
+											"network_dns": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"dns__domain__name": {
+													"dns_domain_name": {
 														Description:         "map this host to specified IP",
 														MarkdownDescription: "map this host to specified IP",
 
@@ -16607,7 +16607,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"dns__ip": {
+													"dns_ip": {
 														Description:         "map specified host to this IP address",
 														MarkdownDescription: "map specified host to this IP address",
 
@@ -16618,7 +16618,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"dns__server": {
+													"dns_server": {
 														Description:         "update the DNS server in /etc/resolv.conf with this value",
 														MarkdownDescription: "update the DNS server in /etc/resolv.conf with this value",
 
@@ -16635,7 +16635,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"network__down": {
+											"network_down": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -16669,7 +16669,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"network__duplicate": {
+											"network_duplicate": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -16697,7 +16697,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"egress__port": {
+													"egress_port": {
 														Description:         "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 														MarkdownDescription: "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -16719,7 +16719,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"ip__address": {
+													"ip_address": {
 														Description:         "only impact egress traffic to these IP addresses",
 														MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -16730,7 +16730,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"ip__protocol": {
+													"ip_protocol": {
 														Description:         "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 														MarkdownDescription: "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 
@@ -16752,7 +16752,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"source__port": {
+													"source_port": {
 														Description:         "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 														MarkdownDescription: "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -16769,7 +16769,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"network__flood": {
+											"network_flood": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -16786,7 +16786,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"ip__address": {
+													"ip_address": {
 														Description:         "Generate traffic to this IP address",
 														MarkdownDescription: "Generate traffic to this IP address",
 
@@ -16836,7 +16836,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"network__loss": {
+											"network_loss": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -16864,7 +16864,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"egress__port": {
+													"egress_port": {
 														Description:         "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 														MarkdownDescription: "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -16886,7 +16886,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"ip__address": {
+													"ip_address": {
 														Description:         "only impact egress traffic to these IP addresses",
 														MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -16897,7 +16897,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"ip__protocol": {
+													"ip_protocol": {
 														Description:         "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 														MarkdownDescription: "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 
@@ -16919,7 +16919,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"source__port": {
+													"source_port": {
 														Description:         "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 														MarkdownDescription: "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -16936,13 +16936,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"network__partition": {
+											"network_partition": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"accept__tcp__flags": {
+													"accept_tcp_flags": {
 														Description:         "only the packet which match the tcp flag can be accepted, others will be dropped. only set when the IPProtocol is tcp, used for partition.",
 														MarkdownDescription: "only the packet which match the tcp flag can be accepted, others will be dropped. only set when the IPProtocol is tcp, used for partition.",
 
@@ -16986,7 +16986,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"ip__address": {
+													"ip_address": {
 														Description:         "only impact egress traffic to these IP addresses",
 														MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -16997,7 +16997,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"ip__protocol": {
+													"ip_protocol": {
 														Description:         "only impact egress traffic to these IP addresses",
 														MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -17059,7 +17059,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"redis__cache_limit": {
+											"redis_cache_limit": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -17115,7 +17115,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"redis__expiration": {
+											"redis_expiration": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -17182,7 +17182,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"redis__penetration": {
+											"redis_penetration": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -17227,7 +17227,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"redis__restart": {
+											"redis_restart": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -17294,7 +17294,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"redis__stop": {
+											"redis_stop": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -17473,7 +17473,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"stress__cpu": {
+											"stress_cpu": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -17518,7 +17518,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 												Computed: false,
 											},
 
-											"stress__mem": {
+											"stress_mem": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -17614,7 +17614,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"vm__name": {
+													"vm_name": {
 														Description:         "The name of the VM to be injected",
 														MarkdownDescription: "The name of the VM to be injected",
 
@@ -21203,7 +21203,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"clock__ids__slice": {
+															"clock_ids_slice": {
 																Description:         "the identifier of the particular clock on which to act. More clock description in linux kernel can be found in man page of clock_getres, clock_gettime, clock_settime. Muti clock ids should be split with ','",
 																MarkdownDescription: "the identifier of the particular clock on which to act. More clock description in linux kernel can be found in man page of clock_getres, clock_gettime, clock_settime. Muti clock ids should be split with ','",
 
@@ -21225,7 +21225,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"time__offset": {
+															"time_offset": {
 																Description:         "specifies the length of time offset.",
 																MarkdownDescription: "specifies the length of time offset.",
 
@@ -21242,13 +21242,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"disk__fill": {
+													"disk_fill": {
 														Description:         "",
 														MarkdownDescription: "",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"fill__by__fallocate": {
+															"fill_by_fallocate": {
 																Description:         "fill disk by fallocate",
 																MarkdownDescription: "fill disk by fallocate",
 
@@ -21287,7 +21287,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"disk__read__payload": {
+													"disk_read_payload": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -21304,7 +21304,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"payload__process__num": {
+															"payload_process_num": {
 																Description:         "specifies the number of process work on writing, default 1, only 1-255 is valid value",
 																MarkdownDescription: "specifies the number of process work on writing, default 1, only 1-255 is valid value",
 
@@ -21332,7 +21332,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"disk__write__payload": {
+													"disk_write_payload": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -21349,7 +21349,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"payload__process__num": {
+															"payload_process_num": {
 																Description:         "specifies the number of process work on writing, default 1, only 1-255 is valid value",
 																MarkdownDescription: "specifies the number of process work on writing, default 1, only 1-255 is valid value",
 
@@ -21388,7 +21388,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"file__append": {
+													"file_append": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -21416,7 +21416,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"file__name": {
+															"file_name": {
 																Description:         "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 																MarkdownDescription: "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 
@@ -21433,13 +21433,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"file__create": {
+													"file_create": {
 														Description:         "",
 														MarkdownDescription: "",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"dir__name": {
+															"dir_name": {
 																Description:         "DirName is the directory name to create or delete.",
 																MarkdownDescription: "DirName is the directory name to create or delete.",
 
@@ -21450,7 +21450,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"file__name": {
+															"file_name": {
 																Description:         "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 																MarkdownDescription: "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 
@@ -21467,13 +21467,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"file__delete": {
+													"file_delete": {
 														Description:         "",
 														MarkdownDescription: "",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"dir__name": {
+															"dir_name": {
 																Description:         "DirName is the directory name to create or delete.",
 																MarkdownDescription: "DirName is the directory name to create or delete.",
 
@@ -21484,7 +21484,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"file__name": {
+															"file_name": {
 																Description:         "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 																MarkdownDescription: "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 
@@ -21501,13 +21501,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"file__modify": {
+													"file_modify": {
 														Description:         "",
 														MarkdownDescription: "",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"file__name": {
+															"file_name": {
 																Description:         "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 																MarkdownDescription: "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 
@@ -21535,13 +21535,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"file__rename": {
+													"file_rename": {
 														Description:         "",
 														MarkdownDescription: "",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"dest__file": {
+															"dest_file": {
 																Description:         "DestFile is the name to be renamed.",
 																MarkdownDescription: "DestFile is the name to be renamed.",
 
@@ -21552,7 +21552,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"source__file": {
+															"source_file": {
 																Description:         "SourceFile is the name need to be renamed.",
 																MarkdownDescription: "SourceFile is the name need to be renamed.",
 
@@ -21569,13 +21569,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"file__replace": {
+													"file_replace": {
 														Description:         "",
 														MarkdownDescription: "",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"dest__string": {
+															"dest_string": {
 																Description:         "DestStr is the destination string of the file.",
 																MarkdownDescription: "DestStr is the destination string of the file.",
 
@@ -21586,7 +21586,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"file__name": {
+															"file_name": {
 																Description:         "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 																MarkdownDescription: "FileName is the name of the file to be created, modified, deleted, renamed, or appended.",
 
@@ -21608,7 +21608,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"origin__string": {
+															"origin_string": {
 																Description:         "OriginStr is the origin string of the file.",
 																MarkdownDescription: "OriginStr is the origin string of the file.",
 
@@ -21625,7 +21625,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"http__abort": {
+													"http_abort": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -21703,7 +21703,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"http__config": {
+													"http_config": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -21726,7 +21726,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"http__delay": {
+													"http_delay": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -21815,7 +21815,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"http__request": {
+													"http_request": {
 														Description:         "used for HTTP request, now only support GET",
 														MarkdownDescription: "used for HTTP request, now only support GET",
 
@@ -21832,7 +21832,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"enable__conn__pool": {
+															"enable_conn_pool": {
 																Description:         "Enable connection pool",
 																MarkdownDescription: "Enable connection pool",
 
@@ -21860,7 +21860,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"jvm__exception": {
+													"jvm_exception": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -21927,7 +21927,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"jvm__gc": {
+													"jvm_gc": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -21961,7 +21961,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"jvm__latency": {
+													"jvm_latency": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -22028,7 +22028,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"jvm__mysql": {
+													"jvm_mysql": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -22128,7 +22128,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"jvm__return": {
+													"jvm_return": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -22195,7 +22195,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"jvm__rule__data": {
+													"jvm_rule_data": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -22223,7 +22223,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"rule__data": {
+															"rule_data": {
 																Description:         "RuleData used to save the rule file's data, will use it when recover",
 																MarkdownDescription: "RuleData used to save the rule file's data, will use it when recover",
 
@@ -22240,13 +22240,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"jvm__stress": {
+													"jvm_stress": {
 														Description:         "",
 														MarkdownDescription: "",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"cpu__count": {
+															"cpu_count": {
 																Description:         "the CPU core number need to use, only set it when action is stress",
 																MarkdownDescription: "the CPU core number need to use, only set it when action is stress",
 
@@ -22257,7 +22257,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"mem__type": {
+															"mem_type": {
 																Description:         "the memory type need to locate, only set it when action is stress, the value can be 'stack' or 'heap'",
 																MarkdownDescription: "the memory type need to locate, only set it when action is stress, the value can be 'stack' or 'heap'",
 
@@ -22296,7 +22296,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"kafka__fill": {
+													"kafka_fill": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -22396,7 +22396,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"kafka__flood": {
+													"kafka_flood": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -22485,7 +22485,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"kafka__io": {
+													"kafka_io": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -22557,7 +22557,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														},
 													},
 
-													"network__bandwidth": {
+													"network_bandwidth": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -22601,7 +22601,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"ip__address": {
+															"ip_address": {
 																Description:         "",
 																MarkdownDescription: "",
 
@@ -22667,7 +22667,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"network__corrupt": {
+													"network_corrupt": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -22695,7 +22695,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"egress__port": {
+															"egress_port": {
 																Description:         "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 																MarkdownDescription: "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -22717,7 +22717,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"ip__address": {
+															"ip_address": {
 																Description:         "only impact egress traffic to these IP addresses",
 																MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -22728,7 +22728,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"ip__protocol": {
+															"ip_protocol": {
 																Description:         "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 																MarkdownDescription: "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 
@@ -22750,7 +22750,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"source__port": {
+															"source_port": {
 																Description:         "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 																MarkdownDescription: "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -22767,13 +22767,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"network__delay": {
+													"network_delay": {
 														Description:         "",
 														MarkdownDescription: "",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"accept__tcp__flags": {
+															"accept_tcp_flags": {
 																Description:         "only the packet which match the tcp flag can be accepted, others will be dropped. only set when the IPProtocol is tcp, used for partition.",
 																MarkdownDescription: "only the packet which match the tcp flag can be accepted, others will be dropped. only set when the IPProtocol is tcp, used for partition.",
 
@@ -22806,7 +22806,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"egress__port": {
+															"egress_port": {
 																Description:         "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 																MarkdownDescription: "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -22828,7 +22828,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"ip__address": {
+															"ip_address": {
 																Description:         "only impact egress traffic to these IP addresses",
 																MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -22839,7 +22839,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"ip__protocol": {
+															"ip_protocol": {
 																Description:         "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 																MarkdownDescription: "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 
@@ -22872,7 +22872,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"source__port": {
+															"source_port": {
 																Description:         "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 																MarkdownDescription: "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -22889,13 +22889,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"network__dns": {
+													"network_dns": {
 														Description:         "",
 														MarkdownDescription: "",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"dns__domain__name": {
+															"dns_domain_name": {
 																Description:         "map this host to specified IP",
 																MarkdownDescription: "map this host to specified IP",
 
@@ -22906,7 +22906,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"dns__ip": {
+															"dns_ip": {
 																Description:         "map specified host to this IP address",
 																MarkdownDescription: "map specified host to this IP address",
 
@@ -22917,7 +22917,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"dns__server": {
+															"dns_server": {
 																Description:         "update the DNS server in /etc/resolv.conf with this value",
 																MarkdownDescription: "update the DNS server in /etc/resolv.conf with this value",
 
@@ -22934,7 +22934,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"network__down": {
+													"network_down": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -22968,7 +22968,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"network__duplicate": {
+													"network_duplicate": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -22996,7 +22996,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"egress__port": {
+															"egress_port": {
 																Description:         "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 																MarkdownDescription: "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -23018,7 +23018,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"ip__address": {
+															"ip_address": {
 																Description:         "only impact egress traffic to these IP addresses",
 																MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -23029,7 +23029,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"ip__protocol": {
+															"ip_protocol": {
 																Description:         "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 																MarkdownDescription: "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 
@@ -23051,7 +23051,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"source__port": {
+															"source_port": {
 																Description:         "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 																MarkdownDescription: "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -23068,7 +23068,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"network__flood": {
+													"network_flood": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -23085,7 +23085,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"ip__address": {
+															"ip_address": {
 																Description:         "Generate traffic to this IP address",
 																MarkdownDescription: "Generate traffic to this IP address",
 
@@ -23135,7 +23135,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"network__loss": {
+													"network_loss": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -23163,7 +23163,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"egress__port": {
+															"egress_port": {
 																Description:         "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 																MarkdownDescription: "only impact egress traffic to these destination ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -23185,7 +23185,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"ip__address": {
+															"ip_address": {
 																Description:         "only impact egress traffic to these IP addresses",
 																MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -23196,7 +23196,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"ip__protocol": {
+															"ip_protocol": {
 																Description:         "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 																MarkdownDescription: "only impact traffic using this IP protocol, supported: tcp, udp, icmp, all",
 
@@ -23218,7 +23218,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"source__port": {
+															"source_port": {
 																Description:         "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 																MarkdownDescription: "only impact egress traffic from these source ports, use a ',' to separate or to indicate the range, such as 80, 8001:8010. it can only be used in conjunction with -p tcp or -p udp",
 
@@ -23235,13 +23235,13 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"network__partition": {
+													"network_partition": {
 														Description:         "",
 														MarkdownDescription: "",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"accept__tcp__flags": {
+															"accept_tcp_flags": {
 																Description:         "only the packet which match the tcp flag can be accepted, others will be dropped. only set when the IPProtocol is tcp, used for partition.",
 																MarkdownDescription: "only the packet which match the tcp flag can be accepted, others will be dropped. only set when the IPProtocol is tcp, used for partition.",
 
@@ -23285,7 +23285,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"ip__address": {
+															"ip_address": {
 																Description:         "only impact egress traffic to these IP addresses",
 																MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -23296,7 +23296,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 																Computed: false,
 															},
 
-															"ip__protocol": {
+															"ip_protocol": {
 																Description:         "only impact egress traffic to these IP addresses",
 																MarkdownDescription: "only impact egress traffic to these IP addresses",
 
@@ -23358,7 +23358,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"redis__cache_limit": {
+													"redis_cache_limit": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -23414,7 +23414,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"redis__expiration": {
+													"redis_expiration": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -23481,7 +23481,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"redis__penetration": {
+													"redis_penetration": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -23526,7 +23526,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"redis__restart": {
+													"redis_restart": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -23593,7 +23593,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"redis__stop": {
+													"redis_stop": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -23772,7 +23772,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"stress__cpu": {
+													"stress_cpu": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -23817,7 +23817,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 														Computed: false,
 													},
 
-													"stress__mem": {
+													"stress_mem": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -23913,7 +23913,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-															"vm__name": {
+															"vm_name": {
 																Description:         "The name of the VM to be injected",
 																MarkdownDescription: "The name of the VM to be injected",
 

@@ -62,7 +62,7 @@ Optional:
 - `auxiliary_app_info` (String)
 - `chaos_service_account` (String)
 - `components` (Attributes) (see [below for nested schema](#nestedatt--spec--components))
-- `default_app_health_check` (String)
+- `default_health_check` (String)
 - `engine_state` (String)
 - `experiments` (Attributes List) (see [below for nested schema](#nestedatt--spec--experiments))
 - `job_clean_up_policy` (String)
@@ -92,6 +92,7 @@ Optional:
 
 - `image` (String)
 - `runner_annotations` (Map of String)
+- `runner_labels` (Map of String)
 - `tolerations` (Attributes List) Pod's tolerations. (see [below for nested schema](#nestedatt--spec--components--runner--tolerations))
 - `type` (String)
 
@@ -279,12 +280,12 @@ Required:
 
 - `interval` (Number)
 - `probe_timeout` (Number)
-- `retry` (Number)
 
 Optional:
 
 - `initial_delay_seconds` (Number)
 - `probe_polling_interval` (Number)
+- `retry` (Number)
 - `stop_on_failure` (Boolean)
 
 

@@ -155,6 +155,8 @@ type AcidZalanDoOperatorConfigurationV1GoModel struct {
 
 			Enable_pod_disruption_budget *bool `tfsdk:"enable_pod_disruption_budget" yaml:"enable_pod_disruption_budget,omitempty"`
 
+			Enable_readiness_probe *bool `tfsdk:"enable_readiness_probe" yaml:"enable_readiness_probe,omitempty"`
+
 			Enable_sidecars *bool `tfsdk:"enable_sidecars" yaml:"enable_sidecars,omitempty"`
 
 			Ignored_annotations *[]string `tfsdk:"ignored_annotations" yaml:"ignored_annotations,omitempty"`
@@ -1074,6 +1076,17 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) GetSchema(_ context.Context
 							},
 
 							"enable_pod_disruption_budget": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"enable_readiness_probe": {
 								Description:         "",
 								MarkdownDescription: "",
 

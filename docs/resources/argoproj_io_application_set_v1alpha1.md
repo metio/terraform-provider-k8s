@@ -77,7 +77,6 @@ Required:
 
 Optional:
 
-- `go_template` (Boolean)
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--sync_policy))
 
 <a id="nestedatt--spec--generators"></a>
@@ -93,7 +92,6 @@ Optional:
 - `merge` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge))
 - `pull_request` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--pull_request))
 - `scm_provider` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--scm_provider))
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--selector))
 
 <a id="nestedatt--spec--generators--cluster_decision_resource"></a>
 ### Nested Schema for `spec.generators.cluster_decision_resource`
@@ -1221,7 +1219,6 @@ Optional:
 - `merge` (Dynamic)
 - `pull_request` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request))
 - `scm_provider` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider))
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--selector))
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource"></a>
 ### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource`
@@ -2334,7 +2331,6 @@ Optional:
 - `filters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--filters))
 - `gitea` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--gitea))
 - `github` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--github))
-- `gitlab` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--gitlab))
 - `requeue_after_seconds` (Number)
 - `template` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template))
 
@@ -2413,32 +2409,7 @@ Required:
 Optional:
 
 - `api` (String)
-- `app_secret_name` (String)
 - `labels` (List of String)
-- `token_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template--token_ref))
-
-<a id="nestedatt--spec--generators--matrix--template--pull_request--template--token_ref"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template.token_ref`
-
-Required:
-
-- `key` (String)
-- `secret_name` (String)
-
-
-
-<a id="nestedatt--spec--generators--matrix--template--pull_request--gitlab"></a>
-### Nested Schema for `spec.generators.matrix.template.pull_request.template`
-
-Required:
-
-- `project` (String)
-
-Optional:
-
-- `api` (String)
-- `labels` (List of String)
-- `pull_request_state` (String)
 - `token_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template--token_ref))
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--token_ref"></a>
@@ -2703,7 +2674,6 @@ Optional:
 
 Optional:
 
-- `azure_dev_ops` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--azure_dev_ops))
 - `bitbucket` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--bitbucket))
 - `bitbucket_server` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--bitbucket_server))
 - `clone_protocol` (String)
@@ -2713,30 +2683,6 @@ Optional:
 - `gitlab` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--gitlab))
 - `requeue_after_seconds` (Number)
 - `template` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--template))
-
-<a id="nestedatt--spec--generators--matrix--template--scm_provider--azure_dev_ops"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.template`
-
-Required:
-
-- `access_token_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--template--access_token_ref))
-- `organization` (String)
-- `team_project` (String)
-
-Optional:
-
-- `all_branches` (Boolean)
-- `api` (String)
-
-<a id="nestedatt--spec--generators--matrix--template--scm_provider--template--access_token_ref"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.template.api`
-
-Required:
-
-- `key` (String)
-- `secret_name` (String)
-
-
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--bitbucket"></a>
 ### Nested Schema for `spec.generators.matrix.template.scm_provider.template`
@@ -2840,7 +2786,6 @@ Optional:
 
 - `all_branches` (Boolean)
 - `api` (String)
-- `app_secret_name` (String)
 - `token_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--template--token_ref))
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--template--token_ref"></a>
@@ -3124,28 +3069,6 @@ Optional:
 
 
 
-<a id="nestedatt--spec--generators--matrix--template--selector"></a>
-### Nested Schema for `spec.generators.matrix.template.selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--selector--match_expressions))
-- `match_labels` (Map of String)
-
-<a id="nestedatt--spec--generators--matrix--template--selector--match_expressions"></a>
-### Nested Schema for `spec.generators.matrix.template.selector.match_labels`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-
 
 <a id="nestedatt--spec--generators--matrix--template"></a>
 ### Nested Schema for `spec.generators.matrix.template`
@@ -3419,7 +3342,6 @@ Optional:
 - `merge` (Dynamic)
 - `pull_request` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request))
 - `scm_provider` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider))
-- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--selector))
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource"></a>
 ### Nested Schema for `spec.generators.merge.template.cluster_decision_resource`
@@ -4532,7 +4454,6 @@ Optional:
 - `filters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--filters))
 - `gitea` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--gitea))
 - `github` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--github))
-- `gitlab` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--gitlab))
 - `requeue_after_seconds` (Number)
 - `template` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template))
 
@@ -4611,32 +4532,7 @@ Required:
 Optional:
 
 - `api` (String)
-- `app_secret_name` (String)
 - `labels` (List of String)
-- `token_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template--token_ref))
-
-<a id="nestedatt--spec--generators--merge--template--pull_request--template--token_ref"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template.token_ref`
-
-Required:
-
-- `key` (String)
-- `secret_name` (String)
-
-
-
-<a id="nestedatt--spec--generators--merge--template--pull_request--gitlab"></a>
-### Nested Schema for `spec.generators.merge.template.pull_request.template`
-
-Required:
-
-- `project` (String)
-
-Optional:
-
-- `api` (String)
-- `labels` (List of String)
-- `pull_request_state` (String)
 - `token_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template--token_ref))
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--token_ref"></a>
@@ -4901,7 +4797,6 @@ Optional:
 
 Optional:
 
-- `azure_dev_ops` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--azure_dev_ops))
 - `bitbucket` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--bitbucket))
 - `bitbucket_server` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--bitbucket_server))
 - `clone_protocol` (String)
@@ -4911,30 +4806,6 @@ Optional:
 - `gitlab` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--gitlab))
 - `requeue_after_seconds` (Number)
 - `template` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--template))
-
-<a id="nestedatt--spec--generators--merge--template--scm_provider--azure_dev_ops"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.template`
-
-Required:
-
-- `access_token_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--template--access_token_ref))
-- `organization` (String)
-- `team_project` (String)
-
-Optional:
-
-- `all_branches` (Boolean)
-- `api` (String)
-
-<a id="nestedatt--spec--generators--merge--template--scm_provider--template--access_token_ref"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.template.api`
-
-Required:
-
-- `key` (String)
-- `secret_name` (String)
-
-
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--bitbucket"></a>
 ### Nested Schema for `spec.generators.merge.template.scm_provider.template`
@@ -5038,7 +4909,6 @@ Optional:
 
 - `all_branches` (Boolean)
 - `api` (String)
-- `app_secret_name` (String)
 - `token_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--template--token_ref))
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--template--token_ref"></a>
@@ -5322,28 +5192,6 @@ Optional:
 
 
 
-<a id="nestedatt--spec--generators--merge--template--selector"></a>
-### Nested Schema for `spec.generators.merge.template.selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--selector--match_expressions))
-- `match_labels` (Map of String)
-
-<a id="nestedatt--spec--generators--merge--template--selector--match_expressions"></a>
-### Nested Schema for `spec.generators.merge.template.selector.match_labels`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
-
-
-
 
 <a id="nestedatt--spec--generators--merge--template"></a>
 ### Nested Schema for `spec.generators.merge.template`
@@ -5601,7 +5449,6 @@ Optional:
 - `filters` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--pull_request--filters))
 - `gitea` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--pull_request--gitea))
 - `github` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--pull_request--github))
-- `gitlab` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--pull_request--gitlab))
 - `requeue_after_seconds` (Number)
 - `template` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--pull_request--template))
 
@@ -5680,32 +5527,7 @@ Required:
 Optional:
 
 - `api` (String)
-- `app_secret_name` (String)
 - `labels` (List of String)
-- `token_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--pull_request--template--token_ref))
-
-<a id="nestedatt--spec--generators--pull_request--template--token_ref"></a>
-### Nested Schema for `spec.generators.pull_request.template.token_ref`
-
-Required:
-
-- `key` (String)
-- `secret_name` (String)
-
-
-
-<a id="nestedatt--spec--generators--pull_request--gitlab"></a>
-### Nested Schema for `spec.generators.pull_request.template`
-
-Required:
-
-- `project` (String)
-
-Optional:
-
-- `api` (String)
-- `labels` (List of String)
-- `pull_request_state` (String)
 - `token_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--pull_request--template--token_ref))
 
 <a id="nestedatt--spec--generators--pull_request--template--token_ref"></a>
@@ -5970,7 +5792,6 @@ Optional:
 
 Optional:
 
-- `azure_dev_ops` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--azure_dev_ops))
 - `bitbucket` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--bitbucket))
 - `bitbucket_server` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--bitbucket_server))
 - `clone_protocol` (String)
@@ -5980,30 +5801,6 @@ Optional:
 - `gitlab` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--gitlab))
 - `requeue_after_seconds` (Number)
 - `template` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--template))
-
-<a id="nestedatt--spec--generators--scm_provider--azure_dev_ops"></a>
-### Nested Schema for `spec.generators.scm_provider.template`
-
-Required:
-
-- `access_token_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--template--access_token_ref))
-- `organization` (String)
-- `team_project` (String)
-
-Optional:
-
-- `all_branches` (Boolean)
-- `api` (String)
-
-<a id="nestedatt--spec--generators--scm_provider--template--access_token_ref"></a>
-### Nested Schema for `spec.generators.scm_provider.template.access_token_ref`
-
-Required:
-
-- `key` (String)
-- `secret_name` (String)
-
-
 
 <a id="nestedatt--spec--generators--scm_provider--bitbucket"></a>
 ### Nested Schema for `spec.generators.scm_provider.template`
@@ -6107,7 +5904,6 @@ Optional:
 
 - `all_branches` (Boolean)
 - `api` (String)
-- `app_secret_name` (String)
 - `token_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--template--token_ref))
 
 <a id="nestedatt--spec--generators--scm_provider--template--token_ref"></a>
@@ -6388,28 +6184,6 @@ Optional:
 
 
 
-
-
-
-<a id="nestedatt--spec--generators--selector"></a>
-### Nested Schema for `spec.generators.selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--selector--match_expressions))
-- `match_labels` (Map of String)
-
-<a id="nestedatt--spec--generators--selector--match_expressions"></a>
-### Nested Schema for `spec.generators.selector.match_labels`
-
-Required:
-
-- `key` (String)
-- `operator` (String)
-
-Optional:
-
-- `values` (List of String)
 
 
 

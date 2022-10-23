@@ -55,13 +55,13 @@ Optional:
 Optional:
 
 - `addresses` (Attributes List) Addresses is the list of all node addresses. (see [below for nested schema](#nestedatt--spec--addresses))
-- `alibaba__cloud` (Attributes) AlibabaCloud is the AlibabaCloud IPAM specific configuration. (see [below for nested schema](#nestedatt--spec--alibaba__cloud))
+- `alibaba_cloud` (Attributes) AlibabaCloud is the AlibabaCloud IPAM specific configuration. (see [below for nested schema](#nestedatt--spec--alibaba_cloud))
 - `azure` (Attributes) Azure is the Azure IPAM specific configuration. (see [below for nested schema](#nestedatt--spec--azure))
 - `encryption` (Attributes) Encryption is the encryption configuration of the node. (see [below for nested schema](#nestedatt--spec--encryption))
 - `eni` (Attributes) ENI is the AWS ENI specific configuration. (see [below for nested schema](#nestedatt--spec--eni))
 - `health` (Attributes) HealthAddressing is the addressing information for health connectivity checking. (see [below for nested schema](#nestedatt--spec--health))
 - `ingress` (Attributes) IngressAddressing is the addressing information for Ingress listener. (see [below for nested schema](#nestedatt--spec--ingress))
-- `instance__id` (String) InstanceID is the identifier of the node. This is different from the node name which is typically the FQDN of the node. The InstanceID typically refers to the identifier used by the cloud provider or some other means of identification.
+- `instance_id` (String) InstanceID is the identifier of the node. This is different from the node name which is typically the FQDN of the node. The InstanceID typically refers to the identifier used by the cloud provider or some other means of identification.
 - `ipam` (Attributes) IPAM is the address management specification. This section can be populated by a user or it can be automatically populated by an IPAM operator. (see [below for nested schema](#nestedatt--spec--ipam))
 - `nodeidentity` (Number) NodeIdentity is the Cilium numeric identity allocated for the node, if any.
 
@@ -74,18 +74,18 @@ Optional:
 - `type` (String) Type is the type of the node address
 
 
-<a id="nestedatt--spec--alibaba__cloud"></a>
-### Nested Schema for `spec.alibaba__cloud`
+<a id="nestedatt--spec--alibaba_cloud"></a>
+### Nested Schema for `spec.alibaba_cloud`
 
 Optional:
 
-- `availability__zone` (String) AvailabilityZone is the availability zone to use when allocating ENIs.
-- `cidr__block` (String) CIDRBlock is vpc ipv4 CIDR
-- `instance__type` (String) InstanceType is the ECS instance type, e.g. 'ecs.g6.2xlarge'
-- `security__group__tags` (Map of String) SecurityGroupTags is the list of tags to use when evaluating which security groups to use for the ENI.
-- `security__groups` (List of String) SecurityGroups is the list of security groups to attach to any ENI that is created and attached to the instance.
-- `vpc__id` (String) VPCID is the VPC ID to use when allocating ENIs.
-- `vswitch__tags` (Map of String) VSwitchTags is the list of tags to use when evaluating which vSwitch to use for the ENI.
+- `availability_zone` (String) AvailabilityZone is the availability zone to use when allocating ENIs.
+- `cidr_block` (String) CIDRBlock is vpc ipv4 CIDR
+- `instance_type` (String) InstanceType is the ECS instance type, e.g. 'ecs.g6.2xlarge'
+- `security_group_tags` (Map of String) SecurityGroupTags is the list of tags to use when evaluating which security groups to use for the ENI.
+- `security_groups` (List of String) SecurityGroups is the list of security groups to attach to any ENI that is created and attached to the instance.
+- `vpc_id` (String) VPCID is the VPC ID to use when allocating ENIs.
+- `vswitch_tags` (Map of String) VSwitchTags is the list of tags to use when evaluating which vSwitch to use for the ENI.
 - `vswitches` (List of String) VSwitches is the ID of vSwitch available for ENI
 
 
@@ -94,7 +94,7 @@ Optional:
 
 Optional:
 
-- `interface__name` (String) InterfaceName is the name of the interface the cilium-operator will use to allocate all the IPs on
+- `interface_name` (String) InterfaceName is the name of the interface the cilium-operator will use to allocate all the IPs on
 
 
 <a id="nestedatt--spec--encryption"></a>
@@ -110,22 +110,22 @@ Optional:
 
 Optional:
 
-- `availability__zone` (String) AvailabilityZone is the availability zone to use when allocating ENIs.
-- `delete__on__termination` (Boolean) DeleteOnTermination defines that the ENI should be deleted when the associated instance is terminated. If the parameter is not set the default behavior is to delete the ENI on instance termination.
-- `disable__prefix__delegation` (Boolean) DisablePrefixDelegation determines whether ENI prefix delegation should be disabled on this node.
-- `exclude__interface__tags` (Map of String) ExcludeInterfaceTags is the list of tags to use when excluding ENIs for Cilium IP allocation. Any interface matching this set of tags will not be managed by Cilium.
-- `first__interface__index` (Number) FirstInterfaceIndex is the index of the first ENI to use for IP allocation, e.g. if the node has eth0, eth1, eth2 and FirstInterfaceIndex is set to 1, then only eth1 and eth2 will be used for IP allocation, eth0 will be ignored for PodIP allocation.
-- `instance__id` (String) InstanceID is the AWS InstanceId of the node. The InstanceID is used to retrieve AWS metadata for the node.  OBSOLETE: This field is obsolete, please use Spec.InstanceID
-- `instance__type` (String) InstanceType is the AWS EC2 instance type, e.g. 'm5.large'
-- `max__above__watermark` (Number) MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MaxAboveWatermark
-- `min__allocate` (Number) MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MinAllocate
-- `pre__allocate` (Number) PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.  OBSOLETE: This field is obsolete, please use Spec.IPAM.PreAllocate
-- `security__group__tags` (Map of String) SecurityGroupTags is the list of tags to use when evaliating what AWS security groups to use for the ENI.
-- `security__groups` (List of String) SecurityGroups is the list of security groups to attach to any ENI that is created and attached to the instance.
-- `subnet__ids` (List of String) SubnetIDs is the list of subnet ids to use when evaluating what AWS subnets to use for ENI and IP allocation.
-- `subnet__tags` (Map of String) SubnetTags is the list of tags to use when evaluating what AWS subnets to use for ENI and IP allocation.
-- `use__primary__address` (Boolean) UsePrimaryAddress determines whether an ENI's primary address should be available for allocations on the node
-- `vpc__id` (String) VpcID is the VPC ID to use when allocating ENIs.
+- `availability_zone` (String) AvailabilityZone is the availability zone to use when allocating ENIs.
+- `delete_on_termination` (Boolean) DeleteOnTermination defines that the ENI should be deleted when the associated instance is terminated. If the parameter is not set the default behavior is to delete the ENI on instance termination.
+- `disable_prefix_delegation` (Boolean) DisablePrefixDelegation determines whether ENI prefix delegation should be disabled on this node.
+- `exclude_interface_tags` (Map of String) ExcludeInterfaceTags is the list of tags to use when excluding ENIs for Cilium IP allocation. Any interface matching this set of tags will not be managed by Cilium.
+- `first_interface_index` (Number) FirstInterfaceIndex is the index of the first ENI to use for IP allocation, e.g. if the node has eth0, eth1, eth2 and FirstInterfaceIndex is set to 1, then only eth1 and eth2 will be used for IP allocation, eth0 will be ignored for PodIP allocation.
+- `instance_id` (String) InstanceID is the AWS InstanceId of the node. The InstanceID is used to retrieve AWS metadata for the node.  OBSOLETE: This field is obsolete, please use Spec.InstanceID
+- `instance_type` (String) InstanceType is the AWS EC2 instance type, e.g. 'm5.large'
+- `max_above_watermark` (Number) MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MaxAboveWatermark
+- `min_allocate` (Number) MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MinAllocate
+- `pre_allocate` (Number) PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.  OBSOLETE: This field is obsolete, please use Spec.IPAM.PreAllocate
+- `security_group_tags` (Map of String) SecurityGroupTags is the list of tags to use when evaliating what AWS security groups to use for the ENI.
+- `security_groups` (List of String) SecurityGroups is the list of security groups to attach to any ENI that is created and attached to the instance.
+- `subnet_ids` (List of String) SubnetIDs is the list of subnet ids to use when evaluating what AWS subnets to use for ENI and IP allocation.
+- `subnet_tags` (Map of String) SubnetTags is the list of tags to use when evaluating what AWS subnets to use for ENI and IP allocation.
+- `use_primary_address` (Boolean) UsePrimaryAddress determines whether an ENI's primary address should be available for allocations on the node
+- `vpc_id` (String) VpcID is the VPC ID to use when allocating ENIs.
 
 
 <a id="nestedatt--spec--health"></a>
@@ -151,14 +151,14 @@ Optional:
 
 Optional:
 
-- `max__above__watermark` (Number) MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.
-- `max__allocate` (Number) MaxAllocate is the maximum number of IPs that can be allocated to the node. When the current amount of allocated IPs will approach this value, the considered value for PreAllocate will decrease down to 0 in order to not attempt to allocate more addresses than defined.
-- `min__allocate` (Number) MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.
-- `pod__cidr__allocation__threshold` (Number) PodCIDRAllocationThreshold defines the minimum number of free IPs which must be available to this node via its pod CIDR pool. If the total number of IP addresses in the pod CIDR pool is less than this value, the pod CIDRs currently in-use by this node will be marked as depleted and cilium-operator will allocate a new pod CIDR to this node. This value effectively defines the buffer of IP addresses available immediately without requiring cilium-operator to get involved.
-- `pod__cidr__release__threshold` (Number) PodCIDRReleaseThreshold defines the maximum number of free IPs which may be available to this node via its pod CIDR pool. While the total number of free IP addresses in the pod CIDR pool is larger than this value, cilium-agent will attempt to release currently unused pod CIDRs.
+- `max_above_watermark` (Number) MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.
+- `max_allocate` (Number) MaxAllocate is the maximum number of IPs that can be allocated to the node. When the current amount of allocated IPs will approach this value, the considered value for PreAllocate will decrease down to 0 in order to not attempt to allocate more addresses than defined.
+- `min_allocate` (Number) MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.
 - `pod_cid_rs` (List of String) PodCIDRs is the list of CIDRs available to the node for allocation. When an IP is used, the IP will be added to Status.IPAM.Used
+- `pod_cidr_allocation_threshold` (Number) PodCIDRAllocationThreshold defines the minimum number of free IPs which must be available to this node via its pod CIDR pool. If the total number of IP addresses in the pod CIDR pool is less than this value, the pod CIDRs currently in-use by this node will be marked as depleted and cilium-operator will allocate a new pod CIDR to this node. This value effectively defines the buffer of IP addresses available immediately without requiring cilium-operator to get involved.
+- `pod_cidr_release_threshold` (Number) PodCIDRReleaseThreshold defines the maximum number of free IPs which may be available to this node via its pod CIDR pool. While the total number of free IP addresses in the pod CIDR pool is larger than this value, cilium-agent will attempt to release currently unused pod CIDRs.
 - `pool` (Attributes) Pool is the list of IPs available to the node for allocation. When an IP is used, the IP will remain on this list but will be added to Status.IPAM.Used (see [below for nested schema](#nestedatt--spec--ipam--pool))
-- `pre__allocate` (Number) PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.
+- `pre_allocate` (Number) PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.
 
 <a id="nestedatt--spec--ipam--pool"></a>
 ### Nested Schema for `spec.ipam.pool`

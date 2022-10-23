@@ -1579,8 +1579,6 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 						Github *struct {
 							Api *string `tfsdk:"api" yaml:"api,omitempty"`
 
-							AppSecretName *string `tfsdk:"app_secret_name" yaml:"appSecretName,omitempty"`
-
 							Labels *[]string `tfsdk:"labels" yaml:"labels,omitempty"`
 
 							Owner *string `tfsdk:"owner" yaml:"owner,omitempty"`
@@ -1593,22 +1591,6 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 								SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
 							} `tfsdk:"token_ref" yaml:"tokenRef,omitempty"`
 						} `tfsdk:"github" yaml:"github,omitempty"`
-
-						Gitlab *struct {
-							Api *string `tfsdk:"api" yaml:"api,omitempty"`
-
-							Labels *[]string `tfsdk:"labels" yaml:"labels,omitempty"`
-
-							Project *string `tfsdk:"project" yaml:"project,omitempty"`
-
-							PullRequestState *string `tfsdk:"pull_request_state" yaml:"pullRequestState,omitempty"`
-
-							TokenRef *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-							} `tfsdk:"token_ref" yaml:"tokenRef,omitempty"`
-						} `tfsdk:"gitlab" yaml:"gitlab,omitempty"`
 
 						RequeueAfterSeconds *int64 `tfsdk:"requeue_after_seconds" yaml:"requeueAfterSeconds,omitempty"`
 
@@ -1784,22 +1766,6 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 					} `tfsdk:"pull_request" yaml:"pullRequest,omitempty"`
 
 					ScmProvider *struct {
-						AzureDevOps *struct {
-							AccessTokenRef *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-							} `tfsdk:"access_token_ref" yaml:"accessTokenRef,omitempty"`
-
-							AllBranches *bool `tfsdk:"all_branches" yaml:"allBranches,omitempty"`
-
-							Api *string `tfsdk:"api" yaml:"api,omitempty"`
-
-							Organization *string `tfsdk:"organization" yaml:"organization,omitempty"`
-
-							TeamProject *string `tfsdk:"team_project" yaml:"teamProject,omitempty"`
-						} `tfsdk:"azure_dev_ops" yaml:"azureDevOps,omitempty"`
-
 						Bitbucket *struct {
 							AllBranches *bool `tfsdk:"all_branches" yaml:"allBranches,omitempty"`
 
@@ -1866,8 +1832,6 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 							AllBranches *bool `tfsdk:"all_branches" yaml:"allBranches,omitempty"`
 
 							Api *string `tfsdk:"api" yaml:"api,omitempty"`
-
-							AppSecretName *string `tfsdk:"app_secret_name" yaml:"appSecretName,omitempty"`
 
 							Organization *string `tfsdk:"organization" yaml:"organization,omitempty"`
 
@@ -2066,18 +2030,6 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 							} `tfsdk:"spec" yaml:"spec,omitempty"`
 						} `tfsdk:"template" yaml:"template,omitempty"`
 					} `tfsdk:"scm_provider" yaml:"scmProvider,omitempty"`
-
-					Selector *struct {
-						MatchExpressions *[]struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-							Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-						} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-						MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-					} `tfsdk:"selector" yaml:"selector,omitempty"`
 				} `tfsdk:"generators" yaml:"generators,omitempty"`
 
 				Template *struct {
@@ -3039,8 +2991,6 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 						Github *struct {
 							Api *string `tfsdk:"api" yaml:"api,omitempty"`
 
-							AppSecretName *string `tfsdk:"app_secret_name" yaml:"appSecretName,omitempty"`
-
 							Labels *[]string `tfsdk:"labels" yaml:"labels,omitempty"`
 
 							Owner *string `tfsdk:"owner" yaml:"owner,omitempty"`
@@ -3053,22 +3003,6 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 								SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
 							} `tfsdk:"token_ref" yaml:"tokenRef,omitempty"`
 						} `tfsdk:"github" yaml:"github,omitempty"`
-
-						Gitlab *struct {
-							Api *string `tfsdk:"api" yaml:"api,omitempty"`
-
-							Labels *[]string `tfsdk:"labels" yaml:"labels,omitempty"`
-
-							Project *string `tfsdk:"project" yaml:"project,omitempty"`
-
-							PullRequestState *string `tfsdk:"pull_request_state" yaml:"pullRequestState,omitempty"`
-
-							TokenRef *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-							} `tfsdk:"token_ref" yaml:"tokenRef,omitempty"`
-						} `tfsdk:"gitlab" yaml:"gitlab,omitempty"`
 
 						RequeueAfterSeconds *int64 `tfsdk:"requeue_after_seconds" yaml:"requeueAfterSeconds,omitempty"`
 
@@ -3244,22 +3178,6 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 					} `tfsdk:"pull_request" yaml:"pullRequest,omitempty"`
 
 					ScmProvider *struct {
-						AzureDevOps *struct {
-							AccessTokenRef *struct {
-								Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-								SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-							} `tfsdk:"access_token_ref" yaml:"accessTokenRef,omitempty"`
-
-							AllBranches *bool `tfsdk:"all_branches" yaml:"allBranches,omitempty"`
-
-							Api *string `tfsdk:"api" yaml:"api,omitempty"`
-
-							Organization *string `tfsdk:"organization" yaml:"organization,omitempty"`
-
-							TeamProject *string `tfsdk:"team_project" yaml:"teamProject,omitempty"`
-						} `tfsdk:"azure_dev_ops" yaml:"azureDevOps,omitempty"`
-
 						Bitbucket *struct {
 							AllBranches *bool `tfsdk:"all_branches" yaml:"allBranches,omitempty"`
 
@@ -3326,8 +3244,6 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 							AllBranches *bool `tfsdk:"all_branches" yaml:"allBranches,omitempty"`
 
 							Api *string `tfsdk:"api" yaml:"api,omitempty"`
-
-							AppSecretName *string `tfsdk:"app_secret_name" yaml:"appSecretName,omitempty"`
 
 							Organization *string `tfsdk:"organization" yaml:"organization,omitempty"`
 
@@ -3526,18 +3442,6 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 							} `tfsdk:"spec" yaml:"spec,omitempty"`
 						} `tfsdk:"template" yaml:"template,omitempty"`
 					} `tfsdk:"scm_provider" yaml:"scmProvider,omitempty"`
-
-					Selector *struct {
-						MatchExpressions *[]struct {
-							Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-							Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-							Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-						} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-						MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-					} `tfsdk:"selector" yaml:"selector,omitempty"`
 				} `tfsdk:"generators" yaml:"generators,omitempty"`
 
 				MergeKeys *[]string `tfsdk:"merge_keys" yaml:"mergeKeys,omitempty"`
@@ -3755,8 +3659,6 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 				Github *struct {
 					Api *string `tfsdk:"api" yaml:"api,omitempty"`
 
-					AppSecretName *string `tfsdk:"app_secret_name" yaml:"appSecretName,omitempty"`
-
 					Labels *[]string `tfsdk:"labels" yaml:"labels,omitempty"`
 
 					Owner *string `tfsdk:"owner" yaml:"owner,omitempty"`
@@ -3769,22 +3671,6 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 						SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
 					} `tfsdk:"token_ref" yaml:"tokenRef,omitempty"`
 				} `tfsdk:"github" yaml:"github,omitempty"`
-
-				Gitlab *struct {
-					Api *string `tfsdk:"api" yaml:"api,omitempty"`
-
-					Labels *[]string `tfsdk:"labels" yaml:"labels,omitempty"`
-
-					Project *string `tfsdk:"project" yaml:"project,omitempty"`
-
-					PullRequestState *string `tfsdk:"pull_request_state" yaml:"pullRequestState,omitempty"`
-
-					TokenRef *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-					} `tfsdk:"token_ref" yaml:"tokenRef,omitempty"`
-				} `tfsdk:"gitlab" yaml:"gitlab,omitempty"`
 
 				RequeueAfterSeconds *int64 `tfsdk:"requeue_after_seconds" yaml:"requeueAfterSeconds,omitempty"`
 
@@ -3960,22 +3846,6 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 			} `tfsdk:"pull_request" yaml:"pullRequest,omitempty"`
 
 			ScmProvider *struct {
-				AzureDevOps *struct {
-					AccessTokenRef *struct {
-						Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-						SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-					} `tfsdk:"access_token_ref" yaml:"accessTokenRef,omitempty"`
-
-					AllBranches *bool `tfsdk:"all_branches" yaml:"allBranches,omitempty"`
-
-					Api *string `tfsdk:"api" yaml:"api,omitempty"`
-
-					Organization *string `tfsdk:"organization" yaml:"organization,omitempty"`
-
-					TeamProject *string `tfsdk:"team_project" yaml:"teamProject,omitempty"`
-				} `tfsdk:"azure_dev_ops" yaml:"azureDevOps,omitempty"`
-
 				Bitbucket *struct {
 					AllBranches *bool `tfsdk:"all_branches" yaml:"allBranches,omitempty"`
 
@@ -4042,8 +3912,6 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 					AllBranches *bool `tfsdk:"all_branches" yaml:"allBranches,omitempty"`
 
 					Api *string `tfsdk:"api" yaml:"api,omitempty"`
-
-					AppSecretName *string `tfsdk:"app_secret_name" yaml:"appSecretName,omitempty"`
 
 					Organization *string `tfsdk:"organization" yaml:"organization,omitempty"`
 
@@ -4242,21 +4110,7 @@ type ArgoprojIoApplicationSetV1Alpha1GoModel struct {
 					} `tfsdk:"spec" yaml:"spec,omitempty"`
 				} `tfsdk:"template" yaml:"template,omitempty"`
 			} `tfsdk:"scm_provider" yaml:"scmProvider,omitempty"`
-
-			Selector *struct {
-				MatchExpressions *[]struct {
-					Key *string `tfsdk:"key" yaml:"key,omitempty"`
-
-					Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
-
-					Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
-				} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
-
-				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
-			} `tfsdk:"selector" yaml:"selector,omitempty"`
 		} `tfsdk:"generators" yaml:"generators,omitempty"`
-
-		GoTemplate *bool `tfsdk:"go_template" yaml:"goTemplate,omitempty"`
 
 		SyncPolicy *struct {
 			PreserveResourcesOnDeletion *bool `tfsdk:"preserve_resources_on_deletion" yaml:"preserveResourcesOnDeletion,omitempty"`
@@ -13134,17 +12988,6 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"app_secret_name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"labels": {
 																Description:         "",
 																MarkdownDescription: "",
@@ -13175,96 +13018,6 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																Required: true,
 																Optional: false,
-																Computed: false,
-															},
-
-															"token_ref": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"secret_name": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"gitlab": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"api": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"labels": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"project": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"pull_request_state": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
 																Computed: false,
 															},
 
@@ -14287,96 +14040,6 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"azure_dev_ops": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"access_token_ref": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"secret_name": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"all_branches": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"api": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"organization": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"team_project": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
 													"bitbucket": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -14744,17 +14407,6 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 															},
 
 															"api": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"app_secret_name": {
 																Description:         "",
 																MarkdownDescription: "",
 
@@ -15867,74 +15519,6 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"selector": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"match_expressions": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"operator": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"values": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"match_labels": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.MapType{ElemType: types.StringType},
 
 														Required: false,
 														Optional: true,
@@ -21351,17 +20935,6 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 
-															"app_secret_name": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"labels": {
 																Description:         "",
 																MarkdownDescription: "",
@@ -21392,96 +20965,6 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 
 																Required: true,
 																Optional: false,
-																Computed: false,
-															},
-
-															"token_ref": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"secret_name": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"gitlab": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"api": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"labels": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"project": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"pull_request_state": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
 																Computed: false,
 															},
 
@@ -22504,96 +21987,6 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-													"azure_dev_ops": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-															"access_token_ref": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-																	"key": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-
-																	"secret_name": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
-
-																		Required: true,
-																		Optional: false,
-																		Computed: false,
-																	},
-																}),
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"all_branches": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.BoolType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"api": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"organization": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"team_project": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
 													"bitbucket": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -22961,17 +22354,6 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 															},
 
 															"api": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"app_secret_name": {
 																Description:         "",
 																MarkdownDescription: "",
 
@@ -24084,74 +23466,6 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 																Computed: false,
 															},
 														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"selector": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"match_expressions": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-															"key": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"operator": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.StringType,
-
-																Required: true,
-																Optional: false,
-																Computed: false,
-															},
-
-															"values": {
-																Description:         "",
-																MarkdownDescription: "",
-
-																Type: types.ListType{ElemType: types.StringType},
-
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														}),
-
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"match_labels": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.MapType{ElemType: types.StringType},
 
 														Required: false,
 														Optional: true,
@@ -25381,17 +24695,6 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 												Computed: false,
 											},
 
-											"app_secret_name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"labels": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -25422,96 +24725,6 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 
 												Required: true,
 												Optional: false,
-												Computed: false,
-											},
-
-											"token_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"key": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"secret_name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"gitlab": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"api": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"labels": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"project": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"pull_request_state": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
 												Computed: false,
 											},
 
@@ -26534,96 +25747,6 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"azure_dev_ops": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"access_token_ref": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-													"key": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-
-													"secret_name": {
-														Description:         "",
-														MarkdownDescription: "",
-
-														Type: types.StringType,
-
-														Required: true,
-														Optional: false,
-														Computed: false,
-													},
-												}),
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"all_branches": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"api": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"organization": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"team_project": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"bitbucket": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -26991,17 +26114,6 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 											},
 
 											"api": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"app_secret_name": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -28125,89 +27237,10 @@ func (r *ArgoprojIoApplicationSetV1Alpha1Resource) GetSchema(_ context.Context) 
 								Optional: true,
 								Computed: false,
 							},
-
-							"selector": {
-								Description:         "",
-								MarkdownDescription: "",
-
-								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-									"match_expressions": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
-
-											"key": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"operator": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
-
-												Required: true,
-												Optional: false,
-												Computed: false,
-											},
-
-											"values": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.ListType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"match_labels": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								}),
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 						}),
 
 						Required: true,
 						Optional: false,
-						Computed: false,
-					},
-
-					"go_template": {
-						Description:         "",
-						MarkdownDescription: "",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
 						Computed: false,
 					},
 

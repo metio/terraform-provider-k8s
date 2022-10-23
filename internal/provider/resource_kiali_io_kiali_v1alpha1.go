@@ -66,7 +66,11 @@ type KialiIoKialiV1Alpha1GoModel struct {
 			Namespaces *struct {
 				Exclude *[]string `tfsdk:"exclude" yaml:"exclude,omitempty"`
 
-				Label_selector *string `tfsdk:"label_selector" yaml:"label_selector,omitempty"`
+				Include *[]string `tfsdk:"include" yaml:"include,omitempty"`
+
+				Label_selector_exclude *string `tfsdk:"label_selector_exclude" yaml:"label_selector_exclude,omitempty"`
+
+				Label_selector_include *string `tfsdk:"label_selector_include" yaml:"label_selector_include,omitempty"`
 			} `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 		} `tfsdk:"api" yaml:"api,omitempty"`
 
@@ -768,9 +772,31 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 										Computed: false,
 									},
 
-									"label_selector": {
-										Description:         "A Kubernetes label selector (e.g. 'myLabel=myValue') which is used when fetching the list ofavailable namespaces. This does not affect explicit namespace access.If 'deployment.accessible_namespaces' does not have the special value of ''**''then the Kiali operator will add a new label to all accessible namespaces - that newlabel will be this 'label_selector'.Note that if you do not set this 'label_selector' setting but 'deployment.accessible_namespaces'does not have the special 'all namespaces' entry of ''**'' then this 'label_selector' will be setto a default value of 'kiali.io/[<deployment.instance_name>.]member-of=<deployment.namespace>'where '[<deployment.instance_name>.]' is the instance name assigned to the Kiali installationif it is not the default 'kiali' (otherwise, this is omitted) and '<deployment.namespace>'is the namespace where Kiali is to be installed.",
-										MarkdownDescription: "A Kubernetes label selector (e.g. 'myLabel=myValue') which is used when fetching the list ofavailable namespaces. This does not affect explicit namespace access.If 'deployment.accessible_namespaces' does not have the special value of ''**''then the Kiali operator will add a new label to all accessible namespaces - that newlabel will be this 'label_selector'.Note that if you do not set this 'label_selector' setting but 'deployment.accessible_namespaces'does not have the special 'all namespaces' entry of ''**'' then this 'label_selector' will be setto a default value of 'kiali.io/[<deployment.instance_name>.]member-of=<deployment.namespace>'where '[<deployment.instance_name>.]' is the instance name assigned to the Kiali installationif it is not the default 'kiali' (otherwise, this is omitted) and '<deployment.namespace>'is the namespace where Kiali is to be installed.",
+									"include": {
+										Description:         "A list of namespaces to be included in the list of namespaces provided by the Kiali API and Kiali UI (if those namespaces exist). Regex is supported. An undefined or empty list is ignored. This does not affect explicit namespace access.",
+										MarkdownDescription: "A list of namespaces to be included in the list of namespaces provided by the Kiali API and Kiali UI (if those namespaces exist). Regex is supported. An undefined or empty list is ignored. This does not affect explicit namespace access.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"label_selector_exclude": {
+										Description:         "A Kubernetes label selector (e.g. 'myLabel=myValue') which is used for filtering out namespaceswhen fetching the list of available namespaces. This does not affect explicit namespace access.",
+										MarkdownDescription: "A Kubernetes label selector (e.g. 'myLabel=myValue') which is used for filtering out namespaceswhen fetching the list of available namespaces. This does not affect explicit namespace access.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"label_selector_include": {
+										Description:         "A Kubernetes label selector (e.g. 'myLabel=myValue') which is used when fetching the list ofavailable namespaces. This does not affect explicit namespace access.If 'deployment.accessible_namespaces' does not have the special value of ''**''then the Kiali operator will add a new label to all accessible namespaces - that newlabel will be this 'label_selector_include' (this label is added regardless if the namespace matches the label_selector_exclude also).Note that if you do not set this 'label_selector_include' setting but 'deployment.accessible_namespaces'does not have the special 'all namespaces' entry of ''**'' then this 'label_selector_include' will be setto a default value of 'kiali.io/[<deployment.instance_name>.]member-of=<deployment.namespace>'where '[<deployment.instance_name>.]' is the instance name assigned to the Kiali installationif it is not the default 'kiali' (otherwise, this is omitted) and '<deployment.namespace>'is the namespace where Kiali is to be installed.",
+										MarkdownDescription: "A Kubernetes label selector (e.g. 'myLabel=myValue') which is used when fetching the list ofavailable namespaces. This does not affect explicit namespace access.If 'deployment.accessible_namespaces' does not have the special value of ''**''then the Kiali operator will add a new label to all accessible namespaces - that newlabel will be this 'label_selector_include' (this label is added regardless if the namespace matches the label_selector_exclude also).Note that if you do not set this 'label_selector_include' setting but 'deployment.accessible_namespaces'does not have the special 'all namespaces' entry of ''**'' then this 'label_selector_include' will be setto a default value of 'kiali.io/[<deployment.instance_name>.]member-of=<deployment.namespace>'where '[<deployment.instance_name>.]' is the instance name assigned to the Kiali installationif it is not the default 'kiali' (otherwise, this is omitted) and '<deployment.namespace>'is the namespace where Kiali is to be installed.",
 
 										Type: types.StringType,
 

@@ -11115,11 +11115,21 @@ Optional:
 - `name` (String)
 - `node_count` (Number)
 - `node_selector` (Map of String)
+- `proxy_resources` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--elasticsearch--proxy_resources))
 - `redundancy_policy` (String)
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--elasticsearch--resources))
 - `storage` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--elasticsearch--storage))
 - `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--elasticsearch--tolerations))
 - `use_cert_management` (Boolean)
+
+<a id="nestedatt--spec--storage--elasticsearch--proxy_resources"></a>
+### Nested Schema for `spec.storage.elasticsearch.use_cert_management`
+
+Optional:
+
+- `limits` (Map of String)
+- `requests` (Map of String)
+
 
 <a id="nestedatt--spec--storage--elasticsearch--resources"></a>
 ### Nested Schema for `spec.storage.elasticsearch.use_cert_management`

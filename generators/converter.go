@@ -88,7 +88,7 @@ func upperCaseFirstLetter(s string) string {
 	return string(r)
 }
 
-func file(group string, kind string, version string) string {
+func terraformResourceFile(group string, kind string, version string) string {
 	if len(group) > 0 {
 		return fmt.Sprintf("resource_%s_%s_%s.go", toSnakeCase(group), toSnakeCase(kind), version)
 	}
@@ -124,7 +124,10 @@ func goModelType(group string, kind string, version string) string {
 }
 
 func terraformAttributeName(str string) string {
-	clean := matchDashes.ReplaceAllString(str, "__")
+	clean := str
+	if strings.HasPrefix(clean, "-") {
+		clean = strings.Replace(clean, "-", "", 1)
+	}
 	if strings.HasPrefix(clean, "3") {
 		clean = strings.Replace(clean, "3", "Three", 1)
 	}

@@ -67,8 +67,7 @@ Optional:
 - `disabled` (Boolean) When disabled is true, Calico IPAM will not assign addresses from this pool.
 - `ipip` (Attributes) Deprecated: this field is only used for APIv1 backwards compatibility. Setting this field is not allowed, this field is for internal use only. (see [below for nested schema](#nestedatt--spec--ipip))
 - `ipip_mode` (String) Contains configuration for IPIP tunneling for this pool. If not specified, then this is defaulted to 'Never' (i.e. IPIP tunneling is disabled).
-- `nat__outgoing` (Boolean) Deprecated: this field is only used for APIv1 backwards compatibility. Setting this field is not allowed, this field is for internal use only.
-- `nat_outgoing` (Boolean) When nat-outgoing is true, packets sent from Calico networked containers in this pool to destinations outside of this pool will be masqueraded.
+- `nat_outgoing` (Boolean) When natOutgoing is true, packets sent from Calico networked containers in this pool to destinations outside of this pool will be masqueraded.
 - `node_selector` (String) Allows IPPool to allocate for a specific node by label selector.
 - `vxlan_mode` (String) Contains configuration for VXLAN tunneling for this pool. If not specified, then this is defaulted to 'Never' (i.e. VXLAN tunneling is disabled).
 

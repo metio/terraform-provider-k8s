@@ -57,10 +57,10 @@ Optional:
 
 Optional:
 
-- `inhibit_rules` (Attributes List) List of inhibition rules. The rules will only apply to alerts matching the resource’s namespace. (see [below for nested schema](#nestedatt--spec--inhibit_rules))
+- `inhibit_rules` (Attributes List) List of inhibition rules. The rules will only apply to alerts matching the resource's namespace. (see [below for nested schema](#nestedatt--spec--inhibit_rules))
 - `mute_time_intervals` (Attributes List) List of MuteTimeInterval specifying when the routes should be muted. (see [below for nested schema](#nestedatt--spec--mute_time_intervals))
 - `receivers` (Attributes List) List of receivers. (see [below for nested schema](#nestedatt--spec--receivers))
-- `route` (Attributes) The Alertmanager route definition for alerts matching the resource’s namespace. If present, it will be added to the generated Alertmanager configuration as a first-level route. (see [below for nested schema](#nestedatt--spec--route))
+- `route` (Attributes) The Alertmanager route definition for alerts matching the resource's namespace. If present, it will be added to the generated Alertmanager configuration as a first-level route. (see [below for nested schema](#nestedatt--spec--route))
 
 <a id="nestedatt--spec--inhibit_rules"></a>
 ### Nested Schema for `spec.inhibit_rules`
@@ -68,8 +68,8 @@ Optional:
 Optional:
 
 - `equal` (List of String) Labels that must have an equal value in the source and target alert for the inhibition to take effect.
-- `source_match` (Attributes List) Matchers for which one or more alerts have to exist for the inhibition to take effect. The operator enforces that the alert matches the resource’s namespace. (see [below for nested schema](#nestedatt--spec--inhibit_rules--source_match))
-- `target_match` (Attributes List) Matchers that have to be fulfilled in the alerts to be muted. The operator enforces that the alert matches the resource’s namespace. (see [below for nested schema](#nestedatt--spec--inhibit_rules--target_match))
+- `source_match` (Attributes List) Matchers for which one or more alerts have to exist for the inhibition to take effect. The operator enforces that the alert matches the resource's namespace. (see [below for nested schema](#nestedatt--spec--inhibit_rules--source_match))
+- `target_match` (Attributes List) Matchers that have to be fulfilled in the alerts to be muted. The operator enforces that the alert matches the resource's namespace. (see [below for nested schema](#nestedatt--spec--inhibit_rules--target_match))
 
 <a id="nestedatt--spec--inhibit_rules--source_match"></a>
 ### Nested Schema for `spec.inhibit_rules.source_match`
@@ -942,10 +942,10 @@ Optional:
 - `send_resolved` (Boolean) Whether or not to notify about resolved alerts.
 - `sound` (String) The name of one of the sounds supported by device clients to override the user's default sound choice
 - `title` (String) Notification title.
-- `token` (Attributes) The secret's key that contains the registered application’s API token, see https://pushover.net/apps. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--token))
+- `token` (Attributes) The secret's key that contains the registered application's API token, see https://pushover.net/apps. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--token))
 - `url` (String) A supplementary URL shown alongside the message.
 - `url_title` (String) A title for supplementary URL, otherwise just the URL is shown
-- `user_key` (Attributes) The secret's key that contains the recipient user’s user key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key))
+- `user_key` (Attributes) The secret's key that contains the recipient user's user key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key))
 
 <a id="nestedatt--spec--receivers--pushover_configs--http_config"></a>
 ### Nested Schema for `spec.receivers.pushover_configs.user_key`
@@ -2942,7 +2942,7 @@ Optional:
 - `group_by` (List of String) List of labels to group by. Labels must not be repeated (unique list). Special label '...' (aggregate by all possible labels), if provided, must be the only element in the list.
 - `group_interval` (String) How long to wait before sending an updated notification. Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$' Example: '5m'
 - `group_wait` (String) How long to wait before sending the initial notification. Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$' Example: '30s'
-- `matchers` (Attributes List) List of matchers that the alert’s labels should match. For the first level route, the operator removes any existing equality and regexp matcher on the 'namespace' label and adds a 'namespace: <object namespace>' matcher. (see [below for nested schema](#nestedatt--spec--route--matchers))
+- `matchers` (Attributes List) List of matchers that the alert's labels should match. For the first level route, the operator removes any existing equality and regexp matcher on the 'namespace' label and adds a 'namespace: <object namespace>' matcher. (see [below for nested schema](#nestedatt--spec--route--matchers))
 - `mute_time_intervals` (List of String) Note: this comment applies to the field definition above but appears below otherwise it gets included in the generated manifest. CRD schema doesn't support self-referential types for now (see https://github.com/kubernetes/kubernetes/issues/62872). We have to use an alternative type to circumvent the limitation. The downside is that the Kube API can't validate the data beyond the fact that it is a valid JSON representation. MuteTimeIntervals is a list of MuteTimeInterval names that will mute this route when matched,
 - `receiver` (String) Name of the receiver for this route. If not empty, it should be listed in the 'receivers' field.
 - `repeat_interval` (String) How long to wait before repeating the last notification. Must match the regular expression'^(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?$' Example: '4h'

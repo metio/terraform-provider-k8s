@@ -181,7 +181,7 @@ Optional:
 - `title` (String)
 - `type` (String)
 - `unique_items` (Boolean)
-- `x__descriptors` (List of String) XDescriptors is a list of extended properties that trigger a custom behavior in external systems
+- `x_descriptors` (List of String) XDescriptors is a list of extended properties that trigger a custom behavior in external systems
 
 
 
@@ -200,7 +200,7 @@ Optional:
 - `loader` (String) Loader is an optional id of the org.apache.camel.k.RoutesLoader that will interpret this source at runtime
 - `name` (String) the name of the specification
 - `path` (String) the path where the file is stored
-- `property__names` (List of String) List of property names defined in the source (e.g. if type is 'template')
+- `property_names` (List of String) List of property names defined in the source (e.g. if type is 'template')
 - `raw_content` (String) the source code (binary)
 - `type` (String) Type defines the kind of source described by this object
 
@@ -264,6 +264,6 @@ Optional:
 - `title` (String)
 - `type` (String)
 - `unique_items` (Boolean)
-- `x__descriptors` (List of String) XDescriptors is a list of extended properties that trigger a custom behavior in external systems
+- `x_descriptors` (List of String) XDescriptors is a list of extended properties that trigger a custom behavior in external systems
 
 

@@ -1,5 +1,3 @@
-# source: https://github.com/aws-controllers-k8s/rds-controller/blob/main/config/crd/bases/rds.services.k8s.aws_dbclusters.yaml
-
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -16,25 +14,25 @@ spec:
     singular: dbcluster
   scope: Namespaced
   versions:
-    - name: v1alpha1
-      schema:
-        openAPIV3Schema:
-          description: DBCluster is the Schema for the DBClusters API
-          properties:
-            apiVersion:
-              description: 'APIVersion defines the versioned schema of this representation
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: DBCluster is the Schema for the DBClusters API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
               of an object. Servers should convert recognized schemas to the latest
               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
-              type: string
-            kind:
-              description: 'Kind is a string value representing the REST resource this
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
               object represents. Servers may infer this from the endpoint the client
               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
-              type: string
-            metadata:
-              type: object
-            spec:
-              description: "DBClusterSpec defines the desired state of DBCluster. \n
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: "DBClusterSpec defines the desired state of DBCluster. \n
               Contains the details of an Amazon Aurora DB cluster or Multi-AZ DB cluster.
               \n For an Amazon Aurora DB cluster, this data type is used as a response
               element in the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters,
@@ -50,69 +48,69 @@ spec:
               DB clusters, see Multi-AZ deployments with two readable standby DB instances
               (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
               in the Amazon RDS User Guide."
-              properties:
-                allocatedStorage:
-                  description: "The amount of storage in gibibytes (GiB) to allocate
+            properties:
+              allocatedStorage:
+                description: "The amount of storage in gibibytes (GiB) to allocate
                   to each DB instance in the Multi-AZ DB cluster. \n This setting
                   is required to create a Multi-AZ DB cluster. \n Valid for: Multi-AZ
                   DB clusters only"
-                  format: int64
-                  type: integer
-                autoMinorVersionUpgrade:
-                  description: "A value that indicates whether minor engine upgrades
+                format: int64
+                type: integer
+              autoMinorVersionUpgrade:
+                description: "A value that indicates whether minor engine upgrades
                   are applied automatically to the DB cluster during the maintenance
                   window. By default, minor engine upgrades are applied automatically.
                   \n Valid for: Multi-AZ DB clusters only"
-                  type: boolean
-                availabilityZones:
-                  description: "A list of Availability Zones (AZs) where DB instances
+                type: boolean
+              availabilityZones:
+                description: "A list of Availability Zones (AZs) where DB instances
                   in the DB cluster can be created. \n For information on Amazon Web
                   Services Regions and Availability Zones, see Choosing the Regions
                   and Availability Zones (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.RegionsAndAvailabilityZones.html)
                   in the Amazon Aurora User Guide. \n Valid for: Aurora DB clusters
                   only"
-                  items:
-                    type: string
-                  type: array
-                backtrackWindow:
-                  description: "The target backtrack window, in seconds. To disable
+                items:
+                  type: string
+                type: array
+              backtrackWindow:
+                description: "The target backtrack window, in seconds. To disable
                   backtracking, set this value to 0. \n Default: 0 \n Constraints:
                   \n * If specified, this value must be set to a number from 0 to
                   259,200 (72 hours). \n Valid for: Aurora MySQL DB clusters only"
-                  format: int64
-                  type: integer
-                backupRetentionPeriod:
-                  description: "The number of days for which automated backups are retained.
+                format: int64
+                type: integer
+              backupRetentionPeriod:
+                description: "The number of days for which automated backups are retained.
                   \n Default: 1 \n Constraints: \n * Must be a value from 1 to 35
                   \n Valid for: Aurora DB clusters and Multi-AZ DB clusters"
-                  format: int64
-                  type: integer
-                characterSetName:
-                  description: "A value that indicates that the DB cluster should be
+                format: int64
+                type: integer
+              characterSetName:
+                description: "A value that indicates that the DB cluster should be
                   associated with the specified CharacterSet. \n Valid for: Aurora
                   DB clusters only"
-                  type: string
-                copyTagsToSnapshot:
-                  description: "A value that indicates whether to copy all tags from
+                type: string
+              copyTagsToSnapshot:
+                description: "A value that indicates whether to copy all tags from
                   the DB cluster to snapshots of the DB cluster. The default is not
                   to copy them. \n Valid for: Aurora DB clusters and Multi-AZ DB clusters"
-                  type: boolean
-                databaseName:
-                  description: "The name for your database of up to 64 alphanumeric
+                type: boolean
+              databaseName:
+                description: "The name for your database of up to 64 alphanumeric
                   characters. If you do not provide a name, Amazon RDS doesn't create
                   a database in the DB cluster you are creating. \n Valid for: Aurora
                   DB clusters and Multi-AZ DB clusters"
-                  type: string
-                dbClusterIdentifier:
-                  description: "The DB cluster identifier. This parameter is stored
+                type: string
+              dbClusterIdentifier:
+                description: "The DB cluster identifier. This parameter is stored
                   as a lowercase string. \n Constraints: \n * Must contain from 1
                   to 63 letters, numbers, or hyphens. \n * First character must be
                   a letter. \n * Can't end with a hyphen or contain two consecutive
                   hyphens. \n Example: my-cluster1 \n Valid for: Aurora DB clusters
                   and Multi-AZ DB clusters"
-                  type: string
-                dbClusterInstanceClass:
-                  description: "The compute and memory capacity of each DB instance
+                type: string
+              dbClusterInstanceClass:
+                description: "The compute and memory capacity of each DB instance
                   in the Multi-AZ DB cluster, for example db.m6g.xlarge. Not all DB
                   instance classes are available in all Amazon Web Services Regions,
                   or for all database engines. \n For the full list of DB instance
@@ -120,73 +118,73 @@ spec:
                   (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
                   in the Amazon RDS User Guide. \n This setting is required to create
                   a Multi-AZ DB cluster. \n Valid for: Multi-AZ DB clusters only"
-                  type: string
-                dbClusterParameterGroupName:
-                  description: "The name of the DB cluster parameter group to associate
+                type: string
+              dbClusterParameterGroupName:
+                description: "The name of the DB cluster parameter group to associate
                   with this DB cluster. If you do not specify a value, then the default
                   DB cluster parameter group for the specified DB engine and version
                   is used. \n Constraints: \n * If supplied, must match the name of
                   an existing DB cluster parameter group. \n Valid for: Aurora DB
                   clusters and Multi-AZ DB clusters"
-                  type: string
-                dbClusterParameterGroupRef:
-                  description: 'AWSResourceReferenceWrapper provides a wrapper around
+                type: string
+              dbClusterParameterGroupRef:
+                description: 'AWSResourceReferenceWrapper provides a wrapper around
                   *AWSResourceReference type to provide more user friendly syntax
                   for references using ''from'' field Ex: APIIDRef: from: name: my-api'
-                  properties:
-                    from:
-                      description: AWSResourceReference provides all the values necessary
-                        to reference another k8s resource for finding the identifier(Id/ARN/Name)
-                      properties:
-                        name:
-                          type: string
-                      type: object
-                  type: object
-                dbSubnetGroupName:
-                  description: "A DB subnet group to associate with this DB cluster.
+                properties:
+                  from:
+                    description: AWSResourceReference provides all the values necessary
+                      to reference another k8s resource for finding the identifier(Id/ARN/Name)
+                    properties:
+                      name:
+                        type: string
+                    type: object
+                type: object
+              dbSubnetGroupName:
+                description: "A DB subnet group to associate with this DB cluster.
                   \n This setting is required to create a Multi-AZ DB cluster. \n
                   Constraints: Must match the name of an existing DBSubnetGroup. Must
                   not be default. \n Example: mydbsubnetgroup \n Valid for: Aurora
                   DB clusters and Multi-AZ DB clusters"
-                  type: string
-                dbSubnetGroupRef:
-                  description: 'AWSResourceReferenceWrapper provides a wrapper around
+                type: string
+              dbSubnetGroupRef:
+                description: 'AWSResourceReferenceWrapper provides a wrapper around
                   *AWSResourceReference type to provide more user friendly syntax
                   for references using ''from'' field Ex: APIIDRef: from: name: my-api'
-                  properties:
-                    from:
-                      description: AWSResourceReference provides all the values necessary
-                        to reference another k8s resource for finding the identifier(Id/ARN/Name)
-                      properties:
-                        name:
-                          type: string
-                      type: object
-                  type: object
-                deletionProtection:
-                  description: "A value that indicates whether the DB cluster has deletion
+                properties:
+                  from:
+                    description: AWSResourceReference provides all the values necessary
+                      to reference another k8s resource for finding the identifier(Id/ARN/Name)
+                    properties:
+                      name:
+                        type: string
+                    type: object
+                type: object
+              deletionProtection:
+                description: "A value that indicates whether the DB cluster has deletion
                   protection enabled. The database can't be deleted when deletion
                   protection is enabled. By default, deletion protection isn't enabled.
                   \n Valid for: Aurora DB clusters and Multi-AZ DB clusters"
-                  type: boolean
-                destinationRegion:
-                  description: DestinationRegion is used for presigning the request
-                    to a given region.
-                  type: string
-                domain:
-                  description: "The Active Directory directory ID to create the DB cluster
+                type: boolean
+              destinationRegion:
+                description: DestinationRegion is used for presigning the request
+                  to a given region.
+                type: string
+              domain:
+                description: "The Active Directory directory ID to create the DB cluster
                   in. \n For Amazon Aurora DB clusters, Amazon RDS can use Kerberos
                   authentication to authenticate users that connect to the DB cluster.
                   \n For more information, see Kerberos authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/kerberos-authentication.html)
                   in the Amazon Aurora User Guide. \n Valid for: Aurora DB clusters
                   only"
-                  type: string
-                domainIAMRoleName:
-                  description: "Specify the name of the IAM role to be used when making
+                type: string
+              domainIAMRoleName:
+                description: "Specify the name of the IAM role to be used when making
                   API calls to the Directory Service. \n Valid for: Aurora DB clusters
                   only"
-                  type: string
-                enableCloudwatchLogsExports:
-                  description: "The list of log types that need to be enabled for exporting
+                type: string
+              enableCloudwatchLogsExports:
+                description: "The list of log types that need to be enabled for exporting
                   to CloudWatch Logs. The values in the list depend on the DB engine
                   being used. \n RDS for MySQL \n Possible values are error, general,
                   and slowquery. \n RDS for PostgreSQL \n Possible values are postgresql
@@ -200,11 +198,11 @@ spec:
                   to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
                   in the Amazon Aurora User Guide. \n Valid for: Aurora DB clusters
                   and Multi-AZ DB clusters"
-                  items:
-                    type: string
-                  type: array
-                enableGlobalWriteForwarding:
-                  description: "A value that indicates whether to enable this DB cluster
+                items:
+                  type: string
+                type: array
+              enableGlobalWriteForwarding:
+                description: "A value that indicates whether to enable this DB cluster
                   to forward write operations to the primary cluster of an Aurora
                   global database (GlobalCluster). By default, write operations are
                   not allowed on Aurora DB clusters that are secondary clusters in
@@ -216,9 +214,9 @@ spec:
                   database, this value is used immediately if the primary is demoted
                   by the FailoverGlobalCluster API operation, but it does nothing
                   until then. \n Valid for: Aurora DB clusters only"
-                  type: boolean
-                enableHTTPEndpoint:
-                  description: "A value that indicates whether to enable the HTTP endpoint
+                type: boolean
+              enableHTTPEndpoint:
+                description: "A value that indicates whether to enable the HTTP endpoint
                   for an Aurora Serverless v1 DB cluster. By default, the HTTP endpoint
                   is disabled. \n When enabled, the HTTP endpoint provides a connectionless
                   web service API for running SQL queries on the Aurora Serverless
@@ -227,31 +225,31 @@ spec:
                   Using the Data API for Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
                   in the Amazon Aurora User Guide. \n Valid for: Aurora DB clusters
                   only"
-                  type: boolean
-                enableIAMDatabaseAuthentication:
-                  description: "A value that indicates whether to enable mapping of
+                type: boolean
+              enableIAMDatabaseAuthentication:
+                description: "A value that indicates whether to enable mapping of
                   Amazon Web Services Identity and Access Management (IAM) accounts
                   to database accounts. By default, mapping isn't enabled. \n For
                   more information, see IAM Database Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html)
                   in the Amazon Aurora User Guide. \n Valid for: Aurora DB clusters
                   only"
-                  type: boolean
-                enablePerformanceInsights:
-                  description: "A value that indicates whether to turn on Performance
+                type: boolean
+              enablePerformanceInsights:
+                description: "A value that indicates whether to turn on Performance
                   Insights for the DB cluster. \n For more information, see Using
                   Amazon Performance Insights (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html)
                   in the Amazon RDS User Guide. \n Valid for: Multi-AZ DB clusters
                   only"
-                  type: boolean
-                engine:
-                  description: "The name of the database engine to be used for this
+                type: boolean
+              engine:
+                description: "The name of the database engine to be used for this
                   DB cluster. \n Valid Values: \n * aurora (for MySQL 5.6-compatible
                   Aurora) \n * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible
                   Aurora) \n * aurora-postgresql \n * mysql \n * postgres \n Valid
                   for: Aurora DB clusters and Multi-AZ DB clusters"
-                  type: string
-                engineMode:
-                  description: "The DB engine mode of the DB cluster, either provisioned,
+                type: string
+              engineMode:
+                description: "The DB engine mode of the DB cluster, either provisioned,
                   serverless, parallelquery, global, or multimaster. \n The parallelquery
                   engine mode isn't required for Aurora MySQL version 1.23 and higher
                   1.x versions, and version 2.09 and higher 2.x versions. \n The global
@@ -270,9 +268,9 @@ spec:
                   \n * Limitations of Aurora Global Databases (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database.limitations)
                   \n * Limitations of Multi-Master Clusters (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-multi-master.html#aurora-multi-master-limitations)
                   \n Valid for: Aurora DB clusters only"
-                  type: string
-                engineVersion:
-                  description: "The version number of the database engine to use. \n
+                type: string
+              engineVersion:
+                description: "The version number of the database engine to use. \n
                   To list all of the available engine versions for MySQL 5.6-compatible
                   Aurora, use the following command: \n aws rds describe-db-engine-versions
                   --engine aurora --query \"DBEngineVersions[].EngineVersion\" \n
@@ -298,14 +296,14 @@ spec:
                   see Amazon RDS for PostgreSQL versions and extensions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts)
                   in the Amazon RDS User Guide. \n Valid for: Aurora DB clusters and
                   Multi-AZ DB clusters"
-                  type: string
-                globalClusterIdentifier:
-                  description: "The global cluster ID of an Aurora cluster that becomes
+                type: string
+              globalClusterIdentifier:
+                description: "The global cluster ID of an Aurora cluster that becomes
                   the primary cluster in the new global database cluster. \n Valid
                   for: Aurora DB clusters only"
-                  type: string
-                iops:
-                  description: "The amount of Provisioned IOPS (input/output operations
+                type: string
+              iops:
+                description: "The amount of Provisioned IOPS (input/output operations
                   per second) to be initially allocated for each DB instance in the
                   Multi-AZ DB cluster. \n For information about valid Iops values,
                   see Amazon RDS Provisioned IOPS storage to improve performance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
@@ -313,10 +311,10 @@ spec:
                   a Multi-AZ DB cluster. \n Constraints: Must be a multiple between
                   .5 and 50 of the storage amount for the DB cluster. \n Valid for:
                   Multi-AZ DB clusters only"
-                  format: int64
-                  type: integer
-                kmsKeyID:
-                  description: "The Amazon Web Services KMS key identifier for an encrypted
+                format: int64
+                type: integer
+              kmsKeyID:
+                description: "The Amazon Web Services KMS key identifier for an encrypted
                   DB cluster. \n The Amazon Web Services KMS key identifier is the
                   key ARN, key ID, alias ARN, or alias name for the KMS key. To use
                   a KMS key in a different Amazon Web Services account, specify the
@@ -334,58 +332,58 @@ spec:
                   destination Amazon Web Services Region. This KMS key is used to
                   encrypt the read replica in that Amazon Web Services Region. \n
                   Valid for: Aurora DB clusters and Multi-AZ DB clusters"
-                  type: string
-                kmsKeyRef:
-                  description: 'AWSResourceReferenceWrapper provides a wrapper around
+                type: string
+              kmsKeyRef:
+                description: 'AWSResourceReferenceWrapper provides a wrapper around
                   *AWSResourceReference type to provide more user friendly syntax
                   for references using ''from'' field Ex: APIIDRef: from: name: my-api'
-                  properties:
-                    from:
-                      description: AWSResourceReference provides all the values necessary
-                        to reference another k8s resource for finding the identifier(Id/ARN/Name)
-                      properties:
-                        name:
-                          type: string
-                      type: object
-                  type: object
-                masterUserPassword:
-                  description: "The password for the master database user. This password
+                properties:
+                  from:
+                    description: AWSResourceReference provides all the values necessary
+                      to reference another k8s resource for finding the identifier(Id/ARN/Name)
+                    properties:
+                      name:
+                        type: string
+                    type: object
+                type: object
+              masterUserPassword:
+                description: "The password for the master database user. This password
                   can contain any printable ASCII character except \"/\", \"\"\",
                   or \"@\". \n Constraints: Must contain from 8 to 41 characters.
                   \n Valid for: Aurora DB clusters and Multi-AZ DB clusters"
-                  properties:
-                    key:
-                      description: Key is the key within the secret
-                      type: string
-                    name:
-                      description: Name is unique within a namespace to reference a
-                        secret resource.
-                      type: string
-                    namespace:
-                      description: Namespace defines the space within which the secret
-                        name must be unique.
-                      type: string
-                  required:
-                    - key
-                  type: object
-                  x-kubernetes-map-type: atomic
-                masterUsername:
-                  description: "The name of the master user for the DB cluster. \n Constraints:
+                properties:
+                  key:
+                    description: Key is the key within the secret
+                    type: string
+                  name:
+                    description: Name is unique within a namespace to reference a
+                      secret resource.
+                    type: string
+                  namespace:
+                    description: Namespace defines the space within which the secret
+                      name must be unique.
+                    type: string
+                required:
+                - key
+                type: object
+                x-kubernetes-map-type: atomic
+              masterUsername:
+                description: "The name of the master user for the DB cluster. \n Constraints:
                   \n * Must be 1 to 16 letters or numbers. \n * First character must
                   be a letter. \n * Can't be a reserved word for the chosen database
                   engine. \n Valid for: Aurora DB clusters and Multi-AZ DB clusters"
-                  type: string
-                monitoringInterval:
-                  description: "The interval, in seconds, between points when Enhanced
+                type: string
+              monitoringInterval:
+                description: "The interval, in seconds, between points when Enhanced
                   Monitoring metrics are collected for the DB cluster. To turn off
                   collecting Enhanced Monitoring metrics, specify 0. The default is
                   0. \n If MonitoringRoleArn is specified, also set MonitoringInterval
                   to a value other than 0. \n Valid Values: 0, 1, 5, 10, 15, 30, 60
                   \n Valid for: Multi-AZ DB clusters only"
-                  format: int64
-                  type: integer
-                monitoringRoleARN:
-                  description: "The Amazon Resource Name (ARN) for the IAM role that
+                format: int64
+                type: integer
+              monitoringRoleARN:
+                description: "The Amazon Resource Name (ARN) for the IAM role that
                   permits RDS to send Enhanced Monitoring metrics to Amazon CloudWatch
                   Logs. An example is arn:aws:iam:123456789012:role/emaccess. For
                   information on creating a monitoring role, see Setting up and enabling
@@ -393,23 +391,23 @@ spec:
                   in the Amazon RDS User Guide. \n If MonitoringInterval is set to
                   a value other than 0, supply a MonitoringRoleArn value. \n Valid
                   for: Multi-AZ DB clusters only"
-                  type: string
-                networkType:
-                  description: "The network type of the DB cluster. \n Valid values:
+                type: string
+              networkType:
+                description: "The network type of the DB cluster. \n Valid values:
                   \n * IPV4 \n * DUAL \n The network type is determined by the DBSubnetGroup
                   specified for the DB cluster. A DBSubnetGroup can support only the
                   IPv4 protocol or the IPv4 and the IPv6 protocols (DUAL). \n For
                   more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
                   in the Amazon Aurora User Guide. \n Valid for: Aurora DB clusters
                   only"
-                  type: string
-                optionGroupName:
-                  description: "A value that indicates that the DB cluster should be
+                type: string
+              optionGroupName:
+                description: "A value that indicates that the DB cluster should be
                   associated with the specified option group. \n DB clusters are associated
                   with a default option group that can't be modified."
-                  type: string
-                performanceInsightsKMSKeyID:
-                  description: "The Amazon Web Services KMS key identifier for encryption
+                type: string
+              performanceInsightsKMSKeyID:
+                description: "The Amazon Web Services KMS key identifier for encryption
                   of Performance Insights data. \n The Amazon Web Services KMS key
                   identifier is the key ARN, key ID, alias ARN, or alias name for
                   the KMS key. \n If you don't specify a value for PerformanceInsightsKMSKeyId,
@@ -417,27 +415,27 @@ spec:
                   key for your Amazon Web Services account. Your Amazon Web Services
                   account has a different default KMS key for each Amazon Web Services
                   Region. \n Valid for: Multi-AZ DB clusters only"
-                  type: string
-                performanceInsightsRetentionPeriod:
-                  description: "The number of days to retain Performance Insights data.
+                type: string
+              performanceInsightsRetentionPeriod:
+                description: "The number of days to retain Performance Insights data.
                   The default is 7 days. The following values are valid: \n * 7 \n
                   * month * 31, where month is a number of months from 1-23 \n * 731
                   \n For example, the following values are valid: \n * 93 (3 months
                   * 31) \n * 341 (11 months * 31) \n * 589 (19 months * 31) \n * 731
                   \n If you specify a retention period such as 94, which isn't a valid
                   value, RDS issues an error. \n Valid for: Multi-AZ DB clusters only"
-                  format: int64
-                  type: integer
-                port:
-                  description: "The port number on which the instances in the DB cluster
+                format: int64
+                type: integer
+              port:
+                description: "The port number on which the instances in the DB cluster
                   accept connections. \n RDS for MySQL and Aurora MySQL \n Default:
                   3306 \n Valid values: 1150-65535 \n RDS for PostgreSQL and Aurora
                   PostgreSQL \n Default: 5432 \n Valid values: 1150-65535 \n Valid
                   for: Aurora DB clusters and Multi-AZ DB clusters"
-                  format: int64
-                  type: integer
-                preSignedURL:
-                  description: "When you are replicating a DB cluster from one Amazon
+                format: int64
+                type: integer
+              preSignedURL:
+                description: "When you are replicating a DB cluster from one Amazon
                   Web Services GovCloud (US) Region to another, an URL that contains
                   a Signature Version 4 signed request for the CreateDBCluster operation
                   to be called in the source Amazon Web Services Region where the
@@ -469,9 +467,9 @@ spec:
                   a presigned URL that is a valid request for the operation that can
                   run in the source Amazon Web Services Region. \n Valid for: Aurora
                   DB clusters only"
-                  type: string
-                preferredBackupWindow:
-                  description: "The daily time range during which automated backups
+                type: string
+              preferredBackupWindow:
+                description: "The daily time range during which automated backups
                   are created if automated backups are enabled using the BackupRetentionPeriod
                   parameter. \n The default is a 30-minute window selected at random
                   from an 8-hour block of time for each Amazon Web Services Region.
@@ -481,9 +479,9 @@ spec:
                   Time (UTC). \n * Must not conflict with the preferred maintenance
                   window. \n * Must be at least 30 minutes. \n Valid for: Aurora DB
                   clusters and Multi-AZ DB clusters"
-                  type: string
-                preferredMaintenanceWindow:
-                  description: "The weekly time range during which system maintenance
+                type: string
+              preferredMaintenanceWindow:
+                description: "The weekly time range during which system maintenance
                   can occur, in Universal Coordinated Time (UTC). \n Format: ddd:hh24:mi-ddd:hh24:mi
                   \n The default is a 30-minute window selected at random from an
                   8-hour block of time for each Amazon Web Services Region, occurring
@@ -492,9 +490,9 @@ spec:
                   in the Amazon Aurora User Guide. \n Valid Days: Mon, Tue, Wed, Thu,
                   Fri, Sat, Sun. \n Constraints: Minimum 30-minute window. \n Valid
                   for: Aurora DB clusters and Multi-AZ DB clusters"
-                  type: string
-                publiclyAccessible:
-                  description: "A value that indicates whether the DB cluster is publicly
+                type: string
+              publiclyAccessible:
+                description: "A value that indicates whether the DB cluster is publicly
                   accessible. \n When the DB cluster is publicly accessible, its Domain
                   Name System (DNS) endpoint resolves to the private IP address from
                   within the DB cluster's virtual private cloud (VPC). It resolves
@@ -516,118 +514,118 @@ spec:
                   it, the DB cluster is private. \n * If the subnets are part of a
                   VPC that has an internet gateway attached to it, the DB cluster
                   is public. \n Valid for: Multi-AZ DB clusters only"
-                  type: boolean
-                replicationSourceIdentifier:
-                  description: "The Amazon Resource Name (ARN) of the source DB instance
+                type: boolean
+              replicationSourceIdentifier:
+                description: "The Amazon Resource Name (ARN) of the source DB instance
                   or DB cluster if this DB cluster is created as a read replica. \n
                   Valid for: Aurora DB clusters only"
-                  type: string
-                scalingConfiguration:
-                  description: "For DB clusters in serverless DB engine mode, the scaling
+                type: string
+              scalingConfiguration:
+                description: "For DB clusters in serverless DB engine mode, the scaling
                   properties of the DB cluster. \n Valid for: Aurora DB clusters only"
-                  properties:
-                    autoPause:
-                      type: boolean
-                    maxCapacity:
-                      format: int64
-                      type: integer
-                    minCapacity:
-                      format: int64
-                      type: integer
-                    secondsBeforeTimeout:
-                      format: int64
-                      type: integer
-                    secondsUntilAutoPause:
-                      format: int64
-                      type: integer
-                    timeoutAction:
-                      type: string
-                  type: object
-                serverlessV2ScalingConfiguration:
-                  description: "Contains the scaling configuration of an Aurora Serverless
+                properties:
+                  autoPause:
+                    type: boolean
+                  maxCapacity:
+                    format: int64
+                    type: integer
+                  minCapacity:
+                    format: int64
+                    type: integer
+                  secondsBeforeTimeout:
+                    format: int64
+                    type: integer
+                  secondsUntilAutoPause:
+                    format: int64
+                    type: integer
+                  timeoutAction:
+                    type: string
+                type: object
+              serverlessV2ScalingConfiguration:
+                description: "Contains the scaling configuration of an Aurora Serverless
                   v2 DB cluster. \n For more information, see Using Amazon Aurora
                   Serverless v2 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html)
                   in the Amazon Aurora User Guide."
-                  properties:
-                    maxCapacity:
-                      type: number
-                    minCapacity:
-                      type: number
-                  type: object
-                snapshotIdentifier:
-                  description: "The identifier for the DB snapshot or DB cluster snapshot
+                properties:
+                  maxCapacity:
+                    type: number
+                  minCapacity:
+                    type: number
+                type: object
+              snapshotIdentifier:
+                description: "The identifier for the DB snapshot or DB cluster snapshot
                   to restore from. \n You can use either the name or the Amazon Resource
                   Name (ARN) to specify a DB cluster snapshot. However, you can use
                   only the ARN to specify a DB snapshot. \n Constraints: \n * Must
                   match the identifier of an existing Snapshot. \n Valid for: Aurora
                   DB clusters and Multi-AZ DB clusters"
-                  type: string
-                sourceRegion:
-                  description: SourceRegion is the source region where the resource
-                    exists. This is not sent over the wire and is only used for presigning.
-                    This value should always have the same region as the source ARN.
-                  type: string
-                storageEncrypted:
-                  description: "A value that indicates whether the DB cluster is encrypted.
+                type: string
+              sourceRegion:
+                description: SourceRegion is the source region where the resource
+                  exists. This is not sent over the wire and is only used for presigning.
+                  This value should always have the same region as the source ARN.
+                type: string
+              storageEncrypted:
+                description: "A value that indicates whether the DB cluster is encrypted.
                   \n Valid for: Aurora DB clusters and Multi-AZ DB clusters"
-                  type: boolean
-                storageType:
-                  description: "Specifies the storage type to be associated with the
+                type: boolean
+              storageType:
+                description: "Specifies the storage type to be associated with the
                   DB cluster. \n This setting is required to create a Multi-AZ DB
                   cluster. \n Valid values: io1 \n When specified, a value for the
                   Iops parameter is required. \n Default: io1 \n Valid for: Multi-AZ
                   DB clusters only"
-                  type: string
-                tags:
-                  description: "Tags to assign to the DB cluster. \n Valid for: Aurora
+                type: string
+              tags:
+                description: "Tags to assign to the DB cluster. \n Valid for: Aurora
                   DB clusters and Multi-AZ DB clusters"
-                  items:
-                    description: Metadata assigned to an Amazon RDS resource consisting
-                      of a key-value pair.
-                    properties:
-                      key:
-                        type: string
-                      value:
-                        type: string
-                    type: object
-                  type: array
-                vpcSecurityGroupIDs:
-                  description: "A list of EC2 VPC security groups to associate with
+                items:
+                  description: Metadata assigned to an Amazon RDS resource consisting
+                    of a key-value pair.
+                  properties:
+                    key:
+                      type: string
+                    value:
+                      type: string
+                  type: object
+                type: array
+              vpcSecurityGroupIDs:
+                description: "A list of EC2 VPC security groups to associate with
                   this DB cluster. \n Valid for: Aurora DB clusters and Multi-AZ DB
                   clusters"
-                  items:
-                    type: string
-                  type: array
-                vpcSecurityGroupRefs:
-                  items:
-                    description: 'AWSResourceReferenceWrapper provides a wrapper around
+                items:
+                  type: string
+                type: array
+              vpcSecurityGroupRefs:
+                items:
+                  description: 'AWSResourceReferenceWrapper provides a wrapper around
                     *AWSResourceReference type to provide more user friendly syntax
                     for references using ''from'' field Ex: APIIDRef: from: name:
                     my-api'
-                    properties:
-                      from:
-                        description: AWSResourceReference provides all the values necessary
-                          to reference another k8s resource for finding the identifier(Id/ARN/Name)
-                        properties:
-                          name:
-                            type: string
-                        type: object
-                    type: object
-                  type: array
-              required:
-                - dbClusterIdentifier
-                - engine
-              type: object
-            status:
-              description: DBClusterStatus defines the observed state of DBCluster
-              properties:
-                ackResourceMetadata:
-                  description: All CRs managed by ACK have a common `Status.ACKResourceMetadata`
-                    member that is used to contain resource sync state, account ownership,
-                    constructed ARN for the resource
                   properties:
-                    arn:
-                      description: 'ARN is the Amazon Resource Name for the resource.
+                    from:
+                      description: AWSResourceReference provides all the values necessary
+                        to reference another k8s resource for finding the identifier(Id/ARN/Name)
+                      properties:
+                        name:
+                          type: string
+                      type: object
+                  type: object
+                type: array
+            required:
+            - dbClusterIdentifier
+            - engine
+            type: object
+          status:
+            description: DBClusterStatus defines the observed state of DBCluster
+            properties:
+              ackResourceMetadata:
+                description: All CRs managed by ACK have a common `Status.ACKResourceMetadata`
+                  member that is used to contain resource sync state, account ownership,
+                  constructed ARN for the resource
+                properties:
+                  arn:
+                    description: 'ARN is the Amazon Resource Name for the resource.
                       This is a globally-unique identifier and is set only by the
                       ACK service controller once the controller has orchestrated
                       the creation of the resource OR when it has verified that an
@@ -636,224 +634,224 @@ spec:
                       supplied CR''s Spec field values. TODO(vijat@): Find a better
                       strategy for resources that do not have ARN in CreateOutputResponse
                       https://github.com/aws/aws-controllers-k8s/issues/270'
-                      type: string
-                    ownerAccountID:
-                      description: OwnerAccountID is the AWS Account ID of the account
-                        that owns the backend AWS service API resource.
-                      type: string
-                    region:
-                      description: Region is the AWS region in which the resource exists
-                        or will exist.
-                      type: string
-                  required:
-                    - ownerAccountID
-                    - region
-                  type: object
-                activityStreamKMSKeyID:
-                  description: "The Amazon Web Services KMS key identifier used for
+                    type: string
+                  ownerAccountID:
+                    description: OwnerAccountID is the AWS Account ID of the account
+                      that owns the backend AWS service API resource.
+                    type: string
+                  region:
+                    description: Region is the AWS region in which the resource exists
+                      or will exist.
+                    type: string
+                required:
+                - ownerAccountID
+                - region
+                type: object
+              activityStreamKMSKeyID:
+                description: "The Amazon Web Services KMS key identifier used for
                   encrypting messages in the database activity stream. \n The Amazon
                   Web Services KMS key identifier is the key ARN, key ID, alias ARN,
                   or alias name for the KMS key."
-                  type: string
-                activityStreamKinesisStreamName:
-                  description: The name of the Amazon Kinesis data stream used for the
-                    database activity stream.
-                  type: string
-                activityStreamMode:
-                  description: The mode of the database activity stream. Database events
-                    such as a change or access generate an activity stream event. The
-                    database session can handle these events either synchronously or
-                    asynchronously.
-                  type: string
-                activityStreamStatus:
-                  description: The status of the database activity stream.
-                  type: string
-                associatedRoles:
-                  description: Provides a list of the Amazon Web Services Identity and
-                    Access Management (IAM) roles that are associated with the DB cluster.
-                    IAM roles that are associated with a DB cluster grant permission
-                    for the DB cluster to access other Amazon Web Services on your behalf.
-                  items:
-                    description: Describes an Amazon Web Services Identity and Access
-                      Management (IAM) role that is associated with a DB cluster.
-                    properties:
-                      featureName:
-                        type: string
-                      roleARN:
-                        type: string
-                      status:
-                        type: string
-                    type: object
-                  type: array
-                automaticRestartTime:
-                  description: The time when a stopped DB cluster is restarted automatically.
-                  format: date-time
-                  type: string
-                backtrackConsumedChangeRecords:
-                  description: The number of change records stored for Backtrack.
-                  format: int64
-                  type: integer
-                capacity:
-                  description: "The current capacity of an Aurora Serverless v1 DB cluster.
+                type: string
+              activityStreamKinesisStreamName:
+                description: The name of the Amazon Kinesis data stream used for the
+                  database activity stream.
+                type: string
+              activityStreamMode:
+                description: The mode of the database activity stream. Database events
+                  such as a change or access generate an activity stream event. The
+                  database session can handle these events either synchronously or
+                  asynchronously.
+                type: string
+              activityStreamStatus:
+                description: The status of the database activity stream.
+                type: string
+              associatedRoles:
+                description: Provides a list of the Amazon Web Services Identity and
+                  Access Management (IAM) roles that are associated with the DB cluster.
+                  IAM roles that are associated with a DB cluster grant permission
+                  for the DB cluster to access other Amazon Web Services on your behalf.
+                items:
+                  description: Describes an Amazon Web Services Identity and Access
+                    Management (IAM) role that is associated with a DB cluster.
+                  properties:
+                    featureName:
+                      type: string
+                    roleARN:
+                      type: string
+                    status:
+                      type: string
+                  type: object
+                type: array
+              automaticRestartTime:
+                description: The time when a stopped DB cluster is restarted automatically.
+                format: date-time
+                type: string
+              backtrackConsumedChangeRecords:
+                description: The number of change records stored for Backtrack.
+                format: int64
+                type: integer
+              capacity:
+                description: "The current capacity of an Aurora Serverless v1 DB cluster.
                   The capacity is 0 (zero) when the cluster is paused. \n For more
                   information about Aurora Serverless v1, see Using Amazon Aurora
                   Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html)
                   in the Amazon Aurora User Guide."
-                  format: int64
-                  type: integer
-                cloneGroupID:
-                  description: Identifies the clone group to which the DB cluster is
-                    associated.
+                format: int64
+                type: integer
+              cloneGroupID:
+                description: Identifies the clone group to which the DB cluster is
+                  associated.
+                type: string
+              clusterCreateTime:
+                description: Specifies the time when the DB cluster was created, in
+                  Universal Coordinated Time (UTC).
+                format: date-time
+                type: string
+              conditions:
+                description: All CRS managed by ACK have a common `Status.Conditions`
+                  member that contains a collection of `ackv1alpha1.Condition` objects
+                  that describe the various terminal states of the CR and its backend
+                  AWS service API resource
+                items:
+                  description: Condition is the common struct used by all CRDs managed
+                    by ACK service controllers to indicate terminal states  of the
+                    CR and its backend AWS service API resource
+                  properties:
+                    lastTransitionTime:
+                      description: Last time the condition transitioned from one status
+                        to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: A human readable message indicating details about
+                        the transition.
+                      type: string
+                    reason:
+                      description: The reason for the condition's last transition.
+                      type: string
+                    status:
+                      description: Status of the condition, one of True, False, Unknown.
+                      type: string
+                    type:
+                      description: Type is the type of the Condition
+                      type: string
+                  required:
+                  - status
+                  - type
+                  type: object
+                type: array
+              crossAccountClone:
+                description: Specifies whether the DB cluster is a clone of a DB cluster
+                  owned by a different Amazon Web Services account.
+                type: boolean
+              customEndpoints:
+                description: Identifies all custom endpoints associated with the cluster.
+                items:
                   type: string
-                clusterCreateTime:
-                  description: Specifies the time when the DB cluster was created, in
-                    Universal Coordinated Time (UTC).
-                  format: date-time
-                  type: string
-                conditions:
-                  description: All CRS managed by ACK have a common `Status.Conditions`
-                    member that contains a collection of `ackv1alpha1.Condition` objects
-                    that describe the various terminal states of the CR and its backend
-                    AWS service API resource
-                  items:
-                    description: Condition is the common struct used by all CRDs managed
-                      by ACK service controllers to indicate terminal states  of the
-                      CR and its backend AWS service API resource
-                    properties:
-                      lastTransitionTime:
-                        description: Last time the condition transitioned from one status
-                          to another.
-                        format: date-time
-                        type: string
-                      message:
-                        description: A human readable message indicating details about
-                          the transition.
-                        type: string
-                      reason:
-                        description: The reason for the condition's last transition.
-                        type: string
-                      status:
-                        description: Status of the condition, one of True, False, Unknown.
-                        type: string
-                      type:
-                        description: Type is the type of the Condition
-                        type: string
-                    required:
-                      - status
-                      - type
-                    type: object
-                  type: array
-                crossAccountClone:
-                  description: Specifies whether the DB cluster is a clone of a DB cluster
-                    owned by a different Amazon Web Services account.
-                  type: boolean
-                customEndpoints:
-                  description: Identifies all custom endpoints associated with the cluster.
-                  items:
-                    type: string
-                  type: array
-                dbClusterMembers:
-                  description: Provides the list of instances that make up the DB cluster.
-                  items:
-                    description: Contains information about an instance that is part
-                      of a DB cluster.
-                    properties:
-                      dbClusterParameterGroupStatus:
-                        type: string
-                      dbInstanceIdentifier:
-                        type: string
-                      isClusterWriter:
-                        type: boolean
-                      promotionTier:
-                        format: int64
-                        type: integer
-                    type: object
-                  type: array
-                dbClusterOptionGroupMemberships:
-                  description: Provides the list of option group memberships for this
-                    DB cluster.
-                  items:
-                    description: Contains status information for a DB cluster option
-                      group.
-                    properties:
-                      dbClusterOptionGroupName:
-                        type: string
-                      status:
-                        type: string
-                    type: object
-                  type: array
-                dbClusterParameterGroup:
-                  description: Specifies the name of the DB cluster parameter group
-                    for the DB cluster.
-                  type: string
-                dbClusterResourceID:
-                  description: The Amazon Web Services Region-unique, immutable identifier
-                    for the DB cluster. This identifier is found in Amazon Web Services
-                    CloudTrail log entries whenever the KMS key for the DB cluster is
-                    accessed.
-                  type: string
-                dbSubnetGroup:
-                  description: Specifies information on the subnet group associated
-                    with the DB cluster, including the name, description, and subnets
-                    in the subnet group.
-                  type: string
-                domainMemberships:
-                  description: The Active Directory Domain membership records associated
-                    with the DB cluster.
-                  items:
-                    description: An Active Directory Domain membership record associated
-                      with the DB instance or cluster.
-                    properties:
-                      domain:
-                        type: string
-                      fQDN:
-                        type: string
-                      iamRoleName:
-                        type: string
-                      status:
-                        type: string
-                    type: object
-                  type: array
-                earliestBacktrackTime:
-                  description: The earliest time to which a DB cluster can be backtracked.
-                  format: date-time
-                  type: string
-                earliestRestorableTime:
-                  description: The earliest time to which a database can be restored
-                    with point-in-time restore.
-                  format: date-time
-                  type: string
-                enabledCloudwatchLogsExports:
-                  description: "A list of log types that this DB cluster is configured
+                type: array
+              dbClusterMembers:
+                description: Provides the list of instances that make up the DB cluster.
+                items:
+                  description: Contains information about an instance that is part
+                    of a DB cluster.
+                  properties:
+                    dbClusterParameterGroupStatus:
+                      type: string
+                    dbInstanceIdentifier:
+                      type: string
+                    isClusterWriter:
+                      type: boolean
+                    promotionTier:
+                      format: int64
+                      type: integer
+                  type: object
+                type: array
+              dbClusterOptionGroupMemberships:
+                description: Provides the list of option group memberships for this
+                  DB cluster.
+                items:
+                  description: Contains status information for a DB cluster option
+                    group.
+                  properties:
+                    dbClusterOptionGroupName:
+                      type: string
+                    status:
+                      type: string
+                  type: object
+                type: array
+              dbClusterParameterGroup:
+                description: Specifies the name of the DB cluster parameter group
+                  for the DB cluster.
+                type: string
+              dbClusterResourceID:
+                description: The Amazon Web Services Region-unique, immutable identifier
+                  for the DB cluster. This identifier is found in Amazon Web Services
+                  CloudTrail log entries whenever the KMS key for the DB cluster is
+                  accessed.
+                type: string
+              dbSubnetGroup:
+                description: Specifies information on the subnet group associated
+                  with the DB cluster, including the name, description, and subnets
+                  in the subnet group.
+                type: string
+              domainMemberships:
+                description: The Active Directory Domain membership records associated
+                  with the DB cluster.
+                items:
+                  description: An Active Directory Domain membership record associated
+                    with the DB instance or cluster.
+                  properties:
+                    domain:
+                      type: string
+                    fQDN:
+                      type: string
+                    iamRoleName:
+                      type: string
+                    status:
+                      type: string
+                  type: object
+                type: array
+              earliestBacktrackTime:
+                description: The earliest time to which a DB cluster can be backtracked.
+                format: date-time
+                type: string
+              earliestRestorableTime:
+                description: The earliest time to which a database can be restored
+                  with point-in-time restore.
+                format: date-time
+                type: string
+              enabledCloudwatchLogsExports:
+                description: "A list of log types that this DB cluster is configured
                   to export to CloudWatch Logs. \n Log types vary by DB engine. For
                   information about the log types for each DB engine, see Amazon RDS
                   Database Log Files (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html)
                   in the Amazon Aurora User Guide."
-                  items:
-                    type: string
-                  type: array
-                endpoint:
-                  description: Specifies the connection endpoint for the primary instance
-                    of the DB cluster.
+                items:
                   type: string
-                globalWriteForwardingRequested:
-                  description: Specifies whether you have requested to enable write
-                    forwarding for a secondary cluster in an Aurora global database.
-                    Because write forwarding takes time to enable, check the value of
-                    GlobalWriteForwardingStatus to confirm that the request has completed
-                    before using the write forwarding feature for this cluster.
-                  type: boolean
-                globalWriteForwardingStatus:
-                  description: Specifies whether a secondary cluster in an Aurora global
-                    database has write forwarding enabled, not enabled, or is in the
-                    process of enabling it.
-                  type: string
-                hostedZoneID:
-                  description: Specifies the ID that Amazon Route 53 assigns when you
-                    create a hosted zone.
-                  type: string
-                httpEndpointEnabled:
-                  description: "A value that indicates whether the HTTP endpoint for
+                type: array
+              endpoint:
+                description: Specifies the connection endpoint for the primary instance
+                  of the DB cluster.
+                type: string
+              globalWriteForwardingRequested:
+                description: Specifies whether you have requested to enable write
+                  forwarding for a secondary cluster in an Aurora global database.
+                  Because write forwarding takes time to enable, check the value of
+                  GlobalWriteForwardingStatus to confirm that the request has completed
+                  before using the write forwarding feature for this cluster.
+                type: boolean
+              globalWriteForwardingStatus:
+                description: Specifies whether a secondary cluster in an Aurora global
+                  database has write forwarding enabled, not enabled, or is in the
+                  process of enabling it.
+                type: string
+              hostedZoneID:
+                description: Specifies the ID that Amazon Route 53 assigns when you
+                  create a hosted zone.
+                type: string
+              httpEndpointEnabled:
+                description: "A value that indicates whether the HTTP endpoint for
                   an Aurora Serverless v1 DB cluster is enabled. \n When enabled,
                   the HTTP endpoint provides a connectionless web service API for
                   running SQL queries on the Aurora Serverless v1 DB cluster. You
@@ -861,65 +859,65 @@ spec:
                   query editor. \n For more information, see Using the Data API for
                   Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
                   in the Amazon Aurora User Guide."
-                  type: boolean
-                iamDatabaseAuthenticationEnabled:
-                  description: A value that indicates whether the mapping of Amazon
-                    Web Services Identity and Access Management (IAM) accounts to database
-                    accounts is enabled.
-                  type: boolean
-                latestRestorableTime:
-                  description: Specifies the latest time to which a database can be
-                    restored with point-in-time restore.
-                  format: date-time
-                  type: string
-                multiAZ:
-                  description: Specifies whether the DB cluster has instances in multiple
-                    Availability Zones.
-                  type: boolean
-                pendingModifiedValues:
-                  description: A value that specifies that changes to the DB cluster
-                    are pending. This element is only included when changes are pending.
-                    Specific changes are identified by subelements.
-                  properties:
-                    dbClusterIdentifier:
-                      type: string
-                    engineVersion:
-                      type: string
-                    iamDatabaseAuthenticationEnabled:
-                      type: boolean
-                    masterUserPassword:
-                      type: string
-                    pendingCloudwatchLogsExports:
-                      description: A list of the log types whose configuration is still
-                        pending. In other words, these log types are in the process
-                        of being activated or deactivated.
-                      properties:
-                        logTypesToDisable:
-                          items:
-                            type: string
-                          type: array
-                        logTypesToEnable:
-                          items:
-                            type: string
-                          type: array
-                      type: object
-                  type: object
-                percentProgress:
-                  description: Specifies the progress of the operation as a percentage.
-                  type: string
-                performanceInsightsEnabled:
-                  description: "True if Performance Insights is enabled for the DB cluster,
+                type: boolean
+              iamDatabaseAuthenticationEnabled:
+                description: A value that indicates whether the mapping of Amazon
+                  Web Services Identity and Access Management (IAM) accounts to database
+                  accounts is enabled.
+                type: boolean
+              latestRestorableTime:
+                description: Specifies the latest time to which a database can be
+                  restored with point-in-time restore.
+                format: date-time
+                type: string
+              multiAZ:
+                description: Specifies whether the DB cluster has instances in multiple
+                  Availability Zones.
+                type: boolean
+              pendingModifiedValues:
+                description: A value that specifies that changes to the DB cluster
+                  are pending. This element is only included when changes are pending.
+                  Specific changes are identified by subelements.
+                properties:
+                  dbClusterIdentifier:
+                    type: string
+                  engineVersion:
+                    type: string
+                  iamDatabaseAuthenticationEnabled:
+                    type: boolean
+                  masterUserPassword:
+                    type: string
+                  pendingCloudwatchLogsExports:
+                    description: A list of the log types whose configuration is still
+                      pending. In other words, these log types are in the process
+                      of being activated or deactivated.
+                    properties:
+                      logTypesToDisable:
+                        items:
+                          type: string
+                        type: array
+                      logTypesToEnable:
+                        items:
+                          type: string
+                        type: array
+                    type: object
+                type: object
+              percentProgress:
+                description: Specifies the progress of the operation as a percentage.
+                type: string
+              performanceInsightsEnabled:
+                description: "True if Performance Insights is enabled for the DB cluster,
                   and otherwise false. \n This setting is only for non-Aurora Multi-AZ
                   DB clusters."
-                  type: boolean
-                readReplicaIdentifiers:
-                  description: Contains one or more identifiers of the read replicas
-                    associated with this DB cluster.
-                  items:
-                    type: string
-                  type: array
-                readerEndpoint:
-                  description: "The reader endpoint for the DB cluster. The reader endpoint
+                type: boolean
+              readReplicaIdentifiers:
+                description: Contains one or more identifiers of the read replicas
+                  associated with this DB cluster.
+                items:
+                  type: string
+                type: array
+              readerEndpoint:
+                description: "The reader endpoint for the DB cluster. The reader endpoint
                   for a DB cluster load-balances connections across the Aurora Replicas
                   that are available in a DB cluster. As clients request new connections
                   to the reader endpoint, Aurora distributes the connection requests
@@ -930,37 +928,43 @@ spec:
                   your connection is dropped. To continue sending your read workload
                   to other Aurora Replicas in the cluster, you can then reconnect
                   to the reader endpoint."
-                  type: string
-                status:
-                  description: Specifies the current state of this DB cluster.
-                  type: string
-                tagList:
-                  items:
-                    description: Metadata assigned to an Amazon RDS resource consisting
-                      of a key-value pair.
-                    properties:
-                      key:
-                        type: string
-                      value:
-                        type: string
-                    type: object
-                  type: array
-                vpcSecurityGroups:
-                  description: Provides a list of VPC security groups that the DB cluster
-                    belongs to.
-                  items:
-                    description: This data type is used as a response element for queries
-                      on VPC security group membership.
-                    properties:
-                      status:
-                        type: string
-                      vpcSecurityGroupID:
-                        type: string
-                    type: object
-                  type: array
-              type: object
-          type: object
-      served: true
-      storage: true
-      subresources:
-        status: {}
+                type: string
+              status:
+                description: Specifies the current state of this DB cluster.
+                type: string
+              tagList:
+                items:
+                  description: Metadata assigned to an Amazon RDS resource consisting
+                    of a key-value pair.
+                  properties:
+                    key:
+                      type: string
+                    value:
+                      type: string
+                  type: object
+                type: array
+              vpcSecurityGroups:
+                description: Provides a list of VPC security groups that the DB cluster
+                  belongs to.
+                items:
+                  description: This data type is used as a response element for queries
+                    on VPC security group membership.
+                  properties:
+                    status:
+                      type: string
+                    vpcSecurityGroupID:
+                      type: string
+                  type: object
+                type: array
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: null
+  storedVersions: null

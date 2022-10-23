@@ -267,7 +267,7 @@ type CamelApacheOrgBuildV1GoModel struct {
 
 					Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-					Property_names *[]string `tfsdk:"property__names" yaml:"property-names,omitempty"`
+					Property_names *[]string `tfsdk:"property_names" yaml:"property-names,omitempty"`
 
 					RawContent *string `tfsdk:"raw_content" yaml:"rawContent,omitempty"`
 
@@ -1653,7 +1653,7 @@ func (r *CamelApacheOrgBuildV1Resource) GetSchema(_ context.Context) (tfsdk.Sche
 												Computed: false,
 											},
 
-											"property__names": {
+											"property_names": {
 												Description:         "List of property names defined in the source (e.g. if type is 'template')",
 												MarkdownDescription: "List of property names defined in the source (e.g. if type is 'template')",
 

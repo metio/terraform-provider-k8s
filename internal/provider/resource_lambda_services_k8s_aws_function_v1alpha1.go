@@ -98,6 +98,12 @@ type LambdaServicesK8SAwsFunctionV1Alpha1GoModel struct {
 
 		KmsKeyARN *string `tfsdk:"kms_key_arn" yaml:"kmsKeyARN,omitempty"`
 
+		KmsKeyRef *struct {
+			From *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"from" yaml:"from,omitempty"`
+		} `tfsdk:"kms_key_ref" yaml:"kmsKeyRef,omitempty"`
+
 		Layers *[]string `tfsdk:"layers" yaml:"layers,omitempty"`
 
 		MemorySize *int64 `tfsdk:"memory_size" yaml:"memorySize,omitempty"`
@@ -125,7 +131,19 @@ type LambdaServicesK8SAwsFunctionV1Alpha1GoModel struct {
 		VpcConfig *struct {
 			SecurityGroupIDs *[]string `tfsdk:"security_group_i_ds" yaml:"securityGroupIDs,omitempty"`
 
+			SecurityGroupRefs *[]struct {
+				From *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"from" yaml:"from,omitempty"`
+			} `tfsdk:"security_group_refs" yaml:"securityGroupRefs,omitempty"`
+
 			SubnetIDs *[]string `tfsdk:"subnet_i_ds" yaml:"subnetIDs,omitempty"`
+
+			SubnetRefs *[]struct {
+				From *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"from" yaml:"from,omitempty"`
+			} `tfsdk:"subnet_refs" yaml:"subnetRefs,omitempty"`
 		} `tfsdk:"vpc_config" yaml:"vpcConfig,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -499,6 +517,41 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Resource) GetSchema(_ context.Conte
 						Computed: false,
 					},
 
+					"kms_key_ref": {
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"from": {
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"layers": {
 						Description:         "A list of function layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) to add to the function's execution environment. Specify each layer by its ARN, including the version.",
 						MarkdownDescription: "A list of function layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) to add to the function's execution environment. Specify each layer by its ARN, including the version.",
@@ -649,11 +702,81 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Resource) GetSchema(_ context.Conte
 								Computed: false,
 							},
 
+							"security_group_refs": {
+								Description:         "Reference field for SecurityGroupIDs",
+								MarkdownDescription: "Reference field for SecurityGroupIDs",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"from": {
+										Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+										MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"subnet_i_ds": {
 								Description:         "",
 								MarkdownDescription: "",
 
 								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"subnet_refs": {
+								Description:         "Reference field for SubnetIDs",
+								MarkdownDescription: "Reference field for SubnetIDs",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"from": {
+										Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+										MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,

@@ -864,6 +864,8 @@ type MonitoringCoreosComPrometheusV1GoModel struct {
 			Ip *string `tfsdk:"ip" yaml:"ip,omitempty"`
 		} `tfsdk:"host_aliases" yaml:"hostAliases,omitempty"`
 
+		HostNetwork *bool `tfsdk:"host_network" yaml:"hostNetwork,omitempty"`
+
 		IgnoreNamespaceSelectors *bool `tfsdk:"ignore_namespace_selectors" yaml:"ignoreNamespaceSelectors,omitempty"`
 
 		Image *string `tfsdk:"image" yaml:"image,omitempty"`
@@ -1963,6 +1965,8 @@ type MonitoringCoreosComPrometheusV1GoModel struct {
 
 			BaseImage *string `tfsdk:"base_image" yaml:"baseImage,omitempty"`
 
+			GrpcListenLocal *bool `tfsdk:"grpc_listen_local" yaml:"grpcListenLocal,omitempty"`
+
 			GrpcServerTlsConfig *struct {
 				Ca *struct {
 					ConfigMap *struct {
@@ -2018,6 +2022,8 @@ type MonitoringCoreosComPrometheusV1GoModel struct {
 
 				ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
 			} `tfsdk:"grpc_server_tls_config" yaml:"grpcServerTlsConfig,omitempty"`
+
+			HttpListenLocal *bool `tfsdk:"http_listen_local" yaml:"httpListenLocal,omitempty"`
 
 			Image *string `tfsdk:"image" yaml:"image,omitempty"`
 
@@ -2117,6 +2123,10 @@ type MonitoringCoreosComPrometheusV1GoModel struct {
 
 			WhenUnsatisfiable *string `tfsdk:"when_unsatisfiable" yaml:"whenUnsatisfiable,omitempty"`
 		} `tfsdk:"topology_spread_constraints" yaml:"topologySpreadConstraints,omitempty"`
+
+		Tsdb *struct {
+			OutOfOrderTimeWindow *string `tfsdk:"out_of_order_time_window" yaml:"outOfOrderTimeWindow,omitempty"`
+		} `tfsdk:"tsdb" yaml:"tsdb,omitempty"`
 
 		Version *string `tfsdk:"version" yaml:"version,omitempty"`
 
@@ -2855,8 +2865,8 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 					},
 
 					"additional_args": {
-						Description:         "AdditionalArgs allows setting additional arguments for the Prometheus container. It is intended for e.g. activating hidden flags which are not supported by the dedicated configuration options yet. The arguments are passed as-is to the Prometheus container which may cause issues if they are invalid or not supporeted by the given Prometheus version. In case of an argument conflict (e.g. an argument which is already set by the operator itself) or when providing an invalid argument the reconciliation will fail and an error will be logged.",
-						MarkdownDescription: "AdditionalArgs allows setting additional arguments for the Prometheus container. It is intended for e.g. activating hidden flags which are not supported by the dedicated configuration options yet. The arguments are passed as-is to the Prometheus container which may cause issues if they are invalid or not supporeted by the given Prometheus version. In case of an argument conflict (e.g. an argument which is already set by the operator itself) or when providing an invalid argument the reconciliation will fail and an error will be logged.",
+						Description:         "AdditionalArgs allows setting additional arguments for the Prometheus container. It is intended for e.g. activating hidden flags which are not supported by the dedicated configuration options yet. The arguments are passed as-is to the Prometheus container which may cause issues if they are invalid or not supported by the given Prometheus version. In case of an argument conflict (e.g. an argument which is already set by the operator itself) or when providing an invalid argument the reconciliation will fail and an error will be logged.",
+						MarkdownDescription: "AdditionalArgs allows setting additional arguments for the Prometheus container. It is intended for e.g. activating hidden flags which are not supported by the dedicated configuration options yet. The arguments are passed as-is to the Prometheus container which may cause issues if they are invalid or not supported by the given Prometheus version. In case of an argument conflict (e.g. an argument which is already set by the operator itself) or when providing an invalid argument the reconciliation will fail and an error will be logged.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -5040,8 +5050,8 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 					},
 
 					"config_maps": {
-						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the Prometheus object, which shall be mounted into the Prometheus Pods. The ConfigMaps are mounted into /etc/prometheus/configmaps/<configmap-name>.",
-						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the Prometheus object, which shall be mounted into the Prometheus Pods. The ConfigMaps are mounted into /etc/prometheus/configmaps/<configmap-name>.",
+						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the Prometheus object, which shall be mounted into the Prometheus Pods. Each ConfigMap is added to the StatefulSet definition as a volume named 'configmap-<configmap-name>'. The ConfigMaps are mounted into /etc/prometheus/configmaps/<configmap-name> in the 'prometheus' container.",
+						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the Prometheus object, which shall be mounted into the Prometheus Pods. Each ConfigMap is added to the StatefulSet definition as a volume named 'configmap-<configmap-name>'. The ConfigMaps are mounted into /etc/prometheus/configmaps/<configmap-name> in the 'prometheus' container.",
 
 						Type: types.ListType{ElemType: types.StringType},
 
@@ -7364,6 +7374,17 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"host_network": {
+						Description:         "Use the host's network namespace if true. Make sure to understand the security implications if you want to enable it. When hostNetwork is enabled, this will set dnsPolicy to ClusterFirstWithHostNet automatically.",
+						MarkdownDescription: "Use the host's network namespace if true. Make sure to understand the security implications if you want to enable it. When hostNetwork is enabled, this will set dnsPolicy to ClusterFirstWithHostNet automatically.",
+
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
@@ -12310,8 +12331,8 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 					},
 
 					"secrets": {
-						Description:         "Secrets is a list of Secrets in the same namespace as the Prometheus object, which shall be mounted into the Prometheus Pods. The Secrets are mounted into /etc/prometheus/secrets/<secret-name>.",
-						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the Prometheus object, which shall be mounted into the Prometheus Pods. The Secrets are mounted into /etc/prometheus/secrets/<secret-name>.",
+						Description:         "Secrets is a list of Secrets in the same namespace as the Prometheus object, which shall be mounted into the Prometheus Pods. Each Secret is added to the StatefulSet definition as a volume named 'secret-<secret-name>'. The Secrets are mounted into /etc/prometheus/secrets/<secret-name> in the 'prometheus' container.",
+						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the Prometheus object, which shall be mounted into the Prometheus Pods. Each Secret is added to the StatefulSet definition as a volume named 'secret-<secret-name>'. The Secrets are mounted into /etc/prometheus/secrets/<secret-name> in the 'prometheus' container.",
 
 						Type: types.ListType{ElemType: types.StringType},
 
@@ -13587,8 +13608,8 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 							"additional_args": {
-								Description:         "AdditionalArgs allows setting additional arguments for the Thanos container. The arguments are passed as-is to the Thanos container which may cause issues if they are invalid or not supporeted the given Thanos version. In case of an argument conflict (e.g. an argument which is already set by the operator itself) or when providing an invalid argument the reconciliation will fail and an error will be logged.",
-								MarkdownDescription: "AdditionalArgs allows setting additional arguments for the Thanos container. The arguments are passed as-is to the Thanos container which may cause issues if they are invalid or not supporeted the given Thanos version. In case of an argument conflict (e.g. an argument which is already set by the operator itself) or when providing an invalid argument the reconciliation will fail and an error will be logged.",
+								Description:         "AdditionalArgs allows setting additional arguments for the Thanos container. The arguments are passed as-is to the Thanos container which may cause issues if they are invalid or not supported the given Thanos version. In case of an argument conflict (e.g. an argument which is already set by the operator itself) or when providing an invalid argument the reconciliation will fail and an error will be logged.",
+								MarkdownDescription: "AdditionalArgs allows setting additional arguments for the Thanos container. The arguments are passed as-is to the Thanos container which may cause issues if they are invalid or not supported the given Thanos version. In case of an argument conflict (e.g. an argument which is already set by the operator itself) or when providing an invalid argument the reconciliation will fail and an error will be logged.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -13636,9 +13657,20 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 
+							"grpc_listen_local": {
+								Description:         "If true, the Thanos sidecar listens on the loopback interface for the gRPC endpoints. It has no effect if 'listenLocal' is true.",
+								MarkdownDescription: "If true, the Thanos sidecar listens on the loopback interface for the gRPC endpoints. It has no effect if 'listenLocal' is true.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"grpc_server_tls_config": {
-								Description:         "GRPCServerTLSConfig configures the gRPC server from which Thanos Querier reads recorded rule data. Note: Currently only the CAFile, CertFile, and KeyFile fields are supported. Maps to the '--grpc-server-tls-*' CLI args.",
-								MarkdownDescription: "GRPCServerTLSConfig configures the gRPC server from which Thanos Querier reads recorded rule data. Note: Currently only the CAFile, CertFile, and KeyFile fields are supported. Maps to the '--grpc-server-tls-*' CLI args.",
+								Description:         "GRPCServerTLSConfig configures the TLS parameters for the gRPC server providing the StoreAPI. Note: Currently only the CAFile, CertFile, and KeyFile fields are supported. Maps to the '--grpc-server-tls-*' CLI args.",
+								MarkdownDescription: "GRPCServerTLSConfig configures the TLS parameters for the gRPC server providing the StoreAPI. Note: Currently only the CAFile, CertFile, and KeyFile fields are supported. Maps to the '--grpc-server-tls-*' CLI args.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -13952,6 +13984,17 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 								Computed: false,
 							},
 
+							"http_listen_local": {
+								Description:         "If true, the Thanos sidecar listens on the loopback interface for the HTTP endpoints. It has no effect if 'listenLocal' is true.",
+								MarkdownDescription: "If true, the Thanos sidecar listens on the loopback interface for the HTTP endpoints. It has no effect if 'listenLocal' is true.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"image": {
 								Description:         "Image if specified has precedence over baseImage, tag and sha combinations. Specifying the version is still necessary to ensure the Prometheus Operator knows what version of Thanos is being configured.",
 								MarkdownDescription: "Image if specified has precedence over baseImage, tag and sha combinations. Specifying the version is still necessary to ensure the Prometheus Operator knows what version of Thanos is being configured.",
@@ -13964,8 +14007,8 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 							},
 
 							"listen_local": {
-								Description:         "ListenLocal makes the Thanos sidecar listen on loopback, so that it does not bind against the Pod IP.",
-								MarkdownDescription: "ListenLocal makes the Thanos sidecar listen on loopback, so that it does not bind against the Pod IP.",
+								Description:         "If true, the Thanos sidecar listens on the loopback interface for the HTTP and gRPC endpoints. It takes precedence over 'grpcListenLocal' and 'httpListenLocal'. Deprecated: use 'grpcListenLocal' and 'httpListenLocal' instead.",
+								MarkdownDescription: "If true, the Thanos sidecar listens on the loopback interface for the HTTP and gRPC endpoints. It takes precedence over 'grpcListenLocal' and 'httpListenLocal'. Deprecated: use 'grpcListenLocal' and 'httpListenLocal' instead.",
 
 								Type: types.BoolType,
 
@@ -14512,6 +14555,34 @@ func (r *MonitoringCoreosComPrometheusV1Resource) GetSchema(_ context.Context) (
 								Required: true,
 								Optional: false,
 								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"tsdb": {
+						Description:         "Defines the runtime reloadable configuration of the timeseries database (TSDB).",
+						MarkdownDescription: "Defines the runtime reloadable configuration of the timeseries database (TSDB).",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"out_of_order_time_window": {
+								Description:         "Configures how old an out-of-order/out-of-bounds sample can be w.r.t. the TSDB max time. An out-of-order/out-of-bounds sample is ingested into the TSDB as long as the timestamp of the sample is >= (TSDB.MaxTime - outOfOrderTimeWindow). Out of order ingestion is an experimental feature and requires Prometheus >= v2.39.0.",
+								MarkdownDescription: "Configures how old an out-of-order/out-of-bounds sample can be w.r.t. the TSDB max time. An out-of-order/out-of-bounds sample is ingested into the TSDB as long as the timestamp of the sample is >= (TSDB.MaxTime - outOfOrderTimeWindow). Out of order ingestion is an experimental feature and requires Prometheus >= v2.39.0.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+								},
 							},
 						}),
 

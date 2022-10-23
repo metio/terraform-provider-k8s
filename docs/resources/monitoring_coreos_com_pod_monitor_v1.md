@@ -91,6 +91,7 @@ Optional:
 - `basic_auth` (Attributes) BasicAuth allow an endpoint to authenticate over basic authentication. More info: https://prometheus.io/docs/operating/configuration/#endpoint (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--basic_auth))
 - `bearer_token_secret` (Attributes) Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the pod monitor and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--pod_metrics_endpoints--bearer_token_secret))
 - `enable_http2` (Boolean) Whether to enable HTTP2.
+- `filter_running` (Boolean) Drop pods that are not running. (Failed, Succeeded). Enabled by default. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase
 - `follow_redirects` (Boolean) FollowRedirects configures whether scrape requests follow HTTP 3xx redirects.
 - `honor_labels` (Boolean) HonorLabels chooses the metric's labels on collisions with target labels.
 - `honor_timestamps` (Boolean) HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.

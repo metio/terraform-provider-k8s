@@ -1837,8 +1837,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 					"inhibit_rules": {
-						Description:         "List of inhibition rules. The rules will only apply to alerts matching the resource’s namespace.",
-						MarkdownDescription: "List of inhibition rules. The rules will only apply to alerts matching the resource’s namespace.",
+						Description:         "List of inhibition rules. The rules will only apply to alerts matching the resource's namespace.",
+						MarkdownDescription: "List of inhibition rules. The rules will only apply to alerts matching the resource's namespace.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -1854,8 +1854,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 							},
 
 							"source_match": {
-								Description:         "Matchers for which one or more alerts have to exist for the inhibition to take effect. The operator enforces that the alert matches the resource’s namespace.",
-								MarkdownDescription: "Matchers for which one or more alerts have to exist for the inhibition to take effect. The operator enforces that the alert matches the resource’s namespace.",
+								Description:         "Matchers for which one or more alerts have to exist for the inhibition to take effect. The operator enforces that the alert matches the resource's namespace.",
+								MarkdownDescription: "Matchers for which one or more alerts have to exist for the inhibition to take effect. The operator enforces that the alert matches the resource's namespace.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -1920,8 +1920,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 							},
 
 							"target_match": {
-								Description:         "Matchers that have to be fulfilled in the alerts to be muted. The operator enforces that the alert matches the resource’s namespace.",
-								MarkdownDescription: "Matchers that have to be fulfilled in the alerts to be muted. The operator enforces that the alert matches the resource’s namespace.",
+								Description:         "Matchers that have to be fulfilled in the alerts to be muted. The operator enforces that the alert matches the resource's namespace.",
+								MarkdownDescription: "Matchers that have to be fulfilled in the alerts to be muted. The operator enforces that the alert matches the resource's namespace.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -5598,8 +5598,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 									},
 
 									"token": {
-										Description:         "The secret's key that contains the registered application’s API token, see https://pushover.net/apps. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-										MarkdownDescription: "The secret's key that contains the registered application’s API token, see https://pushover.net/apps. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+										Description:         "The secret's key that contains the registered application's API token, see https://pushover.net/apps. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+										MarkdownDescription: "The secret's key that contains the registered application's API token, see https://pushover.net/apps. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -5665,8 +5665,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 									},
 
 									"user_key": {
-										Description:         "The secret's key that contains the recipient user’s user key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-										MarkdownDescription: "The secret's key that contains the recipient user’s user key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+										Description:         "The secret's key that contains the recipient user's user key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+										MarkdownDescription: "The secret's key that contains the recipient user's user key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -11342,8 +11342,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 					},
 
 					"route": {
-						Description:         "The Alertmanager route definition for alerts matching the resource’s namespace. If present, it will be added to the generated Alertmanager configuration as a first-level route.",
-						MarkdownDescription: "The Alertmanager route definition for alerts matching the resource’s namespace. If present, it will be added to the generated Alertmanager configuration as a first-level route.",
+						Description:         "The Alertmanager route definition for alerts matching the resource's namespace. If present, it will be added to the generated Alertmanager configuration as a first-level route.",
+						MarkdownDescription: "The Alertmanager route definition for alerts matching the resource's namespace. If present, it will be added to the generated Alertmanager configuration as a first-level route.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -11392,8 +11392,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Resource) GetSchema(_ cont
 							},
 
 							"matchers": {
-								Description:         "List of matchers that the alert’s labels should match. For the first level route, the operator removes any existing equality and regexp matcher on the 'namespace' label and adds a 'namespace: <object namespace>' matcher.",
-								MarkdownDescription: "List of matchers that the alert’s labels should match. For the first level route, the operator removes any existing equality and regexp matcher on the 'namespace' label and adds a 'namespace: <object namespace>' matcher.",
+								Description:         "List of matchers that the alert's labels should match. For the first level route, the operator removes any existing equality and regexp matcher on the 'namespace' label and adds a 'namespace: <object namespace>' matcher.",
+								MarkdownDescription: "List of matchers that the alert's labels should match. For the first level route, the operator removes any existing equality and regexp matcher on the 'namespace' label and adds a 'namespace: <object namespace>' matcher.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 

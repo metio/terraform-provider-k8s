@@ -60,6 +60,28 @@ type ExternalSecretsIoClusterSecretStoreV1Alpha1GoModel struct {
 				AkeylessGWApiURL *string `tfsdk:"akeyless_gw_api_url" yaml:"akeylessGWApiURL,omitempty"`
 
 				AuthSecretRef *struct {
+					KubernetesAuth *struct {
+						AccessID *string `tfsdk:"access_id" yaml:"accessID,omitempty"`
+
+						K8sConfName *string `tfsdk:"k8s_conf_name" yaml:"k8sConfName,omitempty"`
+
+						SecretRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+
+						ServiceAccountRef *struct {
+							Audiences *[]string `tfsdk:"audiences" yaml:"audiences,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"service_account_ref" yaml:"serviceAccountRef,omitempty"`
+					} `tfsdk:"kubernetes_auth" yaml:"kubernetesAuth,omitempty"`
+
 					SecretRef *struct {
 						AccessID *struct {
 							Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -688,9 +710,133 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Resource) GetSchema(_ contex
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+											"kubernetes_auth": {
+												Description:         "Kubernetes authenticates with Akeyless by passing the ServiceAccount token stored in the named Secret resource.",
+												MarkdownDescription: "Kubernetes authenticates with Akeyless by passing the ServiceAccount token stored in the named Secret resource.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"access_id": {
+														Description:         "the Akeyless Kubernetes auth-method access-id",
+														MarkdownDescription: "the Akeyless Kubernetes auth-method access-id",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"k8s_conf_name": {
+														Description:         "Kubernetes-auth configuration name in Akeyless-Gateway",
+														MarkdownDescription: "Kubernetes-auth configuration name in Akeyless-Gateway",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"secret_ref": {
+														Description:         "Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless. If a name is specified without a key, 'token' is the default. If one is not specified, the one bound to the controller will be used.",
+														MarkdownDescription: "Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless. If a name is specified without a key, 'token' is the default. If one is not specified, the one bound to the controller will be used.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"service_account_ref": {
+														Description:         "Optional service account field containing the name of a kubernetes ServiceAccount. If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead.",
+														MarkdownDescription: "Optional service account field containing the name of a kubernetes ServiceAccount. If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead.",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"audiences": {
+																Description:         "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+																MarkdownDescription: "Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list",
+
+																Type: types.ListType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the ServiceAccount resource being referred to.",
+																MarkdownDescription: "The name of the ServiceAccount resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"secret_ref": {
-												Description:         "AkeylessAuthSecretRef AKEYLESS_ACCESS_TYPE_PARAM: AZURE_OBJ_ID OR GCP_AUDIENCE OR ACCESS_KEY OR KUB_CONFIG_NAME.",
-												MarkdownDescription: "AkeylessAuthSecretRef AKEYLESS_ACCESS_TYPE_PARAM: AZURE_OBJ_ID OR GCP_AUDIENCE OR ACCESS_KEY OR KUB_CONFIG_NAME.",
+												Description:         "Reference to a Secret that contains the details to authenticate with Akeyless.",
+												MarkdownDescription: "Reference to a Secret that contains the details to authenticate with Akeyless.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -830,8 +976,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Resource) GetSchema(_ contex
 													},
 												}),
 
-												Required: true,
-												Optional: false,
+												Required: false,
+												Optional: true,
 												Computed: false,
 											},
 										}),

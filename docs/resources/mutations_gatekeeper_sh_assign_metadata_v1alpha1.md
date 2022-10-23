@@ -17,9 +17,6 @@ resource "k8s_mutations_gatekeeper_sh_assign_metadata_v1alpha1" "minimal" {
   metadata = {
     name = "test"
   }
-  spec = {
-
-  }
 }
 ```
 
@@ -75,6 +72,7 @@ Optional:
 - `namespace_selector` (Attributes) NamespaceSelector is a label selector against an object's containing namespace or the object itself, if the object is a namespace. (see [below for nested schema](#nestedatt--spec--match--namespace_selector))
 - `namespaces` (List of String) Namespaces is a list of namespace names. If defined, a constraint only applies to resources in a listed namespace.  Namespaces also supports a prefix or suffix based glob.  For example, 'namespaces: [kube-*]' matches both 'kube-system' and 'kube-public', and 'namespaces: [*-system]' matches both 'kube-system' and 'gatekeeper-system'.
 - `scope` (String) Scope determines if cluster-scoped and/or namespaced-scoped resources are matched.  Accepts '*', 'Cluster', or 'Namespaced'. (defaults to '*')
+- `source` (String) Source determines whether generated or original resources are matched. Accepts 'Generated'|'Original'|'All' (defaults to 'All'). A value of 'Generated' will only match generated resources, while 'Original' will only match regular resources.
 
 <a id="nestedatt--spec--match--kinds"></a>
 ### Nested Schema for `spec.match.kinds`

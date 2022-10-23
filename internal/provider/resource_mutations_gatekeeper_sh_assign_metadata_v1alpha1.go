@@ -92,6 +92,8 @@ type MutationsGatekeeperShAssignMetadataV1Alpha1GoModel struct {
 			Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 			Scope *string `tfsdk:"scope" yaml:"scope,omitempty"`
+
+			Source *string `tfsdk:"source" yaml:"source,omitempty"`
 		} `tfsdk:"match" yaml:"match,omitempty"`
 
 		Parameters *struct {
@@ -437,6 +439,22 @@ func (r *MutationsGatekeeperShAssignMetadataV1Alpha1Resource) GetSchema(_ contex
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"source": {
+								Description:         "Source determines whether generated or original resources are matched. Accepts 'Generated'|'Original'|'All' (defaults to 'All'). A value of 'Generated' will only match generated resources, while 'Original' will only match regular resources.",
+								MarkdownDescription: "Source determines whether generated or original resources are matched. Accepts 'Generated'|'Original'|'All' (defaults to 'All'). A value of 'Generated' will only match generated resources, while 'Original' will only match regular resources.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("All", "Generated", "Original"),
+								},
 							},
 						}),
 

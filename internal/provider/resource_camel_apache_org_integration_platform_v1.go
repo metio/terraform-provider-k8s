@@ -347,7 +347,7 @@ type CamelApacheOrgIntegrationPlatformV1GoModel struct {
 				Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
 
 				Ref *string `tfsdk:"ref" yaml:"ref,omitempty"`
-			} `tfsdk:"error__handler" yaml:"error-handler,omitempty"`
+			} `tfsdk:"error_handler" yaml:"error-handler,omitempty"`
 
 			Gc *struct {
 				Configuration utilities.Dynamic `tfsdk:"configuration" yaml:"configuration,omitempty"`
@@ -517,7 +517,7 @@ type CamelApacheOrgIntegrationPlatformV1GoModel struct {
 				RolloutDuration *string `tfsdk:"rollout_duration" yaml:"rolloutDuration,omitempty"`
 
 				Visibility *string `tfsdk:"visibility" yaml:"visibility,omitempty"`
-			} `tfsdk:"knative__service" yaml:"knative-service,omitempty"`
+			} `tfsdk:"knative_service" yaml:"knative-service,omitempty"`
 
 			Logging *struct {
 				Color *bool `tfsdk:"color" yaml:"color,omitempty"`
@@ -617,7 +617,7 @@ type CamelApacheOrgIntegrationPlatformV1GoModel struct {
 				ImagePullerDelegation *bool `tfsdk:"image_puller_delegation" yaml:"imagePullerDelegation,omitempty"`
 
 				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
-			} `tfsdk:"pull__secret" yaml:"pull-secret,omitempty"`
+			} `tfsdk:"pull_secret" yaml:"pull-secret,omitempty"`
 
 			Quarkus *struct {
 				Configuration utilities.Dynamic `tfsdk:"configuration" yaml:"configuration,omitempty"`
@@ -679,7 +679,7 @@ type CamelApacheOrgIntegrationPlatformV1GoModel struct {
 				Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
 
 				Services *[]string `tfsdk:"services" yaml:"services,omitempty"`
-			} `tfsdk:"service__binding" yaml:"service-binding,omitempty"`
+			} `tfsdk:"service_binding" yaml:"service-binding,omitempty"`
 
 			Strimzi *struct {
 				Configuration utilities.Dynamic `tfsdk:"configuration" yaml:"configuration,omitempty"`
@@ -2434,7 +2434,7 @@ func (r *CamelApacheOrgIntegrationPlatformV1Resource) GetSchema(_ context.Contex
 								Computed: false,
 							},
 
-							"error__handler": {
+							"error_handler": {
 								Description:         "The configuration of Error Handler trait",
 								MarkdownDescription: "The configuration of Error Handler trait",
 
@@ -3307,7 +3307,7 @@ func (r *CamelApacheOrgIntegrationPlatformV1Resource) GetSchema(_ context.Contex
 								Computed: false,
 							},
 
-							"knative__service": {
+							"knative_service": {
 								Description:         "The configuration of Knative Service trait",
 								MarkdownDescription: "The configuration of Knative Service trait",
 
@@ -3937,7 +3937,7 @@ func (r *CamelApacheOrgIntegrationPlatformV1Resource) GetSchema(_ context.Contex
 								Computed: false,
 							},
 
-							"pull__secret": {
+							"pull_secret": {
 								Description:         "The configuration of Pull Secret trait",
 								MarkdownDescription: "The configuration of Pull Secret trait",
 
@@ -4320,7 +4320,7 @@ func (r *CamelApacheOrgIntegrationPlatformV1Resource) GetSchema(_ context.Contex
 								Computed: false,
 							},
 
-							"service__binding": {
+							"service_binding": {
 								Description:         "The configuration of Service Binding trait",
 								MarkdownDescription: "The configuration of Service Binding trait",
 

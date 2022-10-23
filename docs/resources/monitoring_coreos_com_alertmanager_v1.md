@@ -67,7 +67,7 @@ Optional:
 - `cluster_gossip_interval` (String) Interval between gossip attempts.
 - `cluster_peer_timeout` (String) Timeout for cluster peering.
 - `cluster_pushpull_interval` (String) Interval between pushpull attempts.
-- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. The ConfigMaps are mounted into /etc/alertmanager/configmaps/<configmap-name>.
+- `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. Each ConfigMap is added to the StatefulSet definition as a volume named 'configmap-<configmap-name>'. The ConfigMaps are mounted into '/etc/alertmanager/configmaps/<configmap-name>' in the 'alertmanager' container.
 - `config_secret` (String) ConfigSecret is the name of a Kubernetes Secret in the same namespace as the Alertmanager object, which contains the configuration for this Alertmanager instance. If empty, it defaults to 'alertmanager-<alertmanager-name>'.  The Alertmanager configuration should be available under the 'alertmanager.yaml' key. Additional keys from the original secret are copied to the generated secret.  If either the secret or the 'alertmanager.yaml' key is missing, the operator provisions an Alertmanager configuration with one empty receiver (effectively dropping alert notifications).
 - `containers` (Attributes List) Containers allows injecting additional containers. This is meant to allow adding an authentication proxy to an Alertmanager pod. Containers described here modify an operator generated container if they share the same name and modifications are done via a strategic merge patch. The current container names are: 'alertmanager' and 'config-reloader'. Overriding containers is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice. (see [below for nested schema](#nestedatt--spec--containers))
 - `external_url` (String) The external URL the Alertmanager instances will be available under. This is necessary to generate correct URLs. This is necessary if Alertmanager is not served from root of a DNS name.
@@ -89,7 +89,7 @@ Optional:
 - `resources` (Attributes) Define resources requests and limits for single Pods. (see [below for nested schema](#nestedatt--spec--resources))
 - `retention` (String) Time duration Alertmanager shall retain data for. Default is '120h', and must match the regular expression '[0-9]+(ms|s|m|h)' (milliseconds seconds minutes hours).
 - `route_prefix` (String) The route prefix Alertmanager registers HTTP handlers for. This is useful, if using ExternalURL and a proxy is rewriting HTTP routes of a request, and the actual ExternalURL is still true, but the server serves requests under a different route prefix. For example for use with 'kubectl proxy'.
-- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. The Secrets are mounted into /etc/alertmanager/secrets/<secret-name>.
+- `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. Each Secret is added to the StatefulSet definition as a volume named 'secret-<secret-name>'. The Secrets are mounted into '/etc/alertmanager/secrets/<secret-name>' in the 'alertmanager' container.
 - `security_context` (Attributes) SecurityContext holds pod-level security attributes and common container settings. This defaults to the default PodSecurityContext. (see [below for nested schema](#nestedatt--spec--security_context))
 - `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run the Prometheus Pods.
 - `sha` (String) SHA of Alertmanager container image to be deployed. Defaults to the value of 'version'. Similar to a tag, but the SHA explicitly deploys an immutable container image. Version and Tag are ignored if SHA is set. Deprecated: use 'image' instead.  The image digest can be specified as part of the image URL.
@@ -527,6 +527,7 @@ Optional:
 
 - `global` (Attributes) Defines the global parameters of the Alertmanager configuration. (see [below for nested schema](#nestedatt--spec--alertmanager_configuration--global))
 - `name` (String) The name of the AlertmanagerConfig resource which is used to generate the Alertmanager configuration. It must be defined in the same namespace as the Alertmanager object. The operator will not enforce a 'namespace' label for routes and inhibition rules.
+- `templates` (Attributes List) Custom notification templates. (see [below for nested schema](#nestedatt--spec--alertmanager_configuration--templates))
 
 <a id="nestedatt--spec--alertmanager_configuration--global"></a>
 ### Nested Schema for `spec.alertmanager_configuration.global`
@@ -776,6 +777,41 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
+
+
+
+<a id="nestedatt--spec--alertmanager_configuration--templates"></a>
+### Nested Schema for `spec.alertmanager_configuration.templates`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--alertmanager_configuration--templates--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--alertmanager_configuration--templates--secret))
+
+<a id="nestedatt--spec--alertmanager_configuration--templates--config_map"></a>
+### Nested Schema for `spec.alertmanager_configuration.templates.secret`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--alertmanager_configuration--templates--secret"></a>
+### Nested Schema for `spec.alertmanager_configuration.templates.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
 

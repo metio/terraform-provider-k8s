@@ -418,14 +418,14 @@ Required:
 
 Optional:
 
-- `___xms` (String) -Xms option to to the JVM.
-- `___xmx` (String) -Xmx option to to the JVM.
-- `__xx` (Dynamic) A map of -XX options to the JVM.
 - `gc_logging_enabled` (Boolean) Specifies whether the Garbage Collection logging is enabled. The default is false.
 - `java_system_properties` (Attributes List) A map of additional system properties which will be passed using the '-D' option to the JVM. (see [below for nested schema](#nestedatt--spec--kafka--jvm_options--java_system_properties))
+- `xms` (String) -Xms option to to the JVM.
+- `xmx` (String) -Xmx option to to the JVM.
+- `xx` (Dynamic) A map of -XX options to the JVM.
 
 <a id="nestedatt--spec--kafka--jvm_options--java_system_properties"></a>
-### Nested Schema for `spec.kafka.jvm_options.java_system_properties`
+### Nested Schema for `spec.kafka.jvm_options.xx`
 
 Optional:
 
@@ -1530,14 +1530,14 @@ Required:
 
 Optional:
 
-- `___xms` (String) -Xms option to to the JVM.
-- `___xmx` (String) -Xmx option to to the JVM.
-- `__xx` (Dynamic) A map of -XX options to the JVM.
 - `gc_logging_enabled` (Boolean) Specifies whether the Garbage Collection logging is enabled. The default is false.
 - `java_system_properties` (Attributes List) A map of additional system properties which will be passed using the '-D' option to the JVM. (see [below for nested schema](#nestedatt--spec--zookeeper--jvm_options--java_system_properties))
+- `xms` (String) -Xms option to to the JVM.
+- `xmx` (String) -Xmx option to to the JVM.
+- `xx` (Dynamic) A map of -XX options to the JVM.
 
 <a id="nestedatt--spec--zookeeper--jvm_options--java_system_properties"></a>
-### Nested Schema for `spec.zookeeper.jvm_options.java_system_properties`
+### Nested Schema for `spec.zookeeper.jvm_options.xx`
 
 Optional:
 
@@ -2417,14 +2417,14 @@ Optional:
 
 Optional:
 
-- `___xms` (String) -Xms option to to the JVM.
-- `___xmx` (String) -Xmx option to to the JVM.
-- `__xx` (Dynamic) A map of -XX options to the JVM.
 - `gc_logging_enabled` (Boolean) Specifies whether the Garbage Collection logging is enabled. The default is false.
 - `java_system_properties` (Attributes List) A map of additional system properties which will be passed using the '-D' option to the JVM. (see [below for nested schema](#nestedatt--spec--cruise_control--jvm_options--java_system_properties))
+- `xms` (String) -Xms option to to the JVM.
+- `xmx` (String) -Xmx option to to the JVM.
+- `xx` (Dynamic) A map of -XX options to the JVM.
 
 <a id="nestedatt--spec--cruise_control--jvm_options--java_system_properties"></a>
-### Nested Schema for `spec.cruise_control.jvm_options.java_system_properties`
+### Nested Schema for `spec.cruise_control.jvm_options.xx`
 
 Optional:
 
@@ -4101,11 +4101,11 @@ Optional:
 
 Optional:
 
-- `___xms` (String) -Xms option to to the JVM.
-- `___xmx` (String) -Xmx option to to the JVM.
-- `__xx` (Dynamic) A map of -XX options to the JVM.
 - `gc_logging_enabled` (Boolean) Specifies whether the Garbage Collection logging is enabled. The default is false.
 - `java_system_properties` (Attributes List) A map of additional system properties which will be passed using the '-D' option to the JVM. (see [below for nested schema](#nestedatt--spec--entity_operator--topic_operator--zookeeper_session_timeout_seconds--java_system_properties))
+- `xms` (String) -Xms option to to the JVM.
+- `xmx` (String) -Xmx option to to the JVM.
+- `xx` (Dynamic) A map of -XX options to the JVM.
 
 <a id="nestedatt--spec--entity_operator--topic_operator--zookeeper_session_timeout_seconds--java_system_properties"></a>
 ### Nested Schema for `spec.entity_operator.topic_operator.zookeeper_session_timeout_seconds.java_system_properties`
@@ -4215,11 +4215,11 @@ Optional:
 
 Optional:
 
-- `___xms` (String) -Xms option to to the JVM.
-- `___xmx` (String) -Xmx option to to the JVM.
-- `__xx` (Dynamic) A map of -XX options to the JVM.
 - `gc_logging_enabled` (Boolean) Specifies whether the Garbage Collection logging is enabled. The default is false.
 - `java_system_properties` (Attributes List) A map of additional system properties which will be passed using the '-D' option to the JVM. (see [below for nested schema](#nestedatt--spec--entity_operator--user_operator--zookeeper_session_timeout_seconds--java_system_properties))
+- `xms` (String) -Xms option to to the JVM.
+- `xmx` (String) -Xmx option to to the JVM.
+- `xx` (Dynamic) A map of -XX options to the JVM.
 
 <a id="nestedatt--spec--entity_operator--user_operator--zookeeper_session_timeout_seconds--java_system_properties"></a>
 ### Nested Schema for `spec.entity_operator.user_operator.zookeeper_session_timeout_seconds.java_system_properties`

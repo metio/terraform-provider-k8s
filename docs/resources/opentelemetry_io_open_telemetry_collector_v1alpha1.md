@@ -68,13 +68,15 @@ Optional:
 - `host_network` (Boolean) HostNetwork indicates if the pod should run in the host networking namespace.
 - `image` (String) Image indicates the container image to use for the OpenTelemetry Collector.
 - `image_pull_policy` (String) ImagePullPolicy indicates the pull policy to be used for retrieving the container image (Always, Never, IfNotPresent)
+- `ingress` (Attributes) Ingress is used to specify how OpenTelemetry Collector is exposed. This functionality is only available if one of the valid modes is set. Valid modes are: deployment, daemonset and statefulset. (see [below for nested schema](#nestedatt--spec--ingress))
 - `max_replicas` (Number) MaxReplicas sets an upper bound to the autoscaling feature. If MaxReplicas is set autoscaling is enabled.
 - `min_replicas` (Number) MinReplicas sets a lower bound to the autoscaling feature.  Set this if your are using autoscaling. It must be at least 1
 - `mode` (String) Mode represents how the collector should be deployed (deployment, daemonset, statefulset or sidecar)
 - `node_selector` (Map of String) NodeSelector to schedule OpenTelemetry Collector pods. This is only relevant to daemonset, statefulset, and deployment mode
 - `pod_annotations` (Map of String) PodAnnotations is the set of annotations that will be attached to Collector and Target Allocator pods.
 - `pod_security_context` (Attributes) PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext. (see [below for nested schema](#nestedatt--spec--pod_security_context))
-- `ports` (Attributes List) Ports allows a set of ports to be exposed by the underlying v1.Service. By default, the operator will attempt to infer the required ports by parsing the .Spec.Config property but this property can be used to open aditional ports that can't be inferred by the operator, like for custom receivers. (see [below for nested schema](#nestedatt--spec--ports))
+- `ports` (Attributes List) Ports allows a set of ports to be exposed by the underlying v1.Service. By default, the operator will attempt to infer the required ports by parsing the .Spec.Config property but this property can be used to open additional ports that can't be inferred by the operator, like for custom receivers. (see [below for nested schema](#nestedatt--spec--ports))
+- `priority_class_name` (String) If specified, indicates the pod's priority. If not specified, the pod priority will be default or zero if there is no default.
 - `replicas` (Number) Replicas is the number of pod instances for the underlying OpenTelemetry Collector. Set this if your are not using autoscaling
 - `resources` (Attributes) Resources to set on the OpenTelemetry Collector pods. (see [below for nested schema](#nestedatt--spec--resources))
 - `security_context` (Attributes) SecurityContext will be set as the container security context. (see [below for nested schema](#nestedatt--spec--security_context))
@@ -92,6 +94,7 @@ Optional:
 Optional:
 
 - `behavior` (Attributes) HorizontalPodAutoscalerBehavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively). (see [below for nested schema](#nestedatt--spec--autoscaler--behavior))
+- `target_cpu_utilization` (Number) TargetCPUUtilization sets the target average CPU used across all replicas. If average CPU exceeds this value, the HPA will scale up. Defaults to 90 percent.
 
 <a id="nestedatt--spec--autoscaler--behavior"></a>
 ### Nested Schema for `spec.autoscaler.behavior`
@@ -243,6 +246,26 @@ Optional:
 
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret must be defined
+
+
+
+<a id="nestedatt--spec--ingress"></a>
+### Nested Schema for `spec.ingress`
+
+Optional:
+
+- `annotations` (Map of String) Annotations to add to ingress. e.g. 'cert-manager.io/cluster-issuer: 'letsencrypt''
+- `hostname` (String) Hostname by which the ingress proxy can be reached.
+- `tls` (Attributes List) TLS configuration. (see [below for nested schema](#nestedatt--spec--ingress--tls))
+- `type` (String) Type default value is: '' Supported types are: ingress
+
+<a id="nestedatt--spec--ingress--tls"></a>
+### Nested Schema for `spec.ingress.tls`
+
+Optional:
+
+- `hosts` (List of String) Hosts are a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.
+- `secret_name` (String) SecretName is the name of the secret used to terminate TLS traffic on port 443. Field is left optional to allow TLS routing based on SNI hostname alone. If the SNI host in a listener conflicts with the 'Host' header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing.
 
 
 
