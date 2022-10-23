@@ -23,13 +23,17 @@ Files: generators/templates/*.tmpl
 Copyright: The terraform-provider-k8s Authors
 License: 0BSD
 
-Files: schemas/openapi_v2/io.kubernetes/kubernetes-swagger.json
+Files: schemas/openapi_v2/io.kubernetes/*
 Copyright: The Kubernetes Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/acid.zalan.do/*
 Copyright: The Postgres Operator Authors
 License: MIT
+
+Files: schemas/crd_v1/acme.cert-manager.io/*
+Copyright: The cert-manager Authors
+License: Apache-2.0
 
 Files: schemas/crd_v1/agent.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
@@ -201,6 +205,10 @@ License: LicenseRef-Elastic
 
 Files: schemas/crd_v1/execution.furiko.io/*
 Copyright: The Furiko Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/expansion.gatekeeper.sh/*
+Copyright: The Gatekeeper Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/extensions.istio.io/*
@@ -487,6 +495,10 @@ Files: schemas/crd_v1/secscan.quay.redhat.com/*
 Copyright: The Container Security Operator Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/security.istio.io/*
+Copyright: The Istio Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/security-profiles-operator.x-k8s.io/*
 Copyright: The Kubernetes Security Profiles Operator Authors
 License: Apache-2.0
@@ -517,6 +529,10 @@ License: Apache-2.0
 
 Files: schemas/crd_v1/status.gatekeeper.sh/*
 Copyright: The Gatekeeper Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/telemetry.istio.io/*
+Copyright: The Istio Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/templates.gatekeeper.sh/*
