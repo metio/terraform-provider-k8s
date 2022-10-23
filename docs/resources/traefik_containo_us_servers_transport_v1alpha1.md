@@ -65,6 +65,7 @@ Optional:
 - `peer_cert_uri` (String) PeerCertURI defines the peer cert URI used to match against SAN URI during the peer certificate verification.
 - `root_c_as_secrets` (List of String) RootCAsSecrets defines a list of CA secret used to validate self-signed certificate.
 - `server_name` (String) ServerName defines the server name used to contact the server.
+- `spiffe` (Attributes) Spiffe defines the SPIFFE configuration. (see [below for nested schema](#nestedatt--spec--spiffe))
 
 <a id="nestedatt--spec--forwarding_timeouts"></a>
 ### Nested Schema for `spec.forwarding_timeouts`
@@ -76,5 +77,14 @@ Optional:
 - `ping_timeout` (Dynamic) PingTimeout is the timeout after which the HTTP/2 connection will be closed if a response to ping is not received.
 - `read_idle_timeout` (Dynamic) ReadIdleTimeout is the timeout after which a health check using ping frame will be carried out if no frame is received on the HTTP/2 connection.
 - `response_header_timeout` (Dynamic) ResponseHeaderTimeout is the amount of time to wait for a server's response headers after fully writing the request (including its body, if any).
+
+
+<a id="nestedatt--spec--spiffe"></a>
+### Nested Schema for `spec.spiffe`
+
+Optional:
+
+- `ids` (List of String) IDs defines the allowed SPIFFE IDs (takes precedence over the SPIFFE TrustDomain).
+- `trust_domain` (String) TrustDomain defines the allowed SPIFFE trust domain.
 
 

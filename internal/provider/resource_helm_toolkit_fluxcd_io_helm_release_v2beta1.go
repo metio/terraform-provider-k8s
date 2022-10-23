@@ -76,6 +76,14 @@ type HelmToolkitFluxcdIoHelmReleaseV2Beta1GoModel struct {
 
 				ValuesFiles *[]string `tfsdk:"values_files" yaml:"valuesFiles,omitempty"`
 
+				Verify *struct {
+					Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
+
+					SecretRef *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+				} `tfsdk:"verify" yaml:"verify,omitempty"`
+
 				Version *string `tfsdk:"version" yaml:"version,omitempty"`
 			} `tfsdk:"spec" yaml:"spec,omitempty"`
 		} `tfsdk:"chart" yaml:"chart,omitempty"`
@@ -528,6 +536,57 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 										Computed: false,
 									},
 
+									"verify": {
+										Description:         "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic. This field is only supported for OCI sources. Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified.",
+										MarkdownDescription: "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic. This field is only supported for OCI sources. Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"provider": {
+												Description:         "Provider specifies the technology used to sign the OCI Helm chart.",
+												MarkdownDescription: "Provider specifies the technology used to sign the OCI Helm chart.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.OneOf("cosign"),
+												},
+											},
+
+											"secret_ref": {
+												Description:         "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
+												MarkdownDescription: "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "Name of the referent.",
+														MarkdownDescription: "Name of the referent.",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"version": {
 										Description:         "Version semver expression, ignored for charts from v1beta2.GitRepository and v1beta2.Bucket sources. Defaults to latest when omitted.",
 										MarkdownDescription: "Version semver expression, ignored for charts from v1beta2.GitRepository and v1beta2.Bucket sources. Defaults to latest when omitted.",
@@ -741,7 +800,7 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m))+$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$`), ""),
 								},
 							},
 						}),
@@ -1291,7 +1350,7 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m))+$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$`), ""),
 								},
 							},
 						}),
@@ -1399,7 +1458,7 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m))+$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$`), ""),
 								},
 							},
 						}),
@@ -1476,7 +1535,7 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m))+$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$`), ""),
 								},
 							},
 						}),
@@ -1658,7 +1717,7 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Resource) GetSchema(_ context.Cont
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m))+$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ms|s|m|h))+$`), ""),
 								},
 							},
 						}),

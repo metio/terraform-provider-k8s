@@ -56,7 +56,7 @@ Optional:
 
 Optional:
 
-- `ipv4__alloc__cidr` (String) IPv4AllocCIDR is the range of IPv4 addresses in the CIDR format that the external workload can use to allocate IP addresses for the tunnel device and the health endpoint.
-- `ipv6__alloc__cidr` (String) IPv6AllocCIDR is the range of IPv6 addresses in the CIDR format that the external workload can use to allocate IP addresses for the tunnel device and the health endpoint.
+- `ipv4_alloc_cidr` (String) IPv4AllocCIDR is the range of IPv4 addresses in the CIDR format that the external workload can use to allocate IP addresses for the tunnel device and the health endpoint.
+- `ipv6_alloc_cidr` (String) IPv6AllocCIDR is the range of IPv6 addresses in the CIDR format that the external workload can use to allocate IP addresses for the tunnel device and the health endpoint.
 
 

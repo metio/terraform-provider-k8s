@@ -101,6 +101,7 @@ Optional:
 - `reconcile_strategy` (String) Determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.
 - `values_file` (String) Alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file defined here is merged before the ValuesFiles items. Ignored when omitted.
 - `values_files` (List of String) Alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.
+- `verify` (Attributes) Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic. This field is only supported for OCI sources. Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified. (see [below for nested schema](#nestedatt--spec--chart--spec--verify))
 - `version` (String) Version semver expression, ignored for charts from v1beta2.GitRepository and v1beta2.Bucket sources. Defaults to latest when omitted.
 
 <a id="nestedatt--spec--chart--spec--source_ref"></a>
@@ -115,6 +116,26 @@ Optional:
 - `api_version` (String) APIVersion of the referent.
 - `kind` (String) Kind of the referent.
 - `namespace` (String) Namespace of the referent.
+
+
+<a id="nestedatt--spec--chart--spec--verify"></a>
+### Nested Schema for `spec.chart.spec.version`
+
+Required:
+
+- `provider` (String) Provider specifies the technology used to sign the OCI Helm chart.
+
+Optional:
+
+- `secret_ref` (Attributes) SecretRef specifies the Kubernetes Secret containing the trusted public keys. (see [below for nested schema](#nestedatt--spec--chart--spec--version--secret_ref))
+
+<a id="nestedatt--spec--chart--spec--version--secret_ref"></a>
+### Nested Schema for `spec.chart.spec.version.secret_ref`
+
+Required:
+
+- `name` (String) Name of the referent.
+
 
 
 

@@ -56,6 +56,8 @@ type SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1GoModel struct {
 
 		Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
+		MergeStrategy *string `tfsdk:"merge_strategy" yaml:"mergeStrategy,omitempty"`
+
 		PodSelector *struct {
 			MatchExpressions *[]struct {
 				Key *string `tfsdk:"key" yaml:"key,omitempty"`
@@ -190,6 +192,22 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Resource) GetSche
 						Validators: []tfsdk.AttributeValidator{
 
 							stringvalidator.OneOf("SeccompProfile", "SelinuxProfile"),
+						},
+					},
+
+					"merge_strategy": {
+						Description:         "Whether or how to merge recorded profiles. Can be one of 'none' or 'containers'. Default is 'none'.",
+						MarkdownDescription: "Whether or how to merge recorded profiles. Can be one of 'none' or 'containers'. Default is 'none'.",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+
+						Validators: []tfsdk.AttributeValidator{
+
+							stringvalidator.OneOf("none", "containers"),
 						},
 					},
 

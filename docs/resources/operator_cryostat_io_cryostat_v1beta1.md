@@ -87,6 +87,7 @@ Optional:
 - `enable_cert_manager` (Boolean) Use cert-manager to secure in-cluster communication between Cryostat components. Requires cert-manager to be installed.
 - `event_templates` (Attributes List) List of Flight Recorder Event Templates to preconfigure in Cryostat. (see [below for nested schema](#nestedatt--spec--event_templates))
 - `jmx_cache_options` (Attributes) Options to customize the JMX target connections cache for the Cryostat application. (see [below for nested schema](#nestedatt--spec--jmx_cache_options))
+- `jmx_credentials_database_options` (Attributes) Options to configure the Cryostat application's JMX credentials database. (see [below for nested schema](#nestedatt--spec--jmx_credentials_database_options))
 - `max_ws_connections` (Number) The maximum number of WebSocket client connections allowed (minimum 1, default unlimited).
 - `network_options` (Attributes) Options to control how the operator exposes the application outside of the cluster, such as using an Ingress or Route. (see [below for nested schema](#nestedatt--spec--network_options))
 - `report_options` (Attributes) Options to configure Cryostat Automated Report Analysis. (see [below for nested schema](#nestedatt--spec--report_options))
@@ -95,6 +96,7 @@ Optional:
 - `security_options` (Attributes) Options to configure the Security Contexts for the Cryostat application. (see [below for nested schema](#nestedatt--spec--security_options))
 - `service_options` (Attributes) Options to customize the services created for the Cryostat application and Grafana dashboard. (see [below for nested schema](#nestedatt--spec--service_options))
 - `storage_options` (Attributes) Options to customize the storage for Flight Recordings and Templates. (see [below for nested schema](#nestedatt--spec--storage_options))
+- `target_discovery_options` (Attributes) Options to configure the Cryostat application's target discovery mechanisms. (see [below for nested schema](#nestedatt--spec--target_discovery_options))
 - `trusted_cert_secrets` (Attributes List) List of TLS certificates to trust when connecting to targets. (see [below for nested schema](#nestedatt--spec--trusted_cert_secrets))
 
 <a id="nestedatt--spec--auth_properties"></a>
@@ -123,6 +125,14 @@ Optional:
 
 - `target_cache_size` (Number) The maximum number of JMX connections to cache. Use '-1' for an unlimited cache size (TTL expiration only). Defaults to '-1'.
 - `target_cache_ttl` (Number) The time to live (in seconds) for cached JMX connections. Defaults to '10'.
+
+
+<a id="nestedatt--spec--jmx_credentials_database_options"></a>
+### Nested Schema for `spec.jmx_credentials_database_options`
+
+Optional:
+
+- `database_secret_name` (String) Name of the secret containing the password to encrypt JMX credentials database.
 
 
 <a id="nestedatt--spec--network_options"></a>
@@ -1950,6 +1960,14 @@ Optional:
 
 
 
+
+
+<a id="nestedatt--spec--target_discovery_options"></a>
+### Nested Schema for `spec.target_discovery_options`
+
+Optional:
+
+- `built_in_discovery_disabled` (Boolean) When true, the Cryostat application will disable the built-in discovery mechanisms. Defaults to false
 
 
 <a id="nestedatt--spec--trusted_cert_secrets"></a>

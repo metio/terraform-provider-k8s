@@ -73,6 +73,7 @@ Required:
 Optional:
 
 - `containers` (List of String) Containers is a set of containers to record. This allows to select only specific containers to record instead of all containers present in the pod.
+- `merge_strategy` (String) Whether or how to merge recorded profiles. Can be one of 'none' or 'containers'. Default is 'none'.
 
 <a id="nestedatt--spec--pod_selector"></a>
 ### Nested Schema for `spec.pod_selector`

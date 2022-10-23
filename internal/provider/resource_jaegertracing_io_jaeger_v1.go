@@ -6618,6 +6618,12 @@ type JaegertracingIoJaegerV1GoModel struct {
 
 				NodeSelector *map[string]string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
 
+				ProxyResources *struct {
+					Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
+
+					Requests *map[string]string `tfsdk:"requests" yaml:"requests,omitempty"`
+				} `tfsdk:"proxy_resources" yaml:"proxyResources,omitempty"`
+
 				RedundancyPolicy *string `tfsdk:"redundancy_policy" yaml:"redundancyPolicy,omitempty"`
 
 				Resources *struct {
@@ -45961,6 +45967,40 @@ func (r *JaegertracingIoJaegerV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 										MarkdownDescription: "",
 
 										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"proxy_resources": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"limits": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"requests": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
 
 										Required: false,
 										Optional: true,

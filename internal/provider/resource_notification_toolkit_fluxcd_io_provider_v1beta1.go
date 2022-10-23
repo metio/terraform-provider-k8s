@@ -300,7 +300,7 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta1Resource) GetSchema(_ context
 
 						Validators: []tfsdk.AttributeValidator{
 
-							stringvalidator.OneOf("slack", "discord", "msteams", "rocket", "generic", "github", "gitlab", "bitbucket", "azuredevops", "googlechat", "webex", "sentry", "azureeventhub", "telegram", "lark", "matrix", "opsgenie", "alertmanager", "grafana", "githubdispatch"),
+							stringvalidator.OneOf("slack", "discord", "msteams", "rocket", "generic", "generic-hmac", "github", "gitlab", "bitbucket", "azuredevops", "googlechat", "webex", "sentry", "azureeventhub", "telegram", "lark", "matrix", "opsgenie", "alertmanager", "grafana", "githubdispatch"),
 						},
 					},
 

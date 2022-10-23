@@ -80,6 +80,14 @@ type SourceToolkitFluxcdIoHelmChartV1Beta2GoModel struct {
 
 		ValuesFiles *[]string `tfsdk:"values_files" yaml:"valuesFiles,omitempty"`
 
+		Verify *struct {
+			Provider *string `tfsdk:"provider" yaml:"provider,omitempty"`
+
+			SecretRef *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
+		} `tfsdk:"verify" yaml:"verify,omitempty"`
+
 		Version *string `tfsdk:"version" yaml:"version,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
@@ -333,6 +341,57 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta2Resource) GetSchema(_ context.Cont
 						MarkdownDescription: "ValuesFiles is an alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
 
 						Type: types.ListType{ElemType: types.StringType},
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"verify": {
+						Description:         "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic. This field is only supported when using HelmRepository source with spec.type 'oci'. Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified.",
+						MarkdownDescription: "Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic. This field is only supported when using HelmRepository source with spec.type 'oci'. Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"provider": {
+								Description:         "Provider specifies the technology used to sign the OCI Artifact.",
+								MarkdownDescription: "Provider specifies the technology used to sign the OCI Artifact.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("cosign"),
+								},
+							},
+
+							"secret_ref": {
+								Description:         "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
+								MarkdownDescription: "SecretRef specifies the Kubernetes Secret containing the trusted public keys.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "Name of the referent.",
+										MarkdownDescription: "Name of the referent.",
+
+										Type: types.StringType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

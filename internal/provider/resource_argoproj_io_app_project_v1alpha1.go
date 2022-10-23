@@ -96,8 +96,6 @@ type ArgoprojIoAppProjectV1Alpha1GoModel struct {
 			Warn *bool `tfsdk:"warn" yaml:"warn,omitempty"`
 		} `tfsdk:"orphaned_resources" yaml:"orphanedResources,omitempty"`
 
-		PermitOnlyProjectScopedClusters *bool `tfsdk:"permit_only_project_scoped_clusters" yaml:"permitOnlyProjectScopedClusters,omitempty"`
-
 		Roles *[]struct {
 			Description *string `tfsdk:"description" yaml:"description,omitempty"`
 
@@ -119,8 +117,6 @@ type ArgoprojIoAppProjectV1Alpha1GoModel struct {
 		SignatureKeys *[]struct {
 			KeyID *string `tfsdk:"key_id" yaml:"keyID,omitempty"`
 		} `tfsdk:"signature_keys" yaml:"signatureKeys,omitempty"`
-
-		SourceNamespaces *[]string `tfsdk:"source_namespaces" yaml:"sourceNamespaces,omitempty"`
 
 		SourceRepos *[]string `tfsdk:"source_repos" yaml:"sourceRepos,omitempty"`
 
@@ -498,17 +494,6 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 						Computed: false,
 					},
 
-					"permit_only_project_scoped_clusters": {
-						Description:         "PermitOnlyProjectScopedClusters determines whether destinations can only reference clusters which are project-scoped",
-						MarkdownDescription: "PermitOnlyProjectScopedClusters determines whether destinations can only reference clusters which are project-scoped",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"roles": {
 						Description:         "Roles are user defined RBAC roles associated with this project",
 						MarkdownDescription: "Roles are user defined RBAC roles associated with this project",
@@ -627,17 +612,6 @@ func (r *ArgoprojIoAppProjectV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 								Computed: false,
 							},
 						}),
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"source_namespaces": {
-						Description:         "SourceNamespaces defines the namespaces application resources are allowed to be created in",
-						MarkdownDescription: "SourceNamespaces defines the namespaces application resources are allowed to be created in",
-
-						Type: types.ListType{ElemType: types.StringType},
 
 						Required: false,
 						Optional: true,

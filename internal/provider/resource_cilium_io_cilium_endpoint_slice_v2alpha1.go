@@ -63,7 +63,7 @@ type CiliumIoCiliumEndpointSliceV2Alpha1GoModel struct {
 			Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
 
 			Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
-		} `tfsdk:"named__ports" yaml:"named-ports,omitempty"`
+		} `tfsdk:"named_ports" yaml:"named-ports,omitempty"`
 
 		Networking *struct {
 			Addressing *[]struct {
@@ -211,7 +211,7 @@ func (r *CiliumIoCiliumEndpointSliceV2Alpha1Resource) GetSchema(_ context.Contex
 						Computed: false,
 					},
 
-					"named__ports": {
+					"named_ports": {
 						Description:         "NamedPorts List of named Layer 4 port and protocol pairs which will be used in Network Policy specs.  swagger:model NamedPorts",
 						MarkdownDescription: "NamedPorts List of named Layer 4 port and protocol pairs which will be used in Network Policy specs.  swagger:model NamedPorts",
 

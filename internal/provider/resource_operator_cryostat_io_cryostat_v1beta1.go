@@ -78,6 +78,10 @@ type OperatorCryostatIoCryostatV1Beta1GoModel struct {
 			TargetCacheTTL *int64 `tfsdk:"target_cache_ttl" yaml:"targetCacheTTL,omitempty"`
 		} `tfsdk:"jmx_cache_options" yaml:"jmxCacheOptions,omitempty"`
 
+		JmxCredentialsDatabaseOptions *struct {
+			DatabaseSecretName *string `tfsdk:"database_secret_name" yaml:"databaseSecretName,omitempty"`
+		} `tfsdk:"jmx_credentials_database_options" yaml:"jmxCredentialsDatabaseOptions,omitempty"`
+
 		MaxWsConnections *int64 `tfsdk:"max_ws_connections" yaml:"maxWsConnections,omitempty"`
 
 		Minimal *bool `tfsdk:"minimal" yaml:"minimal,omitempty"`
@@ -1090,6 +1094,10 @@ type OperatorCryostatIoCryostatV1Beta1GoModel struct {
 			} `tfsdk:"pvc" yaml:"pvc,omitempty"`
 		} `tfsdk:"storage_options" yaml:"storageOptions,omitempty"`
 
+		TargetDiscoveryOptions *struct {
+			BuiltInDiscoveryDisabled *bool `tfsdk:"built_in_discovery_disabled" yaml:"builtInDiscoveryDisabled,omitempty"`
+		} `tfsdk:"target_discovery_options" yaml:"targetDiscoveryOptions,omitempty"`
+
 		TrustedCertSecrets *[]struct {
 			CertificateKey *string `tfsdk:"certificate_key" yaml:"certificateKey,omitempty"`
 
@@ -1318,6 +1326,29 @@ func (r *OperatorCryostatIoCryostatV1Beta1Resource) GetSchema(_ context.Context)
 
 									int64validator.AtLeast(1),
 								},
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"jmx_credentials_database_options": {
+						Description:         "Options to configure the Cryostat application's JMX credentials database.",
+						MarkdownDescription: "Options to configure the Cryostat application's JMX credentials database.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"database_secret_name": {
+								Description:         "Name of the secret containing the password to encrypt JMX credentials database.",
+								MarkdownDescription: "Name of the secret containing the password to encrypt JMX credentials database.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						}),
 
@@ -7056,6 +7087,29 @@ func (r *OperatorCryostatIoCryostatV1Beta1Resource) GetSchema(_ context.Context)
 										Computed: false,
 									},
 								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"target_discovery_options": {
+						Description:         "Options to configure the Cryostat application's target discovery mechanisms.",
+						MarkdownDescription: "Options to configure the Cryostat application's target discovery mechanisms.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"built_in_discovery_disabled": {
+								Description:         "When true, the Cryostat application will disable the built-in discovery mechanisms. Defaults to false",
+								MarkdownDescription: "When true, the Cryostat application will disable the built-in discovery mechanisms. Defaults to false",
+
+								Type: types.BoolType,
 
 								Required: false,
 								Optional: true,

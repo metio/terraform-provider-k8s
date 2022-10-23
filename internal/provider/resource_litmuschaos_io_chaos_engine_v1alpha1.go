@@ -77,6 +77,8 @@ type LitmuschaosIoChaosEngineV1Alpha1GoModel struct {
 
 				RunnerAnnotations *map[string]string `tfsdk:"runner_annotations" yaml:"runnerAnnotations,omitempty"`
 
+				RunnerLabels *map[string]string `tfsdk:"runner_labels" yaml:"runnerLabels,omitempty"`
+
 				Tolerations *[]struct {
 					Effect *string `tfsdk:"effect" yaml:"effect,omitempty"`
 
@@ -93,7 +95,7 @@ type LitmuschaosIoChaosEngineV1Alpha1GoModel struct {
 			} `tfsdk:"runner" yaml:"runner,omitempty"`
 		} `tfsdk:"components" yaml:"components,omitempty"`
 
-		DefaultAppHealthCheck *string `tfsdk:"default_app_health_check" yaml:"defaultAppHealthCheck,omitempty"`
+		DefaultHealthCheck *string `tfsdk:"default_health_check" yaml:"defaultHealthCheck,omitempty"`
 
 		EngineState *string `tfsdk:"engine_state" yaml:"engineState,omitempty"`
 
@@ -975,6 +977,17 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 										Computed: false,
 									},
 
+									"runner_labels": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"tolerations": {
 										Description:         "Pod's tolerations.",
 										MarkdownDescription: "Pod's tolerations.",
@@ -1070,7 +1083,7 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 						Computed: false,
 					},
 
-					"default_app_health_check": {
+					"default_health_check": {
 						Description:         "",
 						MarkdownDescription: "",
 
@@ -4810,8 +4823,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) GetSchema(_ context.Context) 
 
 														Type: types.Int64Type,
 
-														Required: true,
-														Optional: false,
+														Required: false,
+														Optional: true,
 														Computed: false,
 													},
 

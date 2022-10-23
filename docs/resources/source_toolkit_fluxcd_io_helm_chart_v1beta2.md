@@ -68,6 +68,7 @@ Optional:
 - `suspend` (Boolean) Suspend tells the controller to suspend the reconciliation of this source.
 - `values_file` (String) ValuesFile is an alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file specified here is merged before the ValuesFiles items. Ignored when omitted.
 - `values_files` (List of String) ValuesFiles is an alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.
+- `verify` (Attributes) Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic. This field is only supported when using HelmRepository source with spec.type 'oci'. Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified. (see [below for nested schema](#nestedatt--spec--verify))
 - `version` (String) Version is the chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.
 
 <a id="nestedatt--spec--source_ref"></a>
@@ -96,5 +97,25 @@ Required:
 Optional:
 
 - `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+
+
+<a id="nestedatt--spec--verify"></a>
+### Nested Schema for `spec.verify`
+
+Required:
+
+- `provider` (String) Provider specifies the technology used to sign the OCI Artifact.
+
+Optional:
+
+- `secret_ref` (Attributes) SecretRef specifies the Kubernetes Secret containing the trusted public keys. (see [below for nested schema](#nestedatt--spec--verify--secret_ref))
+
+<a id="nestedatt--spec--verify--secret_ref"></a>
+### Nested Schema for `spec.verify.secret_ref`
+
+Required:
+
+- `name` (String) Name of the referent.
 
 

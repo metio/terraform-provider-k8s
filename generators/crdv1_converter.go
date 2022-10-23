@@ -46,7 +46,7 @@ func crdv1AsTemplateData(crd *apiextensionsv1.CustomResourceDefinition, pkg stri
 	return &TemplateData{
 		BT:                    "`",
 		Package:               pkg,
-		File:                  file(group, kind, version.Name),
+		File:                  terraformResourceFile(group, kind, version.Name),
 		Group:                 group,
 		Version:               version.Name,
 		Kind:                  kind,
@@ -65,8 +65,12 @@ func crdv1Properties(schema *apiextensionsv1.JSONSchemaProps, imports *Additiona
 	props := make([]*Property, 0)
 
 	for name, prop := range schema.Properties {
-		attributeName := terraformAttributeName(name)
-		propPath := propertyPath(path, attributeName)
+		propPath := propertyPath(path, name)
+		if ignored, ok := ignoredAttributes[terraformResourceName]; ok {
+			if slices.Contains(ignored, propPath) {
+				continue
+			}
+		}
 
 		var nestedProperties []*Property
 		if prop.Type == "array" && prop.Items.Schema.Type == "object" {
@@ -89,7 +93,7 @@ func crdv1Properties(schema *apiextensionsv1.JSONSchemaProps, imports *Additiona
 			Name:                   name,
 			GoName:                 goName(name),
 			GoType:                 goType,
-			TerraformAttributeName: attributeName,
+			TerraformAttributeName: terraformAttributeName(name),
 			TerraformAttributeType: attributeType,
 			TerraformValueType:     valueType,
 			Description:            description(prop.Description),

@@ -84,6 +84,8 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1GoModel struct {
 					StabilizationWindowSeconds *int64 `tfsdk:"stabilization_window_seconds" yaml:"stabilizationWindowSeconds,omitempty"`
 				} `tfsdk:"scale_up" yaml:"scaleUp,omitempty"`
 			} `tfsdk:"behavior" yaml:"behavior,omitempty"`
+
+			TargetCPUUtilization *int64 `tfsdk:"target_cpu_utilization" yaml:"targetCPUUtilization,omitempty"`
 		} `tfsdk:"autoscaler" yaml:"autoscaler,omitempty"`
 
 		Config *string `tfsdk:"config" yaml:"config,omitempty"`
@@ -147,6 +149,20 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1GoModel struct {
 		Image *string `tfsdk:"image" yaml:"image,omitempty"`
 
 		ImagePullPolicy *string `tfsdk:"image_pull_policy" yaml:"imagePullPolicy,omitempty"`
+
+		Ingress *struct {
+			Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
+
+			Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
+
+			Tls *[]struct {
+				Hosts *[]string `tfsdk:"hosts" yaml:"hosts,omitempty"`
+
+				SecretName *string `tfsdk:"secret_name" yaml:"secretName,omitempty"`
+			} `tfsdk:"tls" yaml:"tls,omitempty"`
+
+			Type *string `tfsdk:"type" yaml:"type,omitempty"`
+		} `tfsdk:"ingress" yaml:"ingress,omitempty"`
 
 		MaxReplicas *int64 `tfsdk:"max_replicas" yaml:"maxReplicas,omitempty"`
 
@@ -217,6 +233,8 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1GoModel struct {
 
 			TargetPort utilities.IntOrString `tfsdk:"target_port" yaml:"targetPort,omitempty"`
 		} `tfsdk:"ports" yaml:"ports,omitempty"`
+
+		PriorityClassName *string `tfsdk:"priority_class_name" yaml:"priorityClassName,omitempty"`
 
 		Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
 
@@ -1154,6 +1172,17 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Resource) GetSchema(_ cont
 								Optional: true,
 								Computed: false,
 							},
+
+							"target_cpu_utilization": {
+								Description:         "TargetCPUUtilization sets the target average CPU used across all replicas. If average CPU exceeds this value, the HPA will scale up. Defaults to 90 percent.",
+								MarkdownDescription: "TargetCPUUtilization sets the target average CPU used across all replicas. If average CPU exceeds this value, the HPA will scale up. Defaults to 90 percent.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						}),
 
 						Required: false,
@@ -1511,6 +1540,90 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Resource) GetSchema(_ cont
 						Computed: false,
 					},
 
+					"ingress": {
+						Description:         "Ingress is used to specify how OpenTelemetry Collector is exposed. This functionality is only available if one of the valid modes is set. Valid modes are: deployment, daemonset and statefulset.",
+						MarkdownDescription: "Ingress is used to specify how OpenTelemetry Collector is exposed. This functionality is only available if one of the valid modes is set. Valid modes are: deployment, daemonset and statefulset.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"annotations": {
+								Description:         "Annotations to add to ingress. e.g. 'cert-manager.io/cluster-issuer: 'letsencrypt''",
+								MarkdownDescription: "Annotations to add to ingress. e.g. 'cert-manager.io/cluster-issuer: 'letsencrypt''",
+
+								Type: types.MapType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"hostname": {
+								Description:         "Hostname by which the ingress proxy can be reached.",
+								MarkdownDescription: "Hostname by which the ingress proxy can be reached.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tls": {
+								Description:         "TLS configuration.",
+								MarkdownDescription: "TLS configuration.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"hosts": {
+										Description:         "Hosts are a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.",
+										MarkdownDescription: "Hosts are a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"secret_name": {
+										Description:         "SecretName is the name of the secret used to terminate TLS traffic on port 443. Field is left optional to allow TLS routing based on SNI hostname alone. If the SNI host in a listener conflicts with the 'Host' header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing.",
+										MarkdownDescription: "SecretName is the name of the secret used to terminate TLS traffic on port 443. Field is left optional to allow TLS routing based on SNI hostname alone. If the SNI host in a listener conflicts with the 'Host' header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"type": {
+								Description:         "Type default value is: '' Supported types are: ingress",
+								MarkdownDescription: "Type default value is: '' Supported types are: ingress",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.OneOf("ingress"),
+								},
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"max_replicas": {
 						Description:         "MaxReplicas sets an upper bound to the autoscaling feature. If MaxReplicas is set autoscaling is enabled.",
 						MarkdownDescription: "MaxReplicas sets an upper bound to the autoscaling feature. If MaxReplicas is set autoscaling is enabled.",
@@ -1830,8 +1943,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Resource) GetSchema(_ cont
 					},
 
 					"ports": {
-						Description:         "Ports allows a set of ports to be exposed by the underlying v1.Service. By default, the operator will attempt to infer the required ports by parsing the .Spec.Config property but this property can be used to open aditional ports that can't be inferred by the operator, like for custom receivers.",
-						MarkdownDescription: "Ports allows a set of ports to be exposed by the underlying v1.Service. By default, the operator will attempt to infer the required ports by parsing the .Spec.Config property but this property can be used to open aditional ports that can't be inferred by the operator, like for custom receivers.",
+						Description:         "Ports allows a set of ports to be exposed by the underlying v1.Service. By default, the operator will attempt to infer the required ports by parsing the .Spec.Config property but this property can be used to open additional ports that can't be inferred by the operator, like for custom receivers.",
+						MarkdownDescription: "Ports allows a set of ports to be exposed by the underlying v1.Service. By default, the operator will attempt to infer the required ports by parsing the .Spec.Config property but this property can be used to open additional ports that can't be inferred by the operator, like for custom receivers.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -1901,6 +2014,17 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Resource) GetSchema(_ cont
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"priority_class_name": {
+						Description:         "If specified, indicates the pod's priority. If not specified, the pod priority will be default or zero if there is no default.",
+						MarkdownDescription: "If specified, indicates the pod's priority. If not specified, the pod priority will be default or zero if there is no default.",
+
+						Type: types.StringType,
 
 						Required: false,
 						Optional: true,

@@ -65,10 +65,8 @@ Optional:
 - `namespace_resource_blacklist` (Attributes List) NamespaceResourceBlacklist contains list of blacklisted namespace level resources (see [below for nested schema](#nestedatt--spec--namespace_resource_blacklist))
 - `namespace_resource_whitelist` (Attributes List) NamespaceResourceWhitelist contains list of whitelisted namespace level resources (see [below for nested schema](#nestedatt--spec--namespace_resource_whitelist))
 - `orphaned_resources` (Attributes) OrphanedResources specifies if controller should monitor orphaned resources of apps in this project (see [below for nested schema](#nestedatt--spec--orphaned_resources))
-- `permit_only_project_scoped_clusters` (Boolean) PermitOnlyProjectScopedClusters determines whether destinations can only reference clusters which are project-scoped
 - `roles` (Attributes List) Roles are user defined RBAC roles associated with this project (see [below for nested schema](#nestedatt--spec--roles))
 - `signature_keys` (Attributes List) SignatureKeys contains a list of PGP key IDs that commits in Git must be signed with in order to be allowed for sync (see [below for nested schema](#nestedatt--spec--signature_keys))
-- `source_namespaces` (List of String) SourceNamespaces defines the namespaces application resources are allowed to be created in
 - `source_repos` (List of String) SourceRepos contains list of repository URLs which can be used for deployment
 - `sync_windows` (Attributes List) SyncWindows controls when syncs can be run for apps in this project (see [below for nested schema](#nestedatt--spec--sync_windows))
 

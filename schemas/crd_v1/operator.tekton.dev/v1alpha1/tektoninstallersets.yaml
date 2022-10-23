@@ -1,11 +1,10 @@
-# source: https://github.com/tektoncd/operator/releases/download/v0.62.0/release.yaml
-
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
+  creationTimestamp: null
   labels:
-    operator.tekton.dev/release: v0.62.0
-    version: v0.62.0
+    operator.tekton.dev/release: devel
+    version: devel
   name: tektoninstallersets.operator.tekton.dev
 spec:
   group: operator.tekton.dev
@@ -14,23 +13,28 @@ spec:
     listKind: TektonInstallerSetList
     plural: tektoninstallersets
     singular: tektoninstallerset
-  preserveUnknownFields: false
   scope: Cluster
   versions:
-    - additionalPrinterColumns:
-        - jsonPath: .status.conditions[?(@.type=="Ready")].status
-          name: Ready
-          type: string
-        - jsonPath: .status.conditions[?(@.type=="Ready")].reason
-          name: Reason
-          type: string
-      name: v1alpha1
-      schema:
-        openAPIV3Schema:
-          description: Schema for the tektoninstallerset API
-          type: object
-          x-kubernetes-preserve-unknown-fields: true
-      served: true
-      storage: true
-      subresources:
-        status: {}
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=="Ready")].status
+      name: Ready
+      type: string
+    - jsonPath: .status.conditions[?(@.type=="Ready")].reason
+      name: Reason
+      type: string
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: Schema for the tektoninstallerset API
+        type: object
+        x-kubernetes-preserve-unknown-fields: true
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: null
+  storedVersions: null

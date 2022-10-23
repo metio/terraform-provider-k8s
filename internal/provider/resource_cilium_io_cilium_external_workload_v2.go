@@ -52,9 +52,9 @@ type CiliumIoCiliumExternalWorkloadV2GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		Ipv4_alloc_cidr *string `tfsdk:"ipv4__alloc__cidr" yaml:"ipv4-alloc-cidr,omitempty"`
+		Ipv4_alloc_cidr *string `tfsdk:"ipv4_alloc_cidr" yaml:"ipv4-alloc-cidr,omitempty"`
 
-		Ipv6_alloc_cidr *string `tfsdk:"ipv6__alloc__cidr" yaml:"ipv6-alloc-cidr,omitempty"`
+		Ipv6_alloc_cidr *string `tfsdk:"ipv6_alloc_cidr" yaml:"ipv6-alloc-cidr,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -145,7 +145,7 @@ func (r *CiliumIoCiliumExternalWorkloadV2Resource) GetSchema(_ context.Context) 
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-					"ipv4__alloc__cidr": {
+					"ipv4_alloc_cidr": {
 						Description:         "IPv4AllocCIDR is the range of IPv4 addresses in the CIDR format that the external workload can use to allocate IP addresses for the tunnel device and the health endpoint.",
 						MarkdownDescription: "IPv4AllocCIDR is the range of IPv4 addresses in the CIDR format that the external workload can use to allocate IP addresses for the tunnel device and the health endpoint.",
 
@@ -161,7 +161,7 @@ func (r *CiliumIoCiliumExternalWorkloadV2Resource) GetSchema(_ context.Context) 
 						},
 					},
 
-					"ipv6__alloc__cidr": {
+					"ipv6_alloc_cidr": {
 						Description:         "IPv6AllocCIDR is the range of IPv6 addresses in the CIDR format that the external workload can use to allocate IP addresses for the tunnel device and the health endpoint.",
 						MarkdownDescription: "IPv6AllocCIDR is the range of IPv6 addresses in the CIDR format that the external workload can use to allocate IP addresses for the tunnel device and the health endpoint.",
 

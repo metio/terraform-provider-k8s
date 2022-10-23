@@ -73,6 +73,7 @@ Optional:
 - `handler` (String) The name of the method within your code that Lambda calls to execute your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see Programming Model (https://docs.aws.amazon.com/lambda/latest/dg/programming-model-v2.html).
 - `image_config` (Attributes) Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/configuration-images.html#configuration-images-settings) that override the values in the container image Dockerfile. (see [below for nested schema](#nestedatt--spec--image_config))
 - `kms_key_arn` (String) The ARN of the Amazon Web Services Key Management Service (KMS) key that's used to encrypt your function's environment variables. If it's not provided, Lambda uses a default service key.
+- `kms_key_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api (see [below for nested schema](#nestedatt--spec--kms_key_ref))
 - `layers` (List of String) A list of function layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) to add to the function's execution environment. Specify each layer by its ARN, including the version.
 - `memory_size` (Number) The amount of memory available to the function (https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html) at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.
 - `package_type` (String) The type of deployment package. Set to Image for container image and set Zip for ZIP archive.
@@ -139,6 +140,22 @@ Optional:
 - `working_directory` (String)
 
 
+<a id="nestedatt--spec--kms_key_ref"></a>
+### Nested Schema for `spec.kms_key_ref`
+
+Optional:
+
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--kms_key_ref--from))
+
+<a id="nestedatt--spec--kms_key_ref--from"></a>
+### Nested Schema for `spec.kms_key_ref.from`
+
+Optional:
+
+- `name` (String)
+
+
+
 <a id="nestedatt--spec--tracing_config"></a>
 ### Nested Schema for `spec.tracing_config`
 
@@ -153,6 +170,38 @@ Optional:
 Optional:
 
 - `security_group_i_ds` (List of String)
+- `security_group_refs` (Attributes List) Reference field for SecurityGroupIDs (see [below for nested schema](#nestedatt--spec--vpc_config--security_group_refs))
 - `subnet_i_ds` (List of String)
+- `subnet_refs` (Attributes List) Reference field for SubnetIDs (see [below for nested schema](#nestedatt--spec--vpc_config--subnet_refs))
+
+<a id="nestedatt--spec--vpc_config--security_group_refs"></a>
+### Nested Schema for `spec.vpc_config.security_group_refs`
+
+Optional:
+
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--vpc_config--security_group_refs--from))
+
+<a id="nestedatt--spec--vpc_config--security_group_refs--from"></a>
+### Nested Schema for `spec.vpc_config.security_group_refs.from`
+
+Optional:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--vpc_config--subnet_refs"></a>
+### Nested Schema for `spec.vpc_config.subnet_refs`
+
+Optional:
+
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--vpc_config--subnet_refs--from))
+
+<a id="nestedatt--spec--vpc_config--subnet_refs--from"></a>
+### Nested Schema for `spec.vpc_config.subnet_refs.from`
+
+Optional:
+
+- `name` (String)
 
 

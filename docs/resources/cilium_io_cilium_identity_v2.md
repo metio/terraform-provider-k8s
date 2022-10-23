@@ -17,7 +17,7 @@ resource "k8s_cilium_io_cilium_identity_v2" "minimal" {
   metadata = {
     name = "test"
   }
-  security__labels = {}
+  security_labels = {}
 }
 ```
 
@@ -27,7 +27,7 @@ resource "k8s_cilium_io_cilium_identity_v2" "minimal" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `security__labels` (Map of String) SecurityLabels is the source-of-truth set of labels for this identity.
+- `security_labels` (Map of String) SecurityLabels is the source-of-truth set of labels for this identity.
 
 ### Read-Only
 

@@ -2325,6 +2325,20 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1GoModel struct {
 						} `tfsdk:"service_account_token" yaml:"serviceAccountToken,omitempty"`
 					} `tfsdk:"configuration" yaml:"configuration,omitempty"`
 
+					CustomTLSSecret *struct {
+						Items *[]struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Mode *int64 `tfsdk:"mode" yaml:"mode,omitempty"`
+
+							Path *string `tfsdk:"path" yaml:"path,omitempty"`
+						} `tfsdk:"items" yaml:"items,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+					} `tfsdk:"custom_tls_secret" yaml:"customTLSSecret,omitempty"`
+
 					Image *string `tfsdk:"image" yaml:"image,omitempty"`
 
 					Resources *struct {
@@ -13684,8 +13698,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 													},
 
 													"tcp_socket": {
-														Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
-														MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
+														Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+														MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -13843,8 +13857,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 													},
 
 													"tcp_socket": {
-														Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
-														MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
+														Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+														MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -14086,8 +14100,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 											},
 
 											"tcp_socket": {
-												Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
-												MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
+												Description:         "TCPSocket specifies an action involving a TCP port.",
+												MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -14423,8 +14437,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 											},
 
 											"tcp_socket": {
-												Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
-												MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
+												Description:         "TCPSocket specifies an action involving a TCP port.",
+												MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -14985,8 +14999,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 											},
 
 											"tcp_socket": {
-												Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
-												MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
+												Description:         "TCPSocket specifies an action involving a TCP port.",
+												MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -16156,8 +16170,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 											"configuration": {
-												Description:         "Projected volumes containing custom PostgreSQL Exporter configuration.  Currently supports the customization of PostgreSQL Exporter queries. If a 'queries.yaml' file is detected in any volume projected using this field, it will be loaded using the 'extend.query-path' flag: https://github.com/prometheus-community/postgres_exporter#flags Changing the values of field causes PostgreSQL and the exporter to restart.",
-												MarkdownDescription: "Projected volumes containing custom PostgreSQL Exporter configuration.  Currently supports the customization of PostgreSQL Exporter queries. If a 'queries.yaml' file is detected in any volume projected using this field, it will be loaded using the 'extend.query-path' flag: https://github.com/prometheus-community/postgres_exporter#flags Changing the values of field causes PostgreSQL and the exporter to restart.",
+												Description:         "Projected volumes containing custom PostgreSQL Exporter configuration.  Currently supports the customization of PostgreSQL Exporter queries. If a 'queries.yml' file is detected in any volume projected using this field, it will be loaded using the 'extend.query-path' flag: https://github.com/prometheus-community/postgres_exporter#flags Changing the values of field causes PostgreSQL and the exporter to restart.",
+												MarkdownDescription: "Projected volumes containing custom PostgreSQL Exporter configuration.  Currently supports the customization of PostgreSQL Exporter queries. If a 'queries.yml' file is detected in any volume projected using this field, it will be loaded using the 'extend.query-path' flag: https://github.com/prometheus-community/postgres_exporter#flags Changing the values of field causes PostgreSQL and the exporter to restart.",
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -16483,6 +16497,85 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 																Computed: false,
 															},
 														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"custom_tls_secret": {
+												Description:         "Projected secret containing custom TLS certificates to encrypt output from the exporter web server",
+												MarkdownDescription: "Projected secret containing custom TLS certificates to encrypt output from the exporter web server",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"items": {
+														Description:         "items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+														MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+
+														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "key is the key to project.",
+																MarkdownDescription: "key is the key to project.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"mode": {
+																Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+
+																Type: types.Int64Type,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"path": {
+																Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"optional": {
+														Description:         "optional field specify whether the Secret or its key must be defined",
+														MarkdownDescription: "optional field specify whether the Secret or its key must be defined",
+
+														Type: types.BoolType,
 
 														Required: false,
 														Optional: true,
@@ -18638,8 +18731,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 															},
 
 															"tcp_socket": {
-																Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
-																MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
+																Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+																MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -18797,8 +18890,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 															},
 
 															"tcp_socket": {
-																Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
-																MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
+																Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+																MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -19040,8 +19133,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 													},
 
 													"tcp_socket": {
-														Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
-														MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
+														Description:         "TCPSocket specifies an action involving a TCP port.",
+														MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -19377,8 +19470,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 													},
 
 													"tcp_socket": {
-														Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
-														MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
+														Description:         "TCPSocket specifies an action involving a TCP port.",
+														MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -19939,8 +20032,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 													},
 
 													"tcp_socket": {
-														Description:         "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
-														MarkdownDescription: "TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported",
+														Description:         "TCPSocket specifies an action involving a TCP port.",
+														MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 

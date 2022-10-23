@@ -226,6 +226,18 @@ type MinioMinIoTenantV2GoModel struct {
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
@@ -246,6 +258,18 @@ type MinioMinIoTenantV2GoModel struct {
 
 							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+						NamespaceSelector *struct {
+							MatchExpressions *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+						} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
@@ -268,6 +292,18 @@ type MinioMinIoTenantV2GoModel struct {
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
@@ -288,6 +324,18 @@ type MinioMinIoTenantV2GoModel struct {
 
 							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+						NamespaceSelector *struct {
+							MatchExpressions *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+						} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
@@ -410,6 +458,8 @@ type MinioMinIoTenantV2GoModel struct {
 
 					GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
 
+					HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
+
 					RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
 				} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
 			} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
@@ -441,7 +491,15 @@ type MinioMinIoTenantV2GoModel struct {
 					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 				} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+				MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 				MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
+
+				MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+				NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+				NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 				TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -455,6 +513,12 @@ type MinioMinIoTenantV2GoModel struct {
 			} `tfsdk:"exec" yaml:"exec,omitempty"`
 
 			FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+			Grpc *struct {
+				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+
+				Service *string `tfsdk:"service" yaml:"service,omitempty"`
+			} `tfsdk:"grpc" yaml:"grpc,omitempty"`
 
 			HttpGet *struct {
 				Host *string `tfsdk:"host" yaml:"host,omitempty"`
@@ -483,6 +547,8 @@ type MinioMinIoTenantV2GoModel struct {
 
 				Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 			} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+			TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
 
 			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
 		} `tfsdk:"liveness" yaml:"liveness,omitempty"`
@@ -548,6 +614,18 @@ type MinioMinIoTenantV2GoModel struct {
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
@@ -568,6 +646,18 @@ type MinioMinIoTenantV2GoModel struct {
 
 							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+						NamespaceSelector *struct {
+							MatchExpressions *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+						} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
@@ -590,6 +680,18 @@ type MinioMinIoTenantV2GoModel struct {
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
@@ -610,6 +712,18 @@ type MinioMinIoTenantV2GoModel struct {
 
 							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+						NamespaceSelector *struct {
+							MatchExpressions *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+						} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
@@ -685,6 +799,18 @@ type MinioMinIoTenantV2GoModel struct {
 									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+								NamespaceSelector *struct {
+									MatchExpressions *[]struct {
+										Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+								} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
 								Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 								TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
@@ -705,6 +831,18 @@ type MinioMinIoTenantV2GoModel struct {
 
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
@@ -727,6 +865,18 @@ type MinioMinIoTenantV2GoModel struct {
 									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+								NamespaceSelector *struct {
+									MatchExpressions *[]struct {
+										Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+										Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+										Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+									} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+									MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+								} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
 								Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 								TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
@@ -747,6 +897,18 @@ type MinioMinIoTenantV2GoModel struct {
 
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
@@ -849,6 +1011,8 @@ type MinioMinIoTenantV2GoModel struct {
 
 						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
 
+						HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
+
 						RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
 					} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
 				} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
@@ -880,7 +1044,15 @@ type MinioMinIoTenantV2GoModel struct {
 						MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+					MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 					MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
+
+					MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+					NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+					NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 					TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -915,6 +1087,14 @@ type MinioMinIoTenantV2GoModel struct {
 							Name *string `tfsdk:"name" yaml:"name,omitempty"`
 						} `tfsdk:"data_source" yaml:"dataSource,omitempty"`
 
+						DataSourceRef *struct {
+							ApiGroup *string `tfsdk:"api_group" yaml:"apiGroup,omitempty"`
+
+							Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+						} `tfsdk:"data_source_ref" yaml:"dataSourceRef,omitempty"`
+
 						Resources *struct {
 							Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
 
@@ -943,6 +1123,8 @@ type MinioMinIoTenantV2GoModel struct {
 					Status *struct {
 						AccessModes *[]string `tfsdk:"access_modes" yaml:"accessModes,omitempty"`
 
+						AllocatedResources *map[string]string `tfsdk:"allocated_resources" yaml:"allocatedResources,omitempty"`
+
 						Capacity *map[string]string `tfsdk:"capacity" yaml:"capacity,omitempty"`
 
 						Conditions *[]struct {
@@ -960,6 +1142,8 @@ type MinioMinIoTenantV2GoModel struct {
 						} `tfsdk:"conditions" yaml:"conditions,omitempty"`
 
 						Phase *string `tfsdk:"phase" yaml:"phase,omitempty"`
+
+						ResizeStatus *string `tfsdk:"resize_status" yaml:"resizeStatus,omitempty"`
 					} `tfsdk:"status" yaml:"status,omitempty"`
 				} `tfsdk:"volume_claim_template" yaml:"volumeClaimTemplate,omitempty"`
 			} `tfsdk:"db" yaml:"db,omitempty"`
@@ -1054,6 +1238,8 @@ type MinioMinIoTenantV2GoModel struct {
 
 					GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
 
+					HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
+
 					RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
 				} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
 			} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
@@ -1085,7 +1271,15 @@ type MinioMinIoTenantV2GoModel struct {
 					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 				} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+				MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 				MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
+
+				MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+				NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+				NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 				TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -1166,6 +1360,18 @@ type MinioMinIoTenantV2GoModel struct {
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
@@ -1186,6 +1392,18 @@ type MinioMinIoTenantV2GoModel struct {
 
 							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+						NamespaceSelector *struct {
+							MatchExpressions *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+						} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
@@ -1208,6 +1426,18 @@ type MinioMinIoTenantV2GoModel struct {
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
@@ -1228,6 +1458,18 @@ type MinioMinIoTenantV2GoModel struct {
 
 							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+						NamespaceSelector *struct {
+							MatchExpressions *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+						} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
@@ -1292,6 +1534,8 @@ type MinioMinIoTenantV2GoModel struct {
 
 					GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
 
+					HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
+
 					RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
 				} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
 			} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
@@ -1323,7 +1567,15 @@ type MinioMinIoTenantV2GoModel struct {
 					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 				} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+				MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 				MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
+
+				MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+				NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+				NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 				TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -1358,6 +1610,14 @@ type MinioMinIoTenantV2GoModel struct {
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
 					} `tfsdk:"data_source" yaml:"dataSource,omitempty"`
 
+					DataSourceRef *struct {
+						ApiGroup *string `tfsdk:"api_group" yaml:"apiGroup,omitempty"`
+
+						Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+					} `tfsdk:"data_source_ref" yaml:"dataSourceRef,omitempty"`
+
 					Resources *struct {
 						Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
 
@@ -1386,6 +1646,8 @@ type MinioMinIoTenantV2GoModel struct {
 				Status *struct {
 					AccessModes *[]string `tfsdk:"access_modes" yaml:"accessModes,omitempty"`
 
+					AllocatedResources *map[string]string `tfsdk:"allocated_resources" yaml:"allocatedResources,omitempty"`
+
 					Capacity *map[string]string `tfsdk:"capacity" yaml:"capacity,omitempty"`
 
 					Conditions *[]struct {
@@ -1403,6 +1665,8 @@ type MinioMinIoTenantV2GoModel struct {
 					} `tfsdk:"conditions" yaml:"conditions,omitempty"`
 
 					Phase *string `tfsdk:"phase" yaml:"phase,omitempty"`
+
+					ResizeStatus *string `tfsdk:"resize_status" yaml:"resizeStatus,omitempty"`
 				} `tfsdk:"status" yaml:"status,omitempty"`
 			} `tfsdk:"volume_claim_template" yaml:"volumeClaimTemplate,omitempty"`
 
@@ -1472,6 +1736,18 @@ type MinioMinIoTenantV2GoModel struct {
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
@@ -1492,6 +1768,18 @@ type MinioMinIoTenantV2GoModel struct {
 
 							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+						NamespaceSelector *struct {
+							MatchExpressions *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+						} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
@@ -1514,6 +1802,18 @@ type MinioMinIoTenantV2GoModel struct {
 								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+									Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+									Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+								} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+								MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
+
 							Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
 							TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
@@ -1534,6 +1834,18 @@ type MinioMinIoTenantV2GoModel struct {
 
 							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
+
+						NamespaceSelector *struct {
+							MatchExpressions *[]struct {
+								Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+								Operator *string `tfsdk:"operator" yaml:"operator,omitempty"`
+
+								Values *[]string `tfsdk:"values" yaml:"values,omitempty"`
+							} `tfsdk:"match_expressions" yaml:"matchExpressions,omitempty"`
+
+							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
+						} `tfsdk:"namespace_selector" yaml:"namespaceSelector,omitempty"`
 
 						Namespaces *[]string `tfsdk:"namespaces" yaml:"namespaces,omitempty"`
 
@@ -1638,6 +1950,8 @@ type MinioMinIoTenantV2GoModel struct {
 
 					GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
 
+					HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
+
 					RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
 				} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
 			} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
@@ -1673,7 +1987,15 @@ type MinioMinIoTenantV2GoModel struct {
 					MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 				} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+				MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 				MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
+
+				MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+				NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+				NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 				TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -1689,6 +2011,12 @@ type MinioMinIoTenantV2GoModel struct {
 			} `tfsdk:"exec" yaml:"exec,omitempty"`
 
 			FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+			Grpc *struct {
+				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+
+				Service *string `tfsdk:"service" yaml:"service,omitempty"`
+			} `tfsdk:"grpc" yaml:"grpc,omitempty"`
 
 			HttpGet *struct {
 				Host *string `tfsdk:"host" yaml:"host,omitempty"`
@@ -1717,6 +2045,8 @@ type MinioMinIoTenantV2GoModel struct {
 
 				Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 			} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+			TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
 
 			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
 		} `tfsdk:"readiness" yaml:"readiness,omitempty"`
@@ -1868,6 +2198,12 @@ type MinioMinIoTenantV2GoModel struct {
 
 					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
 
+					Grpc *struct {
+						Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+
+						Service *string `tfsdk:"service" yaml:"service,omitempty"`
+					} `tfsdk:"grpc" yaml:"grpc,omitempty"`
+
 					HttpGet *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
@@ -1895,6 +2231,8 @@ type MinioMinIoTenantV2GoModel struct {
 
 						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
 
 					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
 				} `tfsdk:"liveness_probe" yaml:"livenessProbe,omitempty"`
@@ -1920,6 +2258,12 @@ type MinioMinIoTenantV2GoModel struct {
 
 					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
 
+					Grpc *struct {
+						Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+
+						Service *string `tfsdk:"service" yaml:"service,omitempty"`
+					} `tfsdk:"grpc" yaml:"grpc,omitempty"`
+
 					HttpGet *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
@@ -1947,6 +2291,8 @@ type MinioMinIoTenantV2GoModel struct {
 
 						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
 
 					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
 				} `tfsdk:"readiness_probe" yaml:"readinessProbe,omitempty"`
@@ -1999,6 +2345,8 @@ type MinioMinIoTenantV2GoModel struct {
 
 						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" yaml:"gmsaCredentialSpecName,omitempty"`
 
+						HostProcess *bool `tfsdk:"host_process" yaml:"hostProcess,omitempty"`
+
 						RunAsUserName *string `tfsdk:"run_as_user_name" yaml:"runAsUserName,omitempty"`
 					} `tfsdk:"windows_options" yaml:"windowsOptions,omitempty"`
 				} `tfsdk:"security_context" yaml:"securityContext,omitempty"`
@@ -2009,6 +2357,12 @@ type MinioMinIoTenantV2GoModel struct {
 					} `tfsdk:"exec" yaml:"exec,omitempty"`
 
 					FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+					Grpc *struct {
+						Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+
+						Service *string `tfsdk:"service" yaml:"service,omitempty"`
+					} `tfsdk:"grpc" yaml:"grpc,omitempty"`
 
 					HttpGet *struct {
 						Host *string `tfsdk:"host" yaml:"host,omitempty"`
@@ -2037,6 +2391,8 @@ type MinioMinIoTenantV2GoModel struct {
 
 						Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 					} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
 
 					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
 				} `tfsdk:"startup_probe" yaml:"startupProbe,omitempty"`
@@ -2102,6 +2458,14 @@ type MinioMinIoTenantV2GoModel struct {
 						Name *string `tfsdk:"name" yaml:"name,omitempty"`
 					} `tfsdk:"data_source" yaml:"dataSource,omitempty"`
 
+					DataSourceRef *struct {
+						ApiGroup *string `tfsdk:"api_group" yaml:"apiGroup,omitempty"`
+
+						Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+					} `tfsdk:"data_source_ref" yaml:"dataSourceRef,omitempty"`
+
 					Resources *struct {
 						Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
 
@@ -2130,6 +2494,8 @@ type MinioMinIoTenantV2GoModel struct {
 				Status *struct {
 					AccessModes *[]string `tfsdk:"access_modes" yaml:"accessModes,omitempty"`
 
+					AllocatedResources *map[string]string `tfsdk:"allocated_resources" yaml:"allocatedResources,omitempty"`
+
 					Capacity *map[string]string `tfsdk:"capacity" yaml:"capacity,omitempty"`
 
 					Conditions *[]struct {
@@ -2147,6 +2513,8 @@ type MinioMinIoTenantV2GoModel struct {
 					} `tfsdk:"conditions" yaml:"conditions,omitempty"`
 
 					Phase *string `tfsdk:"phase" yaml:"phase,omitempty"`
+
+					ResizeStatus *string `tfsdk:"resize_status" yaml:"resizeStatus,omitempty"`
 				} `tfsdk:"status" yaml:"status,omitempty"`
 			} `tfsdk:"volume_claim_templates" yaml:"volumeClaimTemplates,omitempty"`
 
@@ -2272,8 +2640,6 @@ type MinioMinIoTenantV2GoModel struct {
 				} `tfsdk:"empty_dir" yaml:"emptyDir,omitempty"`
 
 				Ephemeral *struct {
-					ReadOnly *bool `tfsdk:"read_only" yaml:"readOnly,omitempty"`
-
 					VolumeClaimTemplate *struct {
 						Metadata *struct {
 							Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
@@ -2297,6 +2663,14 @@ type MinioMinIoTenantV2GoModel struct {
 
 								Name *string `tfsdk:"name" yaml:"name,omitempty"`
 							} `tfsdk:"data_source" yaml:"dataSource,omitempty"`
+
+							DataSourceRef *struct {
+								ApiGroup *string `tfsdk:"api_group" yaml:"apiGroup,omitempty"`
+
+								Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+								Name *string `tfsdk:"name" yaml:"name,omitempty"`
+							} `tfsdk:"data_source_ref" yaml:"dataSourceRef,omitempty"`
 
 							Resources *struct {
 								Limits *map[string]string `tfsdk:"limits" yaml:"limits,omitempty"`
@@ -2608,6 +2982,52 @@ type MinioMinIoTenantV2GoModel struct {
 				} `tfsdk:"vsphere_volume" yaml:"vsphereVolume,omitempty"`
 			} `tfsdk:"volumes" yaml:"volumes,omitempty"`
 		} `tfsdk:"side_cars" yaml:"sideCars,omitempty"`
+
+		Startup *struct {
+			Exec *struct {
+				Command *[]string `tfsdk:"command" yaml:"command,omitempty"`
+			} `tfsdk:"exec" yaml:"exec,omitempty"`
+
+			FailureThreshold *int64 `tfsdk:"failure_threshold" yaml:"failureThreshold,omitempty"`
+
+			Grpc *struct {
+				Port *int64 `tfsdk:"port" yaml:"port,omitempty"`
+
+				Service *string `tfsdk:"service" yaml:"service,omitempty"`
+			} `tfsdk:"grpc" yaml:"grpc,omitempty"`
+
+			HttpGet *struct {
+				Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+				HttpHeaders *[]struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Value *string `tfsdk:"value" yaml:"value,omitempty"`
+				} `tfsdk:"http_headers" yaml:"httpHeaders,omitempty"`
+
+				Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+				Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
+
+				Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
+			} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
+
+			InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" yaml:"initialDelaySeconds,omitempty"`
+
+			PeriodSeconds *int64 `tfsdk:"period_seconds" yaml:"periodSeconds,omitempty"`
+
+			SuccessThreshold *int64 `tfsdk:"success_threshold" yaml:"successThreshold,omitempty"`
+
+			TcpSocket *struct {
+				Host *string `tfsdk:"host" yaml:"host,omitempty"`
+
+				Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
+			} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
+
+			TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
+
+			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" yaml:"timeoutSeconds,omitempty"`
+		} `tfsdk:"startup" yaml:"startup,omitempty"`
 
 		SubPath *string `tfsdk:"sub_path" yaml:"subPath,omitempty"`
 
@@ -3706,6 +4126,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Computed: false,
 															},
 
+															"namespace_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"namespaces": {
 																Description:         "",
 																MarkdownDescription: "",
@@ -3758,6 +4246,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 													"label_selector": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.MapType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespace_selector": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -3945,6 +4501,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Computed: false,
 															},
 
+															"namespace_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"namespaces": {
 																Description:         "",
 																MarkdownDescription: "",
@@ -3997,6 +4621,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 													"label_selector": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.MapType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespace_selector": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -4745,6 +5437,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Computed: false,
 											},
 
+											"host_process": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"run_as_user_name": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -4920,6 +5623,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 										Computed: false,
 									},
 
+									"match_label_keys": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"max_skew": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -4928,6 +5642,39 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 
 										Required: true,
 										Optional: false,
+										Computed: false,
+									},
+
+									"min_domains": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"node_affinity_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"node_taints_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 
@@ -4999,6 +5746,40 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 								MarkdownDescription: "",
 
 								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"grpc": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"port": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"service": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,
@@ -5156,6 +5937,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 										Computed: false,
 									},
 								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"termination_grace_period_seconds": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
@@ -5528,6 +6320,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Computed: false,
 															},
 
+															"namespace_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"namespaces": {
 																Description:         "",
 																MarkdownDescription: "",
@@ -5580,6 +6440,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 													"label_selector": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.MapType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespace_selector": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -5767,6 +6695,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Computed: false,
 															},
 
+															"namespace_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"namespaces": {
 																Description:         "",
 																MarkdownDescription: "",
@@ -5819,6 +6815,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 													"label_selector": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.MapType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespace_selector": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -6309,6 +7373,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																		Computed: false,
 																	},
 
+																	"namespace_selector": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"match_expressions": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"key": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"operator": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"values": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.ListType{ElemType: types.StringType},
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"match_labels": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.MapType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
 																	"namespaces": {
 																		Description:         "",
 																		MarkdownDescription: "",
@@ -6361,6 +7493,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 															"label_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace_selector": {
 																Description:         "",
 																MarkdownDescription: "",
 
@@ -6548,6 +7748,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																		Computed: false,
 																	},
 
+																	"namespace_selector": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"match_expressions": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																					"key": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"operator": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.StringType,
+
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+
+																					"values": {
+																						Description:         "",
+																						MarkdownDescription: "",
+
+																						Type: types.ListType{ElemType: types.StringType},
+
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				}),
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"match_labels": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.MapType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
 																	"namespaces": {
 																		Description:         "",
 																		MarkdownDescription: "",
@@ -6600,6 +7868,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 															"label_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace_selector": {
 																Description:         "",
 																MarkdownDescription: "",
 
@@ -7235,6 +8571,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Computed: false,
 													},
 
+													"host_process": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"run_as_user_name": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -7410,6 +8757,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Computed: false,
 											},
 
+											"match_label_keys": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"max_skew": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -7418,6 +8776,39 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 
 												Required: true,
 												Optional: false,
+												Computed: false,
+											},
+
+											"min_domains": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"node_affinity_policy": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"node_taints_policy": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
 												Computed: false,
 											},
 
@@ -7562,6 +8953,51 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 													},
 
 													"data_source": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"api_group": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"kind": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.StringType,
+
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"data_source_ref": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -7764,6 +9200,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Computed: false,
 													},
 
+													"allocated_resources": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.MapType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"capacity": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -7864,6 +9311,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 													},
 
 													"phase": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"resize_status": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -8398,6 +9856,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Computed: false,
 											},
 
+											"host_process": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"run_as_user_name": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -8573,6 +10042,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 										Computed: false,
 									},
 
+									"match_label_keys": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"max_skew": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -8581,6 +10061,39 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 
 										Required: true,
 										Optional: false,
+										Computed: false,
+									},
+
+									"min_domains": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"node_affinity_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"node_taints_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 
@@ -9034,6 +10547,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Computed: false,
 															},
 
+															"namespace_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"namespaces": {
 																Description:         "",
 																MarkdownDescription: "",
@@ -9086,6 +10667,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 													"label_selector": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.MapType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespace_selector": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -9273,6 +10922,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Computed: false,
 															},
 
+															"namespace_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"namespaces": {
 																Description:         "",
 																MarkdownDescription: "",
@@ -9325,6 +11042,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 													"label_selector": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.MapType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespace_selector": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -9745,6 +11530,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Computed: false,
 											},
 
+											"host_process": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"run_as_user_name": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -9920,6 +11716,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 										Computed: false,
 									},
 
+									"match_label_keys": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"max_skew": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -9928,6 +11735,39 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 
 										Required: true,
 										Optional: false,
+										Computed: false,
+									},
+
+									"min_domains": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"node_affinity_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"node_taints_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 
@@ -10072,6 +11912,51 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 											},
 
 											"data_source": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"api_group": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"kind": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"data_source_ref": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -10274,6 +12159,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Computed: false,
 											},
 
+											"allocated_resources": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"capacity": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -10374,6 +12270,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 											},
 
 											"phase": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"resize_status": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -10773,6 +12680,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Computed: false,
 															},
 
+															"namespace_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"namespaces": {
 																Description:         "",
 																MarkdownDescription: "",
@@ -10825,6 +12800,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 													"label_selector": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.MapType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespace_selector": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -11012,6 +13055,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 																Computed: false,
 															},
 
+															"namespace_selector": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"match_expressions": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																			"key": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"operator": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.StringType,
+
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+
+																			"values": {
+																				Description:         "",
+																				MarkdownDescription: "",
+
+																				Type: types.ListType{ElemType: types.StringType},
+
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		}),
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.MapType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"namespaces": {
 																Description:         "",
 																MarkdownDescription: "",
@@ -11064,6 +13175,74 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 													"label_selector": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"match_expressions": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"key": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"operator": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"values": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.ListType{ElemType: types.StringType},
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Type: types.MapType{ElemType: types.StringType},
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespace_selector": {
 														Description:         "",
 														MarkdownDescription: "",
 
@@ -11710,6 +13889,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Computed: false,
 											},
 
+											"host_process": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"run_as_user_name": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -11907,6 +14097,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 										Computed: false,
 									},
 
+									"match_label_keys": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"max_skew": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -11915,6 +14116,39 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 
 										Required: true,
 										Optional: false,
+										Computed: false,
+									},
+
+									"min_domains": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"node_affinity_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"node_taints_policy": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 
@@ -11997,6 +14231,40 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 								MarkdownDescription: "",
 
 								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"grpc": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"port": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"service": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,
@@ -12154,6 +14422,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 										Computed: false,
 									},
 								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"termination_grace_period_seconds": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,
@@ -13010,6 +15289,40 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Computed: false,
 											},
 
+											"grpc": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"service": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"http_get": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -13161,6 +15474,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Computed: false,
 													},
 												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"termination_grace_period_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
 
 												Required: false,
 												Optional: true,
@@ -13302,6 +15626,40 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Computed: false,
 											},
 
+											"grpc": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"service": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"http_get": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -13453,6 +15811,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Computed: false,
 													},
 												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"termination_grace_period_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
 
 												Required: false,
 												Optional: true,
@@ -13745,6 +16114,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Computed: false,
 													},
 
+													"host_process": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"run_as_user_name": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -13802,6 +16182,40 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												MarkdownDescription: "",
 
 												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"grpc": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"port": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"service": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
 
 												Required: false,
 												Optional: true,
@@ -13959,6 +16373,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 														Computed: false,
 													},
 												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"termination_grace_period_seconds": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
 
 												Required: false,
 												Optional: true,
@@ -14323,6 +16748,51 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Computed: false,
 											},
 
+											"data_source_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"api_group": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"kind": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"resources": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -14481,6 +16951,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 												Computed: false,
 											},
 
+											"allocated_resources": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.MapType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"capacity": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -14581,6 +17062,17 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 											},
 
 											"phase": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"resize_status": {
 												Description:         "",
 												MarkdownDescription: "",
 
@@ -15291,17 +17783,6 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-											"read_only": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.BoolType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
 											"volume_claim_template": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -15393,6 +17874,51 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 															},
 
 															"data_source": {
+																Description:         "",
+																MarkdownDescription: "",
+
+																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+																	"api_group": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"kind": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+
+																	"name": {
+																		Description:         "",
+																		MarkdownDescription: "",
+
+																		Type: types.StringType,
+
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																}),
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"data_source_ref": {
 																Description:         "",
 																MarkdownDescription: "",
 
@@ -17176,6 +19702,265 @@ func (r *MinioMinIoTenantV2Resource) GetSchema(_ context.Context) (tfsdk.Schema,
 										Computed: false,
 									},
 								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"startup": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"exec": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"command": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"failure_threshold": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"grpc": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"port": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.Int64Type,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"service": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"http_get": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"host": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http_headers": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"value": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"path": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"port": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: utilities.IntOrStringType{},
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"scheme": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"initial_delay_seconds": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"period_seconds": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"success_threshold": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tcp_socket": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"host": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"port": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: utilities.IntOrStringType{},
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"termination_grace_period_seconds": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"timeout_seconds": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,

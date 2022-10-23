@@ -31,7 +31,7 @@ type CiliumIoCiliumIdentityV2TerraformModel struct {
 	ApiVersion      types.String `tfsdk:"api_version"`
 	Kind            types.String `tfsdk:"kind"`
 	Metadata        types.Object `tfsdk:"metadata"`
-	Security_labels types.Map    `tfsdk:"security__labels"`
+	Security_labels types.Map    `tfsdk:"security_labels"`
 }
 
 type CiliumIoCiliumIdentityV2GoModel struct {
@@ -47,7 +47,7 @@ type CiliumIoCiliumIdentityV2GoModel struct {
 		Annotations map[string]string `tfsdk:"annotations" yaml:",omitempty"`
 	} `tfsdk:"metadata" yaml:"metadata"`
 
-	Security_labels *map[string]string `tfsdk:"security__labels" yaml:"security-labels,omitempty"`
+	Security_labels *map[string]string `tfsdk:"security_labels" yaml:"security-labels,omitempty"`
 }
 
 func NewCiliumIoCiliumIdentityV2Resource() resource.Resource {
@@ -131,7 +131,7 @@ func (r *CiliumIoCiliumIdentityV2Resource) GetSchema(_ context.Context) (tfsdk.S
 				Optional:            false,
 			},
 
-			"security__labels": {
+			"security_labels": {
 				Description:         "SecurityLabels is the source-of-truth set of labels for this identity.",
 				MarkdownDescription: "SecurityLabels is the source-of-truth set of labels for this identity.",
 

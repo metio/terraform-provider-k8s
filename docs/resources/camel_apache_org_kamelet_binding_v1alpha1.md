@@ -168,7 +168,7 @@ Optional:
 - `loader` (String) Loader is an optional id of the org.apache.camel.k.RoutesLoader that will interpret this source at runtime
 - `name` (String) the name of the specification
 - `path` (String) the path where the file is stored
-- `property__names` (List of String) List of property names defined in the source (e.g. if type is 'template')
+- `property_names` (List of String) List of property names defined in the source (e.g. if type is 'template')
 - `raw_content` (String) the source code (binary)
 - `type` (String) Type defines the kind of source described by this object
 
@@ -2811,7 +2811,7 @@ Optional:
 - `deployer` (Attributes) The configuration of Deployer trait (see [below for nested schema](#nestedatt--spec--integration--traits--deployer))
 - `deployment` (Attributes) The configuration of Deployment trait (see [below for nested schema](#nestedatt--spec--integration--traits--deployment))
 - `environment` (Attributes) The configuration of Environment trait (see [below for nested schema](#nestedatt--spec--integration--traits--environment))
-- `error__handler` (Attributes) The configuration of Error Handler trait (see [below for nested schema](#nestedatt--spec--integration--traits--error__handler))
+- `error_handler` (Attributes) The configuration of Error Handler trait (see [below for nested schema](#nestedatt--spec--integration--traits--error_handler))
 - `gc` (Attributes) The configuration of GC trait (see [below for nested schema](#nestedatt--spec--integration--traits--gc))
 - `health` (Attributes) The configuration of Health trait (see [below for nested schema](#nestedatt--spec--integration--traits--health))
 - `ingress` (Attributes) The configuration of Ingress trait (see [below for nested schema](#nestedatt--spec--integration--traits--ingress))
@@ -2821,7 +2821,7 @@ Optional:
 - `kamelets` (Attributes) The configuration of Kamelets trait (see [below for nested schema](#nestedatt--spec--integration--traits--kamelets))
 - `keda` (Attributes) Deprecated: for backward compatibility. (see [below for nested schema](#nestedatt--spec--integration--traits--keda))
 - `knative` (Attributes) The configuration of Knative trait (see [below for nested schema](#nestedatt--spec--integration--traits--knative))
-- `knative__service` (Attributes) The configuration of Knative Service trait (see [below for nested schema](#nestedatt--spec--integration--traits--knative__service))
+- `knative_service` (Attributes) The configuration of Knative Service trait (see [below for nested schema](#nestedatt--spec--integration--traits--knative_service))
 - `logging` (Attributes) The configuration of Logging trait (see [below for nested schema](#nestedatt--spec--integration--traits--logging))
 - `master` (Attributes) Deprecated: for backward compatibility. (see [below for nested schema](#nestedatt--spec--integration--traits--master))
 - `mount` (Attributes) The configuration of Mount trait (see [below for nested schema](#nestedatt--spec--integration--traits--mount))
@@ -2831,12 +2831,12 @@ Optional:
 - `platform` (Attributes) The configuration of Platform trait (see [below for nested schema](#nestedatt--spec--integration--traits--platform))
 - `pod` (Attributes) The configuration of Pod trait (see [below for nested schema](#nestedatt--spec--integration--traits--pod))
 - `prometheus` (Attributes) The configuration of Prometheus trait (see [below for nested schema](#nestedatt--spec--integration--traits--prometheus))
-- `pull__secret` (Attributes) The configuration of Pull Secret trait (see [below for nested schema](#nestedatt--spec--integration--traits--pull__secret))
+- `pull_secret` (Attributes) The configuration of Pull Secret trait (see [below for nested schema](#nestedatt--spec--integration--traits--pull_secret))
 - `quarkus` (Attributes) The configuration of Quarkus trait (see [below for nested schema](#nestedatt--spec--integration--traits--quarkus))
 - `registry` (Attributes) The configuration of Registry trait (see [below for nested schema](#nestedatt--spec--integration--traits--registry))
 - `route` (Attributes) The configuration of Route trait (see [below for nested schema](#nestedatt--spec--integration--traits--route))
 - `service` (Attributes) The configuration of Service trait (see [below for nested schema](#nestedatt--spec--integration--traits--service))
-- `service__binding` (Attributes) The configuration of Service Binding trait (see [below for nested schema](#nestedatt--spec--integration--traits--service__binding))
+- `service_binding` (Attributes) The configuration of Service Binding trait (see [below for nested schema](#nestedatt--spec--integration--traits--service_binding))
 - `strimzi` (Attributes) Deprecated: for backward compatibility. (see [below for nested schema](#nestedatt--spec--integration--traits--strimzi))
 - `threescale` (Attributes) Deprecated: for backward compatibility. (see [below for nested schema](#nestedatt--spec--integration--traits--threescale))
 - `toleration` (Attributes) The configuration of Toleration trait (see [below for nested schema](#nestedatt--spec--integration--traits--toleration))
@@ -2975,7 +2975,7 @@ Optional:
 - `vars` (List of String) A list of environment variables to be added to the integration container. The syntax is KEY=VALUE, e.g., 'MY_VAR='my value''. These take precedence over the previously defined environment variables.
 
 
-<a id="nestedatt--spec--integration--traits--error__handler"></a>
+<a id="nestedatt--spec--integration--traits--error_handler"></a>
 ### Nested Schema for `spec.integration.traits.tracing`
 
 Optional:
@@ -3113,7 +3113,7 @@ Optional:
 - `sink_binding` (Boolean) Allows binding the integration to a sink via a Knative SinkBinding resource. This can be used when the integration targets a single sink. It's enabled by default when the integration targets a single sink (except when the integration is owned by a Knative source).
 
 
-<a id="nestedatt--spec--integration--traits--knative__service"></a>
+<a id="nestedatt--spec--integration--traits--knative_service"></a>
 ### Nested Schema for `spec.integration.traits.tracing`
 
 Optional:
@@ -3228,7 +3228,7 @@ Optional:
 - `pod_monitor_labels` (List of String) The 'PodMonitor' resource labels, applicable when 'pod-monitor' is 'true'.
 
 
-<a id="nestedatt--spec--integration--traits--pull__secret"></a>
+<a id="nestedatt--spec--integration--traits--pull_secret"></a>
 ### Nested Schema for `spec.integration.traits.tracing`
 
 Optional:
@@ -3291,7 +3291,7 @@ Optional:
 - `type` (String) The type of service to be used, either 'ClusterIP', 'NodePort' or 'LoadBalancer'.
 
 
-<a id="nestedatt--spec--integration--traits--service__binding"></a>
+<a id="nestedatt--spec--integration--traits--service_binding"></a>
 ### Nested Schema for `spec.integration.traits.tracing`
 
 Optional:
@@ -3420,7 +3420,7 @@ Optional:
 - `title` (String)
 - `type` (String)
 - `unique_items` (Boolean)
-- `x__descriptors` (List of String) XDescriptors is a list of extended properties that trigger a custom behavior in external systems
+- `x_descriptors` (List of String) XDescriptors is a list of extended properties that trigger a custom behavior in external systems
 
 
 
@@ -3509,7 +3509,7 @@ Optional:
 - `title` (String)
 - `type` (String)
 - `unique_items` (Boolean)
-- `x__descriptors` (List of String) XDescriptors is a list of extended properties that trigger a custom behavior in external systems
+- `x_descriptors` (List of String) XDescriptors is a list of extended properties that trigger a custom behavior in external systems
 
 
 
@@ -3598,6 +3598,6 @@ Optional:
 - `title` (String)
 - `type` (String)
 - `unique_items` (Boolean)
-- `x__descriptors` (List of String) XDescriptors is a list of extended properties that trigger a custom behavior in external systems
+- `x_descriptors` (List of String) XDescriptors is a list of extended properties that trigger a custom behavior in external systems
 
 

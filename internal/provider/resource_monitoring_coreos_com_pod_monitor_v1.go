@@ -113,6 +113,8 @@ type MonitoringCoreosComPodMonitorV1GoModel struct {
 
 			EnableHttp2 *bool `tfsdk:"enable_http2" yaml:"enableHttp2,omitempty"`
 
+			FilterRunning *bool `tfsdk:"filter_running" yaml:"filterRunning,omitempty"`
+
 			FollowRedirects *bool `tfsdk:"follow_redirects" yaml:"followRedirects,omitempty"`
 
 			HonorLabels *bool `tfsdk:"honor_labels" yaml:"honorLabels,omitempty"`
@@ -691,6 +693,17 @@ func (r *MonitoringCoreosComPodMonitorV1Resource) GetSchema(_ context.Context) (
 							"enable_http2": {
 								Description:         "Whether to enable HTTP2.",
 								MarkdownDescription: "Whether to enable HTTP2.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"filter_running": {
+								Description:         "Drop pods that are not running. (Failed, Succeeded). Enabled by default. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
+								MarkdownDescription: "Drop pods that are not running. (Failed, Succeeded). Enabled by default. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
 
 								Type: types.BoolType,
 

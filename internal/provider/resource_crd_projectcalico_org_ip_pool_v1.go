@@ -66,8 +66,6 @@ type CrdProjectcalicoOrgIPPoolV1GoModel struct {
 
 		IpipMode *string `tfsdk:"ipip_mode" yaml:"ipipMode,omitempty"`
 
-		Nat_outgoing *bool `tfsdk:"nat__outgoing" yaml:"nat-outgoing,omitempty"`
-
 		NatOutgoing *bool `tfsdk:"nat_outgoing" yaml:"natOutgoing,omitempty"`
 
 		NodeSelector *string `tfsdk:"node_selector" yaml:"nodeSelector,omitempty"`
@@ -263,20 +261,9 @@ func (r *CrdProjectcalicoOrgIPPoolV1Resource) GetSchema(_ context.Context) (tfsd
 						Computed: false,
 					},
 
-					"nat__outgoing": {
-						Description:         "Deprecated: this field is only used for APIv1 backwards compatibility. Setting this field is not allowed, this field is for internal use only.",
-						MarkdownDescription: "Deprecated: this field is only used for APIv1 backwards compatibility. Setting this field is not allowed, this field is for internal use only.",
-
-						Type: types.BoolType,
-
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"nat_outgoing": {
-						Description:         "When nat-outgoing is true, packets sent from Calico networked containers in this pool to destinations outside of this pool will be masqueraded.",
-						MarkdownDescription: "When nat-outgoing is true, packets sent from Calico networked containers in this pool to destinations outside of this pool will be masqueraded.",
+						Description:         "When natOutgoing is true, packets sent from Calico networked containers in this pool to destinations outside of this pool will be masqueraded.",
+						MarkdownDescription: "When natOutgoing is true, packets sent from Calico networked containers in this pool to destinations outside of this pool will be masqueraded.",
 
 						Type: types.BoolType,
 

@@ -75,6 +75,12 @@ type TraefikContainoUsServersTransportV1Alpha1GoModel struct {
 		RootCAsSecrets *[]string `tfsdk:"root_c_as_secrets" yaml:"rootCAsSecrets,omitempty"`
 
 		ServerName *string `tfsdk:"server_name" yaml:"serverName,omitempty"`
+
+		Spiffe *struct {
+			Ids *[]string `tfsdk:"ids" yaml:"ids,omitempty"`
+
+			TrustDomain *string `tfsdk:"trust_domain" yaml:"trustDomain,omitempty"`
+		} `tfsdk:"spiffe" yaml:"spiffe,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -310,6 +316,40 @@ func (r *TraefikContainoUsServersTransportV1Alpha1Resource) GetSchema(_ context.
 						MarkdownDescription: "ServerName defines the server name used to contact the server.",
 
 						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"spiffe": {
+						Description:         "Spiffe defines the SPIFFE configuration.",
+						MarkdownDescription: "Spiffe defines the SPIFFE configuration.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"ids": {
+								Description:         "IDs defines the allowed SPIFFE IDs (takes precedence over the SPIFFE TrustDomain).",
+								MarkdownDescription: "IDs defines the allowed SPIFFE IDs (takes precedence over the SPIFFE TrustDomain).",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"trust_domain": {
+								Description:         "TrustDomain defines the allowed SPIFFE trust domain.",
+								MarkdownDescription: "TrustDomain defines the allowed SPIFFE trust domain.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

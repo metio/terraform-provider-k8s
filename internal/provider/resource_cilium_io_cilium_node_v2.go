@@ -57,25 +57,25 @@ type CiliumIoCiliumNodeV2GoModel struct {
 		} `tfsdk:"addresses" yaml:"addresses,omitempty"`
 
 		Alibaba_cloud *struct {
-			Availability_zone *string `tfsdk:"availability__zone" yaml:"availability-zone,omitempty"`
+			Availability_zone *string `tfsdk:"availability_zone" yaml:"availability-zone,omitempty"`
 
-			Cidr_block *string `tfsdk:"cidr__block" yaml:"cidr-block,omitempty"`
+			Cidr_block *string `tfsdk:"cidr_block" yaml:"cidr-block,omitempty"`
 
-			Instance_type *string `tfsdk:"instance__type" yaml:"instance-type,omitempty"`
+			Instance_type *string `tfsdk:"instance_type" yaml:"instance-type,omitempty"`
 
-			Security_group_tags *map[string]string `tfsdk:"security__group__tags" yaml:"security-group-tags,omitempty"`
+			Security_group_tags *map[string]string `tfsdk:"security_group_tags" yaml:"security-group-tags,omitempty"`
 
-			Security_groups *[]string `tfsdk:"security__groups" yaml:"security-groups,omitempty"`
+			Security_groups *[]string `tfsdk:"security_groups" yaml:"security-groups,omitempty"`
 
-			Vpc_id *string `tfsdk:"vpc__id" yaml:"vpc-id,omitempty"`
+			Vpc_id *string `tfsdk:"vpc_id" yaml:"vpc-id,omitempty"`
 
-			Vswitch_tags *map[string]string `tfsdk:"vswitch__tags" yaml:"vswitch-tags,omitempty"`
+			Vswitch_tags *map[string]string `tfsdk:"vswitch_tags" yaml:"vswitch-tags,omitempty"`
 
 			Vswitches *[]string `tfsdk:"vswitches" yaml:"vswitches,omitempty"`
-		} `tfsdk:"alibaba__cloud" yaml:"alibaba-cloud,omitempty"`
+		} `tfsdk:"alibaba_cloud" yaml:"alibaba-cloud,omitempty"`
 
 		Azure *struct {
-			Interface_name *string `tfsdk:"interface__name" yaml:"interface-name,omitempty"`
+			Interface_name *string `tfsdk:"interface_name" yaml:"interface-name,omitempty"`
 		} `tfsdk:"azure" yaml:"azure,omitempty"`
 
 		Encryption *struct {
@@ -83,37 +83,37 @@ type CiliumIoCiliumNodeV2GoModel struct {
 		} `tfsdk:"encryption" yaml:"encryption,omitempty"`
 
 		Eni *struct {
-			Availability_zone *string `tfsdk:"availability__zone" yaml:"availability-zone,omitempty"`
+			Availability_zone *string `tfsdk:"availability_zone" yaml:"availability-zone,omitempty"`
 
-			Delete_on_termination *bool `tfsdk:"delete__on__termination" yaml:"delete-on-termination,omitempty"`
+			Delete_on_termination *bool `tfsdk:"delete_on_termination" yaml:"delete-on-termination,omitempty"`
 
-			Disable_prefix_delegation *bool `tfsdk:"disable__prefix__delegation" yaml:"disable-prefix-delegation,omitempty"`
+			Disable_prefix_delegation *bool `tfsdk:"disable_prefix_delegation" yaml:"disable-prefix-delegation,omitempty"`
 
-			Exclude_interface_tags *map[string]string `tfsdk:"exclude__interface__tags" yaml:"exclude-interface-tags,omitempty"`
+			Exclude_interface_tags *map[string]string `tfsdk:"exclude_interface_tags" yaml:"exclude-interface-tags,omitempty"`
 
-			First_interface_index *int64 `tfsdk:"first__interface__index" yaml:"first-interface-index,omitempty"`
+			First_interface_index *int64 `tfsdk:"first_interface_index" yaml:"first-interface-index,omitempty"`
 
-			Instance_id *string `tfsdk:"instance__id" yaml:"instance-id,omitempty"`
+			Instance_id *string `tfsdk:"instance_id" yaml:"instance-id,omitempty"`
 
-			Instance_type *string `tfsdk:"instance__type" yaml:"instance-type,omitempty"`
+			Instance_type *string `tfsdk:"instance_type" yaml:"instance-type,omitempty"`
 
-			Max_above_watermark *int64 `tfsdk:"max__above__watermark" yaml:"max-above-watermark,omitempty"`
+			Max_above_watermark *int64 `tfsdk:"max_above_watermark" yaml:"max-above-watermark,omitempty"`
 
-			Min_allocate *int64 `tfsdk:"min__allocate" yaml:"min-allocate,omitempty"`
+			Min_allocate *int64 `tfsdk:"min_allocate" yaml:"min-allocate,omitempty"`
 
-			Pre_allocate *int64 `tfsdk:"pre__allocate" yaml:"pre-allocate,omitempty"`
+			Pre_allocate *int64 `tfsdk:"pre_allocate" yaml:"pre-allocate,omitempty"`
 
-			Security_group_tags *map[string]string `tfsdk:"security__group__tags" yaml:"security-group-tags,omitempty"`
+			Security_group_tags *map[string]string `tfsdk:"security_group_tags" yaml:"security-group-tags,omitempty"`
 
-			Security_groups *[]string `tfsdk:"security__groups" yaml:"security-groups,omitempty"`
+			Security_groups *[]string `tfsdk:"security_groups" yaml:"security-groups,omitempty"`
 
-			Subnet_ids *[]string `tfsdk:"subnet__ids" yaml:"subnet-ids,omitempty"`
+			Subnet_ids *[]string `tfsdk:"subnet_ids" yaml:"subnet-ids,omitempty"`
 
-			Subnet_tags *map[string]string `tfsdk:"subnet__tags" yaml:"subnet-tags,omitempty"`
+			Subnet_tags *map[string]string `tfsdk:"subnet_tags" yaml:"subnet-tags,omitempty"`
 
-			Use_primary_address *bool `tfsdk:"use__primary__address" yaml:"use-primary-address,omitempty"`
+			Use_primary_address *bool `tfsdk:"use_primary_address" yaml:"use-primary-address,omitempty"`
 
-			Vpc_id *string `tfsdk:"vpc__id" yaml:"vpc-id,omitempty"`
+			Vpc_id *string `tfsdk:"vpc_id" yaml:"vpc-id,omitempty"`
 		} `tfsdk:"eni" yaml:"eni,omitempty"`
 
 		Health *struct {
@@ -128,18 +128,18 @@ type CiliumIoCiliumNodeV2GoModel struct {
 			Ipv6 *string `tfsdk:"ipv6" yaml:"ipv6,omitempty"`
 		} `tfsdk:"ingress" yaml:"ingress,omitempty"`
 
-		Instance_id *string `tfsdk:"instance__id" yaml:"instance-id,omitempty"`
+		Instance_id *string `tfsdk:"instance_id" yaml:"instance-id,omitempty"`
 
 		Ipam *struct {
-			Max_above_watermark *int64 `tfsdk:"max__above__watermark" yaml:"max-above-watermark,omitempty"`
+			Max_above_watermark *int64 `tfsdk:"max_above_watermark" yaml:"max-above-watermark,omitempty"`
 
-			Max_allocate *int64 `tfsdk:"max__allocate" yaml:"max-allocate,omitempty"`
+			Max_allocate *int64 `tfsdk:"max_allocate" yaml:"max-allocate,omitempty"`
 
-			Min_allocate *int64 `tfsdk:"min__allocate" yaml:"min-allocate,omitempty"`
+			Min_allocate *int64 `tfsdk:"min_allocate" yaml:"min-allocate,omitempty"`
 
-			Pod_cidr_allocation_threshold *int64 `tfsdk:"pod__cidr__allocation__threshold" yaml:"pod-cidr-allocation-threshold,omitempty"`
+			Pod_cidr_allocation_threshold *int64 `tfsdk:"pod_cidr_allocation_threshold" yaml:"pod-cidr-allocation-threshold,omitempty"`
 
-			Pod_cidr_release_threshold *int64 `tfsdk:"pod__cidr__release__threshold" yaml:"pod-cidr-release-threshold,omitempty"`
+			Pod_cidr_release_threshold *int64 `tfsdk:"pod_cidr_release_threshold" yaml:"pod-cidr-release-threshold,omitempty"`
 
 			PodCIDRs *[]string `tfsdk:"pod_cid_rs" yaml:"podCIDRs,omitempty"`
 
@@ -149,7 +149,7 @@ type CiliumIoCiliumNodeV2GoModel struct {
 				Resource *string `tfsdk:"resource" yaml:"resource,omitempty"`
 			} `tfsdk:"pool" yaml:"pool,omitempty"`
 
-			Pre_allocate *int64 `tfsdk:"pre__allocate" yaml:"pre-allocate,omitempty"`
+			Pre_allocate *int64 `tfsdk:"pre_allocate" yaml:"pre-allocate,omitempty"`
 		} `tfsdk:"ipam" yaml:"ipam,omitempty"`
 
 		Nodeidentity *int64 `tfsdk:"nodeidentity" yaml:"nodeidentity,omitempty"`
@@ -277,13 +277,13 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 						Computed: false,
 					},
 
-					"alibaba__cloud": {
+					"alibaba_cloud": {
 						Description:         "AlibabaCloud is the AlibabaCloud IPAM specific configuration.",
 						MarkdownDescription: "AlibabaCloud is the AlibabaCloud IPAM specific configuration.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"availability__zone": {
+							"availability_zone": {
 								Description:         "AvailabilityZone is the availability zone to use when allocating ENIs.",
 								MarkdownDescription: "AvailabilityZone is the availability zone to use when allocating ENIs.",
 
@@ -294,7 +294,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"cidr__block": {
+							"cidr_block": {
 								Description:         "CIDRBlock is vpc ipv4 CIDR",
 								MarkdownDescription: "CIDRBlock is vpc ipv4 CIDR",
 
@@ -305,7 +305,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"instance__type": {
+							"instance_type": {
 								Description:         "InstanceType is the ECS instance type, e.g. 'ecs.g6.2xlarge'",
 								MarkdownDescription: "InstanceType is the ECS instance type, e.g. 'ecs.g6.2xlarge'",
 
@@ -316,7 +316,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"security__group__tags": {
+							"security_group_tags": {
 								Description:         "SecurityGroupTags is the list of tags to use when evaluating which security groups to use for the ENI.",
 								MarkdownDescription: "SecurityGroupTags is the list of tags to use when evaluating which security groups to use for the ENI.",
 
@@ -327,7 +327,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"security__groups": {
+							"security_groups": {
 								Description:         "SecurityGroups is the list of security groups to attach to any ENI that is created and attached to the instance.",
 								MarkdownDescription: "SecurityGroups is the list of security groups to attach to any ENI that is created and attached to the instance.",
 
@@ -338,7 +338,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"vpc__id": {
+							"vpc_id": {
 								Description:         "VPCID is the VPC ID to use when allocating ENIs.",
 								MarkdownDescription: "VPCID is the VPC ID to use when allocating ENIs.",
 
@@ -349,7 +349,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"vswitch__tags": {
+							"vswitch_tags": {
 								Description:         "VSwitchTags is the list of tags to use when evaluating which vSwitch to use for the ENI.",
 								MarkdownDescription: "VSwitchTags is the list of tags to use when evaluating which vSwitch to use for the ENI.",
 
@@ -383,7 +383,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"interface__name": {
+							"interface_name": {
 								Description:         "InterfaceName is the name of the interface the cilium-operator will use to allocate all the IPs on",
 								MarkdownDescription: "InterfaceName is the name of the interface the cilium-operator will use to allocate all the IPs on",
 
@@ -429,7 +429,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"availability__zone": {
+							"availability_zone": {
 								Description:         "AvailabilityZone is the availability zone to use when allocating ENIs.",
 								MarkdownDescription: "AvailabilityZone is the availability zone to use when allocating ENIs.",
 
@@ -440,7 +440,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"delete__on__termination": {
+							"delete_on_termination": {
 								Description:         "DeleteOnTermination defines that the ENI should be deleted when the associated instance is terminated. If the parameter is not set the default behavior is to delete the ENI on instance termination.",
 								MarkdownDescription: "DeleteOnTermination defines that the ENI should be deleted when the associated instance is terminated. If the parameter is not set the default behavior is to delete the ENI on instance termination.",
 
@@ -451,7 +451,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"disable__prefix__delegation": {
+							"disable_prefix_delegation": {
 								Description:         "DisablePrefixDelegation determines whether ENI prefix delegation should be disabled on this node.",
 								MarkdownDescription: "DisablePrefixDelegation determines whether ENI prefix delegation should be disabled on this node.",
 
@@ -462,7 +462,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"exclude__interface__tags": {
+							"exclude_interface_tags": {
 								Description:         "ExcludeInterfaceTags is the list of tags to use when excluding ENIs for Cilium IP allocation. Any interface matching this set of tags will not be managed by Cilium.",
 								MarkdownDescription: "ExcludeInterfaceTags is the list of tags to use when excluding ENIs for Cilium IP allocation. Any interface matching this set of tags will not be managed by Cilium.",
 
@@ -473,7 +473,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"first__interface__index": {
+							"first_interface_index": {
 								Description:         "FirstInterfaceIndex is the index of the first ENI to use for IP allocation, e.g. if the node has eth0, eth1, eth2 and FirstInterfaceIndex is set to 1, then only eth1 and eth2 will be used for IP allocation, eth0 will be ignored for PodIP allocation.",
 								MarkdownDescription: "FirstInterfaceIndex is the index of the first ENI to use for IP allocation, e.g. if the node has eth0, eth1, eth2 and FirstInterfaceIndex is set to 1, then only eth1 and eth2 will be used for IP allocation, eth0 will be ignored for PodIP allocation.",
 
@@ -489,7 +489,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								},
 							},
 
-							"instance__id": {
+							"instance_id": {
 								Description:         "InstanceID is the AWS InstanceId of the node. The InstanceID is used to retrieve AWS metadata for the node.  OBSOLETE: This field is obsolete, please use Spec.InstanceID",
 								MarkdownDescription: "InstanceID is the AWS InstanceId of the node. The InstanceID is used to retrieve AWS metadata for the node.  OBSOLETE: This field is obsolete, please use Spec.InstanceID",
 
@@ -500,7 +500,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"instance__type": {
+							"instance_type": {
 								Description:         "InstanceType is the AWS EC2 instance type, e.g. 'm5.large'",
 								MarkdownDescription: "InstanceType is the AWS EC2 instance type, e.g. 'm5.large'",
 
@@ -511,7 +511,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"max__above__watermark": {
+							"max_above_watermark": {
 								Description:         "MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MaxAboveWatermark",
 								MarkdownDescription: "MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MaxAboveWatermark",
 
@@ -527,7 +527,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								},
 							},
 
-							"min__allocate": {
+							"min_allocate": {
 								Description:         "MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MinAllocate",
 								MarkdownDescription: "MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.  OBSOLETE: This field is obsolete, please use Spec.IPAM.MinAllocate",
 
@@ -543,7 +543,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								},
 							},
 
-							"pre__allocate": {
+							"pre_allocate": {
 								Description:         "PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.  OBSOLETE: This field is obsolete, please use Spec.IPAM.PreAllocate",
 								MarkdownDescription: "PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.  OBSOLETE: This field is obsolete, please use Spec.IPAM.PreAllocate",
 
@@ -559,7 +559,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								},
 							},
 
-							"security__group__tags": {
+							"security_group_tags": {
 								Description:         "SecurityGroupTags is the list of tags to use when evaliating what AWS security groups to use for the ENI.",
 								MarkdownDescription: "SecurityGroupTags is the list of tags to use when evaliating what AWS security groups to use for the ENI.",
 
@@ -570,7 +570,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"security__groups": {
+							"security_groups": {
 								Description:         "SecurityGroups is the list of security groups to attach to any ENI that is created and attached to the instance.",
 								MarkdownDescription: "SecurityGroups is the list of security groups to attach to any ENI that is created and attached to the instance.",
 
@@ -581,7 +581,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"subnet__ids": {
+							"subnet_ids": {
 								Description:         "SubnetIDs is the list of subnet ids to use when evaluating what AWS subnets to use for ENI and IP allocation.",
 								MarkdownDescription: "SubnetIDs is the list of subnet ids to use when evaluating what AWS subnets to use for ENI and IP allocation.",
 
@@ -592,7 +592,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"subnet__tags": {
+							"subnet_tags": {
 								Description:         "SubnetTags is the list of tags to use when evaluating what AWS subnets to use for ENI and IP allocation.",
 								MarkdownDescription: "SubnetTags is the list of tags to use when evaluating what AWS subnets to use for ENI and IP allocation.",
 
@@ -603,7 +603,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"use__primary__address": {
+							"use_primary_address": {
 								Description:         "UsePrimaryAddress determines whether an ENI's primary address should be available for allocations on the node",
 								MarkdownDescription: "UsePrimaryAddress determines whether an ENI's primary address should be available for allocations on the node",
 
@@ -614,7 +614,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"vpc__id": {
+							"vpc_id": {
 								Description:         "VpcID is the VPC ID to use when allocating ENIs.",
 								MarkdownDescription: "VpcID is the VPC ID to use when allocating ENIs.",
 
@@ -699,7 +699,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 						Computed: false,
 					},
 
-					"instance__id": {
+					"instance_id": {
 						Description:         "InstanceID is the identifier of the node. This is different from the node name which is typically the FQDN of the node. The InstanceID typically refers to the identifier used by the cloud provider or some other means of identification.",
 						MarkdownDescription: "InstanceID is the identifier of the node. This is different from the node name which is typically the FQDN of the node. The InstanceID typically refers to the identifier used by the cloud provider or some other means of identification.",
 
@@ -716,7 +716,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"max__above__watermark": {
+							"max_above_watermark": {
 								Description:         "MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.",
 								MarkdownDescription: "MaxAboveWatermark is the maximum number of addresses to allocate beyond the addresses needed to reach the PreAllocate watermark. Going above the watermark can help reduce the number of API calls to allocate IPs, e.g. when a new ENI is allocated, as many secondary IPs as possible are allocated. Limiting the amount can help reduce waste of IPs.",
 
@@ -732,7 +732,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								},
 							},
 
-							"max__allocate": {
+							"max_allocate": {
 								Description:         "MaxAllocate is the maximum number of IPs that can be allocated to the node. When the current amount of allocated IPs will approach this value, the considered value for PreAllocate will decrease down to 0 in order to not attempt to allocate more addresses than defined.",
 								MarkdownDescription: "MaxAllocate is the maximum number of IPs that can be allocated to the node. When the current amount of allocated IPs will approach this value, the considered value for PreAllocate will decrease down to 0 in order to not attempt to allocate more addresses than defined.",
 
@@ -748,7 +748,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								},
 							},
 
-							"min__allocate": {
+							"min_allocate": {
 								Description:         "MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.",
 								MarkdownDescription: "MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.",
 
@@ -764,7 +764,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								},
 							},
 
-							"pod__cidr__allocation__threshold": {
+							"pod_cidr_allocation_threshold": {
 								Description:         "PodCIDRAllocationThreshold defines the minimum number of free IPs which must be available to this node via its pod CIDR pool. If the total number of IP addresses in the pod CIDR pool is less than this value, the pod CIDRs currently in-use by this node will be marked as depleted and cilium-operator will allocate a new pod CIDR to this node. This value effectively defines the buffer of IP addresses available immediately without requiring cilium-operator to get involved.",
 								MarkdownDescription: "PodCIDRAllocationThreshold defines the minimum number of free IPs which must be available to this node via its pod CIDR pool. If the total number of IP addresses in the pod CIDR pool is less than this value, the pod CIDRs currently in-use by this node will be marked as depleted and cilium-operator will allocate a new pod CIDR to this node. This value effectively defines the buffer of IP addresses available immediately without requiring cilium-operator to get involved.",
 
@@ -780,7 +780,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								},
 							},
 
-							"pod__cidr__release__threshold": {
+							"pod_cidr_release_threshold": {
 								Description:         "PodCIDRReleaseThreshold defines the maximum number of free IPs which may be available to this node via its pod CIDR pool. While the total number of free IP addresses in the pod CIDR pool is larger than this value, cilium-agent will attempt to release currently unused pod CIDRs.",
 								MarkdownDescription: "PodCIDRReleaseThreshold defines the maximum number of free IPs which may be available to this node via its pod CIDR pool. While the total number of free IP addresses in the pod CIDR pool is larger than this value, cilium-agent will attempt to release currently unused pod CIDRs.",
 
@@ -841,7 +841,7 @@ func (r *CiliumIoCiliumNodeV2Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								Computed: false,
 							},
 
-							"pre__allocate": {
+							"pre_allocate": {
 								Description:         "PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.",
 								MarkdownDescription: "PreAllocate defines the number of IP addresses that must be available for allocation in the IPAMspec. It defines the buffer of addresses available immediately without requiring cilium-operator to get involved.",
 

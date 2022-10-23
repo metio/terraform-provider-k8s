@@ -94,9 +94,47 @@ Required:
 <a id="nestedatt--spec--provider--akeyless--auth_secret_ref"></a>
 ### Nested Schema for `spec.provider.akeyless.auth_secret_ref`
 
+Optional:
+
+- `kubernetes_auth` (Attributes) Kubernetes authenticates with Akeyless by passing the ServiceAccount token stored in the named Secret resource. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth))
+- `secret_ref` (Attributes) Reference to a Secret that contains the details to authenticate with Akeyless. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref))
+
+<a id="nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth"></a>
+### Nested Schema for `spec.provider.akeyless.auth_secret_ref.kubernetes_auth`
+
 Required:
 
-- `secret_ref` (Attributes) AkeylessAuthSecretRef AKEYLESS_ACCESS_TYPE_PARAM: AZURE_OBJ_ID OR GCP_AUDIENCE OR ACCESS_KEY OR KUB_CONFIG_NAME. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref))
+- `access_id` (String) the Akeyless Kubernetes auth-method access-id
+- `k8s_conf_name` (String) Kubernetes-auth configuration name in Akeyless-Gateway
+
+Optional:
+
+- `secret_ref` (Attributes) Optional secret field containing a Kubernetes ServiceAccount JWT used for authenticating with Akeyless. If a name is specified without a key, 'token' is the default. If one is not specified, the one bound to the controller will be used. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--secret_ref))
+- `service_account_ref` (Attributes) Optional service account field containing the name of a kubernetes ServiceAccount. If the service account is specified, the service account secret token JWT will be used for authenticating with Akeyless. If the service account selector is not supplied, the secretRef will be used instead. (see [below for nested schema](#nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--service_account_ref))
+
+<a id="nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--secret_ref"></a>
+### Nested Schema for `spec.provider.akeyless.auth_secret_ref.kubernetes_auth.service_account_ref`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+
+<a id="nestedatt--spec--provider--akeyless--auth_secret_ref--kubernetes_auth--service_account_ref"></a>
+### Nested Schema for `spec.provider.akeyless.auth_secret_ref.kubernetes_auth.service_account_ref`
+
+Required:
+
+- `name` (String) The name of the ServiceAccount resource being referred to.
+
+Optional:
+
+- `audiences` (List of String) Audience specifies the 'aud' claim for the service account token If the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identity then this audiences will be appended to the list
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+
 
 <a id="nestedatt--spec--provider--akeyless--auth_secret_ref--secret_ref"></a>
 ### Nested Schema for `spec.provider.akeyless.auth_secret_ref.secret_ref`

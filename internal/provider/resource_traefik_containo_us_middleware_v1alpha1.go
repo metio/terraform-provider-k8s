@@ -1969,8 +1969,8 @@ func (r *TraefikContainoUsMiddlewareV1Alpha1Resource) GetSchema(_ context.Contex
 							},
 
 							"pem": {
-								Description:         "PEM sets the X-Forwarded-Tls-Client-Cert header with the escaped certificate.",
-								MarkdownDescription: "PEM sets the X-Forwarded-Tls-Client-Cert header with the escaped certificate.",
+								Description:         "PEM sets the X-Forwarded-Tls-Client-Cert header with the certificate.",
+								MarkdownDescription: "PEM sets the X-Forwarded-Tls-Client-Cert header with the certificate.",
 
 								Type: types.BoolType,
 

@@ -159,9 +159,9 @@ Optional:
 <a id="nestedatt--spec--kube_config"></a>
 ### Nested Schema for `spec.kube_config`
 
-Optional:
+Required:
 
-- `secret_ref` (Attributes) SecretRef holds the name of a secret that contains a key with the kubeconfig file as the value. If no key is set, the key will default to 'value'. The secret must be in the same namespace as the Kustomization. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling the Kustomization. (see [below for nested schema](#nestedatt--spec--kube_config--secret_ref))
+- `secret_ref` (Attributes) SecretRef holds the name of a secret that contains a key with the kubeconfig file as the value. If no key is set, the key will default to 'value'. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling Kubernetes resources. (see [below for nested schema](#nestedatt--spec--kube_config--secret_ref))
 
 <a id="nestedatt--spec--kube_config--secret_ref"></a>
 ### Nested Schema for `spec.kube_config.secret_ref`

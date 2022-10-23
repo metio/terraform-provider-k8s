@@ -1,5 +1,3 @@
-# source: https://github.com/aws-controllers-k8s/dynamodb-controller/blob/main/config/crd/bases/dynamodb.services.k8s.aws_tables.yaml
-
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -16,41 +14,41 @@ spec:
     singular: table
   scope: Namespaced
   versions:
-    - name: v1alpha1
-      schema:
-        openAPIV3Schema:
-          description: Table is the Schema for the Tables API
-          properties:
-            apiVersion:
-              description: 'APIVersion defines the versioned schema of this representation
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: Table is the Schema for the Tables API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
               of an object. Servers should convert recognized schemas to the latest
               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
-              type: string
-            kind:
-              description: 'Kind is a string value representing the REST resource this
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
               object represents. Servers may infer this from the endpoint the client
               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
-              type: string
-            metadata:
-              type: object
-            spec:
-              description: TableSpec defines the desired state of Table.
-              properties:
-                attributeDefinitions:
-                  description: An array of attributes that describe the key schema for
-                    the table and indexes.
-                  items:
-                    description: Represents an attribute for describing the key schema
-                      for the table and indexes.
-                    properties:
-                      attributeName:
-                        type: string
-                      attributeType:
-                        type: string
-                    type: object
-                  type: array
-                billingMode:
-                  description: "Controls how you are charged for read and write throughput
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: TableSpec defines the desired state of Table.
+            properties:
+              attributeDefinitions:
+                description: An array of attributes that describe the key schema for
+                  the table and indexes.
+                items:
+                  description: Represents an attribute for describing the key schema
+                    for the table and indexes.
+                  properties:
+                    attributeName:
+                      type: string
+                    attributeType:
+                      type: string
+                  type: object
+                type: array
+              billingMode:
+                description: "Controls how you are charged for read and write throughput
                   and how you manage capacity. This setting can be changed later.
                   \n * PROVISIONED - We recommend using PROVISIONED for predictable
                   workloads. PROVISIONED sets the billing mode to Provisioned Mode
@@ -58,9 +56,9 @@ spec:
                   \n * PAY_PER_REQUEST - We recommend using PAY_PER_REQUEST for unpredictable
                   workloads. PAY_PER_REQUEST sets the billing mode to On-Demand Mode
                   (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.OnDemand)."
-                  type: string
-                globalSecondaryIndexes:
-                  description: "One or more global secondary indexes (the maximum is
+                type: string
+              globalSecondaryIndexes:
+                description: "One or more global secondary indexes (the maximum is
                   20) to be created on the table. Each global secondary index in the
                   array includes the following: \n * IndexName - The name of the global
                   secondary index. Must be unique only for this table. \n * KeySchema
@@ -81,14 +79,14 @@ spec:
                   distinct attributes when determining the total. \n * ProvisionedThroughput
                   - The provisioned throughput settings for the global secondary index,
                   consisting of read and write capacity units."
-                  items:
-                    description: Represents the properties of a global secondary index.
-                    properties:
-                      indexName:
-                        type: string
-                      keySchema:
-                        items:
-                          description: "Represents a single element of a key schema.
+                items:
+                  description: Represents the properties of a global secondary index.
+                  properties:
+                    indexName:
+                      type: string
+                    keySchema:
+                      items:
+                        description: "Represents a single element of a key schema.
                           A key schema specifies the attributes that make up the primary
                           key of a table, or the key attributes of an index. \n A
                           KeySchemaElement represents exactly one attribute of the
@@ -100,45 +98,45 @@ spec:
                           attribute (not a nested attribute). The data type must be
                           one of String, Number, or Binary. The attribute cannot be
                           nested within a List or a Map."
-                          properties:
-                            attributeName:
-                              type: string
-                            keyType:
-                              type: string
-                          type: object
-                        type: array
-                      projection:
-                        description: Represents attributes that are copied (projected)
-                          from the table into an index. These are in addition to the
-                          primary key attributes and index key attributes, which are
-                          automatically projected.
                         properties:
-                          nonKeyAttributes:
-                            items:
-                              type: string
-                            type: array
-                          projectionType:
+                          attributeName:
+                            type: string
+                          keyType:
                             type: string
                         type: object
-                      provisionedThroughput:
-                        description: "Represents the provisioned throughput settings
+                      type: array
+                    projection:
+                      description: Represents attributes that are copied (projected)
+                        from the table into an index. These are in addition to the
+                        primary key attributes and index key attributes, which are
+                        automatically projected.
+                      properties:
+                        nonKeyAttributes:
+                          items:
+                            type: string
+                          type: array
+                        projectionType:
+                          type: string
+                      type: object
+                    provisionedThroughput:
+                      description: "Represents the provisioned throughput settings
                         for a specified table or index. The settings can be modified
                         using the UpdateTable operation. \n For current minimum and
                         maximum provisioned throughput values, see Service, Account,
                         and Table Quotas (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
                         in the Amazon DynamoDB Developer Guide."
-                        properties:
-                          readCapacityUnits:
-                            format: int64
-                            type: integer
-                          writeCapacityUnits:
-                            format: int64
-                            type: integer
-                        type: object
-                    type: object
-                  type: array
-                keySchema:
-                  description: "Specifies the attributes that make up the primary key
+                      properties:
+                        readCapacityUnits:
+                          format: int64
+                          type: integer
+                        writeCapacityUnits:
+                          format: int64
+                          type: integer
+                      type: object
+                  type: object
+                type: array
+              keySchema:
+                description: "Specifies the attributes that make up the primary key
                   for a table or an index. The attributes in KeySchema must also be
                   defined in the AttributeDefinitions array. For more information,
                   see Data Model (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html)
@@ -160,8 +158,8 @@ spec:
                   element must have a KeyType of RANGE. \n For more information, see
                   Working with Tables (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key)
                   in the Amazon DynamoDB Developer Guide."
-                  items:
-                    description: "Represents a single element of a key schema. A key
+                items:
+                  description: "Represents a single element of a key schema. A key
                     schema specifies the attributes that make up the primary key of
                     a table, or the key attributes of an index. \n A KeySchemaElement
                     represents exactly one attribute of the primary key. For example,
@@ -172,15 +170,15 @@ spec:
                     attribute (not a nested attribute). The data type must be one
                     of String, Number, or Binary. The attribute cannot be nested within
                     a List or a Map."
-                    properties:
-                      attributeName:
-                        type: string
-                      keyType:
-                        type: string
-                    type: object
-                  type: array
-                localSecondaryIndexes:
-                  description: "One or more local secondary indexes (the maximum is
+                  properties:
+                    attributeName:
+                      type: string
+                    keyType:
+                      type: string
+                  type: object
+                type: array
+              localSecondaryIndexes:
+                description: "One or more local secondary indexes (the maximum is
                   5) to be created on the table. Each index is scoped to a given partition
                   key value. There is a 10 GB size limit per partition key value;
                   otherwise, the size of a local secondary index is unconstrained.
@@ -203,14 +201,14 @@ spec:
                   secondary indexes, must not exceed 100. If you project the same
                   attribute into two different indexes, this counts as two distinct
                   attributes when determining the total."
-                  items:
-                    description: Represents the properties of a local secondary index.
-                    properties:
-                      indexName:
-                        type: string
-                      keySchema:
-                        items:
-                          description: "Represents a single element of a key schema.
+                items:
+                  description: Represents the properties of a local secondary index.
+                  properties:
+                    indexName:
+                      type: string
+                    keySchema:
+                      items:
+                        description: "Represents a single element of a key schema.
                           A key schema specifies the attributes that make up the primary
                           key of a table, or the key attributes of an index. \n A
                           KeySchemaElement represents exactly one attribute of the
@@ -222,30 +220,30 @@ spec:
                           attribute (not a nested attribute). The data type must be
                           one of String, Number, or Binary. The attribute cannot be
                           nested within a List or a Map."
-                          properties:
-                            attributeName:
-                              type: string
-                            keyType:
-                              type: string
-                          type: object
-                        type: array
-                      projection:
-                        description: Represents attributes that are copied (projected)
-                          from the table into an index. These are in addition to the
-                          primary key attributes and index key attributes, which are
-                          automatically projected.
                         properties:
-                          nonKeyAttributes:
-                            items:
-                              type: string
-                            type: array
-                          projectionType:
+                          attributeName:
+                            type: string
+                          keyType:
                             type: string
                         type: object
-                    type: object
-                  type: array
-                provisionedThroughput:
-                  description: "Represents the provisioned throughput settings for a
+                      type: array
+                    projection:
+                      description: Represents attributes that are copied (projected)
+                        from the table into an index. These are in addition to the
+                        primary key attributes and index key attributes, which are
+                        automatically projected.
+                      properties:
+                        nonKeyAttributes:
+                          items:
+                            type: string
+                          type: array
+                        projectionType:
+                          type: string
+                      type: object
+                  type: object
+                type: array
+              provisionedThroughput:
+                description: "Represents the provisioned throughput settings for a
                   specified table or index. The settings can be modified using the
                   UpdateTable operation. \n If you set BillingMode as PROVISIONED,
                   you must specify this property. If you set BillingMode as PAY_PER_REQUEST,
@@ -253,26 +251,26 @@ spec:
                   provisioned throughput values, see Service, Account, and Table Quotas
                   (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
                   in the Amazon DynamoDB Developer Guide."
-                  properties:
-                    readCapacityUnits:
-                      format: int64
-                      type: integer
-                    writeCapacityUnits:
-                      format: int64
-                      type: integer
-                  type: object
-                sseSpecification:
-                  description: Represents the settings used to enable server-side encryption.
-                  properties:
-                    enabled:
-                      type: boolean
-                    kmsMasterKeyID:
-                      type: string
-                    sseType:
-                      type: string
-                  type: object
-                streamSpecification:
-                  description: "The settings for DynamoDB Streams on the table. These
+                properties:
+                  readCapacityUnits:
+                    format: int64
+                    type: integer
+                  writeCapacityUnits:
+                    format: int64
+                    type: integer
+                type: object
+              sseSpecification:
+                description: Represents the settings used to enable server-side encryption.
+                properties:
+                  enabled:
+                    type: boolean
+                  kmsMasterKeyID:
+                    type: string
+                  sseType:
+                    type: string
+                type: object
+              streamSpecification:
+                description: "The settings for DynamoDB Streams on the table. These
                   settings consist of: \n * StreamEnabled - Indicates whether DynamoDB
                   Streams is to be enabled (true) or disabled (false). \n * StreamViewType
                   - When an item in the table is modified, StreamViewType determines
@@ -283,24 +281,24 @@ spec:
                   OLD_IMAGE - The entire item, as it appeared before it was modified,
                   is written to the stream. NEW_AND_OLD_IMAGES - Both the new and
                   the old item images of the item are written to the stream."
-                  properties:
-                    streamEnabled:
-                      type: boolean
-                    streamViewType:
-                      type: string
-                  type: object
-                tableClass:
-                  description: The table class of the new table. Valid values are STANDARD
-                    and STANDARD_INFREQUENT_ACCESS.
-                  type: string
-                tableName:
-                  description: The name of the table to create.
-                  type: string
-                tags:
-                  description: A list of key-value pairs to label the table. For more
-                    information, see Tagging for DynamoDB (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html).
-                  items:
-                    description: "Describes a tag. A tag is a key-value pair. You can
+                properties:
+                  streamEnabled:
+                    type: boolean
+                  streamViewType:
+                    type: string
+                type: object
+              tableClass:
+                description: The table class of the new table. Valid values are STANDARD
+                  and STANDARD_INFREQUENT_ACCESS.
+                type: string
+              tableName:
+                description: The name of the table to create.
+                type: string
+              tags:
+                description: A list of key-value pairs to label the table. For more
+                  information, see Tagging for DynamoDB (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html).
+                items:
+                  description: "Describes a tag. A tag is a key-value pair. You can
                     add up to 50 tags to a single DynamoDB table. \n Amazon Web Services-assigned
                     tag names and values are automatically assigned the aws: prefix,
                     which the user cannot assign. Amazon Web Services-assigned tag
@@ -309,37 +307,37 @@ spec:
                     You cannot backdate the application of a tag. \n For an overview
                     on tagging DynamoDB resources, see Tagging for DynamoDB (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html)
                     in the Amazon DynamoDB Developer Guide."
-                    properties:
-                      key:
-                        type: string
-                      value:
-                        type: string
-                    type: object
-                  type: array
-                timeToLive:
-                  description: Represents the settings used to enable or disable Time
-                    to Live for the specified table.
                   properties:
-                    attributeName:
+                    key:
                       type: string
-                    enabled:
-                      type: boolean
+                    value:
+                      type: string
                   type: object
-              required:
-                - attributeDefinitions
-                - keySchema
-                - tableName
-              type: object
-            status:
-              description: TableStatus defines the observed state of Table
-              properties:
-                ackResourceMetadata:
-                  description: All CRs managed by ACK have a common `Status.ACKResourceMetadata`
-                    member that is used to contain resource sync state, account ownership,
-                    constructed ARN for the resource
-                  properties:
-                    arn:
-                      description: 'ARN is the Amazon Resource Name for the resource.
+                type: array
+              timeToLive:
+                description: Represents the settings used to enable or disable Time
+                  to Live for the specified table.
+                properties:
+                  attributeName:
+                    type: string
+                  enabled:
+                    type: boolean
+                type: object
+            required:
+            - attributeDefinitions
+            - keySchema
+            - tableName
+            type: object
+          status:
+            description: TableStatus defines the observed state of Table
+            properties:
+              ackResourceMetadata:
+                description: All CRs managed by ACK have a common `Status.ACKResourceMetadata`
+                  member that is used to contain resource sync state, account ownership,
+                  constructed ARN for the resource
+                properties:
+                  arn:
+                    description: 'ARN is the Amazon Resource Name for the resource.
                       This is a globally-unique identifier and is set only by the
                       ACK service controller once the controller has orchestrated
                       the creation of the resource OR when it has verified that an
@@ -348,203 +346,203 @@ spec:
                       supplied CR''s Spec field values. TODO(vijat@): Find a better
                       strategy for resources that do not have ARN in CreateOutputResponse
                       https://github.com/aws/aws-controllers-k8s/issues/270'
+                    type: string
+                  ownerAccountID:
+                    description: OwnerAccountID is the AWS Account ID of the account
+                      that owns the backend AWS service API resource.
+                    type: string
+                  region:
+                    description: Region is the AWS region in which the resource exists
+                      or will exist.
+                    type: string
+                required:
+                - ownerAccountID
+                - region
+                type: object
+              archivalSummary:
+                description: Contains information about the table archive.
+                properties:
+                  archivalBackupARN:
+                    type: string
+                  archivalDateTime:
+                    format: date-time
+                    type: string
+                  archivalReason:
+                    type: string
+                type: object
+              billingModeSummary:
+                description: Contains the details for the read/write capacity mode.
+                properties:
+                  billingMode:
+                    type: string
+                  lastUpdateToPayPerRequestDateTime:
+                    format: date-time
+                    type: string
+                type: object
+              conditions:
+                description: All CRS managed by ACK have a common `Status.Conditions`
+                  member that contains a collection of `ackv1alpha1.Condition` objects
+                  that describe the various terminal states of the CR and its backend
+                  AWS service API resource
+                items:
+                  description: Condition is the common struct used by all CRDs managed
+                    by ACK service controllers to indicate terminal states  of the
+                    CR and its backend AWS service API resource
+                  properties:
+                    lastTransitionTime:
+                      description: Last time the condition transitioned from one status
+                        to another.
+                      format: date-time
                       type: string
-                    ownerAccountID:
-                      description: OwnerAccountID is the AWS Account ID of the account
-                        that owns the backend AWS service API resource.
+                    message:
+                      description: A human readable message indicating details about
+                        the transition.
                       type: string
-                    region:
-                      description: Region is the AWS region in which the resource exists
-                        or will exist.
+                    reason:
+                      description: The reason for the condition's last transition.
+                      type: string
+                    status:
+                      description: Status of the condition, one of True, False, Unknown.
+                      type: string
+                    type:
+                      description: Type is the type of the Condition
                       type: string
                   required:
-                    - ownerAccountID
-                    - region
+                  - status
+                  - type
                   type: object
-                archivalSummary:
-                  description: Contains information about the table archive.
-                  properties:
-                    archivalBackupARN:
-                      type: string
-                    archivalDateTime:
-                      format: date-time
-                      type: string
-                    archivalReason:
-                      type: string
-                  type: object
-                billingModeSummary:
-                  description: Contains the details for the read/write capacity mode.
-                  properties:
-                    billingMode:
-                      type: string
-                    lastUpdateToPayPerRequestDateTime:
-                      format: date-time
-                      type: string
-                  type: object
-                conditions:
-                  description: All CRS managed by ACK have a common `Status.Conditions`
-                    member that contains a collection of `ackv1alpha1.Condition` objects
-                    that describe the various terminal states of the CR and its backend
-                    AWS service API resource
-                  items:
-                    description: Condition is the common struct used by all CRDs managed
-                      by ACK service controllers to indicate terminal states  of the
-                      CR and its backend AWS service API resource
-                    properties:
-                      lastTransitionTime:
-                        description: Last time the condition transitioned from one status
-                          to another.
-                        format: date-time
-                        type: string
-                      message:
-                        description: A human readable message indicating details about
-                          the transition.
-                        type: string
-                      reason:
-                        description: The reason for the condition's last transition.
-                        type: string
-                      status:
-                        description: Status of the condition, one of True, False, Unknown.
-                        type: string
-                      type:
-                        description: Type is the type of the Condition
-                        type: string
-                    required:
-                      - status
-                      - type
-                    type: object
-                  type: array
-                creationDateTime:
-                  description: The date and time when the table was created, in UNIX
-                    epoch time (http://www.epochconverter.com/) format.
-                  format: date-time
-                  type: string
-                globalTableVersion:
-                  description: Represents the version of global tables (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html)
-                    in use, if the table is replicated across Amazon Web Services Regions.
-                  type: string
-                itemCount:
-                  description: The number of items in the specified table. DynamoDB
-                    updates this value approximately every six hours. Recent changes
-                    might not be reflected in this value.
-                  format: int64
-                  type: integer
-                latestStreamARN:
-                  description: The Amazon Resource Name (ARN) that uniquely identifies
-                    the latest stream for this table.
-                  type: string
-                latestStreamLabel:
-                  description: "A timestamp, in ISO 8601 format, for this stream. \n
+                type: array
+              creationDateTime:
+                description: The date and time when the table was created, in UNIX
+                  epoch time (http://www.epochconverter.com/) format.
+                format: date-time
+                type: string
+              globalTableVersion:
+                description: Represents the version of global tables (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html)
+                  in use, if the table is replicated across Amazon Web Services Regions.
+                type: string
+              itemCount:
+                description: The number of items in the specified table. DynamoDB
+                  updates this value approximately every six hours. Recent changes
+                  might not be reflected in this value.
+                format: int64
+                type: integer
+              latestStreamARN:
+                description: The Amazon Resource Name (ARN) that uniquely identifies
+                  the latest stream for this table.
+                type: string
+              latestStreamLabel:
+                description: "A timestamp, in ISO 8601 format, for this stream. \n
                   Note that LatestStreamLabel is not a unique identifier for the stream,
                   because it is possible that a stream from another table might have
                   the same timestamp. However, the combination of the following three
                   elements is guaranteed to be unique: \n * Amazon Web Services customer
                   ID \n * Table name \n * StreamLabel"
-                  type: string
-                replicas:
-                  description: Represents replicas of the table.
-                  items:
-                    description: Contains the details of the replica.
-                    properties:
-                      globalSecondaryIndexes:
-                        items:
-                          description: Represents the properties of a replica global
-                            secondary index.
-                          properties:
-                            indexName:
-                              type: string
-                            provisionedThroughputOverride:
-                              description: Replica-specific provisioned throughput settings.
-                                If not specified, uses the source table's provisioned
-                                throughput settings.
-                              properties:
-                                readCapacityUnits:
-                                  format: int64
-                                  type: integer
-                              type: object
-                          type: object
-                        type: array
-                      kmsMasterKeyID:
-                        type: string
-                      provisionedThroughputOverride:
-                        description: Replica-specific provisioned throughput settings.
-                          If not specified, uses the source table's provisioned throughput
-                          settings.
+                type: string
+              replicas:
+                description: Represents replicas of the table.
+                items:
+                  description: Contains the details of the replica.
+                  properties:
+                    globalSecondaryIndexes:
+                      items:
+                        description: Represents the properties of a replica global
+                          secondary index.
                         properties:
-                          readCapacityUnits:
-                            format: int64
-                            type: integer
-                        type: object
-                      regionName:
-                        type: string
-                      replicaInaccessibleDateTime:
-                        format: date-time
-                        type: string
-                      replicaStatus:
-                        type: string
-                      replicaStatusDescription:
-                        type: string
-                      replicaStatusPercentProgress:
-                        type: string
-                      replicaTableClassSummary:
-                        description: Contains details of the table class.
-                        properties:
-                          lastUpdateDateTime:
-                            format: date-time
+                          indexName:
                             type: string
-                          tableClass:
-                            type: string
+                          provisionedThroughputOverride:
+                            description: Replica-specific provisioned throughput settings.
+                              If not specified, uses the source table's provisioned
+                              throughput settings.
+                            properties:
+                              readCapacityUnits:
+                                format: int64
+                                type: integer
+                            type: object
                         type: object
-                    type: object
-                  type: array
-                restoreSummary:
-                  description: Contains details for the restore.
-                  properties:
-                    restoreDateTime:
+                      type: array
+                    kmsMasterKeyID:
+                      type: string
+                    provisionedThroughputOverride:
+                      description: Replica-specific provisioned throughput settings.
+                        If not specified, uses the source table's provisioned throughput
+                        settings.
+                      properties:
+                        readCapacityUnits:
+                          format: int64
+                          type: integer
+                      type: object
+                    regionName:
+                      type: string
+                    replicaInaccessibleDateTime:
                       format: date-time
                       type: string
-                    restoreInProgress:
-                      type: boolean
-                    sourceBackupARN:
+                    replicaStatus:
                       type: string
-                    sourceTableARN:
+                    replicaStatusDescription:
                       type: string
+                    replicaStatusPercentProgress:
+                      type: string
+                    replicaTableClassSummary:
+                      description: Contains details of the table class.
+                      properties:
+                        lastUpdateDateTime:
+                          format: date-time
+                          type: string
+                        tableClass:
+                          type: string
+                      type: object
                   type: object
-                sseDescription:
-                  description: The description of the server-side encryption status
-                    on the specified table.
-                  properties:
-                    inaccessibleEncryptionDateTime:
-                      format: date-time
-                      type: string
-                    kmsMasterKeyARN:
-                      type: string
-                    sseType:
-                      type: string
-                    status:
-                      type: string
-                  type: object
-                tableClassSummary:
-                  description: Contains details of the table class.
-                  properties:
-                    lastUpdateDateTime:
-                      format: date-time
-                      type: string
-                    tableClass:
-                      type: string
-                  type: object
-                tableID:
-                  description: Unique identifier for the table for which the backup
-                    was created.
-                  type: string
-                tableSizeBytes:
-                  description: The total size of the specified table, in bytes. DynamoDB
-                    updates this value approximately every six hours. Recent changes
-                    might not be reflected in this value.
-                  format: int64
-                  type: integer
-                tableStatus:
-                  description: "The current state of the table: \n * CREATING - The
+                type: array
+              restoreSummary:
+                description: Contains details for the restore.
+                properties:
+                  restoreDateTime:
+                    format: date-time
+                    type: string
+                  restoreInProgress:
+                    type: boolean
+                  sourceBackupARN:
+                    type: string
+                  sourceTableARN:
+                    type: string
+                type: object
+              sseDescription:
+                description: The description of the server-side encryption status
+                  on the specified table.
+                properties:
+                  inaccessibleEncryptionDateTime:
+                    format: date-time
+                    type: string
+                  kmsMasterKeyARN:
+                    type: string
+                  sseType:
+                    type: string
+                  status:
+                    type: string
+                type: object
+              tableClassSummary:
+                description: Contains details of the table class.
+                properties:
+                  lastUpdateDateTime:
+                    format: date-time
+                    type: string
+                  tableClass:
+                    type: string
+                type: object
+              tableID:
+                description: Unique identifier for the table for which the backup
+                  was created.
+                type: string
+              tableSizeBytes:
+                description: The total size of the specified table, in bytes. DynamoDB
+                  updates this value approximately every six hours. Recent changes
+                  might not be reflected in this value.
+                format: int64
+                type: integer
+              tableStatus:
+                description: "The current state of the table: \n * CREATING - The
                   table is being created. \n * UPDATING - The table is being updated.
                   \n * DELETING - The table is being deleted. \n * ACTIVE - The table
                   is ready for use. \n * INACCESSIBLE_ENCRYPTION_CREDENTIALS - The
@@ -554,10 +552,16 @@ spec:
                   for more than seven days. \n * ARCHIVING - The table is being archived.
                   Operations are not allowed until archival is complete. \n * ARCHIVED
                   - The table has been archived. See the ArchivalReason for more information."
-                  type: string
-              type: object
-          type: object
-      served: true
-      storage: true
-      subresources:
-        status: {}
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: null
+  storedVersions: null

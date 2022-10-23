@@ -344,7 +344,7 @@ Optional:
 Optional:
 
 - `info` (Attributes) Info selects the specific client certificate details you want to add to the X-Forwarded-Tls-Client-Cert-Info header. (see [below for nested schema](#nestedatt--spec--pass_tls_client_cert--info))
-- `pem` (Boolean) PEM sets the X-Forwarded-Tls-Client-Cert header with the escaped certificate.
+- `pem` (Boolean) PEM sets the X-Forwarded-Tls-Client-Cert header with the certificate.
 
 <a id="nestedatt--spec--pass_tls_client_cert--info"></a>
 ### Nested Schema for `spec.pass_tls_client_cert.info`

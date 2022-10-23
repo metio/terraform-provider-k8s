@@ -392,6 +392,24 @@ type MonitoringCoreosComAlertmanagerV1GoModel struct {
 			} `tfsdk:"global" yaml:"global,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Templates *[]struct {
+				ConfigMap *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"config_map" yaml:"configMap,omitempty"`
+
+				Secret *struct {
+					Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+					Optional *bool `tfsdk:"optional" yaml:"optional,omitempty"`
+				} `tfsdk:"secret" yaml:"secret,omitempty"`
+			} `tfsdk:"templates" yaml:"templates,omitempty"`
 		} `tfsdk:"alertmanager_configuration" yaml:"alertmanagerConfiguration,omitempty"`
 
 		BaseImage *string `tfsdk:"base_image" yaml:"baseImage,omitempty"`
@@ -3998,6 +4016,108 @@ func (r *MonitoringCoreosComAlertmanagerV1Resource) GetSchema(_ context.Context)
 									stringvalidator.LengthAtLeast(1),
 								},
 							},
+
+							"templates": {
+								Description:         "Custom notification templates.",
+								MarkdownDescription: "Custom notification templates.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"config_map": {
+										Description:         "ConfigMap containing data to use for the targets.",
+										MarkdownDescription: "ConfigMap containing data to use for the targets.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "The key to select.",
+												MarkdownDescription: "The key to select.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the ConfigMap or its key must be defined",
+												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"secret": {
+										Description:         "Secret containing data to use for the targets.",
+										MarkdownDescription: "Secret containing data to use for the targets.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"key": {
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"optional": {
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						}),
 
 						Required: false,
@@ -4076,8 +4196,8 @@ func (r *MonitoringCoreosComAlertmanagerV1Resource) GetSchema(_ context.Context)
 					},
 
 					"config_maps": {
-						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. The ConfigMaps are mounted into /etc/alertmanager/configmaps/<configmap-name>.",
-						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. The ConfigMaps are mounted into /etc/alertmanager/configmaps/<configmap-name>.",
+						Description:         "ConfigMaps is a list of ConfigMaps in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. Each ConfigMap is added to the StatefulSet definition as a volume named 'configmap-<configmap-name>'. The ConfigMaps are mounted into '/etc/alertmanager/configmaps/<configmap-name>' in the 'alertmanager' container.",
+						MarkdownDescription: "ConfigMaps is a list of ConfigMaps in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. Each ConfigMap is added to the StatefulSet definition as a volume named 'configmap-<configmap-name>'. The ConfigMaps are mounted into '/etc/alertmanager/configmaps/<configmap-name>' in the 'alertmanager' container.",
 
 						Type: types.ListType{ElemType: types.StringType},
 
@@ -8459,8 +8579,8 @@ func (r *MonitoringCoreosComAlertmanagerV1Resource) GetSchema(_ context.Context)
 					},
 
 					"secrets": {
-						Description:         "Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. The Secrets are mounted into /etc/alertmanager/secrets/<secret-name>.",
-						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. The Secrets are mounted into /etc/alertmanager/secrets/<secret-name>.",
+						Description:         "Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. Each Secret is added to the StatefulSet definition as a volume named 'secret-<secret-name>'. The Secrets are mounted into '/etc/alertmanager/secrets/<secret-name>' in the 'alertmanager' container.",
+						MarkdownDescription: "Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. Each Secret is added to the StatefulSet definition as a volume named 'secret-<secret-name>'. The Secrets are mounted into '/etc/alertmanager/secrets/<secret-name>' in the 'alertmanager' container.",
 
 						Type: types.ListType{ElemType: types.StringType},
 

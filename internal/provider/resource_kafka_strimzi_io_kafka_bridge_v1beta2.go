@@ -143,11 +143,11 @@ type KafkaStrimziIoKafkaBridgeV1Beta2GoModel struct {
 		Image *string `tfsdk:"image" yaml:"image,omitempty"`
 
 		JvmOptions *struct {
-			_XX utilities.Dynamic `tfsdk:"__xx" yaml:"-XX,omitempty"`
+			_XX utilities.Dynamic `tfsdk:"xx" yaml:"-XX,omitempty"`
 
-			_Xms *string `tfsdk:"___xms" yaml:"-Xms,omitempty"`
+			_Xms *string `tfsdk:"xms" yaml:"-Xms,omitempty"`
 
-			_Xmx *string `tfsdk:"___xmx" yaml:"-Xmx,omitempty"`
+			_Xmx *string `tfsdk:"xmx" yaml:"-Xmx,omitempty"`
 
 			GcLoggingEnabled *bool `tfsdk:"gc_logging_enabled" yaml:"gcLoggingEnabled,omitempty"`
 
@@ -1202,7 +1202,7 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-							"__xx": {
+							"xx": {
 								Description:         "A map of -XX options to the JVM.",
 								MarkdownDescription: "A map of -XX options to the JVM.",
 
@@ -1213,7 +1213,7 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
-							"___xms": {
+							"xms": {
 								Description:         "-Xms option to to the JVM.",
 								MarkdownDescription: "-Xms option to to the JVM.",
 
@@ -1229,7 +1229,7 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) GetSchema(_ context.Context) 
 								},
 							},
 
-							"___xmx": {
+							"xmx": {
 								Description:         "-Xmx option to to the JVM.",
 								MarkdownDescription: "-Xmx option to to the JVM.",
 
