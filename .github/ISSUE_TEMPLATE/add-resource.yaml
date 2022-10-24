@@ -1,0 +1,46 @@
+# SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+# SPDX-License-Identifier: 0BSD
+
+name: Add New Resource
+description: Request a new resource to be added to this provider
+title: "[Add]: "
+labels: ["enhancement"]
+assignees:
+  - sebhoss
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to help this project!
+  - type: textarea
+    id: spec
+    attributes:
+      label: Link to upstream specification(s)
+      description: This can either be a CRDv1 or OpenAPIv2 specifications.
+      placeholder: ex. https://github.com/orga/repo/main/config/crd/some-crd.yaml
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: SPDX license identifier for the upstream spec
+      description: If license is not known by SPDX provide link to the license instead
+      placeholder: ex. Apache-2.0
+    validations:
+      required: true
+  - type: input
+    id: copyright
+    attributes:
+      label: Name of the copyright holder
+      description: If no single entity holds the copyright, use the upstream project name instead.
+      placeholder: ex. The Istio Authors
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example configuration of the resource in Kubernetes YAML
+      description: If available, add an example how the resource is used in plain YAML
+      render: yaml
+    validations:
+      required: false
