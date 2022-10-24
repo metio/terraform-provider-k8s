@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+# SPDX-License-Identifier: 0BSD
+
+name: Resource Bug Report
+description: File a bug report about a Terraform resource
+title: "[Bug]: "
+labels: ["bug"]
+assignees:
+  - sebhoss
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to help this project!
+  - type: textarea
+    id: hcl
+    attributes:
+      label: Relevant Terraform configuration
+      description: Please copy and paste any relevant Terraform configuration. This will be automatically formatted into code, so no need for backticks.
+      render: terraform
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+    validations:
+      required: true

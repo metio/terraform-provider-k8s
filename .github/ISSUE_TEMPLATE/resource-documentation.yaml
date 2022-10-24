@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+# SPDX-License-Identifier: 0BSD
+
+name: Resource Documentation
+description: Improve the documentation of an existing resource
+title: "[Doc]: "
+labels: ["documentation"]
+assignees:
+  - sebhoss
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to help this project!
+  - type: textarea
+    id: hcl
+    attributes:
+      label: Terraform configuration example
+      description: Please copy and paste the Terraform configuration. This will be automatically formatted into code, so no need for backticks.
+      render: terraform
+    validations:
+      required: true
