@@ -59,10 +59,14 @@ func (d IntOrStringType) ValueFromTerraform(_ context.Context, in tftypes.Value)
 	}
 	if in.IsNull() {
 		dynamic.Null = true
+		dynamic.StringType = in.Type().Is(tftypes.String)
+		dynamic.NumberType = in.Type().Is(tftypes.Number)
 		return dynamic, nil
 	}
 	if !in.IsKnown() {
 		dynamic.Unknown = true
+		dynamic.StringType = in.Type().Is(tftypes.String)
+		dynamic.NumberType = in.Type().Is(tftypes.Number)
 		return dynamic, nil
 	}
 
@@ -137,9 +141,21 @@ func (d IntOrString) Type(_ context.Context) attr.Type {
 
 func (d IntOrString) ToTerraformValue(_ context.Context) (tftypes.Value, error) {
 	if d.Unknown {
+		if d.StringType {
+			return tftypes.NewValue(tftypes.String, tftypes.UnknownValue), nil
+		}
+		if d.NumberType {
+			return tftypes.NewValue(tftypes.Number, tftypes.UnknownValue), nil
+		}
 		return tftypes.NewValue(tftypes.DynamicPseudoType, tftypes.UnknownValue), nil
 	}
 	if d.Null {
+		if d.StringType {
+			return tftypes.NewValue(tftypes.String, nil), nil
+		}
+		if d.NumberType {
+			return tftypes.NewValue(tftypes.Number, nil), nil
+		}
 		return tftypes.NewValue(tftypes.DynamicPseudoType, nil), nil
 	}
 	return d.Value, nil
