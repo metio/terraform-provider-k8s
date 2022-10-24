@@ -16,7 +16,7 @@ type crd1TypeTranslator struct {
 }
 
 func (t *crd1TypeTranslator) isIntOrString() bool {
-	return t.property.XIntOrString
+	return t.property.XIntOrString || t.property.Type == "string" && t.property.Format == "int-or-string"
 }
 
 func (t *crd1TypeTranslator) isBoolean() bool {

@@ -416,6 +416,17 @@ func TestTranslateTypeWith(t *testing.T) {
 			valueType:     "utilities.IntOrString",
 			goType:        "utilities.IntOrString",
 		},
+		"CRDv1/string-or-int": {
+			translator: &crd1TypeTranslator{
+				property: &apiextensionsv1.JSONSchemaProps{
+					Type:   "string",
+					Format: "int-or-string",
+				},
+			},
+			attributeType: "utilities.IntOrStringType{}",
+			valueType:     "utilities.IntOrString",
+			goType:        "utilities.IntOrString",
+		},
 
 		"OpenAPIv3/empty": {
 			translator: &openapiv3TypeTranslator{
@@ -835,6 +846,17 @@ func TestTranslateTypeWith(t *testing.T) {
 							"x-kubernetes-int-or-string": "true",
 						},
 					},
+				},
+			},
+			attributeType: "utilities.IntOrStringType{}",
+			valueType:     "utilities.IntOrString",
+			goType:        "utilities.IntOrString",
+		},
+		"OpenAPIv3/string-or-int": {
+			translator: &openapiv3TypeTranslator{
+				property: &openapi3.Schema{
+					Type:   "string",
+					Format: "int-or-string",
 				},
 			},
 			attributeType: "utilities.IntOrStringType{}",

@@ -19,7 +19,7 @@ type openapiv3TypeTranslator struct {
 
 func (t *openapiv3TypeTranslator) isIntOrString() bool {
 	_, ok := t.property.Extensions["x-kubernetes-int-or-string"]
-	return ok
+	return ok || t.property.Type == "string" && t.property.Format == "int-or-string"
 }
 
 func (t *openapiv3TypeTranslator) isBoolean() bool {

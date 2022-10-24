@@ -87,7 +87,7 @@ type ServiceV1GoModel struct {
 
 			Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
 
-			TargetPort *string `tfsdk:"target_port" yaml:"targetPort,omitempty"`
+			TargetPort utilities.IntOrString `tfsdk:"target_port" yaml:"targetPort,omitempty"`
 		} `tfsdk:"ports" yaml:"ports,omitempty"`
 
 		PublishNotReadyAddresses *bool `tfsdk:"publish_not_ready_addresses" yaml:"publishNotReadyAddresses,omitempty"`
@@ -408,7 +408,7 @@ func (r *ServiceV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, diag.Dia
 								Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 								MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-								Type: types.StringType,
+								Type: utilities.IntOrStringType{},
 
 								Required: false,
 								Optional: true,
