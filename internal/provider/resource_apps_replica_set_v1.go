@@ -392,7 +392,7 @@ type AppsReplicaSetV1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -400,7 +400,7 @@ type AppsReplicaSetV1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 						} `tfsdk:"post_start" yaml:"postStart,omitempty"`
 
@@ -420,7 +420,7 @@ type AppsReplicaSetV1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -428,7 +428,7 @@ type AppsReplicaSetV1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 						} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
 					} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
@@ -457,7 +457,7 @@ type AppsReplicaSetV1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -471,7 +471,7 @@ type AppsReplicaSetV1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 						TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -517,7 +517,7 @@ type AppsReplicaSetV1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -531,7 +531,7 @@ type AppsReplicaSetV1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 						TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -617,7 +617,7 @@ type AppsReplicaSetV1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -631,7 +631,7 @@ type AppsReplicaSetV1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 						TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -768,7 +768,7 @@ type AppsReplicaSetV1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -776,7 +776,7 @@ type AppsReplicaSetV1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 						} `tfsdk:"post_start" yaml:"postStart,omitempty"`
 
@@ -796,7 +796,7 @@ type AppsReplicaSetV1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -804,7 +804,7 @@ type AppsReplicaSetV1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 						} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
 					} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
@@ -833,7 +833,7 @@ type AppsReplicaSetV1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -847,7 +847,7 @@ type AppsReplicaSetV1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 						TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -893,7 +893,7 @@ type AppsReplicaSetV1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -907,7 +907,7 @@ type AppsReplicaSetV1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 						TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -993,7 +993,7 @@ type AppsReplicaSetV1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1007,7 +1007,7 @@ type AppsReplicaSetV1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 						TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -1150,7 +1150,7 @@ type AppsReplicaSetV1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1158,7 +1158,7 @@ type AppsReplicaSetV1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 						} `tfsdk:"post_start" yaml:"postStart,omitempty"`
 
@@ -1178,7 +1178,7 @@ type AppsReplicaSetV1GoModel struct {
 
 								Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 								Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 							} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1186,7 +1186,7 @@ type AppsReplicaSetV1GoModel struct {
 							TcpSocket *struct {
 								Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-								Port *string `tfsdk:"port" yaml:"port,omitempty"`
+								Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 							} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 						} `tfsdk:"pre_stop" yaml:"preStop,omitempty"`
 					} `tfsdk:"lifecycle" yaml:"lifecycle,omitempty"`
@@ -1215,7 +1215,7 @@ type AppsReplicaSetV1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1229,7 +1229,7 @@ type AppsReplicaSetV1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 						TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -1275,7 +1275,7 @@ type AppsReplicaSetV1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1289,7 +1289,7 @@ type AppsReplicaSetV1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 						TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -1375,7 +1375,7 @@ type AppsReplicaSetV1GoModel struct {
 
 							Path *string `tfsdk:"path" yaml:"path,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 							Scheme *string `tfsdk:"scheme" yaml:"scheme,omitempty"`
 						} `tfsdk:"http_get" yaml:"httpGet,omitempty"`
@@ -1389,7 +1389,7 @@ type AppsReplicaSetV1GoModel struct {
 						TcpSocket *struct {
 							Host *string `tfsdk:"host" yaml:"host,omitempty"`
 
-							Port *string `tfsdk:"port" yaml:"port,omitempty"`
+							Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 						} `tfsdk:"tcp_socket" yaml:"tcpSocket,omitempty"`
 
 						TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" yaml:"terminationGracePeriodSeconds,omitempty"`
@@ -4128,7 +4128,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																		Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																		MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -4173,7 +4173,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																		Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																		MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -4287,7 +4287,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																		Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																		MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -4332,7 +4332,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																		Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																		MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -4497,7 +4497,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -4575,7 +4575,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -4849,7 +4849,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -4927,7 +4927,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -5411,7 +5411,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -5489,7 +5489,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -6271,7 +6271,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																		Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																		MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -6316,7 +6316,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																		Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																		MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -6430,7 +6430,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																		Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																		MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -6475,7 +6475,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																		Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																		MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -6640,7 +6640,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -6718,7 +6718,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -6992,7 +6992,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -7070,7 +7070,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -7554,7 +7554,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -7632,7 +7632,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -8442,7 +8442,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																		Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																		MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -8487,7 +8487,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																		Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																		MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -8601,7 +8601,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																		Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																		MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -8646,7 +8646,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																		Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																		MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																		Type: types.StringType,
+																		Type: utilities.IntOrStringType{},
 
 																		Required: true,
 																		Optional: false,
@@ -8811,7 +8811,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -8889,7 +8889,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -9163,7 +9163,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -9241,7 +9241,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -9725,7 +9725,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,
@@ -9803,7 +9803,7 @@ func (r *AppsReplicaSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, d
 																Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 																MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-																Type: types.StringType,
+																Type: utilities.IntOrStringType{},
 
 																Required: true,
 																Optional: false,

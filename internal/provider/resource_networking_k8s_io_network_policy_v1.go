@@ -54,7 +54,7 @@ type NetworkingK8SIoNetworkPolicyV1GoModel struct {
 			Ports *[]struct {
 				EndPort *int64 `tfsdk:"end_port" yaml:"endPort,omitempty"`
 
-				Port *string `tfsdk:"port" yaml:"port,omitempty"`
+				Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 				Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
 			} `tfsdk:"ports" yaml:"ports,omitempty"`
@@ -128,7 +128,7 @@ type NetworkingK8SIoNetworkPolicyV1GoModel struct {
 			Ports *[]struct {
 				EndPort *int64 `tfsdk:"end_port" yaml:"endPort,omitempty"`
 
-				Port *string `tfsdk:"port" yaml:"port,omitempty"`
+				Port utilities.IntOrString `tfsdk:"port" yaml:"port,omitempty"`
 
 				Protocol *string `tfsdk:"protocol" yaml:"protocol,omitempty"`
 			} `tfsdk:"ports" yaml:"ports,omitempty"`
@@ -271,7 +271,7 @@ func (r *NetworkingK8SIoNetworkPolicyV1Resource) GetSchema(_ context.Context) (t
 										Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 										MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: false,
 										Optional: true,
@@ -692,7 +692,7 @@ func (r *NetworkingK8SIoNetworkPolicyV1Resource) GetSchema(_ context.Context) (t
 										Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 										MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-										Type: types.StringType,
+										Type: utilities.IntOrStringType{},
 
 										Required: false,
 										Optional: true,

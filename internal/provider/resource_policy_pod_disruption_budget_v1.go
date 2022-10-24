@@ -50,9 +50,9 @@ type PolicyPodDisruptionBudgetV1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
-		MaxUnavailable *string `tfsdk:"max_unavailable" yaml:"maxUnavailable,omitempty"`
+		MaxUnavailable utilities.IntOrString `tfsdk:"max_unavailable" yaml:"maxUnavailable,omitempty"`
 
-		MinAvailable *string `tfsdk:"min_available" yaml:"minAvailable,omitempty"`
+		MinAvailable utilities.IntOrString `tfsdk:"min_available" yaml:"minAvailable,omitempty"`
 
 		Selector *struct {
 			MatchExpressions *[]struct {
@@ -166,7 +166,7 @@ func (r *PolicyPodDisruptionBudgetV1Resource) GetSchema(_ context.Context) (tfsd
 						Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 						MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-						Type: types.StringType,
+						Type: utilities.IntOrStringType{},
 
 						Required: false,
 						Optional: true,
@@ -177,7 +177,7 @@ func (r *PolicyPodDisruptionBudgetV1Resource) GetSchema(_ context.Context) (tfsd
 						Description:         "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 						MarkdownDescription: "IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.",
 
-						Type: types.StringType,
+						Type: utilities.IntOrStringType{},
 
 						Required: false,
 						Optional: true,
