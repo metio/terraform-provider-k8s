@@ -1,4 +1,4 @@
-# source: https://github.com/quay/quay-operator/blob/master/config/crd/bases/redhatcop.redhat.io_quayecosystems.yaml
+# source: https://github.com/quay/quay-operator/blob/11cdbaacd699614a2f740c77a595ed9d3778673b/config/crd/bases/redhatcop.redhat.io_quayecosystems.yaml
 
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
