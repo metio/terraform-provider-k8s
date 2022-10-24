@@ -86,6 +86,27 @@ resource "k8s_apps_stateful_set_v1" "example" {
                 memory = "10Mi"
               }
             }
+
+            readiness_probe = {
+              http_get = {
+                path = "/-/ready"
+                port = 9090
+              }
+
+              initial_delay_seconds = 30
+              timeout_seconds       = 30
+            }
+
+            liveness_probe = {
+              http_get = {
+                path   = "/-/healthy"
+                port   = 9090
+                scheme = "HTTPS"
+              }
+
+              initial_delay_seconds = 30
+              timeout_seconds       = 30
+            }
           },
           {
             name              = "prometheus-server"
