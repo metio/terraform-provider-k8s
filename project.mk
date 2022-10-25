@@ -12,6 +12,11 @@ out/${PROVIDER}: $(shell find ./internal -type f -name '*.go' -and -not -name '*
 	mkdir --parents $(@D)
 	go build -o out/${PROVIDER}
 
+out/fetcher-sentinel: $(shell find ./fetcher -type f -name '*.go')
+	mkdir --parents $(@D)
+	go run -tags fetcher ./fetcher
+	touch $@
+
 out/generate-sentinel: $(shell find ./generators -type f -name '*.go') $(shell find ./generators/templates -type f -name '*.tmpl') $(shell find ./schemas/crd_v1 -type f -name '*.yaml') $(shell find ./schemas/openapi_v2 -type f -name '*.json')
 	mkdir --parents $(@D)
 	go run -tags generators ./generators
@@ -65,6 +70,9 @@ out/tf-format-sentinel: $(shell find ./examples -type f -name '*.tf')
 .PHONY: install
 install: out/install-sentinel ## install the provider locally
 
+.PHONY: fetch
+fetch: out/fetcher-sentinel ## fetch upstream specs
+
 .PHONY: generate
 generate: out/generate-sentinel ## generate the code
 
@@ -84,6 +92,10 @@ tests: out/tests-sentinel ## run the unit tests
 .PHONY: test
 test: ## run specific unit tests
 	go test -v -timeout=120s -tags testing -run $(filter-out $@,$(MAKECMDGOALS)) ./internal/...
+
+.PHONY: download
+download: ## download specific upstream specs
+	go run -tags fetcher ./fetcher -filter=$(filter-out $@,$(MAKECMDGOALS))
 
 .PHONY: coverage
 coverage: out/coverage.html ## generate coverage report

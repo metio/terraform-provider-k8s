@@ -18,33 +18,36 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 var deserializer = clientschema.Codecs.UniversalDeserializer()
 
-func downloadCRDv1(targetDirectory string) {
+func downloadCRDv1(targetDirectory string, filter string) {
 	temp := createTemporaryDirectory()
 	defer os.RemoveAll(temp)
 
 	for _, url := range crdv1Sources {
-		log.Printf("downloading [%s]", url)
-		file := createTemporaryFile(temp)
-		rawUrl := githubRawUrl(url)
-		rawUrl = gitlabRawUrl(rawUrl)
-		err := downloadFile(file.Name(), rawUrl)
-		if err != nil {
-			log.Printf("cannot handle [%s] because of: %s", url, err)
-			continue
-		}
-		crds, err := parseCRDv1(file.Name())
-		if err != nil {
-			log.Printf("cannot handle [%s] because of: %s", url, err)
-			continue
-		}
+		if strings.Contains(url, filter) || filter == "" {
+			log.Printf("downloading [%s]", url)
+			file := createTemporaryFile(temp)
 
-		for _, crd := range crds {
-			targetFile := fmt.Sprintf("%s/%s/%s/%s.yaml", targetDirectory, crd.Spec.Group, crd.Spec.Versions[0].Name, crd.Spec.Names.Plural)
-			writeYaml(crd, targetFile)
+			err := downloadFile(file.Name(), url)
+			if err != nil {
+				log.Printf("cannot download because of: %s", err)
+				continue
+			}
+
+			crds, err := parseCRDv1(file.Name())
+			if err != nil {
+				log.Printf("cannot parse because of: %s", err)
+				continue
+			}
+
+			for _, crd := range crds {
+				writeYaml(crd, fmt.Sprintf("%s/%s/%s/%s.yaml",
+					targetDirectory, crd.Spec.Group, crd.Spec.Versions[0].Name, crd.Spec.Names.Plural))
+			}
 		}
 	}
 }

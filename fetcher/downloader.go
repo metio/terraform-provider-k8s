@@ -27,7 +27,7 @@ func downloadFile(filepath string, url string) error {
 		}
 	}(out)
 
-	resp, err := http.Get(url)
+	resp, err := http.Get(rawUrl(url))
 	if err != nil {
 		return err
 	}
@@ -47,4 +47,8 @@ func downloadFile(filepath string, url string) error {
 		return err
 	}
 	return nil
+}
+
+func rawUrl(url string) string {
+	return gitlabRawUrl(githubRawUrl(url))
 }
