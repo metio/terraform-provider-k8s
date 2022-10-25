@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_networking_istio_io_gateway_v1alpha3
+      - examples/resources/k8s_networking_istio_io_gateway_v1alpha3/**
       - internal/provider/resource_networking_istio_io_gateway_v1alpha3.go
       - terratest/k8s_networking_istio_io_gateway_v1alpha3_test.go
 jobs:

@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_source_toolkit_fluxcd_io_git_repository_v1beta2
+      - examples/resources/k8s_source_toolkit_fluxcd_io_git_repository_v1beta2/**
       - internal/provider/resource_source_toolkit_fluxcd_io_git_repository_v1beta2.go
       - terratest/k8s_source_toolkit_fluxcd_io_git_repository_v1beta2_test.go
 jobs:

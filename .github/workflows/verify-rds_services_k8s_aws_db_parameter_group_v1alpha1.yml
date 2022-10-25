@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_rds_services_k8s_aws_db_parameter_group_v1alpha1
+      - examples/resources/k8s_rds_services_k8s_aws_db_parameter_group_v1alpha1/**
       - internal/provider/resource_rds_services_k8s_aws_db_parameter_group_v1alpha1.go
       - terratest/k8s_rds_services_k8s_aws_db_parameter_group_v1alpha1_test.go
 jobs:

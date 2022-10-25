@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_fossul_io_backup_config_v1
+      - examples/resources/k8s_fossul_io_backup_config_v1/**
       - internal/provider/resource_fossul_io_backup_config_v1.go
       - terratest/k8s_fossul_io_backup_config_v1_test.go
 jobs:

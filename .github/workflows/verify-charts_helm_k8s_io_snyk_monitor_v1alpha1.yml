@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_charts_helm_k8s_io_snyk_monitor_v1alpha1
+      - examples/resources/k8s_charts_helm_k8s_io_snyk_monitor_v1alpha1/**
       - internal/provider/resource_charts_helm_k8s_io_snyk_monitor_v1alpha1.go
       - terratest/k8s_charts_helm_k8s_io_snyk_monitor_v1alpha1_test.go
 jobs:

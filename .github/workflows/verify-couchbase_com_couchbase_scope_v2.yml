@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_couchbase_com_couchbase_scope_v2
+      - examples/resources/k8s_couchbase_com_couchbase_scope_v2/**
       - internal/provider/resource_couchbase_com_couchbase_scope_v2.go
       - terratest/k8s_couchbase_com_couchbase_scope_v2_test.go
 jobs:

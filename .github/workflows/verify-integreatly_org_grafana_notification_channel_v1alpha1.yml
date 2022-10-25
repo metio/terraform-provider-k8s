@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_integreatly_org_grafana_notification_channel_v1alpha1
+      - examples/resources/k8s_integreatly_org_grafana_notification_channel_v1alpha1/**
       - internal/provider/resource_integreatly_org_grafana_notification_channel_v1alpha1.go
       - terratest/k8s_integreatly_org_grafana_notification_channel_v1alpha1_test.go
 jobs:

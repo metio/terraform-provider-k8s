@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_cilium_io_cilium_node_v2
+      - examples/resources/k8s_cilium_io_cilium_node_v2/**
       - internal/provider/resource_cilium_io_cilium_node_v2.go
       - terratest/k8s_cilium_io_cilium_node_v2_test.go
 jobs:

@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_autoscaling_horizontal_pod_autoscaler_v2
+      - examples/resources/k8s_autoscaling_horizontal_pod_autoscaler_v2/**
       - internal/provider/resource_autoscaling_horizontal_pod_autoscaler_v2.go
       - terratest/k8s_autoscaling_horizontal_pod_autoscaler_v2_test.go
 jobs:

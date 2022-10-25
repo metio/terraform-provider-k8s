@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_cert_manager_io_certificate_request_v1
+      - examples/resources/k8s_cert_manager_io_certificate_request_v1/**
       - internal/provider/resource_cert_manager_io_certificate_request_v1.go
       - terratest/k8s_cert_manager_io_certificate_request_v1_test.go
 jobs:

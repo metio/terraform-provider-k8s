@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_app_lightbend_com_akka_cluster_v1alpha1
+      - examples/resources/k8s_app_lightbend_com_akka_cluster_v1alpha1/**
       - internal/provider/resource_app_lightbend_com_akka_cluster_v1alpha1.go
       - terratest/k8s_app_lightbend_com_akka_cluster_v1alpha1_test.go
 jobs:

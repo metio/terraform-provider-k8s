@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_{{ .TerraformResourceName }}
+      - examples/resources/k8s_{{ .TerraformResourceName }}/**
       - internal/provider/resource_{{ .TerraformResourceName }}.go
       - terratest/k8s_{{ .TerraformResourceName }}_test.go
 jobs:

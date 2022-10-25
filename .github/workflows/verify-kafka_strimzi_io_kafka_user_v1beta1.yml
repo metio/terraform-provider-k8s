@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_kafka_strimzi_io_kafka_user_v1beta1
+      - examples/resources/k8s_kafka_strimzi_io_kafka_user_v1beta1/**
       - internal/provider/resource_kafka_strimzi_io_kafka_user_v1beta1.go
       - terratest/k8s_kafka_strimzi_io_kafka_user_v1beta1_test.go
 jobs:

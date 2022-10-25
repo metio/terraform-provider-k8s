@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_crd_projectcalico_org_host_endpoint_v1
+      - examples/resources/k8s_crd_projectcalico_org_host_endpoint_v1/**
       - internal/provider/resource_crd_projectcalico_org_host_endpoint_v1.go
       - terratest/k8s_crd_projectcalico_org_host_endpoint_v1_test.go
 jobs:
