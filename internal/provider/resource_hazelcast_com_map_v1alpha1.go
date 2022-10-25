@@ -56,6 +56,14 @@ type HazelcastComMapV1Alpha1GoModel struct {
 	Spec *struct {
 		BackupCount *int64 `tfsdk:"backup_count" yaml:"backupCount,omitempty"`
 
+		EntryListeners *[]struct {
+			ClassName *string `tfsdk:"class_name" yaml:"className,omitempty"`
+
+			IncludeValues *bool `tfsdk:"include_values" yaml:"includeValues,omitempty"`
+
+			Local *bool `tfsdk:"local" yaml:"local,omitempty"`
+		} `tfsdk:"entry_listeners" yaml:"entryListeners,omitempty"`
+
 		Eviction *struct {
 			EvictionPolicy *string `tfsdk:"eviction_policy" yaml:"evictionPolicy,omitempty"`
 
@@ -205,6 +213,56 @@ func (r *HazelcastComMapV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 						MarkdownDescription: "Count of synchronous backups. It cannot be updated after map config is created successfully.",
 
 						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"entry_listeners": {
+						Description:         "EntryListeners contains the configuration for the map-level or entry-based events listeners provided by the Hazelcast’s eventing framework. You can learn more at https://docs.hazelcast.com/imdg/latest/events/object-events.",
+						MarkdownDescription: "EntryListeners contains the configuration for the map-level or entry-based events listeners provided by the Hazelcast’s eventing framework. You can learn more at https://docs.hazelcast.com/imdg/latest/events/object-events.",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"class_name": {
+								Description:         "ClassName is the fully qualified name of the class that implements any of the Listener interface.",
+								MarkdownDescription: "ClassName is the fully qualified name of the class that implements any of the Listener interface.",
+
+								Type: types.StringType,
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+
+								Validators: []tfsdk.AttributeValidator{
+
+									stringvalidator.LengthAtLeast(1),
+								},
+							},
+
+							"include_values": {
+								Description:         "IncludeValues is an optional attribute that indicates whether the event will contain the map value. Defaults to true.",
+								MarkdownDescription: "IncludeValues is an optional attribute that indicates whether the event will contain the map value. Defaults to true.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"local": {
+								Description:         "Local is an optional attribute that indicates whether the map on the local member can be listened to. Defaults to false.",
+								MarkdownDescription: "Local is an optional attribute that indicates whether the map on the local member can be listened to. Defaults to false.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

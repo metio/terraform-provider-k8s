@@ -62,6 +62,7 @@ Required:
 Optional:
 
 - `backup_count` (Number) Count of synchronous backups. It cannot be updated after map config is created successfully.
+- `entry_listeners` (Attributes List) EntryListeners contains the configuration for the map-level or entry-based events listeners provided by the Hazelcast’s eventing framework. You can learn more at https://docs.hazelcast.com/imdg/latest/events/object-events. (see [below for nested schema](#nestedatt--spec--entry_listeners))
 - `eviction` (Attributes) Configuration for removing data from the map when it reaches its max size. It can be updated. (see [below for nested schema](#nestedatt--spec--eviction))
 - `in_memory_format` (String) InMemoryFormat specifies in which format data will be stored in your map
 - `indexes` (Attributes List) Indexes to be created for the map data. You can learn more at https://docs.hazelcast.com/hazelcast/latest/query/indexing-maps. It cannot be updated after map config is created successfully. (see [below for nested schema](#nestedatt--spec--indexes))
@@ -70,6 +71,19 @@ Optional:
 - `name` (String) Name of the map config to be created. If empty, CR name will be used. It cannot be updated after map config is created successfully.
 - `persistence_enabled` (Boolean) When enabled, map data will be persisted. It cannot be updated after map config is created successfully.
 - `time_to_live_seconds` (Number) Maximum time in seconds for each entry to stay in the map. If it is not 0, entries that are older than this time and not updated for this time are evicted automatically. It can be updated.
+
+<a id="nestedatt--spec--entry_listeners"></a>
+### Nested Schema for `spec.entry_listeners`
+
+Required:
+
+- `class_name` (String) ClassName is the fully qualified name of the class that implements any of the Listener interface.
+
+Optional:
+
+- `include_values` (Boolean) IncludeValues is an optional attribute that indicates whether the event will contain the map value. Defaults to true.
+- `local` (Boolean) Local is an optional attribute that indicates whether the map on the local member can be listened to. Defaults to false.
+
 
 <a id="nestedatt--spec--eviction"></a>
 ### Nested Schema for `spec.eviction`
