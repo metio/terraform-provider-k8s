@@ -1,0 +1,55 @@
+# SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+# SPDX-License-Identifier: 0BSD
+
+name: Update Upstream Specs
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - .github/workflows/update-upstream-specs.yml
+  schedule:
+    - cron: 49 13 * * FRI
+  workflow_dispatch:
+jobs:
+  update:
+    name: Update Specs
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v3
+      - id: setup_go
+        name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version-file: go.mod
+          cache: true
+      - id: fetch
+        name: Fetch Specs
+        run: make fetch
+      - id: generate
+        name: Generate Code
+        run: make generate
+        continue-on-error: true
+      - id: docs
+        name: Generate Documentation
+        run: make docs
+        continue-on-error: true
+      - id: pull-request
+        name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update upstream specifications to their latest version
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          title: Update upstream specifications to their latest version
+          body: |
+            - `make fetch`: ${{ steps.fetch.conclusion }}
+            - `make generate`: ${{ steps.generate.conclusion }}
+            - `make docs`: ${{ steps.docs.conclusion }}
+          labels: enhancement
+          assignees: sebhoss
+          draft: false
+          branch: update-specs
+          delete-branch: true
