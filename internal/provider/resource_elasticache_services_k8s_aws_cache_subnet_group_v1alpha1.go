@@ -153,8 +153,8 @@ func (r *ElasticacheServicesK8SAwsCacheSubnetGroupV1Alpha1Resource) GetSchema(_ 
 			},
 
 			"spec": {
-				Description:         "CacheSubnetGroupSpec defines the desired state of CacheSubnetGroup.  Represents the output of one of the following operations:     * CreateCacheSubnetGroup     * ModifyCacheSubnetGroup",
-				MarkdownDescription: "CacheSubnetGroupSpec defines the desired state of CacheSubnetGroup.  Represents the output of one of the following operations:     * CreateCacheSubnetGroup     * ModifyCacheSubnetGroup",
+				Description:         "CacheSubnetGroupSpec defines the desired state of CacheSubnetGroup.  Represents the output of one of the following operations:  * CreateCacheSubnetGroup  * ModifyCacheSubnetGroup",
+				MarkdownDescription: "CacheSubnetGroupSpec defines the desired state of CacheSubnetGroup.  Represents the output of one of the following operations:  * CreateCacheSubnetGroup  * ModifyCacheSubnetGroup",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 

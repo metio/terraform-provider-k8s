@@ -29,7 +29,7 @@ resource "k8s_elasticache_services_k8s_aws_cache_subnet_group_v1alpha1" "minimal
 
 ### Optional
 
-- `spec` (Attributes) CacheSubnetGroupSpec defines the desired state of CacheSubnetGroup.  Represents the output of one of the following operations:     * CreateCacheSubnetGroup     * ModifyCacheSubnetGroup (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) CacheSubnetGroupSpec defines the desired state of CacheSubnetGroup.  Represents the output of one of the following operations:  * CreateCacheSubnetGroup  * ModifyCacheSubnetGroup (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

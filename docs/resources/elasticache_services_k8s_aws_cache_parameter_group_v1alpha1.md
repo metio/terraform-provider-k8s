@@ -57,7 +57,7 @@ Optional:
 
 Required:
 
-- `cache_parameter_group_family` (String) The name of the cache parameter group family that the cache parameter group can be used with.  Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 | redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x |
+- `cache_parameter_group_family` (String) The name of the cache parameter group family that the cache parameter group can be used with.  Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 | redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x
 - `cache_parameter_group_name` (String) A user-specified name for the cache parameter group.
 - `description` (String) A user-specified description for the cache parameter group.
 
