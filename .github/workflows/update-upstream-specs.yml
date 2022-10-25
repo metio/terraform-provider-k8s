@@ -35,11 +35,11 @@ jobs:
         name: Generate Documentation
         run: make docs
         continue-on-error: true
-      - id: pull-request
+      - id: cpr
         name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
           commit-message: Update upstream specifications to their latest version
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
@@ -54,3 +54,11 @@ jobs:
           base: main
           branch: update-specs
           delete-branch: true
+      - id: automerge
+        name: Enable Pull Request Automerge
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: peter-evans/enable-pull-request-automerge@v2
+        with:
+          token: ${{ secrets.PAT }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: rebase
