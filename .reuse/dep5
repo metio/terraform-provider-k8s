@@ -157,7 +157,7 @@ License: Apache-2.0
 
 Files: schemas/crd_v1/config.grafana.com/*
 Copyright: The Loki Authors
-License: AGPL-3.0
+License: AGPL-3.0-only
 
 Files: schemas/crd_v1/core.strimzi.io/*
 Copyright: The Strimzi Authors
@@ -377,7 +377,7 @@ License: Apache-2.0
 
 Files: schemas/crd_v1/loki.grafana.com/*
 Copyright: The Loki Authors
-License: AGPL-3.0
+License: AGPL-3.0-only
 
 Files: schemas/crd_v1/maps.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
