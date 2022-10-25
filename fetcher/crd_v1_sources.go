@@ -453,6 +453,8 @@ var crdv1Sources = []string{
 	"https://github.com/apache/rocketmq-operator/blob/master/deploy/crds/rocketmq.apache.org_nameservices.yaml",
 	"https://github.com/apache/rocketmq-operator/blob/master/deploy/crds/rocketmq.apache.org_topictransfers.yaml",
 
+	"https://github.com/rook/rook/blob/master/deploy/examples/crds.yaml",
+
 	"https://github.com/aws-controllers-k8s/s3-controller/blob/main/config/crd/bases/s3.services.k8s.aws_buckets.yaml",
 
 	"https://github.com/aws-controllers-k8s/sagemaker-controller/blob/main/config/crd/bases/sagemaker.services.k8s.aws_apps.yaml",
