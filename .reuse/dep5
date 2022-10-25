@@ -171,6 +171,10 @@ Files: schemas/crd_v1/crd.projectcalico.org/*
 Copyright: The Calico Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/databases.schemahero.io/*
+Copyright: The SchemaHero Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/dynamodb.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon DynamoDB Authors
 License: Apache-2.0
@@ -493,6 +497,10 @@ License: Apache-2.0
 
 Files: schemas/crd_v1/sagemaker.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon SageMaker Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/schemas.schemahero.io/*
+Copyright: The SchemaHero Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/scylla.scylladb.com/*
