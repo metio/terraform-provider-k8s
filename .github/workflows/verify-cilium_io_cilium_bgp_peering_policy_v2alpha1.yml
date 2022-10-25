@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_cilium_io_cilium_bgp_peering_policy_v2alpha1
+      - examples/resources/k8s_cilium_io_cilium_bgp_peering_policy_v2alpha1/**
       - internal/provider/resource_cilium_io_cilium_bgp_peering_policy_v2alpha1.go
       - terratest/k8s_cilium_io_cilium_bgp_peering_policy_v2alpha1_test.go
 jobs:

@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_ec2_services_k8s_aws_subnet_v1alpha1
+      - examples/resources/k8s_ec2_services_k8s_aws_subnet_v1alpha1/**
       - internal/provider/resource_ec2_services_k8s_aws_subnet_v1alpha1.go
       - terratest/k8s_ec2_services_k8s_aws_subnet_v1alpha1_test.go
 jobs:

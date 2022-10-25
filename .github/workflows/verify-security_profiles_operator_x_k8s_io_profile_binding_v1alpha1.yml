@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_security_profiles_operator_x_k8s_io_profile_binding_v1alpha1
+      - examples/resources/k8s_security_profiles_operator_x_k8s_io_profile_binding_v1alpha1/**
       - internal/provider/resource_security_profiles_operator_x_k8s_io_profile_binding_v1alpha1.go
       - terratest/k8s_security_profiles_operator_x_k8s_io_profile_binding_v1alpha1_test.go
 jobs:

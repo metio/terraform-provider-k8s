@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_autoscaling_k8s_io_vertical_pod_autoscaler_checkpoint_v1beta2
+      - examples/resources/k8s_autoscaling_k8s_io_vertical_pod_autoscaler_checkpoint_v1beta2/**
       - internal/provider/resource_autoscaling_k8s_io_vertical_pod_autoscaler_checkpoint_v1beta2.go
       - terratest/k8s_autoscaling_k8s_io_vertical_pod_autoscaler_checkpoint_v1beta2_test.go
 jobs:

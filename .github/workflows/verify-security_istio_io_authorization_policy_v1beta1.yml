@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_security_istio_io_authorization_policy_v1beta1
+      - examples/resources/k8s_security_istio_io_authorization_policy_v1beta1/**
       - internal/provider/resource_security_istio_io_authorization_policy_v1beta1.go
       - terratest/k8s_security_istio_io_authorization_policy_v1beta1_test.go
 jobs:

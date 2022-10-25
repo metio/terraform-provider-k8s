@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_getambassador_io_module_v3alpha1
+      - examples/resources/k8s_getambassador_io_module_v3alpha1/**
       - internal/provider/resource_getambassador_io_module_v3alpha1.go
       - terratest/k8s_getambassador_io_module_v3alpha1_test.go
 jobs:

@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_flowcontrol_apiserver_k8s_io_priority_level_configuration_v1beta3
+      - examples/resources/k8s_flowcontrol_apiserver_k8s_io_priority_level_configuration_v1beta3/**
       - internal/provider/resource_flowcontrol_apiserver_k8s_io_priority_level_configuration_v1beta3.go
       - terratest/k8s_flowcontrol_apiserver_k8s_io_priority_level_configuration_v1beta3_test.go
 jobs:

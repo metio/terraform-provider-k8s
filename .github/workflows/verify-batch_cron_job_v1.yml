@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - examples/resources/k8s_batch_cron_job_v1
+      - examples/resources/k8s_batch_cron_job_v1/**
       - internal/provider/resource_batch_cron_job_v1.go
       - terratest/k8s_batch_cron_job_v1_test.go
 jobs:
