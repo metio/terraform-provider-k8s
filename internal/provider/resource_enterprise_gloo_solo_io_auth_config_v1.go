@@ -164,6 +164,16 @@ type EnterpriseGlooSoloIoAuthConfigV1GoModel struct {
 
 				DisableGroupChecking *bool `tfsdk:"disable_group_checking" yaml:"disableGroupChecking,omitempty"`
 
+				GroupLookupSettings *struct {
+					CheckGroupsWithServiceAccount *bool `tfsdk:"check_groups_with_service_account" yaml:"checkGroupsWithServiceAccount,omitempty"`
+
+					CredentialsSecretRef *struct {
+						Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+						Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+					} `tfsdk:"credentials_secret_ref" yaml:"credentialsSecretRef,omitempty"`
+				} `tfsdk:"group_lookup_settings" yaml:"groupLookupSettings,omitempty"`
+
 				MembershipAttributeName *string `tfsdk:"membership_attribute_name" yaml:"membershipAttributeName,omitempty"`
 
 				Pool *struct {
@@ -1244,6 +1254,63 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Resource) GetSchema(_ context.Context) 
 										MarkdownDescription: "",
 
 										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"group_lookup_settings": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"check_groups_with_service_account": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"credentials_secret_ref": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"name": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespace": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
 
 										Required: false,
 										Optional: true,

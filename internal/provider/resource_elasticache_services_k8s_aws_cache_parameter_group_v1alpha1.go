@@ -165,8 +165,8 @@ func (r *ElasticacheServicesK8SAwsCacheParameterGroupV1Alpha1Resource) GetSchema
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 					"cache_parameter_group_family": {
-						Description:         "The name of the cache parameter group family that the cache parameter group can be used with.  Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 | redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x |",
-						MarkdownDescription: "The name of the cache parameter group family that the cache parameter group can be used with.  Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 | redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x |",
+						Description:         "The name of the cache parameter group family that the cache parameter group can be used with.  Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 | redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x",
+						MarkdownDescription: "The name of the cache parameter group family that the cache parameter group can be used with.  Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 | redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x",
 
 						Type: types.StringType,
 

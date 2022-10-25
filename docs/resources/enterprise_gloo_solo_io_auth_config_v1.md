@@ -225,10 +225,29 @@ Optional:
 - `address` (String)
 - `allowed_groups` (List of String)
 - `disable_group_checking` (Boolean)
+- `group_lookup_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--ldap--group_lookup_settings))
 - `membership_attribute_name` (String)
 - `pool` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--ldap--pool))
 - `search_filter` (String)
 - `user_dn_template` (String)
+
+<a id="nestedatt--spec--configs--ldap--group_lookup_settings"></a>
+### Nested Schema for `spec.configs.ldap.user_dn_template`
+
+Optional:
+
+- `check_groups_with_service_account` (Boolean)
+- `credentials_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--ldap--user_dn_template--credentials_secret_ref))
+
+<a id="nestedatt--spec--configs--ldap--user_dn_template--credentials_secret_ref"></a>
+### Nested Schema for `spec.configs.ldap.user_dn_template.credentials_secret_ref`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
 
 <a id="nestedatt--spec--configs--ldap--pool"></a>
 ### Nested Schema for `spec.configs.ldap.user_dn_template`

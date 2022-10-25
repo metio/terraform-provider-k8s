@@ -8,6 +8,9 @@ metadata:
 spec:
   group: kyverno.io
   names:
+    categories:
+    - kyverno
+    - all
     kind: AdmissionReport
     listKind: AdmissionReportList
     plural: admissionreports
