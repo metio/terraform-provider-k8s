@@ -423,6 +423,10 @@ Files: schemas/crd_v1/notification.toolkit.fluxcd.io/*
 Copyright: The Flux2 Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/objectbucket.io/*
+Copyright: The Rook Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/opensearchservice.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon OpenSearch Service Authors
 License: Apache-2.0
