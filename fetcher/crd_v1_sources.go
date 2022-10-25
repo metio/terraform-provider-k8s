@@ -135,6 +135,11 @@ var crdv1Sources = []string{
 	"https://github.com/cilium/cilium/blob/master/pkg/k8s/apis/cilium.io/client/crds/v2alpha1/ciliumegressnatpolicies.yaml",
 	"https://github.com/cilium/cilium/blob/master/pkg/k8s/apis/cilium.io/client/crds/v2alpha1/ciliumendpointslices.yaml",
 
+	"https://github.com/schemahero/schemahero/blob/main/config/crds/v1/databases.schemahero.io_databases.yaml",
+	"https://github.com/schemahero/schemahero/blob/main/config/crds/v1/schemas.schemahero.io_datatypes.yaml",
+	"https://github.com/schemahero/schemahero/blob/main/config/crds/v1/schemas.schemahero.io_migrations.yaml",
+	"https://github.com/schemahero/schemahero/blob/main/config/crds/v1/schemas.schemahero.io_tables.yaml",
+
 	"https://github.com/open-policy-agent/gatekeeper/blob/master/deploy/gatekeeper.yaml",
 
 	"https://github.com/strimzi/strimzi-kafka-operator/blob/main/helm-charts/helm3/strimzi-kafka-operator/crds/042-Crd-strimzipodset.yaml",
