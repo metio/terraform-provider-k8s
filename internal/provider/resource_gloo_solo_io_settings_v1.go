@@ -173,6 +173,10 @@ type GlooSoloIoSettingsV1GoModel struct {
 		Discovery *struct {
 			FdsMode utilities.IntOrString `tfsdk:"fds_mode" yaml:"fdsMode,omitempty"`
 
+			FdsOptions *struct {
+				GraphqlEnabled *bool `tfsdk:"graphql_enabled" yaml:"graphqlEnabled,omitempty"`
+			} `tfsdk:"fds_options" yaml:"fdsOptions,omitempty"`
+
 			UdsOptions *struct {
 				Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
 
@@ -1302,6 +1306,29 @@ func (r *GlooSoloIoSettingsV1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 								MarkdownDescription: "",
 
 								Type: utilities.IntOrStringType{},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"fds_options": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"graphql_enabled": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,

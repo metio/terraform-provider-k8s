@@ -265,7 +265,16 @@ Optional:
 Optional:
 
 - `fds_mode` (Dynamic)
+- `fds_options` (Attributes) (see [below for nested schema](#nestedatt--spec--discovery--fds_options))
 - `uds_options` (Attributes) (see [below for nested schema](#nestedatt--spec--discovery--uds_options))
+
+<a id="nestedatt--spec--discovery--fds_options"></a>
+### Nested Schema for `spec.discovery.fds_options`
+
+Optional:
+
+- `graphql_enabled` (Boolean)
+
 
 <a id="nestedatt--spec--discovery--uds_options"></a>
 ### Nested Schema for `spec.discovery.uds_options`
