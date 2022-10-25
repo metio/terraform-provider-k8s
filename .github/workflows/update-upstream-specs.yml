@@ -51,5 +51,6 @@ jobs:
           labels: enhancement
           assignees: sebhoss
           draft: false
+          base: main
           branch: update-specs
           delete-branch: true
