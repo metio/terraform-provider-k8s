@@ -303,6 +303,12 @@ var crdv1Sources = []string{
 	"https://github.com/grafana-operator/grafana-operator/blob/master/config/crd/bases/integreatly.org_grafananotificationchannels.yaml",
 	"https://github.com/grafana-operator/grafana-operator/blob/master/config/crd/bases/integreatly.org_grafanas.yaml",
 
+	"https://github.com/grafana/loki/blob/main/operator/config/crd/bases/config.grafana.com_projectconfigs.yaml",
+	"https://github.com/grafana/loki/blob/main/operator/config/crd/bases/loki.grafana.com_alertingrules.yaml",
+	"https://github.com/grafana/loki/blob/main/operator/config/crd/bases/loki.grafana.com_lokistacks.yaml",
+	"https://github.com/grafana/loki/blob/main/operator/config/crd/bases/loki.grafana.com_recordingrules.yaml",
+	"https://github.com/grafana/loki/blob/main/operator/config/crd/bases/loki.grafana.com_rulerconfigs.yaml",
+
 	"https://github.com/ctron/ditto-operator/blob/main/helm/ditto-operator/crds/ditto.yaml",
 	"https://github.com/ctron/hawkbit-operator/blob/main/crds/hawkbit.crd.yaml",
 
