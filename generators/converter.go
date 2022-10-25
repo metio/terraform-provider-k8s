@@ -72,6 +72,7 @@ var matchBackslashes = regexp.MustCompile(`\\`)
 var matchDashes = regexp.MustCompile("-")
 var matchDots = regexp.MustCompile(`\.`)
 var matchSlashes = regexp.MustCompile("/")
+var matchColons = regexp.MustCompile(":")
 
 func toSnakeCase(str string) string {
 	snake := matchFirstCap.ReplaceAllString(str, "${1}_${2}")
@@ -79,6 +80,7 @@ func toSnakeCase(str string) string {
 	snake = matchDashes.ReplaceAllString(snake, "_")
 	snake = matchDots.ReplaceAllString(snake, "_")
 	snake = matchSlashes.ReplaceAllString(snake, "_")
+	snake = matchColons.ReplaceAllString(snake, "_")
 	return strings.ToLower(snake)
 }
 
@@ -150,6 +152,7 @@ func goName(s string) string {
 	clean = matchDashes.ReplaceAllString(clean, "_")
 	clean = matchDots.ReplaceAllString(clean, "_")
 	clean = matchSlashes.ReplaceAllString(clean, "_")
+	clean = matchColons.ReplaceAllString(clean, "_")
 	return clean
 }
 
