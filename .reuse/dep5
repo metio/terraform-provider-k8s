@@ -503,7 +503,7 @@ Files: schemas/crd_v1/networking.istio.io/*
 Copyright: The Istio Authors
 License: Apache-2.0
 
-Files: schemas/crd_v1/nfd.x-k8s.io/*
+Files: schemas/crd_v1/nfd.k8s-sigs.io/*
 Copyright: The Clusternet Authors
 License: Apache-2.0
 
