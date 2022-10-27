@@ -43,6 +43,10 @@ Files: schemas/crd_v1/apicodegen.apimatic.io/*
 Copyright: The APIMatic Operator Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/apiextensions.crossplane.io/*
+Copyright: The Crossplane Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/apigatewayv2.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon API Gateway v2 Authors
 License: Apache-2.0
@@ -71,8 +75,20 @@ Files: schemas/crd_v1/apps.3scale.net/*
 Copyright: The APIcast Operator Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/apps.clusternet.io/*
+Copyright: The Clusternet Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/apps.gitlab.com/*
 Copyright: The GitLab Runner Operator Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/apps.kubedl.io/*
+Copyright: The KubeDL Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/apps.kubeedge.io/*
+Copyright: The KubeEdge Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/apps.m88i.io/*
@@ -99,6 +115,10 @@ Files: schemas/crd_v1/autoscaling.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
 License: LicenseRef-Elastic
 
+Files: schemas/crd_v1/batch.volcano.sh/*
+Copyright: The Volcano Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/autoscaling.k8s.io/*
 Copyright: The Kubernetes Autoscaler Authors
 License: Apache-2.0
@@ -111,12 +131,24 @@ Files: schemas/crd_v1/binding.operators.coreos.com/*
 Copyright: The Service Binding Operator Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/bus.volcano.sh/*
+Copyright: The Volcano Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/cache.kubedl.io/*
+Copyright: The KubeDL Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/caching.ibm.com/*
 Copyright: The Varnish Operator Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/camel.apache.org/*
 Copyright: The Apache Camel Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/capsule.clastix.io/*
+Copyright: The Capsule Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/ceph.rook.io/*
@@ -155,6 +187,18 @@ Files: schemas/crd_v1/cilium.io/*
 Copyright: The Cilium Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/cloudformation.linki.space/*
+Copyright: The Cloudformation Operator Authors
+License: MIT
+
+Files: schemas/crd_v1/cluster.clusterpedia.io/*
+Copyright: The Clusterpedia Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/clusters.clusternet.io/*
+Copyright: The Clusternet Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/config.gatekeeper.sh/*
 Copyright: The Gatekeeper Authors
 License: Apache-2.0
@@ -162,6 +206,14 @@ License: Apache-2.0
 Files: schemas/crd_v1/config.grafana.com/*
 Copyright: The Loki Authors
 License: AGPL-3.0-only
+
+Files: schemas/crd_v1/config.koordinator.sh/*
+Copyright: The Koordinator Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/core.openfeature.dev/*
+Copyright: The OpenFeature Operator Authors
+License: Apache-2.0
 
 Files: schemas/crd_v1/core.strimzi.io/*
 Copyright: The Strimzi Authors
@@ -175,8 +227,20 @@ Files: schemas/crd_v1/crd.projectcalico.org/*
 Copyright: The Calico Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/data.fluid.io/*
+Copyright: The Fluid Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/databases.schemahero.io/*
 Copyright: The SchemaHero Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/devices.kubeedge.io/*
+Copyright: The KubeEdge Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/dex.coreos.com/*
+Copyright: The dex Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/dynamodb.services.k8s.aws/*
@@ -202,6 +266,10 @@ License: Apache-2.0
 Files: schemas/crd_v1/elasticsearch.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
 License: LicenseRef-Elastic
+
+Files: schemas/crd_v1/elbv2.k8s.aws/*
+Copyright: The AWS Load Balancer Controller Authors
+License: Apache-2.0
 
 Files: schemas/crd_v1/emrcontainers.services.k8s.aws/*
 Copyright: The ACK service controller for EMR on EKS Authors
@@ -315,6 +383,10 @@ Files: schemas/crd_v1/imaging-ingestion.alvearie.org/*
 Copyright: The Alvearie Imaging Ingestion Operator Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/inference.kubedl.io/*
+Copyright: The KubeDL Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/infinispan.org/*
 Copyright: The Infinispan Operator Authors
 License: Apache-2.0
@@ -387,6 +459,10 @@ Files: schemas/crd_v1/loki.grafana.com/*
 Copyright: The Loki Authors
 License: AGPL-3.0-only
 
+Files: schemas/crd_v1/longhorn.io/*
+Copyright: The Longhorn Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/maps.k8s.elastic.co/*
 Copyright: The Elastic Cloud on Kubernetes Authors
 License: LicenseRef-Elastic
@@ -403,6 +479,10 @@ Files: schemas/crd_v1/minio.min.io/*
 Copyright: The MinIO Operator Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/model.kubedl.io/*
+Copyright: The KubeDL Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/monitoring.coreos.com/*
 Copyright: The Prometheus Operator Authors
 License: Apache-2.0
@@ -411,12 +491,28 @@ Files: schemas/crd_v1/mq.services.k8s.aws/*
 Copyright: The ACK service controller for AmazonMQ Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/multicluster.x-k8s.io/*
+Copyright: The Clusternet Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/mutations.gatekeeper.sh/*
 Copyright: The Gatekeeper Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/networking.istio.io/*
 Copyright: The Istio Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/nfd.x-k8s.io/*
+Copyright: The Clusternet Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/nodeinfo.volcano.sh/*
+Copyright: The Volcano Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/notebook.kubedl.io/*
+Copyright: The KubeDL Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/notification.toolkit.fluxcd.io/*
@@ -433,6 +529,10 @@ License: Apache-2.0
 
 Files: schemas/crd_v1/opentelemetry.io/*
 Copyright: The OpenTelemetry Operator for Kubernetes Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/operations.kubeedge.io/*
+Copyright: The KubeEdge Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/operator.aquasec.com/*
@@ -463,6 +563,14 @@ Files: schemas/crd_v1/org.eclipse.che/*
 Copyright: Red Hat Inc.
 License: EPL-2.0
 
+Files: schemas/crd_v1/pkg.crossplane.io/*
+Copyright: The Crossplane Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/policy.clusterpedia.io/*
+Copyright: The Clusterpedia Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/policy.linkerd.io/*
 Copyright: The Linkerd Authors
 License: Apache-2.0
@@ -491,12 +599,24 @@ Files: schemas/crd_v1/registry.apicur.io/*
 Copyright: The Apicurio Registry Operator Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/reliablesyncs.kubeedge.io/*
+Copyright: The KubeEdge Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/resources.teleport.dev/*
+Copyright: The Teleport Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/ripsaw.cloudbulldozer.io/*
 Copyright: The Benchmark Operator Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/rocketmq.apache.org/*
 Copyright: The RocketMQ Operator Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/rules.kubeedge.io/*
+Copyright: The KubeEdge Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/s3.services.k8s.aws/*
@@ -507,12 +627,28 @@ Files: schemas/crd_v1/sagemaker.services.k8s.aws/*
 Copyright: The ACK service controller for Amazon SageMaker Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/scheduling.koordinator.sh/*
+Copyright: The Koordinator Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/scheduling.sigs.k8s.io/*
+Copyright: The Volcano Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/scheduling.volcano.sh/*
+Copyright: The Volcano Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/schemas.schemahero.io/*
 Copyright: The SchemaHero Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/scylla.scylladb.com/*
 Copyright: The Scylla Operator Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/secrets.crossplane.io/*
+Copyright: The Crossplane Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/secscan.quay.redhat.com/*
@@ -539,8 +675,20 @@ Files: schemas/crd_v1/services.k8s.aws/*
 Copyright: The ACK service controller for Amazon Elastic Kubernetes Service Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/serving.kubedl.io/*
+Copyright: The KubeDL Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/sfn.services.k8s.aws/*
 Copyright: The ACK service controller for AWS Step Functions Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/site.superedge.io/*
+Copyright: The SuperEdge Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/slo.koordinator.sh/*
+Copyright: The Koordinator Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/source.toolkit.fluxcd.io/*
@@ -563,9 +711,17 @@ Files: schemas/crd_v1/templates.gatekeeper.sh/*
 Copyright: The Gatekeeper Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/topology.node.k8s.io/*
+Copyright: The Koordinator Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/traefik.containo.us/*
 Copyright: The Traefik Authors
 License: MIT
+
+Files: schemas/crd_v1/training.kubedl.io/*
+Copyright: The KubeDL Authors
+License: Apache-2.0
 
 Files: schemas/crd_v1/wgpolicyk8s.io/*
 Copyright: The Kyverno Authors
