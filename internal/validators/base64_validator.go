@@ -38,16 +38,16 @@ func (validator base64Validator) Validate(ctx context.Context, req tfsdk.Validat
 		return
 	}
 
-	if value.IsUnknown() || value.IsNull() {
+	if value.ValueString() == "" {
 		return
 	}
 
-	_, err := base64.StdEncoding.DecodeString(value.Value)
+	_, err := base64.StdEncoding.DecodeString(value.ValueString())
 	if err != nil {
 		resp.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
 			req.AttributePath,
 			validator.Description(ctx),
-			value.Value,
+			value.ValueString(),
 		))
 	}
 }

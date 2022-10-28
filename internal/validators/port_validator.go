@@ -42,7 +42,7 @@ func (validator portValidator) Validate(ctx context.Context, req tfsdk.ValidateA
 		return
 	}
 
-	for _, msg := range utilValidation.IsValidPortNum(int(value.Value)) {
+	for _, msg := range utilValidation.IsValidPortNum(int(value.ValueInt64())) {
 		resp.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
 			req.AttributePath,
 			validator.Description(ctx),

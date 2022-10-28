@@ -38,7 +38,7 @@ func (validator dateTimeValidator) Validate(ctx context.Context, req tfsdk.Valid
 		return
 	}
 
-	if value.IsUnknown() || value.IsNull() {
+	if value.ValueString() == "" {
 		return
 	}
 
@@ -52,7 +52,7 @@ func (validator dateTimeValidator) Validate(ctx context.Context, req tfsdk.Valid
 
 	matched := false
 	for _, format := range formats {
-		if _, err := time.Parse(format, value.Value); err == nil {
+		if _, err := time.Parse(format, value.ValueString()); err == nil {
 			matched = true
 			break
 		}
@@ -61,7 +61,7 @@ func (validator dateTimeValidator) Validate(ctx context.Context, req tfsdk.Valid
 		resp.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
 			req.AttributePath,
 			validator.Description(ctx),
-			value.Value,
+			value.ValueString(),
 		))
 	}
 }
