@@ -54,11 +54,6 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
-Required:
-
-- `priority_class_name` (String) If specified, the priorityClassName and the priority value defined in PriorityClass will be injected into the Pod. The PriorityClassName, priority value in PriorityClassName and KoordinatorPriority will affect the scheduling, preemption and other behaviors of Koordinator system.
-- `qos_class` (String) QoSClass describes the type of Koordinator QoS that the Pod is running. The value will be injected into Pod as label koordinator.sh/qosClass. Options are LSE/LSR/LS/BE/SYSTEM.
-
 Optional:
 
 - `annotations` (Map of String) Annotations describes the k/v pair that needs to inject into Pod.Annotations
@@ -66,6 +61,8 @@ Optional:
 - `labels` (Map of String) Labels describes the k/v pair that needs to inject into Pod.Labels
 - `namespace_selector` (Attributes) NamespaceSelector decides whether to mutate/validate Pods if the namespace matches the selector. Default to the empty LabelSelector, which matches everything. (see [below for nested schema](#nestedatt--spec--namespace_selector))
 - `patch` (Dynamic) Patch indicates patching podTemplate that will be injected to the Pod.
+- `priority_class_name` (String) If specified, the priorityClassName and the priority value defined in PriorityClass will be injected into the Pod. The PriorityClassName, priority value in PriorityClassName and KoordinatorPriority will affect the scheduling, preemption and other behaviors of Koordinator system.
+- `qos_class` (String) QoSClass describes the type of Koordinator QoS that the Pod is running. The value will be injected into Pod as label koordinator.sh/qosClass. Options are LSE/LSR/LS/BE/SYSTEM.
 - `scheduler_name` (String) If specified, the pod will be dispatched by specified scheduler.
 - `selector` (Attributes) Selector decides whether to mutate/validate Pods if the Pod matches the selector. Default to the empty LabelSelector, which matches everything. (see [below for nested schema](#nestedatt--spec--selector))
 

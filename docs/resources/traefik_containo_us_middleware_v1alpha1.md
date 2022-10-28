@@ -67,9 +67,10 @@ Optional:
 - `digest_auth` (Attributes) DigestAuth holds the digest auth middleware configuration. This middleware restricts access to your services to known users. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/digestauth/ (see [below for nested schema](#nestedatt--spec--digest_auth))
 - `errors` (Attributes) ErrorPage holds the custom error middleware configuration. This middleware returns a custom page in lieu of the default, according to configured ranges of HTTP Status codes. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/errorpages/ (see [below for nested schema](#nestedatt--spec--errors))
 - `forward_auth` (Attributes) ForwardAuth holds the forward auth middleware configuration. This middleware delegates the request authentication to a Service. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/forwardauth/ (see [below for nested schema](#nestedatt--spec--forward_auth))
+- `grpc_web` (Attributes) GrpcWeb holds the gRPC web middleware configuration. This middleware converts a gRPC web request to an HTTP/2 gRPC request. (see [below for nested schema](#nestedatt--spec--grpc_web))
 - `headers` (Attributes) Headers holds the headers middleware configuration. This middleware manages the requests and responses headers. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/headers/#customrequestheaders (see [below for nested schema](#nestedatt--spec--headers))
 - `in_flight_req` (Attributes) InFlightReq holds the in-flight request middleware configuration. This middleware limits the number of requests being processed and served concurrently. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/inflightreq/ (see [below for nested schema](#nestedatt--spec--in_flight_req))
-- `ip_white_list` (Attributes) IPWhiteList holds the IP whitelist middleware configuration. This middleware accepts / refuses requests based on the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipwhitelist/ (see [below for nested schema](#nestedatt--spec--ip_white_list))
+- `ip_allow_list` (Attributes) IPAllowList holds the IP allowlist middleware configuration. This middleware accepts / refuses requests based on the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipallowlist/ (see [below for nested schema](#nestedatt--spec--ip_allow_list))
 - `pass_tls_client_cert` (Attributes) PassTLSClientCert holds the pass TLS client cert middleware configuration. This middleware adds the selected data from the passed client TLS certificate to a header. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/passtlsclientcert/ (see [below for nested schema](#nestedatt--spec--pass_tls_client_cert))
 - `plugin` (Map of String) Plugin defines the middleware plugin configuration. More info: https://doc.traefik.io/traefik/plugins/
 - `rate_limit` (Attributes) RateLimit holds the rate limit configuration. This middleware ensures that services will receive a fair amount of requests, and allows one to define what fair is. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ratelimit/ (see [below for nested schema](#nestedatt--spec--rate_limit))
@@ -253,6 +254,14 @@ Optional:
 
 
 
+<a id="nestedatt--spec--grpc_web"></a>
+### Nested Schema for `spec.grpc_web`
+
+Optional:
+
+- `allow_origins` (List of String) AllowOrigins is a list of allowable origins. Can also be a wildcard origin '*'.
+
+
 <a id="nestedatt--spec--headers"></a>
 ### Nested Schema for `spec.headers`
 
@@ -305,7 +314,7 @@ Optional:
 
 Optional:
 
-- `ip_strategy` (Attributes) IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipwhitelist/#ipstrategy (see [below for nested schema](#nestedatt--spec--in_flight_req--source_criterion--ip_strategy))
+- `ip_strategy` (Attributes) IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipallowlist/#ipstrategy (see [below for nested schema](#nestedatt--spec--in_flight_req--source_criterion--ip_strategy))
 - `request_header_name` (String) RequestHeaderName defines the name of the header used to group incoming requests.
 - `request_host` (Boolean) RequestHost defines whether to consider the request Host as the source.
 
@@ -320,16 +329,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--ip_white_list"></a>
-### Nested Schema for `spec.ip_white_list`
+<a id="nestedatt--spec--ip_allow_list"></a>
+### Nested Schema for `spec.ip_allow_list`
 
 Optional:
 
-- `ip_strategy` (Attributes) IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipwhitelist/#ipstrategy (see [below for nested schema](#nestedatt--spec--ip_white_list--ip_strategy))
+- `ip_strategy` (Attributes) IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipallowlist/#ipstrategy (see [below for nested schema](#nestedatt--spec--ip_allow_list--ip_strategy))
 - `source_range` (List of String) SourceRange defines the set of allowed IPs (or ranges of allowed IPs by using CIDR notation).
 
-<a id="nestedatt--spec--ip_white_list--ip_strategy"></a>
-### Nested Schema for `spec.ip_white_list.ip_strategy`
+<a id="nestedatt--spec--ip_allow_list--ip_strategy"></a>
+### Nested Schema for `spec.ip_allow_list.ip_strategy`
 
 Optional:
 
@@ -404,7 +413,7 @@ Optional:
 
 Optional:
 
-- `ip_strategy` (Attributes) IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipwhitelist/#ipstrategy (see [below for nested schema](#nestedatt--spec--rate_limit--source_criterion--ip_strategy))
+- `ip_strategy` (Attributes) IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipallowlist/#ipstrategy (see [below for nested schema](#nestedatt--spec--rate_limit--source_criterion--ip_strategy))
 - `request_header_name` (String) RequestHeaderName defines the name of the header used to group incoming requests.
 - `request_host` (Boolean) RequestHost defines whether to consider the request Host as the source.
 

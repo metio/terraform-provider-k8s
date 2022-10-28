@@ -50,6 +50,8 @@ type EmrcontainersServicesK8SAwsJobRunV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		ConfigurationOverrides *string `tfsdk:"configuration_overrides" yaml:"configurationOverrides,omitempty"`
+
 		ExecutionRoleARN *string `tfsdk:"execution_role_arn" yaml:"executionRoleARN,omitempty"`
 
 		JobDriver *struct {
@@ -171,6 +173,17 @@ func (r *EmrcontainersServicesK8SAwsJobRunV1Alpha1Resource) GetSchema(_ context.
 				MarkdownDescription: "JobRunSpec defines the desired state of JobRun.  This entity describes a job run. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+					"configuration_overrides": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
 
 					"execution_role_arn": {
 						Description:         "The execution role ARN for the job run.",

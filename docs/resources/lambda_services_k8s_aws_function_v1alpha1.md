@@ -92,9 +92,26 @@ Optional:
 
 - `image_uri` (String)
 - `s3_bucket` (String)
+- `s3_bucket_ref` (Attributes) Reference field for S3Bucket (see [below for nested schema](#nestedatt--spec--code--s3_bucket_ref))
 - `s3_key` (String)
 - `s3_object_version` (String)
 - `zip_file` (String)
+
+<a id="nestedatt--spec--code--s3_bucket_ref"></a>
+### Nested Schema for `spec.code.s3_bucket_ref`
+
+Optional:
+
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--code--s3_bucket_ref--from))
+
+<a id="nestedatt--spec--code--s3_bucket_ref--from"></a>
+### Nested Schema for `spec.code.s3_bucket_ref.from`
+
+Optional:
+
+- `name` (String)
+
+
 
 
 <a id="nestedatt--spec--dead_letter_config"></a>

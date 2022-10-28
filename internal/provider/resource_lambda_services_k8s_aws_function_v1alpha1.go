@@ -57,6 +57,12 @@ type LambdaServicesK8SAwsFunctionV1Alpha1GoModel struct {
 
 			S3Bucket *string `tfsdk:"s3_bucket" yaml:"s3Bucket,omitempty"`
 
+			S3BucketRef *struct {
+				From *struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"from" yaml:"from,omitempty"`
+			} `tfsdk:"s3_bucket_ref" yaml:"s3BucketRef,omitempty"`
+
 			S3Key *string `tfsdk:"s3_key" yaml:"s3Key,omitempty"`
 
 			S3ObjectVersion *string `tfsdk:"s3_object_version" yaml:"s3ObjectVersion,omitempty"`
@@ -275,6 +281,41 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Resource) GetSchema(_ context.Conte
 								MarkdownDescription: "",
 
 								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"s3_bucket_ref": {
+								Description:         "Reference field for S3Bucket",
+								MarkdownDescription: "Reference field for S3Bucket",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"from": {
+										Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+										MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,

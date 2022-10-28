@@ -89,6 +89,8 @@ type NetworkingIstioIoEnvoyFilterV1Alpha3GoModel struct {
 						TransportProtocol *string `tfsdk:"transport_protocol" yaml:"transportProtocol,omitempty"`
 					} `tfsdk:"filter_chain" yaml:"filterChain,omitempty"`
 
+					ListenerFilter *string `tfsdk:"listener_filter" yaml:"listenerFilter,omitempty"`
+
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
 					PortName *string `tfsdk:"port_name" yaml:"portName,omitempty"`
@@ -252,7 +254,7 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.OneOf("INVALID", "LISTENER", "FILTER_CHAIN", "NETWORK_FILTER", "HTTP_FILTER", "ROUTE_CONFIGURATION", "VIRTUAL_HOST", "HTTP_ROUTE", "CLUSTER", "EXTENSION_CONFIG", "BOOTSTRAP"),
+									stringvalidator.OneOf("INVALID", "LISTENER", "FILTER_CHAIN", "NETWORK_FILTER", "HTTP_FILTER", "ROUTE_CONFIGURATION", "VIRTUAL_HOST", "HTTP_ROUTE", "CLUSTER", "EXTENSION_CONFIG", "BOOTSTRAP", "LISTENER_FILTER"),
 								},
 							},
 
@@ -447,6 +449,17 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Resource) GetSchema(_ context.Conte
 														Computed: false,
 													},
 												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"listener_filter": {
+												Description:         "Match a specific listener filter.",
+												MarkdownDescription: "Match a specific listener filter.",
+
+												Type: types.StringType,
 
 												Required: false,
 												Optional: true,

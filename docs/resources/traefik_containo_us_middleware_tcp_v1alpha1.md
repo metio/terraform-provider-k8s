@@ -58,7 +58,7 @@ Optional:
 Optional:
 
 - `in_flight_conn` (Attributes) InFlightConn defines the InFlightConn middleware configuration. (see [below for nested schema](#nestedatt--spec--in_flight_conn))
-- `ip_white_list` (Attributes) IPWhiteList defines the IPWhiteList middleware configuration. (see [below for nested schema](#nestedatt--spec--ip_white_list))
+- `ip_allow_list` (Attributes) IPAllowList defines the IPAllowList middleware configuration. (see [below for nested schema](#nestedatt--spec--ip_allow_list))
 
 <a id="nestedatt--spec--in_flight_conn"></a>
 ### Nested Schema for `spec.in_flight_conn`
@@ -68,8 +68,8 @@ Optional:
 - `amount` (Number) Amount defines the maximum amount of allowed simultaneous connections. The middleware closes the connection if there are already amount connections opened.
 
 
-<a id="nestedatt--spec--ip_white_list"></a>
-### Nested Schema for `spec.ip_white_list`
+<a id="nestedatt--spec--ip_allow_list"></a>
+### Nested Schema for `spec.ip_allow_list`
 
 Optional:
 
