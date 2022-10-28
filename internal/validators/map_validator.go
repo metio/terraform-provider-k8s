@@ -25,5 +25,5 @@ func validateMap(ctx context.Context, req tfsdk.ValidateAttributeRequest, resp *
 		return nil, false
 	}
 
-	return m.Elems, true
+	return m.Elements(), true
 }

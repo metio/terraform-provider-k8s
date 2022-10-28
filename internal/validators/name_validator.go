@@ -39,14 +39,14 @@ func (validator nameValidator) Validate(ctx context.Context, req tfsdk.ValidateA
 		return
 	}
 
-	if value.IsUnknown() || value.IsNull() {
+	if value.ValueString() == "" {
 		return
 	}
 
-	for _, msg := range apiValidation.NameIsDNSSubdomain(value.Value, false) {
+	for _, msg := range apiValidation.NameIsDNSSubdomain(value.ValueString(), false) {
 		resp.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
 			req.AttributePath,
-			fmt.Sprintf("Invalid Object Name '%s'", value.Value),
+			fmt.Sprintf("Invalid Object Name '%s'", value.ValueString()),
 			msg,
 		))
 	}

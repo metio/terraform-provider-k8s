@@ -53,7 +53,7 @@ func (validator labelValidator) Validate(ctx context.Context, req tfsdk.Validate
 			))
 			continue
 		}
-		for _, msg := range utilValidation.IsValidLabelValue(val.Value) {
+		for _, msg := range utilValidation.IsValidLabelValue(val.ValueString()) {
 			resp.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
 				req.AttributePath,
 				fmt.Sprintf("Invalid Value in Label '%s'", key),
