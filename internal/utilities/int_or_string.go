@@ -12,6 +12,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-go/tftypes"
 	"gopkg.in/yaml.v3"
 	"math/big"
+	"strconv"
 )
 
 type IntOrStringType struct{}
@@ -113,6 +114,10 @@ func intOrStringAsYaml(value tftypes.Value) (interface{}, error) {
 		err := value.As(&yamlValue)
 		if err != nil {
 			return nil, err
+		}
+		i, err := strconv.Atoi(yamlValue)
+		if err == nil {
+			return i, nil
 		}
 		return yamlValue, nil
 	case value.Type().Is(tftypes.Number):

@@ -90,7 +90,7 @@ resource "k8s_apps_stateful_set_v1" "example" {
             readiness_probe = {
               http_get = {
                 path = "/-/ready"
-                port = 9090
+                port = "web"
               }
 
               initial_delay_seconds = 30
