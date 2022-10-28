@@ -98,6 +98,7 @@ Optional:
 Optional:
 
 - `filter_chain` (Attributes) Match a specific filter chain in a listener. (see [below for nested schema](#nestedatt--spec--config_patches--match--route_configuration--filter_chain))
+- `listener_filter` (String) Match a specific listener filter.
 - `name` (String) Match a specific listener by its name.
 - `port_name` (String)
 - `port_number` (Number)

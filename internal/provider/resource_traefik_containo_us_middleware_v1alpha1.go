@@ -180,6 +180,10 @@ type TraefikContainoUsMiddlewareV1Alpha1GoModel struct {
 			TrustForwardHeader *bool `tfsdk:"trust_forward_header" yaml:"trustForwardHeader,omitempty"`
 		} `tfsdk:"forward_auth" yaml:"forwardAuth,omitempty"`
 
+		GrpcWeb *struct {
+			AllowOrigins *[]string `tfsdk:"allow_origins" yaml:"allowOrigins,omitempty"`
+		} `tfsdk:"grpc_web" yaml:"grpcWeb,omitempty"`
+
 		Headers *struct {
 			AccessControlAllowCredentials *bool `tfsdk:"access_control_allow_credentials" yaml:"accessControlAllowCredentials,omitempty"`
 
@@ -262,7 +266,7 @@ type TraefikContainoUsMiddlewareV1Alpha1GoModel struct {
 			} `tfsdk:"source_criterion" yaml:"sourceCriterion,omitempty"`
 		} `tfsdk:"in_flight_req" yaml:"inFlightReq,omitempty"`
 
-		IpWhiteList *struct {
+		IpAllowList *struct {
 			IpStrategy *struct {
 				Depth *int64 `tfsdk:"depth" yaml:"depth,omitempty"`
 
@@ -270,7 +274,7 @@ type TraefikContainoUsMiddlewareV1Alpha1GoModel struct {
 			} `tfsdk:"ip_strategy" yaml:"ipStrategy,omitempty"`
 
 			SourceRange *[]string `tfsdk:"source_range" yaml:"sourceRange,omitempty"`
-		} `tfsdk:"ip_white_list" yaml:"ipWhiteList,omitempty"`
+		} `tfsdk:"ip_allow_list" yaml:"ipAllowList,omitempty"`
 
 		PassTLSClientCert *struct {
 			Info *struct {
@@ -1205,6 +1209,29 @@ func (r *TraefikContainoUsMiddlewareV1Alpha1Resource) GetSchema(_ context.Contex
 						Computed: false,
 					},
 
+					"grpc_web": {
+						Description:         "GrpcWeb holds the gRPC web middleware configuration. This middleware converts a gRPC web request to an HTTP/2 gRPC request.",
+						MarkdownDescription: "GrpcWeb holds the gRPC web middleware configuration. This middleware converts a gRPC web request to an HTTP/2 gRPC request.",
+
+						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+							"allow_origins": {
+								Description:         "AllowOrigins is a list of allowable origins. Can also be a wildcard origin '*'.",
+								MarkdownDescription: "AllowOrigins is a list of allowable origins. Can also be a wildcard origin '*'.",
+
+								Type: types.ListType{ElemType: types.StringType},
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"headers": {
 						Description:         "Headers holds the headers middleware configuration. This middleware manages the requests and responses headers. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/headers/#customrequestheaders",
 						MarkdownDescription: "Headers holds the headers middleware configuration. This middleware manages the requests and responses headers. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/headers/#customrequestheaders",
@@ -1593,8 +1620,8 @@ func (r *TraefikContainoUsMiddlewareV1Alpha1Resource) GetSchema(_ context.Contex
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 									"ip_strategy": {
-										Description:         "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipwhitelist/#ipstrategy",
-										MarkdownDescription: "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipwhitelist/#ipstrategy",
+										Description:         "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipallowlist/#ipstrategy",
+										MarkdownDescription: "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipallowlist/#ipstrategy",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -1660,15 +1687,15 @@ func (r *TraefikContainoUsMiddlewareV1Alpha1Resource) GetSchema(_ context.Contex
 						Computed: false,
 					},
 
-					"ip_white_list": {
-						Description:         "IPWhiteList holds the IP whitelist middleware configuration. This middleware accepts / refuses requests based on the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipwhitelist/",
-						MarkdownDescription: "IPWhiteList holds the IP whitelist middleware configuration. This middleware accepts / refuses requests based on the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipwhitelist/",
+					"ip_allow_list": {
+						Description:         "IPAllowList holds the IP allowlist middleware configuration. This middleware accepts / refuses requests based on the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipallowlist/",
+						MarkdownDescription: "IPAllowList holds the IP allowlist middleware configuration. This middleware accepts / refuses requests based on the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipallowlist/",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 							"ip_strategy": {
-								Description:         "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipwhitelist/#ipstrategy",
-								MarkdownDescription: "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipwhitelist/#ipstrategy",
+								Description:         "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipallowlist/#ipstrategy",
+								MarkdownDescription: "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipallowlist/#ipstrategy",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -2042,8 +2069,8 @@ func (r *TraefikContainoUsMiddlewareV1Alpha1Resource) GetSchema(_ context.Contex
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 									"ip_strategy": {
-										Description:         "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipwhitelist/#ipstrategy",
-										MarkdownDescription: "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipwhitelist/#ipstrategy",
+										Description:         "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipallowlist/#ipstrategy",
+										MarkdownDescription: "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP. More info: https://doc.traefik.io/traefik/v2.9/middlewares/http/ipallowlist/#ipstrategy",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 

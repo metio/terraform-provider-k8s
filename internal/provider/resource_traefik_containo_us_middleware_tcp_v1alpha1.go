@@ -54,9 +54,9 @@ type TraefikContainoUsMiddlewareTCPV1Alpha1GoModel struct {
 			Amount *int64 `tfsdk:"amount" yaml:"amount,omitempty"`
 		} `tfsdk:"in_flight_conn" yaml:"inFlightConn,omitempty"`
 
-		IpWhiteList *struct {
+		IpAllowList *struct {
 			SourceRange *[]string `tfsdk:"source_range" yaml:"sourceRange,omitempty"`
-		} `tfsdk:"ip_white_list" yaml:"ipWhiteList,omitempty"`
+		} `tfsdk:"ip_allow_list" yaml:"ipAllowList,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -177,9 +177,9 @@ func (r *TraefikContainoUsMiddlewareTCPV1Alpha1Resource) GetSchema(_ context.Con
 						Computed: false,
 					},
 
-					"ip_white_list": {
-						Description:         "IPWhiteList defines the IPWhiteList middleware configuration.",
-						MarkdownDescription: "IPWhiteList defines the IPWhiteList middleware configuration.",
+					"ip_allow_list": {
+						Description:         "IPAllowList defines the IPAllowList middleware configuration.",
+						MarkdownDescription: "IPAllowList defines the IPAllowList middleware configuration.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 

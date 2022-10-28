@@ -63,6 +63,7 @@ Required:
 
 Optional:
 
+- `configuration_overrides` (String)
 - `name` (String) The name of the job run.
 - `tags` (Map of String) The tags assigned to job runs.
 - `virtual_cluster_id` (String) The virtual cluster ID for which the job run request is submitted.

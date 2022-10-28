@@ -16835,7 +16835,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) GetSchema
 
 							int64validator.AtLeast(10),
 
-							int64validator.AtMost(14),
+							int64validator.AtMost(15),
 						},
 					},
 

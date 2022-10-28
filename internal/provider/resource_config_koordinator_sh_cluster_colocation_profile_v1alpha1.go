@@ -295,8 +295,8 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Resource) GetSchema(
 
 						Type: types.StringType,
 
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 
 						Validators: []tfsdk.AttributeValidator{
@@ -311,8 +311,8 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Resource) GetSchema(
 
 						Type: types.StringType,
 
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 
 						Validators: []tfsdk.AttributeValidator{
