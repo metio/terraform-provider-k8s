@@ -97,7 +97,7 @@ Optional:
 
 Required:
 
-- `type` (String) Authentication type. Currently the only supported types are 'tls', 'scram-sha-256', 'scram-sha-512', and 'plain'. 'scram-sha-256' and 'scram-sha-512' types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. 'plain' type uses SASL PLAIN Authentication. 'oauth' type uses SASL OAUTHBEARER Authentication. The 'tls' type uses TLS Client Authentication. The 'tls' type is supported only over TLS connections.
+- `type` (String) Authentication type. Currently the supported types are 'tls', 'scram-sha-256', 'scram-sha-512', 'plain', and 'oauth'. 'scram-sha-256' and 'scram-sha-512' types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. 'plain' type uses SASL PLAIN Authentication. 'oauth' type uses SASL OAUTHBEARER Authentication. The 'tls' type uses TLS Client Authentication. The 'tls' type is supported only over TLS connections.
 
 Optional:
 
@@ -109,6 +109,7 @@ Optional:
 - `client_secret` (Attributes) Link to Kubernetes Secret containing the OAuth client secret which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI. (see [below for nested schema](#nestedatt--spec--consumer--authentication--client_secret))
 - `connect_timeout_seconds` (Number) The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds.
 - `disable_tls_hostname_verification` (Boolean) Enable or disable TLS hostname verification. Default value is 'false'.
+- `enable_metrics` (Boolean) Enable or disable OAuth metrics. Default value is 'false'.
 - `max_token_expiry_seconds` (Number) Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens.
 - `password_secret` (Attributes) Reference to the 'Secret' which holds the password. (see [below for nested schema](#nestedatt--spec--consumer--authentication--password_secret))
 - `read_timeout_seconds` (Number) The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds.
@@ -211,7 +212,7 @@ Optional:
 
 Required:
 
-- `type` (String) Authentication type. Currently the only supported types are 'tls', 'scram-sha-256', 'scram-sha-512', and 'plain'. 'scram-sha-256' and 'scram-sha-512' types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. 'plain' type uses SASL PLAIN Authentication. 'oauth' type uses SASL OAUTHBEARER Authentication. The 'tls' type uses TLS Client Authentication. The 'tls' type is supported only over TLS connections.
+- `type` (String) Authentication type. Currently the supported types are 'tls', 'scram-sha-256', 'scram-sha-512', 'plain', and 'oauth'. 'scram-sha-256' and 'scram-sha-512' types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. 'plain' type uses SASL PLAIN Authentication. 'oauth' type uses SASL OAUTHBEARER Authentication. The 'tls' type uses TLS Client Authentication. The 'tls' type is supported only over TLS connections.
 
 Optional:
 
@@ -223,6 +224,7 @@ Optional:
 - `client_secret` (Attributes) Link to Kubernetes Secret containing the OAuth client secret which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI. (see [below for nested schema](#nestedatt--spec--producer--authentication--client_secret))
 - `connect_timeout_seconds` (Number) The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds.
 - `disable_tls_hostname_verification` (Boolean) Enable or disable TLS hostname verification. Default value is 'false'.
+- `enable_metrics` (Boolean) Enable or disable OAuth metrics. Default value is 'false'.
 - `max_token_expiry_seconds` (Number) Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens.
 - `password_secret` (Attributes) Reference to the 'Secret' which holds the password. (see [below for nested schema](#nestedatt--spec--producer--authentication--password_secret))
 - `read_timeout_seconds` (Number) The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds.
@@ -968,8 +970,11 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
 - `max_skew` (Number)
 - `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
@@ -1035,6 +1040,6 @@ Optional:
 
 Required:
 
-- `type` (String) Type of the tracing used. Currently the only supported type is 'jaeger' for Jaeger tracing. The Jaeger tracing is deprecated.
+- `type` (String) Type of the tracing used. Currently the only supported types are 'jaeger' for OpenTracing (Jaeger) tracing and 'opentelemetry' for OpenTelemetry tracing. The OpenTracing (Jaeger) tracing is deprecated.
 
 

@@ -282,9 +282,10 @@ Optional:
 
 - `access_key_id_secret_ref` (Attributes) The AccessKeyID is used for authentication (see [below for nested schema](#nestedatt--spec--provider--aws--role--secret_ref--access_key_id_secret_ref))
 - `secret_access_key_secret_ref` (Attributes) The SecretAccessKey is used for authentication (see [below for nested schema](#nestedatt--spec--provider--aws--role--secret_ref--secret_access_key_secret_ref))
+- `session_token_secret_ref` (Attributes) The SessionToken used for authentication This must be defined if AccessKeyID and SecretAccessKey are temporary credentials see: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html (see [below for nested schema](#nestedatt--spec--provider--aws--role--secret_ref--session_token_secret_ref))
 
 <a id="nestedatt--spec--provider--aws--role--secret_ref--access_key_id_secret_ref"></a>
-### Nested Schema for `spec.provider.aws.role.secret_ref.secret_access_key_secret_ref`
+### Nested Schema for `spec.provider.aws.role.secret_ref.session_token_secret_ref`
 
 Optional:
 
@@ -294,7 +295,17 @@ Optional:
 
 
 <a id="nestedatt--spec--provider--aws--role--secret_ref--secret_access_key_secret_ref"></a>
-### Nested Schema for `spec.provider.aws.role.secret_ref.secret_access_key_secret_ref`
+### Nested Schema for `spec.provider.aws.role.secret_ref.session_token_secret_ref`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.
+
+
+<a id="nestedatt--spec--provider--aws--role--secret_ref--session_token_secret_ref"></a>
+### Nested Schema for `spec.provider.aws.role.secret_ref.session_token_secret_ref`
 
 Optional:
 

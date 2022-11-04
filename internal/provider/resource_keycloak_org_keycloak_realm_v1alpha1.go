@@ -113,7 +113,11 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 				Id *string `tfsdk:"id" yaml:"id,omitempty"`
 			} `tfsdk:"authenticator_config" yaml:"authenticatorConfig,omitempty"`
 
+			BrowserFlow *string `tfsdk:"browser_flow" yaml:"browserFlow,omitempty"`
+
 			BruteForceProtected *bool `tfsdk:"brute_force_protected" yaml:"bruteForceProtected,omitempty"`
+
+			ClientAuthenticationFlow *string `tfsdk:"client_authentication_flow" yaml:"clientAuthenticationFlow,omitempty"`
 
 			ClientScopeMappings *map[string]string `tfsdk:"client_scope_mappings" yaml:"clientScopeMappings,omitempty"`
 
@@ -415,9 +419,13 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 				Name *string `tfsdk:"name" yaml:"name,omitempty"`
 			} `tfsdk:"default_role" yaml:"defaultRole,omitempty"`
 
+			DirectGrantFlow *string `tfsdk:"direct_grant_flow" yaml:"directGrantFlow,omitempty"`
+
 			DisplayName *string `tfsdk:"display_name" yaml:"displayName,omitempty"`
 
 			DisplayNameHtml *string `tfsdk:"display_name_html" yaml:"displayNameHtml,omitempty"`
+
+			DockerAuthenticationFlow *string `tfsdk:"docker_authentication_flow" yaml:"dockerAuthenticationFlow,omitempty"`
 
 			DuplicateEmailsAllowed *bool `tfsdk:"duplicate_emails_allowed" yaml:"duplicateEmailsAllowed,omitempty"`
 
@@ -436,6 +444,18 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 			FailureFactor *int64 `tfsdk:"failure_factor" yaml:"failureFactor,omitempty"`
 
 			Id *string `tfsdk:"id" yaml:"id,omitempty"`
+
+			IdentityProviderMappers *[]struct {
+				Config *map[string]string `tfsdk:"config" yaml:"config,omitempty"`
+
+				Id *string `tfsdk:"id" yaml:"id,omitempty"`
+
+				IdentityProviderAlias *string `tfsdk:"identity_provider_alias" yaml:"identityProviderAlias,omitempty"`
+
+				IdentityProviderMapper *string `tfsdk:"identity_provider_mapper" yaml:"identityProviderMapper,omitempty"`
+
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"identity_provider_mappers" yaml:"identityProviderMappers,omitempty"`
 
 			IdentityProviders *[]struct {
 				AddReadTokenRoleOnCreate *bool `tfsdk:"add_read_token_role_on_create" yaml:"addReadTokenRoleOnCreate,omitempty"`
@@ -501,7 +521,11 @@ type KeycloakOrgKeycloakRealmV1Alpha1GoModel struct {
 
 			RegistrationEmailAsUsername *bool `tfsdk:"registration_email_as_username" yaml:"registrationEmailAsUsername,omitempty"`
 
+			RegistrationFlow *string `tfsdk:"registration_flow" yaml:"registrationFlow,omitempty"`
+
 			RememberMe *bool `tfsdk:"remember_me" yaml:"rememberMe,omitempty"`
+
+			ResetCredentialsFlow *string `tfsdk:"reset_credentials_flow" yaml:"resetCredentialsFlow,omitempty"`
 
 			ResetPasswordAllowed *bool `tfsdk:"reset_password_allowed" yaml:"resetPasswordAllowed,omitempty"`
 
@@ -1080,11 +1104,33 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
+							"browser_flow": {
+								Description:         "Browser authentication flow",
+								MarkdownDescription: "Browser authentication flow",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"brute_force_protected": {
 								Description:         "Brute Force Detection",
 								MarkdownDescription: "Brute Force Detection",
 
 								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"client_authentication_flow": {
+								Description:         "Client authentication flow",
+								MarkdownDescription: "Client authentication flow",
+
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,
@@ -2755,6 +2801,17 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
+							"direct_grant_flow": {
+								Description:         "Direct Grant authentication flow",
+								MarkdownDescription: "Direct Grant authentication flow",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"display_name": {
 								Description:         "Realm display name.",
 								MarkdownDescription: "Realm display name.",
@@ -2769,6 +2826,17 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 							"display_name_html": {
 								Description:         "Realm HTML display name.",
 								MarkdownDescription: "Realm HTML display name.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"docker_authentication_flow": {
+								Description:         "Docker Authentication flow",
+								MarkdownDescription: "Docker Authentication flow",
 
 								Type: types.StringType,
 
@@ -2870,6 +2938,73 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								MarkdownDescription: "",
 
 								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"identity_provider_mappers": {
+								Description:         "A set of Identity Provider Mappers.",
+								MarkdownDescription: "A set of Identity Provider Mappers.",
+
+								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+									"config": {
+										Description:         "Identity Provider Mapper config.",
+										MarkdownDescription: "Identity Provider Mapper config.",
+
+										Type: types.MapType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"id": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"identity_provider_alias": {
+										Description:         "Identity Provider Alias.",
+										MarkdownDescription: "Identity Provider Alias.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"identity_provider_mapper": {
+										Description:         "Identity Provider Mapper.",
+										MarkdownDescription: "Identity Provider Mapper.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
 
 								Required: false,
 								Optional: true,
@@ -3229,11 +3364,33 @@ func (r *KeycloakOrgKeycloakRealmV1Alpha1Resource) GetSchema(_ context.Context) 
 								Computed: false,
 							},
 
+							"registration_flow": {
+								Description:         "Registration flow",
+								MarkdownDescription: "Registration flow",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"remember_me": {
 								Description:         "Remember me",
 								MarkdownDescription: "Remember me",
 
 								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"reset_credentials_flow": {
+								Description:         "Reset Credentials authentication flow",
+								MarkdownDescription: "Reset Credentials authentication flow",
+
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,

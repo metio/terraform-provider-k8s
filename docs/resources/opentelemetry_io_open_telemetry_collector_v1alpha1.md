@@ -794,6 +794,7 @@ Optional:
 
 - `allocation_strategy` (String) AllocationStrategy determines which strategy the target allocator should use for allocation. The current options are least-weighted and consistent-hashing. The default option is least-weighted
 - `enabled` (Boolean) Enabled indicates whether to use a target allocation mechanism for Prometheus targets or not.
+- `filter_strategy` (String) FilterStrategy determines how to filter targets before allocating them among the collectors. The only current option is relabel-config (drops targets based on prom relabel_config). Filtering is disabled by default.
 - `image` (String) Image indicates the container image to use for the OpenTelemetry TargetAllocator.
 - `prometheus_cr` (Attributes) PrometheusCR defines the configuration for the retrieval of PrometheusOperator CRDs ( servicemonitor.monitoring.coreos.com/v1 and podmonitor.monitoring.coreos.com/v1 )  retrieval. All CR instances which the ServiceAccount has access to will be retrieved. This includes other namespaces. (see [below for nested schema](#nestedatt--spec--target_allocator--prometheus_cr))
 - `replicas` (Number) Replicas is the number of pod instances for the underlying TargetAllocator. This should only be set to a value other than 1 if a strategy that allows for high availability is chosen. Currently, the only allocation strategy that can be run in a high availability mode is consistent-hashing.

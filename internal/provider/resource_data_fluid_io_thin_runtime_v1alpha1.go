@@ -58,8 +58,6 @@ type DataFluidIoThinRuntimeV1Alpha1GoModel struct {
 	Spec *struct {
 		DisablePrometheus *bool `tfsdk:"disable_prometheus" yaml:"disablePrometheus,omitempty"`
 
-		FileSystemType *string `tfsdk:"file_system_type" yaml:"fileSystemType,omitempty"`
-
 		Fuse *struct {
 			Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
 
@@ -1464,17 +1462,6 @@ func (r *DataFluidIoThinRuntimeV1Alpha1Resource) GetSchema(_ context.Context) (t
 
 						Required: false,
 						Optional: true,
-						Computed: false,
-					},
-
-					"file_system_type": {
-						Description:         "file system of thinRuntime",
-						MarkdownDescription: "file system of thinRuntime",
-
-						Type: types.StringType,
-
-						Required: true,
-						Optional: false,
 						Computed: false,
 					},
 

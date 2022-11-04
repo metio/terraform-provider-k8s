@@ -97,8 +97,6 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1GoModel struct {
 				Metadata *struct {
 					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
 
-					ClusterName *string `tfsdk:"cluster_name" yaml:"clusterName,omitempty"`
-
 					CreationTimestamp *string `tfsdk:"creation_timestamp" yaml:"creationTimestamp,omitempty"`
 
 					DeletionGracePeriodSeconds *int64 `tfsdk:"deletion_grace_period_seconds" yaml:"deletionGracePeriodSeconds,omitempty"`
@@ -1087,6 +1085,8 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1GoModel struct {
 
 					HostPID *bool `tfsdk:"host_pid" yaml:"hostPID,omitempty"`
 
+					HostUsers *bool `tfsdk:"host_users" yaml:"hostUsers,omitempty"`
+
 					Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
 					ImagePullSecrets *[]struct {
@@ -1562,7 +1562,15 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1GoModel struct {
 							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+						MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 						MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
+
+						MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+						NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+						NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -1694,8 +1702,6 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1GoModel struct {
 							VolumeClaimTemplate *struct {
 								Metadata *struct {
 									Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-									ClusterName *string `tfsdk:"cluster_name" yaml:"clusterName,omitempty"`
 
 									CreationTimestamp *string `tfsdk:"creation_timestamp" yaml:"creationTimestamp,omitempty"`
 
@@ -2355,8 +2361,6 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1GoModel struct {
 
 			Metadata *struct {
 				Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-				ClusterName *string `tfsdk:"cluster_name" yaml:"clusterName,omitempty"`
 
 				CreationTimestamp *string `tfsdk:"creation_timestamp" yaml:"creationTimestamp,omitempty"`
 
@@ -3346,6 +3350,8 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1GoModel struct {
 
 				HostPID *bool `tfsdk:"host_pid" yaml:"hostPID,omitempty"`
 
+				HostUsers *bool `tfsdk:"host_users" yaml:"hostUsers,omitempty"`
+
 				Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
 				ImagePullSecrets *[]struct {
@@ -3821,7 +3827,15 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1GoModel struct {
 						MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+					MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 					MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
+
+					MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+					NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+					NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 					TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -3953,8 +3967,6 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1GoModel struct {
 						VolumeClaimTemplate *struct {
 							Metadata *struct {
 								Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-								ClusterName *string `tfsdk:"cluster_name" yaml:"clusterName,omitempty"`
 
 								CreationTimestamp *string `tfsdk:"creation_timestamp" yaml:"creationTimestamp,omitempty"`
 
@@ -4606,8 +4618,6 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1GoModel struct {
 
 				Metadata *struct {
 					Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-					ClusterName *string `tfsdk:"cluster_name" yaml:"clusterName,omitempty"`
 
 					CreationTimestamp *string `tfsdk:"creation_timestamp" yaml:"creationTimestamp,omitempty"`
 
@@ -5597,6 +5607,8 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1GoModel struct {
 
 					HostPID *bool `tfsdk:"host_pid" yaml:"hostPID,omitempty"`
 
+					HostUsers *bool `tfsdk:"host_users" yaml:"hostUsers,omitempty"`
+
 					Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
 					ImagePullSecrets *[]struct {
@@ -6072,7 +6084,15 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1GoModel struct {
 							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+						MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 						MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
+
+						MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+						NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+						NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -6204,8 +6224,6 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1GoModel struct {
 							VolumeClaimTemplate *struct {
 								Metadata *struct {
 									Annotations *map[string]string `tfsdk:"annotations" yaml:"annotations,omitempty"`
-
-									ClusterName *string `tfsdk:"cluster_name" yaml:"clusterName,omitempty"`
 
 									CreationTimestamp *string `tfsdk:"creation_timestamp" yaml:"creationTimestamp,omitempty"`
 
@@ -7210,17 +7228,6 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 												MarkdownDescription: "",
 
 												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"cluster_name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
@@ -12797,6 +12804,17 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 												Computed: false,
 											},
 
+											"host_users": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"hostname": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -15469,11 +15487,55 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 														Computed: false,
 													},
 
+													"match_label_keys": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"max_skew": {
 														Description:         "",
 														MarkdownDescription: "",
 
 														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"min_domains": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_affinity_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_taints_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
 
 														Required: false,
 														Optional: true,
@@ -16213,17 +16275,6 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 																				MarkdownDescription: "",
 
 																				Type: types.MapType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"cluster_name": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.StringType,
 
 																				Required: false,
 																				Optional: true,
@@ -19932,17 +19983,6 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 										MarkdownDescription: "",
 
 										Type: types.MapType{ElemType: types.StringType},
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"cluster_name": {
-										Description:         "",
-										MarkdownDescription: "",
-
-										Type: types.StringType,
 
 										Required: false,
 										Optional: true,
@@ -25519,6 +25559,17 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 										Computed: false,
 									},
 
+									"host_users": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"hostname": {
 										Description:         "",
 										MarkdownDescription: "",
@@ -28191,11 +28242,55 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 												Computed: false,
 											},
 
+											"match_label_keys": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"max_skew": {
 												Description:         "",
 												MarkdownDescription: "",
 
 												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"min_domains": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"node_affinity_policy": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"node_taints_policy": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
@@ -28935,17 +29030,6 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 																		MarkdownDescription: "",
 
 																		Type: types.MapType{ElemType: types.StringType},
-
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"cluster_name": {
-																		Description:         "",
-																		MarkdownDescription: "",
-
-																		Type: types.StringType,
 
 																		Required: false,
 																		Optional: true,
@@ -32604,17 +32688,6 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 												MarkdownDescription: "",
 
 												Type: types.MapType{ElemType: types.StringType},
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"cluster_name": {
-												Description:         "",
-												MarkdownDescription: "",
-
-												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
@@ -38191,6 +38264,17 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 												Computed: false,
 											},
 
+											"host_users": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"hostname": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -40863,11 +40947,55 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 														Computed: false,
 													},
 
+													"match_label_keys": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"max_skew": {
 														Description:         "",
 														MarkdownDescription: "",
 
 														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"min_domains": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_affinity_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_taints_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
 
 														Required: false,
 														Optional: true,
@@ -41607,17 +41735,6 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) GetSchema(_ context.Conte
 																				MarkdownDescription: "",
 
 																				Type: types.MapType{ElemType: types.StringType},
-
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"cluster_name": {
-																				Description:         "",
-																				MarkdownDescription: "",
-
-																				Type: types.StringType,
 
 																				Required: false,
 																				Optional: true,

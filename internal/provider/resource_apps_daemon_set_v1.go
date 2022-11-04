@@ -1456,6 +1456,10 @@ type AppsDaemonSetV1GoModel struct {
 
 				SchedulerName *string `tfsdk:"scheduler_name" yaml:"schedulerName,omitempty"`
 
+				SchedulingGates *[]struct {
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"scheduling_gates" yaml:"schedulingGates,omitempty"`
+
 				SecurityContext *struct {
 					FsGroup *int64 `tfsdk:"fs_group" yaml:"fsGroup,omitempty"`
 
@@ -10187,6 +10191,29 @@ func (r *AppsDaemonSetV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, di
 										MarkdownDescription: "If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.",
 
 										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"scheduling_gates": {
+										Description:         "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. More info:  https://git.k8s.io/enhancements/keps/sig-scheduling/3521-pod-scheduling-readiness.This is an alpha-level feature enabled by PodSchedulingReadiness feature gate.",
+										MarkdownDescription: "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. More info:  https://git.k8s.io/enhancements/keps/sig-scheduling/3521-pod-scheduling-readiness.This is an alpha-level feature enabled by PodSchedulingReadiness feature gate.",
+
+										Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+											"name": {
+												Description:         "Name of the scheduling gate. Each scheduling gate must have a unique name field.",
+												MarkdownDescription: "Name of the scheduling gate. Each scheduling gate must have a unique name field.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
 
 										Required: false,
 										Optional: true,

@@ -3657,7 +3657,7 @@ spec:
                       type: object
                     type: array
                   workspaceDefaultEditor:
-                    default: eclipse/che-theia/latest
+                    default: che-incubator/che-code/insiders
                     description: The default editor to workspace create with. It could
                       be a plugin ID or a URI. The plugin ID must have `publisher/plugin/version`.
                       The URI must start from `http`.

@@ -153,7 +153,7 @@ Optional:
 Optional:
 
 - `args` (List of String) Arguments that will be passed to Alluxio Fuse
-- `clean_policy` (String) CleanPolicy decides when to clean Alluxio Fuse pods. Currently Fluid supports two policies: OnDemand and OnRuntimeDeleted OnDemand cleans fuse pod once th fuse pod on some node is not needed OnRuntimeDeleted cleans fuse pod only when the cache runtime is deleted Defaults to OnRuntimeDeleted
+- `clean_policy` (String) CleanPolicy decides when to clean Alluxio Fuse pods. Currently Fluid supports two policies: OnDemand and OnRuntimeDeleted OnDemand cleans fuse pod once the fuse pod on some node is not needed OnRuntimeDeleted cleans fuse pod only when the cache runtime is deleted Defaults to OnRuntimeDeleted
 - `env` (Map of String) Environment variables that will be used by Alluxio Fuse
 - `global` (Boolean) If the fuse client should be deployed in global mode, otherwise the affinity should be considered
 - `image` (String) Image for Alluxio Fuse(e.g. alluxio/alluxio-fuse)

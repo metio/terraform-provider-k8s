@@ -123,7 +123,6 @@ Optional:
 Optional:
 
 - `annotations` (Map of String)
-- `cluster_name` (String)
 - `creation_timestamp` (String)
 - `deletion_grace_period_seconds` (Number)
 - `deletion_timestamp` (String)
@@ -184,6 +183,7 @@ Optional:
 - `host_ipc` (Boolean)
 - `host_network` (Boolean)
 - `host_pid` (Boolean)
+- `host_users` (Boolean)
 - `hostname` (String)
 - `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--image_pull_secrets))
 - `init_containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers))
@@ -2208,7 +2208,11 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
 - `max_skew` (Number)
+- `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
@@ -2452,7 +2456,6 @@ Optional:
 Optional:
 
 - `annotations` (Map of String)
-- `cluster_name` (String)
 - `creation_timestamp` (String)
 - `deletion_grace_period_seconds` (Number)
 - `deletion_timestamp` (String)
@@ -3292,7 +3295,6 @@ Optional:
 Optional:
 
 - `annotations` (Map of String)
-- `cluster_name` (String)
 - `creation_timestamp` (String)
 - `deletion_grace_period_seconds` (Number)
 - `deletion_timestamp` (String)
@@ -3353,6 +3355,7 @@ Optional:
 - `host_ipc` (Boolean)
 - `host_network` (Boolean)
 - `host_pid` (Boolean)
+- `host_users` (Boolean)
 - `hostname` (String)
 - `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--image_pull_secrets))
 - `init_containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--init_containers))
@@ -5377,7 +5380,11 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--label_selector))
+- `match_label_keys` (List of String)
 - `max_skew` (Number)
+- `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
@@ -5621,7 +5628,6 @@ Optional:
 Optional:
 
 - `annotations` (Map of String)
-- `cluster_name` (String)
 - `creation_timestamp` (String)
 - `deletion_grace_period_seconds` (Number)
 - `deletion_timestamp` (String)
@@ -6460,7 +6466,6 @@ Optional:
 Optional:
 
 - `annotations` (Map of String)
-- `cluster_name` (String)
 - `creation_timestamp` (String)
 - `deletion_grace_period_seconds` (Number)
 - `deletion_timestamp` (String)
@@ -6521,6 +6526,7 @@ Optional:
 - `host_ipc` (Boolean)
 - `host_network` (Boolean)
 - `host_pid` (Boolean)
+- `host_users` (Boolean)
 - `hostname` (String)
 - `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--image_pull_secrets))
 - `init_containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers))
@@ -8545,7 +8551,11 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
 - `max_skew` (Number)
+- `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
@@ -8789,7 +8799,6 @@ Optional:
 Optional:
 
 - `annotations` (Map of String)
-- `cluster_name` (String)
 - `creation_timestamp` (String)
 - `deletion_grace_period_seconds` (Number)
 - `deletion_timestamp` (String)

@@ -86,6 +86,7 @@ Optional:
 
 - `addons` (Dynamic) The collection of addon trait configurations
 - `builder` (Attributes) The builder trait is internally used to determine the best strategy to build and configure IntegrationKits. (see [below for nested schema](#nestedatt--spec--traits--builder))
+- `camel` (Attributes) The Camel trait sets up Camel configuration. (see [below for nested schema](#nestedatt--spec--traits--camel))
 - `quarkus` (Attributes) The Quarkus trait configures the Quarkus runtime. It's enabled by default. NOTE: Compiling to a native executable, i.e. when using 'package-type=native', is only supported for kamelets, as well as YAML and XML integrations. It also requires at least 4GiB of memory, so the Pod running the native build, that is either the operator Pod, or the build Pod (depending on the build strategy configured for the platform), must have enough memory available. (see [below for nested schema](#nestedatt--spec--traits--quarkus))
 - `registry` (Attributes) The Registry trait sets up Maven to use the Image registry as a Maven repository. (see [below for nested schema](#nestedatt--spec--traits--registry))
 
@@ -98,6 +99,17 @@ Optional:
 - `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
 - `properties` (List of String) A list of properties to be provided to the build task
 - `verbose` (Boolean) Enable verbose logging on build components that support it (e.g. Kaniko build pod).
+
+
+<a id="nestedatt--spec--traits--camel"></a>
+### Nested Schema for `spec.traits.camel`
+
+Optional:
+
+- `configuration` (Dynamic) Legacy trait configuration parameters. Deprecated: for backward compatibility.
+- `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
+- `properties` (List of String) A list of properties to be provided to the Integration runtime
+- `runtime_version` (String) The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.
 
 
 <a id="nestedatt--spec--traits--quarkus"></a>

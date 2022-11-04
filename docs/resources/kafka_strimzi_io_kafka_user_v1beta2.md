@@ -113,12 +113,13 @@ Required:
 
 Required:
 
-- `operation` (String) Operation which will be allowed or denied. Supported operations are: Read, Write, Create, Delete, Alter, Describe, ClusterAction, AlterConfigs, DescribeConfigs, IdempotentWrite and All.
 - `resource` (Attributes) Indicates the resource for which given ACL rule applies. (see [below for nested schema](#nestedatt--spec--authorization--acls--resource))
 
 Optional:
 
 - `host` (String) The host from which the action described in the ACL rule is allowed or denied.
+- `operation` (String) Operation which will be allowed or denied. Supported operations are: Read, Write, Create, Delete, Alter, Describe, ClusterAction, AlterConfigs, DescribeConfigs, IdempotentWrite and All.
+- `operations` (List of String) List of operations which will be allowed or denied. Supported operations are: Read, Write, Create, Delete, Alter, Describe, ClusterAction, AlterConfigs, DescribeConfigs, IdempotentWrite and All.
 - `type` (String) The type of the rule. Currently the only supported type is 'allow'. ACL rules with type 'allow' are used to allow user to execute the specified operations. Default value is 'allow'.
 
 <a id="nestedatt--spec--authorization--acls--resource"></a>

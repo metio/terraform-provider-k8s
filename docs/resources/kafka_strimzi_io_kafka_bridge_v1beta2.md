@@ -63,6 +63,7 @@ Optional:
 
 - `admin_client` (Attributes) Kafka AdminClient related configuration. (see [below for nested schema](#nestedatt--spec--admin_client))
 - `authentication` (Attributes) Authentication configuration for connecting to the cluster. (see [below for nested schema](#nestedatt--spec--authentication))
+- `client_rack_init_image` (String) The image of the init container used for initializing the 'client.rack'.
 - `consumer` (Attributes) Kafka consumer related configuration. (see [below for nested schema](#nestedatt--spec--consumer))
 - `enable_metrics` (Boolean) Enable the metrics for the Kafka Bridge. Default is false.
 - `http` (Attributes) The HTTP related configuration. (see [below for nested schema](#nestedatt--spec--http))
@@ -71,6 +72,7 @@ Optional:
 - `liveness_probe` (Attributes) Pod liveness checking. (see [below for nested schema](#nestedatt--spec--liveness_probe))
 - `logging` (Attributes) Logging configuration for Kafka Bridge. (see [below for nested schema](#nestedatt--spec--logging))
 - `producer` (Attributes) Kafka producer related configuration. (see [below for nested schema](#nestedatt--spec--producer))
+- `rack` (Attributes) Configuration of the node label which will be used as the client.rack consumer configuration. (see [below for nested schema](#nestedatt--spec--rack))
 - `readiness_probe` (Attributes) Pod readiness checking. (see [below for nested schema](#nestedatt--spec--readiness_probe))
 - `replicas` (Number) The number of pods in the 'Deployment'.
 - `resources` (Attributes) CPU and memory resources to reserve. (see [below for nested schema](#nestedatt--spec--resources))
@@ -91,7 +93,7 @@ Optional:
 
 Required:
 
-- `type` (String) Authentication type. Currently the only supported types are 'tls', 'scram-sha-256', 'scram-sha-512', and 'plain'. 'scram-sha-256' and 'scram-sha-512' types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. 'plain' type uses SASL PLAIN Authentication. 'oauth' type uses SASL OAUTHBEARER Authentication. The 'tls' type uses TLS Client Authentication. The 'tls' type is supported only over TLS connections.
+- `type` (String) Authentication type. Currently the supported types are 'tls', 'scram-sha-256', 'scram-sha-512', 'plain', and 'oauth'. 'scram-sha-256' and 'scram-sha-512' types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. 'plain' type uses SASL PLAIN Authentication. 'oauth' type uses SASL OAUTHBEARER Authentication. The 'tls' type uses TLS Client Authentication. The 'tls' type is supported only over TLS connections.
 
 Optional:
 
@@ -103,6 +105,7 @@ Optional:
 - `client_secret` (Attributes) Link to Kubernetes Secret containing the OAuth client secret which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI. (see [below for nested schema](#nestedatt--spec--authentication--client_secret))
 - `connect_timeout_seconds` (Number) The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds.
 - `disable_tls_hostname_verification` (Boolean) Enable or disable TLS hostname verification. Default value is 'false'.
+- `enable_metrics` (Boolean) Enable or disable OAuth metrics. Default value is 'false'.
 - `max_token_expiry_seconds` (Number) Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens.
 - `password_secret` (Attributes) Reference to the 'Secret' which holds the password. (see [below for nested schema](#nestedatt--spec--authentication--password_secret))
 - `read_timeout_seconds` (Number) The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds.
@@ -266,6 +269,14 @@ Optional:
 - `config` (Dynamic) The Kafka producer configuration used for producer instances created by the bridge. Properties with the following prefixes cannot be set: ssl., bootstrap.servers, sasl., security. (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols).
 
 
+<a id="nestedatt--spec--rack"></a>
+### Nested Schema for `spec.rack`
+
+Required:
+
+- `topology_key` (String) A key that matches labels assigned to the Kubernetes cluster nodes. The value of the label is used to set a broker's 'broker.rack' config, and the 'client.rack' config for Kafka Connect or MirrorMaker 2.0.
+
+
 <a id="nestedatt--spec--readiness_probe"></a>
 ### Nested Schema for `spec.readiness_probe`
 
@@ -295,6 +306,7 @@ Optional:
 - `api_service` (Attributes) Template for Kafka Bridge API 'Service'. (see [below for nested schema](#nestedatt--spec--template--api_service))
 - `bridge_container` (Attributes) Template for the Kafka Bridge container. (see [below for nested schema](#nestedatt--spec--template--bridge_container))
 - `deployment` (Attributes) Template for Kafka Bridge 'Deployment'. (see [below for nested schema](#nestedatt--spec--template--deployment))
+- `init_container` (Attributes) Template for the Kafka Bridge init container. (see [below for nested schema](#nestedatt--spec--template--init_container))
 - `pod` (Attributes) Template for Kafka Bridge 'Pods'. (see [below for nested schema](#nestedatt--spec--template--pod))
 - `pod_disruption_budget` (Attributes) Template for Kafka Bridge 'PodDisruptionBudget'. (see [below for nested schema](#nestedatt--spec--template--pod_disruption_budget))
 - `service_account` (Attributes) Template for the Kafka Bridge service account. (see [below for nested schema](#nestedatt--spec--template--service_account))
@@ -409,6 +421,82 @@ Optional:
 
 - `annotations` (Dynamic) Annotations added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
 - `labels` (Dynamic) Labels added to the resource template. Can be applied to different resources such as 'StatefulSets', 'Deployments', 'Pods', and 'Services'.
+
+
+
+<a id="nestedatt--spec--template--init_container"></a>
+### Nested Schema for `spec.template.init_container`
+
+Optional:
+
+- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--template--init_container--env))
+- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--template--init_container--security_context))
+
+<a id="nestedatt--spec--template--init_container--env"></a>
+### Nested Schema for `spec.template.init_container.security_context`
+
+Optional:
+
+- `name` (String) The environment variable key.
+- `value` (String) The environment variable value.
+
+
+<a id="nestedatt--spec--template--init_container--security_context"></a>
+### Nested Schema for `spec.template.init_container.security_context`
+
+Optional:
+
+- `allow_privilege_escalation` (Boolean)
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--template--init_container--security_context--capabilities))
+- `privileged` (Boolean)
+- `proc_mount` (String)
+- `read_only_root_filesystem` (Boolean)
+- `run_as_group` (Number)
+- `run_as_non_root` (Boolean)
+- `run_as_user` (Number)
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--init_container--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--init_container--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--init_container--security_context--windows_options))
+
+<a id="nestedatt--spec--template--init_container--security_context--capabilities"></a>
+### Nested Schema for `spec.template.init_container.security_context.capabilities`
+
+Optional:
+
+- `add` (List of String)
+- `drop` (List of String)
+
+
+<a id="nestedatt--spec--template--init_container--security_context--se_linux_options"></a>
+### Nested Schema for `spec.template.init_container.security_context.se_linux_options`
+
+Optional:
+
+- `level` (String)
+- `role` (String)
+- `type` (String)
+- `user` (String)
+
+
+<a id="nestedatt--spec--template--init_container--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.template.init_container.security_context.seccomp_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
+
+<a id="nestedatt--spec--template--init_container--security_context--windows_options"></a>
+### Nested Schema for `spec.template.init_container.security_context.windows_options`
+
+Optional:
+
+- `gmsa_credential_spec` (String)
+- `gmsa_credential_spec_name` (String)
+- `host_process` (Boolean)
+- `run_as_user_name` (String)
+
 
 
 
@@ -857,8 +945,11 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
 - `max_skew` (Number)
 - `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
@@ -941,6 +1032,6 @@ Required:
 
 Required:
 
-- `type` (String) Type of the tracing used. Currently the only supported type is 'jaeger' for Jaeger tracing. The Jaeger tracing is deprecated.
+- `type` (String) Type of the tracing used. Currently the only supported types are 'jaeger' for OpenTracing (Jaeger) tracing and 'opentelemetry' for OpenTelemetry tracing. The OpenTracing (Jaeger) tracing is deprecated.
 
 

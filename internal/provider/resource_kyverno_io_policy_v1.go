@@ -5148,8 +5148,8 @@ func (r *KyvernoIoPolicyV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, 
 					},
 
 					"schema_validation": {
-						Description:         "SchemaValidation skips policy validation checks. Optional. The default value is set to 'true', it must be set to 'false' to disable the validation checks.",
-						MarkdownDescription: "SchemaValidation skips policy validation checks. Optional. The default value is set to 'true', it must be set to 'false' to disable the validation checks.",
+						Description:         "SchemaValidation skips validation checks for policies as well as patched resources. Optional. The default value is set to 'true', it must be set to 'false' to disable the validation checks.",
+						MarkdownDescription: "SchemaValidation skips validation checks for policies as well as patched resources. Optional. The default value is set to 'true', it must be set to 'false' to disable the validation checks.",
 
 						Type: types.BoolType,
 
@@ -5170,7 +5170,7 @@ func (r *KyvernoIoPolicyV1Resource) GetSchema(_ context.Context) (tfsdk.Schema, 
 
 						Validators: []tfsdk.AttributeValidator{
 
-							stringvalidator.OneOf("audit", "enforce"),
+							stringvalidator.OneOf("audit", "enforce", "Audit", "Enforce"),
 						},
 					},
 

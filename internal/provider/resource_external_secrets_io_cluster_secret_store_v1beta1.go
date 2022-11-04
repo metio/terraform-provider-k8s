@@ -180,6 +180,14 @@ type ExternalSecretsIoClusterSecretStoreV1Beta1GoModel struct {
 
 							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 						} `tfsdk:"secret_access_key_secret_ref" yaml:"secretAccessKeySecretRef,omitempty"`
+
+						SessionTokenSecretRef *struct {
+							Key *string `tfsdk:"key" yaml:"key,omitempty"`
+
+							Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+							Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
+						} `tfsdk:"session_token_secret_ref" yaml:"sessionTokenSecretRef,omitempty"`
 					} `tfsdk:"secret_ref" yaml:"secretRef,omitempty"`
 				} `tfsdk:"auth" yaml:"auth,omitempty"`
 
@@ -1537,6 +1545,51 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) GetSchema(_ context
 													"secret_access_key_secret_ref": {
 														Description:         "The SecretAccessKey is used for authentication",
 														MarkdownDescription: "The SecretAccessKey is used for authentication",
+
+														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+															"key": {
+																Description:         "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+																MarkdownDescription: "The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may be defaulted, in others it may be required.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": {
+																Description:         "The name of the Secret resource being referred to.",
+																MarkdownDescription: "The name of the Secret resource being referred to.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"namespace": {
+																Description:         "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+																MarkdownDescription: "Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaults to the namespace of the referent.",
+
+																Type: types.StringType,
+
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														}),
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"session_token_secret_ref": {
+														Description:         "The SessionToken used for authentication This must be defined if AccessKeyID and SecretAccessKey are temporary credentials see: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html",
+														MarkdownDescription: "The SessionToken used for authentication This must be defined if AccessKeyID and SecretAccessKey are temporary credentials see: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 

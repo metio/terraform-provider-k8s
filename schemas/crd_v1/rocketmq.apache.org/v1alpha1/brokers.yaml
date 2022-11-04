@@ -878,6 +878,11 @@ spec:
               brokerImage:
                 description: BaseImage is the broker image to use for the Pods
                 type: string
+              clusterMode:
+                description: 'ClusterMode defines the way to be a broker cluster,
+                  valid values can be one of the following: STATIC(default), CONTROLLER,
+                  CONTAINER'
+                type: string
               containerSecurityContext:
                 description: Container Security Context
                 properties:
@@ -1358,7 +1363,8 @@ spec:
                 description: 'INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
                   Important: Run "operator-sdk generate k8s" to regenerate code after
                   modifying this file Add custom validation using kubebuilder tags:
-                  https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html'
+                  https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
+                  Size of broker clusters'
                 type: integer
               storageMode:
                 description: StorageMode can be EmptyDir, HostPath, StorageClass

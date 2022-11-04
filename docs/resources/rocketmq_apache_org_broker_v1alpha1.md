@@ -79,7 +79,7 @@ Required:
 - `replica_per_group` (Number) ReplicaPerGroup each broker cluster's replica number
 - `resources` (Attributes) Resources describes the compute resource requirements (see [below for nested schema](#nestedatt--spec--resources))
 - `scale_pod_name` (String) The name of pod where the metadata from
-- `size` (Number) INSERT ADDITIONAL SPEC FIELDS - desired state of cluster Important: Run 'operator-sdk generate k8s' to regenerate code after modifying this file Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
+- `size` (Number) INSERT ADDITIONAL SPEC FIELDS - desired state of cluster Important: Run 'operator-sdk generate k8s' to regenerate code after modifying this file Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html Size of broker clusters
 - `storage_mode` (String) StorageMode can be EmptyDir, HostPath, StorageClass
 - `volume_claim_templates` (Attributes List) VolumeClaimTemplates defines the StorageClass (see [below for nested schema](#nestedatt--spec--volume_claim_templates))
 - `volumes` (Attributes List) Volumes define the broker.conf (see [below for nested schema](#nestedatt--spec--volumes))
@@ -87,6 +87,7 @@ Required:
 Optional:
 
 - `affinity` (Attributes) Affinity the pod's scheduling constraints (see [below for nested schema](#nestedatt--spec--affinity))
+- `cluster_mode` (String) ClusterMode defines the way to be a broker cluster, valid values can be one of the following: STATIC(default), CONTROLLER, CONTAINER
 - `container_security_context` (Attributes) Container Security Context (see [below for nested schema](#nestedatt--spec--container_security_context))
 - `host_network` (Boolean) HostNetwork can be true or false
 - `image_pull_secrets` (Attributes List) The secrets used to pull image from private registry (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
