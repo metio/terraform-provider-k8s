@@ -133,7 +133,7 @@ spec:
                     type: boolean
                 type: object
               docker_image:
-                default: registry.opensource.zalan.do/acid/spilo-14:2.1-p6
+                default: registry.opensource.zalan.do/acid/spilo-14:2.1-p7
                 type: string
               enable_crd_registration:
                 default: true

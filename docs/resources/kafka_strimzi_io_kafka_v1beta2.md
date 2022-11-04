@@ -104,7 +104,7 @@ Required:
 - `name` (String) Name of the listener. The name will be used to identify the listener and the related Kubernetes objects. The name has to be unique within given a Kafka cluster. The name can consist of lowercase characters and numbers and be up to 11 characters long.
 - `port` (Number) Port number used by the listener inside Kafka. The port number has to be unique within a given Kafka cluster. Allowed port numbers are 9092 and higher with the exception of ports 9404 and 9999, which are already used for Prometheus and JMX. Depending on the listener type, the port number might not be the same as the port number that connects Kafka clients.
 - `tls` (Boolean) Enables TLS encryption on the listener. This is a required property.
-- `type` (String) Type of the listener. Currently the supported types are 'internal', 'route', 'loadbalancer', 'nodeport' and 'ingress'. * 'internal' type exposes Kafka internally only within the Kubernetes cluster.* 'route' type uses OpenShift Routes to expose Kafka.* 'loadbalancer' type uses LoadBalancer type services to expose Kafka.* 'nodeport' type uses NodePort type services to expose Kafka.* 'ingress' type uses Kubernetes Nginx Ingress to expose Kafka.
+- `type` (String) Type of the listener. Currently the supported types are 'internal', 'route', 'loadbalancer', 'nodeport' and 'ingress'. * 'internal' type exposes Kafka internally only within the Kubernetes cluster.* 'route' type uses OpenShift Routes to expose Kafka.* 'loadbalancer' type uses LoadBalancer type services to expose Kafka.* 'nodeport' type uses NodePort type services to expose Kafka.* 'ingress' type uses Kubernetes Nginx Ingress to expose Kafka with TLS passthrought.* 'cluster-ip' type uses ClusterIP service with per broker port number. Can be exposed over Nginx Ingress Controller with tcp port config.
 
 Optional:
 
@@ -133,8 +133,10 @@ Optional:
 - `custom_claim_check` (String) JsonPath filter query to be applied to the JWT token or to the response of the introspection endpoint for additional token validation. Not set by default.
 - `disable_tls_hostname_verification` (Boolean) Enable or disable TLS hostname verification. Default value is 'false'.
 - `enable_ecdsa` (Boolean) Enable or disable ECDSA support by installing BouncyCastle crypto provider. ECDSA support is always enabled. The BouncyCastle libraries are no longer packaged with Strimzi. Value is ignored.
+- `enable_metrics` (Boolean) Enable or disable OAuth metrics. Default value is 'false'.
 - `enable_oauth_bearer` (Boolean) Enable or disable OAuth authentication over SASL_OAUTHBEARER. Default value is 'true'.
 - `enable_plain` (Boolean) Enable or disable OAuth authentication over SASL_PLAIN. There is no re-authentication support when this mechanism is used. Default value is 'false'.
+- `fail_fast` (Boolean) Enable or disable termination of Kafka broker processes due to potentially recoverable runtime errors during startup. Default value is 'true'.
 - `fallback_user_name_claim` (String) The fallback username claim to be used for the user id if the claim specified by 'userNameClaim' is not present. This is useful when 'client_credentials' authentication only results in the client id being provided in another claim. It only takes effect if 'userNameClaim' is set.
 - `fallback_user_name_prefix` (String) The prefix to use with the value of 'fallbackUserNameClaim' to construct the user id. This only takes effect if 'fallbackUserNameClaim' is true, and the value is present for the claim. Mapping usernames and client ids into the same user id space is useful in preventing name collisions.
 - `groups_claim` (String) JsonPath query used to extract groups for the user during authentication. Extracted groups can be used by a custom authorizer. By default no groups are extracted.
@@ -142,6 +144,7 @@ Optional:
 - `introspection_endpoint_uri` (String) URI of the token introspection endpoint which can be used to validate opaque non-JWT tokens.
 - `jwks_endpoint_uri` (String) URI of the JWKS certificate endpoint, which can be used for local JWT validation.
 - `jwks_expiry_seconds` (Number) Configures how often are the JWKS certificates considered valid. The expiry interval has to be at least 60 seconds longer then the refresh interval specified in 'jwksRefreshSeconds'. Defaults to 360 seconds.
+- `jwks_ignore_key_use` (Boolean) Flag to ignore the 'use' attribute of 'key' declarations in a JWKS endpoint response. Default value is 'false'.
 - `jwks_min_refresh_pause_seconds` (Number) The minimum pause between two consecutive refreshes. When an unknown signing key is encountered the refresh is scheduled immediately, but will always wait for this minimum pause. Defaults to 1 second.
 - `jwks_refresh_seconds` (Number) Configures how often are the JWKS certificates refreshed. The refresh interval has to be at least 60 seconds shorter then the expiry interval specified in 'jwksExpirySeconds'. Defaults to 300 seconds.
 - `listener_config` (Dynamic) Configuration to be used for a specific listener. All values are prefixed with listener.name._<listener_name>_.
@@ -374,7 +377,7 @@ Optional:
 - `connect_timeout_seconds` (Number) The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds.
 - `delegate_to_kafka_acls` (Boolean) Whether authorization decision should be delegated to the 'Simple' authorizer if DENIED by Keycloak Authorization Services policies. Default value is 'false'.
 - `disable_tls_hostname_verification` (Boolean) Enable or disable TLS hostname verification. Default value is 'false'.
-- `enable_metrics` (Boolean) Defines whether the Open Policy Agent authorizer plugin should provide metrics. Defaults to 'false'.
+- `enable_metrics` (Boolean) Enable or disable OAuth metrics. Default value is 'false'.
 - `expire_after_ms` (Number) The expiration of the records kept in the local cache to avoid querying the Open Policy Agent for every request. Defines how often the cached authorization decisions are reloaded from the Open Policy Agent server. In milliseconds. Defaults to '3600000'.
 - `grants_refresh_period_seconds` (Number) The time between two consecutive grants refresh runs in seconds. The default value is 60.
 - `grants_refresh_pool_size` (Number) The number of threads to use to refresh grants for active sessions. The more threads, the more parallelism, so the sooner the job completes. However, using more threads places a heavier load on the authorization server. The default value is 5.
@@ -1363,8 +1366,11 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
 - `max_skew` (Number)
 - `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
@@ -2170,8 +2176,11 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
 - `max_skew` (Number)
 - `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
@@ -3094,8 +3103,11 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
 - `max_skew` (Number)
 - `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
@@ -3762,8 +3774,11 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_container--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
 - `max_skew` (Number)
 - `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
@@ -4895,8 +4910,11 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
 - `max_skew` (Number)
 - `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 
@@ -5537,8 +5555,11 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
 - `max_skew` (Number)
 - `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 - `topology_key` (String)
 - `when_unsatisfiable` (String)
 

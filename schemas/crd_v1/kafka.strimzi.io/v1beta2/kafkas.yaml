@@ -1005,10 +1005,18 @@ spec:
                                       type: object
                                       x-kubernetes-preserve-unknown-fields: true
                                   type: object
+                                matchLabelKeys:
+                                  items:
+                                    type: string
+                                  type: array
                                 maxSkew:
                                   type: integer
                                 minDomains:
                                   type: integer
+                                nodeAffinityPolicy:
+                                  type: string
+                                nodeTaintsPolicy:
+                                  type: string
                                 topologyKey:
                                   type: string
                                 whenUnsatisfiable:
@@ -1729,10 +1737,18 @@ spec:
                                       type: object
                                       x-kubernetes-preserve-unknown-fields: true
                                   type: object
+                                matchLabelKeys:
+                                  items:
+                                    type: string
+                                  type: array
                                 maxSkew:
                                   type: integer
                                 minDomains:
                                   type: integer
+                                nodeAffinityPolicy:
+                                  type: string
+                                nodeTaintsPolicy:
+                                  type: string
                                 topologyKey:
                                   type: string
                                 whenUnsatisfiable:
@@ -3099,10 +3115,18 @@ spec:
                                       type: object
                                       x-kubernetes-preserve-unknown-fields: true
                                   type: object
+                                matchLabelKeys:
+                                  items:
+                                    type: string
+                                  type: array
                                 maxSkew:
                                   type: integer
                                 minDomains:
                                   type: integer
+                                nodeAffinityPolicy:
+                                  type: string
+                                nodeTaintsPolicy:
+                                  type: string
                                 topologyKey:
                                   type: string
                                 whenUnsatisfiable:
@@ -3173,8 +3197,8 @@ spec:
                           Default value is `false`.
                         type: boolean
                       enableMetrics:
-                        description: Defines whether the Open Policy Agent authorizer
-                          plugin should provide metrics. Defaults to `false`.
+                        description: Enable or disable OAuth metrics. Default value
+                          is `false`.
                         type: boolean
                       expireAfterMs:
                         description: The expiration of the records kept in the local
@@ -3429,6 +3453,10 @@ spec:
                                 enabled. The BouncyCastle libraries are no longer
                                 packaged with Strimzi. Value is ignored.
                               type: boolean
+                            enableMetrics:
+                              description: Enable or disable OAuth metrics. Default
+                                value is `false`.
+                              type: boolean
                             enableOauthBearer:
                               description: Enable or disable OAuth authentication
                                 over SASL_OAUTHBEARER. Default value is `true`.
@@ -3437,6 +3465,11 @@ spec:
                               description: Enable or disable OAuth authentication
                                 over SASL_PLAIN. There is no re-authentication support
                                 when this mechanism is used. Default value is `false`.
+                              type: boolean
+                            failFast:
+                              description: Enable or disable termination of Kafka
+                                broker processes due to potentially recoverable runtime
+                                errors during startup. Default value is `true`.
                               type: boolean
                             fallbackUserNameClaim:
                               description: The fallback username claim to be used
@@ -3481,6 +3514,11 @@ spec:
                                 seconds.
                               minimum: 1
                               type: integer
+                            jwksIgnoreKeyUse:
+                              description: Flag to ignore the 'use' attribute of `key`
+                                declarations in a JWKS endpoint response. Default
+                                value is `false`.
+                              type: boolean
                             jwksMinRefreshPauseSeconds:
                               description: The minimum pause between two consecutive
                                 refreshes. When an unknown signing key is encountered
@@ -3948,13 +3986,17 @@ spec:
                             OpenShift Routes to expose Kafka.\n* `loadbalancer` type
                             uses LoadBalancer type services to expose Kafka.\n* `nodeport`
                             type uses NodePort type services to expose Kafka.\n* `ingress`
-                            type uses Kubernetes Nginx Ingress to expose Kafka.\n"
+                            type uses Kubernetes Nginx Ingress to expose Kafka with
+                            TLS passthrought.\n* `cluster-ip` type uses ClusterIP
+                            service with per broker port number. Can be exposed over
+                            Nginx Ingress Controller with tcp port config.\n"
                           enum:
                           - internal
                           - route
                           - loadbalancer
                           - nodeport
                           - ingress
+                          - cluster-ip
                           type: string
                       required:
                       - name
@@ -5156,10 +5198,18 @@ spec:
                                       type: object
                                       x-kubernetes-preserve-unknown-fields: true
                                   type: object
+                                matchLabelKeys:
+                                  items:
+                                    type: string
+                                  type: array
                                 maxSkew:
                                   type: integer
                                 minDomains:
                                   type: integer
+                                nodeAffinityPolicy:
+                                  type: string
+                                nodeTaintsPolicy:
+                                  type: string
                                 topologyKey:
                                   type: string
                                 whenUnsatisfiable:
@@ -5932,10 +5982,18 @@ spec:
                                       type: object
                                       x-kubernetes-preserve-unknown-fields: true
                                   type: object
+                                matchLabelKeys:
+                                  items:
+                                    type: string
+                                  type: array
                                 maxSkew:
                                   type: integer
                                 minDomains:
                                   type: integer
+                                nodeAffinityPolicy:
+                                  type: string
+                                nodeTaintsPolicy:
+                                  type: string
                                 topologyKey:
                                   type: string
                                 whenUnsatisfiable:
@@ -6864,10 +6922,18 @@ spec:
                                       type: object
                                       x-kubernetes-preserve-unknown-fields: true
                                   type: object
+                                matchLabelKeys:
+                                  items:
+                                    type: string
+                                  type: array
                                 maxSkew:
                                   type: integer
                                 minDomains:
                                   type: integer
+                                nodeAffinityPolicy:
+                                  type: string
+                                nodeTaintsPolicy:
+                                  type: string
                                 topologyKey:
                                   type: string
                                 whenUnsatisfiable:

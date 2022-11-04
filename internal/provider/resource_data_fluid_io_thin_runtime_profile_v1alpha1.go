@@ -52,6 +52,8 @@ type DataFluidIoThinRuntimeProfileV1Alpha1GoModel struct {
 	} `tfsdk:"metadata" yaml:"metadata"`
 
 	Spec *struct {
+		FileSystemType *string `tfsdk:"file_system_type" yaml:"fileSystemType,omitempty"`
+
 		Fuse *struct {
 			Args *[]string `tfsdk:"args" yaml:"args,omitempty"`
 
@@ -956,6 +958,17 @@ func (r *DataFluidIoThinRuntimeProfileV1Alpha1Resource) GetSchema(_ context.Cont
 				MarkdownDescription: "ThinRuntimeProfileSpec defines the desired state of ThinRuntimeProfile",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+					"file_system_type": {
+						Description:         "file system of thinRuntime",
+						MarkdownDescription: "file system of thinRuntime",
+
+						Type: types.StringType,
+
+						Required: true,
+						Optional: false,
+						Computed: false,
+					},
 
 					"fuse": {
 						Description:         "The component spec of thinRuntime",

@@ -83,6 +83,16 @@ type CamelApacheOrgIntegrationKitV1GoModel struct {
 				Verbose *bool `tfsdk:"verbose" yaml:"verbose,omitempty"`
 			} `tfsdk:"builder" yaml:"builder,omitempty"`
 
+			Camel *struct {
+				Configuration utilities.Dynamic `tfsdk:"configuration" yaml:"configuration,omitempty"`
+
+				Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+
+				Properties *[]string `tfsdk:"properties" yaml:"properties,omitempty"`
+
+				RuntimeVersion *string `tfsdk:"runtime_version" yaml:"runtimeVersion,omitempty"`
+			} `tfsdk:"camel" yaml:"camel,omitempty"`
+
 			Quarkus *struct {
 				Configuration utilities.Dynamic `tfsdk:"configuration" yaml:"configuration,omitempty"`
 
@@ -366,6 +376,62 @@ func (r *CamelApacheOrgIntegrationKitV1Resource) GetSchema(_ context.Context) (t
 										MarkdownDescription: "Enable verbose logging on build components that support it (e.g. Kaniko build pod).",
 
 										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"camel": {
+								Description:         "The Camel trait sets up Camel configuration.",
+								MarkdownDescription: "The Camel trait sets up Camel configuration.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"configuration": {
+										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+
+										Type: utilities.DynamicType{},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"enabled": {
+										Description:         "Can be used to enable or disable a trait. All traits share this common property.",
+										MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+
+										Type: types.BoolType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"properties": {
+										Description:         "A list of properties to be provided to the Integration runtime",
+										MarkdownDescription: "A list of properties to be provided to the Integration runtime",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"runtime_version": {
+										Description:         "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.",
+										MarkdownDescription: "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,

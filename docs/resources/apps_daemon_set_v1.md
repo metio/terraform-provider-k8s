@@ -242,6 +242,7 @@ Optional:
 - `restart_policy` (String) Restart policy for all containers within the pod. One of Always, OnFailure, Never. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 - `runtime_class_name` (String) RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class
 - `scheduler_name` (String) If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.
+- `scheduling_gates` (Attributes List) SchedulingGates is an opaque list of values that if specified will block scheduling the pod. More info:  https://git.k8s.io/enhancements/keps/sig-scheduling/3521-pod-scheduling-readiness.This is an alpha-level feature enabled by PodSchedulingReadiness feature gate. (see [below for nested schema](#nestedatt--spec--template--spec--scheduling_gates))
 - `security_context` (Attributes) PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext. (see [below for nested schema](#nestedatt--spec--template--spec--security_context))
 - `service_account` (String) DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.
 - `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
@@ -2421,6 +2422,14 @@ Required:
 Required:
 
 - `condition_type` (String) ConditionType refers to a condition in the pod's condition list with matching type.
+
+
+<a id="nestedatt--spec--template--spec--scheduling_gates"></a>
+### Nested Schema for `spec.template.spec.volumes`
+
+Required:
+
+- `name` (String) Name of the scheduling gate. Each scheduling gate must have a unique name field.
 
 
 <a id="nestedatt--spec--template--spec--security_context"></a>

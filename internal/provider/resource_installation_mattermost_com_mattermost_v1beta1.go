@@ -119,6 +119,12 @@ type InstallationMattermostComMattermostV1Beta1GoModel struct {
 				Url *string `tfsdk:"url" yaml:"url,omitempty"`
 			} `tfsdk:"external" yaml:"external,omitempty"`
 
+			Local *struct {
+				Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
+
+				StorageSize *string `tfsdk:"storage_size" yaml:"storageSize,omitempty"`
+			} `tfsdk:"local" yaml:"local,omitempty"`
+
 			OperatorManaged *struct {
 				Replicas *int64 `tfsdk:"replicas" yaml:"replicas,omitempty"`
 
@@ -1919,6 +1925,45 @@ func (r *InstallationMattermostComMattermostV1Beta1Resource) GetSchema(_ context
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"local": {
+								Description:         "Defines the configuration of PVC backed storage (local). This is NOT recommended for production environments.",
+								MarkdownDescription: "Defines the configuration of PVC backed storage (local). This is NOT recommended for production environments.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"enabled": {
+										Description:         "Set to use local (PVC) storage, require explicit enabled to prevent accidental misconfiguration.",
+										MarkdownDescription: "Set to use local (PVC) storage, require explicit enabled to prevent accidental misconfiguration.",
+
+										Type: types.BoolType,
+
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"storage_size": {
+										Description:         "Defines the storage size for the PVC. (default 50Gi)",
+										MarkdownDescription: "Defines the storage size for the PVC. (default 50Gi)",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.RegexMatches(regexp.MustCompile(`^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$`), ""),
+										},
 									},
 								}),
 

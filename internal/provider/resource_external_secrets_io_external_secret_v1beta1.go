@@ -71,6 +71,22 @@ type ExternalSecretsIoExternalSecretV1Beta1GoModel struct {
 			} `tfsdk:"remote_ref" yaml:"remoteRef,omitempty"`
 
 			SecretKey *string `tfsdk:"secret_key" yaml:"secretKey,omitempty"`
+
+			SourceRef *struct {
+				GeneratorRef *struct {
+					ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"generator_ref" yaml:"generatorRef,omitempty"`
+
+				StoreRef *struct {
+					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"store_ref" yaml:"storeRef,omitempty"`
+			} `tfsdk:"source_ref" yaml:"sourceRef,omitempty"`
 		} `tfsdk:"data" yaml:"data,omitempty"`
 
 		DataFrom *[]struct {
@@ -109,6 +125,22 @@ type ExternalSecretsIoExternalSecretV1Beta1GoModel struct {
 					Target *string `tfsdk:"target" yaml:"target,omitempty"`
 				} `tfsdk:"regexp" yaml:"regexp,omitempty"`
 			} `tfsdk:"rewrite" yaml:"rewrite,omitempty"`
+
+			SourceRef *struct {
+				GeneratorRef *struct {
+					ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
+
+					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"generator_ref" yaml:"generatorRef,omitempty"`
+
+				StoreRef *struct {
+					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
+
+					Name *string `tfsdk:"name" yaml:"name,omitempty"`
+				} `tfsdk:"store_ref" yaml:"storeRef,omitempty"`
+			} `tfsdk:"source_ref" yaml:"sourceRef,omitempty"`
 		} `tfsdk:"data_from" yaml:"dataFrom,omitempty"`
 
 		RefreshInterval *string `tfsdk:"refresh_interval" yaml:"refreshInterval,omitempty"`
@@ -264,8 +296,8 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 							"remote_ref": {
-								Description:         "ExternalSecretDataRemoteRef defines Provider data location.",
-								MarkdownDescription: "ExternalSecretDataRemoteRef defines Provider data location.",
+								Description:         "RemoteRef points to the remote secret and defines which secret (version/property/..) to fetch.",
+								MarkdownDescription: "RemoteRef points to the remote secret and defines which secret (version/property/..) to fetch.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -342,13 +374,104 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 							},
 
 							"secret_key": {
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "SecretKey defines the key in which the controller stores the value. This is the key in the Kind=Secret",
+								MarkdownDescription: "SecretKey defines the key in which the controller stores the value. This is the key in the Kind=Secret",
 
 								Type: types.StringType,
 
 								Required: true,
 								Optional: false,
+								Computed: false,
+							},
+
+							"source_ref": {
+								Description:         "SourceRef allows you to override the source from which the value will pulled from.",
+								MarkdownDescription: "SourceRef allows you to override the source from which the value will pulled from.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"generator_ref": {
+										Description:         "GeneratorRef points to a generator custom resource in",
+										MarkdownDescription: "GeneratorRef points to a generator custom resource in",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"api_version": {
+												Description:         "Specify the apiVersion of the generator resource",
+												MarkdownDescription: "Specify the apiVersion of the generator resource",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"kind": {
+												Description:         "Specify the Kind of the resource, e.g. Password, ACRAccessToken etc.",
+												MarkdownDescription: "Specify the Kind of the resource, e.g. Password, ACRAccessToken etc.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Specify the name of the generator resource",
+												MarkdownDescription: "Specify the name of the generator resource",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"store_ref": {
+										Description:         "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
+										MarkdownDescription: "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"kind": {
+												Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
+												MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the SecretStore resource",
+												MarkdownDescription: "Name of the SecretStore resource",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 						}),
@@ -365,8 +488,8 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 							"extract": {
-								Description:         "Used to extract multiple key/value pairs from one secret",
-								MarkdownDescription: "Used to extract multiple key/value pairs from one secret",
+								Description:         "Used to extract multiple key/value pairs from one secret Note: Extract does not support sourceRef.Generator or sourceRef.GeneratorRef.",
+								MarkdownDescription: "Used to extract multiple key/value pairs from one secret Note: Extract does not support sourceRef.Generator or sourceRef.GeneratorRef.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -443,8 +566,8 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 							},
 
 							"find": {
-								Description:         "Used to find secrets based on tags or regular expressions",
-								MarkdownDescription: "Used to find secrets based on tags or regular expressions",
+								Description:         "Used to find secrets based on tags or regular expressions Note: Find does not support sourceRef.Generator or sourceRef.GeneratorRef.",
+								MarkdownDescription: "Used to find secrets based on tags or regular expressions Note: Find does not support sourceRef.Generator or sourceRef.GeneratorRef.",
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -566,6 +689,97 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 								Optional: true,
 								Computed: false,
 							},
+
+							"source_ref": {
+								Description:         "SourceRef points to a store or generator which contains secret values ready to use. Use this in combination with Extract or Find pull values out of a specific SecretStore. When sourceRef points to a generator Extract or Find is not supported. The generator returns a static map of values",
+								MarkdownDescription: "SourceRef points to a store or generator which contains secret values ready to use. Use this in combination with Extract or Find pull values out of a specific SecretStore. When sourceRef points to a generator Extract or Find is not supported. The generator returns a static map of values",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"generator_ref": {
+										Description:         "GeneratorRef points to a generator custom resource in",
+										MarkdownDescription: "GeneratorRef points to a generator custom resource in",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"api_version": {
+												Description:         "Specify the apiVersion of the generator resource",
+												MarkdownDescription: "Specify the apiVersion of the generator resource",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"kind": {
+												Description:         "Specify the Kind of the resource, e.g. Password, ACRAccessToken etc.",
+												MarkdownDescription: "Specify the Kind of the resource, e.g. Password, ACRAccessToken etc.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Specify the name of the generator resource",
+												MarkdownDescription: "Specify the name of the generator resource",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"store_ref": {
+										Description:         "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
+										MarkdownDescription: "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"kind": {
+												Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
+												MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"name": {
+												Description:         "Name of the SecretStore resource",
+												MarkdownDescription: "Name of the SecretStore resource",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						}),
 
 						Required: false,
@@ -613,8 +827,8 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Resource) GetSchema(_ context.Con
 							},
 						}),
 
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

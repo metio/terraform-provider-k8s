@@ -477,6 +477,8 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1GoModel struct {
 
 			Enabled *bool `tfsdk:"enabled" yaml:"enabled,omitempty"`
 
+			FilterStrategy *string `tfsdk:"filter_strategy" yaml:"filterStrategy,omitempty"`
+
 			Image *string `tfsdk:"image" yaml:"image,omitempty"`
 
 			PrometheusCR *struct {
@@ -3569,6 +3571,17 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Resource) GetSchema(_ cont
 								MarkdownDescription: "Enabled indicates whether to use a target allocation mechanism for Prometheus targets or not.",
 
 								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"filter_strategy": {
+								Description:         "FilterStrategy determines how to filter targets before allocating them among the collectors. The only current option is relabel-config (drops targets based on prom relabel_config). Filtering is disabled by default.",
+								MarkdownDescription: "FilterStrategy determines how to filter targets before allocating them among the collectors. The only current option is relabel-config (drops targets based on prom relabel_config). Filtering is disabled by default.",
+
+								Type: types.StringType,
 
 								Required: false,
 								Optional: true,

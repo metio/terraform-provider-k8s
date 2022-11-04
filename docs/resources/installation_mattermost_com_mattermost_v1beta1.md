@@ -165,6 +165,7 @@ Optional:
 Optional:
 
 - `external` (Attributes) Defines the configuration of an external file store. (see [below for nested schema](#nestedatt--spec--file_store--external))
+- `local` (Attributes) Defines the configuration of PVC backed storage (local). This is NOT recommended for production environments. (see [below for nested schema](#nestedatt--spec--file_store--local))
 - `operator_managed` (Attributes) Defines the configuration of file store managed by Kubernetes operator. (see [below for nested schema](#nestedatt--spec--file_store--operator_managed))
 
 <a id="nestedatt--spec--file_store--external"></a>
@@ -175,6 +176,18 @@ Optional:
 - `bucket` (String) Set to the bucket name of your external MinIO or S3.
 - `secret` (String) Optionally enter the name of already existing secret. Secret should have two values: 'accesskey' and 'secretkey'.
 - `url` (String) Set to use an external MinIO deployment or S3.
+
+
+<a id="nestedatt--spec--file_store--local"></a>
+### Nested Schema for `spec.file_store.local`
+
+Required:
+
+- `enabled` (Boolean) Set to use local (PVC) storage, require explicit enabled to prevent accidental misconfiguration.
+
+Optional:
+
+- `storage_size` (String) Defines the storage size for the PVC. (default 50Gi)
 
 
 <a id="nestedatt--spec--file_store--operator_managed"></a>

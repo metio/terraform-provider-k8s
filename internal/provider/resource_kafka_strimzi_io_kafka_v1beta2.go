@@ -536,9 +536,15 @@ type KafkaStrimziIoKafkaV1Beta2GoModel struct {
 							MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+						MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 						MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
 
 						MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+						NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+						NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -944,9 +950,15 @@ type KafkaStrimziIoKafkaV1Beta2GoModel struct {
 							MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+						MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 						MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
 
 						MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+						NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+						NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -1702,9 +1714,15 @@ type KafkaStrimziIoKafkaV1Beta2GoModel struct {
 							MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+						MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 						MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
 
 						MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+						NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+						NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -1825,9 +1843,13 @@ type KafkaStrimziIoKafkaV1Beta2GoModel struct {
 
 					EnableECDSA *bool `tfsdk:"enable_ecdsa" yaml:"enableECDSA,omitempty"`
 
+					EnableMetrics *bool `tfsdk:"enable_metrics" yaml:"enableMetrics,omitempty"`
+
 					EnableOauthBearer *bool `tfsdk:"enable_oauth_bearer" yaml:"enableOauthBearer,omitempty"`
 
 					EnablePlain *bool `tfsdk:"enable_plain" yaml:"enablePlain,omitempty"`
+
+					FailFast *bool `tfsdk:"fail_fast" yaml:"failFast,omitempty"`
 
 					FallbackUserNameClaim *string `tfsdk:"fallback_user_name_claim" yaml:"fallbackUserNameClaim,omitempty"`
 
@@ -1842,6 +1864,8 @@ type KafkaStrimziIoKafkaV1Beta2GoModel struct {
 					JwksEndpointUri *string `tfsdk:"jwks_endpoint_uri" yaml:"jwksEndpointUri,omitempty"`
 
 					JwksExpirySeconds *int64 `tfsdk:"jwks_expiry_seconds" yaml:"jwksExpirySeconds,omitempty"`
+
+					JwksIgnoreKeyUse *bool `tfsdk:"jwks_ignore_key_use" yaml:"jwksIgnoreKeyUse,omitempty"`
 
 					JwksMinRefreshPauseSeconds *int64 `tfsdk:"jwks_min_refresh_pause_seconds" yaml:"jwksMinRefreshPauseSeconds,omitempty"`
 
@@ -2588,9 +2612,15 @@ type KafkaStrimziIoKafkaV1Beta2GoModel struct {
 							MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+						MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 						MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
 
 						MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+						NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+						NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -3018,9 +3048,15 @@ type KafkaStrimziIoKafkaV1Beta2GoModel struct {
 							MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+						MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 						MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
 
 						MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+						NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+						NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -3478,9 +3514,15 @@ type KafkaStrimziIoKafkaV1Beta2GoModel struct {
 							MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+						MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 						MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
 
 						MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+						NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+						NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -6548,6 +6590,17 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 														Computed: false,
 													},
 
+													"match_label_keys": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"max_skew": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -6564,6 +6617,28 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 														MarkdownDescription: "",
 
 														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_affinity_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_taints_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
 
 														Required: false,
 														Optional: true,
@@ -8928,6 +9003,17 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 														Computed: false,
 													},
 
+													"match_label_keys": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"max_skew": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -8944,6 +9030,28 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 														MarkdownDescription: "",
 
 														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_affinity_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_taints_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
 
 														Required: false,
 														Optional: true,
@@ -13449,6 +13557,17 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 														Computed: false,
 													},
 
+													"match_label_keys": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"max_skew": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -13465,6 +13584,28 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 														MarkdownDescription: "",
 
 														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_affinity_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_taints_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
 
 														Required: false,
 														Optional: true,
@@ -13647,8 +13788,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 									},
 
 									"enable_metrics": {
-										Description:         "Defines whether the Open Policy Agent authorizer plugin should provide metrics. Defaults to 'false'.",
-										MarkdownDescription: "Defines whether the Open Policy Agent authorizer plugin should provide metrics. Defaults to 'false'.",
+										Description:         "Enable or disable OAuth metrics. Default value is 'false'.",
+										MarkdownDescription: "Enable or disable OAuth metrics. Default value is 'false'.",
 
 										Type: types.BoolType,
 
@@ -14178,6 +14319,17 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 												Computed: false,
 											},
 
+											"enable_metrics": {
+												Description:         "Enable or disable OAuth metrics. Default value is 'false'.",
+												MarkdownDescription: "Enable or disable OAuth metrics. Default value is 'false'.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"enable_oauth_bearer": {
 												Description:         "Enable or disable OAuth authentication over SASL_OAUTHBEARER. Default value is 'true'.",
 												MarkdownDescription: "Enable or disable OAuth authentication over SASL_OAUTHBEARER. Default value is 'true'.",
@@ -14192,6 +14344,17 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 											"enable_plain": {
 												Description:         "Enable or disable OAuth authentication over SASL_PLAIN. There is no re-authentication support when this mechanism is used. Default value is 'false'.",
 												MarkdownDescription: "Enable or disable OAuth authentication over SASL_PLAIN. There is no re-authentication support when this mechanism is used. Default value is 'false'.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"fail_fast": {
+												Description:         "Enable or disable termination of Kafka broker processes due to potentially recoverable runtime errors during startup. Default value is 'true'.",
+												MarkdownDescription: "Enable or disable termination of Kafka broker processes due to potentially recoverable runtime errors during startup. Default value is 'true'.",
 
 												Type: types.BoolType,
 
@@ -14280,6 +14443,17 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 
 													int64validator.AtLeast(1),
 												},
+											},
+
+											"jwks_ignore_key_use": {
+												Description:         "Flag to ignore the 'use' attribute of 'key' declarations in a JWKS endpoint response. Default value is 'false'.",
+												MarkdownDescription: "Flag to ignore the 'use' attribute of 'key' declarations in a JWKS endpoint response. Default value is 'false'.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"jwks_min_refresh_pause_seconds": {
@@ -15100,8 +15274,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 									},
 
 									"type": {
-										Description:         "Type of the listener. Currently the supported types are 'internal', 'route', 'loadbalancer', 'nodeport' and 'ingress'. * 'internal' type exposes Kafka internally only within the Kubernetes cluster.* 'route' type uses OpenShift Routes to expose Kafka.* 'loadbalancer' type uses LoadBalancer type services to expose Kafka.* 'nodeport' type uses NodePort type services to expose Kafka.* 'ingress' type uses Kubernetes Nginx Ingress to expose Kafka.",
-										MarkdownDescription: "Type of the listener. Currently the supported types are 'internal', 'route', 'loadbalancer', 'nodeport' and 'ingress'. * 'internal' type exposes Kafka internally only within the Kubernetes cluster.* 'route' type uses OpenShift Routes to expose Kafka.* 'loadbalancer' type uses LoadBalancer type services to expose Kafka.* 'nodeport' type uses NodePort type services to expose Kafka.* 'ingress' type uses Kubernetes Nginx Ingress to expose Kafka.",
+										Description:         "Type of the listener. Currently the supported types are 'internal', 'route', 'loadbalancer', 'nodeport' and 'ingress'. * 'internal' type exposes Kafka internally only within the Kubernetes cluster.* 'route' type uses OpenShift Routes to expose Kafka.* 'loadbalancer' type uses LoadBalancer type services to expose Kafka.* 'nodeport' type uses NodePort type services to expose Kafka.* 'ingress' type uses Kubernetes Nginx Ingress to expose Kafka with TLS passthrought.* 'cluster-ip' type uses ClusterIP service with per broker port number. Can be exposed over Nginx Ingress Controller with tcp port config.",
+										MarkdownDescription: "Type of the listener. Currently the supported types are 'internal', 'route', 'loadbalancer', 'nodeport' and 'ingress'. * 'internal' type exposes Kafka internally only within the Kubernetes cluster.* 'route' type uses OpenShift Routes to expose Kafka.* 'loadbalancer' type uses LoadBalancer type services to expose Kafka.* 'nodeport' type uses NodePort type services to expose Kafka.* 'ingress' type uses Kubernetes Nginx Ingress to expose Kafka with TLS passthrought.* 'cluster-ip' type uses ClusterIP service with per broker port number. Can be exposed over Nginx Ingress Controller with tcp port config.",
 
 										Type: types.StringType,
 
@@ -15111,7 +15285,7 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 
 										Validators: []tfsdk.AttributeValidator{
 
-											stringvalidator.OneOf("internal", "route", "loadbalancer", "nodeport", "ingress"),
+											stringvalidator.OneOf("internal", "route", "loadbalancer", "nodeport", "ingress", "cluster-ip"),
 										},
 									},
 								}),
@@ -18651,6 +18825,17 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 														Computed: false,
 													},
 
+													"match_label_keys": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"max_skew": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -18667,6 +18852,28 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 														MarkdownDescription: "",
 
 														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_affinity_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_taints_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
 
 														Required: false,
 														Optional: true,
@@ -21155,6 +21362,17 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 														Computed: false,
 													},
 
+													"match_label_keys": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"max_skew": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -21171,6 +21389,28 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 														MarkdownDescription: "",
 
 														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_affinity_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_taints_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
 
 														Required: false,
 														Optional: true,
@@ -23876,6 +24116,17 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 														Computed: false,
 													},
 
+													"match_label_keys": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"max_skew": {
 														Description:         "",
 														MarkdownDescription: "",
@@ -23892,6 +24143,28 @@ func (r *KafkaStrimziIoKafkaV1Beta2Resource) GetSchema(_ context.Context) (tfsdk
 														MarkdownDescription: "",
 
 														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_affinity_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_taints_policy": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
 
 														Required: false,
 														Optional: true,

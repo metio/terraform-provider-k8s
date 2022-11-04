@@ -220,8 +220,8 @@ func (r *HazelcastComMapV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 					},
 
 					"entry_listeners": {
-						Description:         "EntryListeners contains the configuration for the map-level or entry-based events listeners provided by the Hazelcast’s eventing framework. You can learn more at https://docs.hazelcast.com/imdg/latest/events/object-events.",
-						MarkdownDescription: "EntryListeners contains the configuration for the map-level or entry-based events listeners provided by the Hazelcast’s eventing framework. You can learn more at https://docs.hazelcast.com/imdg/latest/events/object-events.",
+						Description:         "EntryListeners contains the configuration for the map-level or entry-based events listeners provided by the Hazelcast’s eventing framework. You can learn more at https://docs.hazelcast.com/hazelcast/latest/events/object-events.",
+						MarkdownDescription: "EntryListeners contains the configuration for the map-level or entry-based events listeners provided by the Hazelcast’s eventing framework. You can learn more at https://docs.hazelcast.com/hazelcast/latest/events/object-events.",
 
 						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 

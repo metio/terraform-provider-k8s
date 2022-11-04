@@ -82,15 +82,19 @@ Optional:
 - `admin_theme` (String) Admin Console Theme
 - `authentication_flows` (Attributes List) Authentication flows (see [below for nested schema](#nestedatt--spec--realm--authentication_flows))
 - `authenticator_config` (Attributes List) Authenticator config (see [below for nested schema](#nestedatt--spec--realm--authenticator_config))
+- `browser_flow` (String) Browser authentication flow
 - `brute_force_protected` (Boolean) Brute Force Detection
+- `client_authentication_flow` (String) Client authentication flow
 - `client_scope_mappings` (Map of String) Client Scope Mappings
 - `client_scopes` (Attributes List) Client scopes (see [below for nested schema](#nestedatt--spec--realm--client_scopes))
 - `clients` (Attributes List) A set of Keycloak Clients. (see [below for nested schema](#nestedatt--spec--realm--clients))
 - `default_default_client_scopes` (List of String) Default client scopes to add to all new clients
 - `default_locale` (String) Default Locale
 - `default_role` (Attributes) Default role (see [below for nested schema](#nestedatt--spec--realm--default_role))
+- `direct_grant_flow` (String) Direct Grant authentication flow
 - `display_name` (String) Realm display name.
 - `display_name_html` (String) Realm HTML display name.
+- `docker_authentication_flow` (String) Docker Authentication flow
 - `duplicate_emails_allowed` (Boolean) Duplicate emails
 - `edit_username_allowed` (Boolean) Edit username
 - `email_theme` (String) Email Theme
@@ -100,6 +104,7 @@ Optional:
 - `events_listeners` (List of String) A set of Event Listeners.
 - `failure_factor` (Number) Max Login Failures
 - `id` (String)
+- `identity_provider_mappers` (Attributes List) A set of Identity Provider Mappers. (see [below for nested schema](#nestedatt--spec--realm--identity_provider_mappers))
 - `identity_providers` (Attributes List) A set of Identity Providers. (see [below for nested schema](#nestedatt--spec--realm--identity_providers))
 - `internationalization_enabled` (Boolean) Internationalization Enabled
 - `login_theme` (String) Login Theme
@@ -119,7 +124,9 @@ Optional:
 - `quick_login_check_milli_seconds` (Number) Quick Login Check Milli Seconds
 - `registration_allowed` (Boolean) User registration
 - `registration_email_as_username` (Boolean) Email as username
+- `registration_flow` (String) Registration flow
 - `remember_me` (Boolean) Remember me
+- `reset_credentials_flow` (String) Reset Credentials authentication flow
 - `reset_password_allowed` (Boolean) Forgot password
 - `roles` (Attributes) Roles (see [below for nested schema](#nestedatt--spec--realm--roles))
 - `scope_mappings` (Attributes List) Scope Mappings (see [below for nested schema](#nestedatt--spec--realm--scope_mappings))
@@ -423,6 +430,18 @@ Optional:
 - `client` (Map of List of String) Map client => []role
 - `realm` (List of String) Realm roles
 
+
+
+<a id="nestedatt--spec--realm--identity_provider_mappers"></a>
+### Nested Schema for `spec.realm.identity_provider_mappers`
+
+Optional:
+
+- `config` (Map of String) Identity Provider Mapper config.
+- `id` (String)
+- `identity_provider_alias` (String) Identity Provider Alias.
+- `identity_provider_mapper` (String) Identity Provider Mapper.
+- `name` (String)
 
 
 <a id="nestedatt--spec--realm--identity_providers"></a>

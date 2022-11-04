@@ -87,6 +87,8 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 
 			DisableTlsHostnameVerification *bool `tfsdk:"disable_tls_hostname_verification" yaml:"disableTlsHostnameVerification,omitempty"`
 
+			EnableMetrics *bool `tfsdk:"enable_metrics" yaml:"enableMetrics,omitempty"`
+
 			MaxTokenExpirySeconds *int64 `tfsdk:"max_token_expiry_seconds" yaml:"maxTokenExpirySeconds,omitempty"`
 
 			PasswordSecret *struct {
@@ -671,9 +673,15 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 						MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+					MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 					MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
 
 					MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+					NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+					NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 					TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -1103,9 +1111,15 @@ type KafkaStrimziIoKafkaConnectV1Beta2GoModel struct {
 						MatchLabels utilities.Dynamic `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+					MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 					MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
 
 					MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+					NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+					NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 					TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -1416,6 +1430,17 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 								Computed: false,
 							},
 
+							"enable_metrics": {
+								Description:         "Enable or disable OAuth metrics. Default value is 'false'.",
+								MarkdownDescription: "Enable or disable OAuth metrics. Default value is 'false'.",
+
+								Type: types.BoolType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"max_token_expiry_seconds": {
 								Description:         "Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens.",
 								MarkdownDescription: "Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens.",
@@ -1563,8 +1588,8 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 							},
 
 							"type": {
-								Description:         "Authentication type. Currently the only supported types are 'tls', 'scram-sha-256', 'scram-sha-512', and 'plain'. 'scram-sha-256' and 'scram-sha-512' types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. 'plain' type uses SASL PLAIN Authentication. 'oauth' type uses SASL OAUTHBEARER Authentication. The 'tls' type uses TLS Client Authentication. The 'tls' type is supported only over TLS connections.",
-								MarkdownDescription: "Authentication type. Currently the only supported types are 'tls', 'scram-sha-256', 'scram-sha-512', and 'plain'. 'scram-sha-256' and 'scram-sha-512' types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. 'plain' type uses SASL PLAIN Authentication. 'oauth' type uses SASL OAUTHBEARER Authentication. The 'tls' type uses TLS Client Authentication. The 'tls' type is supported only over TLS connections.",
+								Description:         "Authentication type. Currently the supported types are 'tls', 'scram-sha-256', 'scram-sha-512', 'plain', and 'oauth'. 'scram-sha-256' and 'scram-sha-512' types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. 'plain' type uses SASL PLAIN Authentication. 'oauth' type uses SASL OAUTHBEARER Authentication. The 'tls' type uses TLS Client Authentication. The 'tls' type is supported only over TLS connections.",
+								MarkdownDescription: "Authentication type. Currently the supported types are 'tls', 'scram-sha-256', 'scram-sha-512', 'plain', and 'oauth'. 'scram-sha-256' and 'scram-sha-512' types use SASL SCRAM-SHA-256 and SASL SCRAM-SHA-512 Authentication, respectively. 'plain' type uses SASL PLAIN Authentication. 'oauth' type uses SASL OAUTHBEARER Authentication. The 'tls' type uses TLS Client Authentication. The 'tls' type is supported only over TLS connections.",
 
 								Type: types.StringType,
 
@@ -4833,6 +4858,17 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Computed: false,
 											},
 
+											"match_label_keys": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"max_skew": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -4849,6 +4885,28 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												MarkdownDescription: "",
 
 												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"node_affinity_policy": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"node_taints_policy": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
@@ -7293,6 +7351,17 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												Computed: false,
 											},
 
+											"match_label_keys": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"max_skew": {
 												Description:         "",
 												MarkdownDescription: "",
@@ -7309,6 +7378,28 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 												MarkdownDescription: "",
 
 												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"node_affinity_policy": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"node_taints_policy": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
 
 												Required: false,
 												Optional: true,
@@ -7516,8 +7607,8 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 							"type": {
-								Description:         "Type of the tracing used. Currently the only supported type is 'jaeger' for Jaeger tracing. The Jaeger tracing is deprecated.",
-								MarkdownDescription: "Type of the tracing used. Currently the only supported type is 'jaeger' for Jaeger tracing. The Jaeger tracing is deprecated.",
+								Description:         "Type of the tracing used. Currently the only supported types are 'jaeger' for OpenTracing (Jaeger) tracing and 'opentelemetry' for OpenTelemetry tracing. The OpenTracing (Jaeger) tracing is deprecated.",
+								MarkdownDescription: "Type of the tracing used. Currently the only supported types are 'jaeger' for OpenTracing (Jaeger) tracing and 'opentelemetry' for OpenTelemetry tracing. The OpenTracing (Jaeger) tracing is deprecated.",
 
 								Type: types.StringType,
 
@@ -7527,7 +7618,7 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Resource) GetSchema(_ context.Context)
 
 								Validators: []tfsdk.AttributeValidator{
 
-									stringvalidator.OneOf("jaeger"),
+									stringvalidator.OneOf("jaeger", "opentelemetry"),
 								},
 							},
 						}),

@@ -62,7 +62,7 @@ Required:
 Optional:
 
 - `backup_count` (Number) Count of synchronous backups. It cannot be updated after map config is created successfully.
-- `entry_listeners` (Attributes List) EntryListeners contains the configuration for the map-level or entry-based events listeners provided by the Hazelcast’s eventing framework. You can learn more at https://docs.hazelcast.com/imdg/latest/events/object-events. (see [below for nested schema](#nestedatt--spec--entry_listeners))
+- `entry_listeners` (Attributes List) EntryListeners contains the configuration for the map-level or entry-based events listeners provided by the Hazelcast’s eventing framework. You can learn more at https://docs.hazelcast.com/hazelcast/latest/events/object-events. (see [below for nested schema](#nestedatt--spec--entry_listeners))
 - `eviction` (Attributes) Configuration for removing data from the map when it reaches its max size. It can be updated. (see [below for nested schema](#nestedatt--spec--eviction))
 - `in_memory_format` (String) InMemoryFormat specifies in which format data will be stored in your map
 - `indexes` (Attributes List) Indexes to be created for the map data. You can learn more at https://docs.hazelcast.com/hazelcast/latest/query/indexing-maps. It cannot be updated after map config is created successfully. (see [below for nested schema](#nestedatt--spec--indexes))

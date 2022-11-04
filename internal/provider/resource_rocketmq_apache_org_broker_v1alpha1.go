@@ -232,6 +232,8 @@ type RocketmqApacheOrgBrokerV1Alpha1GoModel struct {
 
 		BrokerImage *string `tfsdk:"broker_image" yaml:"brokerImage,omitempty"`
 
+		ClusterMode *string `tfsdk:"cluster_mode" yaml:"clusterMode,omitempty"`
+
 		ContainerSecurityContext *struct {
 			AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" yaml:"allowPrivilegeEscalation,omitempty"`
 
@@ -2087,6 +2089,17 @@ func (r *RocketmqApacheOrgBrokerV1Alpha1Resource) GetSchema(_ context.Context) (
 						Computed: false,
 					},
 
+					"cluster_mode": {
+						Description:         "ClusterMode defines the way to be a broker cluster, valid values can be one of the following: STATIC(default), CONTROLLER, CONTAINER",
+						MarkdownDescription: "ClusterMode defines the way to be a broker cluster, valid values can be one of the following: STATIC(default), CONTROLLER, CONTAINER",
+
+						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"container_security_context": {
 						Description:         "Container Security Context",
 						MarkdownDescription: "Container Security Context",
@@ -2986,8 +2999,8 @@ func (r *RocketmqApacheOrgBrokerV1Alpha1Resource) GetSchema(_ context.Context) (
 					},
 
 					"size": {
-						Description:         "INSERT ADDITIONAL SPEC FIELDS - desired state of cluster Important: Run 'operator-sdk generate k8s' to regenerate code after modifying this file Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html",
-						MarkdownDescription: "INSERT ADDITIONAL SPEC FIELDS - desired state of cluster Important: Run 'operator-sdk generate k8s' to regenerate code after modifying this file Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html",
+						Description:         "INSERT ADDITIONAL SPEC FIELDS - desired state of cluster Important: Run 'operator-sdk generate k8s' to regenerate code after modifying this file Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html Size of broker clusters",
+						MarkdownDescription: "INSERT ADDITIONAL SPEC FIELDS - desired state of cluster Important: Run 'operator-sdk generate k8s' to regenerate code after modifying this file Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html Size of broker clusters",
 
 						Type: types.Int64Type,
 

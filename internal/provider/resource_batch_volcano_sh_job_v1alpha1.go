@@ -1053,6 +1053,8 @@ type BatchVolcanoShJobV1Alpha1GoModel struct {
 
 					HostPID *bool `tfsdk:"host_pid" yaml:"hostPID,omitempty"`
 
+					HostUsers *bool `tfsdk:"host_users" yaml:"hostUsers,omitempty"`
+
 					Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
 					ImagePullSecrets *[]struct {
@@ -1528,7 +1530,15 @@ type BatchVolcanoShJobV1Alpha1GoModel struct {
 							MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" yaml:"labelSelector,omitempty"`
 
+						MatchLabelKeys *[]string `tfsdk:"match_label_keys" yaml:"matchLabelKeys,omitempty"`
+
 						MaxSkew *int64 `tfsdk:"max_skew" yaml:"maxSkew,omitempty"`
+
+						MinDomains *int64 `tfsdk:"min_domains" yaml:"minDomains,omitempty"`
+
+						NodeAffinityPolicy *string `tfsdk:"node_affinity_policy" yaml:"nodeAffinityPolicy,omitempty"`
+
+						NodeTaintsPolicy *string `tfsdk:"node_taints_policy" yaml:"nodeTaintsPolicy,omitempty"`
 
 						TopologyKey *string `tfsdk:"topology_key" yaml:"topologyKey,omitempty"`
 
@@ -2897,8 +2907,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																			},
 
 																			"namespace_selector": {
-																				Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																				MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																				Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																				MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 
 																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -2965,8 +2975,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																			},
 
 																			"namespaces": {
-																				Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																				MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																				Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																				MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 
 																				Type: types.ListType{ElemType: types.StringType},
 
@@ -3084,8 +3094,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																	},
 
 																	"namespace_selector": {
-																		Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																		MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																		Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																		MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -3152,8 +3162,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																	},
 
 																	"namespaces": {
-																		Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																		MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																		Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																		MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 
 																		Type: types.ListType{ElemType: types.StringType},
 
@@ -3272,8 +3282,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																			},
 
 																			"namespace_selector": {
-																				Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																				MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																				Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																				MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 
 																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -3340,8 +3350,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																			},
 
 																			"namespaces": {
-																				Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																				MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																				Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																				MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 
 																				Type: types.ListType{ElemType: types.StringType},
 
@@ -3459,8 +3469,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																	},
 
 																	"namespace_selector": {
-																		Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																		MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																		Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																		MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -3527,8 +3537,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																	},
 
 																	"namespaces": {
-																		Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																		MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																		Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																		MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 
 																		Type: types.ListType{ElemType: types.StringType},
 
@@ -3584,8 +3594,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 													"args": {
-														Description:         "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-														MarkdownDescription: "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+														Description:         "Arguments to the entrypoint. The container image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+														MarkdownDescription: "Arguments to the entrypoint. The container image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
 
 														Type: types.ListType{ElemType: types.StringType},
 
@@ -3595,8 +3605,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"command": {
-														Description:         "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-														MarkdownDescription: "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+														Description:         "Entrypoint array. Not executed within a shell. The container image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+														MarkdownDescription: "Entrypoint array. Not executed within a shell. The container image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
 
 														Type: types.ListType{ElemType: types.StringType},
 
@@ -3912,8 +3922,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"image": {
-														Description:         "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
-														MarkdownDescription: "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+														Description:         "Container image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+														MarkdownDescription: "Container image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
 
 														Type: types.StringType,
 
@@ -4304,8 +4314,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"grpc": {
-																Description:         "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
-																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
+																Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -4534,8 +4544,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"ports": {
-														Description:         "List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Cannot be updated.",
-														MarkdownDescription: "List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Cannot be updated.",
+														Description:         "List of ports to expose from the container. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Modifying this array with strategic merge patch may corrupt the data. For more information See https://github.com/kubernetes/kubernetes/issues/108255. Cannot be updated.",
+														MarkdownDescription: "List of ports to expose from the container. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Modifying this array with strategic merge patch may corrupt the data. For more information See https://github.com/kubernetes/kubernetes/issues/108255. Cannot be updated.",
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -4641,8 +4651,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"grpc": {
-																Description:         "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
-																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
+																Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -5203,8 +5213,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"grpc": {
-																Description:         "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
-																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
+																Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -5696,14 +5706,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 											},
 
 											"ephemeral_containers": {
-												Description:         "List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod's ephemeralcontainers subresource. This field is beta-level and available on clusters that haven't disabled the EphemeralContainers feature gate.",
-												MarkdownDescription: "List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod's ephemeralcontainers subresource. This field is beta-level and available on clusters that haven't disabled the EphemeralContainers feature gate.",
+												Description:         "List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod's ephemeralcontainers subresource.",
+												MarkdownDescription: "List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod's ephemeralcontainers subresource.",
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 													"args": {
-														Description:         "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-														MarkdownDescription: "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+														Description:         "Arguments to the entrypoint. The image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+														MarkdownDescription: "Arguments to the entrypoint. The image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
 
 														Type: types.ListType{ElemType: types.StringType},
 
@@ -5713,8 +5723,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"command": {
-														Description:         "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-														MarkdownDescription: "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+														Description:         "Entrypoint array. Not executed within a shell. The image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+														MarkdownDescription: "Entrypoint array. Not executed within a shell. The image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
 
 														Type: types.ListType{ElemType: types.StringType},
 
@@ -6030,8 +6040,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"image": {
-														Description:         "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images",
-														MarkdownDescription: "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images",
+														Description:         "Container image name. More info: https://kubernetes.io/docs/concepts/containers/images",
+														MarkdownDescription: "Container image name. More info: https://kubernetes.io/docs/concepts/containers/images",
 
 														Type: types.StringType,
 
@@ -6422,8 +6432,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"grpc": {
-																Description:         "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
-																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
+																Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -6759,8 +6769,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"grpc": {
-																Description:         "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
-																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
+																Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -7321,8 +7331,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"grpc": {
-																Description:         "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
-																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
+																Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -7801,6 +7811,17 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 												Computed: false,
 											},
 
+											"host_users": {
+												Description:         "Use the host's user namespace. Optional: Default to true. If set to true or not present, the pod will be run in the host user namespace, useful for when the pod needs a feature only available to the host user namespace, such as loading a kernel module with CAP_SYS_MODULE. When set to false, a new userns is created for the pod. Setting false is useful for mitigating container breakout vulnerabilities even allowing users to run their containers as root without actually having root privileges on the host. This field is alpha-level and is only honored by servers that enable the UserNamespacesSupport feature.",
+												MarkdownDescription: "Use the host's user namespace. Optional: Default to true. If set to true or not present, the pod will be run in the host user namespace, useful for when the pod needs a feature only available to the host user namespace, such as loading a kernel module with CAP_SYS_MODULE. When set to false, a new userns is created for the pod. Setting false is useful for mitigating container breakout vulnerabilities even allowing users to run their containers as root without actually having root privileges on the host. This field is alpha-level and is only honored by servers that enable the UserNamespacesSupport feature.",
+
+												Type: types.BoolType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"hostname": {
 												Description:         "Specifies the hostname of the Pod If not specified, the pod's hostname will be set to a system-defined value.",
 												MarkdownDescription: "Specifies the hostname of the Pod If not specified, the pod's hostname will be set to a system-defined value.",
@@ -7813,8 +7834,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 											},
 
 											"image_pull_secrets": {
-												Description:         "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. For example, in the case of docker, only DockerConfig type secrets are honored. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
-												MarkdownDescription: "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. For example, in the case of docker, only DockerConfig type secrets are honored. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
+												Description:         "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
+												MarkdownDescription: "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
 
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -7842,8 +7863,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 													"args": {
-														Description:         "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-														MarkdownDescription: "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+														Description:         "Arguments to the entrypoint. The container image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+														MarkdownDescription: "Arguments to the entrypoint. The container image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
 
 														Type: types.ListType{ElemType: types.StringType},
 
@@ -7853,8 +7874,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"command": {
-														Description:         "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
-														MarkdownDescription: "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+														Description:         "Entrypoint array. Not executed within a shell. The container image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+														MarkdownDescription: "Entrypoint array. Not executed within a shell. The container image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
 
 														Type: types.ListType{ElemType: types.StringType},
 
@@ -8170,8 +8191,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"image": {
-														Description:         "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
-														MarkdownDescription: "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+														Description:         "Container image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+														MarkdownDescription: "Container image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
 
 														Type: types.StringType,
 
@@ -8562,8 +8583,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"grpc": {
-																Description:         "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
-																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
+																Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -8792,8 +8813,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"ports": {
-														Description:         "List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Cannot be updated.",
-														MarkdownDescription: "List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Cannot be updated.",
+														Description:         "List of ports to expose from the container. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Modifying this array with strategic merge patch may corrupt the data. For more information See https://github.com/kubernetes/kubernetes/issues/108255. Cannot be updated.",
+														MarkdownDescription: "List of ports to expose from the container. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Modifying this array with strategic merge patch may corrupt the data. For more information See https://github.com/kubernetes/kubernetes/issues/108255. Cannot be updated.",
 
 														Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -8899,8 +8920,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"grpc": {
-																Description:         "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
-																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
+																Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -9461,8 +9482,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"grpc": {
-																Description:         "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
-																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate.",
+																Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -9886,8 +9907,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 											},
 
 											"os": {
-												Description:         "Specifies the OS of the containers in the pod. Some pod and container fields are restricted if this is set.  If the OS field is set to linux, the following fields must be unset: -securityContext.windowsOptions  If the OS field is set to windows, following fields must be unset: - spec.hostPID - spec.hostIPC - spec.securityContext.seLinuxOptions - spec.securityContext.seccompProfile - spec.securityContext.fsGroup - spec.securityContext.fsGroupChangePolicy - spec.securityContext.sysctls - spec.shareProcessNamespace - spec.securityContext.runAsUser - spec.securityContext.runAsGroup - spec.securityContext.supplementalGroups - spec.containers[*].securityContext.seLinuxOptions - spec.containers[*].securityContext.seccompProfile - spec.containers[*].securityContext.capabilities - spec.containers[*].securityContext.readOnlyRootFilesystem - spec.containers[*].securityContext.privileged - spec.containers[*].securityContext.allowPrivilegeEscalation - spec.containers[*].securityContext.procMount - spec.containers[*].securityContext.runAsUser - spec.containers[*].securityContext.runAsGroup This is an alpha field and requires the IdentifyPodOS feature",
-												MarkdownDescription: "Specifies the OS of the containers in the pod. Some pod and container fields are restricted if this is set.  If the OS field is set to linux, the following fields must be unset: -securityContext.windowsOptions  If the OS field is set to windows, following fields must be unset: - spec.hostPID - spec.hostIPC - spec.securityContext.seLinuxOptions - spec.securityContext.seccompProfile - spec.securityContext.fsGroup - spec.securityContext.fsGroupChangePolicy - spec.securityContext.sysctls - spec.shareProcessNamespace - spec.securityContext.runAsUser - spec.securityContext.runAsGroup - spec.securityContext.supplementalGroups - spec.containers[*].securityContext.seLinuxOptions - spec.containers[*].securityContext.seccompProfile - spec.containers[*].securityContext.capabilities - spec.containers[*].securityContext.readOnlyRootFilesystem - spec.containers[*].securityContext.privileged - spec.containers[*].securityContext.allowPrivilegeEscalation - spec.containers[*].securityContext.procMount - spec.containers[*].securityContext.runAsUser - spec.containers[*].securityContext.runAsGroup This is an alpha field and requires the IdentifyPodOS feature",
+												Description:         "Specifies the OS of the containers in the pod. Some pod and container fields are restricted if this is set.  If the OS field is set to linux, the following fields must be unset: -securityContext.windowsOptions  If the OS field is set to windows, following fields must be unset: - spec.hostPID - spec.hostIPC - spec.hostUsers - spec.securityContext.seLinuxOptions - spec.securityContext.seccompProfile - spec.securityContext.fsGroup - spec.securityContext.fsGroupChangePolicy - spec.securityContext.sysctls - spec.shareProcessNamespace - spec.securityContext.runAsUser - spec.securityContext.runAsGroup - spec.securityContext.supplementalGroups - spec.containers[*].securityContext.seLinuxOptions - spec.containers[*].securityContext.seccompProfile - spec.containers[*].securityContext.capabilities - spec.containers[*].securityContext.readOnlyRootFilesystem - spec.containers[*].securityContext.privileged - spec.containers[*].securityContext.allowPrivilegeEscalation - spec.containers[*].securityContext.procMount - spec.containers[*].securityContext.runAsUser - spec.containers[*].securityContext.runAsGroup",
+												MarkdownDescription: "Specifies the OS of the containers in the pod. Some pod and container fields are restricted if this is set.  If the OS field is set to linux, the following fields must be unset: -securityContext.windowsOptions  If the OS field is set to windows, following fields must be unset: - spec.hostPID - spec.hostIPC - spec.hostUsers - spec.securityContext.seLinuxOptions - spec.securityContext.seccompProfile - spec.securityContext.fsGroup - spec.securityContext.fsGroupChangePolicy - spec.securityContext.sysctls - spec.shareProcessNamespace - spec.securityContext.runAsUser - spec.securityContext.runAsGroup - spec.securityContext.supplementalGroups - spec.containers[*].securityContext.seLinuxOptions - spec.containers[*].securityContext.seccompProfile - spec.containers[*].securityContext.capabilities - spec.containers[*].securityContext.readOnlyRootFilesystem - spec.containers[*].securityContext.privileged - spec.containers[*].securityContext.allowPrivilegeEscalation - spec.containers[*].securityContext.procMount - spec.containers[*].securityContext.runAsUser - spec.containers[*].securityContext.runAsGroup",
 
 												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -9909,8 +9930,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 											},
 
 											"overhead": {
-												Description:         "Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md This field is beta-level as of Kubernetes v1.18, and is only honored by servers that enable the PodOverhead feature.",
-												MarkdownDescription: "Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md This field is beta-level as of Kubernetes v1.18, and is only honored by servers that enable the PodOverhead feature.",
+												Description:         "Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md",
+												MarkdownDescription: "Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md",
 
 												Type: types.MapType{ElemType: types.StringType},
 
@@ -9920,8 +9941,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 											},
 
 											"preemption_policy": {
-												Description:         "PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is beta-level, gated by the NonPreemptingPriority feature-gate.",
-												MarkdownDescription: "PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is beta-level, gated by the NonPreemptingPriority feature-gate.",
+												Description:         "PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.",
+												MarkdownDescription: "PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.",
 
 												Type: types.StringType,
 
@@ -9987,8 +10008,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 											},
 
 											"runtime_class_name": {
-												Description:         "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class This is a beta feature as of Kubernetes v1.14.",
-												MarkdownDescription: "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class This is a beta feature as of Kubernetes v1.14.",
+												Description:         "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class",
+												MarkdownDescription: "RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class",
 
 												Type: types.StringType,
 
@@ -10473,9 +10494,20 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 														Computed: false,
 													},
 
+													"match_label_keys": {
+														Description:         "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.",
+														MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.",
+
+														Type: types.ListType{ElemType: types.StringType},
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"max_skew": {
-														Description:         "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
-														MarkdownDescription: "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
+														Description:         "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
+														MarkdownDescription: "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
 
 														Type: types.Int64Type,
 
@@ -10484,9 +10516,42 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 														Computed: false,
 													},
 
+													"min_domains": {
+														Description:         "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
+														MarkdownDescription: "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
+
+														Type: types.Int64Type,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_affinity_policy": {
+														Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+														MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"node_taints_policy": {
+														Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+														MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"topology_key": {
-														Description:         "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. It's a required field.",
-														MarkdownDescription: "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. It's a required field.",
+														Description:         "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.",
+														MarkdownDescription: "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.",
 
 														Type: types.StringType,
 
@@ -10519,14 +10584,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 													"aws_elastic_block_store": {
-														Description:         "AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-														MarkdownDescription: "AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+														Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+														MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"fs_type": {
-																Description:         "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
-																MarkdownDescription: "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
+																Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
+																MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
 
 																Type: types.StringType,
 
@@ -10536,8 +10601,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"partition": {
-																Description:         "The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).",
-																MarkdownDescription: "The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).",
+																Description:         "partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).",
+																MarkdownDescription: "partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).",
 
 																Type: types.Int64Type,
 
@@ -10547,8 +10612,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "Specify 'true' to force and set the ReadOnly property in VolumeMounts to 'true'. If omitted, the default is 'false'. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-																MarkdownDescription: "Specify 'true' to force and set the ReadOnly property in VolumeMounts to 'true'. If omitted, the default is 'false'. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+																Description:         "readOnly value true will force the readOnly setting in VolumeMounts. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+																MarkdownDescription: "readOnly value true will force the readOnly setting in VolumeMounts. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 
 																Type: types.BoolType,
 
@@ -10558,8 +10623,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"volume_id": {
-																Description:         "Unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-																MarkdownDescription: "Unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+																Description:         "volumeID is unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+																MarkdownDescription: "volumeID is unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 
 																Type: types.StringType,
 
@@ -10575,14 +10640,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"azure_disk": {
-														Description:         "AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
-														MarkdownDescription: "AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+														Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+														MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"caching_mode": {
-																Description:         "Host Caching mode: None, Read Only, Read Write.",
-																MarkdownDescription: "Host Caching mode: None, Read Only, Read Write.",
+																Description:         "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
+																MarkdownDescription: "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
 
 																Type: types.StringType,
 
@@ -10592,8 +10657,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"disk_name": {
-																Description:         "The Name of the data disk in the blob storage",
-																MarkdownDescription: "The Name of the data disk in the blob storage",
+																Description:         "diskName is the Name of the data disk in the blob storage",
+																MarkdownDescription: "diskName is the Name of the data disk in the blob storage",
 
 																Type: types.StringType,
 
@@ -10603,8 +10668,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"disk_uri": {
-																Description:         "The URI the data disk in the blob storage",
-																MarkdownDescription: "The URI the data disk in the blob storage",
+																Description:         "diskURI is the URI of data disk in the blob storage",
+																MarkdownDescription: "diskURI is the URI of data disk in the blob storage",
 
 																Type: types.StringType,
 
@@ -10614,8 +10679,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"fs_type": {
-																Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
-																MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																Description:         "fsType is Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																MarkdownDescription: "fsType is Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
 
 																Type: types.StringType,
 
@@ -10625,8 +10690,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"kind": {
-																Description:         "Expected values Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared",
-																MarkdownDescription: "Expected values Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared",
+																Description:         "kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared",
+																MarkdownDescription: "kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared",
 
 																Type: types.StringType,
 
@@ -10636,8 +10701,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-																MarkdownDescription: "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																Description:         "readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																MarkdownDescription: "readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
 
 																Type: types.BoolType,
 
@@ -10653,14 +10718,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"azure_file": {
-														Description:         "AzureFile represents an Azure File Service mount on the host and bind mount to the pod.",
-														MarkdownDescription: "AzureFile represents an Azure File Service mount on the host and bind mount to the pod.",
+														Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
+														MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"read_only": {
-																Description:         "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-																MarkdownDescription: "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																MarkdownDescription: "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
 
 																Type: types.BoolType,
 
@@ -10670,8 +10735,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"secret_name": {
-																Description:         "the name of secret that contains Azure Storage Account Name and Key",
-																MarkdownDescription: "the name of secret that contains Azure Storage Account Name and Key",
+																Description:         "secretName is the  name of secret that contains Azure Storage Account Name and Key",
+																MarkdownDescription: "secretName is the  name of secret that contains Azure Storage Account Name and Key",
 
 																Type: types.StringType,
 
@@ -10681,8 +10746,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"share_name": {
-																Description:         "Share Name",
-																MarkdownDescription: "Share Name",
+																Description:         "shareName is the azure share Name",
+																MarkdownDescription: "shareName is the azure share Name",
 
 																Type: types.StringType,
 
@@ -10698,14 +10763,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"cephfs": {
-														Description:         "CephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
-														MarkdownDescription: "CephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+														Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+														MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"monitors": {
-																Description:         "Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-																MarkdownDescription: "Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																Description:         "monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																MarkdownDescription: "monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 
 																Type: types.ListType{ElemType: types.StringType},
 
@@ -10715,8 +10780,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"path": {
-																Description:         "Optional: Used as the mounted root, rather than the full Ceph tree, default is /",
-																MarkdownDescription: "Optional: Used as the mounted root, rather than the full Ceph tree, default is /",
+																Description:         "path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /",
+																MarkdownDescription: "path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /",
 
 																Type: types.StringType,
 
@@ -10726,8 +10791,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-																MarkdownDescription: "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																Description:         "readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																MarkdownDescription: "readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 
 																Type: types.BoolType,
 
@@ -10737,8 +10802,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"secret_file": {
-																Description:         "Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-																MarkdownDescription: "Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																Description:         "secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																MarkdownDescription: "secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 
 																Type: types.StringType,
 
@@ -10748,8 +10813,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"secret_ref": {
-																Description:         "Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-																MarkdownDescription: "Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																Description:         "secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																MarkdownDescription: "secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -10771,8 +10836,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"user": {
-																Description:         "Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-																MarkdownDescription: "Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																Description:         "user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+																MarkdownDescription: "user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 
 																Type: types.StringType,
 
@@ -10788,14 +10853,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"cinder": {
-														Description:         "Cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-														MarkdownDescription: "Cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+														Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+														MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"fs_type": {
-																Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-																MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+																Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+																MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 
 																Type: types.StringType,
 
@@ -10805,8 +10870,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-																MarkdownDescription: "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+																Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+																MarkdownDescription: "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 
 																Type: types.BoolType,
 
@@ -10816,8 +10881,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"secret_ref": {
-																Description:         "Optional: points to a secret object containing parameters used to connect to OpenStack.",
-																MarkdownDescription: "Optional: points to a secret object containing parameters used to connect to OpenStack.",
+																Description:         "secretRef is optional: points to a secret object containing parameters used to connect to OpenStack.",
+																MarkdownDescription: "secretRef is optional: points to a secret object containing parameters used to connect to OpenStack.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -10839,8 +10904,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"volume_id": {
-																Description:         "volume id used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-																MarkdownDescription: "volume id used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+																Description:         "volumeID used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+																MarkdownDescription: "volumeID used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 
 																Type: types.StringType,
 
@@ -10856,14 +10921,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"config_map": {
-														Description:         "ConfigMap represents a configMap that should populate this volume",
-														MarkdownDescription: "ConfigMap represents a configMap that should populate this volume",
+														Description:         "configMap represents a configMap that should populate this volume",
+														MarkdownDescription: "configMap represents a configMap that should populate this volume",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"default_mode": {
-																Description:         "Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																MarkdownDescription: "Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																Description:         "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																MarkdownDescription: "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
 
 																Type: types.Int64Type,
 
@@ -10873,14 +10938,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"items": {
-																Description:         "If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																MarkdownDescription: "If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																Description:         "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
 
 																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 																	"key": {
-																		Description:         "The key to project.",
-																		MarkdownDescription: "The key to project.",
+																		Description:         "key is the key to project.",
+																		MarkdownDescription: "key is the key to project.",
 
 																		Type: types.StringType,
 
@@ -10890,8 +10955,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																	},
 
 																	"mode": {
-																		Description:         "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																		MarkdownDescription: "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																		Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																		MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
 
 																		Type: types.Int64Type,
 
@@ -10901,8 +10966,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																	},
 
 																	"path": {
-																		Description:         "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																		MarkdownDescription: "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																		Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																		MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
 
 																		Type: types.StringType,
 
@@ -10929,8 +10994,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"optional": {
-																Description:         "Specify whether the ConfigMap or its keys must be defined",
-																MarkdownDescription: "Specify whether the ConfigMap or its keys must be defined",
+																Description:         "optional specify whether the ConfigMap or its keys must be defined",
+																MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
 
 																Type: types.BoolType,
 
@@ -10946,14 +11011,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"csi": {
-														Description:         "CSI (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
-														MarkdownDescription: "CSI (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
+														Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
+														MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"driver": {
-																Description:         "Driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
-																MarkdownDescription: "Driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
+																Description:         "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
+																MarkdownDescription: "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
 
 																Type: types.StringType,
 
@@ -10963,8 +11028,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"fs_type": {
-																Description:         "Filesystem type to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.",
-																MarkdownDescription: "Filesystem type to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.",
+																Description:         "fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.",
+																MarkdownDescription: "fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.",
 
 																Type: types.StringType,
 
@@ -10974,8 +11039,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"node_publish_secret_ref": {
-																Description:         "NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
-																MarkdownDescription: "NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
+																Description:         "nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
+																MarkdownDescription: "nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -10997,8 +11062,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "Specifies a read-only configuration for the volume. Defaults to false (read/write).",
-																MarkdownDescription: "Specifies a read-only configuration for the volume. Defaults to false (read/write).",
+																Description:         "readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).",
+																MarkdownDescription: "readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).",
 
 																Type: types.BoolType,
 
@@ -11008,8 +11073,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"volume_attributes": {
-																Description:         "VolumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.",
-																MarkdownDescription: "VolumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.",
+																Description:         "volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.",
+																MarkdownDescription: "volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.",
 
 																Type: types.MapType{ElemType: types.StringType},
 
@@ -11025,8 +11090,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"downward_api": {
-														Description:         "DownwardAPI represents downward API about the pod that should populate this volume",
-														MarkdownDescription: "DownwardAPI represents downward API about the pod that should populate this volume",
+														Description:         "downwardAPI represents downward API about the pod that should populate this volume",
+														MarkdownDescription: "downwardAPI represents downward API about the pod that should populate this volume",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -11161,14 +11226,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"empty_dir": {
-														Description:         "EmptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-														MarkdownDescription: "EmptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+														Description:         "emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+														MarkdownDescription: "emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"medium": {
-																Description:         "What type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-																MarkdownDescription: "What type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																Description:         "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																MarkdownDescription: "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
 
 																Type: types.StringType,
 
@@ -11178,8 +11243,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"size_limit": {
-																Description:         "Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
-																MarkdownDescription: "Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
+																Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
+																MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
 
 																Type: utilities.IntOrStringType{},
 
@@ -11195,8 +11260,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"ephemeral": {
-														Description:         "Ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity    tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through    a PersistentVolumeClaim (see EphemeralVolumeSource for more    information on the connection between this volume type    and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time.",
-														MarkdownDescription: "Ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity    tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through    a PersistentVolumeClaim (see EphemeralVolumeSource for more    information on the connection between this volume type    and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time.",
+														Description:         "ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity    tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through    a PersistentVolumeClaim (see EphemeralVolumeSource for more    information on the connection between this volume type    and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time.",
+														MarkdownDescription: "ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity    tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through    a PersistentVolumeClaim (see EphemeralVolumeSource for more    information on the connection between this volume type    and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -11280,8 +11345,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 																			"access_modes": {
-																				Description:         "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-																				MarkdownDescription: "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+																				Description:         "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+																				MarkdownDescription: "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
 
 																				Type: types.ListType{ElemType: types.StringType},
 
@@ -11291,8 +11356,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																			},
 
 																			"data_source": {
-																				Description:         "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
-																				MarkdownDescription: "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
+																				Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
+																				MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
 
 																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -11336,8 +11401,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																			},
 
 																			"data_source_ref": {
-																				Description:         "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Alpha) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
-																				MarkdownDescription: "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Alpha) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
+																				Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
+																				MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
 
 																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -11381,8 +11446,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																			},
 
 																			"resources": {
-																				Description:         "Resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
-																				MarkdownDescription: "Resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+																				Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+																				MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 
 																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -11415,8 +11480,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																			},
 
 																			"selector": {
-																				Description:         "A label query over volumes to consider for binding.",
-																				MarkdownDescription: "A label query over volumes to consider for binding.",
+																				Description:         "selector is a label query over volumes to consider for binding.",
+																				MarkdownDescription: "selector is a label query over volumes to consider for binding.",
 
 																				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -11483,8 +11548,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																			},
 
 																			"storage_class_name": {
-																				Description:         "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-																				MarkdownDescription: "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+																				Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+																				MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
 
 																				Type: types.StringType,
 
@@ -11505,8 +11570,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																			},
 
 																			"volume_name": {
-																				Description:         "VolumeName is the binding reference to the PersistentVolume backing this claim.",
-																				MarkdownDescription: "VolumeName is the binding reference to the PersistentVolume backing this claim.",
+																				Description:         "volumeName is the binding reference to the PersistentVolume backing this claim.",
+																				MarkdownDescription: "volumeName is the binding reference to the PersistentVolume backing this claim.",
 
 																				Type: types.StringType,
 
@@ -11534,14 +11599,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"fc": {
-														Description:         "FC represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
-														MarkdownDescription: "FC represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
+														Description:         "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
+														MarkdownDescription: "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"fs_type": {
-																Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
-																MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
+																Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
+																MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
 
 																Type: types.StringType,
 
@@ -11551,8 +11616,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"lun": {
-																Description:         "Optional: FC target lun number",
-																MarkdownDescription: "Optional: FC target lun number",
+																Description:         "lun is Optional: FC target lun number",
+																MarkdownDescription: "lun is Optional: FC target lun number",
 
 																Type: types.Int64Type,
 
@@ -11562,8 +11627,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-																MarkdownDescription: "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																Description:         "readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																MarkdownDescription: "readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
 
 																Type: types.BoolType,
 
@@ -11573,8 +11638,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"target_ww_ns": {
-																Description:         "Optional: FC target worldwide names (WWNs)",
-																MarkdownDescription: "Optional: FC target worldwide names (WWNs)",
+																Description:         "targetWWNs is Optional: FC target worldwide names (WWNs)",
+																MarkdownDescription: "targetWWNs is Optional: FC target worldwide names (WWNs)",
 
 																Type: types.ListType{ElemType: types.StringType},
 
@@ -11584,8 +11649,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"wwids": {
-																Description:         "Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.",
-																MarkdownDescription: "Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.",
+																Description:         "wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.",
+																MarkdownDescription: "wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.",
 
 																Type: types.ListType{ElemType: types.StringType},
 
@@ -11601,14 +11666,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"flex_volume": {
-														Description:         "FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
-														MarkdownDescription: "FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
+														Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
+														MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"driver": {
-																Description:         "Driver is the name of the driver to use for this volume.",
-																MarkdownDescription: "Driver is the name of the driver to use for this volume.",
+																Description:         "driver is the name of the driver to use for this volume.",
+																MarkdownDescription: "driver is the name of the driver to use for this volume.",
 
 																Type: types.StringType,
 
@@ -11618,8 +11683,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"fs_type": {
-																Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.",
-																MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.",
+																Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.",
+																MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.",
 
 																Type: types.StringType,
 
@@ -11629,8 +11694,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"options": {
-																Description:         "Optional: Extra command options if any.",
-																MarkdownDescription: "Optional: Extra command options if any.",
+																Description:         "options is Optional: this field holds extra command options if any.",
+																MarkdownDescription: "options is Optional: this field holds extra command options if any.",
 
 																Type: types.MapType{ElemType: types.StringType},
 
@@ -11640,8 +11705,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-																MarkdownDescription: "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																Description:         "readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																MarkdownDescription: "readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
 
 																Type: types.BoolType,
 
@@ -11651,8 +11716,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"secret_ref": {
-																Description:         "Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.",
-																MarkdownDescription: "Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.",
+																Description:         "secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.",
+																MarkdownDescription: "secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -11680,14 +11745,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"flocker": {
-														Description:         "Flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
-														MarkdownDescription: "Flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+														Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+														MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"dataset_name": {
-																Description:         "Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
-																MarkdownDescription: "Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
+																Description:         "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
+																MarkdownDescription: "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
 
 																Type: types.StringType,
 
@@ -11697,8 +11762,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"dataset_uuid": {
-																Description:         "UUID of the dataset. This is unique identifier of a Flocker dataset",
-																MarkdownDescription: "UUID of the dataset. This is unique identifier of a Flocker dataset",
+																Description:         "datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset",
+																MarkdownDescription: "datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset",
 
 																Type: types.StringType,
 
@@ -11714,14 +11779,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"gce_persistent_disk": {
-														Description:         "GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-														MarkdownDescription: "GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+														Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+														MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"fs_type": {
-																Description:         "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
-																MarkdownDescription: "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
+																Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
+																MarkdownDescription: "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
 
 																Type: types.StringType,
 
@@ -11731,8 +11796,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"partition": {
-																Description:         "The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-																MarkdownDescription: "The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																Description:         "partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																MarkdownDescription: "partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'. Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 
 																Type: types.Int64Type,
 
@@ -11742,8 +11807,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"pd_name": {
-																Description:         "Unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-																MarkdownDescription: "Unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																Description:         "pdName is unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																MarkdownDescription: "pdName is unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 
 																Type: types.StringType,
 
@@ -11753,8 +11818,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-																MarkdownDescription: "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																Description:         "readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+																MarkdownDescription: "readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 
 																Type: types.BoolType,
 
@@ -11770,14 +11835,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"git_repo": {
-														Description:         "GitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
-														MarkdownDescription: "GitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+														Description:         "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+														MarkdownDescription: "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"directory": {
-																Description:         "Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
-																MarkdownDescription: "Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
+																Description:         "directory is the target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
+																MarkdownDescription: "directory is the target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
 
 																Type: types.StringType,
 
@@ -11787,8 +11852,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"repository": {
-																Description:         "Repository URL",
-																MarkdownDescription: "Repository URL",
+																Description:         "repository is the URL",
+																MarkdownDescription: "repository is the URL",
 
 																Type: types.StringType,
 
@@ -11798,8 +11863,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"revision": {
-																Description:         "Commit hash for the specified revision.",
-																MarkdownDescription: "Commit hash for the specified revision.",
+																Description:         "revision is the commit hash for the specified revision.",
+																MarkdownDescription: "revision is the commit hash for the specified revision.",
 
 																Type: types.StringType,
 
@@ -11815,14 +11880,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"glusterfs": {
-														Description:         "Glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
-														MarkdownDescription: "Glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+														Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+														MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"endpoints": {
-																Description:         "EndpointsName is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
-																MarkdownDescription: "EndpointsName is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+																Description:         "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+																MarkdownDescription: "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
 
 																Type: types.StringType,
 
@@ -11832,8 +11897,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"path": {
-																Description:         "Path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
-																MarkdownDescription: "Path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+																Description:         "path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+																MarkdownDescription: "path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
 
 																Type: types.StringType,
 
@@ -11843,8 +11908,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "ReadOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
-																MarkdownDescription: "ReadOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+																Description:         "readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+																MarkdownDescription: "readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
 
 																Type: types.BoolType,
 
@@ -11860,14 +11925,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"host_path": {
-														Description:         "HostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write.",
-														MarkdownDescription: "HostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write.",
+														Description:         "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write.",
+														MarkdownDescription: "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"path": {
-																Description:         "Path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
-																MarkdownDescription: "Path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+																Description:         "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+																MarkdownDescription: "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
 
 																Type: types.StringType,
 
@@ -11877,8 +11942,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"type": {
-																Description:         "Type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
-																MarkdownDescription: "Type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+																Description:         "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+																MarkdownDescription: "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
 
 																Type: types.StringType,
 
@@ -11894,14 +11959,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"iscsi": {
-														Description:         "ISCSI represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md",
-														MarkdownDescription: "ISCSI represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md",
+														Description:         "iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md",
+														MarkdownDescription: "iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"chap_auth_discovery": {
-																Description:         "whether support iSCSI Discovery CHAP authentication",
-																MarkdownDescription: "whether support iSCSI Discovery CHAP authentication",
+																Description:         "chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication",
+																MarkdownDescription: "chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication",
 
 																Type: types.BoolType,
 
@@ -11911,8 +11976,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"chap_auth_session": {
-																Description:         "whether support iSCSI Session CHAP authentication",
-																MarkdownDescription: "whether support iSCSI Session CHAP authentication",
+																Description:         "chapAuthSession defines whether support iSCSI Session CHAP authentication",
+																MarkdownDescription: "chapAuthSession defines whether support iSCSI Session CHAP authentication",
 
 																Type: types.BoolType,
 
@@ -11922,8 +11987,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"fs_type": {
-																Description:         "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
-																MarkdownDescription: "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
+																Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
+																MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
 
 																Type: types.StringType,
 
@@ -11933,8 +11998,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"initiator_name": {
-																Description:         "Custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.",
-																MarkdownDescription: "Custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.",
+																Description:         "initiatorName is the custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.",
+																MarkdownDescription: "initiatorName is the custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.",
 
 																Type: types.StringType,
 
@@ -11944,8 +12009,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"iqn": {
-																Description:         "Target iSCSI Qualified Name.",
-																MarkdownDescription: "Target iSCSI Qualified Name.",
+																Description:         "iqn is the target iSCSI Qualified Name.",
+																MarkdownDescription: "iqn is the target iSCSI Qualified Name.",
 
 																Type: types.StringType,
 
@@ -11955,8 +12020,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"iscsi_interface": {
-																Description:         "iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).",
-																MarkdownDescription: "iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).",
+																Description:         "iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).",
+																MarkdownDescription: "iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).",
 
 																Type: types.StringType,
 
@@ -11966,8 +12031,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"lun": {
-																Description:         "iSCSI Target Lun number.",
-																MarkdownDescription: "iSCSI Target Lun number.",
+																Description:         "lun represents iSCSI Target Lun number.",
+																MarkdownDescription: "lun represents iSCSI Target Lun number.",
 
 																Type: types.Int64Type,
 
@@ -11977,8 +12042,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"portals": {
-																Description:         "iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
-																MarkdownDescription: "iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
+																Description:         "portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
+																MarkdownDescription: "portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
 
 																Type: types.ListType{ElemType: types.StringType},
 
@@ -11988,8 +12053,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.",
-																MarkdownDescription: "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.",
+																Description:         "readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.",
+																MarkdownDescription: "readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.",
 
 																Type: types.BoolType,
 
@@ -11999,8 +12064,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"secret_ref": {
-																Description:         "CHAP Secret for iSCSI target and initiator authentication",
-																MarkdownDescription: "CHAP Secret for iSCSI target and initiator authentication",
+																Description:         "secretRef is the CHAP Secret for iSCSI target and initiator authentication",
+																MarkdownDescription: "secretRef is the CHAP Secret for iSCSI target and initiator authentication",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -12022,8 +12087,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"target_portal": {
-																Description:         "iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
-																MarkdownDescription: "iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
+																Description:         "targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
+																MarkdownDescription: "targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
 
 																Type: types.StringType,
 
@@ -12039,8 +12104,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"name": {
-														Description:         "Volume's name. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-														MarkdownDescription: "Volume's name. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Description:         "name of the volume. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "name of the volume. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 
 														Type: types.StringType,
 
@@ -12050,14 +12115,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"nfs": {
-														Description:         "NFS represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
-														MarkdownDescription: "NFS represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+														Description:         "nfs represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+														MarkdownDescription: "nfs represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"path": {
-																Description:         "Path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
-																MarkdownDescription: "Path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+																Description:         "path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+																MarkdownDescription: "path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
 
 																Type: types.StringType,
 
@@ -12067,8 +12132,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "ReadOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
-																MarkdownDescription: "ReadOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+																Description:         "readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+																MarkdownDescription: "readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
 
 																Type: types.BoolType,
 
@@ -12078,8 +12143,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"server": {
-																Description:         "Server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
-																MarkdownDescription: "Server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+																Description:         "server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+																MarkdownDescription: "server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
 
 																Type: types.StringType,
 
@@ -12095,14 +12160,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"persistent_volume_claim": {
-														Description:         "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-														MarkdownDescription: "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+														Description:         "persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+														MarkdownDescription: "persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"claim_name": {
-																Description:         "ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																MarkdownDescription: "ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 
 																Type: types.StringType,
 
@@ -12112,8 +12177,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "Will force the ReadOnly setting in VolumeMounts. Default false.",
-																MarkdownDescription: "Will force the ReadOnly setting in VolumeMounts. Default false.",
+																Description:         "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
+																MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
 
 																Type: types.BoolType,
 
@@ -12129,14 +12194,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"photon_persistent_disk": {
-														Description:         "PhotonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
-														MarkdownDescription: "PhotonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
+														Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
+														MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"fs_type": {
-																Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
-																MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
 
 																Type: types.StringType,
 
@@ -12146,8 +12211,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"pd_id": {
-																Description:         "ID that identifies Photon Controller persistent disk",
-																MarkdownDescription: "ID that identifies Photon Controller persistent disk",
+																Description:         "pdID is the ID that identifies Photon Controller persistent disk",
+																MarkdownDescription: "pdID is the ID that identifies Photon Controller persistent disk",
 
 																Type: types.StringType,
 
@@ -12163,14 +12228,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"portworx_volume": {
-														Description:         "PortworxVolume represents a portworx volume attached and mounted on kubelets host machine",
-														MarkdownDescription: "PortworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+														Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+														MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"fs_type": {
-																Description:         "FSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
-																MarkdownDescription: "FSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																Description:         "fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																MarkdownDescription: "fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
 
 																Type: types.StringType,
 
@@ -12180,8 +12245,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-																MarkdownDescription: "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																MarkdownDescription: "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
 
 																Type: types.BoolType,
 
@@ -12191,8 +12256,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"volume_id": {
-																Description:         "VolumeID uniquely identifies a Portworx volume",
-																MarkdownDescription: "VolumeID uniquely identifies a Portworx volume",
+																Description:         "volumeID uniquely identifies a Portworx volume",
+																MarkdownDescription: "volumeID uniquely identifies a Portworx volume",
 
 																Type: types.StringType,
 
@@ -12208,14 +12273,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"projected": {
-														Description:         "Items for all in one resources secrets, configmaps, and downward API",
-														MarkdownDescription: "Items for all in one resources secrets, configmaps, and downward API",
+														Description:         "projected items for all in one resources secrets, configmaps, and downward API",
+														MarkdownDescription: "projected items for all in one resources secrets, configmaps, and downward API",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"default_mode": {
-																Description:         "Mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																MarkdownDescription: "Mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																Description:         "defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																MarkdownDescription: "defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
 
 																Type: types.Int64Type,
 
@@ -12225,26 +12290,26 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"sources": {
-																Description:         "list of volume projections",
-																MarkdownDescription: "list of volume projections",
+																Description:         "sources is the list of volume projections",
+																MarkdownDescription: "sources is the list of volume projections",
 
 																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 																	"config_map": {
-																		Description:         "information about the configMap data to project",
-																		MarkdownDescription: "information about the configMap data to project",
+																		Description:         "configMap information about the configMap data to project",
+																		MarkdownDescription: "configMap information about the configMap data to project",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 																			"items": {
-																				Description:         "If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																				MarkdownDescription: "If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																				Description:         "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																				MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
 
 																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 																					"key": {
-																						Description:         "The key to project.",
-																						MarkdownDescription: "The key to project.",
+																						Description:         "key is the key to project.",
+																						MarkdownDescription: "key is the key to project.",
 
 																						Type: types.StringType,
 
@@ -12254,8 +12319,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																					},
 
 																					"mode": {
-																						Description:         "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																						MarkdownDescription: "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																						Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																						MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
 
 																						Type: types.Int64Type,
 
@@ -12265,8 +12330,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																					},
 
 																					"path": {
-																						Description:         "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																						MarkdownDescription: "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																						Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																						MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
 
 																						Type: types.StringType,
 
@@ -12293,8 +12358,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																			},
 
 																			"optional": {
-																				Description:         "Specify whether the ConfigMap or its keys must be defined",
-																				MarkdownDescription: "Specify whether the ConfigMap or its keys must be defined",
+																				Description:         "optional specify whether the ConfigMap or its keys must be defined",
+																				MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
 
 																				Type: types.BoolType,
 
@@ -12310,8 +12375,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																	},
 
 																	"downward_api": {
-																		Description:         "information about the downwardAPI data to project",
-																		MarkdownDescription: "information about the downwardAPI data to project",
+																		Description:         "downwardAPI information about the downwardAPI data to project",
+																		MarkdownDescription: "downwardAPI information about the downwardAPI data to project",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -12435,20 +12500,20 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																	},
 
 																	"secret": {
-																		Description:         "information about the secret data to project",
-																		MarkdownDescription: "information about the secret data to project",
+																		Description:         "secret information about the secret data to project",
+																		MarkdownDescription: "secret information about the secret data to project",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 																			"items": {
-																				Description:         "If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																				MarkdownDescription: "If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																				Description:         "items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																				MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
 
 																				Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 																					"key": {
-																						Description:         "The key to project.",
-																						MarkdownDescription: "The key to project.",
+																						Description:         "key is the key to project.",
+																						MarkdownDescription: "key is the key to project.",
 
 																						Type: types.StringType,
 
@@ -12458,8 +12523,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																					},
 
 																					"mode": {
-																						Description:         "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																						MarkdownDescription: "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																						Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																						MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
 
 																						Type: types.Int64Type,
 
@@ -12469,8 +12534,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																					},
 
 																					"path": {
-																						Description:         "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																						MarkdownDescription: "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																						Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																						MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
 
 																						Type: types.StringType,
 
@@ -12497,8 +12562,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																			},
 
 																			"optional": {
-																				Description:         "Specify whether the Secret or its key must be defined",
-																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Description:         "optional field specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "optional field specify whether the Secret or its key must be defined",
 
 																				Type: types.BoolType,
 
@@ -12514,14 +12579,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																	},
 
 																	"service_account_token": {
-																		Description:         "information about the serviceAccountToken data to project",
-																		MarkdownDescription: "information about the serviceAccountToken data to project",
+																		Description:         "serviceAccountToken is information about the serviceAccountToken data to project",
+																		MarkdownDescription: "serviceAccountToken is information about the serviceAccountToken data to project",
 
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 																			"audience": {
-																				Description:         "Audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.",
-																				MarkdownDescription: "Audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.",
+																				Description:         "audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.",
+																				MarkdownDescription: "audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.",
 
 																				Type: types.StringType,
 
@@ -12531,8 +12596,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																			},
 
 																			"expiration_seconds": {
-																				Description:         "ExpirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.",
-																				MarkdownDescription: "ExpirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.",
+																				Description:         "expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.",
+																				MarkdownDescription: "expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.",
 
 																				Type: types.Int64Type,
 
@@ -12542,8 +12607,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																			},
 
 																			"path": {
-																				Description:         "Path is the path relative to the mount point of the file to project the token into.",
-																				MarkdownDescription: "Path is the path relative to the mount point of the file to project the token into.",
+																				Description:         "path is the path relative to the mount point of the file to project the token into.",
+																				MarkdownDescription: "path is the path relative to the mount point of the file to project the token into.",
 
 																				Type: types.StringType,
 
@@ -12571,14 +12636,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"quobyte": {
-														Description:         "Quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
-														MarkdownDescription: "Quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+														Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+														MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"group": {
-																Description:         "Group to map volume access to Default is no group",
-																MarkdownDescription: "Group to map volume access to Default is no group",
+																Description:         "group to map volume access to Default is no group",
+																MarkdownDescription: "group to map volume access to Default is no group",
 
 																Type: types.StringType,
 
@@ -12588,8 +12653,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "ReadOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.",
-																MarkdownDescription: "ReadOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.",
+																Description:         "readOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.",
+																MarkdownDescription: "readOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.",
 
 																Type: types.BoolType,
 
@@ -12599,8 +12664,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"registry": {
-																Description:         "Registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes",
-																MarkdownDescription: "Registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes",
+																Description:         "registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes",
+																MarkdownDescription: "registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes",
 
 																Type: types.StringType,
 
@@ -12610,8 +12675,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"tenant": {
-																Description:         "Tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin",
-																MarkdownDescription: "Tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin",
+																Description:         "tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin",
+																MarkdownDescription: "tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin",
 
 																Type: types.StringType,
 
@@ -12621,8 +12686,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"user": {
-																Description:         "User to map volume access to Defaults to serivceaccount user",
-																MarkdownDescription: "User to map volume access to Defaults to serivceaccount user",
+																Description:         "user to map volume access to Defaults to serivceaccount user",
+																MarkdownDescription: "user to map volume access to Defaults to serivceaccount user",
 
 																Type: types.StringType,
 
@@ -12632,8 +12697,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"volume": {
-																Description:         "Volume is a string that references an already created Quobyte volume by name.",
-																MarkdownDescription: "Volume is a string that references an already created Quobyte volume by name.",
+																Description:         "volume is a string that references an already created Quobyte volume by name.",
+																MarkdownDescription: "volume is a string that references an already created Quobyte volume by name.",
 
 																Type: types.StringType,
 
@@ -12649,14 +12714,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"rbd": {
-														Description:         "RBD represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
-														MarkdownDescription: "RBD represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
+														Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
+														MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"fs_type": {
-																Description:         "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
-																MarkdownDescription: "Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
+																Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
+																MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
 
 																Type: types.StringType,
 
@@ -12666,8 +12731,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"image": {
-																Description:         "The rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-																MarkdownDescription: "The rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																Description:         "image is the rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																MarkdownDescription: "image is the rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 
 																Type: types.StringType,
 
@@ -12677,8 +12742,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"keyring": {
-																Description:         "Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-																MarkdownDescription: "Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																Description:         "keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																MarkdownDescription: "keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 
 																Type: types.StringType,
 
@@ -12688,8 +12753,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"monitors": {
-																Description:         "A collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-																MarkdownDescription: "A collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																Description:         "monitors is a collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																MarkdownDescription: "monitors is a collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 
 																Type: types.ListType{ElemType: types.StringType},
 
@@ -12699,8 +12764,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"pool": {
-																Description:         "The rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-																MarkdownDescription: "The rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																Description:         "pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																MarkdownDescription: "pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 
 																Type: types.StringType,
 
@@ -12710,8 +12775,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-																MarkdownDescription: "ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																Description:         "readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																MarkdownDescription: "readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 
 																Type: types.BoolType,
 
@@ -12721,8 +12786,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"secret_ref": {
-																Description:         "SecretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-																MarkdownDescription: "SecretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																Description:         "secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																MarkdownDescription: "secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -12744,8 +12809,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"user": {
-																Description:         "The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-																MarkdownDescription: "The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																Description:         "user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+																MarkdownDescription: "user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 
 																Type: types.StringType,
 
@@ -12761,14 +12826,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"scale_io": {
-														Description:         "ScaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
-														MarkdownDescription: "ScaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+														Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+														MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"fs_type": {
-																Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
-																MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
+																Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
+																MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
 
 																Type: types.StringType,
 
@@ -12778,8 +12843,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"gateway": {
-																Description:         "The host address of the ScaleIO API Gateway.",
-																MarkdownDescription: "The host address of the ScaleIO API Gateway.",
+																Description:         "gateway is the host address of the ScaleIO API Gateway.",
+																MarkdownDescription: "gateway is the host address of the ScaleIO API Gateway.",
 
 																Type: types.StringType,
 
@@ -12789,8 +12854,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"protection_domain": {
-																Description:         "The name of the ScaleIO Protection Domain for the configured storage.",
-																MarkdownDescription: "The name of the ScaleIO Protection Domain for the configured storage.",
+																Description:         "protectionDomain is the name of the ScaleIO Protection Domain for the configured storage.",
+																MarkdownDescription: "protectionDomain is the name of the ScaleIO Protection Domain for the configured storage.",
 
 																Type: types.StringType,
 
@@ -12800,8 +12865,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-																MarkdownDescription: "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																Description:         "readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																MarkdownDescription: "readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
 
 																Type: types.BoolType,
 
@@ -12811,8 +12876,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"secret_ref": {
-																Description:         "SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
-																MarkdownDescription: "SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
+																Description:         "secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
+																MarkdownDescription: "secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -12834,8 +12899,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"ssl_enabled": {
-																Description:         "Flag to enable/disable SSL communication with Gateway, default false",
-																MarkdownDescription: "Flag to enable/disable SSL communication with Gateway, default false",
+																Description:         "sslEnabled Flag enable/disable SSL communication with Gateway, default false",
+																MarkdownDescription: "sslEnabled Flag enable/disable SSL communication with Gateway, default false",
 
 																Type: types.BoolType,
 
@@ -12845,8 +12910,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"storage_mode": {
-																Description:         "Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.",
-																MarkdownDescription: "Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.",
+																Description:         "storageMode indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.",
+																MarkdownDescription: "storageMode indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.",
 
 																Type: types.StringType,
 
@@ -12856,8 +12921,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"storage_pool": {
-																Description:         "The ScaleIO Storage Pool associated with the protection domain.",
-																MarkdownDescription: "The ScaleIO Storage Pool associated with the protection domain.",
+																Description:         "storagePool is the ScaleIO Storage Pool associated with the protection domain.",
+																MarkdownDescription: "storagePool is the ScaleIO Storage Pool associated with the protection domain.",
 
 																Type: types.StringType,
 
@@ -12867,8 +12932,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"system": {
-																Description:         "The name of the storage system as configured in ScaleIO.",
-																MarkdownDescription: "The name of the storage system as configured in ScaleIO.",
+																Description:         "system is the name of the storage system as configured in ScaleIO.",
+																MarkdownDescription: "system is the name of the storage system as configured in ScaleIO.",
 
 																Type: types.StringType,
 
@@ -12878,8 +12943,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"volume_name": {
-																Description:         "The name of a volume already created in the ScaleIO system that is associated with this volume source.",
-																MarkdownDescription: "The name of a volume already created in the ScaleIO system that is associated with this volume source.",
+																Description:         "volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.",
+																MarkdownDescription: "volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.",
 
 																Type: types.StringType,
 
@@ -12895,14 +12960,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"secret": {
-														Description:         "Secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-														MarkdownDescription: "Secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+														Description:         "secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+														MarkdownDescription: "secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"default_mode": {
-																Description:         "Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																MarkdownDescription: "Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																Description:         "defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																MarkdownDescription: "defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
 
 																Type: types.Int64Type,
 
@@ -12912,14 +12977,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"items": {
-																Description:         "If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																MarkdownDescription: "If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																Description:         "items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																MarkdownDescription: "items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
 
 																Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
 																	"key": {
-																		Description:         "The key to project.",
-																		MarkdownDescription: "The key to project.",
+																		Description:         "key is the key to project.",
+																		MarkdownDescription: "key is the key to project.",
 
 																		Type: types.StringType,
 
@@ -12929,8 +12994,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																	},
 
 																	"mode": {
-																		Description:         "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																		MarkdownDescription: "Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																		Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																		MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
 
 																		Type: types.Int64Type,
 
@@ -12940,8 +13005,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 																	},
 
 																	"path": {
-																		Description:         "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																		MarkdownDescription: "The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																		Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																		MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
 
 																		Type: types.StringType,
 
@@ -12957,8 +13022,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"optional": {
-																Description:         "Specify whether the Secret or its keys must be defined",
-																MarkdownDescription: "Specify whether the Secret or its keys must be defined",
+																Description:         "optional field specify whether the Secret or its keys must be defined",
+																MarkdownDescription: "optional field specify whether the Secret or its keys must be defined",
 
 																Type: types.BoolType,
 
@@ -12968,8 +13033,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"secret_name": {
-																Description:         "Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-																MarkdownDescription: "Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+																Description:         "secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+																MarkdownDescription: "secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
 
 																Type: types.StringType,
 
@@ -12985,14 +13050,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"storageos": {
-														Description:         "StorageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
-														MarkdownDescription: "StorageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
+														Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
+														MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"fs_type": {
-																Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
-																MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
 
 																Type: types.StringType,
 
@@ -13002,8 +13067,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"read_only": {
-																Description:         "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-																MarkdownDescription: "Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+																MarkdownDescription: "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
 
 																Type: types.BoolType,
 
@@ -13013,8 +13078,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"secret_ref": {
-																Description:         "SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.",
-																MarkdownDescription: "SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.",
+																Description:         "secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.",
+																MarkdownDescription: "secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.",
 
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -13036,8 +13101,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"volume_name": {
-																Description:         "VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.",
-																MarkdownDescription: "VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.",
+																Description:         "volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.",
+																MarkdownDescription: "volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.",
 
 																Type: types.StringType,
 
@@ -13047,8 +13112,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"volume_namespace": {
-																Description:         "VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.",
-																MarkdownDescription: "VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.",
+																Description:         "volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.",
+																MarkdownDescription: "volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to 'default' if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.",
 
 																Type: types.StringType,
 
@@ -13064,14 +13129,14 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 													},
 
 													"vsphere_volume": {
-														Description:         "VsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
-														MarkdownDescription: "VsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
+														Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
+														MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
 
 														Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 															"fs_type": {
-																Description:         "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
-																MarkdownDescription: "Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																Description:         "fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+																MarkdownDescription: "fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
 
 																Type: types.StringType,
 
@@ -13081,8 +13146,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"storage_policy_id": {
-																Description:         "Storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.",
-																MarkdownDescription: "Storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.",
+																Description:         "storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.",
+																MarkdownDescription: "storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.",
 
 																Type: types.StringType,
 
@@ -13092,8 +13157,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"storage_policy_name": {
-																Description:         "Storage Policy Based Management (SPBM) profile name.",
-																MarkdownDescription: "Storage Policy Based Management (SPBM) profile name.",
+																Description:         "storagePolicyName is the storage Policy Based Management (SPBM) profile name.",
+																MarkdownDescription: "storagePolicyName is the storage Policy Based Management (SPBM) profile name.",
 
 																Type: types.StringType,
 
@@ -13103,8 +13168,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 															},
 
 															"volume_path": {
-																Description:         "Path that identifies vSphere volume vmdk",
-																MarkdownDescription: "Path that identifies vSphere volume vmdk",
+																Description:         "volumePath is the path that identifies vSphere volume vmdk",
+																MarkdownDescription: "volumePath is the path that identifies vSphere volume vmdk",
 
 																Type: types.StringType,
 
@@ -13189,8 +13254,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 									"access_modes": {
-										Description:         "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-										MarkdownDescription: "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+										Description:         "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+										MarkdownDescription: "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
 
 										Type: types.ListType{ElemType: types.StringType},
 
@@ -13200,8 +13265,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 									},
 
 									"data_source": {
-										Description:         "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
-										MarkdownDescription: "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
+										Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
+										MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -13245,8 +13310,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 									},
 
 									"data_source_ref": {
-										Description:         "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Alpha) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
-										MarkdownDescription: "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Alpha) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
+										Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
+										MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -13290,8 +13355,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 									},
 
 									"resources": {
-										Description:         "Resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
-										MarkdownDescription: "Resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+										Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+										MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -13324,8 +13389,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 									},
 
 									"selector": {
-										Description:         "A label query over volumes to consider for binding.",
-										MarkdownDescription: "A label query over volumes to consider for binding.",
+										Description:         "selector is a label query over volumes to consider for binding.",
+										MarkdownDescription: "selector is a label query over volumes to consider for binding.",
 
 										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -13392,8 +13457,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 									},
 
 									"storage_class_name": {
-										Description:         "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-										MarkdownDescription: "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+										Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+										MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
 
 										Type: types.StringType,
 
@@ -13414,8 +13479,8 @@ func (r *BatchVolcanoShJobV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.
 									},
 
 									"volume_name": {
-										Description:         "VolumeName is the binding reference to the PersistentVolume backing this claim.",
-										MarkdownDescription: "VolumeName is the binding reference to the PersistentVolume backing this claim.",
+										Description:         "volumeName is the binding reference to the PersistentVolume backing this claim.",
+										MarkdownDescription: "volumeName is the binding reference to the PersistentVolume backing this claim.",
 
 										Type: types.StringType,
 

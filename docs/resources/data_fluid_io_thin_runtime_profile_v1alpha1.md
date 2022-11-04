@@ -54,6 +54,10 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
+Required:
+
+- `file_system_type` (String) file system of thinRuntime
+
 Optional:
 
 - `fuse` (Attributes) The component spec of thinRuntime (see [below for nested schema](#nestedatt--spec--fuse))

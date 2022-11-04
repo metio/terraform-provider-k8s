@@ -78,6 +78,8 @@ type KafkaStrimziIoKafkaUserV1Beta1GoModel struct {
 
 				Operation *string `tfsdk:"operation" yaml:"operation,omitempty"`
 
+				Operations *[]string `tfsdk:"operations" yaml:"operations,omitempty"`
+
 				Resource *struct {
 					Name *string `tfsdk:"name" yaml:"name,omitempty"`
 
@@ -334,14 +336,25 @@ func (r *KafkaStrimziIoKafkaUserV1Beta1Resource) GetSchema(_ context.Context) (t
 
 										Type: types.StringType,
 
-										Required: true,
-										Optional: false,
+										Required: false,
+										Optional: true,
 										Computed: false,
 
 										Validators: []tfsdk.AttributeValidator{
 
 											stringvalidator.OneOf("Read", "Write", "Create", "Delete", "Alter", "Describe", "ClusterAction", "AlterConfigs", "DescribeConfigs", "IdempotentWrite", "All"),
 										},
+									},
+
+									"operations": {
+										Description:         "List of operations which will be allowed or denied. Supported operations are: Read, Write, Create, Delete, Alter, Describe, ClusterAction, AlterConfigs, DescribeConfigs, IdempotentWrite and All.",
+										MarkdownDescription: "List of operations which will be allowed or denied. Supported operations are: Read, Write, Create, Delete, Alter, Describe, ClusterAction, AlterConfigs, DescribeConfigs, IdempotentWrite and All.",
+
+										Type: types.ListType{ElemType: types.StringType},
+
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"resource": {
