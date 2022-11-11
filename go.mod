@@ -19,7 +19,7 @@ require (
 	gopkg.in/yaml.v3 v3.0.1
 	k8s.io/apiextensions-apiserver v0.25.4
 	k8s.io/apimachinery v0.25.4
-	k8s.io/cli-runtime v0.25.3
+	k8s.io/cli-runtime v0.25.4
 	k8s.io/utils v0.0.0-20220922133306-665eaaec4324
 )
 
