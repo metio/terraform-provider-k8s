@@ -2,6 +2,8 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   creationTimestamp: null
+  labels:
+    app: redis-enterprise
   name: redisenterpriseclusters.app.redislabs.com
 spec:
   group: app.redislabs.com
@@ -3140,10 +3142,7 @@ spec:
               redisOnFlashSpec:
                 description: Stores configurations specific to redis on flash. If
                   provided, the cluster will be capable of creating redis on flash
-                  databases. Note - This is an ALPHA Feature. For this feature to
-                  take effect, set a boolean environment variable with the name "ENABLE_ALPHA_FEATURES"
-                  to True. This variable can be set via the redis-enterprise-operator
-                  pod spec, or through the operator-environment-config Config Map.
+                  databases.
                 properties:
                   enabled:
                     type: boolean
@@ -3178,14 +3177,27 @@ spec:
                 description: Name of the service account to use
                 type: string
               services:
-                description: Redis-Enterprise-Operator services specifications.
+                description: Customization options for operator-managed service resources
+                  created for Redis Enterprise clusters and databases
                 properties:
+                  apiService:
+                    description: Customization options for the REC API service.
+                    properties:
+                      type:
+                        description: Type of service to create for the REC API service.
+                          Defaults to ClusterIP service, if not specified otherwise.
+                        enum:
+                        - ClusterIP
+                        - NodePort
+                        - LoadBalancer
+                        type: string
+                    type: object
                   servicesAnnotations:
                     additionalProperties:
                       type: string
                     description: Global additional annotations to set on service resources
-                      created by the operator. Note - The specified annotations will
-                      not override annotations that already exists and didn't originated
+                      created by the operator. The specified annotations will not
+                      override annotations that already exist and didn't originate
                       from the operator.
                     type: object
                 type: object
@@ -6250,9 +6262,9 @@ spec:
                   type: string
                 description: Annotations for Redis Enterprise UI service. This annotations
                   will override the overlapping global annotations set under spec.services.servicesAnnotations
-                  Note - The specified annotations will not override annotations that
-                  already exists and didn't originated from the operator except for
-                  the following reserved annotation name redis.io/last-keys.
+                  The specified annotations will not override annotations that already
+                  exist and didn't originate from the operator, except for the 'redis.io/last-keys'
+                  annotation which is reserved.
                 type: object
               uiServiceType:
                 description: Type of service used to expose Redis Enterprise UI (https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)

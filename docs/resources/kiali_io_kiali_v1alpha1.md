@@ -384,6 +384,7 @@ Optional:
 - `component_status` (Attributes) Istio components whose status will be monitored by Kiali. (see [below for nested schema](#nestedatt--spec--external_services--istio--component_status))
 - `config_map_name` (String) The name of the istio control plane config map.
 - `envoy_admin_local_port` (Number) The port which kiali will open to fetch envoy config data information.
+- `gateway_api_class_name` (String) The K8s Gateway API GatewayClass's Name used in Istio. If empty, the default value 'istio' is used.
 - `istio_canary_revision` (Attributes) These values are used in Canary upgrade/downgrade functionality when 'istio_upgrade_action' is true. (see [below for nested schema](#nestedatt--spec--external_services--istio--istio_canary_revision))
 - `istio_identity_domain` (String) The annotation used by Istio to identify domains.
 - `istio_injection_annotation` (String) The name of the field that annotates a workload to indicate a sidecar should be automatically injected by Istio. This is the name of a Kubernetes annotation. Note that some Istio implementations also support labels by the same name. In other words, if a workload has a Kubernetes label with this name, that may also trigger automatic sidecar injection.

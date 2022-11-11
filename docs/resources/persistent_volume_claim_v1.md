@@ -74,7 +74,7 @@ Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
 - `data_source` (Attributes) TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace. (see [below for nested schema](#nestedatt--spec--data_source))
-- `data_source_ref` (Attributes) TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace. (see [below for nested schema](#nestedatt--spec--data_source_ref))
+- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--data_source_ref))
 - `resources` (Attributes) ResourceRequirements describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--resources))
 - `selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
@@ -105,6 +105,7 @@ Required:
 Optional:
 
 - `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
 <a id="nestedatt--spec--resources"></a>

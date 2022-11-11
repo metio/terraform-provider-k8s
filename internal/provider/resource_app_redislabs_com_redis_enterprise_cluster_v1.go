@@ -1817,6 +1817,10 @@ type AppRedislabsComRedisEnterpriseClusterV1GoModel struct {
 		ServiceAccountName *string `tfsdk:"service_account_name" yaml:"serviceAccountName,omitempty"`
 
 		Services *struct {
+			ApiService *struct {
+				Type *string `tfsdk:"type" yaml:"type,omitempty"`
+			} `tfsdk:"api_service" yaml:"apiService,omitempty"`
+
 			ServicesAnnotations *map[string]string `tfsdk:"services_annotations" yaml:"servicesAnnotations,omitempty"`
 		} `tfsdk:"services" yaml:"services,omitempty"`
 
@@ -4516,8 +4520,8 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Resource) GetSchema(_ context.Co
 					},
 
 					"encrypt_pkeys": {
-						Description:         "Private key encryption - in order to enable, first need to mount ${ephemeralconfdir}/secrets/pem/passphrase and add the passphrase and then set fields value to ''true'' Possible values: true/false'. Note: this feature is currently unsupported.",
-						MarkdownDescription: "Private key encryption - in order to enable, first need to mount ${ephemeralconfdir}/secrets/pem/passphrase and add the passphrase and then set fields value to ''true'' Possible values: true/false'. Note: this feature is currently unsupported.",
+						Description:         "Private key encryption Possible values: true/false",
+						MarkdownDescription: "Private key encryption Possible values: true/false",
 
 						Type: types.BoolType,
 
@@ -4688,8 +4692,8 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Resource) GetSchema(_ context.Co
 					},
 
 					"ocsp_configuration": {
-						Description:         "An API object that represents the cluster's OCSP configuration. To enable OCSP, the cluster's proxy certificate should contain the OCSP responder URL. Note - This is an ALPHA Feature. For this feature to take effect, set a boolean environment variable with the name 'ENABLE_ALPHA_FEATURES' to True. This variable can be set via the redis-enterprise-operator pod spec, or through the operator-environment-config Config Map.",
-						MarkdownDescription: "An API object that represents the cluster's OCSP configuration. To enable OCSP, the cluster's proxy certificate should contain the OCSP responder URL. Note - This is an ALPHA Feature. For this feature to take effect, set a boolean environment variable with the name 'ENABLE_ALPHA_FEATURES' to True. This variable can be set via the redis-enterprise-operator pod spec, or through the operator-environment-config Config Map.",
+						Description:         "An API object that represents the cluster's OCSP configuration. To enable OCSP, the cluster's proxy certificate should contain the OCSP responder URL.",
+						MarkdownDescription: "An API object that represents the cluster's OCSP configuration. To enable OCSP, the cluster's proxy certificate should contain the OCSP responder URL.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -14104,8 +14108,8 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Resource) GetSchema(_ context.Co
 					},
 
 					"redis_on_flash_spec": {
-						Description:         "Stores configurations specific to redis on flash. If provided, the cluster will be capable of creating redis on flash databases. Note - This is an ALPHA Feature. For this feature to take effect, set a boolean environment variable with the name 'ENABLE_ALPHA_FEATURES' to True. This variable can be set via the redis-enterprise-operator pod spec, or through the operator-environment-config Config Map.",
-						MarkdownDescription: "Stores configurations specific to redis on flash. If provided, the cluster will be capable of creating redis on flash databases. Note - This is an ALPHA Feature. For this feature to take effect, set a boolean environment variable with the name 'ENABLE_ALPHA_FEATURES' to True. This variable can be set via the redis-enterprise-operator pod spec, or through the operator-environment-config Config Map.",
+						Description:         "Stores configurations specific to redis on flash. If provided, the cluster will be capable of creating redis on flash databases.",
+						MarkdownDescription: "Stores configurations specific to redis on flash. If provided, the cluster will be capable of creating redis on flash databases.",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -14192,14 +14196,42 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Resource) GetSchema(_ context.Co
 					},
 
 					"services": {
-						Description:         "Redis-Enterprise-Operator services specifications.",
-						MarkdownDescription: "Redis-Enterprise-Operator services specifications.",
+						Description:         "Customization options for operator-managed service resources created for Redis Enterprise clusters and databases",
+						MarkdownDescription: "Customization options for operator-managed service resources created for Redis Enterprise clusters and databases",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
+							"api_service": {
+								Description:         "Customization options for the REC API service.",
+								MarkdownDescription: "Customization options for the REC API service.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"type": {
+										Description:         "Type of service to create for the REC API service. Defaults to ClusterIP service, if not specified otherwise.",
+										MarkdownDescription: "Type of service to create for the REC API service. Defaults to ClusterIP service, if not specified otherwise.",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											stringvalidator.OneOf("ClusterIP", "NodePort", "LoadBalancer"),
+										},
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"services_annotations": {
-								Description:         "Global additional annotations to set on service resources created by the operator. Note - The specified annotations will not override annotations that already exists and didn't originated from the operator.",
-								MarkdownDescription: "Global additional annotations to set on service resources created by the operator. Note - The specified annotations will not override annotations that already exists and didn't originated from the operator.",
+								Description:         "Global additional annotations to set on service resources created by the operator. The specified annotations will not override annotations that already exist and didn't originate from the operator.",
+								MarkdownDescription: "Global additional annotations to set on service resources created by the operator. The specified annotations will not override annotations that already exist and didn't originate from the operator.",
 
 								Type: types.MapType{ElemType: types.StringType},
 
@@ -24702,8 +24734,8 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Resource) GetSchema(_ context.Co
 					},
 
 					"ui_annotations": {
-						Description:         "Annotations for Redis Enterprise UI service. This annotations will override the overlapping global annotations set under spec.services.servicesAnnotations Note - The specified annotations will not override annotations that already exists and didn't originated from the operator except for the following reserved annotation name redis.io/last-keys.",
-						MarkdownDescription: "Annotations for Redis Enterprise UI service. This annotations will override the overlapping global annotations set under spec.services.servicesAnnotations Note - The specified annotations will not override annotations that already exists and didn't originated from the operator except for the following reserved annotation name redis.io/last-keys.",
+						Description:         "Annotations for Redis Enterprise UI service. This annotations will override the overlapping global annotations set under spec.services.servicesAnnotations The specified annotations will not override annotations that already exist and didn't originate from the operator, except for the 'redis.io/last-keys' annotation which is reserved.",
+						MarkdownDescription: "Annotations for Redis Enterprise UI service. This annotations will override the overlapping global annotations set under spec.services.servicesAnnotations The specified annotations will not override annotations that already exist and didn't originate from the operator, except for the 'redis.io/last-keys' annotation which is reserved.",
 
 						Type: types.MapType{ElemType: types.StringType},
 

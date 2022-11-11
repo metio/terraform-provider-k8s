@@ -85,6 +85,7 @@ Optional:
 
 - `allow` (Map of Map of List of String) Defines the allow policy for the profile
 - `inherit` (Attributes List) A SELinuxProfile or set of profiles that this inherits from. Note that they need to be in the same namespace. (see [below for nested schema](#nestedatt--spec--inherit))
+- `permissive` (Boolean) Permissive, when true will cause the SELinux profile to only log violations instead of enforcing them.
 
 <a id="nestedatt--spec--inherit"></a>
 ### Nested Schema for `spec.inherit`

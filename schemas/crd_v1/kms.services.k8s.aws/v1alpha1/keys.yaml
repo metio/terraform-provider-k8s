@@ -69,6 +69,8 @@ spec:
                   The default value is an empty string (no description). \n To set
                   or change the description after the key is created, use UpdateKeyDescription."
                 type: string
+              enableKeyRotation:
+                type: boolean
               keySpec:
                 description: "Specifies the type of KMS key to create. The default
                   value, SYMMETRIC_DEFAULT, creates a KMS key with a 256-bit AES-GCM

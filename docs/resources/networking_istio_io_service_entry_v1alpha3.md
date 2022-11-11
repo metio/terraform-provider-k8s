@@ -63,7 +63,7 @@ Optional:
 - `hosts` (List of String) The hosts associated with the ServiceEntry.
 - `location` (String)
 - `ports` (Attributes List) The ports associated with the external service. (see [below for nested schema](#nestedatt--spec--ports))
-- `resolution` (String) Service discovery mode for the hosts.
+- `resolution` (String) Service resolution mode for the hosts.
 - `subject_alt_names` (List of String)
 - `workload_selector` (Attributes) Applicable only for MESH_INTERNAL services. (see [below for nested schema](#nestedatt--spec--workload_selector))
 

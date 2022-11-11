@@ -132,6 +132,8 @@ type AppsClusternetIoSubscriptionV1Alpha1GoModel struct {
 
 		SchedulerName *string `tfsdk:"scheduler_name" yaml:"schedulerName,omitempty"`
 
+		SchedulingBySubGroup *bool `tfsdk:"scheduling_by_sub_group" yaml:"schedulingBySubGroup,omitempty"`
+
 		SchedulingStrategy *string `tfsdk:"scheduling_strategy" yaml:"schedulingStrategy,omitempty"`
 
 		Subscribers *[]struct {
@@ -146,6 +148,10 @@ type AppsClusternetIoSubscriptionV1Alpha1GoModel struct {
 
 				MatchLabels *map[string]string `tfsdk:"match_labels" yaml:"matchLabels,omitempty"`
 			} `tfsdk:"cluster_affinity" yaml:"clusterAffinity,omitempty"`
+
+			SubGroupStrategy *struct {
+				MinClusters *int64 `tfsdk:"min_clusters" yaml:"minClusters,omitempty"`
+			} `tfsdk:"sub_group_strategy" yaml:"subGroupStrategy,omitempty"`
 
 			Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 		} `tfsdk:"subscribers" yaml:"subscribers,omitempty"`
@@ -696,6 +702,17 @@ func (r *AppsClusternetIoSubscriptionV1Alpha1Resource) GetSchema(_ context.Conte
 						Computed: false,
 					},
 
+					"scheduling_by_sub_group": {
+						Description:         "If specified, the Subscription will be handled with SchedulingBySubGroup. Used together with SubGroupStrategy in every Subscriber. Can work with all supported SchedulingStrategy, such as Replication, Dividing.",
+						MarkdownDescription: "If specified, the Subscription will be handled with SchedulingBySubGroup. Used together with SubGroupStrategy in every Subscriber. Can work with all supported SchedulingStrategy, such as Replication, Dividing.",
+
+						Type: types.BoolType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"scheduling_strategy": {
 						Description:         "If specified, the Subscription will be handled with specified SchedulingStrategy. Otherwise, with generic SchedulingStrategy.",
 						MarkdownDescription: "If specified, the Subscription will be handled with specified SchedulingStrategy. Otherwise, with generic SchedulingStrategy.",
@@ -783,6 +800,34 @@ func (r *AppsClusternetIoSubscriptionV1Alpha1Resource) GetSchema(_ context.Conte
 
 								Required: true,
 								Optional: false,
+								Computed: false,
+							},
+
+							"sub_group_strategy": {
+								Description:         "SubGroupStrategy defines the subgroup strategy for the clusters matched by this subscriber. During the scheduling, all the matching clusters will be treated as a subgroup instead of individual clusters. With subgroup, we can describe clusters with different regions, zones, etc. Present only when SchedulingBySubGroup is set.",
+								MarkdownDescription: "SubGroupStrategy defines the subgroup strategy for the clusters matched by this subscriber. During the scheduling, all the matching clusters will be treated as a subgroup instead of individual clusters. With subgroup, we can describe clusters with different regions, zones, etc. Present only when SchedulingBySubGroup is set.",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"min_clusters": {
+										Description:         "MinClusters is the minimum number of clusters to be selected in this subgroup. If this value is more than the total number of clusters in this subgroup, then all clusters will be selected.",
+										MarkdownDescription: "MinClusters is the minimum number of clusters to be selected in this subgroup. If this value is more than the total number of clusters in this subgroup, then all clusters will be selected.",
+
+										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											int64validator.AtLeast(0),
+										},
+									},
+								}),
+
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 

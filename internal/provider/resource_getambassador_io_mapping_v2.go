@@ -12,6 +12,9 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	"github.com/hashicorp/terraform-plugin-framework/path"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -255,6 +258,46 @@ type GetambassadorIoMappingV2GoModel struct {
 		Use_websocket *bool `tfsdk:"use_websocket" yaml:"use_websocket,omitempty"`
 
 		V3StatsName *string `tfsdk:"v3_stats_name" yaml:"v3StatsName,omitempty"`
+
+		V3health_checks *[]struct {
+			Health_check *struct {
+				Grpc *struct {
+					Authority *string `tfsdk:"authority" yaml:"authority,omitempty"`
+
+					Upstream_name *string `tfsdk:"upstream_name" yaml:"upstream_name,omitempty"`
+				} `tfsdk:"grpc" yaml:"grpc,omitempty"`
+
+				Http *struct {
+					Add_request_headers *struct {
+						Append *bool `tfsdk:"append" yaml:"append,omitempty"`
+
+						V2Representation *string `tfsdk:"v2_representation" yaml:"v2Representation,omitempty"`
+
+						Value *string `tfsdk:"value" yaml:"value,omitempty"`
+					} `tfsdk:"add_request_headers" yaml:"add_request_headers,omitempty"`
+
+					Expected_statuses *[]struct {
+						Max *int64 `tfsdk:"max" yaml:"max,omitempty"`
+
+						Min *int64 `tfsdk:"min" yaml:"min,omitempty"`
+					} `tfsdk:"expected_statuses" yaml:"expected_statuses,omitempty"`
+
+					Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
+
+					Path *string `tfsdk:"path" yaml:"path,omitempty"`
+
+					Remove_request_headers *[]string `tfsdk:"remove_request_headers" yaml:"remove_request_headers,omitempty"`
+				} `tfsdk:"http" yaml:"http,omitempty"`
+			} `tfsdk:"health_check" yaml:"health_check,omitempty"`
+
+			Healthy_threshold *int64 `tfsdk:"healthy_threshold" yaml:"healthy_threshold,omitempty"`
+
+			Interval *string `tfsdk:"interval" yaml:"interval,omitempty"`
+
+			Timeout *string `tfsdk:"timeout" yaml:"timeout,omitempty"`
+
+			Unhealthy_threshold *int64 `tfsdk:"unhealthy_threshold" yaml:"unhealthy_threshold,omitempty"`
+		} `tfsdk:"v3health_checks" yaml:"v3health_checks,omitempty"`
 
 		Weight *int64 `tfsdk:"weight" yaml:"weight,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
@@ -1498,6 +1541,261 @@ func (r *GetambassadorIoMappingV2Resource) GetSchema(_ context.Context) (tfsdk.S
 						MarkdownDescription: "",
 
 						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"v3health_checks": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"health_check": {
+								Description:         "Configuration for where the healthcheck request should be made to",
+								MarkdownDescription: "Configuration for where the healthcheck request should be made to",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"grpc": {
+										Description:         "HealthCheck for gRPC upstreams. Only one of grpc_health_check or http_health_check may be specified",
+										MarkdownDescription: "HealthCheck for gRPC upstreams. Only one of grpc_health_check or http_health_check may be specified",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"authority": {
+												Description:         "The value of the :authority header in the gRPC health check request. If left empty the upstream name will be used.",
+												MarkdownDescription: "The value of the :authority header in the gRPC health check request. If left empty the upstream name will be used.",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"upstream_name": {
+												Description:         "The upstream name parameter which will be sent to gRPC service in the health check message",
+												MarkdownDescription: "The upstream name parameter which will be sent to gRPC service in the health check message",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("http")),
+										},
+									},
+
+									"http": {
+										Description:         "HealthCheck for HTTP upstreams. Only one of http_health_check or grpc_health_check may be specified",
+										MarkdownDescription: "HealthCheck for HTTP upstreams. Only one of http_health_check or grpc_health_check may be specified",
+
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+											"add_request_headers": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+													"append": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.BoolType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"v2_representation": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															stringvalidator.OneOf("", "string", "null"),
+														},
+													},
+
+													"value": {
+														Description:         "",
+														MarkdownDescription: "",
+
+														Type: types.StringType,
+
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"expected_statuses": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+													"max": {
+														Description:         "End of the statuses to include. Must be between 100 and 599 (inclusive)",
+														MarkdownDescription: "End of the statuses to include. Must be between 100 and 599 (inclusive)",
+
+														Type: types.Int64Type,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															int64validator.AtLeast(100),
+
+															int64validator.AtMost(599),
+														},
+													},
+
+													"min": {
+														Description:         "Start of the statuses to include. Must be between 100 and 599 (inclusive)",
+														MarkdownDescription: "Start of the statuses to include. Must be between 100 and 599 (inclusive)",
+
+														Type: types.Int64Type,
+
+														Required: true,
+														Optional: false,
+														Computed: false,
+
+														Validators: []tfsdk.AttributeValidator{
+
+															int64validator.AtLeast(100),
+
+															int64validator.AtMost(599),
+														},
+													},
+												}),
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"hostname": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"path": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"remove_request_headers": {
+												Description:         "",
+												MarkdownDescription: "",
+
+												Type: types.ListType{ElemType: types.StringType},
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+
+										Validators: []tfsdk.AttributeValidator{
+
+											schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("grpc")),
+										},
+									},
+								}),
+
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"healthy_threshold": {
+								Description:         "Number of expected responses for the upstream to be considered healthy. Defaults to 1.",
+								MarkdownDescription: "Number of expected responses for the upstream to be considered healthy. Defaults to 1.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"interval": {
+								Description:         "Interval between health checks. Defaults to every 5 seconds.",
+								MarkdownDescription: "Interval between health checks. Defaults to every 5 seconds.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"timeout": {
+								Description:         "Timeout for connecting to the health checking endpoint. Defaults to 3 seconds.",
+								MarkdownDescription: "Timeout for connecting to the health checking endpoint. Defaults to 3 seconds.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"unhealthy_threshold": {
+								Description:         "Number of non-expected responses for the upstream to be considered unhealthy. A single 503 will mark the upstream as unhealthy regardless of the threshold. Defaults to 2.",
+								MarkdownDescription: "Number of non-expected responses for the upstream to be considered unhealthy. A single 503 will mark the upstream as unhealthy regardless of the threshold. Defaults to 2.",
+
+								Type: types.Int64Type,
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

@@ -947,8 +947,8 @@ Required:
 
 Required:
 
-- `name` (String) name of the secret
-- `namespace` (String) namespace name in which secret is created
+- `name` (String) Name of the secret. The provided secret must contain a key named cosign.pub.
+- `namespace` (String) Namespace name where the Secret exists.
 
 
 
@@ -1141,8 +1141,8 @@ Required:
 
 Required:
 
-- `name` (String) name of the secret
-- `namespace` (String) namespace name in which secret is created
+- `name` (String) Name of the secret. The provided secret must contain a key named cosign.pub.
+- `namespace` (String) Namespace name where the Secret exists.
 
 
 

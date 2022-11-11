@@ -4223,8 +4223,8 @@ func (r *KyvernoIoClusterPolicyV1Resource) GetSchema(_ context.Context) (tfsdk.S
 																		Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 																			"name": {
-																				Description:         "name of the secret",
-																				MarkdownDescription: "name of the secret",
+																				Description:         "Name of the secret. The provided secret must contain a key named cosign.pub.",
+																				MarkdownDescription: "Name of the secret. The provided secret must contain a key named cosign.pub.",
 
 																				Type: types.StringType,
 
@@ -4234,8 +4234,8 @@ func (r *KyvernoIoClusterPolicyV1Resource) GetSchema(_ context.Context) (tfsdk.S
 																			},
 
 																			"namespace": {
-																				Description:         "namespace name in which secret is created",
-																				MarkdownDescription: "namespace name in which secret is created",
+																				Description:         "Namespace name where the Secret exists.",
+																				MarkdownDescription: "Namespace name where the Secret exists.",
 
 																				Type: types.StringType,
 
@@ -4949,8 +4949,8 @@ func (r *KyvernoIoClusterPolicyV1Resource) GetSchema(_ context.Context) (tfsdk.S
 																Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
 																	"name": {
-																		Description:         "name of the secret",
-																		MarkdownDescription: "name of the secret",
+																		Description:         "Name of the secret. The provided secret must contain a key named cosign.pub.",
+																		MarkdownDescription: "Name of the secret. The provided secret must contain a key named cosign.pub.",
 
 																		Type: types.StringType,
 
@@ -4960,8 +4960,8 @@ func (r *KyvernoIoClusterPolicyV1Resource) GetSchema(_ context.Context) (tfsdk.S
 																	},
 
 																	"namespace": {
-																		Description:         "namespace name in which secret is created",
-																		MarkdownDescription: "namespace name in which secret is created",
+																		Description:         "Namespace name where the Secret exists.",
+																		MarkdownDescription: "Namespace name where the Secret exists.",
 
 																		Type: types.StringType,
 

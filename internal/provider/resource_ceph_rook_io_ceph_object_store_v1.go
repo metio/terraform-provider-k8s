@@ -141,24 +141,6 @@ type CephRookIoCephObjectStoreV1GoModel struct {
 				Hostname *string `tfsdk:"hostname" yaml:"hostname,omitempty"`
 
 				Ip *string `tfsdk:"ip" yaml:"ip,omitempty"`
-
-				NodeName *string `tfsdk:"node_name" yaml:"nodeName,omitempty"`
-
-				TargetRef *struct {
-					ApiVersion *string `tfsdk:"api_version" yaml:"apiVersion,omitempty"`
-
-					FieldPath *string `tfsdk:"field_path" yaml:"fieldPath,omitempty"`
-
-					Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
-
-					Name *string `tfsdk:"name" yaml:"name,omitempty"`
-
-					Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
-
-					ResourceVersion *string `tfsdk:"resource_version" yaml:"resourceVersion,omitempty"`
-
-					Uid *string `tfsdk:"uid" yaml:"uid,omitempty"`
-				} `tfsdk:"target_ref" yaml:"targetRef,omitempty"`
 			} `tfsdk:"external_rgw_endpoints" yaml:"externalRgwEndpoints,omitempty"`
 
 			HostNetwork utilities.Dynamic `tfsdk:"host_network" yaml:"hostNetwork,omitempty"`
@@ -1245,8 +1227,8 @@ func (r *CephRookIoCephObjectStoreV1Resource) GetSchema(_ context.Context) (tfsd
 							},
 
 							"external_rgw_endpoints": {
-								Description:         "ExternalRgwEndpoints points to external rgw endpoint(s)",
-								MarkdownDescription: "ExternalRgwEndpoints points to external rgw endpoint(s)",
+								Description:         "ExternalRgwEndpoints points to external RGW endpoint(s). Multiple endpoints can be given, but for stability of ObjectBucketClaims, we highly recommend that users give only a single external RGW endpoint that is a load balancer that sends requests to the multiple RGWs.",
+								MarkdownDescription: "ExternalRgwEndpoints points to external RGW endpoint(s). Multiple endpoints can be given, but for stability of ObjectBucketClaims, we highly recommend that users give only a single external RGW endpoint that is a load balancer that sends requests to the multiple RGWs.",
 
 								Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -1262,110 +1244,10 @@ func (r *CephRookIoCephObjectStoreV1Resource) GetSchema(_ context.Context) (tfsd
 									},
 
 									"ip": {
-										Description:         "The IP of this endpoint. May not be loopback (127.0.0.0/8), link-local (169.254.0.0/16), or link-local multicast ((224.0.0.0/24). IPv6 is also accepted but not fully supported on all platforms. Also, certain kubernetes components, like kube-proxy, are not IPv6 ready. TODO: This should allow hostname or IP, See #4447.",
-										MarkdownDescription: "The IP of this endpoint. May not be loopback (127.0.0.0/8), link-local (169.254.0.0/16), or link-local multicast ((224.0.0.0/24). IPv6 is also accepted but not fully supported on all platforms. Also, certain kubernetes components, like kube-proxy, are not IPv6 ready. TODO: This should allow hostname or IP, See #4447.",
+										Description:         "The IP of this endpoint.",
+										MarkdownDescription: "The IP of this endpoint.",
 
 										Type: types.StringType,
-
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"node_name": {
-										Description:         "Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node.",
-										MarkdownDescription: "Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node.",
-
-										Type: types.StringType,
-
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"target_ref": {
-										Description:         "Reference to object providing the endpoint.",
-										MarkdownDescription: "Reference to object providing the endpoint.",
-
-										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
-
-											"api_version": {
-												Description:         "API version of the referent.",
-												MarkdownDescription: "API version of the referent.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"field_path": {
-												Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-												MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"kind": {
-												Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-												MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"name": {
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"namespace": {
-												Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-												MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"resource_version": {
-												Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-												MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"uid": {
-												Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-												MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-
-												Type: types.StringType,
-
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										}),
 
 										Required: false,
 										Optional: true,

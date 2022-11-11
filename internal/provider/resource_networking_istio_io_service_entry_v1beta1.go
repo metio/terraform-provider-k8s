@@ -385,8 +385,8 @@ func (r *NetworkingIstioIoServiceEntryV1Beta1Resource) GetSchema(_ context.Conte
 					},
 
 					"resolution": {
-						Description:         "Service discovery mode for the hosts.",
-						MarkdownDescription: "Service discovery mode for the hosts.",
+						Description:         "Service resolution mode for the hosts.",
+						MarkdownDescription: "Service resolution mode for the hosts.",
 
 						Type: types.StringType,
 

@@ -183,7 +183,7 @@ Optional:
 
 - `annotations` (Dynamic) The annotations-related configuration to add/set on each Pod related object.
 - `ca_bundle_ref` (String) The name of the secret that stores custom ca-bundle with root and intermediate certificates.
-- `external_rgw_endpoints` (Attributes List) ExternalRgwEndpoints points to external rgw endpoint(s) (see [below for nested schema](#nestedatt--spec--gateway--external_rgw_endpoints))
+- `external_rgw_endpoints` (Attributes List) ExternalRgwEndpoints points to external RGW endpoint(s). Multiple endpoints can be given, but for stability of ObjectBucketClaims, we highly recommend that users give only a single external RGW endpoint that is a load balancer that sends requests to the multiple RGWs. (see [below for nested schema](#nestedatt--spec--gateway--external_rgw_endpoints))
 - `host_network` (Dynamic) Whether host networking is enabled for the rgw daemon. If not set, the network settings from the cluster CR will be applied.
 - `instances` (Number) The number of pods in the rgw replicaset.
 - `labels` (Dynamic) The labels-related configuration to add/set on each Pod related object.
@@ -198,29 +198,10 @@ Optional:
 <a id="nestedatt--spec--gateway--external_rgw_endpoints"></a>
 ### Nested Schema for `spec.gateway.external_rgw_endpoints`
 
-Required:
-
-- `ip` (String) The IP of this endpoint. May not be loopback (127.0.0.0/8), link-local (169.254.0.0/16), or link-local multicast ((224.0.0.0/24). IPv6 is also accepted but not fully supported on all platforms. Also, certain kubernetes components, like kube-proxy, are not IPv6 ready. TODO: This should allow hostname or IP, See #4447.
-
 Optional:
 
 - `hostname` (String) The Hostname of this endpoint
-- `node_name` (String) Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node.
-- `target_ref` (Attributes) Reference to object providing the endpoint. (see [below for nested schema](#nestedatt--spec--gateway--external_rgw_endpoints--target_ref))
-
-<a id="nestedatt--spec--gateway--external_rgw_endpoints--target_ref"></a>
-### Nested Schema for `spec.gateway.external_rgw_endpoints.target_ref`
-
-Optional:
-
-- `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.
-- `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-- `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-- `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
-
+- `ip` (String) The IP of this endpoint.
 
 
 <a id="nestedatt--spec--gateway--placement"></a>

@@ -56,6 +56,8 @@ type KmsServicesK8SAwsKeyV1Alpha1GoModel struct {
 
 		Description *string `tfsdk:"description" yaml:"description,omitempty"`
 
+		EnableKeyRotation *bool `tfsdk:"enable_key_rotation" yaml:"enableKeyRotation,omitempty"`
+
 		KeySpec *string `tfsdk:"key_spec" yaml:"keySpec,omitempty"`
 
 		KeyUsage *string `tfsdk:"key_usage" yaml:"keyUsage,omitempty"`
@@ -195,6 +197,17 @@ func (r *KmsServicesK8SAwsKeyV1Alpha1Resource) GetSchema(_ context.Context) (tfs
 						MarkdownDescription: "A description of the KMS key.  Use a description that helps you decide whether the KMS key is appropriate for a task. The default value is an empty string (no description).  To set or change the description after the key is created, use UpdateKeyDescription.",
 
 						Type: types.StringType,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"enable_key_rotation": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,

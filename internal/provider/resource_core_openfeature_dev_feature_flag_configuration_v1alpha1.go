@@ -92,6 +92,8 @@ type CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1GoModel struct {
 					} `tfsdk:"secret_key_ref" yaml:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" yaml:"valueFrom,omitempty"`
 			} `tfsdk:"envs" yaml:"envs,omitempty"`
+
+			MetricsPort *int64 `tfsdk:"metrics_port" yaml:"metricsPort,omitempty"`
 		} `tfsdk:"flag_d_spec" yaml:"flagDSpec,omitempty"`
 
 		ServiceProvider *struct {
@@ -440,6 +442,17 @@ func (r *CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1Resource) GetSchema(_
 										Computed: false,
 									},
 								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"metrics_port": {
+								Description:         "",
+								MarkdownDescription: "",
+
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,

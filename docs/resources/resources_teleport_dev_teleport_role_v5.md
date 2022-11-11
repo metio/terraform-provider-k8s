@@ -117,7 +117,7 @@ Optional:
 - `annotations` (Map of List of String) Annotations is a collection of annotations to be programmatically appended to pending access requests at the time of their creation. These annotations serve as a mechanism to propagate extra information to plugins.  Since these annotations support variable interpolation syntax, they also offer a mechanism for forwarding claims from an external identity provider, to a plugin via '{{external.trait_name}}' style substitutions.
 - `claims_to_roles` (Attributes List) ClaimsToRoles specifies a mapping from claims (traits) to teleport roles. (see [below for nested schema](#nestedatt--spec--allow--request--claims_to_roles))
 - `roles` (List of String) Roles is the name of roles which will match the request rule.
-- `search_as_roles` (List of String) SearchAsRoles is a list of roles which the user should be able to 'assume' while searching for resources, and should be able to request with a search-based access request.
+- `search_as_roles` (List of String) SearchAsRoles is a list of extra roles which should apply to a user while they are searching for resources as part of a Resource Access Request, and defines the underlying roles which will be requested as part of any Resource Access Request.
 - `suggested_reviewers` (List of String) SuggestedReviewers is a list of reviewer suggestions.  These can be teleport usernames, but that is not a requirement.
 - `thresholds` (Attributes List) Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition.  If no thresholds are provided, a default threshold of 1 for approval and denial is used. (see [below for nested schema](#nestedatt--spec--allow--request--thresholds))
 
@@ -162,6 +162,7 @@ Optional:
 Optional:
 
 - `claims_to_roles` (Attributes List) ClaimsToRoles specifies a mapping from claims (traits) to teleport roles. (see [below for nested schema](#nestedatt--spec--allow--review_requests--claims_to_roles))
+- `preview_as_roles` (List of String) PreviewAsRoles is a list of extra roles which should apply to a reviewer while they are viewing a Resource Access Request for the purposes of viewing details such as the hostname and labels of requested resources.
 - `roles` (List of String) Roles is the name of roles which may be reviewed.
 - `where` (String) Where is an optional predicate which further limits which requests are reviewable.
 
@@ -244,7 +245,7 @@ Optional:
 - `annotations` (Map of List of String) Annotations is a collection of annotations to be programmatically appended to pending access requests at the time of their creation. These annotations serve as a mechanism to propagate extra information to plugins.  Since these annotations support variable interpolation syntax, they also offer a mechanism for forwarding claims from an external identity provider, to a plugin via '{{external.trait_name}}' style substitutions.
 - `claims_to_roles` (Attributes List) ClaimsToRoles specifies a mapping from claims (traits) to teleport roles. (see [below for nested schema](#nestedatt--spec--deny--request--claims_to_roles))
 - `roles` (List of String) Roles is the name of roles which will match the request rule.
-- `search_as_roles` (List of String) SearchAsRoles is a list of roles which the user should be able to 'assume' while searching for resources, and should be able to request with a search-based access request.
+- `search_as_roles` (List of String) SearchAsRoles is a list of extra roles which should apply to a user while they are searching for resources as part of a Resource Access Request, and defines the underlying roles which will be requested as part of any Resource Access Request.
 - `suggested_reviewers` (List of String) SuggestedReviewers is a list of reviewer suggestions.  These can be teleport usernames, but that is not a requirement.
 - `thresholds` (Attributes List) Thresholds is a list of thresholds, one of which must be met in order for reviews to trigger a state-transition.  If no thresholds are provided, a default threshold of 1 for approval and denial is used. (see [below for nested schema](#nestedatt--spec--deny--request--thresholds))
 
@@ -289,6 +290,7 @@ Optional:
 Optional:
 
 - `claims_to_roles` (Attributes List) ClaimsToRoles specifies a mapping from claims (traits) to teleport roles. (see [below for nested schema](#nestedatt--spec--deny--review_requests--claims_to_roles))
+- `preview_as_roles` (List of String) PreviewAsRoles is a list of extra roles which should apply to a reviewer while they are viewing a Resource Access Request for the purposes of viewing details such as the hostname and labels of requested resources.
 - `roles` (List of String) Roles is the name of roles which may be reviewed.
 - `where` (String) Where is an optional predicate which further limits which requests are reviewable.
 

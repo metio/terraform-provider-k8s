@@ -96,6 +96,12 @@ type LambdaServicesK8SAwsEventSourceMappingV1Alpha1GoModel struct {
 
 		ParallelizationFactor *int64 `tfsdk:"parallelization_factor" yaml:"parallelizationFactor,omitempty"`
 
+		QueueRefs *[]struct {
+			From *struct {
+				Name *string `tfsdk:"name" yaml:"name,omitempty"`
+			} `tfsdk:"from" yaml:"from,omitempty"`
+		} `tfsdk:"queue_refs" yaml:"queueRefs,omitempty"`
+
 		Queues *[]string `tfsdk:"queues" yaml:"queues,omitempty"`
 
 		SelfManagedEventSource *struct {
@@ -471,6 +477,41 @@ func (r *LambdaServicesK8SAwsEventSourceMappingV1Alpha1Resource) GetSchema(_ con
 						MarkdownDescription: "(Streams only) The number of batches to process from each shard concurrently.",
 
 						Type: types.Int64Type,
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"queue_refs": {
+						Description:         "",
+						MarkdownDescription: "",
+
+						Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+
+							"from": {
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+
+								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+
+									"name": {
+										Description:         "",
+										MarkdownDescription: "",
+
+										Type: types.StringType,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						}),
 
 						Required: false,
 						Optional: true,

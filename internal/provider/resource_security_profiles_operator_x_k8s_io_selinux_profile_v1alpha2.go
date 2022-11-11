@@ -59,6 +59,8 @@ type SecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2GoModel struct {
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
 		} `tfsdk:"inherit" yaml:"inherit,omitempty"`
+
+		Permissive *bool `tfsdk:"permissive" yaml:"permissive,omitempty"`
 	} `tfsdk:"spec" yaml:"spec,omitempty"`
 }
 
@@ -200,6 +202,17 @@ func (r *SecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2Resource) GetSchema
 								Computed: false,
 							},
 						}),
+
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"permissive": {
+						Description:         "Permissive, when true will cause the SELinux profile to only log violations instead of enforcing them.",
+						MarkdownDescription: "Permissive, when true will cause the SELinux profile to only log violations instead of enforcing them.",
+
+						Type: types.BoolType,
 
 						Required: false,
 						Optional: true,
