@@ -234,16 +234,16 @@ func (r *SecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2Resource) Create(ct
 	goModel.ApiVersion = utilities.Ptr("security-profiles-operator.x-k8s.io/v1alpha2")
 	goModel.Kind = utilities.Ptr("SelinuxProfile")
 
-	state.Id = types.Int64{Value: time.Now().UnixNano()}
-	state.ApiVersion = types.String{Value: *goModel.ApiVersion}
-	state.Kind = types.String{Value: *goModel.Kind}
+	state.Id = types.Int64Value(time.Now().UnixNano())
+	state.ApiVersion = types.StringValue(*goModel.ApiVersion)
+	state.Kind = types.StringValue(*goModel.Kind)
 
 	marshal, err := yaml.Marshal(goModel)
 	if err != nil {
 		resp.Diagnostics.AddError("Could not generate YAML", err.Error())
 		return
 	}
-	state.YAML = types.String{Value: string(marshal)}
+	state.YAML = types.StringValue(string(marshal))
 
 	diags = resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -276,16 +276,16 @@ func (r *SecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2Resource) Update(ct
 	goModel.ApiVersion = utilities.Ptr("security-profiles-operator.x-k8s.io/v1alpha2")
 	goModel.Kind = utilities.Ptr("SelinuxProfile")
 
-	state.Id = types.Int64{Value: time.Now().UnixNano()}
-	state.ApiVersion = types.String{Value: *goModel.ApiVersion}
-	state.Kind = types.String{Value: *goModel.Kind}
+	state.Id = types.Int64Value(time.Now().UnixNano())
+	state.ApiVersion = types.StringValue(*goModel.ApiVersion)
+	state.Kind = types.StringValue(*goModel.Kind)
 
 	marshal, err := yaml.Marshal(goModel)
 	if err != nil {
 		resp.Diagnostics.AddError("Could not generate YAML", err.Error())
 		return
 	}
-	state.YAML = types.String{Value: string(marshal)}
+	state.YAML = types.StringValue(string(marshal))
 
 	diags = resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)

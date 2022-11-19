@@ -23,29 +23,29 @@ func TestAnnotationValidator(t *testing.T) {
 	}
 	tests := map[string]testCase{
 		"wrong type": {
-			val:         types.String{Value: "ok"},
+			val:         types.StringValue("ok"),
 			expectError: true,
 		},
 		"null map": {
-			val:         types.Map{Null: true, ElemType: types.StringType},
+			val:         types.MapNull(types.StringType),
 			expectError: false,
 		},
 		"unknown map": {
-			val:         types.Map{Unknown: true, ElemType: types.StringType},
+			val:         types.MapUnknown(types.StringType),
 			expectError: false,
 		},
 		"valid annotations map": {
-			val: types.Map{ElemType: types.StringType, Elems: map[string]attr.Value{
-				"some":                                 types.String{Value: "value"},
-				"nginx.ingress.kubernetes.io/app-root": types.String{Value: "/"},
-				"sidecar.jaegertracing.io/inject":      types.String{Value: "jaeger"},
-			}},
+			val: types.MapValueMust(types.StringType, map[string]attr.Value{
+				"some":                                 types.StringValue("value"),
+				"nginx.ingress.kubernetes.io/app-root": types.StringValue("/"),
+				"sidecar.jaegertracing.io/inject":      types.StringValue("jaeger"),
+			}),
 			expectError: false,
 		},
 		"invalid annotations": {
-			val: types.Map{ElemType: types.StringType, Elems: map[string]attr.Value{
-				"/some/value": types.String{Value: "value"},
-			}},
+			val: types.MapValueMust(types.StringType, map[string]attr.Value{
+				"/some/value": types.StringValue("value"),
+			}),
 			expectError: true,
 		},
 	}

@@ -239,16 +239,16 @@ func (r *SchemasSchemaheroIoMigrationV1Alpha4Resource) Create(ctx context.Contex
 	goModel.ApiVersion = utilities.Ptr("schemas.schemahero.io/v1alpha4")
 	goModel.Kind = utilities.Ptr("Migration")
 
-	state.Id = types.Int64{Value: time.Now().UnixNano()}
-	state.ApiVersion = types.String{Value: *goModel.ApiVersion}
-	state.Kind = types.String{Value: *goModel.Kind}
+	state.Id = types.Int64Value(time.Now().UnixNano())
+	state.ApiVersion = types.StringValue(*goModel.ApiVersion)
+	state.Kind = types.StringValue(*goModel.Kind)
 
 	marshal, err := yaml.Marshal(goModel)
 	if err != nil {
 		resp.Diagnostics.AddError("Could not generate YAML", err.Error())
 		return
 	}
-	state.YAML = types.String{Value: string(marshal)}
+	state.YAML = types.StringValue(string(marshal))
 
 	diags = resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -281,16 +281,16 @@ func (r *SchemasSchemaheroIoMigrationV1Alpha4Resource) Update(ctx context.Contex
 	goModel.ApiVersion = utilities.Ptr("schemas.schemahero.io/v1alpha4")
 	goModel.Kind = utilities.Ptr("Migration")
 
-	state.Id = types.Int64{Value: time.Now().UnixNano()}
-	state.ApiVersion = types.String{Value: *goModel.ApiVersion}
-	state.Kind = types.String{Value: *goModel.Kind}
+	state.Id = types.Int64Value(time.Now().UnixNano())
+	state.ApiVersion = types.StringValue(*goModel.ApiVersion)
+	state.Kind = types.StringValue(*goModel.Kind)
 
 	marshal, err := yaml.Marshal(goModel)
 	if err != nil {
 		resp.Diagnostics.AddError("Could not generate YAML", err.Error())
 		return
 	}
-	state.YAML = types.String{Value: string(marshal)}
+	state.YAML = types.StringValue(string(marshal))
 
 	diags = resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)

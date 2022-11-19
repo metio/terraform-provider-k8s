@@ -283,16 +283,16 @@ func (r *CertificatesK8SIoCertificateSigningRequestV1Resource) Create(ctx contex
 	goModel.ApiVersion = utilities.Ptr("certificates.k8s.io/v1")
 	goModel.Kind = utilities.Ptr("CertificateSigningRequest")
 
-	state.Id = types.Int64{Value: time.Now().UnixNano()}
-	state.ApiVersion = types.String{Value: *goModel.ApiVersion}
-	state.Kind = types.String{Value: *goModel.Kind}
+	state.Id = types.Int64Value(time.Now().UnixNano())
+	state.ApiVersion = types.StringValue(*goModel.ApiVersion)
+	state.Kind = types.StringValue(*goModel.Kind)
 
 	marshal, err := yaml.Marshal(goModel)
 	if err != nil {
 		resp.Diagnostics.AddError("Could not generate YAML", err.Error())
 		return
 	}
-	state.YAML = types.String{Value: string(marshal)}
+	state.YAML = types.StringValue(string(marshal))
 
 	diags = resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -325,16 +325,16 @@ func (r *CertificatesK8SIoCertificateSigningRequestV1Resource) Update(ctx contex
 	goModel.ApiVersion = utilities.Ptr("certificates.k8s.io/v1")
 	goModel.Kind = utilities.Ptr("CertificateSigningRequest")
 
-	state.Id = types.Int64{Value: time.Now().UnixNano()}
-	state.ApiVersion = types.String{Value: *goModel.ApiVersion}
-	state.Kind = types.String{Value: *goModel.Kind}
+	state.Id = types.Int64Value(time.Now().UnixNano())
+	state.ApiVersion = types.StringValue(*goModel.ApiVersion)
+	state.Kind = types.StringValue(*goModel.Kind)
 
 	marshal, err := yaml.Marshal(goModel)
 	if err != nil {
 		resp.Diagnostics.AddError("Could not generate YAML", err.Error())
 		return
 	}
-	state.YAML = types.String{Value: string(marshal)}
+	state.YAML = types.StringValue(string(marshal))
 
 	diags = resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)

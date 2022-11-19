@@ -27,7 +27,7 @@ func TestRegexValidator(t *testing.T) {
 	}
 	tests := map[string]testCase{
 		"types.String ignored": {
-			val:         types.String{Value: "oook"},
+			val:         types.StringValue("oook"),
 			regexp:      regexp.MustCompile(`^o[j-l]?$`),
 			expectError: false,
 		},

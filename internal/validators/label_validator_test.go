@@ -23,45 +23,45 @@ func TestLabelValidator(t *testing.T) {
 	}
 	tests := map[string]testCase{
 		"wrong type": {
-			val:         types.String{Value: "ok"},
+			val:         types.StringValue("ok"),
 			expectError: true,
 		},
 		"null map": {
-			val:         types.Map{Null: true, ElemType: types.StringType},
+			val:         types.MapNull(types.StringType),
 			expectError: false,
 		},
 		"unknown map": {
-			val:         types.Map{Unknown: true, ElemType: types.StringType},
+			val:         types.MapUnknown(types.StringType),
 			expectError: false,
 		},
 		"valid labels map": {
-			val: types.Map{ElemType: types.StringType, Elems: map[string]attr.Value{
-				"some":                         types.String{Value: "value"},
-				"app.kubernetes.io/name":       types.String{Value: "mysql"},
-				"app.kubernetes.io/instance":   types.String{Value: "mysql-abcxzy"},
-				"app.kubernetes.io/version":    types.String{Value: "5.7.21"},
-				"app.kubernetes.io/component":  types.String{Value: "database"},
-				"app.kubernetes.io/part-of":    types.String{Value: "wordpress"},
-				"app.kubernetes.io/managed-by": types.String{Value: "helm"},
-			}},
+			val: types.MapValueMust(types.StringType, map[string]attr.Value{
+				"some":                         types.StringValue("value"),
+				"app.kubernetes.io/name":       types.StringValue("mysql"),
+				"app.kubernetes.io/instance":   types.StringValue("mysql-abcxzy"),
+				"app.kubernetes.io/version":    types.StringValue("5.7.21"),
+				"app.kubernetes.io/component":  types.StringValue("database"),
+				"app.kubernetes.io/part-of":    types.StringValue("wordpress"),
+				"app.kubernetes.io/managed-by": types.StringValue("helm"),
+			}),
 			expectError: false,
 		},
 		"invalid label name": {
-			val: types.Map{ElemType: types.StringType, Elems: map[string]attr.Value{
-				"/some/value": types.String{Value: "value"},
-			}},
+			val: types.MapValueMust(types.StringType, map[string]attr.Value{
+				"/some/value": types.StringValue("value"),
+			}),
 			expectError: true,
 		},
 		"invalid label value": {
-			val: types.Map{ElemType: types.StringType, Elems: map[string]attr.Value{
-				"app.kubernetes.io/name": types.String{Value: "/"},
-			}},
+			val: types.MapValueMust(types.StringType, map[string]attr.Value{
+				"app.kubernetes.io/name": types.StringValue("/"),
+			}),
 			expectError: true,
 		},
 		"wrong value type": {
-			val: types.Map{ElemType: types.Int64Type, Elems: map[string]attr.Value{
-				"app.kubernetes.io/name": types.Int64{Value: 123},
-			}},
+			val: types.MapValueMust(types.Int64Type, map[string]attr.Value{
+				"app.kubernetes.io/name": types.Int64Value(123),
+			}),
 			expectError: true,
 		},
 	}

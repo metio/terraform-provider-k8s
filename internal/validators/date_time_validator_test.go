@@ -24,55 +24,55 @@ func TestDateTime64Validator(t *testing.T) {
 	}
 	tests := map[string]testCase{
 		"valid time": {
-			val:         types.String{Value: "23:47:38"},
+			val:         types.StringValue("23:47:38"),
 			expectError: false,
 		},
 		"invalid time": {
-			val:         types.String{Value: "25:47:38"},
+			val:         types.StringValue("25:47:38"),
 			expectError: true,
 		},
 		"valid time with timezone": {
-			val:         types.String{Value: "23:47:38+02:00"},
+			val:         types.StringValue("23:47:38+02:00"),
 			expectError: false,
 		},
 		"invalid time with timezone": {
-			val:         types.String{Value: "25:47:38+02:00"},
+			val:         types.StringValue("25:47:38+02:00"),
 			expectError: true,
 		},
 		"valid date": {
-			val:         types.String{Value: "2022-10-18"},
+			val:         types.StringValue("2022-10-18"),
 			expectError: false,
 		},
 		"invalid date": {
-			val:         types.String{Value: "2022-13-18"},
+			val:         types.StringValue("2022-13-18"),
 			expectError: true,
 		},
 		"valid date-time": {
-			val:         types.String{Value: time.Now().Format(time.RFC3339)},
+			val:         types.StringValue(time.Now().Format(time.RFC3339)),
 			expectError: false,
 		},
 		"invalid date-time": {
-			val:         types.String{Value: "2006-13-02T15:04:05+07:00"},
+			val:         types.StringValue("2006-13-02T15:04:05+07:00"),
 			expectError: true,
 		},
 		"valid date-time nano": {
-			val:         types.String{Value: time.Now().Format(time.RFC3339Nano)},
+			val:         types.StringValue(time.Now().Format(time.RFC3339Nano)),
 			expectError: false,
 		},
 		"invalid date-time nano": {
-			val:         types.String{Value: "2006-13-02T15:04:05.999999999+07:00"},
+			val:         types.StringValue("2006-13-02T15:04:05.999999999+07:00"),
 			expectError: true,
 		},
 		"wrong type": {
-			val:         types.Bool{Value: true},
+			val:         types.BoolValue(true),
 			expectError: true,
 		},
 		"null string": {
-			val:         types.String{Null: true},
+			val:         types.StringNull(),
 			expectError: false,
 		},
 		"unknown string": {
-			val:         types.String{Unknown: true},
+			val:         types.StringUnknown(),
 			expectError: false,
 		},
 	}
