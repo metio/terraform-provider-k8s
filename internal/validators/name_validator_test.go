@@ -23,19 +23,19 @@ func TestNameValidator(t *testing.T) {
 	}
 	tests := map[string]testCase{
 		"valid name": {
-			val:         types.String{Value: "ok"},
+			val:         types.StringValue("ok"),
 			expectError: false,
 		},
 		"invalid name": {
-			val:         types.String{Value: "ok/or/not"},
+			val:         types.StringValue("ok/or/not"),
 			expectError: true,
 		},
 		"null string": {
-			val:         types.String{Null: true},
+			val:         types.StringNull(),
 			expectError: false,
 		},
 		"unknown string": {
-			val:         types.String{Unknown: true},
+			val:         types.StringUnknown(),
 			expectError: false,
 		},
 	}

@@ -23,23 +23,23 @@ func TestBase64Validator(t *testing.T) {
 	}
 	tests := map[string]testCase{
 		"valid base64": {
-			val:         types.String{Value: "YmFzZTY0IGVuY29kZWQgdmFsdWU="},
+			val:         types.StringValue("YmFzZTY0IGVuY29kZWQgdmFsdWU="),
 			expectError: false,
 		},
 		"invalid base64": {
-			val:         types.String{Value: "not base64 encoded"},
+			val:         types.StringValue("not base64 encoded"),
 			expectError: true,
 		},
 		"wrong type": {
-			val:         types.Bool{Value: true},
+			val:         types.BoolValue(true),
 			expectError: true,
 		},
 		"null string": {
-			val:         types.String{Null: true},
+			val:         types.StringNull(),
 			expectError: false,
 		},
 		"unknown string": {
-			val:         types.String{Unknown: true},
+			val:         types.StringUnknown(),
 			expectError: false,
 		},
 	}

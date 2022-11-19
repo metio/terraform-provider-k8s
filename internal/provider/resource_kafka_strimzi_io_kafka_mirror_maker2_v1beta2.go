@@ -7706,16 +7706,16 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Resource) Create(ctx context.Cont
 	goModel.ApiVersion = utilities.Ptr("kafka.strimzi.io/v1beta2")
 	goModel.Kind = utilities.Ptr("KafkaMirrorMaker2")
 
-	state.Id = types.Int64{Value: time.Now().UnixNano()}
-	state.ApiVersion = types.String{Value: *goModel.ApiVersion}
-	state.Kind = types.String{Value: *goModel.Kind}
+	state.Id = types.Int64Value(time.Now().UnixNano())
+	state.ApiVersion = types.StringValue(*goModel.ApiVersion)
+	state.Kind = types.StringValue(*goModel.Kind)
 
 	marshal, err := yaml.Marshal(goModel)
 	if err != nil {
 		resp.Diagnostics.AddError("Could not generate YAML", err.Error())
 		return
 	}
-	state.YAML = types.String{Value: string(marshal)}
+	state.YAML = types.StringValue(string(marshal))
 
 	diags = resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -7748,16 +7748,16 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Resource) Update(ctx context.Cont
 	goModel.ApiVersion = utilities.Ptr("kafka.strimzi.io/v1beta2")
 	goModel.Kind = utilities.Ptr("KafkaMirrorMaker2")
 
-	state.Id = types.Int64{Value: time.Now().UnixNano()}
-	state.ApiVersion = types.String{Value: *goModel.ApiVersion}
-	state.Kind = types.String{Value: *goModel.Kind}
+	state.Id = types.Int64Value(time.Now().UnixNano())
+	state.ApiVersion = types.StringValue(*goModel.ApiVersion)
+	state.Kind = types.StringValue(*goModel.Kind)
 
 	marshal, err := yaml.Marshal(goModel)
 	if err != nil {
 		resp.Diagnostics.AddError("Could not generate YAML", err.Error())
 		return
 	}
-	state.YAML = types.String{Value: string(marshal)}
+	state.YAML = types.StringValue(string(marshal))
 
 	diags = resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)

@@ -23,23 +23,23 @@ func TestPortValidator(t *testing.T) {
 	}
 	tests := map[string]testCase{
 		"valid port": {
-			val:         types.Int64{Value: 12345},
+			val:         types.Int64Value(12345),
 			expectError: false,
 		},
 		"invalid port": {
-			val:         types.Int64{Value: -12345},
+			val:         types.Int64Value(-12345),
 			expectError: true,
 		},
 		"wrong type": {
-			val:         types.Bool{Value: true},
+			val:         types.BoolValue(true),
 			expectError: true,
 		},
 		"null int": {
-			val:         types.Int64{Null: true},
+			val:         types.Int64Null(),
 			expectError: false,
 		},
 		"unknown int": {
-			val:         types.Int64{Unknown: true},
+			val:         types.Int64Unknown(),
 			expectError: false,
 		},
 	}
