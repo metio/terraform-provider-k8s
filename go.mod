@@ -8,7 +8,7 @@ go 1.19
 require (
 	github.com/getkin/kin-openapi v0.108.0
 	github.com/google/go-cmp v0.5.9
-	github.com/gruntwork-io/terratest v0.41.2
+	github.com/gruntwork-io/terratest v0.41.3
 	github.com/hashicorp/terraform-plugin-docs v0.13.0
 	github.com/hashicorp/terraform-plugin-framework v0.16.0
 	github.com/hashicorp/terraform-plugin-framework-validators v0.6.0
