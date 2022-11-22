@@ -145,8 +145,8 @@ func (r *AutoscalingK8SIoVerticalPodAutoscalerCheckpointV1Beta2Resource) GetSche
 			},
 
 			"spec": {
-				Description:         "Specification of the checkpoint. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status.",
-				MarkdownDescription: "Specification of the checkpoint. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status.",
+				Description:         "Specification of the checkpoint. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.",
+				MarkdownDescription: "Specification of the checkpoint. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.",
 
 				Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 

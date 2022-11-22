@@ -86,6 +86,7 @@ Optional:
 - `error_response_overrides` (Attributes List) Error response overrides for this Mapping. Replaces all of the 'error_response_overrides' set on the Ambassador module, if any. (see [below for nested schema](#nestedatt--spec--error_response_overrides))
 - `grpc` (Boolean)
 - `headers` (Map of String)
+- `health_checks` (Attributes List) (see [below for nested schema](#nestedatt--spec--health_checks))
 - `host` (String) Exact match for the hostname of a request if HostRegex is false; regex match for the hostname if HostRegex is true.  Host specifies both a match for the ':authority' header of a request, as well as a match criterion for Host CRDs: a Mapping that specifies Host will not associate with a Host that doesn't have a matching Hostname.  If both Host and Hostname are set, an error is logged, Host is ignored, and Hostname is used.  DEPRECATED: Host is either an exact match or a regex, depending on HostRegex. Use HostName instead.  TODO(lukeshu): In v3alpha2, get rid of MappingSpec.host and MappingSpec.host_regex in favor of a MappingSpec.deprecated_hostname_regex.
 - `host_redirect` (Boolean)
 - `host_regex` (Boolean) DEPRECATED: Host is either an exact match or a regex, depending on HostRegex. Use HostName instead.  TODO(lukeshu): In v3alpha2, get rid of MappingSpec.host and MappingSpec.host_regex in favor of a MappingSpec.deprecated_hostname_regex.
@@ -209,6 +210,76 @@ Optional:
 Optional:
 
 - `filename` (String) The name of a file on the Ambassador pod that contains a format text string.
+
+
+
+
+<a id="nestedatt--spec--health_checks"></a>
+### Nested Schema for `spec.health_checks`
+
+Required:
+
+- `health_check` (Attributes) Configuration for where the healthcheck request should be made to (see [below for nested schema](#nestedatt--spec--health_checks--health_check))
+
+Optional:
+
+- `healthy_threshold` (Number) Number of expected responses for the upstream to be considered healthy. Defaults to 1.
+- `interval` (String) Interval between health checks. Defaults to every 5 seconds.
+- `timeout` (String) Timeout for connecting to the health checking endpoint. Defaults to 3 seconds.
+- `unhealthy_threshold` (Number) Number of non-expected responses for the upstream to be considered unhealthy. A single 503 will mark the upstream as unhealthy regardless of the threshold. Defaults to 2.
+
+<a id="nestedatt--spec--health_checks--health_check"></a>
+### Nested Schema for `spec.health_checks.health_check`
+
+Optional:
+
+- `grpc` (Attributes) HealthCheck for gRPC upstreams. Only one of grpc_health_check or http_health_check may be specified (see [below for nested schema](#nestedatt--spec--health_checks--health_check--grpc))
+- `http` (Attributes) HealthCheck for HTTP upstreams. Only one of http_health_check or grpc_health_check may be specified (see [below for nested schema](#nestedatt--spec--health_checks--health_check--http))
+
+<a id="nestedatt--spec--health_checks--health_check--grpc"></a>
+### Nested Schema for `spec.health_checks.health_check.http`
+
+Required:
+
+- `upstream_name` (String) The upstream name parameter which will be sent to gRPC service in the health check message
+
+Optional:
+
+- `authority` (String) The value of the :authority header in the gRPC health check request. If left empty the upstream name will be used.
+
+
+<a id="nestedatt--spec--health_checks--health_check--http"></a>
+### Nested Schema for `spec.health_checks.health_check.http`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `add_request_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--health_checks--health_check--http--add_request_headers))
+- `expected_statuses` (Attributes List) (see [below for nested schema](#nestedatt--spec--health_checks--health_check--http--expected_statuses))
+- `hostname` (String)
+- `remove_request_headers` (List of String)
+
+<a id="nestedatt--spec--health_checks--health_check--http--add_request_headers"></a>
+### Nested Schema for `spec.health_checks.health_check.http.add_request_headers`
+
+Optional:
+
+- `append` (Boolean)
+- `v2_representation` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--health_checks--health_check--http--expected_statuses"></a>
+### Nested Schema for `spec.health_checks.health_check.http.expected_statuses`
+
+Required:
+
+- `max` (Number) End of the statuses to include. Must be between 100 and 599 (inclusive)
+- `min` (Number) Start of the statuses to include. Must be between 100 and 599 (inclusive)
+
 
 
 

@@ -71,6 +71,7 @@ Optional:
 - `maximum_record_age_in_seconds` (Number) (Streams only) Discard records older than the specified age. The default value is infinite (-1).
 - `maximum_retry_attempts` (Number) (Streams only) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.
 - `parallelization_factor` (Number) (Streams only) The number of batches to process from each shard concurrently.
+- `queue_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--queue_refs))
 - `queues` (List of String) (MQ) The name of the Amazon MQ broker destination queue to consume.
 - `self_managed_event_source` (Attributes) The self-managed Apache Kafka cluster to receive records from. (see [below for nested schema](#nestedatt--spec--self_managed_event_source))
 - `self_managed_kafka_event_source_config` (Attributes) Specific configuration settings for a self-managed Apache Kafka event source. (see [below for nested schema](#nestedatt--spec--self_managed_kafka_event_source_config))
@@ -138,6 +139,22 @@ Optional:
 
 <a id="nestedatt--spec--function_ref--from"></a>
 ### Nested Schema for `spec.function_ref.from`
+
+Optional:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--queue_refs"></a>
+### Nested Schema for `spec.queue_refs`
+
+Optional:
+
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--queue_refs--from))
+
+<a id="nestedatt--spec--queue_refs--from"></a>
+### Nested Schema for `spec.queue_refs.from`
 
 Optional:
 

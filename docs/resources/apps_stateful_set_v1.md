@@ -272,6 +272,7 @@ Required:
 Optional:
 
 - `min_ready_seconds` (Number) Minimum number of seconds for which a newly created pod should be ready without any of its container crashing for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
+- `ordinals` (Attributes) StatefulSetOrdinals describes the policy used for replica ordinal assignment in this StatefulSet. (see [below for nested schema](#nestedatt--spec--ordinals))
 - `persistent_volume_claim_retention_policy` (Attributes) StatefulSetPersistentVolumeClaimRetentionPolicy describes the policy used for PVCs created from the StatefulSet VolumeClaimTemplates. (see [below for nested schema](#nestedatt--spec--persistent_volume_claim_retention_policy))
 - `pod_management_policy` (String) podManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down. The default policy is 'OrderedReady', where pods are created in increasing order (pod-0, then pod-1, etc) and the controller will wait until each pod is ready before continuing. When scaling down, the pods are removed in the opposite order. The alternative policy is 'Parallel' which will create pods in parallel to match the desired scale without waiting, and on scale down will delete all pods at once.
 - `replicas` (Number) replicas is the desired number of replicas of the given Template. These are replicas in the sense that they are instantiations of the same Template, but individual replicas also have a consistent identity. If unspecified, defaults to 1.
@@ -2598,7 +2599,7 @@ Optional:
 - `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
 - `se_linux_options` (Attributes) SELinuxOptions are the labels to be applied to the container (see [below for nested schema](#nestedatt--spec--template--spec--volumes--se_linux_options))
 - `seccomp_profile` (Attributes) SeccompProfile defines a pod/container's seccomp profile settings. Only one profile source may be set. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--seccomp_profile))
-- `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container. Note that this field cannot be set when spec.os.name is windows.
+- `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.
 - `sysctls` (Attributes List) Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--sysctls))
 - `windows_options` (Attributes) WindowsSecurityContextOptions contain Windows-specific options and credentials. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--windows_options))
 
@@ -2672,8 +2673,8 @@ Optional:
 - `label_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--label_selector))
 - `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.
 - `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
-- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
-- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
 <a id="nestedatt--spec--template--spec--volumes--label_selector"></a>
 ### Nested Schema for `spec.template.spec.volumes.label_selector`
@@ -2955,7 +2956,7 @@ Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
 - `data_source` (Attributes) TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--ephemeral--volume_claim_template--metadata--data_source))
-- `data_source_ref` (Attributes) TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--ephemeral--volume_claim_template--metadata--data_source_ref))
+- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--template--spec--volumes--ephemeral--volume_claim_template--metadata--data_source_ref))
 - `resources` (Attributes) ResourceRequirements describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--ephemeral--volume_claim_template--metadata--resources))
 - `selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--template--spec--volumes--ephemeral--volume_claim_template--metadata--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
@@ -2986,6 +2987,7 @@ Required:
 Optional:
 
 - `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
 <a id="nestedatt--spec--template--spec--volumes--ephemeral--volume_claim_template--metadata--resources"></a>
@@ -3506,6 +3508,14 @@ Optional:
 
 
 
+<a id="nestedatt--spec--ordinals"></a>
+### Nested Schema for `spec.ordinals`
+
+Optional:
+
+- `start` (Number) start is the number representing the first replica's index. It may be used to number replicas from an alternate index (eg: 1-indexed) over the default 0-indexed names, or to orchestrate progressive movement of replicas from one StatefulSet to another. If set, replica indices will be in the range:  [.spec.ordinals.start, .spec.ordinals.start + .spec.replicas).If unset, defaults to 0. Replica indices will be in the range:  [0, .spec.replicas).
+
+
 <a id="nestedatt--spec--persistent_volume_claim_retention_policy"></a>
 ### Nested Schema for `spec.persistent_volume_claim_retention_policy`
 
@@ -3547,7 +3557,7 @@ Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
 - `data_source` (Attributes) TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace. (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--data_source))
-- `data_source_ref` (Attributes) TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace. (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--data_source_ref))
+- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--data_source_ref))
 - `resources` (Attributes) ResourceRequirements describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--resources))
 - `selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
@@ -3578,6 +3588,7 @@ Required:
 Optional:
 
 - `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
 <a id="nestedatt--spec--volume_claim_templates--spec--resources"></a>

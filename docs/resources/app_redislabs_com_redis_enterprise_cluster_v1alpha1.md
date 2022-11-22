@@ -126,14 +126,14 @@ Optional:
 - `redis_enterprise_services_rigger_resources` (Attributes) Compute resource requirements for Services Rigger pod (see [below for nested schema](#nestedatt--spec--redis_enterprise_services_rigger_resources))
 - `redis_enterprise_termination_grace_period_seconds` (Number) The TerminationGracePeriodSeconds value for the (STS created) REC pods
 - `redis_enterprise_volume_mounts` (Attributes List) additional volume mounts within the redis enterprise containers. More info: https://kubernetes.io/docs/concepts/storage/volumes/ (see [below for nested schema](#nestedatt--spec--redis_enterprise_volume_mounts))
-- `redis_on_flash_spec` (Attributes) Stores configurations specific to redis on flash. If provided, the cluster will be capable of creating redis on flash databases. Note - This is an ALPHA Feature. For this feature to take effect, set a boolean environment variable with the name 'ENABLE_ALPHA_FEATURES' to True. This variable can be set via the redis-enterprise-operator pod spec, or through the operator-environment-config Config Map. (see [below for nested schema](#nestedatt--spec--redis_on_flash_spec))
+- `redis_on_flash_spec` (Attributes) Stores configurations specific to redis on flash. If provided, the cluster will be capable of creating redis on flash databases. (see [below for nested schema](#nestedatt--spec--redis_on_flash_spec))
 - `redis_upgrade_policy` (String) Redis upgrade policy to be set on the Redis Enterprise Cluster. Possible values: major/latest This value is used by the cluster to choose the Redis version of the database when an upgrade is performed. The Redis Enterprise Cluster includes multiple versions of OSS Redis that can be used for databases.
 - `service_account_name` (String) Name of the service account to use
-- `services` (Attributes) Redis-Enterprise-Operator services specifications. (see [below for nested schema](#nestedatt--spec--services))
+- `services` (Attributes) Customization options for operator-managed service resources created for Redis Enterprise clusters and databases (see [below for nested schema](#nestedatt--spec--services))
 - `services_rigger_spec` (Attributes) Specification for service rigger (see [below for nested schema](#nestedatt--spec--services_rigger_spec))
 - `side_containers_spec` (Attributes List) (see [below for nested schema](#nestedatt--spec--side_containers_spec))
 - `slave_ha` (Attributes) Slave high availability mechanism configuration. (see [below for nested schema](#nestedatt--spec--slave_ha))
-- `ui_annotations` (Map of String) Annotations for Redis Enterprise UI service. This annotations will override the overlapping global annotations set under spec.services.servicesAnnotations Note - The specified annotations will not override annotations that already exists and didn't originated from the operator except for the following reserved annotation name redis.io/last-keys.
+- `ui_annotations` (Map of String) Annotations for Redis Enterprise UI service. This annotations will override the overlapping global annotations set under spec.services.servicesAnnotations The specified annotations will not override annotations that already exist and didn't originate from the operator, except for the 'redis.io/last-keys' annotation which is reserved.
 - `ui_service_type` (String) Type of service used to expose Redis Enterprise UI (https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
 - `upgrade_spec` (Attributes) Specification for upgrades of Redis Enterprise (see [below for nested schema](#nestedatt--spec--upgrade_spec))
 - `username` (String) Username for the admin user of Redis Enterprise
@@ -2953,7 +2953,16 @@ Optional:
 
 Optional:
 
-- `services_annotations` (Map of String) Global additional annotations to set on service resources created by the operator. Note - The specified annotations will not override annotations that already exists and didn't originated from the operator.
+- `api_service` (Attributes) Customization options for the REC API service. (see [below for nested schema](#nestedatt--spec--services--api_service))
+- `services_annotations` (Map of String) Global additional annotations to set on service resources created by the operator. The specified annotations will not override annotations that already exist and didn't originate from the operator.
+
+<a id="nestedatt--spec--services--api_service"></a>
+### Nested Schema for `spec.services.api_service`
+
+Optional:
+
+- `type` (String) Type of service to create for the REC API service. Defaults to ClusterIP service, if not specified otherwise.
+
 
 
 <a id="nestedatt--spec--services_rigger_spec"></a>

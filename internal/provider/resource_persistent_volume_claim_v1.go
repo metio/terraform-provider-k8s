@@ -66,6 +66,8 @@ type PersistentVolumeClaimV1GoModel struct {
 			Kind *string `tfsdk:"kind" yaml:"kind,omitempty"`
 
 			Name *string `tfsdk:"name" yaml:"name,omitempty"`
+
+			Namespace *string `tfsdk:"namespace" yaml:"namespace,omitempty"`
 		} `tfsdk:"data_source_ref" yaml:"dataSourceRef,omitempty"`
 
 		Resources *struct {
@@ -245,8 +247,8 @@ func (r *PersistentVolumeClaimV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 					},
 
 					"data_source_ref": {
-						Description:         "TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace.",
-						MarkdownDescription: "TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace.",
+						Description:         "",
+						MarkdownDescription: "",
 
 						Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
@@ -280,6 +282,17 @@ func (r *PersistentVolumeClaimV1Resource) GetSchema(_ context.Context) (tfsdk.Sc
 
 								Required: true,
 								Optional: false,
+								Computed: false,
+							},
+
+							"namespace": {
+								Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+								MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+
+								Type: types.StringType,
+
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 						}),

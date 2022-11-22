@@ -134,7 +134,6 @@ Required:
 Optional:
 
 - `auto_force_start` (Boolean) AutoForceStart enables the detection of constantly failing cluster and trigger the Force Start action.
-- `backup_type` (String) BackupType represents the storage options for the HotBackup
 - `cluster_data_recovery_policy` (String) Configuration of the cluster recovery strategy.
 - `data_recovery_timeout` (Number) DataRecoveryTimeout is timeout for each step of data recovery in seconds. Maximum timeout is equal to DataRecoveryTimeout*2 (for each step: validation and data-load).
 - `host_path` (String) Host Path directory.
@@ -154,10 +153,19 @@ Optional:
 <a id="nestedatt--spec--persistence--restore"></a>
 ### Nested Schema for `spec.persistence.restore`
 
+Optional:
+
+- `bucket_config` (Attributes) Bucket Configuration from which the backup will be downloaded. (see [below for nested schema](#nestedatt--spec--persistence--restore--bucket_config))
+- `hot_backup_resource_name` (String) Name of the HotBackup resource from which backup will be fetched.
+
+<a id="nestedatt--spec--persistence--restore--bucket_config"></a>
+### Nested Schema for `spec.persistence.restore.hot_backup_resource_name`
+
 Required:
 
 - `bucket_uri` (String) Full path to blob storage bucket.
 - `secret` (String) Name of the secret with credentials for cloud providers.
+
 
 
 

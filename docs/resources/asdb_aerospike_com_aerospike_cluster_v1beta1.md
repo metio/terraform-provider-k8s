@@ -2381,6 +2381,7 @@ Optional:
 Optional:
 
 - `block_volume_policy` (Attributes) BlockVolumePolicy contains default policies for block volumes. (see [below for nested schema](#nestedatt--spec--rack_config--racks--zone--block_volume_policy))
+- `cleanup_threads` (Number) CleanupThreads contains maximum number of cleanup threads(dd or blkdis
 - `filesystem_volume_policy` (Attributes) FileSystemVolumePolicy contains default policies for filesystem volume (see [below for nested schema](#nestedatt--spec--rack_config--racks--zone--filesystem_volume_policy))
 - `volumes` (Attributes List) Volumes list to attach to created pods. (see [below for nested schema](#nestedatt--spec--rack_config--racks--zone--volumes))
 
@@ -3020,6 +3021,7 @@ Optional:
 Optional:
 
 - `block_volume_policy` (Attributes) BlockVolumePolicy contains default policies for block volumes. (see [below for nested schema](#nestedatt--spec--rack_config--racks--zone--block_volume_policy))
+- `cleanup_threads` (Number) CleanupThreads contains maximum number of cleanup threads(dd or blkdis
 - `filesystem_volume_policy` (Attributes) FileSystemVolumePolicy contains default policies for filesystem volume (see [below for nested schema](#nestedatt--spec--rack_config--racks--zone--filesystem_volume_policy))
 - `volumes` (Attributes List) Volumes list to attach to created pods. (see [below for nested schema](#nestedatt--spec--rack_config--racks--zone--volumes))
 
@@ -3285,6 +3287,7 @@ Optional:
 Optional:
 
 - `block_volume_policy` (Attributes) BlockVolumePolicy contains default policies for block volumes. (see [below for nested schema](#nestedatt--spec--storage--block_volume_policy))
+- `cleanup_threads` (Number) CleanupThreads contains maximum number of cleanup threads(dd or blkdis
 - `filesystem_volume_policy` (Attributes) FileSystemVolumePolicy contains default policies for filesystem volume (see [below for nested schema](#nestedatt--spec--storage--filesystem_volume_policy))
 - `volumes` (Attributes List) Volumes list to attach to created pods. (see [below for nested schema](#nestedatt--spec--storage--volumes))
 
