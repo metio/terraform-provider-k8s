@@ -115,7 +115,7 @@ func splitVersions(crd *apiextensionsv1.CustomResourceDefinition) []*apiextensio
 }
 
 func writeYaml(crd *apiextensionsv1.CustomResourceDefinition, destPath string) {
-	err := os.MkdirAll(filepath.Dir(destPath), 0777)
+	err := os.MkdirAll(filepath.Dir(destPath), os.ModePerm)
 	if err != nil {
 		log.Printf("could not create directory because of %s", err)
 		return

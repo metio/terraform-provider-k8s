@@ -8,7 +8,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -16,10 +15,6 @@ import (
 )
 
 func main() {
-	var targetPackage string
-	flag.StringVar(&targetPackage, "targetPackage", "provider", "")
-	flag.Parse()
-
 	cwd, err := os.Getwd()
 	if err != nil {
 		log.Fatal(err)
@@ -28,16 +23,20 @@ func main() {
 	crds := parseCRDv1Files(fmt.Sprintf("%s/schemas/crd_v1/", cwd))
 	openapiv2Schemas := parseOpenAPIv2Files(fmt.Sprintf("%s/schemas/openapi_v2/", cwd))
 
-	data := convertCRDv1(crds, targetPackage)
-	data = append(data, convertOpenAPIv3(openapiv2Schemas, targetPackage)...)
+	data := convertCRDv1(crds)
+	data = append(data, convertOpenAPIv3(openapiv2Schemas)...)
 	sort.SliceStable(data, func(i, j int) bool {
-		return data[i].TerraformResourceType < data[j].TerraformResourceType
+		if data[i].Package != data[j].Package {
+			return data[i].Package < data[j].Package
+		}
+		return data[i].ResourceTypeStruct < data[j].ResourceTypeStruct
 	})
 
 	generateResources(fmt.Sprintf("%s/internal/provider", cwd), data)
-	generateK8sProvider(fmt.Sprintf("%s/internal/provider", cwd), data)
-	generateResourceExamples(fmt.Sprintf("%s/examples/resources", cwd), data)
-	generateDocTemplates(fmt.Sprintf("%s/templates/resources", cwd), data)
-	generateTerratests(fmt.Sprintf("%s/terratest", cwd), data)
+	generateProvider(fmt.Sprintf("%s/internal/provider", cwd), data)
+	generateTests(fmt.Sprintf("%s/internal/provider", cwd), data)
+	generateExamples(fmt.Sprintf("%s/examples", cwd), data)
+	generateTemplates(fmt.Sprintf("%s/templates", cwd), data)
+	generateTerratestTests(fmt.Sprintf("%s/terratest", cwd), data)
 	generateGitHubWorkflows(fmt.Sprintf("%s/.github/workflows", cwd), data)
 }

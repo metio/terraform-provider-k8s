@@ -1,0 +1,20 @@
+/*
+* SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+* SPDX-License-Identifier: 0BSD
+*/
+
+package provider
+
+import (
+	"github.com/hashicorp/terraform-plugin-framework/resource"
+	{{ range $index, $package := .Packages -}}
+	"github.com/metio/terraform-provider-k8s/internal/provider/{{ $package }}"
+	{{ end }}
+)
+
+func allResources() []func() resource.Resource {
+	return []func() resource.Resource{
+		{{ range $index, $resource := .Resources }}{{ $resource.Package }}.New{{ $resource.ResourceTypeStruct }},
+		{{ end }}
+	}
+}

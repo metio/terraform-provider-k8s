@@ -127,13 +127,8 @@ func (v *openapiv3ValidatorExtractor) stringWithEnums() string {
 func (v *openapiv3ValidatorExtractor) stringWithPattern() string {
 	if v.property.Type == "string" && v.property.Pattern != "" {
 		v.imports.Regex = true
-		attributeType, _, _ := translateTypeWith(&openapiv3TypeTranslator{property: v.property})
-		if attributeType == "utilities.IntOrStringType{}" {
-			return fmt.Sprintf(`validators.RegexValidator(regexp.MustCompile(%c%s%c))`, '`', v.property.Pattern, '`')
-		} else {
-			v.imports.StringValidator = true
-			return fmt.Sprintf(`stringvalidator.RegexMatches(regexp.MustCompile(%c%s%c), "")`, '`', v.property.Pattern, '`')
-		}
+		v.imports.StringValidator = true
+		return fmt.Sprintf(`stringvalidator.RegexMatches(regexp.MustCompile(%c%s%c), "")`, '`', v.property.Pattern, '`')
 	}
 	return ""
 }

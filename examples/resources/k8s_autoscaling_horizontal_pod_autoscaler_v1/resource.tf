@@ -1,20 +1,7 @@
-resource "k8s_autoscaling_horizontal_pod_autoscaler_v1" "minimal" {
-  metadata = {
-    name = "test"
-  }
-}
-
 resource "k8s_autoscaling_horizontal_pod_autoscaler_v1" "example" {
   metadata = {
-    name = "test"
-  }
-  spec = {
-    max_replicas = 10
-    min_replicas = 8
+    name      = "some-name"
+    namespace = "some-namespace"
 
-    scale_target_ref = {
-      kind = "Deployment"
-      name = "MyApp"
-    }
   }
 }

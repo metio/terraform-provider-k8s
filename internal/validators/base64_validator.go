@@ -9,16 +9,15 @@ import (
 	"context"
 	"encoding/base64"
 	"github.com/hashicorp/terraform-plugin-framework-validators/helpers/validatordiag"
-	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
-	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 )
 
 type base64Validator struct{}
 
-var _ tfsdk.AttributeValidator = (*base64Validator)(nil)
+var _ validator.String = base64Validator{}
 
-func Base64Validator() tfsdk.AttributeValidator {
-	return &base64Validator{}
+func Base64Validator() validator.String {
+	return base64Validator{}
 }
 
 func (validator base64Validator) Description(_ context.Context) string {
@@ -29,25 +28,23 @@ func (validator base64Validator) MarkdownDescription(ctx context.Context) string
 	return validator.Description(ctx)
 }
 
-func (validator base64Validator) Validate(ctx context.Context, req tfsdk.ValidateAttributeRequest, resp *tfsdk.ValidateAttributeResponse) {
-	var value types.String
-
-	diags := tfsdk.ValueAs(ctx, req.AttributeConfig, &value)
-	if diags.HasError() {
-		resp.Diagnostics.Append(diags...)
+func (validator base64Validator) ValidateString(ctx context.Context, request validator.StringRequest, response *validator.StringResponse) {
+	if request.ConfigValue.IsNull() || request.ConfigValue.IsUnknown() {
 		return
 	}
 
-	if value.ValueString() == "" {
+	value := request.ConfigValue.ValueString()
+
+	if value == "" {
 		return
 	}
 
-	_, err := base64.StdEncoding.DecodeString(value.ValueString())
+	_, err := base64.StdEncoding.DecodeString(value)
 	if err != nil {
-		resp.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
-			req.AttributePath,
+		response.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
+			request.Path,
 			validator.Description(ctx),
-			value.ValueString(),
+			value,
 		))
 	}
 }
