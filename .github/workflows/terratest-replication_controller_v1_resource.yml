@@ -7,8 +7,8 @@ on:
     branches: [ main ]
     paths:
       - examples/resources/k8s_replication_controller_v1/**
-      - internal/provider/apps_v1/replication_controller_v1_resource.go
-      - terratest/apps_v1/replication_controller_v1_resource_test.go
+      - internal/provider/core_v1/replication_controller_v1_resource.go
+      - terratest/core_v1/replication_controller_v1_resource_test.go
 jobs:
   terratest:
     name: Test with Terraform ${{ matrix.terraform }}
@@ -40,4 +40,4 @@ jobs:
         run: make install
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestReplicationControllerV1Resource ./terratest/apps_v1
+        run: go test -v -timeout=120s -count=1 -tags testing -run TestReplicationControllerV1Resource ./terratest/core_v1

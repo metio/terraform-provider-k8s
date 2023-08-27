@@ -14,6 +14,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/autoscaling_v2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/batch_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/certificates_k8s_io_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/core_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/discovery_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/events_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/flowcontrol_apiserver_k8s_io_v1beta2"
@@ -34,22 +35,22 @@ func allResources() []func() resource.Resource {
 		apps_v1.NewAppsDeploymentV1Resource,
 		apps_v1.NewAppsReplicaSetV1Resource,
 		apps_v1.NewAppsStatefulSetV1Resource,
-		apps_v1.NewConfigMapV1Resource,
-		apps_v1.NewEndpointsV1Resource,
-		apps_v1.NewLimitRangeV1Resource,
-		apps_v1.NewNamespaceV1Resource,
-		apps_v1.NewPersistentVolumeClaimV1Resource,
-		apps_v1.NewPersistentVolumeV1Resource,
-		apps_v1.NewPodV1Resource,
-		apps_v1.NewReplicationControllerV1Resource,
-		apps_v1.NewSecretV1Resource,
-		apps_v1.NewServiceAccountV1Resource,
-		apps_v1.NewServiceV1Resource,
 		autoscaling_v1.NewAutoscalingHorizontalPodAutoscalerV1Resource,
 		autoscaling_v2.NewAutoscalingHorizontalPodAutoscalerV2Resource,
 		batch_v1.NewBatchCronJobV1Resource,
 		batch_v1.NewBatchJobV1Resource,
 		certificates_k8s_io_v1.NewCertificatesK8SIoCertificateSigningRequestV1Resource,
+		core_v1.NewConfigMapV1Resource,
+		core_v1.NewEndpointsV1Resource,
+		core_v1.NewLimitRangeV1Resource,
+		core_v1.NewNamespaceV1Resource,
+		core_v1.NewPersistentVolumeClaimV1Resource,
+		core_v1.NewPersistentVolumeV1Resource,
+		core_v1.NewPodV1Resource,
+		core_v1.NewReplicationControllerV1Resource,
+		core_v1.NewSecretV1Resource,
+		core_v1.NewServiceAccountV1Resource,
+		core_v1.NewServiceV1Resource,
 		discovery_k8s_io_v1.NewDiscoveryK8SIoEndpointSliceV1Resource,
 		events_k8s_io_v1.NewEventsK8SIoEventV1Resource,
 		flowcontrol_apiserver_k8s_io_v1beta2.NewFlowcontrolApiserverK8SIoFlowSchemaV1Beta2Resource,
