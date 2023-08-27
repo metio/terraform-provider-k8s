@@ -35,41 +35,91 @@ type typeTranslator interface {
 	itemsHaveAdditionalStringProperties() bool
 }
 
-func translateTypeWith(translator typeTranslator) (attributeType string, valueType string, goType string) {
+func translateTypeWith(translator typeTranslator) (attributeType string, valueType string, elementType string, goType string) {
+	if translator.isBoolean() {
+		//attributeType = "types.BoolType"
+		attributeType = "schema.BoolAttribute"
+		elementType = ""
+		valueType = "types.Bool"
+		goType = "bool"
+		return
+	}
+	if translator.isInteger() {
+		//attributeType = "types.Int64Type"
+		attributeType = "schema.Int64Attribute"
+		elementType = ""
+		valueType = "types.Int64"
+		goType = "int64"
+		return
+	}
+	if translator.isString() {
+		//attributeType = "types.StringType"
+		attributeType = "schema.StringAttribute"
+		elementType = ""
+		valueType = "types.String"
+		goType = "string"
+		return
+	}
 	if translator.isIntOrString() {
-		attributeType = "utilities.IntOrStringType{}"
-		valueType = "utilities.IntOrString"
-		goType = "utilities.IntOrString"
+		//attributeType = "types.StringType"
+		attributeType = "schema.StringAttribute"
+		elementType = ""
+		valueType = "types.String"
+		goType = "string"
+		return
+	}
+	if translator.isNumber() {
+		if translator.isFloat() {
+			attributeType = "types.Float64Type"
+			elementType = ""
+			valueType = "types.Float64"
+			goType = "float64"
+			return
+		}
+		attributeType = "types.NumberType"
+		elementType = ""
+		valueType = "types.Number"
+		goType = "big.Float"
 		return
 	}
 	if translator.hasUnknownFields() {
 		if translator.hasProperties() {
-			attributeType = "types.ObjectType"
+			//attributeType = "types.ObjectType"
+			attributeType = "schema.SingleNestedAttribute"
+			elementType = ""
 			valueType = "types.Object"
 			goType = "struct"
 			return
 		}
-		attributeType = "utilities.DynamicType{}"
-		valueType = "utilities.Dynamic"
-		goType = "utilities.Dynamic"
+		//attributeType = "types.MapType{ElemType: types.StringType}"
+		attributeType = "schema.MapAttribute"
+		elementType = "types.StringType"
+		valueType = "types.Map"
+		goType = "map[string]string"
 		return
 	}
 	if translator.hasOneOf() {
 		if translator.isOneOfArray() {
-			attributeType = "types.ListType{ElemType: types.StringType}"
+			//attributeType = "types.ListType{ElemType: types.StringType}"
+			attributeType = "schema.ListAttribute"
+			elementType = "types.StringType"
 			valueType = "types.List"
 			goType = "[]string"
 			return
 		}
 		if translator.isOneOfBoolean() {
-			attributeType = "types.BoolType"
+			//attributeType = "types.BoolType"
+			attributeType = "schema.BoolAttribute"
+			elementType = ""
 			valueType = "types.Bool"
 			goType = "bool"
 			return
 		}
 	}
 	if translator.isObjectWithAdditionalStringProperties() {
-		attributeType = "types.MapType{ElemType: types.StringType}"
+		//attributeType = "types.MapType{ElemType: types.StringType}"
+		attributeType = "schema.MapAttribute"
+		elementType = "types.StringType"
 		valueType = "types.Map"
 		goType = "map[string]string"
 		return
@@ -77,6 +127,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 	if translator.isObjectWithAdditionalObjectProperties() {
 		if translator.additionalPropertiesHaveAdditionalStringProperties() {
 			attributeType = "types.MapType{ElemType: types.MapType{ElemType: types.StringType}}"
+			elementType = ""
 			valueType = "types.Map"
 			goType = "map[string]map[string]string"
 			return
@@ -84,6 +135,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 		if translator.additionalPropertiesHaveAdditionalArrayProperties() {
 			if translator.additionalPropertiesHaveAdditionalPropertiesWithStringItems() {
 				attributeType = "types.MapType{ElemType: types.MapType{ElemType: types.ListType{ElemType: types.StringType}}}"
+				elementType = ""
 				valueType = "types.Map"
 				goType = "map[string]map[string][]string"
 				return
@@ -91,93 +143,81 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 		}
 		if translator.additionalPropertiesHaveUnknownFields() {
 			if !translator.additionalPropertiesHaveProperties() {
-				attributeType = "utilities.DynamicType{}"
-				valueType = "utilities.Dynamic"
-				goType = "utilities.Dynamic"
+				//attributeType = "types.MapType{ElemType: types.StringType}"
+				attributeType = "schema.MapAttribute"
+				elementType = "types.StringType"
+				valueType = "types.Map"
+				goType = "map[string]string"
 				return
 			}
 		}
-		attributeType = "types.ObjectType"
+		//attributeType = "types.ObjectType"
+		attributeType = "schema.SingleNestedAttribute"
+		elementType = ""
 		valueType = "types.Object"
 		goType = "struct"
 		return
 	}
 	if translator.isObjectWithAdditionalArrayProperties() {
 		if translator.additionalPropertiesHaveStringItems() {
-			attributeType = "types.MapType{ElemType: types.ListType{ElemType: types.StringType}}"
+			//attributeType = "types.MapType{ElemType: types.ListType{ElemType: types.StringType}}"
+			attributeType = "schema.MapAttribute"
+			elementType = "types.ListType{ElemType: types.StringType}"
 			valueType = "types.Map"
 			goType = "map[string][]string"
 			return
 		}
 	}
-	if translator.isArrayWithObjectItems() {
-		if translator.itemsHaveUnknownFields() {
-			attributeType = "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}"
-			valueType = "types.List"
-			goType = "[]map[string]string"
-			return
-		}
-		if translator.itemsHaveAdditionalStringProperties() {
-			attributeType = "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}"
-			valueType = "types.List"
-			goType = "[]map[string]string"
-			return
-		}
-		attributeType = "types.ListType{ElemType: types.ObjectType}"
-		valueType = "types.List"
-		goType = "[]struct"
-		return
-	}
-	if translator.isObject() {
-		if translator.hasProperties() {
-			attributeType = "types.ObjectType"
-			valueType = "types.Object"
-			goType = "struct"
-			return
-		}
-		attributeType = "types.MapType{ElemType: types.StringType}"
-		valueType = "types.Map"
-		goType = "map[string]string"
-		return
-	}
 	if translator.isArray() {
-		attributeType = "types.ListType{ElemType: types.StringType}"
+		if translator.isArrayWithObjectItems() {
+			if translator.itemsHaveUnknownFields() {
+				attributeType = "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}"
+				elementType = ""
+				valueType = "types.List"
+				goType = "[]map[string]string"
+				return
+			}
+			if translator.itemsHaveAdditionalStringProperties() {
+				attributeType = "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}"
+				elementType = ""
+				valueType = "types.List"
+				goType = "[]map[string]string"
+				return
+			}
+			//attributeType = "types.ListType{ElemType: types.ObjectType}"
+			attributeType = "schema.ListNestedAttribute"
+			elementType = ""
+			valueType = "types.List"
+			goType = "[]struct"
+			return
+		}
+		//attributeType = "types.ListType{ElemType: types.StringType}"
+		attributeType = "schema.ListAttribute"
+		elementType = "types.StringType"
 		valueType = "types.List"
 		goType = "[]string"
 		return
 	}
-	if translator.isNumber() {
-		if translator.isFloat() {
-			attributeType = "types.Float64Type"
-			valueType = "types.Float64"
-			goType = "float64"
+
+	if translator.isObject() {
+		if translator.hasProperties() {
+			//attributeType = "types.ObjectType"
+			attributeType = "schema.SingleNestedAttribute"
+			elementType = ""
+			valueType = "types.Object"
+			goType = "struct"
 			return
 		}
-		attributeType = "utilities.DynamicNumberType{}"
-		valueType = "utilities.DynamicNumber"
-		goType = "utilities.DynamicNumber"
-		return
-	}
-	if translator.isInteger() {
-		attributeType = "types.Int64Type"
-		valueType = "types.Int64"
-		goType = "int64"
-		return
-	}
-	if translator.isString() {
-		attributeType = "types.StringType"
-		valueType = "types.String"
-		goType = "string"
-		return
-	}
-	if translator.isBoolean() {
-		attributeType = "types.BoolType"
-		valueType = "types.Bool"
-		goType = "bool"
+		//attributeType = "types.MapType{ElemType: types.StringType}"
+		attributeType = "schema.MapAttribute"
+		elementType = "types.StringType"
+		valueType = "types.Map"
+		goType = "map[string]string"
 		return
 	}
 
 	attributeType = "UNKNOWN"
+	elementType = "UNKNOWN"
 	valueType = "UNKNOWN"
 	goType = "UNKNOWN"
 	return

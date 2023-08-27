@@ -9,16 +9,16 @@ import (
 	"context"
 	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/helpers/validatordiag"
-	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	utilValidation "k8s.io/apimachinery/pkg/util/validation"
 )
 
 type annotationValidator struct{}
 
-var _ tfsdk.AttributeValidator = (*annotationValidator)(nil)
+var _ validator.Map = annotationValidator{}
 
-func AnnotationValidator() tfsdk.AttributeValidator {
-	return &annotationValidator{}
+func AnnotationValidator() validator.Map {
+	return annotationValidator{}
 }
 
 func (validator annotationValidator) Description(_ context.Context) string {
@@ -29,16 +29,15 @@ func (validator annotationValidator) MarkdownDescription(ctx context.Context) st
 	return validator.Description(ctx)
 }
 
-func (validator annotationValidator) Validate(ctx context.Context, req tfsdk.ValidateAttributeRequest, resp *tfsdk.ValidateAttributeResponse) {
-	elems, ok := validateMap(ctx, req, resp)
-	if !ok {
+func (validator annotationValidator) ValidateMap(_ context.Context, req validator.MapRequest, resp *validator.MapResponse) {
+	if req.ConfigValue.IsUnknown() || req.ConfigValue.IsNull() {
 		return
 	}
 
-	for key := range elems {
+	for key := range req.ConfigValue.Elements() {
 		for _, msg := range utilValidation.IsQualifiedName(key) {
 			resp.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
-				req.AttributePath,
+				req.Path,
 				fmt.Sprintf("Invalid Annotation Key '%s'", key),
 				msg,
 			))

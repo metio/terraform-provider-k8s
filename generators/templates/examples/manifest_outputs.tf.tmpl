@@ -1,0 +1,5 @@
+output "manifests" {
+  value = {
+    "example" = data.{{ .FullManifestTypeName }}.example.yaml
+  }
+}

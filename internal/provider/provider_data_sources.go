@@ -1,0 +1,115 @@
+/*
+* SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+* SPDX-License-Identifier: 0BSD
+ */
+
+package provider
+
+import (
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/metio/terraform-provider-k8s/internal/provider/admissionregistration_k8s_io_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/apiregistration_k8s_io_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/apps_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/autoscaling_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/autoscaling_v2"
+	"github.com/metio/terraform-provider-k8s/internal/provider/batch_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/certificates_k8s_io_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/discovery_k8s_io_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/events_k8s_io_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/flowcontrol_apiserver_k8s_io_v1beta2"
+	"github.com/metio/terraform-provider-k8s/internal/provider/flowcontrol_apiserver_k8s_io_v1beta3"
+	"github.com/metio/terraform-provider-k8s/internal/provider/networking_k8s_io_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/policy_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/rbac_authorization_k8s_io_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/scheduling_k8s_io_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/storage_k8s_io_v1"
+)
+
+func allDataSources() []func() datasource.DataSource {
+	return []func() datasource.DataSource{
+		admissionregistration_k8s_io_v1.NewAdmissionregistrationK8SIoMutatingWebhookConfigurationV1DataSource,
+		admissionregistration_k8s_io_v1.NewAdmissionregistrationK8SIoMutatingWebhookConfigurationV1Manifest,
+		admissionregistration_k8s_io_v1.NewAdmissionregistrationK8SIoValidatingWebhookConfigurationV1DataSource,
+		admissionregistration_k8s_io_v1.NewAdmissionregistrationK8SIoValidatingWebhookConfigurationV1Manifest,
+		apiregistration_k8s_io_v1.NewApiregistrationK8SIoAPIServiceV1DataSource,
+		apiregistration_k8s_io_v1.NewApiregistrationK8SIoAPIServiceV1Manifest,
+		apps_v1.NewAppsDaemonSetV1DataSource,
+		apps_v1.NewAppsDaemonSetV1Manifest,
+		apps_v1.NewAppsDeploymentV1DataSource,
+		apps_v1.NewAppsDeploymentV1Manifest,
+		apps_v1.NewAppsReplicaSetV1DataSource,
+		apps_v1.NewAppsReplicaSetV1Manifest,
+		apps_v1.NewAppsStatefulSetV1DataSource,
+		apps_v1.NewAppsStatefulSetV1Manifest,
+		apps_v1.NewConfigMapV1DataSource,
+		apps_v1.NewConfigMapV1Manifest,
+		apps_v1.NewEndpointsV1DataSource,
+		apps_v1.NewEndpointsV1Manifest,
+		apps_v1.NewLimitRangeV1DataSource,
+		apps_v1.NewLimitRangeV1Manifest,
+		apps_v1.NewNamespaceV1DataSource,
+		apps_v1.NewNamespaceV1Manifest,
+		apps_v1.NewPersistentVolumeClaimV1DataSource,
+		apps_v1.NewPersistentVolumeClaimV1Manifest,
+		apps_v1.NewPersistentVolumeV1DataSource,
+		apps_v1.NewPersistentVolumeV1Manifest,
+		apps_v1.NewPodV1DataSource,
+		apps_v1.NewPodV1Manifest,
+		apps_v1.NewReplicationControllerV1DataSource,
+		apps_v1.NewReplicationControllerV1Manifest,
+		apps_v1.NewSecretV1DataSource,
+		apps_v1.NewSecretV1Manifest,
+		apps_v1.NewServiceAccountV1DataSource,
+		apps_v1.NewServiceAccountV1Manifest,
+		apps_v1.NewServiceV1DataSource,
+		apps_v1.NewServiceV1Manifest,
+		autoscaling_v1.NewAutoscalingHorizontalPodAutoscalerV1DataSource,
+		autoscaling_v1.NewAutoscalingHorizontalPodAutoscalerV1Manifest,
+		autoscaling_v2.NewAutoscalingHorizontalPodAutoscalerV2DataSource,
+		autoscaling_v2.NewAutoscalingHorizontalPodAutoscalerV2Manifest,
+		batch_v1.NewBatchCronJobV1DataSource,
+		batch_v1.NewBatchCronJobV1Manifest,
+		batch_v1.NewBatchJobV1DataSource,
+		batch_v1.NewBatchJobV1Manifest,
+		certificates_k8s_io_v1.NewCertificatesK8SIoCertificateSigningRequestV1DataSource,
+		certificates_k8s_io_v1.NewCertificatesK8SIoCertificateSigningRequestV1Manifest,
+		discovery_k8s_io_v1.NewDiscoveryK8SIoEndpointSliceV1DataSource,
+		discovery_k8s_io_v1.NewDiscoveryK8SIoEndpointSliceV1Manifest,
+		events_k8s_io_v1.NewEventsK8SIoEventV1DataSource,
+		events_k8s_io_v1.NewEventsK8SIoEventV1Manifest,
+		flowcontrol_apiserver_k8s_io_v1beta2.NewFlowcontrolApiserverK8SIoFlowSchemaV1Beta2DataSource,
+		flowcontrol_apiserver_k8s_io_v1beta2.NewFlowcontrolApiserverK8SIoFlowSchemaV1Beta2Manifest,
+		flowcontrol_apiserver_k8s_io_v1beta2.NewFlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta2DataSource,
+		flowcontrol_apiserver_k8s_io_v1beta2.NewFlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta2Manifest,
+		flowcontrol_apiserver_k8s_io_v1beta3.NewFlowcontrolApiserverK8SIoFlowSchemaV1Beta3DataSource,
+		flowcontrol_apiserver_k8s_io_v1beta3.NewFlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest,
+		flowcontrol_apiserver_k8s_io_v1beta3.NewFlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta3DataSource,
+		flowcontrol_apiserver_k8s_io_v1beta3.NewFlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta3Manifest,
+		networking_k8s_io_v1.NewNetworkingK8SIoIngressClassV1DataSource,
+		networking_k8s_io_v1.NewNetworkingK8SIoIngressClassV1Manifest,
+		networking_k8s_io_v1.NewNetworkingK8SIoIngressV1DataSource,
+		networking_k8s_io_v1.NewNetworkingK8SIoIngressV1Manifest,
+		networking_k8s_io_v1.NewNetworkingK8SIoNetworkPolicyV1DataSource,
+		networking_k8s_io_v1.NewNetworkingK8SIoNetworkPolicyV1Manifest,
+		policy_v1.NewPolicyPodDisruptionBudgetV1DataSource,
+		policy_v1.NewPolicyPodDisruptionBudgetV1Manifest,
+		rbac_authorization_k8s_io_v1.NewRbacAuthorizationK8SIoClusterRoleBindingV1DataSource,
+		rbac_authorization_k8s_io_v1.NewRbacAuthorizationK8SIoClusterRoleBindingV1Manifest,
+		rbac_authorization_k8s_io_v1.NewRbacAuthorizationK8SIoClusterRoleV1DataSource,
+		rbac_authorization_k8s_io_v1.NewRbacAuthorizationK8SIoClusterRoleV1Manifest,
+		rbac_authorization_k8s_io_v1.NewRbacAuthorizationK8SIoRoleBindingV1DataSource,
+		rbac_authorization_k8s_io_v1.NewRbacAuthorizationK8SIoRoleBindingV1Manifest,
+		rbac_authorization_k8s_io_v1.NewRbacAuthorizationK8SIoRoleV1DataSource,
+		rbac_authorization_k8s_io_v1.NewRbacAuthorizationK8SIoRoleV1Manifest,
+		scheduling_k8s_io_v1.NewSchedulingK8SIoPriorityClassV1DataSource,
+		scheduling_k8s_io_v1.NewSchedulingK8SIoPriorityClassV1Manifest,
+		storage_k8s_io_v1.NewStorageK8SIoCSIDriverV1DataSource,
+		storage_k8s_io_v1.NewStorageK8SIoCSIDriverV1Manifest,
+		storage_k8s_io_v1.NewStorageK8SIoCSINodeV1DataSource,
+		storage_k8s_io_v1.NewStorageK8SIoCSINodeV1Manifest,
+		storage_k8s_io_v1.NewStorageK8SIoStorageClassV1DataSource,
+		storage_k8s_io_v1.NewStorageK8SIoStorageClassV1Manifest,
+		storage_k8s_io_v1.NewStorageK8SIoVolumeAttachmentV1DataSource,
+		storage_k8s_io_v1.NewStorageK8SIoVolumeAttachmentV1Manifest,
+	}
+}

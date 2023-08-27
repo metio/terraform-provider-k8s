@@ -12,3 +12,6 @@ import (
 	// document generation
 	_ "github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs"
 )
+
+// Run the documentation generation tool
+//go:generate go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs generate --provider-dir .. --provider-name=terraform-provider-k8s

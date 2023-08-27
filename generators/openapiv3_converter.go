@@ -8,97 +8,36 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/getkin/kin-openapi/openapi3"
 	"k8s.io/utils/strings/slices"
 	"sort"
-	"strings"
 )
 
-var supportedKubernetesApiObjects = []string{
-	"io.k8s.api.admissionregistration.v1.MutatingWebhookConfiguration",
-	"io.k8s.api.admissionregistration.v1.ValidatingWebhookConfiguration",
-	"io.k8s.api.apps.v1.DaemonSet",
-	"io.k8s.api.apps.v1.Deployment",
-	"io.k8s.api.apps.v1.ReplicaSet",
-	"io.k8s.api.apps.v1.StatefulSet",
-	"io.k8s.api.autoscaling.v1.HorizontalPodAutoscaler",
-	"io.k8s.api.autoscaling.v2.HorizontalPodAutoscaler",
-	"io.k8s.api.batch.v1.CronJob",
-	"io.k8s.api.batch.v1.Job",
-	"io.k8s.api.certificates.v1.CertificateSigningRequest",
-	"io.k8s.api.core.v1.ConfigMap",
-	"io.k8s.api.core.v1.Endpoints",
-	"io.k8s.api.core.v1.LimitRange",
-	"io.k8s.api.core.v1.Namespace",
-	"io.k8s.api.core.v1.PersistentVolume",
-	"io.k8s.api.core.v1.PersistentVolumeClaim",
-	"io.k8s.api.core.v1.Pod",
-	"io.k8s.api.core.v1.ReplicationController",
-	"io.k8s.api.core.v1.Secret",
-	"io.k8s.api.core.v1.Service",
-	"io.k8s.api.core.v1.ServiceAccount",
-	"io.k8s.api.discovery.v1.EndpointSlice",
-	"io.k8s.api.events.v1.Event",
-	"io.k8s.api.flowcontrol.v1beta2.FlowSchema",
-	"io.k8s.api.flowcontrol.v1beta2.PriorityLevelConfiguration",
-	"io.k8s.api.flowcontrol.v1beta3.FlowSchema",
-	"io.k8s.api.flowcontrol.v1beta3.PriorityLevelConfiguration",
-	"io.k8s.api.networking.v1.Ingress",
-	"io.k8s.api.networking.v1.IngressClass",
-	"io.k8s.api.networking.v1.NetworkPolicy",
-	"io.k8s.api.policy.v1.PodDisruptionBudget",
-	"io.k8s.api.rbac.v1.ClusterRole",
-	"io.k8s.api.rbac.v1.ClusterRoleBinding",
-	"io.k8s.api.rbac.v1.Role",
-	"io.k8s.api.rbac.v1.RoleBinding",
-	"io.k8s.api.scheduling.v1.PriorityClass",
-	"io.k8s.api.storage.v1.CSIDriver",
-	"io.k8s.api.storage.v1.CSINode",
-	"io.k8s.api.storage.v1.StorageClass",
-	"io.k8s.api.storage.v1.VolumeAttachment",
-}
-
-func convertOpenAPIv3(schemas []map[string]*openapi3.SchemaRef, pkg string) []*TemplateData {
+func convertOpenAPIv3(schemas []map[string]*openapi3.SchemaRef) []*TemplateData {
 	data := make([]*TemplateData, 0)
 	for _, schema := range schemas {
 		for name, definition := range schema {
-			if !strings.HasPrefix(name, "io.k8s") || slices.Contains(supportedKubernetesApiObjects, name) {
-				if _, ok := definition.Value.ExtensionProps.Extensions["x-kubernetes-group-version-kind"]; ok {
-					if templateData := openAPIv3AsTemplateData(definition, pkg); templateData != nil {
-						data = append(data, templateData)
-					}
-				}
+			if supportedOpenAPIv3Object(name, definition) {
+				namespaced := isNamespacedObject(name)
+				templateData := openAPIv3AsTemplateData(definition, namespaced)
+				data = append(data, templateData)
 			}
 		}
 	}
 	return data
 }
 
-type GVK struct {
-	Group   string `json:"group"`
-	Version string `json:"version"`
-	Kind    string `json:"kind"`
-}
-
-func openAPIv3AsTemplateData(definition *openapi3.SchemaRef, pkg string) *TemplateData {
+func openAPIv3AsTemplateData(definition *openapi3.SchemaRef, namespaced bool) *TemplateData {
 	var group string
 	var version string
 	var kind string
-	if gvkExt, ok := definition.Value.ExtensionProps.Extensions["x-kubernetes-group-version-kind"]; ok {
-		raw := gvkExt.(json.RawMessage)
-		var gvks []GVK
-		if err := json.Unmarshal(raw, &gvks); err != nil {
-			return nil
-		}
-		if len(gvks) != 1 {
-			return nil
-		}
-		gvk := gvks[0]
-		group = gvk.Group
-		version = gvk.Version
-		kind = gvk.Kind
+	if gvkExt, ok := definition.Value.Extensions["x-kubernetes-group-version-kind"]; ok {
+		raw := gvkExt.([]interface{})
+		gvk := raw[0].(map[string]interface{})
+		group = gvk["group"].(string)
+		version = gvk["version"].(string)
+		kind = gvk["kind"].(string)
 	}
 	schema := definition.Value
 	// remove manually managed or otherwise ignored properties
@@ -107,28 +46,49 @@ func openAPIv3AsTemplateData(definition *openapi3.SchemaRef, pkg string) *Templa
 	delete(schema.Properties, "apiVersion")
 	delete(schema.Properties, "kind")
 
-	if len(schema.Properties) == 0 {
-		return nil
-	}
-
 	imports := AdditionalImports{}
-	trn := terraformResourceName(group, kind, version)
+	typeName := resourceTypeName(group, kind, version)
 
 	return &TemplateData{
-		BT:                    "`",
-		Package:               pkg,
-		File:                  terraformResourceFile(group, kind, version),
-		Group:                 group,
-		Version:               version,
-		Kind:                  kind,
-		Namespaced:            true,
-		Description:           description(schema.Description),
-		TerraformResourceType: terraformResourceType(group, kind, version),
-		TerraformModelType:    terraformModelType(group, kind, version),
-		GoModelType:           goModelType(group, kind, version),
-		Properties:            openAPIv3Properties(schema, &imports, "", trn),
-		TerraformResourceName: trn,
-		AdditionalImports:     imports,
+		BT:          "`",
+		Package:     goPackageName(group, version),
+		Group:       group,
+		Version:     version,
+		Kind:        kind,
+		Namespaced:  namespaced,
+		Description: description(schema.Description),
+
+		ResourceFile:         resourceFile(group, kind, version),
+		ResourceTestFile:     resourceTestFile(group, kind, version),
+		ResourceWorkflowFile: resourceWorkflowFile(group, kind, version),
+		ResourceTypeName:     typeName,
+		FullResourceTypeName: fmt.Sprintf("k8s_%s", typeName),
+		ResourceTypeStruct:   resourceTypeStruct(group, kind, version),
+		ResourceDataStruct:   resourceDataStruct(group, kind, version),
+		ResourceTypeTest:     resourceTypeTest(group, kind, version),
+
+		DataSourceFile:         dataSourceFile(group, kind, version),
+		DataSourceTestFile:     dataSourceTestFile(group, kind, version),
+		DataSourceWorkflowFile: dataSourceWorkflowFile(group, kind, version),
+		DataSourceTypeName:     typeName,
+		FullDataSourceTypeName: fmt.Sprintf("k8s_%s", typeName),
+		DataSourceTypeStruct:   dataSourceTypeStruct(group, kind, version),
+		DataSourceDataStruct:   dataSourceDataStruct(group, kind, version),
+		DataSourceTypeTest:     dataSourceTypeTest(group, kind, version),
+
+		ManifestFile:         manifestFile(group, kind, version),
+		ManifestTestFile:     manifestTestFile(group, kind, version),
+		ManifestWorkflowFile: manifestWorkflowFile(group, kind, version),
+		ManifestTypeName:     fmt.Sprintf("%s_manifest", typeName),
+		FullManifestTypeName: fmt.Sprintf("k8s_%s_manifest", typeName),
+		ManifestTypeStruct:   manifestTypeStruct(group, kind, version),
+		ManifestDataStruct:   manifestDataStruct(group, kind, version),
+		ManifestTypeTest:     manifestTypeTest(group, kind, version),
+
+		TerraformModelType: terraformModelType(group, kind, version),
+
+		AdditionalImports: imports,
+		Properties:        openAPIv3Properties(schema, &imports, "", typeName),
 	}
 }
 
@@ -148,13 +108,13 @@ func openAPIv3Properties(schema *openapi3.Schema, imports *AdditionalImports, pa
 				var nestedProperties []*Property
 				if prop.Value.Type == "array" && prop.Value.Items != nil && prop.Value.Items.Value != nil && prop.Value.Items.Value.Type == "object" {
 					nestedProperties = openAPIv3Properties(prop.Value.Items.Value, imports, propPath, terraformResourceName)
-				} else if prop.Value.Type == "object" && prop.Value.AdditionalProperties != nil && prop.Value.AdditionalProperties.Value.Type == "object" {
-					nestedProperties = openAPIv3Properties(prop.Value.AdditionalProperties.Value, imports, propPath, terraformResourceName)
+				} else if prop.Value.Type == "object" && prop.Value.AdditionalProperties.Schema != nil && prop.Value.AdditionalProperties.Schema.Value.Type == "object" {
+					nestedProperties = openAPIv3Properties(prop.Value.AdditionalProperties.Schema.Value, imports, propPath, terraformResourceName)
 				} else {
 					nestedProperties = openAPIv3Properties(prop.Value, imports, propPath, terraformResourceName)
 				}
 
-				attributeType, valueType, goType := translateTypeWith(&openapiv3TypeTranslator{property: prop.Value})
+				attributeType, valueType, elementType, goType := translateTypeWith(&openapiv3TypeTranslator{property: prop.Value})
 
 				validators := validatorsFor(&openapiv3ValidatorExtractor{
 					property: prop.Value,
@@ -166,14 +126,16 @@ func openAPIv3Properties(schema *openapi3.Schema, imports *AdditionalImports, pa
 					Name:                   name,
 					GoName:                 goName(name),
 					GoType:                 goType,
-					TerraformAttributeName: terraformAttributeName(name),
+					TerraformAttributeName: terraformAttributeName(name, path == ""),
 					TerraformAttributeType: attributeType,
+					TerraformElementType:   elementType,
 					TerraformValueType:     valueType,
 					Description:            description(prop.Value.Description),
 					Required:               slices.Contains(schema.Required, name),
 					Optional:               !slices.Contains(schema.Required, name),
 					Computed:               false,
 					Properties:             nestedProperties,
+					ValidatorsType:         mapAttributeTypeToValidatorsType(attributeType),
 					Validators:             validators,
 				})
 			}

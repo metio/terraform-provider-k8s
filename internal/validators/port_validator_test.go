@@ -7,9 +7,8 @@ package validators
 
 import (
 	"context"
-	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/path"
-	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"testing"
 )
@@ -18,7 +17,7 @@ func TestPortValidator(t *testing.T) {
 	t.Parallel()
 
 	type testCase struct {
-		val         attr.Value
+		val         types.Int64
 		expectError bool
 	}
 	tests := map[string]testCase{
@@ -28,10 +27,6 @@ func TestPortValidator(t *testing.T) {
 		},
 		"invalid port": {
 			val:         types.Int64Value(-12345),
-			expectError: true,
-		},
-		"wrong type": {
-			val:         types.BoolValue(true),
 			expectError: true,
 		},
 		"null int": {
@@ -46,13 +41,13 @@ func TestPortValidator(t *testing.T) {
 
 	for name, test := range tests {
 		t.Run(name, func(t *testing.T) {
-			request := tfsdk.ValidateAttributeRequest{
-				AttributePath:           path.Root("test"),
-				AttributePathExpression: path.MatchRoot("test"),
-				AttributeConfig:         test.val,
+			request := validator.Int64Request{
+				Path:           path.Root("test"),
+				PathExpression: path.MatchRoot("test"),
+				ConfigValue:    test.val,
 			}
-			response := tfsdk.ValidateAttributeResponse{}
-			PortValidator().Validate(context.TODO(), request, &response)
+			response := validator.Int64Response{}
+			PortValidator().ValidateInt64(context.TODO(), request, &response)
 
 			if !response.Diagnostics.HasError() && test.expectError {
 				t.Fatal("expected error, got no error")

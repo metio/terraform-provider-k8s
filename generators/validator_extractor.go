@@ -100,3 +100,16 @@ func usesValidatorPackage(validators []string, pkg string) bool {
 	}
 	return false
 }
+
+func mapAttributeTypeToValidatorsType(attributeType string) string {
+	switch attributeType {
+	case "schema.StringAttribute":
+		return "validator.String"
+	case "schema.Int64Attribute":
+		return "validator.Int64"
+	case "schema.MapAttribute":
+		return "validator.Map"
+	default:
+		return "UNKNOWN"
+	}
+}

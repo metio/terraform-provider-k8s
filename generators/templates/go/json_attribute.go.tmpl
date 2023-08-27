@@ -1,0 +1,15 @@
+{{ if eq .GoType "struct" -}}
+    {{ .GoName }} *struct {
+    {{ range $index, $property := .Properties -}}
+        {{ template "json_attribute.go.tmpl" $property }}
+    {{ end -}}
+    } {{ .BT }}tfsdk:"{{ .TerraformAttributeName }}" json:"{{ .Name }},omitempty"{{ .BT -}}
+{{ else if eq .GoType "[]struct" -}}
+    {{ .GoName }} *[]struct {
+    {{ range $index, $property := .Properties -}}
+        {{ template "json_attribute.go.tmpl" $property }}
+    {{ end -}}
+    } {{ .BT }}tfsdk:"{{ .TerraformAttributeName }}" json:"{{ .Name }},omitempty"{{ .BT -}}
+{{ else -}}
+{{ .GoName }} *{{ .GoType }} {{ .BT }}tfsdk:"{{ .TerraformAttributeName }}" json:"{{ .Name }},omitempty"{{ .BT -}}
+{{ end -}}

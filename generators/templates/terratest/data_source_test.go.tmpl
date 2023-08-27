@@ -1,0 +1,19 @@
+/*
+ * SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+ * SPDX-License-Identifier: 0BSD
+ */
+
+package {{ .Package }}
+
+import (
+	"github.com/stretchr/testify/assert"
+	"os"
+	"testing"
+)
+
+func {{ .DataSourceTypeTest }}(t *testing.T) {
+	path := "../../examples/data-sources/{{ .FullDataSourceTypeName }}"
+
+	_, err := os.Stat(path)
+	assert.Nil(t, err)
+}

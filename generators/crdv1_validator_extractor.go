@@ -112,13 +112,8 @@ func (v *crdv1ValidatorExtractor) stringWithEnums() string {
 func (v *crdv1ValidatorExtractor) stringWithPattern() string {
 	if v.property.Type == "string" && v.property.Pattern != "" {
 		v.imports.Regex = true
-		attributeType, _, _ := translateTypeWith(&crd1TypeTranslator{property: v.property})
-		if attributeType == "utilities.IntOrStringType{}" {
-			return fmt.Sprintf(`validators.RegexValidator(regexp.MustCompile(%c%s%c))`, '`', v.property.Pattern, '`')
-		} else {
-			v.imports.StringValidator = true
-			return fmt.Sprintf(`stringvalidator.RegexMatches(regexp.MustCompile(%c%s%c), "")`, '`', v.property.Pattern, '`')
-		}
+		v.imports.StringValidator = true
+		return fmt.Sprintf(`stringvalidator.RegexMatches(regexp.MustCompile(%c%s%c), "")`, '`', v.property.Pattern, '`')
 	}
 	return ""
 }

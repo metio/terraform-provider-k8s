@@ -8,20 +8,19 @@ package validators
 import (
 	"context"
 	"fmt"
-	"github.com/metio/terraform-provider-k8s/internal/utilities"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"regexp"
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/helpers/validatordiag"
-	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
 )
 
 type regexValidator struct {
 	regexp *regexp.Regexp
 }
 
-var _ tfsdk.AttributeValidator = regexValidator{}
+var _ validator.String = regexValidator{}
 
-func RegexValidator(regexp *regexp.Regexp) tfsdk.AttributeValidator {
+func RegexValidator(regexp *regexp.Regexp) validator.String {
 	return regexValidator{regexp: regexp}
 }
 
@@ -33,32 +32,22 @@ func (validator regexValidator) MarkdownDescription(ctx context.Context) string 
 	return validator.Description(ctx)
 }
 
-func (validator regexValidator) Validate(ctx context.Context, req tfsdk.ValidateAttributeRequest, resp *tfsdk.ValidateAttributeResponse) {
-	expectedType := utilities.IntOrStringType{}
-	if req.AttributeConfig.Type(ctx) != expectedType {
+func (validator regexValidator) ValidateString(ctx context.Context, request validator.StringRequest, response *validator.StringResponse) {
+	if request.ConfigValue.IsNull() || request.ConfigValue.IsUnknown() {
 		return
 	}
 
-	givenValue := req.AttributeConfig.(utilities.IntOrString)
+	value := request.ConfigValue.ValueString()
 
-	if givenValue.IsZero() {
-		return
-	}
-	if !givenValue.StringType {
+	if value == "" {
 		return
 	}
 
-	var stringValue string
-	err := givenValue.Value.As(&stringValue)
-	if err != nil {
-		return
-	}
-
-	if ok := validator.regexp.MatchString(stringValue); !ok {
-		resp.Diagnostics.Append(validatordiag.InvalidAttributeValueMatchDiagnostic(
-			req.AttributePath,
+	if ok := validator.regexp.MatchString(value); !ok {
+		response.Diagnostics.Append(validatordiag.InvalidAttributeValueMatchDiagnostic(
+			request.Path,
 			validator.Description(ctx),
-			stringValue,
+			value,
 		))
 	}
 }

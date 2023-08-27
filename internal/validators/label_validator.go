@@ -9,37 +9,32 @@ import (
 	"context"
 	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/helpers/validatordiag"
-	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	utilValidation "k8s.io/apimachinery/pkg/util/validation"
 )
 
 type labelValidator struct{}
 
-var _ tfsdk.AttributeValidator = (*labelValidator)(nil)
+var _ validator.Map = labelValidator{}
 
-func LabelValidator() tfsdk.AttributeValidator {
-	return &labelValidator{}
+func LabelValidator() validator.Map {
+	return labelValidator{}
 }
 
-func (validator labelValidator) Description(ctx context.Context) string {
-	return validator.MarkdownDescription(ctx)
+func (validator labelValidator) Description(_ context.Context) string {
+	return "labels must match upstream k8s spec"
 }
 
-func (validator labelValidator) MarkdownDescription(_ context.Context) string {
-	return "Validate metadata.labels according to the upstream k8s spec"
+func (validator labelValidator) MarkdownDescription(ctx context.Context) string {
+	return validator.Description(ctx)
 }
 
-func (validator labelValidator) Validate(ctx context.Context, req tfsdk.ValidateAttributeRequest, resp *tfsdk.ValidateAttributeResponse) {
-	elems, ok := validateMap(ctx, req, resp)
-	if !ok {
-		return
-	}
-
-	for key, value := range elems {
+func (validator labelValidator) ValidateMap(ctx context.Context, req validator.MapRequest, resp *validator.MapResponse) {
+	for key, value := range req.ConfigValue.Elements() {
 		for _, msg := range utilValidation.IsQualifiedName(key) {
 			resp.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
-				req.AttributePath,
+				req.Path,
 				fmt.Sprintf("Invalid Label Key '%s'", key),
 				msg,
 			))
@@ -47,7 +42,7 @@ func (validator labelValidator) Validate(ctx context.Context, req tfsdk.Validate
 		val, isString := value.(types.String)
 		if !isString {
 			resp.Diagnostics.Append(validatordiag.InvalidAttributeTypeDiagnostic(
-				req.AttributePath,
+				req.Path,
 				fmt.Sprintf("Invalid Type in Label '%s'", key),
 				fmt.Sprintf("Label values must be types.String but was %s", value.Type(ctx).String()),
 			))
@@ -55,7 +50,7 @@ func (validator labelValidator) Validate(ctx context.Context, req tfsdk.Validate
 		}
 		for _, msg := range utilValidation.IsValidLabelValue(val.ValueString()) {
 			resp.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
-				req.AttributePath,
+				req.Path,
 				fmt.Sprintf("Invalid Value in Label '%s'", key),
 				msg,
 			))

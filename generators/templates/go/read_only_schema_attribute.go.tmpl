@@ -1,0 +1,25 @@
+"{{ .TerraformAttributeName }}": {{ .TerraformAttributeType }}{
+    Description:         "{{ .Description }}",
+    MarkdownDescription: "{{ .Description }}",
+    {{ if .TerraformElementType -}}
+    ElementType:         {{ .TerraformElementType }},
+    {{ end -}}
+    {{ if eq .TerraformAttributeType "schema.SingleNestedAttribute" -}}
+    Attributes: map[string]schema.Attribute{
+    {{ range $index, $property := .Properties -}}
+        {{ template "read_only_schema_attribute.go.tmpl" $property }}
+    {{ end -}}
+    },
+    {{ else if eq .TerraformAttributeType "schema.ListNestedAttribute" -}}
+    NestedObject: schema.NestedAttributeObject{
+        Attributes: map[string]schema.Attribute{
+        {{ range $index, $property := .Properties -}}
+            {{ template "read_only_schema_attribute.go.tmpl" $property }}
+        {{ end -}}
+        },
+    },
+    {{ end -}}
+    Required:            false,
+    Optional:            false,
+    Computed:            true,
+},

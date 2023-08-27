@@ -7,739 +7,311 @@ package provider
 
 import (
 	"context"
+	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
-	"github.com/hashicorp/terraform-plugin-framework/diag"
+	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/provider"
+	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-log/tflog"
+	"github.com/metio/terraform-provider-k8s/internal/utilities"
+	"k8s.io/client-go/dynamic"
+	"k8s.io/client-go/tools/clientcmd"
+	"net/http"
+	"os"
+	"strconv"
+	"time"
 )
 
-type K8sProvider struct{}
+type K8sProvider struct {
+	client *dynamic.Interface
+}
 
-var (
-	_ provider.Provider             = (*K8sProvider)(nil)
-	_ provider.ProviderWithMetadata = (*K8sProvider)(nil)
-)
+type K8sProviderModel struct {
+	Kubeconfig     types.String `tfsdk:"kubeconfig"`
+	Context        types.String `tfsdk:"context"`
+	FieldManager   types.String `tfsdk:"field_manager"`
+	ForceConflicts types.Bool   `tfsdk:"force_conflicts"`
+	Timeout        types.Int64  `tfsdk:"timeout"`
+	Offline        types.Bool   `tfsdk:"offline"`
+}
+
+var _ provider.Provider = &K8sProvider{}
 
 func New() provider.Provider {
 	return &K8sProvider{}
+}
+
+func NewWithClient(client dynamic.Interface) provider.Provider {
+	return &K8sProvider{client: &client}
 }
 
 func (p *K8sProvider) Metadata(_ context.Context, _ provider.MetadataRequest, resp *provider.MetadataResponse) {
 	resp.TypeName = "k8s"
 }
 
-func (p *K8sProvider) GetSchema(_ context.Context) (tfsdk.Schema, diag.Diagnostics) {
-	return tfsdk.Schema{
-		Description:         "Provider for Kubernetes resources. Requires Terraform 1.0 or later.",
-		MarkdownDescription: "Provider for [Kubernetes](https://kubernetes.io/) resources. Requires Terraform 1.0 or later.",
-	}, nil
+func (p *K8sProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *provider.SchemaResponse) {
+	resp.Schema = schema.Schema{
+		Description:         "Provider for Kubernetes resources using server-side apply. Requires Terraform 1.0 or later.",
+		MarkdownDescription: "Provider for [Kubernetes](https://kubernetes.io/) resources using [server-side apply](https://kubernetes.io/docs/reference/using-api/server-side-apply/). Requires Terraform 1.0 or later.",
+		Attributes: map[string]schema.Attribute{
+			"kubeconfig": schema.StringAttribute{
+				Description:         "An explicit path to a kubeconfig file. Can be specified with the 'TF_K8S_CONFIG' environment variable. Uses Kubernetes defaults if not specified ('KUBECONFIG', or your home directory).",
+				MarkdownDescription: "An explicit path to a kubeconfig file. Can be specified with the `TF_K8S_CONFIG` environment variable. Uses Kubernetes defaults if not specified (`KUBECONFIG`, or your home directory).",
+				Required:            false,
+				Optional:            true,
+				Sensitive:           false,
+			},
+			"context": schema.StringAttribute{
+				Description:         "The context to use from your kubeconfig. Can be specified with the 'TF_K8S_CONTEXT' environment variable. Defaults to the current context in your config.",
+				MarkdownDescription: "The context to use from your kubeconfig. Can be specified with the `TF_K8S_CONTEXT` environment variable. Defaults to the current context in your config.",
+				Required:            false,
+				Optional:            true,
+				Sensitive:           false,
+			},
+			"field_manager": schema.StringAttribute{
+				Description:         "The name of the manager used to track field ownership. Can be specified with the 'TF_K8S_FIELD_MANAGER' environment variable. Defaults to 'terraform-provider-k8s'.",
+				MarkdownDescription: "The name of the manager used to track field ownership. Can be specified with the `TF_K8S_FIELD_MANAGER` environment variable. Defaults to `terraform-provider-k8s`.",
+				Required:            false,
+				Optional:            true,
+				Sensitive:           false,
+			},
+			"force_conflicts": schema.BoolAttribute{
+				Description:         "If 'true', server-side apply will force the changes against conflicts. Can be specified with the 'TF_K8S_FORCE_CONFLICTS' environment variable. Defaults to 'true'.",
+				MarkdownDescription: "If `true`, server-side apply will force the changes against conflicts. Can be specified with the `TF_K8S_FORCE_CONFLICTS` environment variable. Defaults to `true`.",
+				Required:            false,
+				Optional:            true,
+				Sensitive:           false,
+			},
+			"timeout": schema.Int64Attribute{
+				Description:         "The timeout to apply for HTTP requests in seconds. Can be specified with the 'TF_K8S_TIMEOUT' environment variable. Defaults to '32'.",
+				MarkdownDescription: "The timeout to apply for HTTP requests in seconds. Can be specified with the `TF_K8S_TIMEOUT` environment variable. Defaults to `32`.",
+				Required:            false,
+				Optional:            true,
+				Sensitive:           false,
+			},
+			"offline": schema.BoolAttribute{
+				Description:         "Enable offline mode for this provider. In offline mode, no connection to a kubernetes cluster will be performed, therefore no resource or data source can be created except manifest data sources (those ending with _manifest). Can be specified with the 'TF_K8S_OFFLINE' environment variable. Defaults to 'false'.",
+				MarkdownDescription: "Enable offline mode for this provider. In offline mode, no connection to a kubernetes cluster will be performed, therefore no resource or data source can be created except manifest data sources (those ending with _manifest). Can be specified with the `TF_K8S_OFFLINE` environment variable. Defaults to `false`.",
+				Required:            false,
+				Optional:            true,
+				Sensitive:           false,
+			},
+		},
+	}
 }
 
-func (p *K8sProvider) Configure(_ context.Context, _ provider.ConfigureRequest, _ *provider.ConfigureResponse) {
-	// NO-OP: provider requires no configuration
+func (p *K8sProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
+	tflog.Info(ctx, "Configuring Kubernetes client")
+
+	var config K8sProviderModel
+	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	if config.Kubeconfig.IsUnknown() {
+		resp.Diagnostics.AddAttributeError(
+			path.Root("kubeconfig"),
+			"Unknown kubeconfig",
+			"The provider cannot create a Kubernetes client as there is an unknown configuration value for the kubeconfig option. "+
+				"Either target apply the source of the value first, set the value statically in the configuration, or use the TF_K8S_CONFIG environment variable.",
+		)
+	}
+
+	if config.Context.IsUnknown() {
+		resp.Diagnostics.AddAttributeError(
+			path.Root("context"),
+			"Unknown context",
+			"The provider cannot create a Kubernetes client as there is an unknown configuration value for the context option. "+
+				"Either target apply the source of the value first, set the value statically in the configuration, or use the TF_K8S_CONTEXT environment variable.",
+		)
+	}
+
+	if config.FieldManager.IsUnknown() {
+		resp.Diagnostics.AddAttributeError(
+			path.Root("field_manager"),
+			"Unknown field_manager",
+			"The provider cannot create a Kubernetes client as there is an unknown configuration value for the field_manager option. "+
+				"Either target apply the source of the value first, set the value statically in the configuration, or use the TF_K8S_FIELD_MANAGER environment variable.",
+		)
+	}
+
+	if config.ForceConflicts.IsUnknown() {
+		resp.Diagnostics.AddAttributeError(
+			path.Root("force_conflicts"),
+			"Unknown force_conflicts",
+			"The provider cannot create a Kubernetes client as there is an unknown configuration value for the force_conflicts option. "+
+				"Either target apply the source of the value first, set the value statically in the configuration, or use the TF_K8S_FORCE_CONFLICTS environment variable.",
+		)
+	}
+
+	if config.Timeout.IsUnknown() {
+		resp.Diagnostics.AddAttributeError(
+			path.Root("timeout"),
+			"Unknown timeout",
+			"The provider cannot create a Kubernetes client as there is an unknown configuration value for the timeout option. "+
+				"Either target apply the source of the value first, set the value statically in the configuration, or use the TF_K8S_TIMEOUT environment variable.",
+		)
+	}
+
+	if config.Offline.IsUnknown() {
+		resp.Diagnostics.AddAttributeError(
+			path.Root("offline"),
+			"Unknown offline",
+			"The provider cannot create a Kubernetes client as there is an unknown configuration value for the offline option. "+
+				"Either target apply the source of the value first, set the value statically in the configuration, or use the TF_K8S_OFFLINE environment variable.",
+		)
+	}
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	kubeconfig := os.Getenv("TF_K8S_CONFIG")
+	clientContext := os.Getenv("TF_K8S_CONTEXT")
+	fieldManager := os.Getenv("TF_K8S_FIELD_MANAGER")
+	forceConflicts := os.Getenv("TF_K8S_FORCE_CONFLICTS")
+	timeout := os.Getenv("TF_K8S_TIMEOUT")
+	offline := os.Getenv("TF_K8S_OFFLINE")
+
+	if !config.Kubeconfig.IsNull() {
+		kubeconfig = config.Kubeconfig.ValueString()
+	}
+
+	if !config.Context.IsNull() {
+		clientContext = config.Context.ValueString()
+	}
+
+	if !config.FieldManager.IsNull() {
+		fieldManager = config.FieldManager.ValueString()
+	}
+
+	if !config.ForceConflicts.IsNull() {
+		forceConflicts = strconv.FormatBool(config.ForceConflicts.ValueBool())
+	}
+
+	if !config.Timeout.IsNull() {
+		timeout = strconv.FormatInt(config.Timeout.ValueInt64(), 10)
+	}
+
+	if !config.Offline.IsNull() {
+		offline = strconv.FormatBool(config.Offline.ValueBool())
+	}
+
+	if fieldManager == "" {
+		fieldManager = "terraform-provider-k8s"
+	}
+
+	if forceConflicts == "" {
+		forceConflicts = "true"
+	}
+
+	if timeout == "" {
+		timeout = "32"
+	}
+
+	if offline == "" {
+		offline = "false"
+	}
+
+	conflicts, err := strconv.ParseBool(forceConflicts)
+	if err != nil {
+		resp.Diagnostics.AddAttributeError(
+			path.Root("force_conflicts"),
+			"Invalid force_conflicts value",
+			"The supplied force_conflicts value cannot be parsed into a bool: "+err.Error(),
+		)
+	}
+
+	duration, err := time.ParseDuration(fmt.Sprintf("%ss", timeout))
+	if err != nil {
+		resp.Diagnostics.AddAttributeError(
+			path.Root("timeout"),
+			"Invalid timeout value",
+			"The supplied timeout value cannot be parsed into a duration: "+err.Error(),
+		)
+	}
+
+	offlineMode, err := strconv.ParseBool(offline)
+	if err != nil {
+		resp.Diagnostics.AddAttributeError(
+			path.Root("offline"),
+			"Invalid offline value",
+			"The supplied offline value cannot be parsed into a bool: "+err.Error(),
+		)
+	}
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx = tflog.SetField(ctx, "kubeconfig", kubeconfig)
+	ctx = tflog.SetField(ctx, "context", clientContext)
+	ctx = tflog.SetField(ctx, "field_manager", fieldManager)
+	ctx = tflog.SetField(ctx, "force_conflicts", forceConflicts)
+	ctx = tflog.SetField(ctx, "timeout", timeout)
+	ctx = tflog.SetField(ctx, "offline", offline)
+
+	if offlineMode {
+		resp.DataSourceData = &utilities.DataSourceData{
+			Offline: offlineMode,
+		}
+		resp.ResourceData = &utilities.ResourceData{
+			Offline: offlineMode,
+		}
+	} else {
+		tflog.Debug(ctx, "Creating Kubernetes client")
+
+		loadingRules := clientcmd.NewDefaultClientConfigLoadingRules()
+		if kubeconfig != "" {
+			loadingRules = &clientcmd.ClientConfigLoadingRules{ExplicitPath: kubeconfig}
+		}
+
+		configOverrides := &clientcmd.ConfigOverrides{}
+		if clientContext != "" {
+			configOverrides.CurrentContext = clientContext
+		}
+
+		kubeConfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(loadingRules, configOverrides)
+		clientConfig, err := kubeConfig.ClientConfig()
+
+		var client dynamic.Interface
+		if p.client == nil {
+			client, err = dynamic.NewForConfigAndClient(clientConfig, &http.Client{Timeout: duration})
+			if err != nil {
+				resp.Diagnostics.AddError(
+					"Unable to create Kubernetes client",
+					"An unexpected error occurred when creating the Kubernetes client. "+
+						"If the error is not clear, please contact the provider developers.\n\n"+
+						"Kubernetes client error: "+err.Error(),
+				)
+				return
+			}
+		} else {
+			client = *p.client
+		}
+
+		resp.DataSourceData = &utilities.DataSourceData{
+			Client:  client,
+			Offline: offlineMode,
+		}
+		resp.ResourceData = &utilities.ResourceData{
+			Client:         client,
+			FieldManager:   fieldManager,
+			ForceConflicts: conflicts,
+			Offline:        offlineMode,
+		}
+
+		tflog.Info(ctx, "Configured Kubernetes client")
+	}
 }
 
 func (p *K8sProvider) DataSources(_ context.Context) []func() datasource.DataSource {
-	return []func() datasource.DataSource{}
+	return allDataSources()
 }
 
 func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
-	return []func() resource.Resource{
-		NewAcidZalanDoOperatorConfigurationV1Resource,
-		NewAcidZalanDoPostgresTeamV1Resource,
-		NewAcidZalanDoPostgresqlV1Resource,
-		NewAcmeCertManagerIoChallengeV1Resource,
-		NewAcmeCertManagerIoOrderV1Resource,
-		NewAdmissionregistrationK8SIoMutatingWebhookConfigurationV1Resource,
-		NewAdmissionregistrationK8SIoValidatingWebhookConfigurationV1Resource,
-		NewAgentK8SElasticCoAgentV1Alpha1Resource,
-		NewApicodegenApimaticIoAPIMaticV1Beta1Resource,
-		NewApiextensionsCrossplaneIoCompositeResourceDefinitionV1Resource,
-		NewApiextensionsCrossplaneIoCompositionRevisionV1Alpha1Resource,
-		NewApiextensionsCrossplaneIoCompositionV1Resource,
-		NewApigatewayv2ServicesK8SAwsAPIV1Alpha1Resource,
-		NewApigatewayv2ServicesK8SAwsAuthorizerV1Alpha1Resource,
-		NewApigatewayv2ServicesK8SAwsDeploymentV1Alpha1Resource,
-		NewApigatewayv2ServicesK8SAwsIntegrationV1Alpha1Resource,
-		NewApigatewayv2ServicesK8SAwsRouteV1Alpha1Resource,
-		NewApigatewayv2ServicesK8SAwsStageV1Alpha1Resource,
-		NewApigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource,
-		NewApmK8SElasticCoApmServerV1Beta1Resource,
-		NewApmK8SElasticCoApmServerV1Resource,
-		NewAppKiegroupOrgKogitoBuildV1Beta1Resource,
-		NewAppKiegroupOrgKogitoInfraV1Beta1Resource,
-		NewAppKiegroupOrgKogitoRuntimeV1Beta1Resource,
-		NewAppKiegroupOrgKogitoSupportingServiceV1Beta1Resource,
-		NewAppLightbendComAkkaClusterV1Alpha1Resource,
-		NewAppRedislabsComRedisEnterpriseClusterV1Alpha1Resource,
-		NewAppRedislabsComRedisEnterpriseClusterV1Resource,
-		NewAppRedislabsComRedisEnterpriseDatabaseV1Alpha1Resource,
-		NewApplicationautoscalingServicesK8SAwsScalableTargetV1Alpha1Resource,
-		NewApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1Resource,
-		NewApps3ScaleNetAPIcastV1Alpha1Resource,
-		NewAppsClusternetIoBaseV1Alpha1Resource,
-		NewAppsClusternetIoDescriptionV1Alpha1Resource,
-		NewAppsClusternetIoFeedInventoryV1Alpha1Resource,
-		NewAppsClusternetIoGlobalizationV1Alpha1Resource,
-		NewAppsClusternetIoHelmChartV1Alpha1Resource,
-		NewAppsClusternetIoHelmReleaseV1Alpha1Resource,
-		NewAppsClusternetIoLocalizationV1Alpha1Resource,
-		NewAppsClusternetIoManifestV1Alpha1Resource,
-		NewAppsClusternetIoSubscriptionV1Alpha1Resource,
-		NewAppsDaemonSetV1Resource,
-		NewAppsDeploymentV1Resource,
-		NewAppsGitlabComGitLabV1Beta1Resource,
-		NewAppsGitlabComRunnerV1Beta2Resource,
-		NewAppsKubedlIoCronV1Alpha1Resource,
-		NewAppsKubeedgeIoEdgeApplicationV1Alpha1Resource,
-		NewAppsKubeedgeIoNodeGroupV1Alpha1Resource,
-		NewAppsM88IIoNexusV1Alpha1Resource,
-		NewAppsRedhatComClusterImpairmentV1Alpha1Resource,
-		NewAppsReplicaSetV1Resource,
-		NewAppsStatefulSetV1Resource,
-		NewAquasecurityGithubIoAquaStarboardV1Alpha1Resource,
-		NewArgoprojIoAppProjectV1Alpha1Resource,
-		NewArgoprojIoApplicationSetV1Alpha1Resource,
-		NewArgoprojIoApplicationV1Alpha1Resource,
-		NewArgoprojIoArgoCDExportV1Alpha1Resource,
-		NewArgoprojIoArgoCDV1Alpha1Resource,
-		NewAsdbAerospikeComAerospikeClusterV1Beta1Resource,
-		NewAutoscalingHorizontalPodAutoscalerV1Resource,
-		NewAutoscalingHorizontalPodAutoscalerV2Resource,
-		NewAutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Resource,
-		NewAutoscalingK8SIoVerticalPodAutoscalerCheckpointV1Beta2Resource,
-		NewAutoscalingK8SIoVerticalPodAutoscalerCheckpointV1Resource,
-		NewAutoscalingK8SIoVerticalPodAutoscalerV1Beta2Resource,
-		NewAutoscalingK8SIoVerticalPodAutoscalerV1Resource,
-		NewBatchCronJobV1Resource,
-		NewBatchJobV1Resource,
-		NewBatchVolcanoShJobV1Alpha1Resource,
-		NewBeatK8SElasticCoBeatV1Beta1Resource,
-		NewBindingOperatorsCoreosComServiceBindingV1Alpha1Resource,
-		NewBusVolcanoShCommandV1Alpha1Resource,
-		NewCacheKubedlIoCacheBackendV1Alpha1Resource,
-		NewCachingIbmComVarnishClusterV1Alpha1Resource,
-		NewCamelApacheOrgBuildV1Resource,
-		NewCamelApacheOrgCamelCatalogV1Resource,
-		NewCamelApacheOrgIntegrationKitV1Resource,
-		NewCamelApacheOrgIntegrationPlatformV1Resource,
-		NewCamelApacheOrgIntegrationV1Resource,
-		NewCamelApacheOrgKameletBindingV1Alpha1Resource,
-		NewCamelApacheOrgKameletV1Alpha1Resource,
-		NewCapsuleClastixIoCapsuleConfigurationV1Alpha1Resource,
-		NewCapsuleClastixIoTenantV1Alpha1Resource,
-		NewCapsuleClastixIoTenantV1Beta1Resource,
-		NewCephRookIoCephBlockPoolRadosNamespaceV1Resource,
-		NewCephRookIoCephBlockPoolV1Resource,
-		NewCephRookIoCephBucketNotificationV1Resource,
-		NewCephRookIoCephBucketTopicV1Resource,
-		NewCephRookIoCephClientV1Resource,
-		NewCephRookIoCephClusterV1Resource,
-		NewCephRookIoCephFilesystemMirrorV1Resource,
-		NewCephRookIoCephFilesystemSubVolumeGroupV1Resource,
-		NewCephRookIoCephFilesystemV1Resource,
-		NewCephRookIoCephNFSV1Resource,
-		NewCephRookIoCephObjectRealmV1Resource,
-		NewCephRookIoCephObjectStoreUserV1Resource,
-		NewCephRookIoCephObjectStoreV1Resource,
-		NewCephRookIoCephObjectZoneGroupV1Resource,
-		NewCephRookIoCephObjectZoneV1Resource,
-		NewCephRookIoCephRBDMirrorV1Resource,
-		NewCertManagerIoCertificateRequestV1Resource,
-		NewCertManagerIoCertificateV1Resource,
-		NewCertManagerIoClusterIssuerV1Resource,
-		NewCertManagerIoIssuerV1Resource,
-		NewCertificatesK8SIoCertificateSigningRequestV1Resource,
-		NewChaosMeshOrgAWSChaosV1Alpha1Resource,
-		NewChaosMeshOrgAzureChaosV1Alpha1Resource,
-		NewChaosMeshOrgBlockChaosV1Alpha1Resource,
-		NewChaosMeshOrgDNSChaosV1Alpha1Resource,
-		NewChaosMeshOrgGCPChaosV1Alpha1Resource,
-		NewChaosMeshOrgHTTPChaosV1Alpha1Resource,
-		NewChaosMeshOrgIOChaosV1Alpha1Resource,
-		NewChaosMeshOrgJVMChaosV1Alpha1Resource,
-		NewChaosMeshOrgKernelChaosV1Alpha1Resource,
-		NewChaosMeshOrgNetworkChaosV1Alpha1Resource,
-		NewChaosMeshOrgPhysicalMachineChaosV1Alpha1Resource,
-		NewChaosMeshOrgPhysicalMachineV1Alpha1Resource,
-		NewChaosMeshOrgPodChaosV1Alpha1Resource,
-		NewChaosMeshOrgPodHttpChaosV1Alpha1Resource,
-		NewChaosMeshOrgPodIOChaosV1Alpha1Resource,
-		NewChaosMeshOrgPodNetworkChaosV1Alpha1Resource,
-		NewChaosMeshOrgRemoteClusterV1Alpha1Resource,
-		NewChaosMeshOrgScheduleV1Alpha1Resource,
-		NewChaosMeshOrgStatusCheckV1Alpha1Resource,
-		NewChaosMeshOrgStressChaosV1Alpha1Resource,
-		NewChaosMeshOrgTimeChaosV1Alpha1Resource,
-		NewChaosMeshOrgWorkflowNodeV1Alpha1Resource,
-		NewChaosMeshOrgWorkflowV1Alpha1Resource,
-		NewChartsFlagsmithComFlagsmithV1Alpha1Resource,
-		NewChartsHelmK8SIoSnykMonitorV1Alpha1Resource,
-		NewChartsOpdevIoSynapseV1Alpha1Resource,
-		NewChartsOperatorhubIoCockroachdbV1Alpha1Resource,
-		NewCheEclipseOrgKubernetesImagePullerV1Alpha1Resource,
-		NewCiliumIoCiliumBGPLoadBalancerIPPoolV2Alpha1Resource,
-		NewCiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource,
-		NewCiliumIoCiliumClusterwideEnvoyConfigV2Resource,
-		NewCiliumIoCiliumClusterwideNetworkPolicyV2Resource,
-		NewCiliumIoCiliumEgressGatewayPolicyV2Resource,
-		NewCiliumIoCiliumEgressNATPolicyV2Alpha1Resource,
-		NewCiliumIoCiliumEndpointSliceV2Alpha1Resource,
-		NewCiliumIoCiliumEnvoyConfigV2Resource,
-		NewCiliumIoCiliumExternalWorkloadV2Resource,
-		NewCiliumIoCiliumIdentityV2Resource,
-		NewCiliumIoCiliumLocalRedirectPolicyV2Resource,
-		NewCiliumIoCiliumNetworkPolicyV2Resource,
-		NewCiliumIoCiliumNodeV2Resource,
-		NewCloudformationLinkiSpaceStackV1Alpha1Resource,
-		NewClusterClusterpediaIoClusterSyncResourcesV1Alpha2Resource,
-		NewClusterClusterpediaIoPediaClusterV1Alpha2Resource,
-		NewClustersClusternetIoClusterRegistrationRequestV1Beta1Resource,
-		NewClustersClusternetIoManagedClusterV1Beta1Resource,
-		NewConfigGatekeeperShConfigV1Alpha1Resource,
-		NewConfigGrafanaComProjectConfigV1Resource,
-		NewConfigKoordinatorShClusterColocationProfileV1Alpha1Resource,
-		NewConfigMapV1Resource,
-		NewCoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1Resource,
-		NewCoreStrimziIoStrimziPodSetV1Beta2Resource,
-		NewCouchbaseComCouchbaseAutoscalerV2Resource,
-		NewCouchbaseComCouchbaseBackupRestoreV2Resource,
-		NewCouchbaseComCouchbaseBackupV2Resource,
-		NewCouchbaseComCouchbaseBucketV2Resource,
-		NewCouchbaseComCouchbaseClusterV2Resource,
-		NewCouchbaseComCouchbaseCollectionGroupV2Resource,
-		NewCouchbaseComCouchbaseCollectionV2Resource,
-		NewCouchbaseComCouchbaseEphemeralBucketV2Resource,
-		NewCouchbaseComCouchbaseGroupV2Resource,
-		NewCouchbaseComCouchbaseMemcachedBucketV2Resource,
-		NewCouchbaseComCouchbaseMigrationReplicationV2Resource,
-		NewCouchbaseComCouchbaseReplicationV2Resource,
-		NewCouchbaseComCouchbaseRoleBindingV2Resource,
-		NewCouchbaseComCouchbaseScopeGroupV2Resource,
-		NewCouchbaseComCouchbaseScopeV2Resource,
-		NewCouchbaseComCouchbaseUserV2Resource,
-		NewCrdProjectcalicoOrgBGPConfigurationV1Resource,
-		NewCrdProjectcalicoOrgBGPPeerV1Resource,
-		NewCrdProjectcalicoOrgBlockAffinityV1Resource,
-		NewCrdProjectcalicoOrgCalicoNodeStatusV1Resource,
-		NewCrdProjectcalicoOrgClusterInformationV1Resource,
-		NewCrdProjectcalicoOrgFelixConfigurationV1Resource,
-		NewCrdProjectcalicoOrgGlobalNetworkPolicyV1Resource,
-		NewCrdProjectcalicoOrgGlobalNetworkSetV1Resource,
-		NewCrdProjectcalicoOrgHostEndpointV1Resource,
-		NewCrdProjectcalicoOrgIPAMBlockV1Resource,
-		NewCrdProjectcalicoOrgIPAMConfigV1Resource,
-		NewCrdProjectcalicoOrgIPAMHandleV1Resource,
-		NewCrdProjectcalicoOrgIPPoolV1Resource,
-		NewCrdProjectcalicoOrgIPReservationV1Resource,
-		NewCrdProjectcalicoOrgKubeControllersConfigurationV1Resource,
-		NewCrdProjectcalicoOrgNetworkPolicyV1Resource,
-		NewCrdProjectcalicoOrgNetworkSetV1Resource,
-		NewDataFluidIoAlluxioRuntimeV1Alpha1Resource,
-		NewDataFluidIoDataBackupV1Alpha1Resource,
-		NewDataFluidIoDataLoadV1Alpha1Resource,
-		NewDataFluidIoDatasetV1Alpha1Resource,
-		NewDataFluidIoGooseFSRuntimeV1Alpha1Resource,
-		NewDataFluidIoJindoRuntimeV1Alpha1Resource,
-		NewDataFluidIoJuiceFSRuntimeV1Alpha1Resource,
-		NewDataFluidIoThinRuntimeProfileV1Alpha1Resource,
-		NewDataFluidIoThinRuntimeV1Alpha1Resource,
-		NewDatabasesSchemaheroIoDatabaseV1Alpha4Resource,
-		NewDevicesKubeedgeIoDeviceModelV1Alpha2Resource,
-		NewDevicesKubeedgeIoDeviceV1Alpha2Resource,
-		NewDiscoveryK8SIoEndpointSliceV1Resource,
-		NewDynamodbServicesK8SAwsBackupV1Alpha1Resource,
-		NewDynamodbServicesK8SAwsGlobalTableV1Alpha1Resource,
-		NewDynamodbServicesK8SAwsTableV1Alpha1Resource,
-		NewEc2ServicesK8SAwsDHCPOptionsV1Alpha1Resource,
-		NewEc2ServicesK8SAwsElasticIPAddressV1Alpha1Resource,
-		NewEc2ServicesK8SAwsInstanceV1Alpha1Resource,
-		NewEc2ServicesK8SAwsInternetGatewayV1Alpha1Resource,
-		NewEc2ServicesK8SAwsNATGatewayV1Alpha1Resource,
-		NewEc2ServicesK8SAwsRouteTableV1Alpha1Resource,
-		NewEc2ServicesK8SAwsSecurityGroupV1Alpha1Resource,
-		NewEc2ServicesK8SAwsSubnetV1Alpha1Resource,
-		NewEc2ServicesK8SAwsTransitGatewayV1Alpha1Resource,
-		NewEc2ServicesK8SAwsVPCEndpointV1Alpha1Resource,
-		NewEc2ServicesK8SAwsVPCV1Alpha1Resource,
-		NewEcrServicesK8SAwsPullThroughCacheRuleV1Alpha1Resource,
-		NewEcrServicesK8SAwsRepositoryV1Alpha1Resource,
-		NewEksServicesK8SAwsAddonV1Alpha1Resource,
-		NewEksServicesK8SAwsClusterV1Alpha1Resource,
-		NewEksServicesK8SAwsFargateProfileV1Alpha1Resource,
-		NewEksServicesK8SAwsNodegroupV1Alpha1Resource,
-		NewElasticacheServicesK8SAwsCacheParameterGroupV1Alpha1Resource,
-		NewElasticacheServicesK8SAwsCacheSubnetGroupV1Alpha1Resource,
-		NewElasticacheServicesK8SAwsReplicationGroupV1Alpha1Resource,
-		NewElasticacheServicesK8SAwsSnapshotV1Alpha1Resource,
-		NewElasticacheServicesK8SAwsUserGroupV1Alpha1Resource,
-		NewElasticacheServicesK8SAwsUserV1Alpha1Resource,
-		NewElasticsearchK8SElasticCoElasticsearchV1Beta1Resource,
-		NewElasticsearchK8SElasticCoElasticsearchV1Resource,
-		NewElbv2K8SAwsIngressClassParamsV1Beta1Resource,
-		NewElbv2K8SAwsTargetGroupBindingV1Alpha1Resource,
-		NewElbv2K8SAwsTargetGroupBindingV1Beta1Resource,
-		NewEmrcontainersServicesK8SAwsJobRunV1Alpha1Resource,
-		NewEmrcontainersServicesK8SAwsVirtualClusterV1Alpha1Resource,
-		NewEndpointsV1Resource,
-		NewEnterpriseGlooSoloIoAuthConfigV1Resource,
-		NewEnterprisesearchK8SElasticCoEnterpriseSearchV1Beta1Resource,
-		NewEnterprisesearchK8SElasticCoEnterpriseSearchV1Resource,
-		NewEventsK8SIoEventV1Resource,
-		NewExecutionFurikoIoJobConfigV1Alpha1Resource,
-		NewExecutionFurikoIoJobV1Alpha1Resource,
-		NewExpansionGatekeeperShExpansionTemplateV1Alpha1Resource,
-		NewExtensionsIstioIoWasmPluginV1Alpha1Resource,
-		NewExternalSecretsIoClusterExternalSecretV1Beta1Resource,
-		NewExternalSecretsIoClusterSecretStoreV1Alpha1Resource,
-		NewExternalSecretsIoClusterSecretStoreV1Beta1Resource,
-		NewExternalSecretsIoExternalSecretV1Alpha1Resource,
-		NewExternalSecretsIoExternalSecretV1Beta1Resource,
-		NewExternalSecretsIoSecretStoreV1Alpha1Resource,
-		NewExternalSecretsIoSecretStoreV1Beta1Resource,
-		NewExternaldataGatekeeperShProviderV1Alpha1Resource,
-		NewExternaldnsK8SIoDNSEndpointV1Alpha1Resource,
-		NewFlaggerAppAlertProviderV1Beta1Resource,
-		NewFlaggerAppCanaryV1Beta1Resource,
-		NewFlaggerAppMetricTemplateV1Beta1Resource,
-		NewFlinkApacheOrgFlinkDeploymentV1Beta1Resource,
-		NewFlinkApacheOrgFlinkSessionJobV1Beta1Resource,
-		NewFlowcontrolApiserverK8SIoFlowSchemaV1Beta2Resource,
-		NewFlowcontrolApiserverK8SIoFlowSchemaV1Beta3Resource,
-		NewFlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta2Resource,
-		NewFlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta3Resource,
-		NewFossulIoBackupConfigV1Resource,
-		NewFossulIoBackupScheduleV1Resource,
-		NewFossulIoBackupV1Resource,
-		NewFossulIoFossulV1Resource,
-		NewFossulIoRestoreV1Resource,
-		NewGatewayNetworkingK8SIoGatewayClassV1Alpha2Resource,
-		NewGatewayNetworkingK8SIoGatewayV1Alpha2Resource,
-		NewGatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource,
-		NewGatewayNetworkingK8SIoTCPRouteV1Alpha2Resource,
-		NewGatewayNetworkingK8SIoTLSRouteV1Alpha2Resource,
-		NewGatewaySoloIoGatewayV1Resource,
-		NewGatewaySoloIoMatchableHttpGatewayV1Resource,
-		NewGatewaySoloIoRouteOptionV1Resource,
-		NewGatewaySoloIoRouteTableV1Resource,
-		NewGatewaySoloIoVirtualHostOptionV1Resource,
-		NewGatewaySoloIoVirtualServiceV1Resource,
-		NewGetambassadorIoAuthServiceV2Resource,
-		NewGetambassadorIoAuthServiceV3Alpha1Resource,
-		NewGetambassadorIoConsulResolverV2Resource,
-		NewGetambassadorIoConsulResolverV3Alpha1Resource,
-		NewGetambassadorIoDevPortalV2Resource,
-		NewGetambassadorIoDevPortalV3Alpha1Resource,
-		NewGetambassadorIoHostV2Resource,
-		NewGetambassadorIoHostV3Alpha1Resource,
-		NewGetambassadorIoKubernetesEndpointResolverV2Resource,
-		NewGetambassadorIoKubernetesEndpointResolverV3Alpha1Resource,
-		NewGetambassadorIoKubernetesServiceResolverV2Resource,
-		NewGetambassadorIoKubernetesServiceResolverV3Alpha1Resource,
-		NewGetambassadorIoListenerV3Alpha1Resource,
-		NewGetambassadorIoLogServiceV2Resource,
-		NewGetambassadorIoLogServiceV3Alpha1Resource,
-		NewGetambassadorIoMappingV2Resource,
-		NewGetambassadorIoMappingV3Alpha1Resource,
-		NewGetambassadorIoModuleV2Resource,
-		NewGetambassadorIoModuleV3Alpha1Resource,
-		NewGetambassadorIoRateLimitServiceV2Resource,
-		NewGetambassadorIoRateLimitServiceV3Alpha1Resource,
-		NewGetambassadorIoTCPMappingV2Resource,
-		NewGetambassadorIoTCPMappingV3Alpha1Resource,
-		NewGetambassadorIoTLSContextV2Resource,
-		NewGetambassadorIoTLSContextV3Alpha1Resource,
-		NewGetambassadorIoTracingServiceV2Resource,
-		NewGetambassadorIoTracingServiceV3Alpha1Resource,
-		NewGlooSoloIoProxyV1Resource,
-		NewGlooSoloIoSettingsV1Resource,
-		NewGlooSoloIoUpstreamGroupV1Resource,
-		NewGlooSoloIoUpstreamV1Resource,
-		NewGraphqlGlooSoloIoGraphQLApiV1Beta1Resource,
-		NewHazelcastComCronHotBackupV1Alpha1Resource,
-		NewHazelcastComHazelcastV1Alpha1Resource,
-		NewHazelcastComHotBackupV1Alpha1Resource,
-		NewHazelcastComManagementCenterV1Alpha1Resource,
-		NewHazelcastComMapV1Alpha1Resource,
-		NewHazelcastComWanReplicationV1Alpha1Resource,
-		NewHelmSigstoreDevRekorV1Alpha1Resource,
-		NewHelmToolkitFluxcdIoHelmReleaseV2Beta1Resource,
-		NewHiveOpenshiftIoCheckpointV1Resource,
-		NewHiveOpenshiftIoClusterClaimV1Resource,
-		NewHiveOpenshiftIoClusterDeploymentCustomizationV1Resource,
-		NewHiveOpenshiftIoClusterDeploymentV1Resource,
-		NewHiveOpenshiftIoClusterDeprovisionV1Resource,
-		NewHiveOpenshiftIoClusterImageSetV1Resource,
-		NewHiveOpenshiftIoClusterPoolV1Resource,
-		NewHiveOpenshiftIoClusterProvisionV1Resource,
-		NewHiveOpenshiftIoClusterRelocateV1Resource,
-		NewHiveOpenshiftIoClusterStateV1Resource,
-		NewHiveOpenshiftIoDNSZoneV1Resource,
-		NewHiveOpenshiftIoHiveConfigV1Resource,
-		NewHiveOpenshiftIoMachinePoolNameLeaseV1Resource,
-		NewHiveOpenshiftIoMachinePoolV1Resource,
-		NewHiveOpenshiftIoSelectorSyncIdentityProviderV1Resource,
-		NewHiveOpenshiftIoSelectorSyncSetV1Resource,
-		NewHiveOpenshiftIoSyncIdentityProviderV1Resource,
-		NewHiveOpenshiftIoSyncSetV1Resource,
-		NewHiveinternalOpenshiftIoClusterSyncLeaseV1Alpha1Resource,
-		NewHiveinternalOpenshiftIoClusterSyncV1Alpha1Resource,
-		NewHiveinternalOpenshiftIoFakeClusterInstallV1Alpha1Resource,
-		NewHyperfoilIoHorreumV1Alpha1Resource,
-		NewHyperfoilIoHyperfoilV1Alpha2Resource,
-		NewIamServicesK8SAwsGroupV1Alpha1Resource,
-		NewIamServicesK8SAwsPolicyV1Alpha1Resource,
-		NewIamServicesK8SAwsRoleV1Alpha1Resource,
-		NewIbmcloudIbmComComposableV1Alpha1Resource,
-		NewImageToolkitFluxcdIoImagePolicyV1Alpha1Resource,
-		NewImageToolkitFluxcdIoImagePolicyV1Alpha2Resource,
-		NewImageToolkitFluxcdIoImagePolicyV1Beta1Resource,
-		NewImageToolkitFluxcdIoImageRepositoryV1Alpha1Resource,
-		NewImageToolkitFluxcdIoImageRepositoryV1Alpha2Resource,
-		NewImageToolkitFluxcdIoImageRepositoryV1Beta1Resource,
-		NewImageToolkitFluxcdIoImageUpdateAutomationV1Alpha1Resource,
-		NewImageToolkitFluxcdIoImageUpdateAutomationV1Alpha2Resource,
-		NewImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Resource,
-		NewImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Resource,
-		NewImagingIngestionAlvearieOrgDicomEventDrivenIngestionV1Alpha1Resource,
-		NewImagingIngestionAlvearieOrgDicomInstanceBindingV1Alpha1Resource,
-		NewImagingIngestionAlvearieOrgDicomStudyBindingV1Alpha1Resource,
-		NewImagingIngestionAlvearieOrgDicomwebIngestionServiceV1Alpha1Resource,
-		NewImagingIngestionAlvearieOrgDimseIngestionServiceV1Alpha1Resource,
-		NewImagingIngestionAlvearieOrgDimseProxyV1Alpha1Resource,
-		NewInferenceKubedlIoElasticBatchJobV1Alpha1Resource,
-		NewInfinispanOrgBackupV2Alpha1Resource,
-		NewInfinispanOrgBatchV2Alpha1Resource,
-		NewInfinispanOrgCacheV2Alpha1Resource,
-		NewInfinispanOrgInfinispanV1Resource,
-		NewInfinispanOrgRestoreV2Alpha1Resource,
-		NewInstallationMattermostComMattermostV1Beta1Resource,
-		NewIntegreatlyOrgGrafanaDashboardV1Alpha1Resource,
-		NewIntegreatlyOrgGrafanaDataSourceV1Alpha1Resource,
-		NewIntegreatlyOrgGrafanaFolderV1Alpha1Resource,
-		NewIntegreatlyOrgGrafanaNotificationChannelV1Alpha1Resource,
-		NewIntegreatlyOrgGrafanaV1Alpha1Resource,
-		NewIotEclipseOrgDittoV1Alpha1Resource,
-		NewIotEclipseOrgHawkbitV1Alpha1Resource,
-		NewJaegertracingIoJaegerV1Resource,
-		NewK8GbAbsaOssGslbV1Beta1Resource,
-		NewKafkaStrimziIoKafkaBridgeV1Beta2Resource,
-		NewKafkaStrimziIoKafkaConnectV1Beta2Resource,
-		NewKafkaStrimziIoKafkaConnectorV1Beta2Resource,
-		NewKafkaStrimziIoKafkaMirrorMaker2V1Beta2Resource,
-		NewKafkaStrimziIoKafkaMirrorMakerV1Beta2Resource,
-		NewKafkaStrimziIoKafkaRebalanceV1Beta2Resource,
-		NewKafkaStrimziIoKafkaTopicV1Alpha1Resource,
-		NewKafkaStrimziIoKafkaTopicV1Beta1Resource,
-		NewKafkaStrimziIoKafkaTopicV1Beta2Resource,
-		NewKafkaStrimziIoKafkaUserV1Alpha1Resource,
-		NewKafkaStrimziIoKafkaUserV1Beta1Resource,
-		NewKafkaStrimziIoKafkaUserV1Beta2Resource,
-		NewKafkaStrimziIoKafkaV1Beta2Resource,
-		NewKeycloakOrgKeycloakBackupV1Alpha1Resource,
-		NewKeycloakOrgKeycloakClientV1Alpha1Resource,
-		NewKeycloakOrgKeycloakRealmV1Alpha1Resource,
-		NewKeycloakOrgKeycloakUserV1Alpha1Resource,
-		NewKeycloakOrgKeycloakV1Alpha1Resource,
-		NewKialiIoKialiV1Alpha1Resource,
-		NewKibanaK8SElasticCoKibanaV1Beta1Resource,
-		NewKibanaK8SElasticCoKibanaV1Resource,
-		NewKmsServicesK8SAwsAliasV1Alpha1Resource,
-		NewKmsServicesK8SAwsGrantV1Alpha1Resource,
-		NewKmsServicesK8SAwsKeyV1Alpha1Resource,
-		NewKustomizeToolkitFluxcdIoKustomizationV1Beta1Resource,
-		NewKustomizeToolkitFluxcdIoKustomizationV1Beta2Resource,
-		NewKyvernoIoAdmissionReportV1Alpha2Resource,
-		NewKyvernoIoBackgroundScanReportV1Alpha2Resource,
-		NewKyvernoIoClusterAdmissionReportV1Alpha2Resource,
-		NewKyvernoIoClusterBackgroundScanReportV1Alpha2Resource,
-		NewKyvernoIoClusterPolicyV1Resource,
-		NewKyvernoIoClusterPolicyV2Beta1Resource,
-		NewKyvernoIoGenerateRequestV1Resource,
-		NewKyvernoIoPolicyV1Resource,
-		NewKyvernoIoPolicyV2Beta1Resource,
-		NewKyvernoIoUpdateRequestV1Beta1Resource,
-		NewLambdaServicesK8SAwsAliasV1Alpha1Resource,
-		NewLambdaServicesK8SAwsCodeSigningConfigV1Alpha1Resource,
-		NewLambdaServicesK8SAwsEventSourceMappingV1Alpha1Resource,
-		NewLambdaServicesK8SAwsFunctionURLConfigV1Alpha1Resource,
-		NewLambdaServicesK8SAwsFunctionV1Alpha1Resource,
-		NewLimitRangeV1Resource,
-		NewLinkerdIoServiceProfileV1Alpha1Resource,
-		NewLinkerdIoServiceProfileV1Alpha2Resource,
-		NewLitmuschaosIoChaosEngineV1Alpha1Resource,
-		NewLitmuschaosIoChaosExperimentV1Alpha1Resource,
-		NewLitmuschaosIoChaosResultV1Alpha1Resource,
-		NewLokiGrafanaComAlertingRuleV1Beta1Resource,
-		NewLokiGrafanaComLokiStackV1Beta1Resource,
-		NewLokiGrafanaComLokiStackV1Resource,
-		NewLokiGrafanaComRecordingRuleV1Beta1Resource,
-		NewLokiGrafanaComRulerConfigV1Beta1Resource,
-		NewLonghornIoBackingImageDataSourceV1Beta1Resource,
-		NewLonghornIoBackingImageDataSourceV1Beta2Resource,
-		NewLonghornIoBackingImageManagerV1Beta1Resource,
-		NewLonghornIoBackingImageManagerV1Beta2Resource,
-		NewLonghornIoBackingImageV1Beta1Resource,
-		NewLonghornIoBackingImageV1Beta2Resource,
-		NewLonghornIoBackupTargetV1Beta1Resource,
-		NewLonghornIoBackupTargetV1Beta2Resource,
-		NewLonghornIoBackupV1Beta1Resource,
-		NewLonghornIoBackupV1Beta2Resource,
-		NewLonghornIoBackupVolumeV1Beta1Resource,
-		NewLonghornIoBackupVolumeV1Beta2Resource,
-		NewLonghornIoEngineImageV1Beta1Resource,
-		NewLonghornIoEngineImageV1Beta2Resource,
-		NewLonghornIoEngineV1Beta1Resource,
-		NewLonghornIoEngineV1Beta2Resource,
-		NewLonghornIoInstanceManagerV1Beta1Resource,
-		NewLonghornIoInstanceManagerV1Beta2Resource,
-		NewLonghornIoNodeV1Beta1Resource,
-		NewLonghornIoNodeV1Beta2Resource,
-		NewLonghornIoOrphanV1Beta2Resource,
-		NewLonghornIoRecurringJobV1Beta1Resource,
-		NewLonghornIoRecurringJobV1Beta2Resource,
-		NewLonghornIoReplicaV1Beta1Resource,
-		NewLonghornIoReplicaV1Beta2Resource,
-		NewLonghornIoSettingV1Beta1Resource,
-		NewLonghornIoSettingV1Beta2Resource,
-		NewLonghornIoShareManagerV1Beta1Resource,
-		NewLonghornIoShareManagerV1Beta2Resource,
-		NewLonghornIoSnapshotV1Beta2Resource,
-		NewLonghornIoVolumeV1Beta1Resource,
-		NewLonghornIoVolumeV1Beta2Resource,
-		NewMapsK8SElasticCoElasticMapsServerV1Alpha1Resource,
-		NewMattermostComClusterInstallationV1Alpha1Resource,
-		NewMattermostComMattermostRestoreDBV1Alpha1Resource,
-		NewMinioMinIoTenantV1Resource,
-		NewMinioMinIoTenantV2Resource,
-		NewModelKubedlIoModelV1Alpha1Resource,
-		NewModelKubedlIoModelVersionV1Alpha1Resource,
-		NewMonitoringCoreosComAlertmanagerConfigV1Alpha1Resource,
-		NewMonitoringCoreosComAlertmanagerV1Resource,
-		NewMonitoringCoreosComPodMonitorV1Resource,
-		NewMonitoringCoreosComProbeV1Resource,
-		NewMonitoringCoreosComPrometheusRuleV1Resource,
-		NewMonitoringCoreosComPrometheusV1Resource,
-		NewMonitoringCoreosComServiceMonitorV1Resource,
-		NewMonitoringCoreosComThanosRulerV1Resource,
-		NewMqServicesK8SAwsBrokerV1Alpha1Resource,
-		NewMulticlusterXK8SIoServiceImportV1Alpha1Resource,
-		NewMutationsGatekeeperShAssignMetadataV1Alpha1Resource,
-		NewMutationsGatekeeperShAssignMetadataV1Beta1Resource,
-		NewMutationsGatekeeperShAssignMetadataV1Resource,
-		NewMutationsGatekeeperShAssignV1Alpha1Resource,
-		NewMutationsGatekeeperShAssignV1Beta1Resource,
-		NewMutationsGatekeeperShAssignV1Resource,
-		NewMutationsGatekeeperShModifySetV1Alpha1Resource,
-		NewMutationsGatekeeperShModifySetV1Beta1Resource,
-		NewMutationsGatekeeperShModifySetV1Resource,
-		NewNamespaceV1Resource,
-		NewNetworkingIstioIoDestinationRuleV1Alpha3Resource,
-		NewNetworkingIstioIoDestinationRuleV1Beta1Resource,
-		NewNetworkingIstioIoEnvoyFilterV1Alpha3Resource,
-		NewNetworkingIstioIoGatewayV1Alpha3Resource,
-		NewNetworkingIstioIoGatewayV1Beta1Resource,
-		NewNetworkingIstioIoProxyConfigV1Beta1Resource,
-		NewNetworkingIstioIoServiceEntryV1Alpha3Resource,
-		NewNetworkingIstioIoServiceEntryV1Beta1Resource,
-		NewNetworkingIstioIoSidecarV1Alpha3Resource,
-		NewNetworkingIstioIoSidecarV1Beta1Resource,
-		NewNetworkingIstioIoVirtualServiceV1Alpha3Resource,
-		NewNetworkingIstioIoVirtualServiceV1Beta1Resource,
-		NewNetworkingIstioIoWorkloadEntryV1Alpha3Resource,
-		NewNetworkingIstioIoWorkloadEntryV1Beta1Resource,
-		NewNetworkingIstioIoWorkloadGroupV1Alpha3Resource,
-		NewNetworkingIstioIoWorkloadGroupV1Beta1Resource,
-		NewNetworkingK8SIoIngressClassV1Resource,
-		NewNetworkingK8SIoIngressV1Resource,
-		NewNetworkingK8SIoNetworkPolicyV1Resource,
-		NewNfdK8SSigsIoNodeFeatureRuleV1Alpha1Resource,
-		NewNodeinfoVolcanoShNumatopologyV1Alpha1Resource,
-		NewNotebookKubedlIoNotebookV1Alpha1Resource,
-		NewNotificationToolkitFluxcdIoAlertV1Beta1Resource,
-		NewNotificationToolkitFluxcdIoProviderV1Beta1Resource,
-		NewNotificationToolkitFluxcdIoReceiverV1Beta1Resource,
-		NewObjectbucketIoObjectBucketClaimV1Alpha1Resource,
-		NewObjectbucketIoObjectBucketV1Alpha1Resource,
-		NewOpensearchserviceServicesK8SAwsDomainV1Alpha1Resource,
-		NewOpentelemetryIoInstrumentationV1Alpha1Resource,
-		NewOpentelemetryIoOpenTelemetryCollectorV1Alpha1Resource,
-		NewOperationsKubeedgeIoNodeUpgradeJobV1Alpha1Resource,
-		NewOperatorAquasecComAquaCspV1Alpha1Resource,
-		NewOperatorAquasecComAquaDatabaseV1Alpha1Resource,
-		NewOperatorAquasecComAquaEnforcerV1Alpha1Resource,
-		NewOperatorAquasecComAquaGatewayV1Alpha1Resource,
-		NewOperatorAquasecComAquaKubeEnforcerV1Alpha1Resource,
-		NewOperatorAquasecComAquaScannerV1Alpha1Resource,
-		NewOperatorAquasecComAquaServerV1Alpha1Resource,
-		NewOperatorCryostatIoCryostatV1Beta1Resource,
-		NewOperatorKnativeDevKnativeEventingV1Beta1Resource,
-		NewOperatorKnativeDevKnativeServingV1Beta1Resource,
-		NewOperatorOpenClusterManagementIoClusterManagerV1Resource,
-		NewOperatorOpenClusterManagementIoKlusterletV1Resource,
-		NewOperatorTektonDevTektonResultV1Alpha1Resource,
-		NewOperatorTigeraIoAPIServerV1Resource,
-		NewOperatorTigeraIoImageSetV1Resource,
-		NewOperatorTigeraIoInstallationV1Resource,
-		NewOperatorTigeraIoTigeraStatusV1Resource,
-		NewOrgEclipseCheCheClusterV1Resource,
-		NewOrgEclipseCheCheClusterV2Resource,
-		NewPersistentVolumeClaimV1Resource,
-		NewPersistentVolumeV1Resource,
-		NewPkgCrossplaneIoConfigurationRevisionV1Resource,
-		NewPkgCrossplaneIoConfigurationV1Resource,
-		NewPkgCrossplaneIoControllerConfigV1Alpha1Resource,
-		NewPkgCrossplaneIoLockV1Alpha1Resource,
-		NewPkgCrossplaneIoLockV1Beta1Resource,
-		NewPkgCrossplaneIoProviderRevisionV1Resource,
-		NewPkgCrossplaneIoProviderV1Resource,
-		NewPodV1Resource,
-		NewPolicyClusterpediaIoClusterImportPolicyV1Alpha1Resource,
-		NewPolicyClusterpediaIoPediaClusterLifecycleV1Alpha1Resource,
-		NewPolicyLinkerdIoAuthorizationPolicyV1Alpha1Resource,
-		NewPolicyLinkerdIoHTTPRouteV1Alpha1Resource,
-		NewPolicyLinkerdIoHTTPRouteV1Beta1Resource,
-		NewPolicyLinkerdIoMeshTLSAuthenticationV1Alpha1Resource,
-		NewPolicyLinkerdIoNetworkAuthenticationV1Alpha1Resource,
-		NewPolicyLinkerdIoServerAuthorizationV1Alpha1Resource,
-		NewPolicyLinkerdIoServerAuthorizationV1Beta1Resource,
-		NewPolicyLinkerdIoServerV1Alpha1Resource,
-		NewPolicyLinkerdIoServerV1Beta1Resource,
-		NewPolicyPodDisruptionBudgetV1Resource,
-		NewPostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource,
-		NewPrometheusserviceServicesK8SAwsAlertManagerDefinitionV1Alpha1Resource,
-		NewPrometheusserviceServicesK8SAwsRuleGroupsNamespaceV1Alpha1Resource,
-		NewPrometheusserviceServicesK8SAwsWorkspaceV1Alpha1Resource,
-		NewQuayRedhatComQuayRegistryV1Resource,
-		NewRbacAuthorizationK8SIoClusterRoleBindingV1Resource,
-		NewRbacAuthorizationK8SIoClusterRoleV1Resource,
-		NewRbacAuthorizationK8SIoRoleBindingV1Resource,
-		NewRbacAuthorizationK8SIoRoleV1Resource,
-		NewRdsServicesK8SAwsDBClusterParameterGroupV1Alpha1Resource,
-		NewRdsServicesK8SAwsDBClusterV1Alpha1Resource,
-		NewRdsServicesK8SAwsDBInstanceV1Alpha1Resource,
-		NewRdsServicesK8SAwsDBParameterGroupV1Alpha1Resource,
-		NewRdsServicesK8SAwsDBProxyV1Alpha1Resource,
-		NewRdsServicesK8SAwsDBSubnetGroupV1Alpha1Resource,
-		NewRdsServicesK8SAwsGlobalClusterV1Alpha1Resource,
-		NewRedhatcopRedhatIoQuayEcosystemV1Alpha1Resource,
-		NewRegistryApicurIoApicurioRegistryV1Resource,
-		NewReliablesyncsKubeedgeIoClusterObjectSyncV1Alpha1Resource,
-		NewReliablesyncsKubeedgeIoObjectSyncV1Alpha1Resource,
-		NewReplicationControllerV1Resource,
-		NewResourcesTeleportDevTeleportRoleV5Resource,
-		NewResourcesTeleportDevTeleportUserV2Resource,
-		NewRipsawCloudbulldozerIoBenchmarkV1Alpha1Resource,
-		NewRocketmqApacheOrgBrokerV1Alpha1Resource,
-		NewRocketmqApacheOrgConsoleV1Alpha1Resource,
-		NewRocketmqApacheOrgNameServiceV1Alpha1Resource,
-		NewRocketmqApacheOrgTopicTransferV1Alpha1Resource,
-		NewRulesKubeedgeIoRuleEndpointV1Resource,
-		NewRulesKubeedgeIoRuleV1Resource,
-		NewS3ServicesK8SAwsBucketV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsAppV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsDataQualityJobDefinitionV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsDomainV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsEndpointConfigV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsEndpointV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsFeatureGroupV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsHyperParameterTuningJobV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsModelBiasJobDefinitionV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsModelExplainabilityJobDefinitionV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsModelPackageGroupV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsModelPackageV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsModelQualityJobDefinitionV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsModelV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsMonitoringScheduleV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsNotebookInstanceLifecycleConfigV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsNotebookInstanceV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsProcessingJobV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsTrainingJobV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsTransformJobV1Alpha1Resource,
-		NewSagemakerServicesK8SAwsUserProfileV1Alpha1Resource,
-		NewSchedulingK8SIoPriorityClassV1Resource,
-		NewSchedulingKoordinatorShDeviceV1Alpha1Resource,
-		NewSchedulingKoordinatorShPodMigrationJobV1Alpha1Resource,
-		NewSchedulingKoordinatorShReservationV1Alpha1Resource,
-		NewSchedulingSigsK8SIoElasticQuotaV1Alpha1Resource,
-		NewSchedulingSigsK8SIoPodGroupV1Alpha1Resource,
-		NewSchedulingVolcanoShPodGroupV1Beta1Resource,
-		NewSchedulingVolcanoShQueueV1Beta1Resource,
-		NewSchemasSchemaheroIoDataTypeV1Alpha4Resource,
-		NewSchemasSchemaheroIoMigrationV1Alpha4Resource,
-		NewSchemasSchemaheroIoTableV1Alpha4Resource,
-		NewScyllaScylladbComNodeConfigV1Alpha1Resource,
-		NewScyllaScylladbComScyllaClusterV1Resource,
-		NewScyllaScylladbComScyllaOperatorConfigV1Alpha1Resource,
-		NewSecretV1Resource,
-		NewSecretsCrossplaneIoStoreConfigV1Alpha1Resource,
-		NewSecscanQuayRedhatComImageManifestVulnV1Alpha1Resource,
-		NewSecurityIstioIoAuthorizationPolicyV1Beta1Resource,
-		NewSecurityIstioIoPeerAuthenticationV1Beta1Resource,
-		NewSecurityIstioIoRequestAuthenticationV1Beta1Resource,
-		NewSecurityProfilesOperatorXK8SIoAppArmorProfileV1Alpha1Resource,
-		NewSecurityProfilesOperatorXK8SIoProfileBindingV1Alpha1Resource,
-		NewSecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Resource,
-		NewSecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2Resource,
-		NewSecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Resource,
-		NewSecurityProfilesOperatorXK8SIoSecurityProfileNodeStatusV1Alpha1Resource,
-		NewSecurityProfilesOperatorXK8SIoSecurityProfilesOperatorDaemonV1Alpha1Resource,
-		NewSecurityProfilesOperatorXK8SIoSelinuxProfileV1Alpha2Resource,
-		NewSematextComSematextAgentV1Resource,
-		NewServiceAccountV1Resource,
-		NewServiceV1Resource,
-		NewServicebindingIoClusterWorkloadResourceMappingV1Alpha3Resource,
-		NewServicebindingIoClusterWorkloadResourceMappingV1Beta1Resource,
-		NewServicebindingIoServiceBindingV1Alpha3Resource,
-		NewServicebindingIoServiceBindingV1Beta1Resource,
-		NewServicesK8SAwsAdoptedResourceV1Alpha1Resource,
-		NewServicesK8SAwsFieldExportV1Alpha1Resource,
-		NewServingKubedlIoInferenceV1Alpha1Resource,
-		NewSfnServicesK8SAwsActivityV1Alpha1Resource,
-		NewSfnServicesK8SAwsStateMachineV1Alpha1Resource,
-		NewSiteSuperedgeIoNodeGroupV1Alpha1Resource,
-		NewSiteSuperedgeIoNodeUnitV1Alpha1Resource,
-		NewSloKoordinatorShNodeMetricV1Alpha1Resource,
-		NewSloKoordinatorShNodeSLOV1Alpha1Resource,
-		NewSourceToolkitFluxcdIoBucketV1Beta1Resource,
-		NewSourceToolkitFluxcdIoBucketV1Beta2Resource,
-		NewSourceToolkitFluxcdIoGitRepositoryV1Beta1Resource,
-		NewSourceToolkitFluxcdIoGitRepositoryV1Beta2Resource,
-		NewSourceToolkitFluxcdIoHelmChartV1Beta1Resource,
-		NewSourceToolkitFluxcdIoHelmChartV1Beta2Resource,
-		NewSourceToolkitFluxcdIoHelmRepositoryV1Beta1Resource,
-		NewSourceToolkitFluxcdIoHelmRepositoryV1Beta2Resource,
-		NewSourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource,
-		NewSparkoperatorK8SIoScheduledSparkApplicationV1Beta2Resource,
-		NewSparkoperatorK8SIoSparkApplicationV1Beta2Resource,
-		NewStorageK8SIoCSIDriverV1Resource,
-		NewStorageK8SIoCSINodeV1Resource,
-		NewStorageK8SIoStorageClassV1Resource,
-		NewStorageK8SIoVolumeAttachmentV1Resource,
-		NewTelemetryIstioIoTelemetryV1Alpha1Resource,
-		NewTemplatesGatekeeperShConstraintTemplateV1Alpha1Resource,
-		NewTemplatesGatekeeperShConstraintTemplateV1Beta1Resource,
-		NewTemplatesGatekeeperShConstraintTemplateV1Resource,
-		NewTopologyNodeK8SIoNodeResourceTopologyV1Alpha1Resource,
-		NewTraefikContainoUsIngressRouteTCPV1Alpha1Resource,
-		NewTraefikContainoUsIngressRouteUDPV1Alpha1Resource,
-		NewTraefikContainoUsIngressRouteV1Alpha1Resource,
-		NewTraefikContainoUsMiddlewareTCPV1Alpha1Resource,
-		NewTraefikContainoUsMiddlewareV1Alpha1Resource,
-		NewTraefikContainoUsServersTransportV1Alpha1Resource,
-		NewTraefikContainoUsTLSOptionV1Alpha1Resource,
-		NewTraefikContainoUsTLSStoreV1Alpha1Resource,
-		NewTraefikContainoUsTraefikServiceV1Alpha1Resource,
-		NewTrainingKubedlIoElasticDLJobV1Alpha1Resource,
-		NewTrainingKubedlIoMPIJobV1Alpha1Resource,
-		NewTrainingKubedlIoMarsJobV1Alpha1Resource,
-		NewTrainingKubedlIoPyTorchJobV1Alpha1Resource,
-		NewTrainingKubedlIoTFJobV1Alpha1Resource,
-		NewTrainingKubedlIoXDLJobV1Alpha1Resource,
-		NewTrainingKubedlIoXGBoostJobV1Alpha1Resource,
-		NewWgpolicyk8SIoClusterPolicyReportV1Alpha2Resource,
-		NewWgpolicyk8SIoPolicyReportV1Alpha2Resource,
-		NewWildflyOrgWildFlyServerV1Alpha1Resource,
-	}
+	return allResources()
 }

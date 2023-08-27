@@ -1,16 +1,7 @@
-resource "k8s_service_account_v1" "minimal" {
-  metadata = {
-    name = "test"
-  }
-}
-
 resource "k8s_service_account_v1" "example" {
   metadata = {
-    name = "test"
+    name      = "some-name"
+    namespace = "some-namespace"
+
   }
-  secrets = [
-    {
-      name = "some-secret-name"
-    },
-  ]
 }

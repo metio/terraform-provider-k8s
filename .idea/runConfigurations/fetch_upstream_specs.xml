@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="fetch upstream specs" type="GoApplicationRunConfiguration" factoryName="Go Application">
-    <module name="terraform-provider-git-terraform" />
+    <module name="development" />
     <working_directory value="$PROJECT_DIR$" />
     <useCustomBuildTags value="true" />
     <kind value="PACKAGE" />

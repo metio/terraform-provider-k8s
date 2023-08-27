@@ -11,6 +11,7 @@ import (
 	"go/format"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 	"text/template"
 )
@@ -27,6 +28,12 @@ func currentDirectory() (string, error) {
 }
 
 func generateCode(path string, tmpl *template.Template, data any) *os.File {
+	dir := filepath.Dir(path)
+	err := os.MkdirAll(dir, os.ModePerm)
+	if err != nil {
+		log.Printf("error creating %s", dir)
+		log.Fatal(err)
+	}
 	createdFile, err := os.Create(path)
 	if err != nil {
 		log.Printf("error creating %s", path)

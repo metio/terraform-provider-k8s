@@ -1,0 +1,9 @@
+{{ if .Namespaced -}}
+# {{ .FullResourceTypeName }} resources can be imported by specifying
+# the namespace and name of the resource.
+terraform import {{ .FullResourceTypeName }}.your_name 'namespace/name'
+{{ else -}}
+# {{ .FullResourceTypeName }} resources can be imported by specifying
+# the name of the resource.
+terraform import {{ .FullResourceTypeName }}.your_name 'name'
+{{ end -}}

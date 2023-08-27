@@ -7,47 +7,43 @@ package validators
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/helpers/validatordiag"
-	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
-	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	apiValidation "k8s.io/apimachinery/pkg/api/validation"
 )
 
 type nameValidator struct{}
 
-var _ tfsdk.AttributeValidator = (*nameValidator)(nil)
+var _ validator.String = &nameValidator{}
 
-func NameValidator() tfsdk.AttributeValidator {
-	return &nameValidator{}
+func NameValidator() validator.String {
+	return nameValidator{}
 }
 
 func (validator nameValidator) Description(_ context.Context) string {
-	return "Validate metadata.name according to the upstream k8s spec"
+	return "name does not match upstream k8s spec"
 }
 
 func (validator nameValidator) MarkdownDescription(ctx context.Context) string {
 	return validator.Description(ctx)
 }
 
-func (validator nameValidator) Validate(ctx context.Context, req tfsdk.ValidateAttributeRequest, resp *tfsdk.ValidateAttributeResponse) {
-	var value types.String
-
-	diags := tfsdk.ValueAs(ctx, req.AttributeConfig, &value)
-	if diags.HasError() {
-		resp.Diagnostics.Append(diags...)
+func (validator nameValidator) ValidateString(ctx context.Context, request validator.StringRequest, response *validator.StringResponse) {
+	if request.ConfigValue.IsNull() || request.ConfigValue.IsUnknown() {
 		return
 	}
 
-	if value.ValueString() == "" {
+	value := request.ConfigValue.ValueString()
+
+	if value == "" {
 		return
 	}
 
-	for _, msg := range apiValidation.NameIsDNSSubdomain(value.ValueString(), false) {
-		resp.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
-			req.AttributePath,
-			fmt.Sprintf("Invalid Object Name '%s'", value.ValueString()),
+	for _, msg := range apiValidation.NameIsDNSSubdomain(value, false) {
+		response.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
+			request.Path,
 			msg,
+			value,
 		))
 	}
 }

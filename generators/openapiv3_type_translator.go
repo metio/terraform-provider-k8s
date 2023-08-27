@@ -83,20 +83,20 @@ func (t *openapiv3TypeTranslator) isOneOfBoolean() bool {
 
 func (t *openapiv3TypeTranslator) isObjectWithAdditionalStringProperties() bool {
 	return t.property.Type == "object" &&
-		t.property.AdditionalProperties != nil &&
-		t.property.AdditionalProperties.Value.Type == "string"
+		t.property.AdditionalProperties.Schema != nil &&
+		t.property.AdditionalProperties.Schema.Value.Type == "string"
 }
 
 func (t *openapiv3TypeTranslator) isObjectWithAdditionalObjectProperties() bool {
 	return t.property.Type == "object" &&
-		t.property.AdditionalProperties != nil &&
-		t.property.AdditionalProperties.Value.Type == "object"
+		t.property.AdditionalProperties.Schema != nil &&
+		t.property.AdditionalProperties.Schema.Value.Type == "object"
 }
 
 func (t *openapiv3TypeTranslator) isObjectWithAdditionalArrayProperties() bool {
 	return t.property.Type == "object" &&
-		t.property.AdditionalProperties != nil &&
-		t.property.AdditionalProperties.Value.Type == "array"
+		t.property.AdditionalProperties.Schema != nil &&
+		t.property.AdditionalProperties.Schema.Value.Type == "array"
 }
 
 func (t *openapiv3TypeTranslator) isArrayWithObjectItems() bool {
@@ -107,32 +107,32 @@ func (t *openapiv3TypeTranslator) isArrayWithObjectItems() bool {
 }
 
 func (t *openapiv3TypeTranslator) additionalPropertiesHaveStringItems() bool {
-	return t.property.AdditionalProperties.Value.Items != nil &&
-		t.property.AdditionalProperties.Value.Items.Value.Type == "string"
+	return t.property.AdditionalProperties.Schema.Value.Items != nil &&
+		t.property.AdditionalProperties.Schema.Value.Items.Value.Type == "string"
 }
 
 func (t *openapiv3TypeTranslator) additionalPropertiesHaveProperties() bool {
-	return len(t.property.AdditionalProperties.Value.Properties) > 0
+	return len(t.property.AdditionalProperties.Schema.Value.Properties) > 0
 }
 
 func (t *openapiv3TypeTranslator) additionalPropertiesHaveUnknownFields() bool {
-	_, ok := t.property.AdditionalProperties.Value.Extensions["x-kubernetes-preserve-unknown-fields"]
+	_, ok := t.property.AdditionalProperties.Schema.Value.Extensions["x-kubernetes-preserve-unknown-fields"]
 	return ok
 }
 
 func (t *openapiv3TypeTranslator) additionalPropertiesHaveAdditionalStringProperties() bool {
-	return t.property.AdditionalProperties.Value.AdditionalProperties != nil &&
-		t.property.AdditionalProperties.Value.AdditionalProperties.Value.Type == "string"
+	return t.property.AdditionalProperties.Schema.Value.AdditionalProperties.Schema != nil &&
+		t.property.AdditionalProperties.Schema.Value.AdditionalProperties.Schema.Value.Type == "string"
 }
 
 func (t *openapiv3TypeTranslator) additionalPropertiesHaveAdditionalArrayProperties() bool {
-	return t.property.AdditionalProperties.Value.AdditionalProperties != nil &&
-		t.property.AdditionalProperties.Value.AdditionalProperties.Value.Type == "array"
+	return t.property.AdditionalProperties.Schema.Value.AdditionalProperties.Schema != nil &&
+		t.property.AdditionalProperties.Schema.Value.AdditionalProperties.Schema.Value.Type == "array"
 }
 
 func (t *openapiv3TypeTranslator) additionalPropertiesHaveAdditionalPropertiesWithStringItems() bool {
-	return t.property.AdditionalProperties.Value.AdditionalProperties.Value.Items != nil &&
-		t.property.AdditionalProperties.Value.AdditionalProperties.Value.Items.Value.Type == "string"
+	return t.property.AdditionalProperties.Schema.Value.AdditionalProperties.Schema.Value.Items != nil &&
+		t.property.AdditionalProperties.Schema.Value.AdditionalProperties.Schema.Value.Items.Value.Type == "string"
 }
 
 func (t *openapiv3TypeTranslator) itemsHaveUnknownFields() bool {
@@ -141,6 +141,6 @@ func (t *openapiv3TypeTranslator) itemsHaveUnknownFields() bool {
 }
 
 func (t *openapiv3TypeTranslator) itemsHaveAdditionalStringProperties() bool {
-	return t.property.Items.Value.AdditionalProperties != nil &&
-		t.property.Items.Value.AdditionalProperties.Value.Type == "string"
+	return t.property.Items.Value.AdditionalProperties.Schema != nil &&
+		t.property.Items.Value.AdditionalProperties.Schema.Value.Type == "string"
 }

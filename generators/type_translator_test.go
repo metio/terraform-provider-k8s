@@ -17,6 +17,7 @@ func TestTranslateTypeWith(t *testing.T) {
 	type testCase struct {
 		translator    typeTranslator
 		attributeType string
+		elementType   string
 		valueType     string
 		goType        string
 	}
@@ -27,6 +28,7 @@ func TestTranslateTypeWith(t *testing.T) {
 				property: &apiextensionsv1.JSONSchemaProps{},
 			},
 			attributeType: "UNKNOWN",
+			elementType:   "UNKNOWN",
 			valueType:     "UNKNOWN",
 			goType:        "UNKNOWN",
 		},
@@ -36,7 +38,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					Type: "string",
 				},
 			},
-			attributeType: "types.StringType",
+			attributeType: "schema.StringAttribute",
+			elementType:   "",
 			valueType:     "types.String",
 			goType:        "string",
 		},
@@ -46,7 +49,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					Type: "boolean",
 				},
 			},
-			attributeType: "types.BoolType",
+			attributeType: "schema.BoolAttribute",
+			elementType:   "",
 			valueType:     "types.Bool",
 			goType:        "bool",
 		},
@@ -56,7 +60,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					Type: "integer",
 				},
 			},
-			attributeType: "types.Int64Type",
+			attributeType: "schema.Int64Attribute",
+			elementType:   "",
 			valueType:     "types.Int64",
 			goType:        "int64",
 		},
@@ -66,9 +71,10 @@ func TestTranslateTypeWith(t *testing.T) {
 					Type: "number",
 				},
 			},
-			attributeType: "utilities.DynamicNumberType{}",
-			valueType:     "utilities.DynamicNumber",
-			goType:        "utilities.DynamicNumber",
+			attributeType: "types.NumberType",
+			elementType:   "",
+			valueType:     "types.Number",
+			goType:        "big.Float",
 		},
 		"CRDv1/float-float": {
 			translator: &crd1TypeTranslator{
@@ -78,6 +84,7 @@ func TestTranslateTypeWith(t *testing.T) {
 				},
 			},
 			attributeType: "types.Float64Type",
+			elementType:   "",
 			valueType:     "types.Float64",
 			goType:        "float64",
 		},
@@ -89,6 +96,7 @@ func TestTranslateTypeWith(t *testing.T) {
 				},
 			},
 			attributeType: "types.Float64Type",
+			elementType:   "",
 			valueType:     "types.Float64",
 			goType:        "float64",
 		},
@@ -98,7 +106,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					Type: "array",
 				},
 			},
-			attributeType: "types.ListType{ElemType: types.StringType}",
+			attributeType: "schema.ListAttribute",
+			elementType:   "types.StringType",
 			valueType:     "types.List",
 			goType:        "[]string",
 		},
@@ -108,7 +117,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					Type: "object",
 				},
 			},
-			attributeType: "types.MapType{ElemType: types.StringType}",
+			attributeType: "schema.MapAttribute",
+			elementType:   "types.StringType",
 			valueType:     "types.Map",
 			goType:        "map[string]string",
 		},
@@ -121,7 +131,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "types.ObjectType",
+			attributeType: "schema.SingleNestedAttribute",
+			elementType:   "",
 			valueType:     "types.Object",
 			goType:        "struct",
 		},
@@ -136,7 +147,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "types.ListType{ElemType: types.ObjectType}",
+			attributeType: "schema.ListNestedAttribute",
+			elementType:   "",
 			valueType:     "types.List",
 			goType:        "[]struct",
 		},
@@ -153,6 +165,7 @@ func TestTranslateTypeWith(t *testing.T) {
 				},
 			},
 			attributeType: "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}",
+			elementType:   "",
 			valueType:     "types.List",
 			goType:        "[]map[string]string",
 		},
@@ -173,6 +186,7 @@ func TestTranslateTypeWith(t *testing.T) {
 				},
 			},
 			attributeType: "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}",
+			elementType:   "",
 			valueType:     "types.List",
 			goType:        "[]map[string]string",
 		},
@@ -187,7 +201,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "types.MapType{ElemType: types.StringType}",
+			attributeType: "schema.MapAttribute",
+			elementType:   "types.StringType",
 			valueType:     "types.Map",
 			goType:        "map[string]string",
 		},
@@ -207,7 +222,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "types.MapType{ElemType: types.ListType{ElemType: types.StringType}}",
+			attributeType: "schema.MapAttribute",
+			elementType:   "types.ListType{ElemType: types.StringType}",
 			valueType:     "types.Map",
 			goType:        "map[string][]string",
 		},
@@ -222,7 +238,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "types.ObjectType",
+			attributeType: "schema.SingleNestedAttribute",
+			elementType:   "",
 			valueType:     "types.Object",
 			goType:        "struct",
 		},
@@ -243,6 +260,7 @@ func TestTranslateTypeWith(t *testing.T) {
 				},
 			},
 			attributeType: "types.MapType{ElemType: types.MapType{ElemType: types.StringType}}",
+			elementType:   "",
 			valueType:     "types.Map",
 			goType:        "map[string]map[string]string",
 		},
@@ -262,7 +280,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "types.ObjectType",
+			attributeType: "schema.SingleNestedAttribute",
+			elementType:   "",
 			valueType:     "types.Object",
 			goType:        "struct",
 		},
@@ -278,9 +297,10 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "utilities.DynamicType{}",
-			valueType:     "utilities.Dynamic",
-			goType:        "utilities.Dynamic",
+			attributeType: "schema.MapAttribute",
+			elementType:   "types.StringType",
+			valueType:     "types.Map",
+			goType:        "map[string]string",
 		},
 		"CRDv1/object-with-additional-object-properties-having-properties": {
 			translator: &crd1TypeTranslator{
@@ -297,7 +317,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "types.ObjectType",
+			attributeType: "schema.SingleNestedAttribute",
+			elementType:   "",
 			valueType:     "types.Object",
 			goType:        "struct",
 		},
@@ -323,6 +344,7 @@ func TestTranslateTypeWith(t *testing.T) {
 				},
 			},
 			attributeType: "types.MapType{ElemType: types.MapType{ElemType: types.ListType{ElemType: types.StringType}}}",
+			elementType:   "",
 			valueType:     "types.Map",
 			goType:        "map[string]map[string][]string",
 		},
@@ -337,7 +359,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "types.MapType{ElemType: types.StringType}",
+			attributeType: "schema.MapAttribute",
+			elementType:   "types.StringType",
 			valueType:     "types.Map",
 			goType:        "map[string]string",
 		},
@@ -351,7 +374,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "types.ListType{ElemType: types.StringType}",
+			attributeType: "schema.ListAttribute",
+			elementType:   "types.StringType",
 			valueType:     "types.List",
 			goType:        "[]string",
 		},
@@ -365,7 +389,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "types.BoolType",
+			attributeType: "schema.BoolAttribute",
+			elementType:   "",
 			valueType:     "types.Bool",
 			goType:        "bool",
 		},
@@ -380,6 +405,7 @@ func TestTranslateTypeWith(t *testing.T) {
 				},
 			},
 			attributeType: "UNKNOWN",
+			elementType:   "UNKNOWN",
 			valueType:     "UNKNOWN",
 			goType:        "UNKNOWN",
 		},
@@ -389,9 +415,10 @@ func TestTranslateTypeWith(t *testing.T) {
 					XPreserveUnknownFields: Ptr(true),
 				},
 			},
-			attributeType: "utilities.DynamicType{}",
-			valueType:     "utilities.Dynamic",
-			goType:        "utilities.Dynamic",
+			attributeType: "schema.MapAttribute",
+			elementType:   "types.StringType",
+			valueType:     "types.Map",
+			goType:        "map[string]string",
 		},
 		"CRDv1/unknown-fields-with-properties": {
 			translator: &crd1TypeTranslator{
@@ -402,7 +429,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "types.ObjectType",
+			attributeType: "schema.SingleNestedAttribute",
+			elementType:   "",
 			valueType:     "types.Object",
 			goType:        "struct",
 		},
@@ -412,9 +440,10 @@ func TestTranslateTypeWith(t *testing.T) {
 					XIntOrString: true,
 				},
 			},
-			attributeType: "utilities.IntOrStringType{}",
-			valueType:     "utilities.IntOrString",
-			goType:        "utilities.IntOrString",
+			attributeType: "schema.StringAttribute",
+			elementType:   "",
+			valueType:     "types.String",
+			goType:        "string",
 		},
 		"CRDv1/string-or-int": {
 			translator: &crd1TypeTranslator{
@@ -423,9 +452,10 @@ func TestTranslateTypeWith(t *testing.T) {
 					Format: "int-or-string",
 				},
 			},
-			attributeType: "utilities.IntOrStringType{}",
-			valueType:     "utilities.IntOrString",
-			goType:        "utilities.IntOrString",
+			attributeType: "schema.StringAttribute",
+			elementType:   "",
+			valueType:     "types.String",
+			goType:        "string",
 		},
 
 		"OpenAPIv3/empty": {
@@ -433,6 +463,7 @@ func TestTranslateTypeWith(t *testing.T) {
 				property: &openapi3.Schema{},
 			},
 			attributeType: "UNKNOWN",
+			elementType:   "UNKNOWN",
 			valueType:     "UNKNOWN",
 			goType:        "UNKNOWN",
 		},
@@ -442,7 +473,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					Type: "string",
 				},
 			},
-			attributeType: "types.StringType",
+			attributeType: "schema.StringAttribute",
+			elementType:   "",
 			valueType:     "types.String",
 			goType:        "string",
 		},
@@ -452,7 +484,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					Type: "boolean",
 				},
 			},
-			attributeType: "types.BoolType",
+			attributeType: "schema.BoolAttribute",
+			elementType:   "",
 			valueType:     "types.Bool",
 			goType:        "bool",
 		},
@@ -462,7 +495,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					Type: "integer",
 				},
 			},
-			attributeType: "types.Int64Type",
+			attributeType: "schema.Int64Attribute",
+			elementType:   "",
 			valueType:     "types.Int64",
 			goType:        "int64",
 		},
@@ -472,9 +506,10 @@ func TestTranslateTypeWith(t *testing.T) {
 					Type: "number",
 				},
 			},
-			attributeType: "utilities.DynamicNumberType{}",
-			valueType:     "utilities.DynamicNumber",
-			goType:        "utilities.DynamicNumber",
+			attributeType: "types.NumberType",
+			elementType:   "",
+			valueType:     "types.Number",
+			goType:        "big.Float",
 		},
 		"OpenAPIv3/float-float": {
 			translator: &openapiv3TypeTranslator{
@@ -484,6 +519,7 @@ func TestTranslateTypeWith(t *testing.T) {
 				},
 			},
 			attributeType: "types.Float64Type",
+			elementType:   "",
 			valueType:     "types.Float64",
 			goType:        "float64",
 		},
@@ -495,6 +531,7 @@ func TestTranslateTypeWith(t *testing.T) {
 				},
 			},
 			attributeType: "types.Float64Type",
+			elementType:   "",
 			valueType:     "types.Float64",
 			goType:        "float64",
 		},
@@ -504,7 +541,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					Type: "array",
 				},
 			},
-			attributeType: "types.ListType{ElemType: types.StringType}",
+			attributeType: "schema.ListAttribute",
+			elementType:   "types.StringType",
 			valueType:     "types.List",
 			goType:        "[]string",
 		},
@@ -514,7 +552,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					Type: "object",
 				},
 			},
-			attributeType: "types.MapType{ElemType: types.StringType}",
+			attributeType: "schema.MapAttribute",
+			elementType:   "types.StringType",
 			valueType:     "types.Map",
 			goType:        "map[string]string",
 		},
@@ -527,7 +566,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "types.ObjectType",
+			attributeType: "schema.SingleNestedAttribute",
+			elementType:   "",
 			valueType:     "types.Object",
 			goType:        "struct",
 		},
@@ -542,7 +582,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "types.ListType{ElemType: types.ObjectType}",
+			attributeType: "schema.ListNestedAttribute",
+			elementType:   "",
 			valueType:     "types.List",
 			goType:        "[]struct",
 		},
@@ -553,16 +594,15 @@ func TestTranslateTypeWith(t *testing.T) {
 					Items: &openapi3.SchemaRef{
 						Value: &openapi3.Schema{
 							Type: "object",
-							ExtensionProps: openapi3.ExtensionProps{
-								Extensions: map[string]interface{}{
-									"x-kubernetes-preserve-unknown-fields": "true",
-								},
+							Extensions: map[string]interface{}{
+								"x-kubernetes-preserve-unknown-fields": "true",
 							},
 						},
 					},
 				},
 			},
 			attributeType: "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}",
+			elementType:   "",
 			valueType:     "types.List",
 			goType:        "[]map[string]string",
 		},
@@ -573,9 +613,11 @@ func TestTranslateTypeWith(t *testing.T) {
 					Items: &openapi3.SchemaRef{
 						Value: &openapi3.Schema{
 							Type: "object",
-							AdditionalProperties: &openapi3.SchemaRef{
-								Value: &openapi3.Schema{
-									Type: "string",
+							AdditionalProperties: openapi3.AdditionalProperties{
+								Schema: &openapi3.SchemaRef{
+									Value: &openapi3.Schema{
+										Type: "string",
+									},
 								},
 							},
 						},
@@ -583,6 +625,7 @@ func TestTranslateTypeWith(t *testing.T) {
 				},
 			},
 			attributeType: "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}",
+			elementType:   "",
 			valueType:     "types.List",
 			goType:        "[]map[string]string",
 		},
@@ -590,14 +633,17 @@ func TestTranslateTypeWith(t *testing.T) {
 			translator: &openapiv3TypeTranslator{
 				property: &openapi3.Schema{
 					Type: "object",
-					AdditionalProperties: &openapi3.SchemaRef{
-						Value: &openapi3.Schema{
-							Type: "array",
+					AdditionalProperties: openapi3.AdditionalProperties{
+						Schema: &openapi3.SchemaRef{
+							Value: &openapi3.Schema{
+								Type: "array",
+							},
 						},
 					},
 				},
 			},
-			attributeType: "types.MapType{ElemType: types.StringType}",
+			attributeType: "schema.MapAttribute",
+			elementType:   "types.StringType",
 			valueType:     "types.Map",
 			goType:        "map[string]string",
 		},
@@ -605,19 +651,22 @@ func TestTranslateTypeWith(t *testing.T) {
 			translator: &openapiv3TypeTranslator{
 				property: &openapi3.Schema{
 					Type: "object",
-					AdditionalProperties: &openapi3.SchemaRef{
-						Value: &openapi3.Schema{
-							Type: "array",
-							Items: &openapi3.SchemaRef{
-								Value: &openapi3.Schema{
-									Type: "string",
+					AdditionalProperties: openapi3.AdditionalProperties{
+						Schema: &openapi3.SchemaRef{
+							Value: &openapi3.Schema{
+								Type: "array",
+								Items: &openapi3.SchemaRef{
+									Value: &openapi3.Schema{
+										Type: "string",
+									},
 								},
 							},
 						},
 					},
 				},
 			},
-			attributeType: "types.MapType{ElemType: types.ListType{ElemType: types.StringType}}",
+			attributeType: "schema.MapAttribute",
+			elementType:   "types.ListType{ElemType: types.StringType}",
 			valueType:     "types.Map",
 			goType:        "map[string][]string",
 		},
@@ -625,14 +674,17 @@ func TestTranslateTypeWith(t *testing.T) {
 			translator: &openapiv3TypeTranslator{
 				property: &openapi3.Schema{
 					Type: "object",
-					AdditionalProperties: &openapi3.SchemaRef{
-						Value: &openapi3.Schema{
-							Type: "object",
+					AdditionalProperties: openapi3.AdditionalProperties{
+						Schema: &openapi3.SchemaRef{
+							Value: &openapi3.Schema{
+								Type: "object",
+							},
 						},
 					},
 				},
 			},
-			attributeType: "types.ObjectType",
+			attributeType: "schema.SingleNestedAttribute",
+			elementType:   "",
 			valueType:     "types.Object",
 			goType:        "struct",
 		},
@@ -640,96 +692,12 @@ func TestTranslateTypeWith(t *testing.T) {
 			translator: &openapiv3TypeTranslator{
 				property: &openapi3.Schema{
 					Type: "object",
-					AdditionalProperties: &openapi3.SchemaRef{
-						Value: &openapi3.Schema{
-							Type: "object",
-							AdditionalProperties: &openapi3.SchemaRef{
-								Value: &openapi3.Schema{
-									Type: "string",
-								},
-							},
-						},
-					},
-				},
-			},
-			attributeType: "types.MapType{ElemType: types.MapType{ElemType: types.StringType}}",
-			valueType:     "types.Map",
-			goType:        "map[string]map[string]string",
-		},
-		"OpenAPIv3/object-with-additional-object-properties-having-additional-array-properties": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: "object",
-					AdditionalProperties: &openapi3.SchemaRef{
-						Value: &openapi3.Schema{
-							Type: "object",
-							AdditionalProperties: &openapi3.SchemaRef{
-								Value: &openapi3.Schema{
-									Type: "array",
-								},
-							},
-						},
-					},
-				},
-			},
-			attributeType: "types.ObjectType",
-			valueType:     "types.Object",
-			goType:        "struct",
-		},
-		"OpenAPIv3/object-with-additional-object-properties-having-unknown-fields": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: "object",
-					AdditionalProperties: &openapi3.SchemaRef{
-						Value: &openapi3.Schema{
-							Type: "object",
-							ExtensionProps: openapi3.ExtensionProps{
-								Extensions: map[string]interface{}{
-									"x-kubernetes-preserve-unknown-fields": "true",
-								},
-							},
-						},
-					},
-				},
-			},
-			attributeType: "utilities.DynamicType{}",
-			valueType:     "utilities.Dynamic",
-			goType:        "utilities.Dynamic",
-		},
-		"OpenAPIv3/object-with-additional-object-properties-having-properties": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: "object",
-					AdditionalProperties: &openapi3.SchemaRef{
-						Value: &openapi3.Schema{
-							Type: "object",
-							ExtensionProps: openapi3.ExtensionProps{
-								Extensions: map[string]interface{}{
-									"x-kubernetes-preserve-unknown-fields": "true",
-								},
-							},
-							Properties: openapi3.Schemas{
-								"firs": {},
-							},
-						},
-					},
-				},
-			},
-			attributeType: "types.ObjectType",
-			valueType:     "types.Object",
-			goType:        "struct",
-		},
-		"OpenAPIv3/object-with-additional-object-properties-having-additional-array-properties-with-string-items": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: "object",
-					AdditionalProperties: &openapi3.SchemaRef{
-						Value: &openapi3.Schema{
-							Type: "object",
-							AdditionalProperties: &openapi3.SchemaRef{
-								Value: &openapi3.Schema{
-									Type: "array",
-									Items: &openapi3.SchemaRef{
+					AdditionalProperties: openapi3.AdditionalProperties{
+						Schema: &openapi3.SchemaRef{
+							Value: &openapi3.Schema{
+								Type: "object",
+								AdditionalProperties: openapi3.AdditionalProperties{
+									Schema: &openapi3.SchemaRef{
 										Value: &openapi3.Schema{
 											Type: "string",
 										},
@@ -740,7 +708,108 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
+			attributeType: "types.MapType{ElemType: types.MapType{ElemType: types.StringType}}",
+			elementType:   "",
+			valueType:     "types.Map",
+			goType:        "map[string]map[string]string",
+		},
+		"OpenAPIv3/object-with-additional-object-properties-having-additional-array-properties": {
+			translator: &openapiv3TypeTranslator{
+				property: &openapi3.Schema{
+					Type: "object",
+					AdditionalProperties: openapi3.AdditionalProperties{
+						Schema: &openapi3.SchemaRef{
+							Value: &openapi3.Schema{
+								Type: "object",
+								AdditionalProperties: openapi3.AdditionalProperties{
+									Schema: &openapi3.SchemaRef{
+										Value: &openapi3.Schema{
+											Type: "array",
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+			attributeType: "schema.SingleNestedAttribute",
+			elementType:   "",
+			valueType:     "types.Object",
+			goType:        "struct",
+		},
+		"OpenAPIv3/object-with-additional-object-properties-having-unknown-fields": {
+			translator: &openapiv3TypeTranslator{
+				property: &openapi3.Schema{
+					Type: "object",
+					AdditionalProperties: openapi3.AdditionalProperties{
+						Schema: &openapi3.SchemaRef{
+							Value: &openapi3.Schema{
+								Type: "object",
+								Extensions: map[string]interface{}{
+									"x-kubernetes-preserve-unknown-fields": "true",
+								},
+							},
+						},
+					},
+				},
+			},
+			attributeType: "schema.MapAttribute",
+			elementType:   "types.StringType",
+			valueType:     "types.Map",
+			goType:        "map[string]string",
+		},
+		"OpenAPIv3/object-with-additional-object-properties-having-properties": {
+			translator: &openapiv3TypeTranslator{
+				property: &openapi3.Schema{
+					Type: "object",
+					AdditionalProperties: openapi3.AdditionalProperties{
+						Schema: &openapi3.SchemaRef{
+							Value: &openapi3.Schema{
+								Type: "object",
+								Extensions: map[string]interface{}{
+									"x-kubernetes-preserve-unknown-fields": "true",
+								},
+								Properties: openapi3.Schemas{
+									"firs": {},
+								},
+							},
+						},
+					},
+				},
+			},
+			attributeType: "schema.SingleNestedAttribute",
+			elementType:   "",
+			valueType:     "types.Object",
+			goType:        "struct",
+		},
+		"OpenAPIv3/object-with-additional-object-properties-having-additional-array-properties-with-string-items": {
+			translator: &openapiv3TypeTranslator{
+				property: &openapi3.Schema{
+					Type: "object",
+					AdditionalProperties: openapi3.AdditionalProperties{
+						Schema: &openapi3.SchemaRef{
+							Value: &openapi3.Schema{
+								Type: "object",
+								AdditionalProperties: openapi3.AdditionalProperties{
+									Schema: &openapi3.SchemaRef{
+										Value: &openapi3.Schema{
+											Type: "array",
+											Items: &openapi3.SchemaRef{
+												Value: &openapi3.Schema{
+													Type: "string",
+												},
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 			attributeType: "types.MapType{ElemType: types.MapType{ElemType: types.ListType{ElemType: types.StringType}}}",
+			elementType:   "",
 			valueType:     "types.Map",
 			goType:        "map[string]map[string][]string",
 		},
@@ -748,14 +817,17 @@ func TestTranslateTypeWith(t *testing.T) {
 			translator: &openapiv3TypeTranslator{
 				property: &openapi3.Schema{
 					Type: "object",
-					AdditionalProperties: &openapi3.SchemaRef{
-						Value: &openapi3.Schema{
-							Type: "string",
+					AdditionalProperties: openapi3.AdditionalProperties{
+						Schema: &openapi3.SchemaRef{
+							Value: &openapi3.Schema{
+								Type: "string",
+							},
 						},
 					},
 				},
 			},
-			attributeType: "types.MapType{ElemType: types.StringType}",
+			attributeType: "schema.MapAttribute",
+			elementType:   "types.StringType",
 			valueType:     "types.Map",
 			goType:        "map[string]string",
 		},
@@ -771,7 +843,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "types.ListType{ElemType: types.StringType}",
+			attributeType: "schema.ListAttribute",
+			elementType:   "types.StringType",
 			valueType:     "types.List",
 			goType:        "[]string",
 		},
@@ -787,7 +860,8 @@ func TestTranslateTypeWith(t *testing.T) {
 					},
 				},
 			},
-			attributeType: "types.BoolType",
+			attributeType: "schema.BoolAttribute",
+			elementType:   "",
 			valueType:     "types.Bool",
 			goType:        "bool",
 		},
@@ -804,53 +878,51 @@ func TestTranslateTypeWith(t *testing.T) {
 				},
 			},
 			attributeType: "UNKNOWN",
+			elementType:   "UNKNOWN",
 			valueType:     "UNKNOWN",
 			goType:        "UNKNOWN",
 		},
 		"OpenAPIv3/unknown-fields": {
 			translator: &openapiv3TypeTranslator{
 				property: &openapi3.Schema{
-					ExtensionProps: openapi3.ExtensionProps{
-						Extensions: map[string]interface{}{
-							"x-kubernetes-preserve-unknown-fields": "true",
-						},
+					Extensions: map[string]interface{}{
+						"x-kubernetes-preserve-unknown-fields": "true",
 					},
 				},
 			},
-			attributeType: "utilities.DynamicType{}",
-			valueType:     "utilities.Dynamic",
-			goType:        "utilities.Dynamic",
+			attributeType: "schema.MapAttribute",
+			elementType:   "types.StringType",
+			valueType:     "types.Map",
+			goType:        "map[string]string",
 		},
 		"OpenAPIv3/unknown-fields-with-properties": {
 			translator: &openapiv3TypeTranslator{
 				property: &openapi3.Schema{
-					ExtensionProps: openapi3.ExtensionProps{
-						Extensions: map[string]interface{}{
-							"x-kubernetes-preserve-unknown-fields": "true",
-						},
+					Extensions: map[string]interface{}{
+						"x-kubernetes-preserve-unknown-fields": "true",
 					},
 					Properties: openapi3.Schemas{
 						"firs": {},
 					},
 				},
 			},
-			attributeType: "types.ObjectType",
+			attributeType: "schema.SingleNestedAttribute",
+			elementType:   "",
 			valueType:     "types.Object",
 			goType:        "struct",
 		},
 		"OpenAPIv3/int-or-string": {
 			translator: &openapiv3TypeTranslator{
 				property: &openapi3.Schema{
-					ExtensionProps: openapi3.ExtensionProps{
-						Extensions: map[string]interface{}{
-							"x-kubernetes-int-or-string": "true",
-						},
+					Extensions: map[string]interface{}{
+						"x-kubernetes-int-or-string": "true",
 					},
 				},
 			},
-			attributeType: "utilities.IntOrStringType{}",
-			valueType:     "utilities.IntOrString",
-			goType:        "utilities.IntOrString",
+			attributeType: "schema.StringAttribute",
+			elementType:   "",
+			valueType:     "types.String",
+			goType:        "string",
 		},
 		"OpenAPIv3/string-or-int": {
 			translator: &openapiv3TypeTranslator{
@@ -859,18 +931,21 @@ func TestTranslateTypeWith(t *testing.T) {
 					Format: "int-or-string",
 				},
 			},
-			attributeType: "utilities.IntOrStringType{}",
-			valueType:     "utilities.IntOrString",
-			goType:        "utilities.IntOrString",
+			attributeType: "schema.StringAttribute",
+			elementType:   "",
+			valueType:     "types.String",
+			goType:        "string",
 		},
 	}
 
 	for name, test := range testCases {
+		test := test
 		t.Run(name, func(t *testing.T) {
-			attributeType, valueType, goType := translateTypeWith(test.translator)
+			attributeType, valueType, elementType, goType := translateTypeWith(test.translator)
 
 			assert.Equal(t, test.attributeType, attributeType, "attributeType")
 			assert.Equal(t, test.valueType, valueType, "valueType")
+			assert.Equal(t, test.elementType, elementType, "elementType")
 			assert.Equal(t, test.goType, goType, "goType")
 		})
 	}

@@ -8,17 +8,16 @@ package validators
 import (
 	"context"
 	"github.com/hashicorp/terraform-plugin-framework-validators/helpers/validatordiag"
-	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
-	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"time"
 )
 
 type dateTimeValidator struct{}
 
-var _ tfsdk.AttributeValidator = (*dateTimeValidator)(nil)
+var _ validator.String = dateTimeValidator{}
 
-func DateTime64Validator() tfsdk.AttributeValidator {
-	return &dateTimeValidator{}
+func DateTime64Validator() validator.String {
+	return dateTimeValidator{}
 }
 
 func (validator dateTimeValidator) Description(_ context.Context) string {
@@ -29,16 +28,14 @@ func (validator dateTimeValidator) MarkdownDescription(ctx context.Context) stri
 	return validator.Description(ctx)
 }
 
-func (validator dateTimeValidator) Validate(ctx context.Context, req tfsdk.ValidateAttributeRequest, resp *tfsdk.ValidateAttributeResponse) {
-	var value types.String
-
-	diags := tfsdk.ValueAs(ctx, req.AttributeConfig, &value)
-	if diags.HasError() {
-		resp.Diagnostics.Append(diags...)
+func (validator dateTimeValidator) ValidateString(ctx context.Context, request validator.StringRequest, response *validator.StringResponse) {
+	if request.ConfigValue.IsNull() || request.ConfigValue.IsUnknown() {
 		return
 	}
 
-	if value.ValueString() == "" {
+	value := request.ConfigValue.ValueString()
+
+	if value == "" {
 		return
 	}
 
@@ -52,16 +49,16 @@ func (validator dateTimeValidator) Validate(ctx context.Context, req tfsdk.Valid
 
 	matched := false
 	for _, format := range formats {
-		if _, err := time.Parse(format, value.ValueString()); err == nil {
+		if _, err := time.Parse(format, value); err == nil {
 			matched = true
 			break
 		}
 	}
 	if !matched {
-		resp.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
-			req.AttributePath,
+		response.Diagnostics.Append(validatordiag.InvalidAttributeValueDiagnostic(
+			request.Path,
 			validator.Description(ctx),
-			value.ValueString(),
+			value,
 		))
 	}
 }

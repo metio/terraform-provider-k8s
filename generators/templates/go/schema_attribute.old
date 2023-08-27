@@ -1,0 +1,29 @@
+"{{ .TerraformAttributeName }}": {
+    Description:         "{{ .Description }}",
+    MarkdownDescription: "{{ .Description }}",
+    {{ if eq .TerraformAttributeType "types.ObjectType" }}
+    Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
+    {{ range $index, $property := .Properties }}
+        {{ template "schema_attribute.go.tmpl" $property }}
+    {{ end }}
+    }),
+    {{ else if eq .TerraformAttributeType "types.ListType{ElemType: types.ObjectType}" }}
+    Attributes: tfsdk.ListNestedAttributes(map[string]tfsdk.Attribute{
+        {{ range $index, $property := .Properties }}
+            {{ template "schema_attribute.go.tmpl" $property }}
+        {{ end }}
+    }),
+    {{ else }}
+    Type:                {{ .TerraformAttributeType }},
+    {{ end }}
+    Required:            {{ .Required }},
+    Optional:            {{ .Optional }},
+    Computed:            {{ .Computed }},
+    {{ if gt (len .Validators) 0 }}
+    Validators: []tfsdk.AttributeValidator{
+        {{ range $index, $validator := .Validators }}
+            {{  $validator }},
+        {{ end }}
+    },
+    {{ end }}
+},
