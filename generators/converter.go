@@ -281,7 +281,7 @@ func goPackageName(group string, version string) string {
 	if len(group) > 0 {
 		return toSnakeCase(fmt.Sprintf("%s_%s", goName(group), version))
 	}
-	return toSnakeCase(fmt.Sprintf("%s_%s", "apps", version))
+	return toSnakeCase(fmt.Sprintf("%s_%s", "core", version))
 }
 
 func terraformAttributeName(str string, rootPath bool) string {
