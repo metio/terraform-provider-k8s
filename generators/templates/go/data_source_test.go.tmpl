@@ -9,6 +9,7 @@ import (
 	"context"
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/{{ .Package }}"
+	"github.com/metio/terraform-provider-k8s/internal/testutilities"
 	"testing"
 )
 
@@ -28,4 +29,60 @@ func {{ .DataSourceTypeTest }}_ValidateSchema(t *testing.T) {
 	if diagnostics.HasError() {
 		t.Fatalf("Schema validation diagnostics: %+v", diagnostics)
 	}
+}
+
+func {{ .DataSourceTypeTest }}_ConfigurationErrors(t *testing.T) {
+	testCases := map[string]testutilities.ConfigurationErrorTestCase{
+		"empty-name": {
+			Configuration: `
+				metadata = {
+					name      = ""
+					{{ if .Namespaced }}namespace = "somewhere"{{ end }}
+				}
+			`,
+			ErrorRegex: "Attribute metadata.name string length must be at least 1, got: 0",
+		},
+		"missing-name": {
+			Configuration: `
+				metadata = {
+					{{ if .Namespaced }}namespace = "somewhere"{{ end }}
+				}
+			`,
+			ErrorRegex: `Inappropriate value for attribute "metadata": attribute "name" is required`,
+		},
+		{{ if .Namespaced -}}
+		"empty-namespace": {
+			Configuration: `
+				metadata = {
+					name      = "some"
+					namespace = ""
+				}
+			`,
+			ErrorRegex: "Attribute metadata.namespace string length must be at least 1, got: 0",
+		},
+		"missing-namespace": {
+			Configuration: `
+				metadata = {
+					name = "some"
+				}
+			`,
+			ErrorRegex: `Inappropriate value for attribute "metadata": attribute "namespace" is\nrequired`,
+		},
+		{{ end -}}
+	}
+	for name, testCase := range testCases {
+		t.Run(name, func(t *testing.T) {
+			testutilities.VerifyConfigurationErrors(t, "data", "{{ .FullDataSourceTypeName }}", testCase)
+		})
+	}
+}
+
+func {{ .DataSourceTypeTest }}_OfflineUsage(t *testing.T) {
+	configuration := `
+		metadata = {
+			name = "some"
+			{{ if .Namespaced }}namespace = "somewhere"{{ end }}
+		}
+	`
+	testutilities.VerifyCannotBeUsedOffline(t, "data", "{{ .FullDataSourceTypeName }}", configuration)
 }
