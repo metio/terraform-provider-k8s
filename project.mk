@@ -24,7 +24,7 @@ out/generate-sentinel: $(shell find ./generators -type f -name '*.go') $(shell f
 
 out/docs-sentinel: out/generate-sentinel out/tf-format-sentinel $(shell find ./internal -type f -name '*.go') $(shell find ./examples -type f -name '*.tf' -or -name '*.sh') $(shell find ./templates -type f -name '*.tmpl')
 	mkdir --parents $(@D)
-	go generate
+	go generate ./tools/tools.go
 	touch $@
 
 # see https://www.terraform.io/cli/config/config-file#implied-local-mirror-directories
