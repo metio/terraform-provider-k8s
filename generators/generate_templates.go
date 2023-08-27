@@ -42,11 +42,11 @@ func generateTemplates(basePath string, data []*TemplateData) {
 	dataSourceTemplates := fmt.Sprintf("%s/data-sources", basePath)
 
 	for _, resource := range data {
-		resourceTemplateFile := fmt.Sprintf("%s/%s.md.tmpl", resourceTemplates, resource.FullResourceTypeName)
+		resourceTemplateFile := fmt.Sprintf("%s/%s.md.tmpl", resourceTemplates, resource.ResourceTypeName)
 		generateCode(resourceTemplateFile, resourceDocsTemplate, resource)
-		dataSourceTemplateFile := fmt.Sprintf("%s/%s.md.tmpl", dataSourceTemplates, resource.FullDataSourceTypeName)
+		dataSourceTemplateFile := fmt.Sprintf("%s/%s.md.tmpl", dataSourceTemplates, resource.DataSourceTypeName)
 		generateCode(dataSourceTemplateFile, dataSourceDocsTemplate, resource)
-		manifestTemplateFile := fmt.Sprintf("%s/%s.md.tmpl", dataSourceTemplates, resource.FullManifestTypeName)
+		manifestTemplateFile := fmt.Sprintf("%s/%s.md.tmpl", dataSourceTemplates, resource.ManifestTypeName)
 		generateCode(manifestTemplateFile, manifestDocsTemplate, resource)
 	}
 }

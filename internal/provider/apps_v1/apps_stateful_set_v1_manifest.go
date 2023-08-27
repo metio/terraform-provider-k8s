@@ -1332,6 +1332,40 @@ type AppsStatefulSetV1ManifestData struct {
 			Type *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"update_strategy" json:"updateStrategy,omitempty"`
 		VolumeClaimTemplates *[]struct {
+			ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+			Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
+			Metadata   *struct {
+				Annotations                *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				CreationTimestamp          *string            `tfsdk:"creation_timestamp" json:"creationTimestamp,omitempty"`
+				DeletionGracePeriodSeconds *int64             `tfsdk:"deletion_grace_period_seconds" json:"deletionGracePeriodSeconds,omitempty"`
+				DeletionTimestamp          *string            `tfsdk:"deletion_timestamp" json:"deletionTimestamp,omitempty"`
+				Finalizers                 *[]string          `tfsdk:"finalizers" json:"finalizers,omitempty"`
+				GenerateName               *string            `tfsdk:"generate_name" json:"generateName,omitempty"`
+				Generation                 *int64             `tfsdk:"generation" json:"generation,omitempty"`
+				Labels                     *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				ManagedFields              *[]struct {
+					ApiVersion  *string            `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					FieldsType  *string            `tfsdk:"fields_type" json:"fieldsType,omitempty"`
+					FieldsV1    *map[string]string `tfsdk:"fields_v1" json:"fieldsV1,omitempty"`
+					Manager     *string            `tfsdk:"manager" json:"manager,omitempty"`
+					Operation   *string            `tfsdk:"operation" json:"operation,omitempty"`
+					Subresource *string            `tfsdk:"subresource" json:"subresource,omitempty"`
+					Time        *string            `tfsdk:"time" json:"time,omitempty"`
+				} `tfsdk:"managed_fields" json:"managedFields,omitempty"`
+				Name            *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace       *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				OwnerReferences *[]struct {
+					ApiVersion         *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					BlockOwnerDeletion *bool   `tfsdk:"block_owner_deletion" json:"blockOwnerDeletion,omitempty"`
+					Controller         *bool   `tfsdk:"controller" json:"controller,omitempty"`
+					Kind               *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name               *string `tfsdk:"name" json:"name,omitempty"`
+					Uid                *string `tfsdk:"uid" json:"uid,omitempty"`
+				} `tfsdk:"owner_references" json:"ownerReferences,omitempty"`
+				ResourceVersion *string `tfsdk:"resource_version" json:"resourceVersion,omitempty"`
+				SelfLink        *string `tfsdk:"self_link" json:"selfLink,omitempty"`
+				Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
+			} `tfsdk:"metadata" json:"metadata,omitempty"`
 			Spec *struct {
 				AccessModes *[]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
 				DataSource  *struct {
@@ -1360,6 +1394,21 @@ type AppsStatefulSetV1ManifestData struct {
 				VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
 				VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 			} `tfsdk:"spec" json:"spec,omitempty"`
+			Status *struct {
+				AccessModes        *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
+				AllocatedResources *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
+				Capacity           *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
+				Conditions         *[]struct {
+					LastProbeTime      *string `tfsdk:"last_probe_time" json:"lastProbeTime,omitempty"`
+					LastTransitionTime *string `tfsdk:"last_transition_time" json:"lastTransitionTime,omitempty"`
+					Message            *string `tfsdk:"message" json:"message,omitempty"`
+					Reason             *string `tfsdk:"reason" json:"reason,omitempty"`
+					Status             *string `tfsdk:"status" json:"status,omitempty"`
+					Type               *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"conditions" json:"conditions,omitempty"`
+				Phase        *string `tfsdk:"phase" json:"phase,omitempty"`
+				ResizeStatus *string `tfsdk:"resize_status" json:"resizeStatus,omitempty"`
+			} `tfsdk:"status" json:"status,omitempty"`
 		} `tfsdk:"volume_claim_templates" json:"volumeClaimTemplates,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -10199,6 +10248,274 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 						MarkdownDescription: "volumeClaimTemplates is a list of claims that pods are allowed to reference. The StatefulSet controller is responsible for mapping network identities to claims in a way that maintains the identity of a pod. Every claim in this list must have at least one matching (by name) volumeMount in one container in the template. A claim in this list takes precedence over any volumes in the template, with the same name.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"api_version": schema.StringAttribute{
+									Description:         "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+									MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"kind": schema.StringAttribute{
+									Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+									MarkdownDescription: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"metadata": schema.SingleNestedAttribute{
+									Description:         "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
+									MarkdownDescription: "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
+									Attributes: map[string]schema.Attribute{
+										"annotations": schema.MapAttribute{
+											Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+											MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"creation_timestamp": schema.StringAttribute{
+											Description:         "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+											MarkdownDescription: "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												validators.DateTime64Validator(),
+											},
+										},
+
+										"deletion_grace_period_seconds": schema.Int64Attribute{
+											Description:         "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+											MarkdownDescription: "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"deletion_timestamp": schema.StringAttribute{
+											Description:         "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+											MarkdownDescription: "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												validators.DateTime64Validator(),
+											},
+										},
+
+										"finalizers": schema.ListAttribute{
+											Description:         "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
+											MarkdownDescription: "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"generate_name": schema.StringAttribute{
+											Description:         "GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.If this field is specified and the generated name exists, the server will return a 409.Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency",
+											MarkdownDescription: "GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.If this field is specified and the generated name exists, the server will return a 409.Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"generation": schema.Int64Attribute{
+											Description:         "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+											MarkdownDescription: "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"labels": schema.MapAttribute{
+											Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+											MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"managed_fields": schema.ListNestedAttribute{
+											Description:         "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like 'ci-cd'. The set of fields is always in the version that the workflow used when modifying the object.",
+											MarkdownDescription: "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like 'ci-cd'. The set of fields is always in the version that the workflow used when modifying the object.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"api_version": schema.StringAttribute{
+														Description:         "APIVersion defines the version of this resource that this field set applies to. The format is 'group/version' just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
+														MarkdownDescription: "APIVersion defines the version of this resource that this field set applies to. The format is 'group/version' just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"fields_type": schema.StringAttribute{
+														Description:         "FieldsType is the discriminator for the different fields format and version. There is currently only one possible value: 'FieldsV1'",
+														MarkdownDescription: "FieldsType is the discriminator for the different fields format and version. There is currently only one possible value: 'FieldsV1'",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"fields_v1": schema.MapAttribute{
+														Description:         "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.Each key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.The exact format is defined in sigs.k8s.io/structured-merge-diff",
+														MarkdownDescription: "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.Each key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.The exact format is defined in sigs.k8s.io/structured-merge-diff",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"manager": schema.StringAttribute{
+														Description:         "Manager is an identifier of the workflow managing these fields.",
+														MarkdownDescription: "Manager is an identifier of the workflow managing these fields.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"operation": schema.StringAttribute{
+														Description:         "Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.",
+														MarkdownDescription: "Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"subresource": schema.StringAttribute{
+														Description:         "Subresource is the name of the subresource used to update that object, or empty string if the object was updated through the main resource. The value of this field is used to distinguish between managers, even if they share the same name. For example, a status update will be distinct from a regular update using the same manager name. Note that the APIVersion field is not related to the Subresource field and it always corresponds to the version of the main resource.",
+														MarkdownDescription: "Subresource is the name of the subresource used to update that object, or empty string if the object was updated through the main resource. The value of this field is used to distinguish between managers, even if they share the same name. For example, a status update will be distinct from a regular update using the same manager name. Note that the APIVersion field is not related to the Subresource field and it always corresponds to the version of the main resource.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"time": schema.StringAttribute{
+														Description:         "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+														MarkdownDescription: "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															validators.DateTime64Validator(),
+														},
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+											MarkdownDescription: "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace": schema.StringAttribute{
+											Description:         "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the 'default' namespace, but 'default' is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+											MarkdownDescription: "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the 'default' namespace, but 'default' is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"owner_references": schema.ListNestedAttribute{
+											Description:         "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
+											MarkdownDescription: "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"api_version": schema.StringAttribute{
+														Description:         "API version of the referent.",
+														MarkdownDescription: "API version of the referent.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"block_owner_deletion": schema.BoolAttribute{
+														Description:         "If true, AND if the owner has the 'foregroundDeletion' finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs 'delete' permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.",
+														MarkdownDescription: "If true, AND if the owner has the 'foregroundDeletion' finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs 'delete' permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"controller": schema.BoolAttribute{
+														Description:         "If true, this reference points to the managing controller.",
+														MarkdownDescription: "If true, this reference points to the managing controller.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"kind": schema.StringAttribute{
+														Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+														MarkdownDescription: "Name of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"uid": schema.StringAttribute{
+														Description:         "UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
+														MarkdownDescription: "UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"resource_version": schema.StringAttribute{
+											Description:         "An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources.Populated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+											MarkdownDescription: "An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources.Populated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"self_link": schema.StringAttribute{
+											Description:         "Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.",
+											MarkdownDescription: "Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"uid": schema.StringAttribute{
+											Description:         "UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.Populated by the system. Read-only. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
+											MarkdownDescription: "UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.Populated by the system. Read-only. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"spec": schema.SingleNestedAttribute{
 									Description:         "PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes",
 									MarkdownDescription: "PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes",
@@ -10378,6 +10695,123 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 										"volume_name": schema.StringAttribute{
 											Description:         "volumeName is the binding reference to the PersistentVolume backing this claim.",
 											MarkdownDescription: "volumeName is the binding reference to the PersistentVolume backing this claim.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"status": schema.SingleNestedAttribute{
+									Description:         "PersistentVolumeClaimStatus is the current status of a persistent volume claim.",
+									MarkdownDescription: "PersistentVolumeClaimStatus is the current status of a persistent volume claim.",
+									Attributes: map[string]schema.Attribute{
+										"access_modes": schema.ListAttribute{
+											Description:         "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+											MarkdownDescription: "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"allocated_resources": schema.MapAttribute{
+											Description:         "allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+											MarkdownDescription: "allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"capacity": schema.MapAttribute{
+											Description:         "capacity represents the actual resources of the underlying volume.",
+											MarkdownDescription: "capacity represents the actual resources of the underlying volume.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"conditions": schema.ListNestedAttribute{
+											Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
+											MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"last_probe_time": schema.StringAttribute{
+														Description:         "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+														MarkdownDescription: "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															validators.DateTime64Validator(),
+														},
+													},
+
+													"last_transition_time": schema.StringAttribute{
+														Description:         "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+														MarkdownDescription: "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															validators.DateTime64Validator(),
+														},
+													},
+
+													"message": schema.StringAttribute{
+														Description:         "message is the human-readable message indicating details about last transition.",
+														MarkdownDescription: "message is the human-readable message indicating details about last transition.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"reason": schema.StringAttribute{
+														Description:         "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
+														MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"status": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"phase": schema.StringAttribute{
+											Description:         "phase represents the current phase of PersistentVolumeClaim.",
+											MarkdownDescription: "phase represents the current phase of PersistentVolumeClaim.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"resize_status": schema.StringAttribute{
+											Description:         "resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+											MarkdownDescription: "resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
