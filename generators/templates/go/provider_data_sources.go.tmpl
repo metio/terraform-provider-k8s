@@ -1,0 +1,22 @@
+/*
+* SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+* SPDX-License-Identifier: 0BSD
+*/
+
+package provider
+
+import (
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	{{ range $index, $package := .Packages -}}
+	"github.com/metio/terraform-provider-k8s/internal/provider/{{ $package }}"
+	{{ end }}
+)
+
+func allDataSources() []func() datasource.DataSource {
+	return []func() datasource.DataSource{
+		{{ range $index, $resource := .Resources -}}
+		{{ $resource.Package }}.New{{ $resource.DataSourceTypeStruct }},
+		{{ $resource.Package }}.New{{ $resource.ManifestTypeStruct }},
+		{{ end }}
+	}
+}

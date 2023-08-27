@@ -2,3 +2,7 @@
 # SPDX-License-Identifier: 0BSD
 
 blank_issues_enabled: true
+contact_links:
+  - name: Chat Room
+    url: https://matrix.to/#/#talk.metio:matrix.org
+    about: Chat with the developers

@@ -1,0 +1,226 @@
+/*
+* SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+* SPDX-License-Identifier: 0BSD
+*/
+
+package {{ .Package }}
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-log/tflog"
+	"github.com/metio/terraform-provider-k8s/internal/utilities"
+	"github.com/metio/terraform-provider-k8s/internal/validators"
+	meta "k8s.io/apimachinery/pkg/apis/meta/v1"
+	k8sSchema "k8s.io/apimachinery/pkg/runtime/schema"
+	"k8s.io/client-go/dynamic"
+	"k8s.io/utils/pointer"
+)
+
+var (
+	_ datasource.DataSource              = &{{ .DataSourceTypeStruct }}{}
+	_ datasource.DataSourceWithConfigure = &{{ .DataSourceTypeStruct }}{}
+)
+
+func New{{ .DataSourceTypeStruct }}() datasource.DataSource {
+	return &{{ .DataSourceTypeStruct }}{}
+}
+
+type {{ .DataSourceTypeStruct }} struct{
+	kubernetesClient dynamic.Interface
+}
+
+type {{ .DataSourceDataStruct }} struct {
+	ID types.String {{ .BT }}tfsdk:"id" json:"-"{{ .BT }}
+
+	ApiVersion *string {{ .BT }}tfsdk:"api_version" json:"apiVersion"{{ .BT }}
+	Kind *string {{ .BT }}tfsdk:"kind" json:"kind"{{ .BT }}
+
+	Metadata struct {
+		Name string {{ .BT }}tfsdk:"name" json:"name"{{ .BT }}
+		{{ if .Namespaced -}}
+		Namespace string {{ .BT }}tfsdk:"namespace" json:"namespace"{{ .BT }}
+		{{ end -}}
+		Labels map[string]string {{ .BT }}tfsdk:"labels" json:"labels,omitempty"{{ .BT }}
+		Annotations map[string]string {{ .BT }}tfsdk:"annotations" json:"annotations,omitempty"{{ .BT }}
+	} {{ .BT }}tfsdk:"metadata" json:"metadata"{{ .BT }}
+
+	{{ range $index, $property := .Properties -}}
+	{{ template "json_attribute.go.tmpl" $property }}
+	{{ end -}}
+}
+
+func (r *{{ .DataSourceTypeStruct }}) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+	response.TypeName = request.ProviderTypeName + "_{{ .DataSourceTypeName }}"
+}
+
+func (r *{{ .DataSourceTypeStruct }}) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+	response.Schema = schema.Schema{
+		Description:         "{{ .Description }}",
+		MarkdownDescription: "{{ .Description }}",
+		Attributes: map[string]schema.Attribute{
+			"id": schema.StringAttribute{
+				{{ if .Namespaced -}}
+				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
+				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
+				{{ else -}}
+				Description:         "Contains the value 'metadata.name'.",
+				MarkdownDescription: "Contains the value `metadata.name`.",
+				{{ end -}}
+				Required:            false,
+				Optional:            false,
+				Computed:            true,
+			},
+
+			"metadata": schema.SingleNestedAttribute{
+				Description:         "Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details.",
+				MarkdownDescription: "Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details.",
+				Required:            true,
+				Optional:            false,
+				Computed:            false,
+				Attributes: map[string]schema.Attribute{
+					"name": schema.StringAttribute{
+						Description:         "Unique identifier for this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names for more details.",
+						MarkdownDescription: "Unique identifier for this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names for more details.",
+						Required:            true,
+						Optional:            false,
+						Computed:            false,
+						Validators: []validator.String{
+							validators.NameValidator(),
+							stringvalidator.LengthAtLeast(1),
+						},
+					},
+
+					{{ if .Namespaced }}
+					"namespace": schema.StringAttribute{
+						Description:         "Namespaces provides a mechanism for isolating groups of resources within a single cluster. See https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ for more details.",
+						MarkdownDescription: "Namespaces provides a mechanism for isolating groups of resources within a single cluster. See https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ for more details.",
+						Required:            true,
+						Optional:            false,
+						Computed:            false,
+						Validators: []validator.String{
+							validators.NameValidator(),
+							stringvalidator.LengthAtLeast(1),
+						},
+					},
+					{{ end }}
+
+					"labels": schema.MapAttribute{
+						Description:         "Keys and values that can be used to organize and categorize objects. See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more details.",
+						MarkdownDescription: "Keys and values that can be used to organize and categorize objects. See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more details.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            false,
+						Computed:            true,
+					},
+					"annotations": schema.MapAttribute{
+						Description:         "Keys and values that can be used by external tooling to store and retrieve arbitrary metadata about this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ for more details.",
+						MarkdownDescription: "Keys and values that can be used by external tooling to store and retrieve arbitrary metadata about this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ for more details.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            false,
+						Computed:            true,
+					},
+				},
+			},
+
+			{{ range $index, $property := .Properties }}
+			{{ template "read_only_schema_attribute.go.tmpl" $property }}
+			{{ end }}
+		},
+	}
+}
+
+func (r *{{ .DataSourceTypeStruct }}) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+	if request.ProviderData == nil {
+		return
+	}
+
+	if dataSourceData, ok := request.ProviderData.(*utilities.DataSourceData); ok {
+		if dataSourceData.Offline {
+			response.Diagnostics.AddError(
+				"Provider in Offline Mode",
+				"This provider has offline mode enabled and thus cannot connect to a Kubernetes cluster to create resources or read any data. "+
+					"Disable offline mode to allow resource creation or remove the resource declaration from your configuration to get rid of this error.",
+			)
+		} else {
+			r.kubernetesClient = dataSourceData.Client
+		}
+	} else {
+		response.Diagnostics.AddError(
+			"Unexpected Data Source Configure Type",
+			fmt.Sprintf("Expected *provider.DataSourceData, got: %T. Please report this issue to the provider developers.", request.ProviderData),
+		)
+	}
+}
+
+func (r *{{ .DataSourceTypeStruct }}) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+	tflog.Debug(ctx, "Read data source {{ .FullDataSourceTypeName }}")
+
+	var data {{ .DataSourceDataStruct }}
+	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
+	if response.Diagnostics.HasError() {
+		return
+	}
+
+	getResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "{{ .Group }}", Version: "{{ .Version }}", Resource: "{{ .Kind }}"}).
+		{{ if .Namespaced -}}
+		Namespace(data.Metadata.Namespace).
+		{{ end -}}
+		Get(ctx, data.Metadata.Name, meta.GetOptions{})
+	if err != nil {
+		response.Diagnostics.AddError(
+			"Unable to GET resource",
+			"An unexpected error occurred while reading the resource. "+
+				"Please report this issue to the provider developers.\n\n"+
+				"GET Error: "+err.Error(),
+		)
+		return
+	}
+	getBytes, err := getResponse.MarshalJSON()
+	if err != nil {
+		response.Diagnostics.AddError(
+			"Unable to marshal GET response",
+			"Please report this issue to the provider developers.\n\n"+
+				"Marshal Error: "+err.Error(),
+		)
+		return
+	}
+
+	var readResponse {{ .DataSourceDataStruct }}
+	err = json.Unmarshal(getBytes, &readResponse)
+	if err != nil {
+		response.Diagnostics.AddError(
+			"Unable to unmarshal resource",
+			"An unexpected error occurred while parsing the resource read response. "+
+				"Please report this issue to the provider developers.\n\n"+
+				"JSON Error: "+err.Error(),
+		)
+		return
+	}
+
+	{{ if .Namespaced -}}
+	data.ID = types.StringValue(fmt.Sprintf("%s/%s", data.Metadata.Name, data.Metadata.Namespace))
+	{{ else -}}
+	data.ID = types.StringValue(data.Metadata.Name)
+	{{ end -}}
+	{{ if .Group -}}
+	data.ApiVersion = pointer.String("{{ .Group }}/{{ .Version }}")
+	{{ else -}}
+	data.ApiVersion = pointer.String("{{ .Version }}")
+	{{ end -}}
+	data.Kind = pointer.String("{{ .Kind }}")
+	data.Metadata = readResponse.Metadata
+	{{ range $index, $property := .Properties -}}
+	data.{{ $property.GoName }} = readResponse.{{ $property.GoName }}
+	{{ end }}
+
+	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
+}

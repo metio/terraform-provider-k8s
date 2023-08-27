@@ -13,9 +13,6 @@ import (
 	"log"
 )
 
-// Run the documentation generation tool
-//go:generate go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs generate --provider-name=terraform-provider-k8s
-
 func main() {
 	var debug bool
 	flag.BoolVar(&debug, "debug", false, "set to true to run the provider with support for debuggers like delve")
