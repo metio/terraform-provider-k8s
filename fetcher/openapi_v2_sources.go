@@ -7,6 +7,12 @@
 
 package main
 
-var openAPIv2Sources = map[string]string{
-	"io.kubernetes": "https://github.com/kubernetes/kubernetes/blob/master/api/openapi-spec/swagger.json",
+var openAPIv2Sources = []UpstreamSource{
+	{
+		ProjectName: "kubernetes/kubernetes",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes/kubernetes/blob/master/api/openapi-spec/swagger.json",
+		},
+	},
 }
