@@ -13,10 +13,23 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 )
 
-func downloadFile(filepath string, url string) error {
-	out, err := os.Create(filepath)
+type UpstreamSource struct {
+	ProjectName string
+	License     string
+	URLs        []string
+}
+
+func downloadFile(path string, url string) error {
+	dir := filepath.Dir(path)
+	err := os.MkdirAll(dir, os.ModePerm)
+	if err != nil {
+		log.Printf("error creating %s", dir)
+		log.Fatal(err)
+	}
+	out, err := os.Create(path)
 	if err != nil {
 		return err
 	}
