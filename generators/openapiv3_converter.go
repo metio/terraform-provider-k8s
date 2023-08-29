@@ -12,6 +12,7 @@ import (
 	"github.com/getkin/kin-openapi/openapi3"
 	"k8s.io/utils/strings/slices"
 	"sort"
+	"strings"
 )
 
 func convertOpenAPIv3(schemas []map[string]*openapi3.SchemaRef) []*TemplateData {
