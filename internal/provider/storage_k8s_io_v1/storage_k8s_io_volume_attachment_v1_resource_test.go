@@ -37,6 +37,7 @@ func TestStorageK8SIoVolumeAttachmentV1Resource_ConfigurationErrors(t *testing.T
 			Configuration: `
 				metadata = {
 					name      = ""
+					
 				}
 			`,
 			ErrorRegex: "Attribute metadata.name string length must be at least 1, got: 0",

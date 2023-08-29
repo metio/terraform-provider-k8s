@@ -125,16 +125,16 @@ func (r *StorageK8SIoStorageClassV1Manifest) Schema(_ context.Context, _ datasou
 			},
 
 			"allow_volume_expansion": schema.BoolAttribute{
-				Description:         "AllowVolumeExpansion shows whether the storage class allow volume expand",
-				MarkdownDescription: "AllowVolumeExpansion shows whether the storage class allow volume expand",
+				Description:         "allowVolumeExpansion shows whether the storage class allow volume expand.",
+				MarkdownDescription: "allowVolumeExpansion shows whether the storage class allow volume expand.",
 				Required:            false,
 				Optional:            true,
 				Computed:            false,
 			},
 
 			"allowed_topologies": schema.ListNestedAttribute{
-				Description:         "Restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.",
-				MarkdownDescription: "Restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.",
+				Description:         "allowedTopologies restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.",
+				MarkdownDescription: "allowedTopologies restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.",
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"match_label_expressions": schema.ListNestedAttribute{
@@ -172,8 +172,8 @@ func (r *StorageK8SIoStorageClassV1Manifest) Schema(_ context.Context, _ datasou
 			},
 
 			"mount_options": schema.ListAttribute{
-				Description:         "Dynamically provisioned PersistentVolumes of this storage class are created with these mountOptions, e.g. ['ro', 'soft']. Not validated - mount of the PVs will simply fail if one is invalid.",
-				MarkdownDescription: "Dynamically provisioned PersistentVolumes of this storage class are created with these mountOptions, e.g. ['ro', 'soft']. Not validated - mount of the PVs will simply fail if one is invalid.",
+				Description:         "mountOptions controls the mountOptions for dynamically provisioned PersistentVolumes of this storage class. e.g. ['ro', 'soft']. Not validated - mount of the PVs will simply fail if one is invalid.",
+				MarkdownDescription: "mountOptions controls the mountOptions for dynamically provisioned PersistentVolumes of this storage class. e.g. ['ro', 'soft']. Not validated - mount of the PVs will simply fail if one is invalid.",
 				ElementType:         types.StringType,
 				Required:            false,
 				Optional:            true,
@@ -181,8 +181,8 @@ func (r *StorageK8SIoStorageClassV1Manifest) Schema(_ context.Context, _ datasou
 			},
 
 			"parameters": schema.MapAttribute{
-				Description:         "Parameters holds the parameters for the provisioner that should create volumes of this storage class.",
-				MarkdownDescription: "Parameters holds the parameters for the provisioner that should create volumes of this storage class.",
+				Description:         "parameters holds the parameters for the provisioner that should create volumes of this storage class.",
+				MarkdownDescription: "parameters holds the parameters for the provisioner that should create volumes of this storage class.",
 				ElementType:         types.StringType,
 				Required:            false,
 				Optional:            true,
@@ -190,24 +190,24 @@ func (r *StorageK8SIoStorageClassV1Manifest) Schema(_ context.Context, _ datasou
 			},
 
 			"k8s_provisioner": schema.StringAttribute{
-				Description:         "Provisioner indicates the type of the provisioner.",
-				MarkdownDescription: "Provisioner indicates the type of the provisioner.",
+				Description:         "provisioner indicates the type of the provisioner.",
+				MarkdownDescription: "provisioner indicates the type of the provisioner.",
 				Required:            true,
 				Optional:            false,
 				Computed:            false,
 			},
 
 			"reclaim_policy": schema.StringAttribute{
-				Description:         "Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy. Defaults to Delete.",
-				MarkdownDescription: "Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy. Defaults to Delete.",
+				Description:         "reclaimPolicy controls the reclaimPolicy for dynamically provisioned PersistentVolumes of this storage class. Defaults to Delete.",
+				MarkdownDescription: "reclaimPolicy controls the reclaimPolicy for dynamically provisioned PersistentVolumes of this storage class. Defaults to Delete.",
 				Required:            false,
 				Optional:            true,
 				Computed:            false,
 			},
 
 			"volume_binding_mode": schema.StringAttribute{
-				Description:         "VolumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.",
-				MarkdownDescription: "VolumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.",
+				Description:         "volumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.",
+				MarkdownDescription: "volumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.",
 				Required:            false,
 				Optional:            true,
 				Computed:            false,

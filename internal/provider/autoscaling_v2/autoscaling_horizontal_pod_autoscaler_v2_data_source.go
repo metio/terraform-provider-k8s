@@ -249,24 +249,24 @@ func (r *AutoscalingHorizontalPodAutoscalerV2DataSource) Schema(_ context.Contex
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"period_seconds": schema.Int64Attribute{
-													Description:         "PeriodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
-													MarkdownDescription: "PeriodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+													Description:         "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+													MarkdownDescription: "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
 													Required:            false,
 													Optional:            false,
 													Computed:            true,
 												},
 
 												"type": schema.StringAttribute{
-													Description:         "Type is used to specify the scaling policy.",
-													MarkdownDescription: "Type is used to specify the scaling policy.",
+													Description:         "type is used to specify the scaling policy.",
+													MarkdownDescription: "type is used to specify the scaling policy.",
 													Required:            false,
 													Optional:            false,
 													Computed:            true,
 												},
 
 												"value": schema.Int64Attribute{
-													Description:         "Value contains the amount of change which is permitted by the policy. It must be greater than zero",
-													MarkdownDescription: "Value contains the amount of change which is permitted by the policy. It must be greater than zero",
+													Description:         "value contains the amount of change which is permitted by the policy. It must be greater than zero",
+													MarkdownDescription: "value contains the amount of change which is permitted by the policy. It must be greater than zero",
 													Required:            false,
 													Optional:            false,
 													Computed:            true,
@@ -287,8 +287,8 @@ func (r *AutoscalingHorizontalPodAutoscalerV2DataSource) Schema(_ context.Contex
 									},
 
 									"stabilization_window_seconds": schema.Int64Attribute{
-										Description:         "StabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
-										MarkdownDescription: "StabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
+										Description:         "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
+										MarkdownDescription: "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
 										Required:            false,
 										Optional:            false,
 										Computed:            true,
@@ -309,24 +309,24 @@ func (r *AutoscalingHorizontalPodAutoscalerV2DataSource) Schema(_ context.Contex
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"period_seconds": schema.Int64Attribute{
-													Description:         "PeriodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
-													MarkdownDescription: "PeriodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+													Description:         "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+													MarkdownDescription: "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
 													Required:            false,
 													Optional:            false,
 													Computed:            true,
 												},
 
 												"type": schema.StringAttribute{
-													Description:         "Type is used to specify the scaling policy.",
-													MarkdownDescription: "Type is used to specify the scaling policy.",
+													Description:         "type is used to specify the scaling policy.",
+													MarkdownDescription: "type is used to specify the scaling policy.",
 													Required:            false,
 													Optional:            false,
 													Computed:            true,
 												},
 
 												"value": schema.Int64Attribute{
-													Description:         "Value contains the amount of change which is permitted by the policy. It must be greater than zero",
-													MarkdownDescription: "Value contains the amount of change which is permitted by the policy. It must be greater than zero",
+													Description:         "value contains the amount of change which is permitted by the policy. It must be greater than zero",
+													MarkdownDescription: "value contains the amount of change which is permitted by the policy. It must be greater than zero",
 													Required:            false,
 													Optional:            false,
 													Computed:            true,
@@ -347,8 +347,8 @@ func (r *AutoscalingHorizontalPodAutoscalerV2DataSource) Schema(_ context.Contex
 									},
 
 									"stabilization_window_seconds": schema.Int64Attribute{
-										Description:         "StabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
-										MarkdownDescription: "StabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
+										Description:         "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
+										MarkdownDescription: "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
 										Required:            false,
 										Optional:            false,
 										Computed:            true,
@@ -573,24 +573,24 @@ func (r *AutoscalingHorizontalPodAutoscalerV2DataSource) Schema(_ context.Contex
 											MarkdownDescription: "CrossVersionObjectReference contains enough information to let you identify the referred resource.",
 											Attributes: map[string]schema.Attribute{
 												"api_version": schema.StringAttribute{
-													Description:         "API version of the referent",
-													MarkdownDescription: "API version of the referent",
+													Description:         "apiVersion is the API version of the referent",
+													MarkdownDescription: "apiVersion is the API version of the referent",
 													Required:            false,
 													Optional:            false,
 													Computed:            true,
 												},
 
 												"kind": schema.StringAttribute{
-													Description:         "Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-													MarkdownDescription: "Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+													Description:         "kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+													MarkdownDescription: "kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 													Required:            false,
 													Optional:            false,
 													Computed:            true,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names",
-													MarkdownDescription: "Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+													Description:         "name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            false,
 													Computed:            true,
@@ -924,24 +924,24 @@ func (r *AutoscalingHorizontalPodAutoscalerV2DataSource) Schema(_ context.Contex
 						MarkdownDescription: "CrossVersionObjectReference contains enough information to let you identify the referred resource.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
-								Description:         "API version of the referent",
-								MarkdownDescription: "API version of the referent",
+								Description:         "apiVersion is the API version of the referent",
+								MarkdownDescription: "apiVersion is the API version of the referent",
 								Required:            false,
 								Optional:            false,
 								Computed:            true,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								Description:         "kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 								Required:            false,
 								Optional:            false,
 								Computed:            true,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names",
-								MarkdownDescription: "Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+								Description:         "name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 								Required:            false,
 								Optional:            false,
 								Computed:            true,

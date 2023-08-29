@@ -345,16 +345,16 @@ func (r *StorageK8SIoVolumeAttachmentV1DataSource) Schema(_ context.Context, _ d
 				MarkdownDescription: "VolumeAttachmentSpec is the specification of a VolumeAttachment request.",
 				Attributes: map[string]schema.Attribute{
 					"attacher": schema.StringAttribute{
-						Description:         "Attacher indicates the name of the volume driver that MUST handle this request. This is the name returned by GetPluginName().",
-						MarkdownDescription: "Attacher indicates the name of the volume driver that MUST handle this request. This is the name returned by GetPluginName().",
+						Description:         "attacher indicates the name of the volume driver that MUST handle this request. This is the name returned by GetPluginName().",
+						MarkdownDescription: "attacher indicates the name of the volume driver that MUST handle this request. This is the name returned by GetPluginName().",
 						Required:            false,
 						Optional:            false,
 						Computed:            true,
 					},
 
 					"node_name": schema.StringAttribute{
-						Description:         "The node that the volume should be attached to.",
-						MarkdownDescription: "The node that the volume should be attached to.",
+						Description:         "nodeName represents the node that the volume should be attached to.",
+						MarkdownDescription: "nodeName represents the node that the volume should be attached to.",
 						Required:            false,
 						Optional:            false,
 						Computed:            true,
@@ -1920,8 +1920,8 @@ func (r *StorageK8SIoVolumeAttachmentV1DataSource) Schema(_ context.Context, _ d
 							},
 
 							"persistent_volume_name": schema.StringAttribute{
-								Description:         "Name of the persistent volume to attach.",
-								MarkdownDescription: "Name of the persistent volume to attach.",
+								Description:         "persistentVolumeName represents the name of the persistent volume to attach.",
+								MarkdownDescription: "persistentVolumeName represents the name of the persistent volume to attach.",
 								Required:            false,
 								Optional:            false,
 								Computed:            true,

@@ -133,8 +133,8 @@ func (r *AutoscalingHorizontalPodAutoscalerV1DataSource) Schema(_ context.Contex
 				MarkdownDescription: "specification of a horizontal pod autoscaler.",
 				Attributes: map[string]schema.Attribute{
 					"max_replicas": schema.Int64Attribute{
-						Description:         "upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.",
-						MarkdownDescription: "upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.",
+						Description:         "maxReplicas is the upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.",
+						MarkdownDescription: "maxReplicas is the upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.",
 						Required:            false,
 						Optional:            false,
 						Computed:            true,
@@ -153,24 +153,24 @@ func (r *AutoscalingHorizontalPodAutoscalerV1DataSource) Schema(_ context.Contex
 						MarkdownDescription: "CrossVersionObjectReference contains enough information to let you identify the referred resource.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
-								Description:         "API version of the referent",
-								MarkdownDescription: "API version of the referent",
+								Description:         "apiVersion is the API version of the referent",
+								MarkdownDescription: "apiVersion is the API version of the referent",
 								Required:            false,
 								Optional:            false,
 								Computed:            true,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								Description:         "kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 								Required:            false,
 								Optional:            false,
 								Computed:            true,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names",
-								MarkdownDescription: "Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+								Description:         "name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 								Required:            false,
 								Optional:            false,
 								Computed:            true,
@@ -182,8 +182,8 @@ func (r *AutoscalingHorizontalPodAutoscalerV1DataSource) Schema(_ context.Contex
 					},
 
 					"target_cpu_utilization_percentage": schema.Int64Attribute{
-						Description:         "target average CPU utilization (represented as a percentage of requested CPU) over all the pods; if not specified the default autoscaling policy will be used.",
-						MarkdownDescription: "target average CPU utilization (represented as a percentage of requested CPU) over all the pods; if not specified the default autoscaling policy will be used.",
+						Description:         "targetCPUUtilizationPercentage is the target average CPU utilization (represented as a percentage of requested CPU) over all the pods; if not specified the default autoscaling policy will be used.",
+						MarkdownDescription: "targetCPUUtilizationPercentage is the target average CPU utilization (represented as a percentage of requested CPU) over all the pods; if not specified the default autoscaling policy will be used.",
 						Required:            false,
 						Optional:            false,
 						Computed:            true,

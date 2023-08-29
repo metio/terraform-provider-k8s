@@ -196,16 +196,16 @@ func (r *SchedulingK8SIoPriorityClassV1Resource) Schema(_ context.Context, _ res
 			},
 
 			"preemption_policy": schema.StringAttribute{
-				Description:         "PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.",
-				MarkdownDescription: "PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.",
+				Description:         "preemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.",
+				MarkdownDescription: "preemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.",
 				Required:            false,
 				Optional:            true,
 				Computed:            false,
 			},
 
 			"value": schema.Int64Attribute{
-				Description:         "The value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.",
-				MarkdownDescription: "The value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.",
+				Description:         "value represents the integer value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.",
+				MarkdownDescription: "value represents the integer value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.",
 				Required:            true,
 				Optional:            false,
 				Computed:            false,

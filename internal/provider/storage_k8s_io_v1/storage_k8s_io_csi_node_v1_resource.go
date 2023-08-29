@@ -199,8 +199,8 @@ func (r *StorageK8SIoCSINodeV1Resource) Schema(_ context.Context, _ resource.Sch
 									MarkdownDescription: "VolumeNodeResources is a set of resource limits for scheduling of volumes.",
 									Attributes: map[string]schema.Attribute{
 										"count": schema.Int64Attribute{
-											Description:         "Maximum number of unique volumes managed by the CSI driver that can be used on a node. A volume that is both attached and mounted on a node is considered to be used once, not twice. The same rule applies for a unique volume that is shared among multiple pods on the same node. If this field is not specified, then the supported number of volumes on this node is unbounded.",
-											MarkdownDescription: "Maximum number of unique volumes managed by the CSI driver that can be used on a node. A volume that is both attached and mounted on a node is considered to be used once, not twice. The same rule applies for a unique volume that is shared among multiple pods on the same node. If this field is not specified, then the supported number of volumes on this node is unbounded.",
+											Description:         "count indicates the maximum number of unique volumes managed by the CSI driver that can be used on a node. A volume that is both attached and mounted on a node is considered to be used once, not twice. The same rule applies for a unique volume that is shared among multiple pods on the same node. If this field is not specified, then the supported number of volumes on this node is unbounded.",
+											MarkdownDescription: "count indicates the maximum number of unique volumes managed by the CSI driver that can be used on a node. A volume that is both attached and mounted on a node is considered to be used once, not twice. The same rule applies for a unique volume that is shared among multiple pods on the same node. If this field is not specified, then the supported number of volumes on this node is unbounded.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -212,8 +212,8 @@ func (r *StorageK8SIoCSINodeV1Resource) Schema(_ context.Context, _ resource.Sch
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "This is the name of the CSI driver that this object refers to. This MUST be the same name returned by the CSI GetPluginName() call for that driver.",
-									MarkdownDescription: "This is the name of the CSI driver that this object refers to. This MUST be the same name returned by the CSI GetPluginName() call for that driver.",
+									Description:         "name represents the name of the CSI driver that this object refers to. This MUST be the same name returned by the CSI GetPluginName() call for that driver.",
+									MarkdownDescription: "name represents the name of the CSI driver that this object refers to. This MUST be the same name returned by the CSI GetPluginName() call for that driver.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,

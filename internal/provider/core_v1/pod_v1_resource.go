@@ -334,10 +334,18 @@ type PodV1ResourceData struct {
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+			ResizePolicy *[]struct {
+				ResourceName  *string `tfsdk:"resource_name" json:"resourceName,omitempty"`
+				RestartPolicy *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+			} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 			Resources *struct {
+				Claims *[]struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
+			RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 				Capabilities             *struct {
@@ -572,10 +580,18 @@ type PodV1ResourceData struct {
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+			ResizePolicy *[]struct {
+				ResourceName  *string `tfsdk:"resource_name" json:"resourceName,omitempty"`
+				RestartPolicy *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+			} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 			Resources *struct {
+				Claims *[]struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
+			RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 				Capabilities             *struct {
@@ -813,10 +829,18 @@ type PodV1ResourceData struct {
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+			ResizePolicy *[]struct {
+				ResourceName  *string `tfsdk:"resource_name" json:"resourceName,omitempty"`
+				RestartPolicy *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+			} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 			Resources *struct {
+				Claims *[]struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
+			RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 				Capabilities             *struct {
@@ -906,6 +930,13 @@ type PodV1ResourceData struct {
 		ReadinessGates    *[]struct {
 			ConditionType *string `tfsdk:"condition_type" json:"conditionType,omitempty"`
 		} `tfsdk:"readiness_gates" json:"readinessGates,omitempty"`
+		ResourceClaims *[]struct {
+			Name   *string `tfsdk:"name" json:"name,omitempty"`
+			Source *struct {
+				ResourceClaimName         *string `tfsdk:"resource_claim_name" json:"resourceClaimName,omitempty"`
+				ResourceClaimTemplateName *string `tfsdk:"resource_claim_template_name" json:"resourceClaimTemplateName,omitempty"`
+			} `tfsdk:"source" json:"source,omitempty"`
+		} `tfsdk:"resource_claims" json:"resourceClaims,omitempty"`
 		RestartPolicy    *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 		RuntimeClassName *string `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
 		SchedulerName    *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
@@ -1089,9 +1120,10 @@ type PodV1ResourceData struct {
 							Name     *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"data_source" json:"dataSource,omitempty"`
 						DataSourceRef *struct {
-							ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
-							Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
-							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							ApiGroup  *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
+							Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 						} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 						Resources *struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
@@ -2558,8 +2590,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
-																		Description:         "The header field name",
-																		MarkdownDescription: "The header field name",
+																		Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																		MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -2678,8 +2710,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
-																		Description:         "The header field name",
-																		MarkdownDescription: "The header field name",
+																		Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																		MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -2836,8 +2868,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The header field name",
-																MarkdownDescription: "The header field name",
+																Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -3088,8 +3120,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The header field name",
-																MarkdownDescription: "The header field name",
+																Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -3208,10 +3240,56 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 									Computed: false,
 								},
 
+								"resize_policy": schema.ListNestedAttribute{
+									Description:         "Resources resize policy for the container.",
+									MarkdownDescription: "Resources resize policy for the container.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"resource_name": schema.StringAttribute{
+												Description:         "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+												MarkdownDescription: "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"restart_policy": schema.StringAttribute{
+												Description:         "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+												MarkdownDescription: "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"resources": schema.SingleNestedAttribute{
 									Description:         "ResourceRequirements describes the compute resource requirements.",
 									MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
 									Attributes: map[string]schema.Attribute{
+										"claims": schema.ListNestedAttribute{
+											Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+											MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+														MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"limits": schema.MapAttribute{
 											Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 											MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -3222,8 +3300,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 										},
 
 										"requests": schema.MapAttribute{
-											Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-											MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -3233,6 +3311,14 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"restart_policy": schema.StringAttribute{
+									Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+									MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"security_context": schema.SingleNestedAttribute{
@@ -3368,8 +3454,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 											MarkdownDescription: "SeccompProfile defines a pod/container's seccomp profile settings. Only one profile source may be set.",
 											Attributes: map[string]schema.Attribute{
 												"localhost_profile": schema.StringAttribute{
-													Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+													Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3409,8 +3495,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 												},
 
 												"host_process": schema.BoolAttribute{
-													Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+													Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3507,8 +3593,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The header field name",
-																MarkdownDescription: "The header field name",
+																Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4149,8 +4235,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
-																		Description:         "The header field name",
-																		MarkdownDescription: "The header field name",
+																		Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																		MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -4269,8 +4355,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
-																		Description:         "The header field name",
-																		MarkdownDescription: "The header field name",
+																		Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																		MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -4427,8 +4513,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The header field name",
-																MarkdownDescription: "The header field name",
+																Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4679,8 +4765,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The header field name",
-																MarkdownDescription: "The header field name",
+																Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4799,10 +4885,56 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 									Computed: false,
 								},
 
+								"resize_policy": schema.ListNestedAttribute{
+									Description:         "Resources resize policy for the container.",
+									MarkdownDescription: "Resources resize policy for the container.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"resource_name": schema.StringAttribute{
+												Description:         "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+												MarkdownDescription: "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"restart_policy": schema.StringAttribute{
+												Description:         "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+												MarkdownDescription: "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"resources": schema.SingleNestedAttribute{
 									Description:         "ResourceRequirements describes the compute resource requirements.",
 									MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
 									Attributes: map[string]schema.Attribute{
+										"claims": schema.ListNestedAttribute{
+											Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+											MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+														MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"limits": schema.MapAttribute{
 											Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 											MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -4813,8 +4945,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 										},
 
 										"requests": schema.MapAttribute{
-											Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-											MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -4824,6 +4956,14 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"restart_policy": schema.StringAttribute{
+									Description:         "Restart policy for the container to manage the restart behavior of each container within a pod. This may only be set for init containers. You cannot set this field on ephemeral containers.",
+									MarkdownDescription: "Restart policy for the container to manage the restart behavior of each container within a pod. This may only be set for init containers. You cannot set this field on ephemeral containers.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"security_context": schema.SingleNestedAttribute{
@@ -4959,8 +5099,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 											MarkdownDescription: "SeccompProfile defines a pod/container's seccomp profile settings. Only one profile source may be set.",
 											Attributes: map[string]schema.Attribute{
 												"localhost_profile": schema.StringAttribute{
-													Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+													Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5000,8 +5140,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 												},
 
 												"host_process": schema.BoolAttribute{
-													Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+													Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5098,8 +5238,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The header field name",
-																MarkdownDescription: "The header field name",
+																Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5765,8 +5905,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
-																		Description:         "The header field name",
-																		MarkdownDescription: "The header field name",
+																		Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																		MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -5885,8 +6025,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
-																		Description:         "The header field name",
-																		MarkdownDescription: "The header field name",
+																		Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																		MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -6043,8 +6183,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The header field name",
-																MarkdownDescription: "The header field name",
+																Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -6295,8 +6435,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The header field name",
-																MarkdownDescription: "The header field name",
+																Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -6415,10 +6555,56 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 									Computed: false,
 								},
 
+								"resize_policy": schema.ListNestedAttribute{
+									Description:         "Resources resize policy for the container.",
+									MarkdownDescription: "Resources resize policy for the container.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"resource_name": schema.StringAttribute{
+												Description:         "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+												MarkdownDescription: "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"restart_policy": schema.StringAttribute{
+												Description:         "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+												MarkdownDescription: "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"resources": schema.SingleNestedAttribute{
 									Description:         "ResourceRequirements describes the compute resource requirements.",
 									MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
 									Attributes: map[string]schema.Attribute{
+										"claims": schema.ListNestedAttribute{
+											Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+											MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+														MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"limits": schema.MapAttribute{
 											Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 											MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -6429,8 +6615,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 										},
 
 										"requests": schema.MapAttribute{
-											Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-											MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -6440,6 +6626,14 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"restart_policy": schema.StringAttribute{
+									Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+									MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"security_context": schema.SingleNestedAttribute{
@@ -6575,8 +6769,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 											MarkdownDescription: "SeccompProfile defines a pod/container's seccomp profile settings. Only one profile source may be set.",
 											Attributes: map[string]schema.Attribute{
 												"localhost_profile": schema.StringAttribute{
-													Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+													Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -6616,8 +6810,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 												},
 
 												"host_process": schema.BoolAttribute{
-													Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+													Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -6714,8 +6908,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The header field name",
-																MarkdownDescription: "The header field name",
+																Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -7060,9 +7254,53 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 						Computed: false,
 					},
 
+					"resource_claims": schema.ListNestedAttribute{
+						Description:         "ResourceClaims defines which ResourceClaims must be allocated and reserved before the Pod is allowed to start. The resources will be made available to those containers which consume them by name.This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.This field is immutable.",
+						MarkdownDescription: "ResourceClaims defines which ResourceClaims must be allocated and reserved before the Pod is allowed to start. The resources will be made available to those containers which consume them by name.This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.This field is immutable.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"name": schema.StringAttribute{
+									Description:         "Name uniquely identifies this resource claim inside the pod. This must be a DNS_LABEL.",
+									MarkdownDescription: "Name uniquely identifies this resource claim inside the pod. This must be a DNS_LABEL.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"source": schema.SingleNestedAttribute{
+									Description:         "ClaimSource describes a reference to a ResourceClaim.Exactly one of these fields should be set.  Consumers of this type must treat an empty object as if it has an unknown value.",
+									MarkdownDescription: "ClaimSource describes a reference to a ResourceClaim.Exactly one of these fields should be set.  Consumers of this type must treat an empty object as if it has an unknown value.",
+									Attributes: map[string]schema.Attribute{
+										"resource_claim_name": schema.StringAttribute{
+											Description:         "ResourceClaimName is the name of a ResourceClaim object in the same namespace as this pod.",
+											MarkdownDescription: "ResourceClaimName is the name of a ResourceClaim object in the same namespace as this pod.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"resource_claim_template_name": schema.StringAttribute{
+											Description:         "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod.The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses.This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.",
+											MarkdownDescription: "ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod.The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses.This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"restart_policy": schema.StringAttribute{
-						Description:         "Restart policy for all containers within the pod. One of Always, OnFailure, Never. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
-						MarkdownDescription: "Restart policy for all containers within the pod. One of Always, OnFailure, Never. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
+						Description:         "Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
+						MarkdownDescription: "Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -7085,8 +7323,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 					},
 
 					"scheduling_gates": schema.ListNestedAttribute{
-						Description:         "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. More info:  https://git.k8s.io/enhancements/keps/sig-scheduling/3521-pod-scheduling-readiness.This is an alpha-level feature enabled by PodSchedulingReadiness feature gate.",
-						MarkdownDescription: "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. More info:  https://git.k8s.io/enhancements/keps/sig-scheduling/3521-pod-scheduling-readiness.This is an alpha-level feature enabled by PodSchedulingReadiness feature gate.",
+						Description:         "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.SchedulingGates can only be set at pod creation time, and be removed only afterwards.This is a beta feature enabled by the PodSchedulingReadiness feature gate.",
+						MarkdownDescription: "SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.SchedulingGates can only be set at pod creation time, and be removed only afterwards.This is a beta feature enabled by the PodSchedulingReadiness feature gate.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -7193,8 +7431,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 								MarkdownDescription: "SeccompProfile defines a pod/container's seccomp profile settings. Only one profile source may be set.",
 								Attributes: map[string]schema.Attribute{
 									"localhost_profile": schema.StringAttribute{
-										Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-										MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+										Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+										MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -7214,8 +7452,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 							},
 
 							"supplemental_groups": schema.ListAttribute{
-								Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container. Note that this field cannot be set when spec.os.name is windows.",
-								MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container. Note that this field cannot be set when spec.os.name is windows.",
+								Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -7270,8 +7508,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 									},
 
 									"host_process": schema.BoolAttribute{
-										Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-										MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+										Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+										MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -7454,8 +7692,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 								},
 
 								"match_label_keys": schema.ListAttribute{
-									Description:         "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.",
-									MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.",
+									Description:         "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
+									MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -7479,16 +7717,16 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 								},
 
 								"node_affinity_policy": schema.StringAttribute{
-									Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-									MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+									Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+									MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"node_taints_policy": schema.StringAttribute{
-									Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-									MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+									Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+									MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -8036,8 +8274,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 													MarkdownDescription: "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
 													Attributes: map[string]schema.Attribute{
 														"annotations": schema.MapAttribute{
-															Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-															MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+															Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
+															MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -8100,8 +8338,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 														},
 
 														"labels": schema.MapAttribute{
-															Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-															MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+															Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels",
+															MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -8180,16 +8418,16 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
-															MarkdownDescription: "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+															Description:         "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
+															MarkdownDescription: "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"namespace": schema.StringAttribute{
-															Description:         "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the 'default' namespace, but 'default' is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
-															MarkdownDescription: "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the 'default' namespace, but 'default' is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces",
+															Description:         "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the 'default' namespace, but 'default' is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.Must be a DNS_LABEL. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces",
+															MarkdownDescription: "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the 'default' namespace, but 'default' is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.Must be a DNS_LABEL. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -8233,16 +8471,16 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
-																		MarkdownDescription: "Name of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"uid": schema.StringAttribute{
-																		Description:         "UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
-																		MarkdownDescription: "UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
+																		Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
+																		MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -8271,8 +8509,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 														},
 
 														"uid": schema.StringAttribute{
-															Description:         "UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.Populated by the system. Read-only. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
-															MarkdownDescription: "UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.Populated by the system. Read-only. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
+															Description:         "UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
+															MarkdownDescription: "UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -8330,8 +8568,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 														},
 
 														"data_source_ref": schema.SingleNestedAttribute{
-															Description:         "TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace.",
-															MarkdownDescription: "TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"api_group": schema.StringAttribute{
 																	Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -8356,6 +8594,14 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 																	Optional:            false,
 																	Computed:            false,
 																},
+
+																"namespace": schema.StringAttribute{
+																	Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																	MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
 															},
 															Required: false,
 															Optional: true,
@@ -8363,8 +8609,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 														},
 
 														"resources": schema.SingleNestedAttribute{
-															Description:         "ResourceRequirements describes the compute resource requirements.",
-															MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
+															Description:         "VolumeResourceRequirements describes the storage resource requirements for a volume.",
+															MarkdownDescription: "VolumeResourceRequirements describes the storage resource requirements for a volume.",
 															Attributes: map[string]schema.Attribute{
 																"limits": schema.MapAttribute{
 																	Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -8376,8 +8622,8 @@ func (r *PodV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 																},
 
 																"requests": schema.MapAttribute{
-																	Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																	MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
