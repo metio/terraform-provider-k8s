@@ -57,9 +57,10 @@ type PersistentVolumeClaimV1DataSourceData struct {
 			Name     *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"data_source" json:"dataSource,omitempty"`
 		DataSourceRef *struct {
-			ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
-			Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
-			Name     *string `tfsdk:"name" json:"name,omitempty"`
+			ApiGroup  *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
+			Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 		Resources *struct {
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
@@ -193,8 +194,8 @@ func (r *PersistentVolumeClaimV1DataSource) Schema(_ context.Context, _ datasour
 					},
 
 					"data_source_ref": schema.SingleNestedAttribute{
-						Description:         "TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace.",
-						MarkdownDescription: "TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"api_group": schema.StringAttribute{
 								Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -219,6 +220,14 @@ func (r *PersistentVolumeClaimV1DataSource) Schema(_ context.Context, _ datasour
 								Optional:            false,
 								Computed:            true,
 							},
+
+							"namespace": schema.StringAttribute{
+								Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+								MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+								Required:            false,
+								Optional:            false,
+								Computed:            true,
+							},
 						},
 						Required: false,
 						Optional: false,
@@ -226,8 +235,8 @@ func (r *PersistentVolumeClaimV1DataSource) Schema(_ context.Context, _ datasour
 					},
 
 					"resources": schema.SingleNestedAttribute{
-						Description:         "ResourceRequirements describes the compute resource requirements.",
-						MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
+						Description:         "VolumeResourceRequirements describes the storage resource requirements for a volume.",
+						MarkdownDescription: "VolumeResourceRequirements describes the storage resource requirements for a volume.",
 						Attributes: map[string]schema.Attribute{
 							"limits": schema.MapAttribute{
 								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -239,8 +248,8 @@ func (r *PersistentVolumeClaimV1DataSource) Schema(_ context.Context, _ datasour
 							},
 
 							"requests": schema.MapAttribute{
-								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            false,

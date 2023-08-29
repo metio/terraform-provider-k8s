@@ -127,8 +127,8 @@ func (r *NetworkingK8SIoIngressClassV1Manifest) Schema(_ context.Context, _ data
 				MarkdownDescription: "IngressClassSpec provides information about the class of an Ingress.",
 				Attributes: map[string]schema.Attribute{
 					"controller": schema.StringAttribute{
-						Description:         "Controller refers to the name of the controller that should handle this class. This allows for different 'flavors' that are controlled by the same controller. For example, you may have different Parameters for the same implementing controller. This should be specified as a domain-prefixed path no more than 250 characters in length, e.g. 'acme.io/ingress-controller'. This field is immutable.",
-						MarkdownDescription: "Controller refers to the name of the controller that should handle this class. This allows for different 'flavors' that are controlled by the same controller. For example, you may have different Parameters for the same implementing controller. This should be specified as a domain-prefixed path no more than 250 characters in length, e.g. 'acme.io/ingress-controller'. This field is immutable.",
+						Description:         "controller refers to the name of the controller that should handle this class. This allows for different 'flavors' that are controlled by the same controller. For example, you may have different parameters for the same implementing controller. This should be specified as a domain-prefixed path no more than 250 characters in length, e.g. 'acme.io/ingress-controller'. This field is immutable.",
+						MarkdownDescription: "controller refers to the name of the controller that should handle this class. This allows for different 'flavors' that are controlled by the same controller. For example, you may have different parameters for the same implementing controller. This should be specified as a domain-prefixed path no more than 250 characters in length, e.g. 'acme.io/ingress-controller'. This field is immutable.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -139,40 +139,40 @@ func (r *NetworkingK8SIoIngressClassV1Manifest) Schema(_ context.Context, _ data
 						MarkdownDescription: "IngressClassParametersReference identifies an API object. This can be used to specify a cluster or namespace-scoped resource.",
 						Attributes: map[string]schema.Attribute{
 							"api_group": schema.StringAttribute{
-								Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-								MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+								Description:         "apiGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+								MarkdownDescription: "apiGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind is the type of resource being referenced.",
-								MarkdownDescription: "Kind is the type of resource being referenced.",
+								Description:         "kind is the type of resource being referenced.",
+								MarkdownDescription: "kind is the type of resource being referenced.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name is the name of resource being referenced.",
-								MarkdownDescription: "Name is the name of resource being referenced.",
+								Description:         "name is the name of resource being referenced.",
+								MarkdownDescription: "name is the name of resource being referenced.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace is the namespace of the resource being referenced. This field is required when scope is set to 'Namespace' and must be unset when scope is set to 'Cluster'.",
-								MarkdownDescription: "Namespace is the namespace of the resource being referenced. This field is required when scope is set to 'Namespace' and must be unset when scope is set to 'Cluster'.",
+								Description:         "namespace is the namespace of the resource being referenced. This field is required when scope is set to 'Namespace' and must be unset when scope is set to 'Cluster'.",
+								MarkdownDescription: "namespace is the namespace of the resource being referenced. This field is required when scope is set to 'Namespace' and must be unset when scope is set to 'Cluster'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"scope": schema.StringAttribute{
-								Description:         "Scope represents if this refers to a cluster or namespace scoped resource. This may be set to 'Cluster' (default) or 'Namespace'.",
-								MarkdownDescription: "Scope represents if this refers to a cluster or namespace scoped resource. This may be set to 'Cluster' (default) or 'Namespace'.",
+								Description:         "scope represents if this refers to a cluster or namespace scoped resource. This may be set to 'Cluster' (default) or 'Namespace'.",
+								MarkdownDescription: "scope represents if this refers to a cluster or namespace scoped resource. This may be set to 'Cluster' (default) or 'Namespace'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
