@@ -745,13 +745,7 @@ func (r *ApicodegenApimaticIoAPIMaticV1Beta1Resource) GetSchema(_ context.Contex
 
 								Validators: []tfsdk.AttributeValidator{
 
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_name")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_selector")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("pod_affinity")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("tolerations")),
+									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_name"), path.MatchRelative().AtParent().AtName("node_selector"), path.MatchRelative().AtParent().AtName("pod_affinity"), path.MatchRelative().AtParent().AtName("tolerations")),
 								},
 							},
 
@@ -769,13 +763,7 @@ func (r *ApicodegenApimaticIoAPIMaticV1Beta1Resource) GetSchema(_ context.Contex
 
 									stringvalidator.LengthAtLeast(1),
 
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_selector")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("pod_affinity")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("tolerations")),
+									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity"), path.MatchRelative().AtParent().AtName("node_selector"), path.MatchRelative().AtParent().AtName("pod_affinity"), path.MatchRelative().AtParent().AtName("tolerations")),
 								},
 							},
 
@@ -791,13 +779,7 @@ func (r *ApicodegenApimaticIoAPIMaticV1Beta1Resource) GetSchema(_ context.Contex
 
 								Validators: []tfsdk.AttributeValidator{
 
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_name")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("pod_affinity")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("tolerations")),
+									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity"), path.MatchRelative().AtParent().AtName("node_name"), path.MatchRelative().AtParent().AtName("pod_affinity"), path.MatchRelative().AtParent().AtName("tolerations")),
 								},
 							},
 
@@ -1177,13 +1159,7 @@ func (r *ApicodegenApimaticIoAPIMaticV1Beta1Resource) GetSchema(_ context.Contex
 
 								Validators: []tfsdk.AttributeValidator{
 
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_name")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_selector")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("tolerations")),
+									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity"), path.MatchRelative().AtParent().AtName("node_name"), path.MatchRelative().AtParent().AtName("node_selector"), path.MatchRelative().AtParent().AtName("tolerations")),
 								},
 							},
 
@@ -1255,13 +1231,7 @@ func (r *ApicodegenApimaticIoAPIMaticV1Beta1Resource) GetSchema(_ context.Contex
 
 								Validators: []tfsdk.AttributeValidator{
 
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_name")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_selector")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("pod_affinity")),
+									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity"), path.MatchRelative().AtParent().AtName("node_name"), path.MatchRelative().AtParent().AtName("node_selector"), path.MatchRelative().AtParent().AtName("pod_affinity")),
 								},
 							},
 						}),

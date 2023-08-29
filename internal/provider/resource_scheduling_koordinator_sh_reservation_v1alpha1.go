@@ -319,9 +319,7 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Resource) GetSchema(_ context
 
 								Validators: []tfsdk.AttributeValidator{
 
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("label_selector")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("object")),
+									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("label_selector"), path.MatchRelative().AtParent().AtName("object")),
 								},
 							},
 
@@ -394,9 +392,7 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Resource) GetSchema(_ context
 
 								Validators: []tfsdk.AttributeValidator{
 
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("controller")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("object")),
+									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("controller"), path.MatchRelative().AtParent().AtName("object")),
 								},
 							},
 
@@ -490,9 +486,7 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Resource) GetSchema(_ context
 
 								Validators: []tfsdk.AttributeValidator{
 
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("controller")),
-
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("label_selector")),
+									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("controller"), path.MatchRelative().AtParent().AtName("label_selector")),
 								},
 							},
 						}),
