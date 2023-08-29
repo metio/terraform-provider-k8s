@@ -12,6 +12,7 @@ import (
 	"github.com/getkin/kin-openapi/openapi3"
 	"k8s.io/utils/strings/slices"
 	"sort"
+	"strings"
 )
 
 func convertOpenAPIv3(schemas []map[string]*openapi3.SchemaRef) []*TemplateData {
@@ -154,12 +155,14 @@ func openAPIv3Properties(schema *openapi3.Schema, imports *AdditionalImports, pa
 			imports.SchemaValidator = true
 
 			for _, outer := range props {
+				var pathExpressions []string
 				for _, inner := range props {
 					if outer.Name != inner.Name {
-						validator := fmt.Sprintf(`schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("%s"))`, inner.TerraformAttributeName)
-						outer.Validators = append(outer.Validators, validator)
+						pathExpressions = append(pathExpressions, fmt.Sprintf(`path.MatchRelative().AtParent().AtName("%s")`, inner.TerraformAttributeName))
 					}
 				}
+				validator := fmt.Sprintf(`schemavalidator.ExactlyOneOf(%v)`, strings.Join(pathExpressions, ", "))
+				outer.Validators = append(outer.Validators, validator)
 			}
 		}
 	} else if schema.MinProps > 0 && schema.MaxProps == nil {
@@ -169,12 +172,14 @@ func openAPIv3Properties(schema *openapi3.Schema, imports *AdditionalImports, pa
 			imports.SchemaValidator = true
 
 			for _, outer := range props {
+				var pathExpressions []string
 				for _, inner := range props {
 					if outer.Name != inner.Name {
-						validator := fmt.Sprintf(`schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("%s"))`, inner.TerraformAttributeName)
-						outer.Validators = append(outer.Validators, validator)
+						pathExpressions = append(pathExpressions, fmt.Sprintf(`path.MatchRelative().AtParent().AtName("%s")`, inner.TerraformAttributeName))
 					}
 				}
+				validator := fmt.Sprintf(`schemavalidator.AtLeastOneOf(%v)`, strings.Join(pathExpressions, ", "))
+				outer.Validators = append(outer.Validators, validator)
 			}
 		} else if min > 1 && min == uint64(len(props)) {
 			for _, prop := range props {
