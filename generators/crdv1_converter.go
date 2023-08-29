@@ -12,6 +12,7 @@ import (
 	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 	"k8s.io/utils/strings/slices"
 	"sort"
+	"strings"
 )
 
 func convertCRDv1(crds []*apiextensionsv1.CustomResourceDefinition, pkg string) []*TemplateData {
@@ -117,12 +118,14 @@ func crdv1Properties(schema *apiextensionsv1.JSONSchemaProps, imports *Additiona
 			imports.SchemaValidator = true
 
 			for _, outer := range props {
+				var pathExpressions []string
 				for _, inner := range props {
 					if outer.Name != inner.Name {
-						validator := fmt.Sprintf(`schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("%s"))`, inner.TerraformAttributeName)
-						outer.Validators = append(outer.Validators, validator)
+						pathExpressions = append(pathExpressions, fmt.Sprintf(`path.MatchRelative().AtParent().AtName("%s")`, inner.TerraformAttributeName))
 					}
 				}
+				validator := fmt.Sprintf(`schemavalidator.ExactlyOneOf(%v)`, strings.Join(pathExpressions, ", "))
+				outer.Validators = append(outer.Validators, validator)
 			}
 		}
 	} else if schema.MinProperties != nil && schema.MaxProperties == nil {
@@ -132,12 +135,14 @@ func crdv1Properties(schema *apiextensionsv1.JSONSchemaProps, imports *Additiona
 			imports.SchemaValidator = true
 
 			for _, outer := range props {
+				var pathExpressions []string
 				for _, inner := range props {
 					if outer.Name != inner.Name {
-						validator := fmt.Sprintf(`schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("%s"))`, inner.TerraformAttributeName)
-						outer.Validators = append(outer.Validators, validator)
+						pathExpressions = append(pathExpressions, fmt.Sprintf(`path.MatchRelative().AtParent().AtName("%s")`, inner.TerraformAttributeName))
 					}
 				}
+				validator := fmt.Sprintf(`schemavalidator.AtLeastOneOf(%v)`, strings.Join(pathExpressions, ", "))
+				outer.Validators = append(outer.Validators, validator)
 			}
 		} else if min > 1 && min == int64(len(props)) {
 			for _, prop := range props {
