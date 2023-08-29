@@ -31,7 +31,7 @@ func main() {
 	if fetchOpenAPIv2 {
 		downloadOpenAPIv2(fmt.Sprintf("%s/schemas/openapi_v2", cwd), filter)
 	}
-	if fetchCRDv1 {
-		downloadCRDv1(fmt.Sprintf("%s/schemas/crd_v1", cwd), filter)
-	}
+	//if fetchCRDv1 {
+	//	downloadCRDv1(fmt.Sprintf("%s/schemas/crd_v1", cwd), filter)
+	//}
 }

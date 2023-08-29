@@ -27,26 +27,28 @@ func downloadCRDv1(targetDirectory string, filter string) {
 	temp := createTemporaryDirectory()
 	defer os.RemoveAll(temp)
 
-	for _, url := range crdv1Sources {
-		if strings.Contains(url, filter) || filter == "" {
-			log.Printf("downloading [%s]", url)
-			file := createTemporaryFile(temp)
+	for _, source := range crdv1Sources {
+		for _, url := range source.URLs {
+			if strings.Contains(url, filter) || filter == "" {
+				log.Printf("downloading [%s]", url)
+				file := createTemporaryFile(temp)
 
-			err := downloadFile(file.Name(), url)
-			if err != nil {
-				log.Printf("cannot download because of: %s", err)
-				continue
-			}
+				err := downloadFile(file.Name(), url)
+				if err != nil {
+					log.Printf("cannot download because of: %s", err)
+					continue
+				}
 
-			crds, err := parseCRDv1(file.Name())
-			if err != nil {
-				log.Printf("cannot parse because of: %s", err)
-				continue
-			}
+				crds, err := parseCRDv1(file.Name())
+				if err != nil {
+					log.Printf("cannot parse because of: %s", err)
+					continue
+				}
 
-			for _, crd := range crds {
-				writeYaml(crd, fmt.Sprintf("%s/%s/%s/%s.yaml",
-					targetDirectory, crd.Spec.Group, crd.Spec.Versions[0].Name, crd.Spec.Names.Plural))
+				for _, crd := range crds {
+					writeYaml(crd, fmt.Sprintf("%s/%s/%s.%s.%s.yaml",
+						targetDirectory, source.ProjectName, crd.Spec.Group, crd.Spec.Versions[0].Name, crd.Spec.Names.Plural))
+				}
 			}
 		}
 	}
