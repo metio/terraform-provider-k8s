@@ -12,8 +12,6 @@ on:
       - main.go
       - docs/**
       - examples/**
-      - fetcher/**
-      - generators/**
       - internal/**
       - templates/**
       - tools/**
@@ -31,15 +29,15 @@ jobs:
         with:
           go-version-file: go.mod
           cache: true
-      - id: generator_tests
-        name: Generator Tests
-        run: go test -v -timeout=120s -tags generators ./generators/...
+      - id: tools_test
+        name: Tools Tests
+        run: go test -v -timeout=120s ./tools/...
       - id: provider_tests
         name: Provider Tests
         run: go test -v -timeout=120s ./internal/...
       - id: generate_docs
         name: Generate Documentation
-        run: go generate ./tools/tools.go
+        run: go generate ./tools/docs.go
       - id: verify_docs
         name: Verify Documentation
         run: |
