@@ -12,19 +12,19 @@ out/${PROVIDER}: $(shell find ./internal -type f -name '*.go' -and -not -name '*
 	mkdir --parents $(@D)
 	go build -o out/${PROVIDER}
 
-out/fetcher-sentinel: $(shell find ./fetcher -type f -name '*.go')
+out/fetcher-sentinel: $(shell find ./tools/fetcher -type f -name '*.go') $(shell find ./tools/internal/fetcher -type f -name '*.go')
 	mkdir --parents $(@D)
-	go run -tags fetcher ./fetcher
+	go generate ./tools/fetch.go
 	touch $@
 
-out/generate-sentinel: $(shell find ./generators -type f -name '*.go') $(shell find ./generators/templates -type f -name '*.tmpl') $(shell find ./schemas/crd_v1 -type f -name '*.yaml') $(shell find ./schemas/openapi_v2 -type f -name '*.json')
+out/generate-sentinel: $(shell find ./tools/generator -type f -name '*.go') $(shell find ./tools/internal/generator -type f -name '*.go') $(shell find ./tools/internal/generator/templates -type f -name '*.tmpl') $(shell find ./schemas/crd_v1 -type f -name '*.yaml') $(shell find ./schemas/openapi_v2 -type f -name '*.json')
 	mkdir --parents $(@D)
-	go run -tags generators ./generators
+	go generate ./tools/codegen.go
 	touch $@
 
 out/docs-sentinel: out/generate-sentinel out/tf-format-sentinel $(shell find ./internal -type f -name '*.go') $(shell find ./examples -type f -name '*.tf' -or -name '*.sh') $(shell find ./templates -type f -name '*.tmpl')
 	mkdir --parents $(@D)
-	go generate ./tools/tools.go
+	go generate ./tools/docs.go
 	touch $@
 
 # see https://www.terraform.io/cli/config/config-file#implied-local-mirror-directories
