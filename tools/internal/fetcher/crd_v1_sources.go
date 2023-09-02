@@ -299,6 +299,20 @@ var CRDv1Sources = []UpstreamSource{
 		},
 	},
 	{
+		ProjectName: "bitnami-labs/sealed-secrets",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/bitnami-labs/sealed-secrets/blob/main/helm/sealed-secrets/crds/bitnami.com_sealedsecrets.yaml",
+		},
+	},
+	{
+		ProjectName: "carlosedp/lbconfig-operator",
+		License:     mit,
+		URLs: []string{
+			"https://github.com/carlosedp/lbconfig-operator/blob/main/config/crd/bases/lb.lbconfig.carlosedp.com_externalloadbalancers.yaml",
+		},
+	},
+	{
 		ProjectName: "cert-manager/cert-manager",
 		License:     apacheV2,
 		URLs: []string{
@@ -486,6 +500,14 @@ var CRDv1Sources = []UpstreamSource{
 			"https://github.com/dexidp/dex/blob/master/scripts/manifests/crds/passwords.yaml",
 			"https://github.com/dexidp/dex/blob/master/scripts/manifests/crds/refreshtokens.yaml",
 			"https://github.com/dexidp/dex/blob/master/scripts/manifests/crds/signingkeies.yaml",
+		},
+	},
+	{
+		ProjectName: "digitalis-io/vals-operator",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/digitalis-io/vals-operator/blob/main/config/crd/bases/digitalis.io_dbsecrets.yaml",
+			"https://github.com/digitalis-io/vals-operator/blob/main/config/crd/bases/digitalis.io_valssecrets.yaml",
 		},
 	},
 	{
@@ -755,6 +777,38 @@ var CRDv1Sources = []UpstreamSource{
 		},
 	},
 	{
+		ProjectName: "karmada-io/karmada",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/autoscaling/autoscaling.karmada.io_cronfederatedhpas.yaml",
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/autoscaling/autoscaling.karmada.io_federatedhpas.yaml",
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/config/config.karmada.io_resourceinterpretercustomizations.yaml",
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/config/config.karmada.io_resourceinterpreterwebhookconfigurations.yaml",
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/multicluster/multicluster.x-k8s.io_serviceexports.yaml",
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/multicluster/multicluster.x-k8s.io_serviceimports.yaml",
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/networking/networking.karmada.io_multiclusteringresses.yaml",
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/networking/networking.karmada.io_multiclusterservices.yaml",
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/policy/policy.karmada.io_clusteroverridepolicies.yaml",
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/policy/policy.karmada.io_clusterpropagationpolicies.yaml",
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/policy/policy.karmada.io_federatedresourcequotas.yaml",
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/policy/policy.karmada.io_overridepolicies.yaml",
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/policy/policy.karmada.io_propagationpolicies.yaml",
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/work/work.karmada.io_clusterresourcebindings.yaml",
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/work/work.karmada.io_resourcebindings.yaml",
+			"https://github.com/karmada-io/karmada/blob/master/charts/karmada/_crds/bases/work/work.karmada.io_works.yaml",
+		},
+	},
+	{
+		ProjectName: "kedacore/keda",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kedacore/keda/blob/main/config/crd/bases/keda.sh_clustertriggerauthentications.yaml",
+			"https://github.com/kedacore/keda/blob/main/config/crd/bases/keda.sh_scaledjobs.yaml",
+			"https://github.com/kedacore/keda/blob/main/config/crd/bases/keda.sh_scaledobjects.yaml",
+			"https://github.com/kedacore/keda/blob/main/config/crd/bases/keda.sh_triggerauthentications.yaml",
+		},
+	},
+	{
 		ProjectName: "keycloak/keycloak-operator",
 		License:     apacheV2,
 		URLs: []string{
@@ -803,6 +857,32 @@ var CRDv1Sources = []UpstreamSource{
 			"https://github.com/koordinator-sh/koordinator/blob/main/config/crd/bases/slo.koordinator.sh_nodemetrics.yaml",
 			"https://github.com/koordinator-sh/koordinator/blob/main/config/crd/bases/slo.koordinator.sh_nodeslos.yaml",
 			"https://github.com/koordinator-sh/koordinator/blob/main/config/crd/bases/topology.node.k8s.io_noderesourcetopologies.yaml",
+		},
+	},
+	{
+		ProjectName: "ktsstudio/mirrors",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/ktsstudio/mirrors/blob/main/config/crd/bases/mirrors.kts.studio_secretmirrors.yaml",
+		},
+	},
+	{
+		ProjectName: "kube-logging/logging-operator",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/crds/logging-extensions.banzaicloud.io_eventtailers.yaml",
+			"https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/crds/logging-extensions.banzaicloud.io_hosttailers.yaml",
+			"https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/crds/logging.banzaicloud.io_clusterflows.yaml",
+			"https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/crds/logging.banzaicloud.io_clusteroutputs.yaml",
+			"https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/crds/logging.banzaicloud.io_flows.yaml",
+			"https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/crds/logging.banzaicloud.io_fluentbitagents.yaml",
+			"https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/crds/logging.banzaicloud.io_loggings.yaml",
+			"https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/crds/logging.banzaicloud.io_nodeagents.yaml",
+			"https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/crds/logging.banzaicloud.io_outputs.yaml",
+			"https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/crds/logging.banzaicloud.io_syslogngclusterflows.yaml",
+			"https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/crds/logging.banzaicloud.io_syslogngclusteroutputs.yaml",
+			"https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/crds/logging.banzaicloud.io_syslogngflows.yaml",
+			"https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/crds/logging.banzaicloud.io_syslogngoutputs.yaml",
 		},
 	},
 	{
@@ -870,6 +950,77 @@ var CRDv1Sources = []UpstreamSource{
 		},
 	},
 	{
+		ProjectName: "kubeshop/testkube-operator",
+		License:     mit,
+		URLs: []string{
+			"https://github.com/kubeshop/testkube-operator/blob/develop/config/crd/bases/executor.testkube.io_executors.yaml",
+			"https://github.com/kubeshop/testkube-operator/blob/develop/config/crd/bases/executor.testkube.io_webhooks.yaml",
+			"https://github.com/kubeshop/testkube-operator/blob/develop/config/crd/bases/tests.testkube.io_scripts.yaml",
+			"https://github.com/kubeshop/testkube-operator/blob/develop/config/crd/bases/tests.testkube.io_testexecutions.yaml",
+			"https://github.com/kubeshop/testkube-operator/blob/develop/config/crd/bases/tests.testkube.io_tests.yaml",
+			"https://github.com/kubeshop/testkube-operator/blob/develop/config/crd/bases/tests.testkube.io_testsources.yaml",
+			"https://github.com/kubeshop/testkube-operator/blob/develop/config/crd/bases/tests.testkube.io_testsuiteexecutions.yaml",
+			"https://github.com/kubeshop/testkube-operator/blob/develop/config/crd/bases/tests.testkube.io_testsuites.yaml",
+			"https://github.com/kubeshop/testkube-operator/blob/develop/config/crd/bases/tests.testkube.io_testtriggers.yaml",
+		},
+	},
+	{
+		ProjectName: "kubevious/workload-operator",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubevious/workload-operator/blob/main/crds/workload-profile.yaml",
+			"https://github.com/kubevious/workload-operator/blob/main/crds/workload.yaml",
+		},
+	},
+	{
+		ProjectName: "kumahq/kuma",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_circuitbreakers.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_containerpatches.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_dataplaneinsights.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_dataplanes.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_externalservices.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_faultinjections.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_healthchecks.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshaccesslogs.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshcircuitbreakers.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshes.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshfaultinjections.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshgatewayconfigs.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshgatewayinstances.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshgatewayroutes.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshgateways.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshhealthchecks.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshhttproutes.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshinsights.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshloadbalancingstrategies.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshproxypatches.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshratelimits.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshretries.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshtcproutes.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshtimeouts.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshtraces.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_meshtrafficpermissions.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_proxytemplates.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_ratelimits.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_retries.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_serviceinsights.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_timeouts.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_trafficlogs.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_trafficpermissions.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_trafficroutes.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_traffictraces.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_virtualoutbounds.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_zoneegresses.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_zoneegressinsights.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_zoneingresses.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_zoneingressinsights.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_zoneinsights.yaml",
+			"https://github.com/kumahq/kuma/blob/master/deployments/charts/kuma/crds/kuma.io_zones.yaml",
+		},
+	},
+	{
 		ProjectName: "kyverno/kyverno",
 		License:     apacheV2,
 		URLs: []string{
@@ -885,6 +1036,22 @@ var CRDv1Sources = []UpstreamSource{
 			"https://github.com/kyverno/kyverno/blob/main/config/crds/kyverno.io_updaterequests.yaml",
 			"https://github.com/kyverno/kyverno/blob/main/config/crds/wgpolicyk8s.io_clusterpolicyreports.yaml",
 			"https://github.com/kyverno/kyverno/blob/main/config/crds/wgpolicyk8s.io_policyreports.yaml",
+		},
+	},
+	{
+		ProjectName: "l7mp/stunner",
+		License:     mit,
+		URLs: []string{
+			"https://github.com/l7mp/stunner/blob/main/deploy/manifests/static/stunner-crd.yaml",
+		},
+	},
+	{
+		ProjectName: "Lerentis/bitwarden-crd-operator",
+		License:     mit,
+		URLs: []string{
+			"https://github.com/Lerentis/bitwarden-crd-operator/blob/main/charts/bitwarden-crd-operator/crds/bitwarden-secrets.yaml",
+			"https://github.com/Lerentis/bitwarden-crd-operator/blob/main/charts/bitwarden-crd-operator/crds/bitwarden-templates.yaml",
+			"https://github.com/Lerentis/bitwarden-crd-operator/blob/main/charts/bitwarden-crd-operator/crds/registry-credentials.yaml",
 		},
 	},
 	{
@@ -918,10 +1085,31 @@ var CRDv1Sources = []UpstreamSource{
 		},
 	},
 	{
+		ProjectName: "lukaszraczylo/jobs-manager-operator",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/lukaszraczylo/jobs-manager-operator/blob/main/config/crd/bases/jobsmanager.raczylo.com_managedjobs.yaml",
+		},
+	},
+	{
 		ProjectName: "m88i/nexus-operator",
 		License:     apacheV2,
 		URLs: []string{
 			"https://github.com/m88i/nexus-operator/blob/main/config/crd/bases/apps.m88i.io_nexus.yaml",
+		},
+	},
+	{
+		ProjectName: "mariadb-operator/mariadb-operator",
+		License:     mit,
+		URLs: []string{
+			"https://github.com/mariadb-operator/mariadb-operator/blob/main/config/crd/bases/mariadb.mmontes.io_backups.yaml",
+			"https://github.com/mariadb-operator/mariadb-operator/blob/main/config/crd/bases/mariadb.mmontes.io_connections.yaml",
+			"https://github.com/mariadb-operator/mariadb-operator/blob/main/config/crd/bases/mariadb.mmontes.io_databases.yaml",
+			"https://github.com/mariadb-operator/mariadb-operator/blob/main/config/crd/bases/mariadb.mmontes.io_grants.yaml",
+			"https://github.com/mariadb-operator/mariadb-operator/blob/main/config/crd/bases/mariadb.mmontes.io_mariadbs.yaml",
+			"https://github.com/mariadb-operator/mariadb-operator/blob/main/config/crd/bases/mariadb.mmontes.io_restores.yaml",
+			"https://github.com/mariadb-operator/mariadb-operator/blob/main/config/crd/bases/mariadb.mmontes.io_sqljobs.yaml",
+			"https://github.com/mariadb-operator/mariadb-operator/blob/main/config/crd/bases/mariadb.mmontes.io_users.yaml",
 		},
 	},
 	{
@@ -931,6 +1119,25 @@ var CRDv1Sources = []UpstreamSource{
 			"https://github.com/mattermost/mattermost-operator/blob/master/config/crd/bases/installation.mattermost.com_mattermosts.yaml",
 			"https://github.com/mattermost/mattermost-operator/blob/master/config/crd/bases/mattermost.com_clusterinstallations.yaml",
 			"https://github.com/mattermost/mattermost-operator/blob/master/config/crd/bases/mattermost.com_mattermostrestoredbs.yaml",
+		},
+	},
+	{
+		ProjectName: "metacontroller/metacontroller",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/metacontroller/metacontroller/blob/master/manifests/production/metacontroller-crds-v1.yaml",
+		},
+	},
+	{
+		ProjectName: "metal3-io/baremetal-operator",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/metal3-io/baremetal-operator/blob/main/config/crd/bases/metal3.io_baremetalhosts.yaml",
+			"https://github.com/metal3-io/baremetal-operator/blob/main/config/crd/bases/metal3.io_bmceventsubscriptions.yaml",
+			"https://github.com/metal3-io/baremetal-operator/blob/main/config/crd/bases/metal3.io_firmwareschemas.yaml",
+			"https://github.com/metal3-io/baremetal-operator/blob/main/config/crd/bases/metal3.io_hardwaredata.yaml",
+			"https://github.com/metal3-io/baremetal-operator/blob/main/config/crd/bases/metal3.io_hostfirmwaresettings.yaml",
+			"https://github.com/metal3-io/baremetal-operator/blob/main/config/crd/bases/metal3.io_preprovisioningimages.yaml",
 		},
 	},
 	{
@@ -945,6 +1152,22 @@ var CRDv1Sources = []UpstreamSource{
 		License:     apacheV2,
 		URLs: []string{
 			"https://github.com/minio/operator/blob/master/resources/base/crds/minio.min.io_tenants.yaml",
+		},
+	},
+	{
+		ProjectName: "mittwald/kubernetes-secret-generator",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/mittwald/kubernetes-secret-generator/blob/master/deploy/crds/secretgenerator.mittwald.de_basicauths_crd.yaml",
+			"https://github.com/mittwald/kubernetes-secret-generator/blob/master/deploy/crds/secretgenerator.mittwald.de_sshkeypairs_crd.yaml",
+			"https://github.com/mittwald/kubernetes-secret-generator/blob/master/deploy/crds/secretgenerator.mittwald.de_stringsecrets_crd.yaml",
+		},
+	},
+	{
+		ProjectName: "nginxinc/nginx-kubernetes-gateway",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/nginxinc/nginx-kubernetes-gateway/blob/main/deploy/manifests/crds/gateway.nginx.org_nginxgateways.yaml",
 		},
 	},
 	{
@@ -1023,6 +1246,15 @@ var CRDv1Sources = []UpstreamSource{
 		},
 	},
 	{
+		ProjectName: "otterize/helm-charts",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/otterize/helm-charts/blob/main/intents-operator/crds/clientintents-customresourcedefinition.yaml",
+			"https://github.com/otterize/helm-charts/blob/main/intents-operator/crds/kafkaserverconfigs-customresourcedefinition.yaml",
+			"https://github.com/otterize/helm-charts/blob/main/intents-operator/crds/protectedservices-customresourcedefinition.yaml",
+		},
+	},
+	{
 		ProjectName: "projectcalico/calico",
 		License:     apacheV2,
 		URLs: []string{
@@ -1061,6 +1293,15 @@ var CRDv1Sources = []UpstreamSource{
 		License:     apacheV2,
 		URLs: []string{
 			"https://github.com/quay/quay-operator/blob/master/config/crd/bases/quay.redhat.com_quayregistries.yaml",
+		},
+	},
+	{
+		ProjectName: "redhat-cop/namespace-configuration-operator",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/redhat-cop/namespace-configuration-operator/blob/master/config/crd/bases/redhatcop.redhat.io_groupconfigs.yaml",
+			"https://github.com/redhat-cop/namespace-configuration-operator/blob/master/config/crd/bases/redhatcop.redhat.io_namespaceconfigs.yaml",
+			"https://github.com/redhat-cop/namespace-configuration-operator/blob/master/config/crd/bases/redhatcop.redhat.io_userconfigs.yaml",
 		},
 	},
 	{
@@ -1128,6 +1369,14 @@ var CRDv1Sources = []UpstreamSource{
 		License:     apacheV2,
 		URLs: []string{
 			"https://github.com/sigstore/sigstore-helm-operator/blob/main/config/crd/bases/helm.sigstore.dev_rekors.yaml",
+		},
+	},
+	{
+		ProjectName: "smartxworks/virtink",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/smartxworks/virtink/blob/main/deploy/crd/virt.virtink.smartx.com_virtualmachinemigrations.yaml",
+			"https://github.com/smartxworks/virtink/blob/main/deploy/crd/virt.virtink.smartx.com_virtualmachines.yaml",
 		},
 	},
 	{

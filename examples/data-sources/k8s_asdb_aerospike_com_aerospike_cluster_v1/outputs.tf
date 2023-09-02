@@ -1,0 +1,3 @@
+output "data" {
+  value = k8s_asdb_aerospike_com_aerospike_cluster_v1.example
+}

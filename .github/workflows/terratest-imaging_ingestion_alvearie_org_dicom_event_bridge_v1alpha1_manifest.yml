@@ -1,0 +1,43 @@
+# SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+# SPDX-License-Identifier: 0BSD
+
+name: ImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Manifest
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - examples/data-sources/k8s_imaging_ingestion_alvearie_org_dicom_event_bridge_v1alpha1_manifest/**
+      - internal/provider/imaging_ingestion_alvearie_org_v1alpha1/imaging_ingestion_alvearie_org_dicom_event_bridge_v1alpha1_manifest.go
+      - terratest/imaging_ingestion_alvearie_org_v1alpha1/imaging_ingestion_alvearie_org_dicom_event_bridge_v1alpha1_manifest_test.go
+jobs:
+  terratest:
+    name: Test with Terraform ${{ matrix.terraform }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        terraform:
+          - 1.4.*
+          - 1.5.*
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v3
+      - id: setup_go
+        name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version-file: go.mod
+          cache: true
+      - id: setup_terraform
+        name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ${{ matrix.terraform }}
+          terraform_wrapper: false
+      - id: install
+        name: Install Provider
+        run: make install
+      - id: terratest
+        name: Run Terratest Tests
+        run: go test -v -timeout=120s -count=1 -tags testing -run TestImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Manifest ./terratest/imaging_ingestion_alvearie_org_v1alpha1
