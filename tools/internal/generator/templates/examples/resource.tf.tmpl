@@ -1,8 +1,6 @@
 resource "{{ .FullResourceTypeName }}" "example" {
   metadata = {
     name = "some-name"
-    {{ if .Namespaced -}}
-    namespace = "some-namespace"
-    {{ end }}
+    {{ if .Namespaced -}}namespace = "some-namespace"{{- end }}
   }
 }
