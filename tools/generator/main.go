@@ -53,12 +53,12 @@ func main() {
 	}
 	templatesDir := filepath.Join(cwd, "..", "/tools", "/internal", "/generator", "/templates")
 
-	//generator.GenerateResources(filepath.Join(templatesDir, "/go"), fmt.Sprintf("%s/internal/provider", *providerDir), data)
-	//generator.GenerateProvider(filepath.Join(templatesDir, "/go"), fmt.Sprintf("%s/internal/provider", *providerDir), data)
-	//generator.GenerateTests(filepath.Join(templatesDir, "/go"), fmt.Sprintf("%s/internal/provider", *providerDir), data)
-	//generator.GenerateExamples(filepath.Join(templatesDir, "/examples"), fmt.Sprintf("%s/examples", *providerDir), data)
-	//generator.GenerateTemplates(filepath.Join(templatesDir, "/templates"), fmt.Sprintf("%s/templates", *providerDir), data)
-	//generator.GenerateTerratestTests(filepath.Join(templatesDir, "/terratest"), fmt.Sprintf("%s/terratest", *providerDir), data)
-	//generator.GenerateGitHubWorkflows(filepath.Join(templatesDir, "/github"), fmt.Sprintf("%s/.github/workflows", *providerDir), data)
+	generator.GenerateResources(filepath.Join(templatesDir, "/go"), fmt.Sprintf("%s/internal/provider", *providerDir), data)
+	generator.GenerateProvider(filepath.Join(templatesDir, "/go"), fmt.Sprintf("%s/internal/provider", *providerDir), data)
+	generator.GenerateTests(filepath.Join(templatesDir, "/go"), fmt.Sprintf("%s/internal/provider", *providerDir), data)
+	generator.GenerateExamples(filepath.Join(templatesDir, "/examples"), fmt.Sprintf("%s/examples", *providerDir), data)
+	generator.GenerateTemplates(filepath.Join(templatesDir, "/templates"), fmt.Sprintf("%s/templates", *providerDir), data)
+	generator.GenerateTerratestTests(filepath.Join(templatesDir, "/terratest"), fmt.Sprintf("%s/terratest", *providerDir), data)
+	generator.GenerateGitHubWorkflows(filepath.Join(templatesDir, "/github"), fmt.Sprintf("%s/.github/workflows", *providerDir), data)
 	generator.GenerateReuseFiles(filepath.Join(templatesDir, "/reuse"), fmt.Sprintf("%s/.reuse", *providerDir), fetcher.OpenAPIv2Sources, fetcher.CRDv1Sources)
 }
