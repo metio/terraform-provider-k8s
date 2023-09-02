@@ -124,16 +124,18 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 	}
 	if translator.isObjectWithAdditionalObjectProperties() {
 		if translator.additionalPropertiesHaveAdditionalStringProperties() {
-			attributeType = "types.MapType{ElemType: types.MapType{ElemType: types.StringType}}"
-			elementType = ""
+			//attributeType = "types.MapType{ElemType: types.MapType{ElemType: types.StringType}}"
+			attributeType = "schema.MapAttribute"
+			elementType = "types.MapType{ElemType: types.StringType}"
 			valueType = "types.Map"
 			goType = "map[string]map[string]string"
 			return
 		}
 		if translator.additionalPropertiesHaveAdditionalArrayProperties() {
 			if translator.additionalPropertiesHaveAdditionalPropertiesWithStringItems() {
-				attributeType = "types.MapType{ElemType: types.MapType{ElemType: types.ListType{ElemType: types.StringType}}}"
-				elementType = ""
+				//attributeType = "types.MapType{ElemType: types.MapType{ElemType: types.ListType{ElemType: types.StringType}}}"
+				attributeType = "schema.MapAttribute"
+				elementType = "types.MapType{ElemType: types.ListType{ElemType: types.StringType}}"
 				valueType = "types.Map"
 				goType = "map[string]map[string][]string"
 				return
@@ -169,15 +171,17 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 	if translator.isArray() {
 		if translator.isArrayWithObjectItems() {
 			if translator.itemsHaveUnknownFields() {
-				attributeType = "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}"
-				elementType = ""
+				//attributeType = "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}"
+				attributeType = "schema.ListAttribute"
+				elementType = "types.MapType{ElemType: types.StringType}"
 				valueType = "types.List"
 				goType = "[]map[string]string"
 				return
 			}
 			if translator.itemsHaveAdditionalStringProperties() {
-				attributeType = "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}"
-				elementType = ""
+				//attributeType = "types.ListType{ElemType: types.MapType{ElemType: types.StringType}}"
+				attributeType = "schema.ListAttribute"
+				elementType = "types.MapType{ElemType: types.StringType}"
 				valueType = "types.List"
 				goType = "[]map[string]string"
 				return
