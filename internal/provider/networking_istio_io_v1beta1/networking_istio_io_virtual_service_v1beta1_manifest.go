@@ -575,7 +575,7 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 													Description:         "Percentage of requests to be aborted with the error code provided.",
 													MarkdownDescription: "Percentage of requests to be aborted with the error code provided.",
 													Attributes: map[string]schema.Attribute{
-														"value": types.Float64Type{
+														"value": schema.Float64Attribute{
 															Description:         "",
 															MarkdownDescription: "",
 															Required:            false,
@@ -625,7 +625,7 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 													Description:         "Percentage of requests on which the delay will be injected.",
 													MarkdownDescription: "Percentage of requests on which the delay will be injected.",
 													Attributes: map[string]schema.Attribute{
-														"value": types.Float64Type{
+														"value": schema.Float64Attribute{
 															Description:         "",
 															MarkdownDescription: "",
 															Required:            false,
@@ -1083,7 +1083,7 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 									Description:         "Percentage of the traffic to be mirrored by the 'mirror' field.",
 									MarkdownDescription: "Percentage of the traffic to be mirrored by the 'mirror' field.",
 									Attributes: map[string]schema.Attribute{
-										"value": types.Float64Type{
+										"value": schema.Float64Attribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,
@@ -1147,7 +1147,7 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 												Description:         "Percentage of the traffic to be mirrored by the 'destination' field.",
 												MarkdownDescription: "Percentage of the traffic to be mirrored by the 'destination' field.",
 												Attributes: map[string]schema.Attribute{
-													"value": types.Float64Type{
+													"value": schema.Float64Attribute{
 														Description:         "",
 														MarkdownDescription: "",
 														Required:            false,

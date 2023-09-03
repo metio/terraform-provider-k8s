@@ -105,7 +105,7 @@ type GatewaySoloIoVirtualHostOptionV1DataSourceData struct {
 						MaskChar *string `tfsdk:"mask_char" json:"maskChar,omitempty"`
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Percent  *struct {
-							Value *big.Float `tfsdk:"value" json:"value,omitempty"`
+							Value *float64 `tfsdk:"value" json:"value,omitempty"`
 						} `tfsdk:"percent" json:"percent,omitempty"`
 						Regex        *[]string `tfsdk:"regex" json:"regex,omitempty"`
 						RegexActions *[]struct {
@@ -118,7 +118,7 @@ type GatewaySoloIoVirtualHostOptionV1DataSourceData struct {
 						MaskChar  *string `tfsdk:"mask_char" json:"maskChar,omitempty"`
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Percent   *struct {
-							Value *big.Float `tfsdk:"value" json:"value,omitempty"`
+							Value *float64 `tfsdk:"value" json:"value,omitempty"`
 						} `tfsdk:"percent" json:"percent,omitempty"`
 					} `tfsdk:"key_value_action" json:"keyValueAction,omitempty"`
 					Shadow *bool `tfsdk:"shadow" json:"shadow,omitempty"`
@@ -1504,7 +1504,7 @@ func (r *GatewaySoloIoVirtualHostOptionV1DataSource) Schema(_ context.Context, _
 															Description:         "",
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
-																"value": types.NumberType{
+																"value": schema.Float64Attribute{
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Required:            false,
@@ -1590,7 +1590,7 @@ func (r *GatewaySoloIoVirtualHostOptionV1DataSource) Schema(_ context.Context, _
 															Description:         "",
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
-																"value": types.NumberType{
+																"value": schema.Float64Attribute{
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Required:            false,

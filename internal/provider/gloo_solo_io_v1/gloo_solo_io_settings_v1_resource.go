@@ -352,8 +352,8 @@ type GlooSoloIoSettingsV1ResourceData struct {
 		} `tfsdk:"knative" json:"knative,omitempty"`
 		Kubernetes *struct {
 			RateLimits *struct {
-				QPS   *big.Float `tfsdk:"qps" json:"QPS,omitempty"`
-				Burst *int64     `tfsdk:"burst" json:"burst,omitempty"`
+				QPS   *float64 `tfsdk:"qps" json:"QPS,omitempty"`
+				Burst *int64   `tfsdk:"burst" json:"burst,omitempty"`
 			} `tfsdk:"rate_limits" json:"rateLimits,omitempty"`
 		} `tfsdk:"kubernetes" json:"kubernetes,omitempty"`
 		KubernetesArtifactSource *map[string]string `tfsdk:"kubernetes_artifact_source" json:"kubernetesArtifactSource,omitempty"`
@@ -2605,7 +2605,7 @@ func (r *GlooSoloIoSettingsV1Resource) Schema(_ context.Context, _ resource.Sche
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
-									"qps": types.NumberType{
+									"qps": schema.Float64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

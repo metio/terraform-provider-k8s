@@ -8,10 +8,11 @@ package litmuschaos_io_v1alpha1
 import (
 	"context"
 	"fmt"
-	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
@@ -3595,8 +3596,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
-																		Validators: []UNKNOWN{
-																			schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("post")),
+																		Validators: []validator.Object{
+																			objectvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("post")),
 																		},
 																	},
 
@@ -3656,8 +3657,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
-																		Validators: []UNKNOWN{
-																			schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("get")),
+																		Validators: []validator.Object{
+																			objectvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("get")),
 																		},
 																	},
 																},

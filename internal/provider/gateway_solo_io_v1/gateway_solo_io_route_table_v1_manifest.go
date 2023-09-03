@@ -150,7 +150,7 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 							MaskChar *string `tfsdk:"mask_char" json:"maskChar,omitempty"`
 							Name     *string `tfsdk:"name" json:"name,omitempty"`
 							Percent  *struct {
-								Value *big.Float `tfsdk:"value" json:"value,omitempty"`
+								Value *float64 `tfsdk:"value" json:"value,omitempty"`
 							} `tfsdk:"percent" json:"percent,omitempty"`
 							Regex        *[]string `tfsdk:"regex" json:"regex,omitempty"`
 							RegexActions *[]struct {
@@ -163,7 +163,7 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 							MaskChar  *string `tfsdk:"mask_char" json:"maskChar,omitempty"`
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Percent   *struct {
-								Value *big.Float `tfsdk:"value" json:"value,omitempty"`
+								Value *float64 `tfsdk:"value" json:"value,omitempty"`
 							} `tfsdk:"percent" json:"percent,omitempty"`
 						} `tfsdk:"key_value_action" json:"keyValueAction,omitempty"`
 						Shadow *bool `tfsdk:"shadow" json:"shadow,omitempty"`
@@ -222,12 +222,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 				} `tfsdk:"extensions" json:"extensions,omitempty"`
 				Faults *struct {
 					Abort *struct {
-						HttpStatus *int64     `tfsdk:"http_status" json:"httpStatus,omitempty"`
-						Percentage *big.Float `tfsdk:"percentage" json:"percentage,omitempty"`
+						HttpStatus *int64   `tfsdk:"http_status" json:"httpStatus,omitempty"`
+						Percentage *float64 `tfsdk:"percentage" json:"percentage,omitempty"`
 					} `tfsdk:"abort" json:"abort,omitempty"`
 					Delay *struct {
-						FixedDelay *string    `tfsdk:"fixed_delay" json:"fixedDelay,omitempty"`
-						Percentage *big.Float `tfsdk:"percentage" json:"percentage,omitempty"`
+						FixedDelay *string  `tfsdk:"fixed_delay" json:"fixedDelay,omitempty"`
+						Percentage *float64 `tfsdk:"percentage" json:"percentage,omitempty"`
 					} `tfsdk:"delay" json:"delay,omitempty"`
 				} `tfsdk:"faults" json:"faults,omitempty"`
 				HeaderManipulation *struct {
@@ -611,7 +611,7 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 					RetryOn *string `tfsdk:"retry_on" json:"retryOn,omitempty"`
 				} `tfsdk:"retries" json:"retries,omitempty"`
 				Shadowing *struct {
-					Percentage *big.Float `tfsdk:"percentage" json:"percentage,omitempty"`
+					Percentage *float64 `tfsdk:"percentage" json:"percentage,omitempty"`
 					Upstream   *struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -963,9 +963,9 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 					Propagate        *bool   `tfsdk:"propagate" json:"propagate,omitempty"`
 					RouteDescriptor  *string `tfsdk:"route_descriptor" json:"routeDescriptor,omitempty"`
 					TracePercentages *struct {
-						ClientSamplePercentage  *big.Float `tfsdk:"client_sample_percentage" json:"clientSamplePercentage,omitempty"`
-						OverallSamplePercentage *big.Float `tfsdk:"overall_sample_percentage" json:"overallSamplePercentage,omitempty"`
-						RandomSamplePercentage  *big.Float `tfsdk:"random_sample_percentage" json:"randomSamplePercentage,omitempty"`
+						ClientSamplePercentage  *float64 `tfsdk:"client_sample_percentage" json:"clientSamplePercentage,omitempty"`
+						OverallSamplePercentage *float64 `tfsdk:"overall_sample_percentage" json:"overallSamplePercentage,omitempty"`
+						RandomSamplePercentage  *float64 `tfsdk:"random_sample_percentage" json:"randomSamplePercentage,omitempty"`
 					} `tfsdk:"trace_percentages" json:"tracePercentages,omitempty"`
 				} `tfsdk:"tracing" json:"tracing,omitempty"`
 				Transformations *struct {
@@ -2601,7 +2601,7 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
-																			"value": types.NumberType{
+																			"value": schema.Float64Attribute{
 																				Description:         "",
 																				MarkdownDescription: "",
 																				Required:            false,
@@ -2687,7 +2687,7 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
-																			"value": types.NumberType{
+																			"value": schema.Float64Attribute{
 																				Description:         "",
 																				MarkdownDescription: "",
 																				Required:            false,
@@ -3075,7 +3075,7 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 															Computed:            false,
 														},
 
-														"percentage": types.NumberType{
+														"percentage": schema.Float64Attribute{
 															Description:         "",
 															MarkdownDescription: "",
 															Required:            false,
@@ -3100,7 +3100,7 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 															Computed:            false,
 														},
 
-														"percentage": types.NumberType{
+														"percentage": schema.Float64Attribute{
 															Description:         "",
 															MarkdownDescription: "",
 															Required:            false,
@@ -5576,7 +5576,7 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 											Description:         "",
 											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
-												"percentage": types.NumberType{
+												"percentage": schema.Float64Attribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,
@@ -7879,7 +7879,7 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 													Description:         "",
 													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
-														"client_sample_percentage": types.NumberType{
+														"client_sample_percentage": schema.Float64Attribute{
 															Description:         "",
 															MarkdownDescription: "",
 															Required:            false,
@@ -7887,7 +7887,7 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 															Computed:            false,
 														},
 
-														"overall_sample_percentage": types.NumberType{
+														"overall_sample_percentage": schema.Float64Attribute{
 															Description:         "",
 															MarkdownDescription: "",
 															Required:            false,
@@ -7895,7 +7895,7 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 															Computed:            false,
 														},
 
-														"random_sample_percentage": types.NumberType{
+														"random_sample_percentage": schema.Float64Attribute{
 															Description:         "",
 															MarkdownDescription: "",
 															Required:            false,

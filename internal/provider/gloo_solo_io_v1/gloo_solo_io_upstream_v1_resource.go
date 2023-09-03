@@ -519,13 +519,13 @@ type GlooSoloIoUpstreamV1ResourceData struct {
 			} `tfsdk:"subset_spec" json:"subsetSpec,omitempty"`
 		} `tfsdk:"kube" json:"kube,omitempty"`
 		LoadBalancerConfig *struct {
-			HealthyPanicThreshold *big.Float `tfsdk:"healthy_panic_threshold" json:"healthyPanicThreshold,omitempty"`
+			HealthyPanicThreshold *float64 `tfsdk:"healthy_panic_threshold" json:"healthyPanicThreshold,omitempty"`
 			LeastRequest          *struct {
 				ChoiceCount     *int64 `tfsdk:"choice_count" json:"choiceCount,omitempty"`
 				SlowStartConfig *struct {
-					Aggression       *big.Float `tfsdk:"aggression" json:"aggression,omitempty"`
-					MinWeightPercent *big.Float `tfsdk:"min_weight_percent" json:"minWeightPercent,omitempty"`
-					SlowStartWindow  *string    `tfsdk:"slow_start_window" json:"slowStartWindow,omitempty"`
+					Aggression       *float64 `tfsdk:"aggression" json:"aggression,omitempty"`
+					MinWeightPercent *float64 `tfsdk:"min_weight_percent" json:"minWeightPercent,omitempty"`
+					SlowStartWindow  *string  `tfsdk:"slow_start_window" json:"slowStartWindow,omitempty"`
 				} `tfsdk:"slow_start_config" json:"slowStartConfig,omitempty"`
 			} `tfsdk:"least_request" json:"leastRequest,omitempty"`
 			LocalityWeightedLbConfig *map[string]string `tfsdk:"locality_weighted_lb_config" json:"localityWeightedLbConfig,omitempty"`
@@ -539,9 +539,9 @@ type GlooSoloIoUpstreamV1ResourceData struct {
 			} `tfsdk:"ring_hash" json:"ringHash,omitempty"`
 			RoundRobin *struct {
 				SlowStartConfig *struct {
-					Aggression       *big.Float `tfsdk:"aggression" json:"aggression,omitempty"`
-					MinWeightPercent *big.Float `tfsdk:"min_weight_percent" json:"minWeightPercent,omitempty"`
-					SlowStartWindow  *string    `tfsdk:"slow_start_window" json:"slowStartWindow,omitempty"`
+					Aggression       *float64 `tfsdk:"aggression" json:"aggression,omitempty"`
+					MinWeightPercent *float64 `tfsdk:"min_weight_percent" json:"minWeightPercent,omitempty"`
+					SlowStartWindow  *string  `tfsdk:"slow_start_window" json:"slowStartWindow,omitempty"`
 				} `tfsdk:"slow_start_config" json:"slowStartConfig,omitempty"`
 			} `tfsdk:"round_robin" json:"roundRobin,omitempty"`
 			UpdateMergeWindow *string `tfsdk:"update_merge_window" json:"updateMergeWindow,omitempty"`
@@ -3982,7 +3982,7 @@ func (r *GlooSoloIoUpstreamV1Resource) Schema(_ context.Context, _ resource.Sche
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
-							"healthy_panic_threshold": types.NumberType{
+							"healthy_panic_threshold": schema.Float64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -4006,7 +4006,7 @@ func (r *GlooSoloIoUpstreamV1Resource) Schema(_ context.Context, _ resource.Sche
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
-											"aggression": types.NumberType{
+											"aggression": schema.Float64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -4014,7 +4014,7 @@ func (r *GlooSoloIoUpstreamV1Resource) Schema(_ context.Context, _ resource.Sche
 												Computed:            false,
 											},
 
-											"min_weight_percent": types.NumberType{
+											"min_weight_percent": schema.Float64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -4109,7 +4109,7 @@ func (r *GlooSoloIoUpstreamV1Resource) Schema(_ context.Context, _ resource.Sche
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
-											"aggression": types.NumberType{
+											"aggression": schema.Float64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -4117,7 +4117,7 @@ func (r *GlooSoloIoUpstreamV1Resource) Schema(_ context.Context, _ resource.Sche
 												Computed:            false,
 											},
 
-											"min_weight_percent": types.NumberType{
+											"min_weight_percent": schema.Float64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,

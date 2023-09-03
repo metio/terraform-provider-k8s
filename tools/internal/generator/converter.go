@@ -102,11 +102,15 @@ type TemplateData struct {
 }
 
 type AdditionalImports struct {
-	Int64Validator   bool
 	Float64Validator bool
+	Int64Validator   bool
+	ListValidator    bool
+	MapValidator     bool
+	ObjectValidator  bool
 	StringValidator  bool
-	Regex            bool
-	SchemaValidator  bool
+	Regexp           bool
+	Path             bool
+	MathBig          bool
 }
 
 type Property struct {
@@ -124,6 +128,7 @@ type Property struct {
 	Computed               bool
 	Properties             []*Property
 	ValidatorsType         string
+	ValidatorsPackage      string
 	Validators             []string
 }
 

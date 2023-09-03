@@ -79,12 +79,12 @@ type SagemakerServicesK8SAwsEndpointConfigV1Alpha1ManifestData struct {
 				DestinationS3URI *string `tfsdk:"destination_s3_uri" json:"destinationS3URI,omitempty"`
 				KmsKeyID         *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
 			} `tfsdk:"core_dump_config" json:"coreDumpConfig,omitempty"`
-			EnableSSMAccess                   *bool      `tfsdk:"enable_ssm_access" json:"enableSSMAccess,omitempty"`
-			InitialInstanceCount              *int64     `tfsdk:"initial_instance_count" json:"initialInstanceCount,omitempty"`
-			InitialVariantWeight              *big.Float `tfsdk:"initial_variant_weight" json:"initialVariantWeight,omitempty"`
-			InstanceType                      *string    `tfsdk:"instance_type" json:"instanceType,omitempty"`
-			ModelDataDownloadTimeoutInSeconds *int64     `tfsdk:"model_data_download_timeout_in_seconds" json:"modelDataDownloadTimeoutInSeconds,omitempty"`
-			ModelName                         *string    `tfsdk:"model_name" json:"modelName,omitempty"`
+			EnableSSMAccess                   *bool    `tfsdk:"enable_ssm_access" json:"enableSSMAccess,omitempty"`
+			InitialInstanceCount              *int64   `tfsdk:"initial_instance_count" json:"initialInstanceCount,omitempty"`
+			InitialVariantWeight              *float64 `tfsdk:"initial_variant_weight" json:"initialVariantWeight,omitempty"`
+			InstanceType                      *string  `tfsdk:"instance_type" json:"instanceType,omitempty"`
+			ModelDataDownloadTimeoutInSeconds *int64   `tfsdk:"model_data_download_timeout_in_seconds" json:"modelDataDownloadTimeoutInSeconds,omitempty"`
+			ModelName                         *string  `tfsdk:"model_name" json:"modelName,omitempty"`
 			ServerlessConfig                  *struct {
 				MaxConcurrency *int64 `tfsdk:"max_concurrency" json:"maxConcurrency,omitempty"`
 				MemorySizeInMB *int64 `tfsdk:"memory_size_in_mb" json:"memorySizeInMB,omitempty"`
@@ -425,7 +425,7 @@ func (r *SagemakerServicesK8SAwsEndpointConfigV1Alpha1Manifest) Schema(_ context
 									Computed:            false,
 								},
 
-								"initial_variant_weight": types.NumberType{
+								"initial_variant_weight": schema.Float64Attribute{
 									Description:         "",
 									MarkdownDescription: "",
 									Required:            false,

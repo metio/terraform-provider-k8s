@@ -10,7 +10,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
-	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/mapvalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -619,8 +621,8 @@ func (r *ApicodegenApimaticIoAPIMaticV1Beta1Resource) Schema(_ context.Context, 
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_name"), path.MatchRelative().AtParent().AtName("node_selector"), path.MatchRelative().AtParent().AtName("pod_affinity"), path.MatchRelative().AtParent().AtName("tolerations")),
+								Validators: []validator.Object{
+									objectvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_name"), path.MatchRelative().AtParent().AtName("node_selector"), path.MatchRelative().AtParent().AtName("pod_affinity"), path.MatchRelative().AtParent().AtName("tolerations")),
 								},
 							},
 
@@ -632,7 +634,7 @@ func (r *ApicodegenApimaticIoAPIMaticV1Beta1Resource) Schema(_ context.Context, 
 								Computed:            false,
 								Validators: []validator.String{
 									stringvalidator.LengthAtLeast(1),
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity"), path.MatchRelative().AtParent().AtName("node_selector"), path.MatchRelative().AtParent().AtName("pod_affinity"), path.MatchRelative().AtParent().AtName("tolerations")),
+									stringvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity"), path.MatchRelative().AtParent().AtName("node_selector"), path.MatchRelative().AtParent().AtName("pod_affinity"), path.MatchRelative().AtParent().AtName("tolerations")),
 								},
 							},
 
@@ -644,7 +646,7 @@ func (r *ApicodegenApimaticIoAPIMaticV1Beta1Resource) Schema(_ context.Context, 
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.Map{
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity"), path.MatchRelative().AtParent().AtName("node_name"), path.MatchRelative().AtParent().AtName("pod_affinity"), path.MatchRelative().AtParent().AtName("tolerations")),
+									mapvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity"), path.MatchRelative().AtParent().AtName("node_name"), path.MatchRelative().AtParent().AtName("pod_affinity"), path.MatchRelative().AtParent().AtName("tolerations")),
 								},
 							},
 
@@ -944,8 +946,8 @@ func (r *ApicodegenApimaticIoAPIMaticV1Beta1Resource) Schema(_ context.Context, 
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity"), path.MatchRelative().AtParent().AtName("node_name"), path.MatchRelative().AtParent().AtName("node_selector"), path.MatchRelative().AtParent().AtName("tolerations")),
+								Validators: []validator.Object{
+									objectvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity"), path.MatchRelative().AtParent().AtName("node_name"), path.MatchRelative().AtParent().AtName("node_selector"), path.MatchRelative().AtParent().AtName("tolerations")),
 								},
 							},
 
@@ -998,8 +1000,8 @@ func (r *ApicodegenApimaticIoAPIMaticV1Beta1Resource) Schema(_ context.Context, 
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity"), path.MatchRelative().AtParent().AtName("node_name"), path.MatchRelative().AtParent().AtName("node_selector"), path.MatchRelative().AtParent().AtName("pod_affinity")),
+								Validators: []validator.List{
+									listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("node_affinity"), path.MatchRelative().AtParent().AtName("node_name"), path.MatchRelative().AtParent().AtName("node_selector"), path.MatchRelative().AtParent().AtName("pod_affinity")),
 								},
 							},
 						},

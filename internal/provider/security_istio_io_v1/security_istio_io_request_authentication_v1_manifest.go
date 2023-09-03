@@ -55,7 +55,6 @@ type SecurityIstioIoRequestAuthenticationV1ManifestData struct {
 			Issuer               *string   `tfsdk:"issuer" json:"issuer,omitempty"`
 			Jwks                 *string   `tfsdk:"jwks" json:"jwks,omitempty"`
 			JwksUri              *string   `tfsdk:"jwks_uri" json:"jwksUri,omitempty"`
-			Jwks_uri             *string   `tfsdk:"jwks_uri" json:"jwks_uri,omitempty"`
 			OutputClaimToHeaders *[]struct {
 				Claim  *string `tfsdk:"claim" json:"claim,omitempty"`
 				Header *string `tfsdk:"header" json:"header,omitempty"`
@@ -222,14 +221,6 @@ func (r *SecurityIstioIoRequestAuthenticationV1Manifest) Schema(_ context.Contex
 								"jwks": schema.StringAttribute{
 									Description:         "JSON Web Key Set of public keys to validate signature of the JWT.",
 									MarkdownDescription: "JSON Web Key Set of public keys to validate signature of the JWT.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"jwks_uri": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

@@ -167,12 +167,12 @@ type CrdProjectcalicoOrgGlobalNetworkPolicyV1DataSourceData struct {
 				} `tfsdk:"services" json:"services,omitempty"`
 			} `tfsdk:"source" json:"source,omitempty"`
 		} `tfsdk:"ingress" json:"ingress,omitempty"`
-		NamespaceSelector      *string    `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
-		Order                  *big.Float `tfsdk:"order" json:"order,omitempty"`
-		PreDNAT                *bool      `tfsdk:"pre_dnat" json:"preDNAT,omitempty"`
-		Selector               *string    `tfsdk:"selector" json:"selector,omitempty"`
-		ServiceAccountSelector *string    `tfsdk:"service_account_selector" json:"serviceAccountSelector,omitempty"`
-		Types                  *[]string  `tfsdk:"types" json:"types,omitempty"`
+		NamespaceSelector      *string   `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+		Order                  *float64  `tfsdk:"order" json:"order,omitempty"`
+		PreDNAT                *bool     `tfsdk:"pre_dnat" json:"preDNAT,omitempty"`
+		Selector               *string   `tfsdk:"selector" json:"selector,omitempty"`
+		ServiceAccountSelector *string   `tfsdk:"service_account_selector" json:"serviceAccountSelector,omitempty"`
+		Types                  *[]string `tfsdk:"types" json:"types,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -1051,7 +1051,7 @@ func (r *CrdProjectcalicoOrgGlobalNetworkPolicyV1DataSource) Schema(_ context.Co
 						Computed:            true,
 					},
 
-					"order": types.NumberType{
+					"order": schema.Float64Attribute{
 						Description:         "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order.  If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last.  Policies with identical order will be applied in alphanumerical order based on the Policy 'Name'.",
 						MarkdownDescription: "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order.  If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last.  Policies with identical order will be applied in alphanumerical order based on the Policy 'Name'.",
 						Required:            false,
