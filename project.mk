@@ -39,10 +39,10 @@ out/terratests-run-sentinel: out/install-sentinel $(shell find ./terratest -type
 	find ./terratest -type f -name '*_test.go' | xargs --no-run-if-empty --max-args=1 --max-procs=4 go test
 	touch $@
 
-out/tests-sentinel: $(shell find ./internal -type f -name '*.go') $(shell find ./generators -type f -name '*.go')
+out/tests-sentinel: $(shell find ./internal -type f -name '*.go') $(shell find ./tools -type f -name '*.go')
 	mkdir --parents $(@D)
 	gotestsum --format=testname -- -v -cover -timeout=120s -parallel=4 ./internal/...
-	gotestsum --format=testname -- -v -cover -timeout=120s -parallel=4 -tags generators ./generators/...
+	gotestsum --format=testname -- -v -cover -timeout=120s -parallel=4 ./tools/...
 	touch $@
 
 out/coverage.out: $(shell find ./internal -type f -name '*.go')
