@@ -61,9 +61,9 @@ type ApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1DataSourceData str
 			MetricAggregationType  *string `tfsdk:"metric_aggregation_type" json:"metricAggregationType,omitempty"`
 			MinAdjustmentMagnitude *int64  `tfsdk:"min_adjustment_magnitude" json:"minAdjustmentMagnitude,omitempty"`
 			StepAdjustments        *[]struct {
-				MetricIntervalLowerBound *big.Float `tfsdk:"metric_interval_lower_bound" json:"metricIntervalLowerBound,omitempty"`
-				MetricIntervalUpperBound *big.Float `tfsdk:"metric_interval_upper_bound" json:"metricIntervalUpperBound,omitempty"`
-				ScalingAdjustment        *int64     `tfsdk:"scaling_adjustment" json:"scalingAdjustment,omitempty"`
+				MetricIntervalLowerBound *float64 `tfsdk:"metric_interval_lower_bound" json:"metricIntervalLowerBound,omitempty"`
+				MetricIntervalUpperBound *float64 `tfsdk:"metric_interval_upper_bound" json:"metricIntervalUpperBound,omitempty"`
+				ScalingAdjustment        *int64   `tfsdk:"scaling_adjustment" json:"scalingAdjustment,omitempty"`
 			} `tfsdk:"step_adjustments" json:"stepAdjustments,omitempty"`
 		} `tfsdk:"step_scaling_policy_configuration" json:"stepScalingPolicyConfiguration,omitempty"`
 		TargetTrackingScalingPolicyConfiguration *struct {
@@ -82,9 +82,9 @@ type ApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1DataSourceData str
 				PredefinedMetricType *string `tfsdk:"predefined_metric_type" json:"predefinedMetricType,omitempty"`
 				ResourceLabel        *string `tfsdk:"resource_label" json:"resourceLabel,omitempty"`
 			} `tfsdk:"predefined_metric_specification" json:"predefinedMetricSpecification,omitempty"`
-			ScaleInCooldown  *int64     `tfsdk:"scale_in_cooldown" json:"scaleInCooldown,omitempty"`
-			ScaleOutCooldown *int64     `tfsdk:"scale_out_cooldown" json:"scaleOutCooldown,omitempty"`
-			TargetValue      *big.Float `tfsdk:"target_value" json:"targetValue,omitempty"`
+			ScaleInCooldown  *int64   `tfsdk:"scale_in_cooldown" json:"scaleInCooldown,omitempty"`
+			ScaleOutCooldown *int64   `tfsdk:"scale_out_cooldown" json:"scaleOutCooldown,omitempty"`
+			TargetValue      *float64 `tfsdk:"target_value" json:"targetValue,omitempty"`
 		} `tfsdk:"target_tracking_scaling_policy_configuration" json:"targetTrackingScalingPolicyConfiguration,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -241,7 +241,7 @@ func (r *ApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1DataSource) Sc
 								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
-										"metric_interval_lower_bound": types.NumberType{
+										"metric_interval_lower_bound": schema.Float64Attribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,
@@ -249,7 +249,7 @@ func (r *ApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1DataSource) Sc
 											Computed:            true,
 										},
 
-										"metric_interval_upper_bound": types.NumberType{
+										"metric_interval_upper_bound": schema.Float64Attribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,
@@ -397,7 +397,7 @@ func (r *ApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1DataSource) Sc
 								Computed:            true,
 							},
 
-							"target_value": types.NumberType{
+							"target_value": schema.Float64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

@@ -9,7 +9,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -3661,8 +3661,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) Schema(_ context.Context, _ r
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
-																		Validators: []UNKNOWN{
-																			schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("post")),
+																		Validators: []validator.Object{
+																			objectvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("post")),
 																		},
 																	},
 
@@ -3722,8 +3722,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Resource) Schema(_ context.Context, _ r
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
-																		Validators: []UNKNOWN{
-																			schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("get")),
+																		Validators: []validator.Object{
+																			objectvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("get")),
 																		},
 																	},
 																},

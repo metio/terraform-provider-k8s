@@ -105,9 +105,53 @@ func mapAttributeTypeToValidatorsType(attributeType string) string {
 		return "validator.String"
 	case "schema.Int64Attribute":
 		return "validator.Int64"
+	case "schema.Float64Attribute":
+		return "validator.Float64"
+	case "schema.NumberAttribute":
+		return "validator.Number"
 	case "schema.MapAttribute":
 		return "validator.Map"
+	case "schema.SingleNestedAttribute":
+		return "validator.Object"
+	case "schema.ListAttribute":
+		return "validator.List"
+	case "schema.ListNestedAttribute":
+		return "validator.List"
 	default:
 		return "UNKNOWN"
+	}
+}
+
+func mapAttributeTypeToValidatorsPackage(attributeType string) string {
+	switch attributeType {
+	case "schema.StringAttribute":
+		return "stringvalidator"
+	case "schema.Int64Attribute":
+		return "int64validator"
+	case "schema.Float64Attribute":
+		return "float64validator"
+	case "schema.NumberAttribute":
+		return "numbervalidator"
+	case "schema.MapAttribute":
+		return "mapvalidator"
+	case "schema.SingleNestedAttribute":
+		return "objectvalidator"
+	case "schema.ListAttribute":
+		return "listvalidator"
+	case "schema.ListNestedAttribute":
+		return "listvalidator"
+	default:
+		return "UNKNOWN"
+	}
+}
+
+func addValidatorImports(outer *Property, imports *AdditionalImports) {
+	switch outer.ValidatorsPackage {
+	case "listvalidator":
+		imports.ListValidator = true
+	case "objectvalidator":
+		imports.ObjectValidator = true
+	case "mapvalidator":
+		imports.MapValidator = true
 	}
 }

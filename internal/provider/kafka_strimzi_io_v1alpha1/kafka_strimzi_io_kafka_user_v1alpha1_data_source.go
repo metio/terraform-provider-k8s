@@ -77,10 +77,10 @@ type KafkaStrimziIoKafkaUserV1Alpha1DataSourceData struct {
 			Type *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"authorization" json:"authorization,omitempty"`
 		Quotas *struct {
-			ConsumerByteRate       *int64     `tfsdk:"consumer_byte_rate" json:"consumerByteRate,omitempty"`
-			ControllerMutationRate *big.Float `tfsdk:"controller_mutation_rate" json:"controllerMutationRate,omitempty"`
-			ProducerByteRate       *int64     `tfsdk:"producer_byte_rate" json:"producerByteRate,omitempty"`
-			RequestPercentage      *int64     `tfsdk:"request_percentage" json:"requestPercentage,omitempty"`
+			ConsumerByteRate       *int64   `tfsdk:"consumer_byte_rate" json:"consumerByteRate,omitempty"`
+			ControllerMutationRate *float64 `tfsdk:"controller_mutation_rate" json:"controllerMutationRate,omitempty"`
+			ProducerByteRate       *int64   `tfsdk:"producer_byte_rate" json:"producerByteRate,omitempty"`
+			RequestPercentage      *int64   `tfsdk:"request_percentage" json:"requestPercentage,omitempty"`
 		} `tfsdk:"quotas" json:"quotas,omitempty"`
 		Template *struct {
 			Secret *struct {
@@ -338,7 +338,7 @@ func (r *KafkaStrimziIoKafkaUserV1Alpha1DataSource) Schema(_ context.Context, _ 
 								Computed:            true,
 							},
 
-							"controller_mutation_rate": types.NumberType{
+							"controller_mutation_rate": schema.Float64Attribute{
 								Description:         "A quota on the rate at which mutations are accepted for the create topics request, the create partitions request and the delete topics request. The rate is accumulated by the number of partitions created or deleted.",
 								MarkdownDescription: "A quota on the rate at which mutations are accepted for the create topics request, the create partitions request and the delete topics request. The rate is accumulated by the number of partitions created or deleted.",
 								Required:            false,

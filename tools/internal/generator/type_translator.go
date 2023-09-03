@@ -68,16 +68,19 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 	}
 	if translator.isNumber() {
 		if translator.isFloat() {
-			attributeType = "types.Float64Type"
+			//attributeType = "types.Float64Type"
+			attributeType = "schema.Float64Attribute"
 			elementType = ""
 			valueType = "types.Float64"
 			goType = "float64"
 			return
 		}
-		attributeType = "types.NumberType"
+		//attributeType = "types.NumberType"
+		//attributeType = "schema.NumberAttribute" // TODO: add support for big.Float
+		attributeType = "schema.Float64Attribute"
 		elementType = ""
-		valueType = "types.Number"
-		goType = "big.Float"
+		valueType = "types.Float64"
+		goType = "float64"
 		return
 	}
 	if translator.hasUnknownFields() {

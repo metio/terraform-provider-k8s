@@ -9,7 +9,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -498,8 +498,8 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Resource) Schema(_ context.Conte
 													Required: false,
 													Optional: true,
 													Computed: false,
-													Validators: []UNKNOWN{
-														schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("secret")),
+													Validators: []validator.Object{
+														objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("secret")),
 													},
 												},
 
@@ -537,8 +537,8 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Resource) Schema(_ context.Conte
 													Required: false,
 													Optional: true,
 													Computed: false,
-													Validators: []UNKNOWN{
-														schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("config_map")),
+													Validators: []validator.Object{
+														objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("config_map")),
 													},
 												},
 											},

@@ -16,6 +16,28 @@ var ignoredAttributes = map[string][]string{
 	"getambassador_io_host_v2": {
 		"spec.ambassadorId",
 	},
+	"logging_banzaicloud_io_fluentbit_agent_v1beta1": {
+		"spec.bufferStorageVolume.host_path",
+		"spec.position_db",
+		"spec.positiondb.host_path",
+	},
+	"logging_banzaicloud_io_logging_v1beta1": {
+		"spec.fluentbit.bufferStorageVolume.host_path",
+		"spec.fluentbit.position_db",
+		"spec.fluentbit.positiondb.host_path",
+		"spec.fluentd.bufferStorageVolume.host_path",
+		"spec.fluentd.extraVolumes.volume.host_path",
+		"spec.fluentd.fluentdPvcSpec.host_path",
+		"spec.nodeAgents.nodeAgentFluentbit.bufferStorageVolume.host_path",
+		"spec.nodeAgents.nodeAgentFluentbit.positiondb.host_path",
+	},
+	"logging_banzaicloud_io_node_agent_v1beta1": {
+		"spec.nodeAgentFluentbit.bufferStorageVolume.host_path",
+		"spec.nodeAgentFluentbit.positiondb.host_path",
+	},
+	"logging_extensions_banzaicloud_io_event_tailer_v1alpha1": {
+		"spec.positionVolume.host_path",
+	},
 	"networking_istio_io_virtual_service_v1alpha3": {
 		"spec.http.mirror_percent",
 	},
@@ -23,6 +45,9 @@ var ignoredAttributes = map[string][]string{
 		"spec.http.mirror_percent",
 	},
 	"security_istio_io_request_authentication_v1beta1": {
+		"spec.jwtRules.jwks_uri",
+	},
+	"security_istio_io_request_authentication_v1": {
 		"spec.jwtRules.jwks_uri",
 	},
 	//"apps_stateful_set_v1": {

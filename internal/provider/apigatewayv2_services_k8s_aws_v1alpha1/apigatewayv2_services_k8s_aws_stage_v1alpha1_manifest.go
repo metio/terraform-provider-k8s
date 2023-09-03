@@ -57,11 +57,11 @@ type Apigatewayv2ServicesK8SAwsStageV1Alpha1ManifestData struct {
 		AutoDeploy           *bool   `tfsdk:"auto_deploy" json:"autoDeploy,omitempty"`
 		ClientCertificateID  *string `tfsdk:"client_certificate_id" json:"clientCertificateID,omitempty"`
 		DefaultRouteSettings *struct {
-			DataTraceEnabled       *bool      `tfsdk:"data_trace_enabled" json:"dataTraceEnabled,omitempty"`
-			DetailedMetricsEnabled *bool      `tfsdk:"detailed_metrics_enabled" json:"detailedMetricsEnabled,omitempty"`
-			LoggingLevel           *string    `tfsdk:"logging_level" json:"loggingLevel,omitempty"`
-			ThrottlingBurstLimit   *int64     `tfsdk:"throttling_burst_limit" json:"throttlingBurstLimit,omitempty"`
-			ThrottlingRateLimit    *big.Float `tfsdk:"throttling_rate_limit" json:"throttlingRateLimit,omitempty"`
+			DataTraceEnabled       *bool    `tfsdk:"data_trace_enabled" json:"dataTraceEnabled,omitempty"`
+			DetailedMetricsEnabled *bool    `tfsdk:"detailed_metrics_enabled" json:"detailedMetricsEnabled,omitempty"`
+			LoggingLevel           *string  `tfsdk:"logging_level" json:"loggingLevel,omitempty"`
+			ThrottlingBurstLimit   *int64   `tfsdk:"throttling_burst_limit" json:"throttlingBurstLimit,omitempty"`
+			ThrottlingRateLimit    *float64 `tfsdk:"throttling_rate_limit" json:"throttlingRateLimit,omitempty"`
 		} `tfsdk:"default_route_settings" json:"defaultRouteSettings,omitempty"`
 		DeploymentID  *string `tfsdk:"deployment_id" json:"deploymentID,omitempty"`
 		DeploymentRef *struct {
@@ -71,11 +71,11 @@ type Apigatewayv2ServicesK8SAwsStageV1Alpha1ManifestData struct {
 		} `tfsdk:"deployment_ref" json:"deploymentRef,omitempty"`
 		Description   *string `tfsdk:"description" json:"description,omitempty"`
 		RouteSettings *struct {
-			DataTraceEnabled       *bool      `tfsdk:"data_trace_enabled" json:"dataTraceEnabled,omitempty"`
-			DetailedMetricsEnabled *bool      `tfsdk:"detailed_metrics_enabled" json:"detailedMetricsEnabled,omitempty"`
-			LoggingLevel           *string    `tfsdk:"logging_level" json:"loggingLevel,omitempty"`
-			ThrottlingBurstLimit   *int64     `tfsdk:"throttling_burst_limit" json:"throttlingBurstLimit,omitempty"`
-			ThrottlingRateLimit    *big.Float `tfsdk:"throttling_rate_limit" json:"throttlingRateLimit,omitempty"`
+			DataTraceEnabled       *bool    `tfsdk:"data_trace_enabled" json:"dataTraceEnabled,omitempty"`
+			DetailedMetricsEnabled *bool    `tfsdk:"detailed_metrics_enabled" json:"detailedMetricsEnabled,omitempty"`
+			LoggingLevel           *string  `tfsdk:"logging_level" json:"loggingLevel,omitempty"`
+			ThrottlingBurstLimit   *int64   `tfsdk:"throttling_burst_limit" json:"throttlingBurstLimit,omitempty"`
+			ThrottlingRateLimit    *float64 `tfsdk:"throttling_rate_limit" json:"throttlingRateLimit,omitempty"`
 		} `tfsdk:"route_settings" json:"routeSettings,omitempty"`
 		StageName      *string            `tfsdk:"stage_name" json:"stageName,omitempty"`
 		StageVariables *map[string]string `tfsdk:"stage_variables" json:"stageVariables,omitempty"`
@@ -279,7 +279,7 @@ func (r *Apigatewayv2ServicesK8SAwsStageV1Alpha1Manifest) Schema(_ context.Conte
 								Computed:            false,
 							},
 
-							"throttling_rate_limit": types.NumberType{
+							"throttling_rate_limit": schema.Float64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -370,7 +370,7 @@ func (r *Apigatewayv2ServicesK8SAwsStageV1Alpha1Manifest) Schema(_ context.Conte
 								Computed:            false,
 							},
 
-							"throttling_rate_limit": types.NumberType{
+							"throttling_rate_limit": schema.Float64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

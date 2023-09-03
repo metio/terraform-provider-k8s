@@ -9,10 +9,11 @@ import (
 	"context"
 	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
-	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
@@ -1165,8 +1166,8 @@ func (r *GetambassadorIoMappingV1Manifest) Schema(_ context.Context, _ datasourc
 											Required: false,
 											Optional: true,
 											Computed: false,
-											Validators: []UNKNOWN{
-												schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("http")),
+											Validators: []validator.Object{
+												objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("http")),
 											},
 										},
 
@@ -1273,8 +1274,8 @@ func (r *GetambassadorIoMappingV1Manifest) Schema(_ context.Context, _ datasourc
 											Required: false,
 											Optional: true,
 											Computed: false,
-											Validators: []UNKNOWN{
-												schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("grpc")),
+											Validators: []validator.Object{
+												objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("grpc")),
 											},
 										},
 									},

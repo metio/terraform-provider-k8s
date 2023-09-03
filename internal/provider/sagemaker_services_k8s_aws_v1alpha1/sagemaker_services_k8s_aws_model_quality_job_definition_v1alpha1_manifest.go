@@ -70,16 +70,16 @@ type SagemakerServicesK8SAwsModelQualityJobDefinitionV1Alpha1ManifestData struct
 		} `tfsdk:"model_quality_baseline_config" json:"modelQualityBaselineConfig,omitempty"`
 		ModelQualityJobInput *struct {
 			EndpointInput *struct {
-				EndTimeOffset                 *string    `tfsdk:"end_time_offset" json:"endTimeOffset,omitempty"`
-				EndpointName                  *string    `tfsdk:"endpoint_name" json:"endpointName,omitempty"`
-				FeaturesAttribute             *string    `tfsdk:"features_attribute" json:"featuresAttribute,omitempty"`
-				InferenceAttribute            *string    `tfsdk:"inference_attribute" json:"inferenceAttribute,omitempty"`
-				LocalPath                     *string    `tfsdk:"local_path" json:"localPath,omitempty"`
-				ProbabilityAttribute          *string    `tfsdk:"probability_attribute" json:"probabilityAttribute,omitempty"`
-				ProbabilityThresholdAttribute *big.Float `tfsdk:"probability_threshold_attribute" json:"probabilityThresholdAttribute,omitempty"`
-				S3DataDistributionType        *string    `tfsdk:"s3_data_distribution_type" json:"s3DataDistributionType,omitempty"`
-				S3InputMode                   *string    `tfsdk:"s3_input_mode" json:"s3InputMode,omitempty"`
-				StartTimeOffset               *string    `tfsdk:"start_time_offset" json:"startTimeOffset,omitempty"`
+				EndTimeOffset                 *string  `tfsdk:"end_time_offset" json:"endTimeOffset,omitempty"`
+				EndpointName                  *string  `tfsdk:"endpoint_name" json:"endpointName,omitempty"`
+				FeaturesAttribute             *string  `tfsdk:"features_attribute" json:"featuresAttribute,omitempty"`
+				InferenceAttribute            *string  `tfsdk:"inference_attribute" json:"inferenceAttribute,omitempty"`
+				LocalPath                     *string  `tfsdk:"local_path" json:"localPath,omitempty"`
+				ProbabilityAttribute          *string  `tfsdk:"probability_attribute" json:"probabilityAttribute,omitempty"`
+				ProbabilityThresholdAttribute *float64 `tfsdk:"probability_threshold_attribute" json:"probabilityThresholdAttribute,omitempty"`
+				S3DataDistributionType        *string  `tfsdk:"s3_data_distribution_type" json:"s3DataDistributionType,omitempty"`
+				S3InputMode                   *string  `tfsdk:"s3_input_mode" json:"s3InputMode,omitempty"`
+				StartTimeOffset               *string  `tfsdk:"start_time_offset" json:"startTimeOffset,omitempty"`
 			} `tfsdk:"endpoint_input" json:"endpointInput,omitempty"`
 			GroundTruthS3Input *struct {
 				S3URI *string `tfsdk:"s3_uri" json:"s3URI,omitempty"`
@@ -415,7 +415,7 @@ func (r *SagemakerServicesK8SAwsModelQualityJobDefinitionV1Alpha1Manifest) Schem
 										Computed:            false,
 									},
 
-									"probability_threshold_attribute": types.NumberType{
+									"probability_threshold_attribute": schema.Float64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

@@ -74,18 +74,18 @@ type DevicesKubeedgeIoDeviceModelV1Alpha2ResourceData struct {
 					AccessMode *string `tfsdk:"access_mode" json:"accessMode,omitempty"`
 				} `tfsdk:"bytes" json:"bytes,omitempty"`
 				Double *struct {
-					AccessMode   *string    `tfsdk:"access_mode" json:"accessMode,omitempty"`
-					DefaultValue *big.Float `tfsdk:"default_value" json:"defaultValue,omitempty"`
-					Maximum      *big.Float `tfsdk:"maximum" json:"maximum,omitempty"`
-					Minimum      *big.Float `tfsdk:"minimum" json:"minimum,omitempty"`
-					Unit         *string    `tfsdk:"unit" json:"unit,omitempty"`
+					AccessMode   *string  `tfsdk:"access_mode" json:"accessMode,omitempty"`
+					DefaultValue *float64 `tfsdk:"default_value" json:"defaultValue,omitempty"`
+					Maximum      *float64 `tfsdk:"maximum" json:"maximum,omitempty"`
+					Minimum      *float64 `tfsdk:"minimum" json:"minimum,omitempty"`
+					Unit         *string  `tfsdk:"unit" json:"unit,omitempty"`
 				} `tfsdk:"double" json:"double,omitempty"`
 				Float *struct {
-					AccessMode   *string    `tfsdk:"access_mode" json:"accessMode,omitempty"`
-					DefaultValue *big.Float `tfsdk:"default_value" json:"defaultValue,omitempty"`
-					Maximum      *big.Float `tfsdk:"maximum" json:"maximum,omitempty"`
-					Minimum      *big.Float `tfsdk:"minimum" json:"minimum,omitempty"`
-					Unit         *string    `tfsdk:"unit" json:"unit,omitempty"`
+					AccessMode   *string  `tfsdk:"access_mode" json:"accessMode,omitempty"`
+					DefaultValue *float64 `tfsdk:"default_value" json:"defaultValue,omitempty"`
+					Maximum      *float64 `tfsdk:"maximum" json:"maximum,omitempty"`
+					Minimum      *float64 `tfsdk:"minimum" json:"minimum,omitempty"`
+					Unit         *string  `tfsdk:"unit" json:"unit,omitempty"`
 				} `tfsdk:"float" json:"float,omitempty"`
 				Int *struct {
 					AccessMode   *string `tfsdk:"access_mode" json:"accessMode,omitempty"`
@@ -325,7 +325,7 @@ func (r *DevicesKubeedgeIoDeviceModelV1Alpha2Resource) Schema(_ context.Context,
 													},
 												},
 
-												"default_value": types.NumberType{
+												"default_value": schema.Float64Attribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,
@@ -333,7 +333,7 @@ func (r *DevicesKubeedgeIoDeviceModelV1Alpha2Resource) Schema(_ context.Context,
 													Computed:            false,
 												},
 
-												"maximum": types.NumberType{
+												"maximum": schema.Float64Attribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,
@@ -341,7 +341,7 @@ func (r *DevicesKubeedgeIoDeviceModelV1Alpha2Resource) Schema(_ context.Context,
 													Computed:            false,
 												},
 
-												"minimum": types.NumberType{
+												"minimum": schema.Float64Attribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,
@@ -377,7 +377,7 @@ func (r *DevicesKubeedgeIoDeviceModelV1Alpha2Resource) Schema(_ context.Context,
 													},
 												},
 
-												"default_value": types.NumberType{
+												"default_value": schema.Float64Attribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,
@@ -385,7 +385,7 @@ func (r *DevicesKubeedgeIoDeviceModelV1Alpha2Resource) Schema(_ context.Context,
 													Computed:            false,
 												},
 
-												"maximum": types.NumberType{
+												"maximum": schema.Float64Attribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,
@@ -393,7 +393,7 @@ func (r *DevicesKubeedgeIoDeviceModelV1Alpha2Resource) Schema(_ context.Context,
 													Computed:            false,
 												},
 
-												"minimum": types.NumberType{
+												"minimum": schema.Float64Attribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,

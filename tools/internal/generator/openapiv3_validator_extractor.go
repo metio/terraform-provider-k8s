@@ -124,7 +124,7 @@ func (v *openapiv3ValidatorExtractor) stringWithEnums() string {
 
 func (v *openapiv3ValidatorExtractor) stringWithPattern() string {
 	if v.property.Type == "string" && v.property.Pattern != "" {
-		v.imports.Regex = true
+		v.imports.Regexp = true
 		v.imports.StringValidator = true
 		return fmt.Sprintf(`stringvalidator.RegexMatches(regexp.MustCompile(%c%s%c), "")`, '`', v.property.Pattern, '`')
 	}

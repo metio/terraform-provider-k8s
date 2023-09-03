@@ -167,10 +167,6 @@ type LoggingExtensionsBanzaicloudIoEventTailerV1Alpha1DataSourceData struct {
 				Path *string `tfsdk:"path" json:"path,omitempty"`
 				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"host_path" json:"hostPath,omitempty"`
-			Host_path *struct {
-				Path *string `tfsdk:"path" json:"path,omitempty"`
-				Type *string `tfsdk:"type" json:"type,omitempty"`
-			} `tfsdk:"host_path" json:"host_path,omitempty"`
 			Pvc *struct {
 				Source *struct {
 					ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
@@ -1716,31 +1712,6 @@ func (r *LoggingExtensionsBanzaicloudIoEventTailerV1Alpha1DataSource) Schema(_ c
 									},
 
 									"size_limit": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            false,
-										Computed:            true,
-									},
-								},
-								Required: false,
-								Optional: false,
-								Computed: true,
-							},
-
-							"host_path": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Attributes: map[string]schema.Attribute{
-									"path": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            false,
-										Computed:            true,
-									},
-
-									"type": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

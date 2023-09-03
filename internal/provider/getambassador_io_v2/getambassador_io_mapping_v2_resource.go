@@ -10,7 +10,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
-	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -1231,8 +1231,8 @@ func (r *GetambassadorIoMappingV2Resource) Schema(_ context.Context, _ resource.
 											Required: false,
 											Optional: true,
 											Computed: false,
-											Validators: []UNKNOWN{
-												schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("http")),
+											Validators: []validator.Object{
+												objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("http")),
 											},
 										},
 
@@ -1339,8 +1339,8 @@ func (r *GetambassadorIoMappingV2Resource) Schema(_ context.Context, _ resource.
 											Required: false,
 											Optional: true,
 											Computed: false,
-											Validators: []UNKNOWN{
-												schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("grpc")),
+											Validators: []validator.Object{
+												objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("grpc")),
 											},
 										},
 									},
