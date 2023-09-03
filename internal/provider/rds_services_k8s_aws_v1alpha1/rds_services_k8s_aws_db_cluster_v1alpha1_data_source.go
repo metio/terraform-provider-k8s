@@ -127,8 +127,8 @@ type RdsServicesK8SAwsDBClusterV1Alpha1DataSourceData struct {
 			TimeoutAction         *string `tfsdk:"timeout_action" json:"timeoutAction,omitempty"`
 		} `tfsdk:"scaling_configuration" json:"scalingConfiguration,omitempty"`
 		ServerlessV2ScalingConfiguration *struct {
-			MaxCapacity *big.Float `tfsdk:"max_capacity" json:"maxCapacity,omitempty"`
-			MinCapacity *big.Float `tfsdk:"min_capacity" json:"minCapacity,omitempty"`
+			MaxCapacity *float64 `tfsdk:"max_capacity" json:"maxCapacity,omitempty"`
+			MinCapacity *float64 `tfsdk:"min_capacity" json:"minCapacity,omitempty"`
 		} `tfsdk:"serverless_v2_scaling_configuration" json:"serverlessV2ScalingConfiguration,omitempty"`
 		SnapshotIdentifier *string `tfsdk:"snapshot_identifier" json:"snapshotIdentifier,omitempty"`
 		SourceRegion       *string `tfsdk:"source_region" json:"sourceRegion,omitempty"`
@@ -762,7 +762,7 @@ func (r *RdsServicesK8SAwsDBClusterV1Alpha1DataSource) Schema(_ context.Context,
 						Description:         "Contains the scaling configuration of an Aurora Serverless v2 DB cluster.  For more information, see Using Amazon Aurora Serverless v2 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html) in the Amazon Aurora User Guide.",
 						MarkdownDescription: "Contains the scaling configuration of an Aurora Serverless v2 DB cluster.  For more information, see Using Amazon Aurora Serverless v2 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html) in the Amazon Aurora User Guide.",
 						Attributes: map[string]schema.Attribute{
-							"max_capacity": types.NumberType{
+							"max_capacity": schema.Float64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -770,7 +770,7 @@ func (r *RdsServicesK8SAwsDBClusterV1Alpha1DataSource) Schema(_ context.Context,
 								Computed:            true,
 							},
 
-							"min_capacity": types.NumberType{
+							"min_capacity": schema.Float64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

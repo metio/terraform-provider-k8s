@@ -15,11 +15,17 @@ import (
 	{{ if .AdditionalImports.Float64Validator -}}
 	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 	{{ end -}}
-	{{ if .AdditionalImports.Regex -}}
-	"regexp"
+	{{ if .AdditionalImports.ListValidator -}}
+	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
 	{{ end -}}
-	{{ if .AdditionalImports.SchemaValidator -}}
-	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	{{ if .AdditionalImports.MapValidator -}}
+	"github.com/hashicorp/terraform-plugin-framework-validators/mapvalidator"
+	{{ end -}}
+	{{ if .AdditionalImports.ObjectValidator -}}
+	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
+	{{ end -}}
+	{{ if .AdditionalImports.Regexp -}}
+	"regexp"
 	{{ end -}}
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
@@ -38,6 +44,9 @@ import (
 	k8sTypes "k8s.io/apimachinery/pkg/types"
 	"k8s.io/client-go/dynamic"
 	"k8s.io/utils/pointer"
+	{{ if .AdditionalImports.MathBig -}}
+	"math/big"
+	{{ end -}}
 	{{ if .Namespaced -}}
 	"strings"
 	{{ end }}

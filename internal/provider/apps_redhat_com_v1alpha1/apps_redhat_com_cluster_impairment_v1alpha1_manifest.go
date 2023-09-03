@@ -44,49 +44,49 @@ type AppsRedhatComClusterImpairmentV1Alpha1ManifestData struct {
 	Spec *struct {
 		Duration *int64 `tfsdk:"duration" json:"duration,omitempty"`
 		Egress   *struct {
-			Bandwidth         *int64     `tfsdk:"bandwidth" json:"bandwidth,omitempty"`
-			Corruption        *big.Float `tfsdk:"corruption" json:"corruption,omitempty"`
+			Bandwidth         *int64   `tfsdk:"bandwidth" json:"bandwidth,omitempty"`
+			Corruption        *float64 `tfsdk:"corruption" json:"corruption,omitempty"`
 			CorruptionOptions *struct {
-				Correlation *big.Float `tfsdk:"correlation" json:"correlation,omitempty"`
+				Correlation *float64 `tfsdk:"correlation" json:"correlation,omitempty"`
 			} `tfsdk:"corruption_options" json:"corruptionOptions,omitempty"`
-			Duplication        *big.Float `tfsdk:"duplication" json:"duplication,omitempty"`
+			Duplication        *float64 `tfsdk:"duplication" json:"duplication,omitempty"`
 			DuplicationOptions *struct {
-				Correlation *big.Float `tfsdk:"correlation" json:"correlation,omitempty"`
+				Correlation *float64 `tfsdk:"correlation" json:"correlation,omitempty"`
 			} `tfsdk:"duplication_options" json:"duplicationOptions,omitempty"`
-			Latency        *big.Float `tfsdk:"latency" json:"latency,omitempty"`
+			Latency        *float64 `tfsdk:"latency" json:"latency,omitempty"`
 			LatencyOptions *struct {
-				Distribution       *string    `tfsdk:"distribution" json:"distribution,omitempty"`
-				Jitter             *big.Float `tfsdk:"jitter" json:"jitter,omitempty"`
-				JitterCorrelation  *big.Float `tfsdk:"jitter_correlation" json:"jitterCorrelation,omitempty"`
-				Reorder            *big.Float `tfsdk:"reorder" json:"reorder,omitempty"`
-				ReorderCorrelation *big.Float `tfsdk:"reorder_correlation" json:"reorderCorrelation,omitempty"`
+				Distribution       *string  `tfsdk:"distribution" json:"distribution,omitempty"`
+				Jitter             *float64 `tfsdk:"jitter" json:"jitter,omitempty"`
+				JitterCorrelation  *float64 `tfsdk:"jitter_correlation" json:"jitterCorrelation,omitempty"`
+				Reorder            *float64 `tfsdk:"reorder" json:"reorder,omitempty"`
+				ReorderCorrelation *float64 `tfsdk:"reorder_correlation" json:"reorderCorrelation,omitempty"`
 			} `tfsdk:"latency_options" json:"latencyOptions,omitempty"`
-			Loss        *big.Float `tfsdk:"loss" json:"loss,omitempty"`
+			Loss        *float64 `tfsdk:"loss" json:"loss,omitempty"`
 			LossOptions *struct {
-				Correlation *big.Float `tfsdk:"correlation" json:"correlation,omitempty"`
+				Correlation *float64 `tfsdk:"correlation" json:"correlation,omitempty"`
 			} `tfsdk:"loss_options" json:"lossOptions,omitempty"`
 		} `tfsdk:"egress" json:"egress,omitempty"`
 		Ingress *struct {
-			Bandwidth         *int64     `tfsdk:"bandwidth" json:"bandwidth,omitempty"`
-			Corruption        *big.Float `tfsdk:"corruption" json:"corruption,omitempty"`
+			Bandwidth         *int64   `tfsdk:"bandwidth" json:"bandwidth,omitempty"`
+			Corruption        *float64 `tfsdk:"corruption" json:"corruption,omitempty"`
 			CorruptionOptions *struct {
-				Correlation *big.Float `tfsdk:"correlation" json:"correlation,omitempty"`
+				Correlation *float64 `tfsdk:"correlation" json:"correlation,omitempty"`
 			} `tfsdk:"corruption_options" json:"corruptionOptions,omitempty"`
-			Duplication        *big.Float `tfsdk:"duplication" json:"duplication,omitempty"`
+			Duplication        *float64 `tfsdk:"duplication" json:"duplication,omitempty"`
 			DuplicationOptions *struct {
-				Correlation *big.Float `tfsdk:"correlation" json:"correlation,omitempty"`
+				Correlation *float64 `tfsdk:"correlation" json:"correlation,omitempty"`
 			} `tfsdk:"duplication_options" json:"duplicationOptions,omitempty"`
-			Latency        *big.Float `tfsdk:"latency" json:"latency,omitempty"`
+			Latency        *float64 `tfsdk:"latency" json:"latency,omitempty"`
 			LatencyOptions *struct {
-				Distribution       *string    `tfsdk:"distribution" json:"distribution,omitempty"`
-				Jitter             *big.Float `tfsdk:"jitter" json:"jitter,omitempty"`
-				JitterCorrelation  *big.Float `tfsdk:"jitter_correlation" json:"jitterCorrelation,omitempty"`
-				Reorder            *big.Float `tfsdk:"reorder" json:"reorder,omitempty"`
-				ReorderCorrelation *big.Float `tfsdk:"reorder_correlation" json:"reorderCorrelation,omitempty"`
+				Distribution       *string  `tfsdk:"distribution" json:"distribution,omitempty"`
+				Jitter             *float64 `tfsdk:"jitter" json:"jitter,omitempty"`
+				JitterCorrelation  *float64 `tfsdk:"jitter_correlation" json:"jitterCorrelation,omitempty"`
+				Reorder            *float64 `tfsdk:"reorder" json:"reorder,omitempty"`
+				ReorderCorrelation *float64 `tfsdk:"reorder_correlation" json:"reorderCorrelation,omitempty"`
 			} `tfsdk:"latency_options" json:"latencyOptions,omitempty"`
-			Loss        *big.Float `tfsdk:"loss" json:"loss,omitempty"`
+			Loss        *float64 `tfsdk:"loss" json:"loss,omitempty"`
 			LossOptions *struct {
-				Correlation *big.Float `tfsdk:"correlation" json:"correlation,omitempty"`
+				Correlation *float64 `tfsdk:"correlation" json:"correlation,omitempty"`
 			} `tfsdk:"loss_options" json:"lossOptions,omitempty"`
 		} `tfsdk:"ingress" json:"ingress,omitempty"`
 		Interfaces   *[]string `tfsdk:"interfaces" json:"interfaces,omitempty"`
@@ -196,7 +196,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 								Computed:            false,
 							},
 
-							"corruption": types.NumberType{
+							"corruption": schema.Float64Attribute{
 								Description:         "The percent of packets that are corrupted",
 								MarkdownDescription: "The percent of packets that are corrupted",
 								Required:            false,
@@ -208,7 +208,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 								Description:         "Advanced corruption options",
 								MarkdownDescription: "Advanced corruption options",
 								Attributes: map[string]schema.Attribute{
-									"correlation": types.NumberType{
+									"correlation": schema.Float64Attribute{
 										Description:         "The correlation between sequential corruption values",
 										MarkdownDescription: "The correlation between sequential corruption values",
 										Required:            false,
@@ -221,7 +221,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 								Computed: false,
 							},
 
-							"duplication": types.NumberType{
+							"duplication": schema.Float64Attribute{
 								Description:         "The percent of packets duplicated",
 								MarkdownDescription: "The percent of packets duplicated",
 								Required:            false,
@@ -233,7 +233,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 								Description:         "Advanced duplication options",
 								MarkdownDescription: "Advanced duplication options",
 								Attributes: map[string]schema.Attribute{
-									"correlation": types.NumberType{
+									"correlation": schema.Float64Attribute{
 										Description:         "The correlation between sequential duplication values",
 										MarkdownDescription: "The correlation between sequential duplication values",
 										Required:            false,
@@ -246,7 +246,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 								Computed: false,
 							},
 
-							"latency": types.NumberType{
+							"latency": schema.Float64Attribute{
 								Description:         "The latency applied in ms",
 								MarkdownDescription: "The latency applied in ms",
 								Required:            false,
@@ -266,7 +266,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
-									"jitter": types.NumberType{
+									"jitter": schema.Float64Attribute{
 										Description:         "Variation in the latency that follows the specified distribution.",
 										MarkdownDescription: "Variation in the latency that follows the specified distribution.",
 										Required:            false,
@@ -274,7 +274,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
-									"jitter_correlation": types.NumberType{
+									"jitter_correlation": schema.Float64Attribute{
 										Description:         "The correlation between sequential jitter values",
 										MarkdownDescription: "The correlation between sequential jitter values",
 										Required:            false,
@@ -282,7 +282,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
-									"reorder": types.NumberType{
+									"reorder": schema.Float64Attribute{
 										Description:         "The percentage of packets that are not delayed, causing reordering",
 										MarkdownDescription: "The percentage of packets that are not delayed, causing reordering",
 										Required:            false,
@@ -290,7 +290,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
-									"reorder_correlation": types.NumberType{
+									"reorder_correlation": schema.Float64Attribute{
 										Description:         "The correlation between sequential reorder values",
 										MarkdownDescription: "The correlation between sequential reorder values",
 										Required:            false,
@@ -303,7 +303,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 								Computed: false,
 							},
 
-							"loss": types.NumberType{
+							"loss": schema.Float64Attribute{
 								Description:         "The packet loss in percent",
 								MarkdownDescription: "The packet loss in percent",
 								Required:            false,
@@ -315,7 +315,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 								Description:         "Advanced packet loss options",
 								MarkdownDescription: "Advanced packet loss options",
 								Attributes: map[string]schema.Attribute{
-									"correlation": types.NumberType{
+									"correlation": schema.Float64Attribute{
 										Description:         "The correlation between sequential packet loss values",
 										MarkdownDescription: "The correlation between sequential packet loss values",
 										Required:            false,
@@ -345,7 +345,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 								Computed:            false,
 							},
 
-							"corruption": types.NumberType{
+							"corruption": schema.Float64Attribute{
 								Description:         "The percent of packets that are corrupted",
 								MarkdownDescription: "The percent of packets that are corrupted",
 								Required:            false,
@@ -357,7 +357,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 								Description:         "Advanced corruption options",
 								MarkdownDescription: "Advanced corruption options",
 								Attributes: map[string]schema.Attribute{
-									"correlation": types.NumberType{
+									"correlation": schema.Float64Attribute{
 										Description:         "The correlation between sequential corruption values",
 										MarkdownDescription: "The correlation between sequential corruption values",
 										Required:            false,
@@ -370,7 +370,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 								Computed: false,
 							},
 
-							"duplication": types.NumberType{
+							"duplication": schema.Float64Attribute{
 								Description:         "The percent of packets duplicated",
 								MarkdownDescription: "The percent of packets duplicated",
 								Required:            false,
@@ -382,7 +382,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 								Description:         "Advanced duplication options",
 								MarkdownDescription: "Advanced duplication options",
 								Attributes: map[string]schema.Attribute{
-									"correlation": types.NumberType{
+									"correlation": schema.Float64Attribute{
 										Description:         "The correlation between sequential duplication values",
 										MarkdownDescription: "The correlation between sequential duplication values",
 										Required:            false,
@@ -395,7 +395,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 								Computed: false,
 							},
 
-							"latency": types.NumberType{
+							"latency": schema.Float64Attribute{
 								Description:         "The latency applied in ms",
 								MarkdownDescription: "The latency applied in ms",
 								Required:            false,
@@ -415,7 +415,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
-									"jitter": types.NumberType{
+									"jitter": schema.Float64Attribute{
 										Description:         "Variation in the latency that follows the specified distribution.",
 										MarkdownDescription: "Variation in the latency that follows the specified distribution.",
 										Required:            false,
@@ -423,7 +423,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
-									"jitter_correlation": types.NumberType{
+									"jitter_correlation": schema.Float64Attribute{
 										Description:         "The correlation between sequential jitter values",
 										MarkdownDescription: "The correlation between sequential jitter values",
 										Required:            false,
@@ -431,7 +431,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
-									"reorder": types.NumberType{
+									"reorder": schema.Float64Attribute{
 										Description:         "The percentage of packets that are not delayed, causing reordering",
 										MarkdownDescription: "The percentage of packets that are not delayed, causing reordering",
 										Required:            false,
@@ -439,7 +439,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
-									"reorder_correlation": types.NumberType{
+									"reorder_correlation": schema.Float64Attribute{
 										Description:         "The correlation between sequential reorder values",
 										MarkdownDescription: "The correlation between sequential reorder values",
 										Required:            false,
@@ -452,7 +452,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 								Computed: false,
 							},
 
-							"loss": types.NumberType{
+							"loss": schema.Float64Attribute{
 								Description:         "The packet loss in percent",
 								MarkdownDescription: "The packet loss in percent",
 								Required:            false,
@@ -464,7 +464,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Manifest) Schema(_ context.Contex
 								Description:         "Advanced packet loss options",
 								MarkdownDescription: "Advanced packet loss options",
 								Attributes: map[string]schema.Attribute{
-									"correlation": types.NumberType{
+									"correlation": schema.Float64Attribute{
 										Description:         "The correlation between sequential packet loss values",
 										MarkdownDescription: "The correlation between sequential packet loss values",
 										Required:            false,

@@ -1526,9 +1526,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ResourceData struct {
 			} `tfsdk:"pod_template" json:"podTemplate,omitempty"`
 			Replicas *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 			Resource *struct {
-				Cpu              *big.Float `tfsdk:"cpu" json:"cpu,omitempty"`
-				EphemeralStorage *string    `tfsdk:"ephemeral_storage" json:"ephemeralStorage,omitempty"`
-				Memory           *string    `tfsdk:"memory" json:"memory,omitempty"`
+				Cpu              *float64 `tfsdk:"cpu" json:"cpu,omitempty"`
+				EphemeralStorage *string  `tfsdk:"ephemeral_storage" json:"ephemeralStorage,omitempty"`
+				Memory           *string  `tfsdk:"memory" json:"memory,omitempty"`
 			} `tfsdk:"resource" json:"resource,omitempty"`
 		} `tfsdk:"job_manager" json:"jobManager,omitempty"`
 		LogConfiguration *map[string]string `tfsdk:"log_configuration" json:"logConfiguration,omitempty"`
@@ -4418,9 +4418,9 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ResourceData struct {
 			} `tfsdk:"pod_template" json:"podTemplate,omitempty"`
 			Replicas *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 			Resource *struct {
-				Cpu              *big.Float `tfsdk:"cpu" json:"cpu,omitempty"`
-				EphemeralStorage *string    `tfsdk:"ephemeral_storage" json:"ephemeralStorage,omitempty"`
-				Memory           *string    `tfsdk:"memory" json:"memory,omitempty"`
+				Cpu              *float64 `tfsdk:"cpu" json:"cpu,omitempty"`
+				EphemeralStorage *string  `tfsdk:"ephemeral_storage" json:"ephemeralStorage,omitempty"`
+				Memory           *string  `tfsdk:"memory" json:"memory,omitempty"`
 			} `tfsdk:"resource" json:"resource,omitempty"`
 		} `tfsdk:"task_manager" json:"taskManager,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -14427,7 +14427,7 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) Schema(_ context.Context,
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
-									"cpu": types.NumberType{
+									"cpu": schema.Float64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -33885,7 +33885,7 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Resource) Schema(_ context.Context,
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
-									"cpu": types.NumberType{
+									"cpu": schema.Float64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

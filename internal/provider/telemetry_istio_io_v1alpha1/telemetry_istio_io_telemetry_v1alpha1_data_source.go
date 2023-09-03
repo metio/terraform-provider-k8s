@@ -104,8 +104,8 @@ type TelemetryIstioIoTelemetryV1Alpha1DataSourceData struct {
 			Providers *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"providers" json:"providers,omitempty"`
-			RandomSamplingPercentage     *big.Float `tfsdk:"random_sampling_percentage" json:"randomSamplingPercentage,omitempty"`
-			UseRequestIdForTraceSampling *bool      `tfsdk:"use_request_id_for_trace_sampling" json:"useRequestIdForTraceSampling,omitempty"`
+			RandomSamplingPercentage     *float64 `tfsdk:"random_sampling_percentage" json:"randomSamplingPercentage,omitempty"`
+			UseRequestIdForTraceSampling *bool    `tfsdk:"use_request_id_for_trace_sampling" json:"useRequestIdForTraceSampling,omitempty"`
 		} `tfsdk:"tracing" json:"tracing,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -511,7 +511,7 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1DataSource) Schema(_ context.Context, 
 									Computed: true,
 								},
 
-								"random_sampling_percentage": types.NumberType{
+								"random_sampling_percentage": schema.Float64Attribute{
 									Description:         "",
 									MarkdownDescription: "",
 									Required:            false,

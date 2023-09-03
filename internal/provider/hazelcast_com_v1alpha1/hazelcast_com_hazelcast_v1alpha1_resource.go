@@ -10,7 +10,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
-	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -2443,8 +2444,8 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) Schema(_ context.Context, _ reso
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
-										Validators: []UNKNOWN{
-											schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("serializers")),
+										Validators: []validator.List{
+											listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("serializers")),
 										},
 									},
 
@@ -2455,8 +2456,8 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) Schema(_ context.Context, _ reso
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
-										Validators: []UNKNOWN{
-											schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("classes")),
+										Validators: []validator.List{
+											listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("classes")),
 										},
 									},
 								},
@@ -2530,8 +2531,8 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) Schema(_ context.Context, _ reso
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
-												Validators: []UNKNOWN{
-													schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("packages"), path.MatchRelative().AtParent().AtName("prefixes")),
+												Validators: []validator.List{
+													listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("packages"), path.MatchRelative().AtParent().AtName("prefixes")),
 												},
 											},
 
@@ -2542,8 +2543,8 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) Schema(_ context.Context, _ reso
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
-												Validators: []UNKNOWN{
-													schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("classes"), path.MatchRelative().AtParent().AtName("prefixes")),
+												Validators: []validator.List{
+													listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("classes"), path.MatchRelative().AtParent().AtName("prefixes")),
 												},
 											},
 
@@ -2554,16 +2555,16 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) Schema(_ context.Context, _ reso
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
-												Validators: []UNKNOWN{
-													schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("classes"), path.MatchRelative().AtParent().AtName("packages")),
+												Validators: []validator.List{
+													listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("classes"), path.MatchRelative().AtParent().AtName("packages")),
 												},
 											},
 										},
 										Required: false,
 										Optional: true,
 										Computed: false,
-										Validators: []UNKNOWN{
-											schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("whitelist")),
+										Validators: []validator.Object{
+											objectvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("whitelist")),
 										},
 									},
 
@@ -2578,8 +2579,8 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) Schema(_ context.Context, _ reso
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
-												Validators: []UNKNOWN{
-													schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("packages"), path.MatchRelative().AtParent().AtName("prefixes")),
+												Validators: []validator.List{
+													listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("packages"), path.MatchRelative().AtParent().AtName("prefixes")),
 												},
 											},
 
@@ -2590,8 +2591,8 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) Schema(_ context.Context, _ reso
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
-												Validators: []UNKNOWN{
-													schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("classes"), path.MatchRelative().AtParent().AtName("prefixes")),
+												Validators: []validator.List{
+													listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("classes"), path.MatchRelative().AtParent().AtName("prefixes")),
 												},
 											},
 
@@ -2602,16 +2603,16 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) Schema(_ context.Context, _ reso
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
-												Validators: []UNKNOWN{
-													schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("classes"), path.MatchRelative().AtParent().AtName("packages")),
+												Validators: []validator.List{
+													listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("classes"), path.MatchRelative().AtParent().AtName("packages")),
 												},
 											},
 										},
 										Required: false,
 										Optional: true,
 										Computed: false,
-										Validators: []UNKNOWN{
-											schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("blacklist")),
+										Validators: []validator.Object{
+											objectvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("blacklist")),
 										},
 									},
 								},

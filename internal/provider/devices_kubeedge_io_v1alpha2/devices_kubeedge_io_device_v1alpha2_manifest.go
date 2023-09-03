@@ -75,8 +75,8 @@ type DevicesKubeedgeIoDeviceV1Alpha2ManifestData struct {
 				DataConverter      *struct {
 					EndIndex          *int64 `tfsdk:"end_index" json:"endIndex,omitempty"`
 					OrderOfOperations *[]struct {
-						OperationType  *string    `tfsdk:"operation_type" json:"operationType,omitempty"`
-						OperationValue *big.Float `tfsdk:"operation_value" json:"operationValue,omitempty"`
+						OperationType  *string  `tfsdk:"operation_type" json:"operationType,omitempty"`
+						OperationValue *float64 `tfsdk:"operation_value" json:"operationValue,omitempty"`
 					} `tfsdk:"order_of_operations" json:"orderOfOperations,omitempty"`
 					ShiftLeft  *int64 `tfsdk:"shift_left" json:"shiftLeft,omitempty"`
 					ShiftRight *int64 `tfsdk:"shift_right" json:"shiftRight,omitempty"`
@@ -91,12 +91,12 @@ type DevicesKubeedgeIoDeviceV1Alpha2ManifestData struct {
 			} `tfsdk:"customized_protocol" json:"customizedProtocol,omitempty"`
 			CustomizedValues *map[string]string `tfsdk:"customized_values" json:"customizedValues,omitempty"`
 			Modbus           *struct {
-				IsRegisterSwap *bool      `tfsdk:"is_register_swap" json:"isRegisterSwap,omitempty"`
-				IsSwap         *bool      `tfsdk:"is_swap" json:"isSwap,omitempty"`
-				Limit          *int64     `tfsdk:"limit" json:"limit,omitempty"`
-				Offset         *int64     `tfsdk:"offset" json:"offset,omitempty"`
-				Register       *string    `tfsdk:"register" json:"register,omitempty"`
-				Scale          *big.Float `tfsdk:"scale" json:"scale,omitempty"`
+				IsRegisterSwap *bool    `tfsdk:"is_register_swap" json:"isRegisterSwap,omitempty"`
+				IsSwap         *bool    `tfsdk:"is_swap" json:"isSwap,omitempty"`
+				Limit          *int64   `tfsdk:"limit" json:"limit,omitempty"`
+				Offset         *int64   `tfsdk:"offset" json:"offset,omitempty"`
+				Register       *string  `tfsdk:"register" json:"register,omitempty"`
+				Scale          *float64 `tfsdk:"scale" json:"scale,omitempty"`
 			} `tfsdk:"modbus" json:"modbus,omitempty"`
 			Opcua *struct {
 				BrowseName *string `tfsdk:"browse_name" json:"browseName,omitempty"`
@@ -431,7 +431,7 @@ func (r *DevicesKubeedgeIoDeviceV1Alpha2Manifest) Schema(_ context.Context, _ da
 																Computed:            false,
 															},
 
-															"operation_value": types.NumberType{
+															"operation_value": schema.Float64Attribute{
 																Description:         "Required: Specifies with what value the operation is to be performed",
 																MarkdownDescription: "Required: Specifies with what value the operation is to be performed",
 																Required:            false,
@@ -578,7 +578,7 @@ func (r *DevicesKubeedgeIoDeviceV1Alpha2Manifest) Schema(_ context.Context, _ da
 											},
 										},
 
-										"scale": types.NumberType{
+										"scale": schema.Float64Attribute{
 											Description:         "The scale to convert raw property data into final units. Defaults to 1.0",
 											MarkdownDescription: "The scale to convert raw property data into final units. Defaults to 1.0",
 											Required:            false,

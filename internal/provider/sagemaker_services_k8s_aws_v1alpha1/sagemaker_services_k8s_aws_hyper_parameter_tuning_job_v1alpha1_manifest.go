@@ -74,7 +74,7 @@ type SagemakerServicesK8SAwsHyperParameterTuningJobV1Alpha1ManifestData struct {
 			Strategy                     *string `tfsdk:"strategy" json:"strategy,omitempty"`
 			TrainingJobEarlyStoppingType *string `tfsdk:"training_job_early_stopping_type" json:"trainingJobEarlyStoppingType,omitempty"`
 			TuningJobCompletionCriteria  *struct {
-				TargetObjectiveMetricValue *big.Float `tfsdk:"target_objective_metric_value" json:"targetObjectiveMetricValue,omitempty"`
+				TargetObjectiveMetricValue *float64 `tfsdk:"target_objective_metric_value" json:"targetObjectiveMetricValue,omitempty"`
 			} `tfsdk:"tuning_job_completion_criteria" json:"tuningJobCompletionCriteria,omitempty"`
 		} `tfsdk:"hyper_parameter_tuning_job_config" json:"hyperParameterTuningJobConfig,omitempty"`
 		HyperParameterTuningJobName *string `tfsdk:"hyper_parameter_tuning_job_name" json:"hyperParameterTuningJobName,omitempty"`
@@ -563,7 +563,7 @@ func (r *SagemakerServicesK8SAwsHyperParameterTuningJobV1Alpha1Manifest) Schema(
 								Description:         "The job completion criteria.",
 								MarkdownDescription: "The job completion criteria.",
 								Attributes: map[string]schema.Attribute{
-									"target_objective_metric_value": types.NumberType{
+									"target_objective_metric_value": schema.Float64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

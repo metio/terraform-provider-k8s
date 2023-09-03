@@ -16,20 +16,32 @@ import (
 	{{ if .AdditionalImports.Float64Validator -}}
 	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 	{{ end -}}
-	{{ if .AdditionalImports.Regex -}}
-	"regexp"
+	{{ if .AdditionalImports.ListValidator -}}
+	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
 	{{ end -}}
-	{{ if .AdditionalImports.SchemaValidator -}}
-	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	{{ if .AdditionalImports.MapValidator -}}
+	"github.com/hashicorp/terraform-plugin-framework-validators/mapvalidator"
+	{{ end -}}
+	{{ if .AdditionalImports.ObjectValidator -}}
+	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
+	{{ end -}}
+	{{ if .AdditionalImports.Regexp -}}
+	"regexp"
 	{{ end -}}
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
+	{{ if .AdditionalImports.Path -}}
+	"github.com/hashicorp/terraform-plugin-framework/path"
+	{{ end -}}
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	{{ if .AdditionalImports.MathBig -}}
+	"math/big"
+	{{ end -}}
 	"sigs.k8s.io/yaml"
 )
 

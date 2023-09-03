@@ -112,6 +112,10 @@ func crdV1Properties(schema *apiextensionsv1.JSONSchemaProps, imports *Additiona
 			imports:  imports,
 		}, terraformResourceName, propPath, imports)
 
+		if goType == "big.Float" {
+			imports.MathBig = true
+		}
+
 		props = append(props, &Property{
 			BT:                     "`",
 			Name:                   name,
@@ -127,6 +131,7 @@ func crdV1Properties(schema *apiextensionsv1.JSONSchemaProps, imports *Additiona
 			Computed:               false,
 			Properties:             nestedProperties,
 			ValidatorsType:         mapAttributeTypeToValidatorsType(attributeType),
+			ValidatorsPackage:      mapAttributeTypeToValidatorsPackage(attributeType),
 			Validators:             validators,
 		})
 	}
@@ -140,8 +145,6 @@ func crdV1Properties(schema *apiextensionsv1.JSONSchemaProps, imports *Additiona
 		max := *schema.MaxProperties
 
 		if min == 1 && max == 1 {
-			imports.SchemaValidator = true
-
 			for _, outer := range props {
 				var pathExpressions []string
 				for _, inner := range props {
@@ -149,16 +152,16 @@ func crdV1Properties(schema *apiextensionsv1.JSONSchemaProps, imports *Additiona
 						pathExpressions = append(pathExpressions, fmt.Sprintf(`path.MatchRelative().AtParent().AtName("%s")`, inner.TerraformAttributeName))
 					}
 				}
-				validator := fmt.Sprintf(`schemavalidator.ExactlyOneOf(%v)`, strings.Join(pathExpressions, ", "))
+				validator := fmt.Sprintf(`%s.ExactlyOneOf(%v)`, outer.ValidatorsPackage, strings.Join(pathExpressions, ", "))
 				outer.Validators = append(outer.Validators, validator)
+				addValidatorImports(outer, imports)
+				imports.Path = true
 			}
 		}
 	} else if schema.MinProperties != nil && schema.MaxProperties == nil {
 		min := *schema.MinProperties
 
 		if min == 1 {
-			imports.SchemaValidator = true
-
 			for _, outer := range props {
 				var pathExpressions []string
 				for _, inner := range props {
@@ -166,8 +169,10 @@ func crdV1Properties(schema *apiextensionsv1.JSONSchemaProps, imports *Additiona
 						pathExpressions = append(pathExpressions, fmt.Sprintf(`path.MatchRelative().AtParent().AtName("%s")`, inner.TerraformAttributeName))
 					}
 				}
-				validator := fmt.Sprintf(`schemavalidator.AtLeastOneOf(%v)`, strings.Join(pathExpressions, ", "))
+				validator := fmt.Sprintf(`%s.AtLeastOneOf(%v)`, outer.ValidatorsPackage, strings.Join(pathExpressions, ", "))
 				outer.Validators = append(outer.Validators, validator)
+				addValidatorImports(outer, imports)
+				imports.Path = true
 			}
 		} else if min > 1 && min == int64(len(props)) {
 			for _, prop := range props {

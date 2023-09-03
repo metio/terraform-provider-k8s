@@ -8,10 +8,11 @@ package external_secrets_io_v1alpha1
 import (
 	"context"
 	"fmt"
-	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
@@ -432,8 +433,8 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 													Required: false,
 													Optional: true,
 													Computed: false,
-													Validators: []UNKNOWN{
-														schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("secret")),
+													Validators: []validator.Object{
+														objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("secret")),
 													},
 												},
 
@@ -471,8 +472,8 @@ func (r *ExternalSecretsIoExternalSecretV1Alpha1Manifest) Schema(_ context.Conte
 													Required: false,
 													Optional: true,
 													Computed: false,
-													Validators: []UNKNOWN{
-														schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("config_map")),
+													Validators: []validator.Object{
+														objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("config_map")),
 													},
 												},
 											},

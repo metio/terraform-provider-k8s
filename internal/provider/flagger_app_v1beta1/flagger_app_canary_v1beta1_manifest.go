@@ -55,9 +55,9 @@ type FlaggerAppCanaryV1Beta1ManifestData struct {
 				} `tfsdk:"provider_ref" json:"providerRef,omitempty"`
 				Severity *string `tfsdk:"severity" json:"severity,omitempty"`
 			} `tfsdk:"alerts" json:"alerts,omitempty"`
-			CanaryReadyThreshold *big.Float `tfsdk:"canary_ready_threshold" json:"canaryReadyThreshold,omitempty"`
-			Interval             *string    `tfsdk:"interval" json:"interval,omitempty"`
-			Iterations           *big.Float `tfsdk:"iterations" json:"iterations,omitempty"`
+			CanaryReadyThreshold *float64 `tfsdk:"canary_ready_threshold" json:"canaryReadyThreshold,omitempty"`
+			Interval             *string  `tfsdk:"interval" json:"interval,omitempty"`
+			Iterations           *float64 `tfsdk:"iterations" json:"iterations,omitempty"`
 			Match                *[]struct {
 				Headers *struct {
 					Exact  *string `tfsdk:"exact" json:"exact,omitempty"`
@@ -67,7 +67,7 @@ type FlaggerAppCanaryV1Beta1ManifestData struct {
 				} `tfsdk:"headers" json:"headers,omitempty"`
 				SourceLabels *map[string]string `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
 			} `tfsdk:"match" json:"match,omitempty"`
-			MaxWeight *big.Float `tfsdk:"max_weight" json:"maxWeight,omitempty"`
+			MaxWeight *float64 `tfsdk:"max_weight" json:"maxWeight,omitempty"`
 			Metrics   *[]struct {
 				Interval    *string `tfsdk:"interval" json:"interval,omitempty"`
 				Name        *string `tfsdk:"name" json:"name,omitempty"`
@@ -77,23 +77,23 @@ type FlaggerAppCanaryV1Beta1ManifestData struct {
 					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				} `tfsdk:"template_ref" json:"templateRef,omitempty"`
 				TemplateVariables *map[string]string `tfsdk:"template_variables" json:"templateVariables,omitempty"`
-				Threshold         *big.Float         `tfsdk:"threshold" json:"threshold,omitempty"`
+				Threshold         *float64           `tfsdk:"threshold" json:"threshold,omitempty"`
 				ThresholdRange    *struct {
-					Max *big.Float `tfsdk:"max" json:"max,omitempty"`
-					Min *big.Float `tfsdk:"min" json:"min,omitempty"`
+					Max *float64 `tfsdk:"max" json:"max,omitempty"`
+					Min *float64 `tfsdk:"min" json:"min,omitempty"`
 				} `tfsdk:"threshold_range" json:"thresholdRange,omitempty"`
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Mirror                *bool      `tfsdk:"mirror" json:"mirror,omitempty"`
-			MirrorWeight          *big.Float `tfsdk:"mirror_weight" json:"mirrorWeight,omitempty"`
-			PrimaryReadyThreshold *big.Float `tfsdk:"primary_ready_threshold" json:"primaryReadyThreshold,omitempty"`
+			Mirror                *bool    `tfsdk:"mirror" json:"mirror,omitempty"`
+			MirrorWeight          *float64 `tfsdk:"mirror_weight" json:"mirrorWeight,omitempty"`
+			PrimaryReadyThreshold *float64 `tfsdk:"primary_ready_threshold" json:"primaryReadyThreshold,omitempty"`
 			SessionAffinity       *struct {
-				CookieName *string    `tfsdk:"cookie_name" json:"cookieName,omitempty"`
-				MaxAge     *big.Float `tfsdk:"max_age" json:"maxAge,omitempty"`
+				CookieName *string  `tfsdk:"cookie_name" json:"cookieName,omitempty"`
+				MaxAge     *float64 `tfsdk:"max_age" json:"maxAge,omitempty"`
 			} `tfsdk:"session_affinity" json:"sessionAffinity,omitempty"`
-			StepWeight          *big.Float `tfsdk:"step_weight" json:"stepWeight,omitempty"`
-			StepWeightPromotion *big.Float `tfsdk:"step_weight_promotion" json:"stepWeightPromotion,omitempty"`
-			StepWeights         *[]string  `tfsdk:"step_weights" json:"stepWeights,omitempty"`
-			Threshold           *big.Float `tfsdk:"threshold" json:"threshold,omitempty"`
+			StepWeight          *float64  `tfsdk:"step_weight" json:"stepWeight,omitempty"`
+			StepWeightPromotion *float64  `tfsdk:"step_weight_promotion" json:"stepWeightPromotion,omitempty"`
+			StepWeights         *[]string `tfsdk:"step_weights" json:"stepWeights,omitempty"`
+			Threshold           *float64  `tfsdk:"threshold" json:"threshold,omitempty"`
 			Webhooks            *[]struct {
 				Metadata  *map[string]string `tfsdk:"metadata" json:"metadata,omitempty"`
 				MuteAlert *bool              `tfsdk:"mute_alert" json:"muteAlert,omitempty"`
@@ -109,8 +109,8 @@ type FlaggerAppCanaryV1Beta1ManifestData struct {
 			Name                  *string            `tfsdk:"name" json:"name,omitempty"`
 			PrimaryScalerQueries  *map[string]string `tfsdk:"primary_scaler_queries" json:"primaryScalerQueries,omitempty"`
 			PrimaryScalerReplicas *struct {
-				MaxReplicas *big.Float `tfsdk:"max_replicas" json:"maxReplicas,omitempty"`
-				MinReplicas *big.Float `tfsdk:"min_replicas" json:"minReplicas,omitempty"`
+				MaxReplicas *float64 `tfsdk:"max_replicas" json:"maxReplicas,omitempty"`
+				MinReplicas *float64 `tfsdk:"min_replicas" json:"minReplicas,omitempty"`
 			} `tfsdk:"primary_scaler_replicas" json:"primaryScalerReplicas,omitempty"`
 		} `tfsdk:"autoscaler_ref" json:"autoscalerRef,omitempty"`
 		IngressRef *struct {
@@ -118,10 +118,10 @@ type FlaggerAppCanaryV1Beta1ManifestData struct {
 			Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name       *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"ingress_ref" json:"ingressRef,omitempty"`
-		MetricsServer           *string    `tfsdk:"metrics_server" json:"metricsServer,omitempty"`
-		ProgressDeadlineSeconds *big.Float `tfsdk:"progress_deadline_seconds" json:"progressDeadlineSeconds,omitempty"`
-		Provider                *string    `tfsdk:"provider" json:"provider,omitempty"`
-		RevertOnDeletion        *bool      `tfsdk:"revert_on_deletion" json:"revertOnDeletion,omitempty"`
+		MetricsServer           *string  `tfsdk:"metrics_server" json:"metricsServer,omitempty"`
+		ProgressDeadlineSeconds *float64 `tfsdk:"progress_deadline_seconds" json:"progressDeadlineSeconds,omitempty"`
+		Provider                *string  `tfsdk:"provider" json:"provider,omitempty"`
+		RevertOnDeletion        *bool    `tfsdk:"revert_on_deletion" json:"revertOnDeletion,omitempty"`
 		RouteRef                *struct {
 			ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
@@ -217,11 +217,11 @@ type FlaggerAppCanaryV1Beta1ManifestData struct {
 					Regex  *string `tfsdk:"regex" json:"regex,omitempty"`
 				} `tfsdk:"without_headers" json:"withoutHeaders,omitempty"`
 			} `tfsdk:"match" json:"match,omitempty"`
-			MeshName      *string    `tfsdk:"mesh_name" json:"meshName,omitempty"`
-			Name          *string    `tfsdk:"name" json:"name,omitempty"`
-			Port          *big.Float `tfsdk:"port" json:"port,omitempty"`
-			PortDiscovery *bool      `tfsdk:"port_discovery" json:"portDiscovery,omitempty"`
-			PortName      *string    `tfsdk:"port_name" json:"portName,omitempty"`
+			MeshName      *string  `tfsdk:"mesh_name" json:"meshName,omitempty"`
+			Name          *string  `tfsdk:"name" json:"name,omitempty"`
+			Port          *float64 `tfsdk:"port" json:"port,omitempty"`
+			PortDiscovery *bool    `tfsdk:"port_discovery" json:"portDiscovery,omitempty"`
+			PortName      *string  `tfsdk:"port_name" json:"portName,omitempty"`
 			Primary       *struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -451,7 +451,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Computed: false,
 							},
 
-							"canary_ready_threshold": types.NumberType{
+							"canary_ready_threshold": schema.Float64Attribute{
 								Description:         "Percentage of pods that need to be available to consider canary as ready",
 								MarkdownDescription: "Percentage of pods that need to be available to consider canary as ready",
 								Required:            false,
@@ -470,7 +470,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								},
 							},
 
-							"iterations": types.NumberType{
+							"iterations": schema.Float64Attribute{
 								Description:         "Number of checks to run for A/B Testing and Blue/Green",
 								MarkdownDescription: "Number of checks to run for A/B Testing and Blue/Green",
 								Required:            false,
@@ -539,7 +539,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Computed: false,
 							},
 
-							"max_weight": types.NumberType{
+							"max_weight": schema.Float64Attribute{
 								Description:         "Max traffic weight routed to canary",
 								MarkdownDescription: "Max traffic weight routed to canary",
 								Required:            false,
@@ -613,7 +613,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 											Computed:            false,
 										},
 
-										"threshold": types.NumberType{
+										"threshold": schema.Float64Attribute{
 											Description:         "Max value accepted for this metric",
 											MarkdownDescription: "Max value accepted for this metric",
 											Required:            false,
@@ -625,7 +625,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 											Description:         "Range accepted for this metric",
 											MarkdownDescription: "Range accepted for this metric",
 											Attributes: map[string]schema.Attribute{
-												"max": types.NumberType{
+												"max": schema.Float64Attribute{
 													Description:         "Max value accepted for this metric",
 													MarkdownDescription: "Max value accepted for this metric",
 													Required:            false,
@@ -633,7 +633,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 													Computed:            false,
 												},
 
-												"min": types.NumberType{
+												"min": schema.Float64Attribute{
 													Description:         "Min value accepted for this metric",
 													MarkdownDescription: "Min value accepted for this metric",
 													Required:            false,
@@ -660,7 +660,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Computed:            false,
 							},
 
-							"mirror_weight": types.NumberType{
+							"mirror_weight": schema.Float64Attribute{
 								Description:         "Weight of traffic to be mirrored",
 								MarkdownDescription: "Weight of traffic to be mirrored",
 								Required:            false,
@@ -668,7 +668,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Computed:            false,
 							},
 
-							"primary_ready_threshold": types.NumberType{
+							"primary_ready_threshold": schema.Float64Attribute{
 								Description:         "Percentage of pods that need to be available to consider primary as ready",
 								MarkdownDescription: "Percentage of pods that need to be available to consider primary as ready",
 								Required:            false,
@@ -688,7 +688,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 										Computed:            false,
 									},
 
-									"max_age": types.NumberType{
+									"max_age": schema.Float64Attribute{
 										Description:         "MaxAge indicates the number of seconds until the session affinity cookie will expire.",
 										MarkdownDescription: "MaxAge indicates the number of seconds until the session affinity cookie will expire.",
 										Required:            false,
@@ -701,7 +701,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Computed: false,
 							},
 
-							"step_weight": types.NumberType{
+							"step_weight": schema.Float64Attribute{
 								Description:         "Incremental traffic step weight for the analysis phase",
 								MarkdownDescription: "Incremental traffic step weight for the analysis phase",
 								Required:            false,
@@ -709,7 +709,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Computed:            false,
 							},
 
-							"step_weight_promotion": types.NumberType{
+							"step_weight_promotion": schema.Float64Attribute{
 								Description:         "Incremental traffic step weight for the promotion phase",
 								MarkdownDescription: "Incremental traffic step weight for the promotion phase",
 								Required:            false,
@@ -726,7 +726,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Computed:            false,
 							},
 
-							"threshold": types.NumberType{
+							"threshold": schema.Float64Attribute{
 								Description:         "Max number of failed checks before rollback",
 								MarkdownDescription: "Max number of failed checks before rollback",
 								Required:            false,
@@ -849,7 +849,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
-									"max_replicas": types.NumberType{
+									"max_replicas": schema.Float64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -857,7 +857,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 										Computed:            false,
 									},
 
-									"min_replicas": types.NumberType{
+									"min_replicas": schema.Float64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -919,7 +919,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 					},
 
-					"progress_deadline_seconds": types.NumberType{
+					"progress_deadline_seconds": schema.Float64Attribute{
 						Description:         "Deployment progress deadline",
 						MarkdownDescription: "Deployment progress deadline",
 						Required:            false,
@@ -1651,7 +1651,7 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Computed:            false,
 							},
 
-							"port": types.NumberType{
+							"port": schema.Float64Attribute{
 								Description:         "Container port number",
 								MarkdownDescription: "Container port number",
 								Required:            true,

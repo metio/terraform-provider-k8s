@@ -81,11 +81,11 @@ type CephRookIoCephFilesystemV1ManifestData struct {
 					PrimaryDeviceClass   *string `tfsdk:"primary_device_class" json:"primaryDeviceClass,omitempty"`
 					SecondaryDeviceClass *string `tfsdk:"secondary_device_class" json:"secondaryDeviceClass,omitempty"`
 				} `tfsdk:"hybrid_storage" json:"hybridStorage,omitempty"`
-				ReplicasPerFailureDomain *int64     `tfsdk:"replicas_per_failure_domain" json:"replicasPerFailureDomain,omitempty"`
-				RequireSafeReplicaSize   *bool      `tfsdk:"require_safe_replica_size" json:"requireSafeReplicaSize,omitempty"`
-				Size                     *int64     `tfsdk:"size" json:"size,omitempty"`
-				SubFailureDomain         *string    `tfsdk:"sub_failure_domain" json:"subFailureDomain,omitempty"`
-				TargetSizeRatio          *big.Float `tfsdk:"target_size_ratio" json:"targetSizeRatio,omitempty"`
+				ReplicasPerFailureDomain *int64   `tfsdk:"replicas_per_failure_domain" json:"replicasPerFailureDomain,omitempty"`
+				RequireSafeReplicaSize   *bool    `tfsdk:"require_safe_replica_size" json:"requireSafeReplicaSize,omitempty"`
+				Size                     *int64   `tfsdk:"size" json:"size,omitempty"`
+				SubFailureDomain         *string  `tfsdk:"sub_failure_domain" json:"subFailureDomain,omitempty"`
+				TargetSizeRatio          *float64 `tfsdk:"target_size_ratio" json:"targetSizeRatio,omitempty"`
 			} `tfsdk:"replicated" json:"replicated,omitempty"`
 			StatusCheck *struct {
 				Mirror *struct {
@@ -129,11 +129,11 @@ type CephRookIoCephFilesystemV1ManifestData struct {
 					PrimaryDeviceClass   *string `tfsdk:"primary_device_class" json:"primaryDeviceClass,omitempty"`
 					SecondaryDeviceClass *string `tfsdk:"secondary_device_class" json:"secondaryDeviceClass,omitempty"`
 				} `tfsdk:"hybrid_storage" json:"hybridStorage,omitempty"`
-				ReplicasPerFailureDomain *int64     `tfsdk:"replicas_per_failure_domain" json:"replicasPerFailureDomain,omitempty"`
-				RequireSafeReplicaSize   *bool      `tfsdk:"require_safe_replica_size" json:"requireSafeReplicaSize,omitempty"`
-				Size                     *int64     `tfsdk:"size" json:"size,omitempty"`
-				SubFailureDomain         *string    `tfsdk:"sub_failure_domain" json:"subFailureDomain,omitempty"`
-				TargetSizeRatio          *big.Float `tfsdk:"target_size_ratio" json:"targetSizeRatio,omitempty"`
+				ReplicasPerFailureDomain *int64   `tfsdk:"replicas_per_failure_domain" json:"replicasPerFailureDomain,omitempty"`
+				RequireSafeReplicaSize   *bool    `tfsdk:"require_safe_replica_size" json:"requireSafeReplicaSize,omitempty"`
+				Size                     *int64   `tfsdk:"size" json:"size,omitempty"`
+				SubFailureDomain         *string  `tfsdk:"sub_failure_domain" json:"subFailureDomain,omitempty"`
+				TargetSizeRatio          *float64 `tfsdk:"target_size_ratio" json:"targetSizeRatio,omitempty"`
 			} `tfsdk:"replicated" json:"replicated,omitempty"`
 			StatusCheck *struct {
 				Mirror *struct {
@@ -771,7 +771,7 @@ func (r *CephRookIoCephFilesystemV1Manifest) Schema(_ context.Context, _ datasou
 											Computed:            false,
 										},
 
-										"target_size_ratio": types.NumberType{
+										"target_size_ratio": schema.Float64Attribute{
 											Description:         "TargetSizeRatio gives a hint (%) to Ceph in terms of expected consumption of the total cluster capacity",
 											MarkdownDescription: "TargetSizeRatio gives a hint (%) to Ceph in terms of expected consumption of the total cluster capacity",
 											Required:            false,
@@ -1114,7 +1114,7 @@ func (r *CephRookIoCephFilesystemV1Manifest) Schema(_ context.Context, _ datasou
 										Computed:            false,
 									},
 
-									"target_size_ratio": types.NumberType{
+									"target_size_ratio": schema.Float64Attribute{
 										Description:         "TargetSizeRatio gives a hint (%) to Ceph in terms of expected consumption of the total cluster capacity",
 										MarkdownDescription: "TargetSizeRatio gives a hint (%) to Ceph in terms of expected consumption of the total cluster capacity",
 										Required:            false,

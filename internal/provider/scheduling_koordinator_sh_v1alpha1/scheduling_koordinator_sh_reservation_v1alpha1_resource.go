@@ -9,7 +9,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -315,8 +315,8 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Resource) Schema(_ context.Co
 									Required: false,
 									Optional: true,
 									Computed: false,
-									Validators: []UNKNOWN{
-										schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("label_selector"), path.MatchRelative().AtParent().AtName("object")),
+									Validators: []validator.Object{
+										objectvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("label_selector"), path.MatchRelative().AtParent().AtName("object")),
 									},
 								},
 
@@ -372,8 +372,8 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Resource) Schema(_ context.Co
 									Required: false,
 									Optional: true,
 									Computed: false,
-									Validators: []UNKNOWN{
-										schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("controller"), path.MatchRelative().AtParent().AtName("object")),
+									Validators: []validator.Object{
+										objectvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("controller"), path.MatchRelative().AtParent().AtName("object")),
 									},
 								},
 
@@ -440,8 +440,8 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Resource) Schema(_ context.Co
 									Required: false,
 									Optional: true,
 									Computed: false,
-									Validators: []UNKNOWN{
-										schemavalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("controller"), path.MatchRelative().AtParent().AtName("label_selector")),
+									Validators: []validator.Object{
+										objectvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("controller"), path.MatchRelative().AtParent().AtName("label_selector")),
 									},
 								},
 							},

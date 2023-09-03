@@ -189,7 +189,7 @@ func (r *Metal3IoHardwareDataV1Alpha1DataSource) Schema(_ context.Context, _ dat
 										Computed:            true,
 									},
 
-									"clock_megahertz": types.Float64Type{
+									"clock_megahertz": schema.Float64Attribute{
 										Description:         "ClockSpeed is a clock speed in MHz",
 										MarkdownDescription: "ClockSpeed is a clock speed in MHz",
 										Required:            false,

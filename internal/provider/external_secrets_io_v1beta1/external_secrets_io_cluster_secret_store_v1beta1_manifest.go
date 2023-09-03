@@ -7,10 +7,11 @@ package external_secrets_io_v1beta1
 
 import (
 	"context"
-	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
@@ -1052,8 +1053,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -1197,8 +1198,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -1449,8 +1450,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -1616,8 +1617,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -1736,8 +1737,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -1872,8 +1873,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -1973,8 +1974,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -2029,8 +2030,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -2167,8 +2168,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -2271,8 +2272,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -2315,8 +2316,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 												Required: false,
 												Optional: true,
 												Computed: false,
-												Validators: []UNKNOWN{
-													schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("secret_ref")),
+												Validators: []validator.Object{
+													objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("secret_ref")),
 												},
 											},
 
@@ -2360,8 +2361,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 												Required: false,
 												Optional: true,
 												Computed: false,
-												Validators: []UNKNOWN{
-													schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("container_auth")),
+												Validators: []validator.Object{
+													objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("container_auth")),
 												},
 											},
 										},
@@ -2381,8 +2382,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -2434,8 +2435,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -2520,8 +2521,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 												Required: false,
 												Optional: true,
 												Computed: false,
-												Validators: []UNKNOWN{
-													schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("service_account"), path.MatchRelative().AtParent().AtName("token")),
+												Validators: []validator.Object{
+													objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("service_account"), path.MatchRelative().AtParent().AtName("token")),
 												},
 											},
 
@@ -2557,8 +2558,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 												Required: false,
 												Optional: true,
 												Computed: false,
-												Validators: []UNKNOWN{
-													schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("cert"), path.MatchRelative().AtParent().AtName("token")),
+												Validators: []validator.Object{
+													objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("cert"), path.MatchRelative().AtParent().AtName("token")),
 												},
 											},
 
@@ -2602,8 +2603,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 												Required: false,
 												Optional: true,
 												Computed: false,
-												Validators: []UNKNOWN{
-													schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("cert"), path.MatchRelative().AtParent().AtName("service_account")),
+												Validators: []validator.Object{
+													objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("cert"), path.MatchRelative().AtParent().AtName("service_account")),
 												},
 											},
 										},
@@ -2695,8 +2696,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -2775,8 +2776,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -2903,8 +2904,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -3039,8 +3040,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -3125,8 +3126,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -3985,8 +3986,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -4162,8 +4163,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -4266,8 +4267,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexlockbox")),
 								},
 							},
 
@@ -4370,8 +4371,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Manifest) Schema(_ context.Co
 								Required: false,
 								Optional: true,
 								Computed: false,
-								Validators: []UNKNOWN{
-									schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
+								Validators: []validator.Object{
+									objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("akeyless"), path.MatchRelative().AtParent().AtName("alibaba"), path.MatchRelative().AtParent().AtName("aws"), path.MatchRelative().AtParent().AtName("azurekv"), path.MatchRelative().AtParent().AtName("conjur"), path.MatchRelative().AtParent().AtName("delinea"), path.MatchRelative().AtParent().AtName("doppler"), path.MatchRelative().AtParent().AtName("fake"), path.MatchRelative().AtParent().AtName("gcpsm"), path.MatchRelative().AtParent().AtName("gitlab"), path.MatchRelative().AtParent().AtName("ibm"), path.MatchRelative().AtParent().AtName("keepersecurity"), path.MatchRelative().AtParent().AtName("kubernetes"), path.MatchRelative().AtParent().AtName("onepassword"), path.MatchRelative().AtParent().AtName("oracle"), path.MatchRelative().AtParent().AtName("scaleway"), path.MatchRelative().AtParent().AtName("senhasegura"), path.MatchRelative().AtParent().AtName("vault"), path.MatchRelative().AtParent().AtName("webhook"), path.MatchRelative().AtParent().AtName("yandexcertificatemanager")),
 								},
 							},
 						},

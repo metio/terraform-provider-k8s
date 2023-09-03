@@ -64,10 +64,6 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 					Path *string `tfsdk:"path" json:"path,omitempty"`
 					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"host_path" json:"hostPath,omitempty"`
-				Host_path *struct {
-					Path *string `tfsdk:"path" json:"path,omitempty"`
-					Type *string `tfsdk:"type" json:"type,omitempty"`
-				} `tfsdk:"host_path" json:"host_path,omitempty"`
 				Pvc *struct {
 					Source *struct {
 						ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
@@ -1585,10 +1581,6 @@ type LoggingBanzaicloudIoNodeAgentV1Beta1ManifestData struct {
 					Path *string `tfsdk:"path" json:"path,omitempty"`
 					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"host_path" json:"hostPath,omitempty"`
-				Host_path *struct {
-					Path *string `tfsdk:"path" json:"path,omitempty"`
-					Type *string `tfsdk:"type" json:"type,omitempty"`
-				} `tfsdk:"host_path" json:"host_path,omitempty"`
 				Pvc *struct {
 					Source *struct {
 						ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
@@ -1902,31 +1894,6 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"size_limit": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"host_path": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Attributes: map[string]schema.Attribute{
-											"path": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            true,
-												Optional:            false,
-												Computed:            false,
-											},
-
-											"type": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -12194,31 +12161,6 @@ func (r *LoggingBanzaicloudIoNodeAgentV1Beta1Manifest) Schema(_ context.Context,
 											},
 
 											"size_limit": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"host_path": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Attributes: map[string]schema.Attribute{
-											"path": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            true,
-												Optional:            false,
-												Computed:            false,
-											},
-
-											"type": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
