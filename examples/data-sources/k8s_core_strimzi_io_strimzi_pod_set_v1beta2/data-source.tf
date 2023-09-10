@@ -1,7 +1,7 @@
 data "k8s_core_strimzi_io_strimzi_pod_set_v1beta2" "example" {
   metadata = {
-    name = "some-name"
+    name      = "some-name"
     namespace = "some-namespace"
-    
+
   }
 }

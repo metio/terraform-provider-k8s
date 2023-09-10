@@ -9,7 +9,6 @@ import (
 	"context"
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/servicebinding_io_v1alpha3"
-	"github.com/metio/terraform-provider-k8s/internal/testutilities"
 	"testing"
 )
 
@@ -28,32 +27,5 @@ func TestServicebindingIoClusterWorkloadResourceMappingV1Alpha3Manifest_Validate
 
 	if diagnostics.HasError() {
 		t.Fatalf("Schema validation diagnostics: %+v", diagnostics)
-	}
-}
-
-func TestServicebindingIoClusterWorkloadResourceMappingV1Alpha3Manifest_ConfigurationErrors(t *testing.T) {
-	testCases := map[string]testutilities.ConfigurationErrorTestCase{
-		"empty-name": {
-			Configuration: `
-				metadata = {
-					name      = ""
-					
-				}
-			`,
-			ErrorRegex: "Attribute metadata.name string length must be at least 1, got: 0",
-		},
-		"missing-name": {
-			Configuration: `
-				metadata = {
-					
-				}
-			`,
-			ErrorRegex: `Inappropriate value for attribute "metadata": attribute "name" is required`,
-		},
-	}
-	for name, testCase := range testCases {
-		t.Run(name, func(t *testing.T) {
-			testutilities.VerifyConfigurationErrors(t, "data", "k8s_servicebinding_io_cluster_workload_resource_mapping_v1alpha3_manifest", testCase)
-		})
 	}
 }

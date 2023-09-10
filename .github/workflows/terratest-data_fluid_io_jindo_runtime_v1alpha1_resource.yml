@@ -8,6 +8,7 @@ on:
     paths:
       - examples/resources/k8s_data_fluid_io_jindo_runtime_v1alpha1/**
       - internal/provider/data_fluid_io_v1alpha1/data_fluid_io_jindo_runtime_v1alpha1_resource.go
+      - internal/provider/data_fluid_io_v1alpha1/data_fluid_io_jindo_runtime_v1alpha1_resource_test.go
       - terratest/data_fluid_io_v1alpha1/data_fluid_io_jindo_runtime_v1alpha1_resource_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/data_fluid_io_v1alpha1/data_fluid_io_jindo_runtime_v1alpha1_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestDataFluidIoJindoRuntimeV1Alpha1Resource ./terratest/data_fluid_io_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestDataFluidIoJindoRuntimeV1Alpha1Resource ./terratest/data_fluid_io_v1alpha1

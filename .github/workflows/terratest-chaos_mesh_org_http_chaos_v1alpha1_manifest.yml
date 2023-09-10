@@ -8,6 +8,7 @@ on:
     paths:
       - examples/data-sources/k8s_chaos_mesh_org_http_chaos_v1alpha1_manifest/**
       - internal/provider/chaos_mesh_org_v1alpha1/chaos_mesh_org_http_chaos_v1alpha1_manifest.go
+      - internal/provider/chaos_mesh_org_v1alpha1/chaos_mesh_org_http_chaos_v1alpha1_manifest_test.go
       - terratest/chaos_mesh_org_v1alpha1/chaos_mesh_org_http_chaos_v1alpha1_manifest_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/chaos_mesh_org_v1alpha1/chaos_mesh_org_http_chaos_v1alpha1_manifest_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestChaosMeshOrgHTTPChaosV1Alpha1Manifest ./terratest/chaos_mesh_org_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestChaosMeshOrgHTTPChaosV1Alpha1Manifest ./terratest/chaos_mesh_org_v1alpha1

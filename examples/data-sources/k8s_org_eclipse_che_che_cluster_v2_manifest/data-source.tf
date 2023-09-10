@@ -1,7 +1,6 @@
 data "k8s_org_eclipse_che_che_cluster_v2_manifest" "example" {
   metadata = {
-    name = "some-name"
+    name      = "some-name"
     namespace = "some-namespace"
-    
   }
 }

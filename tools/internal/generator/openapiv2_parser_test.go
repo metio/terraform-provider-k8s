@@ -10,13 +10,13 @@ import (
 )
 
 func TestParseOpenAPIv2Files(t *testing.T) {
-	openapiv2Schemas := parseOpenAPIv2Files("../schemas/openapi_v2/")
+	openapiv2Schemas := ParseOpenAPIv2Files("../../../schemas/openapi_v2/")
 
 	assert.Greater(t, len(openapiv2Schemas), 0)
 }
 
 func TestKubernetesSchema(t *testing.T) {
-	openapiv2Schemas := parseOpenAPIv2Files("../schemas/openapi_v2/")
+	openapiv2Schemas := ParseOpenAPIv2Files("../../../schemas/openapi_v2/")
 	kubernetesSchema := openapiv2Schemas[0]
 	statefulSet := kubernetesSchema["io.k8s.api.apps.v1.StatefulSet"]
 	spec := statefulSet.Value.Properties["spec"].Value
@@ -26,7 +26,7 @@ func TestKubernetesSchema(t *testing.T) {
 	templateSpec := templateProps["spec"].Value
 	templateSpecProps := templateSpec.Properties
 
-	assert.Equal(t, len(properties), 10, "properties")
+	assert.Equal(t, len(properties), 11, "properties")
 	assert.Equal(t, len(templateProps), 5, "templateProps")
 	assert.Equal(t, len(templateSpecProps), 8, "templateSpecProps")
 }

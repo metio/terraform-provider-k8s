@@ -19,10 +19,10 @@ func GenerateProvider(templatePath string, outputPath string, data []*TemplateDa
 		Packages:  uniquePackages(data),
 	}
 	dataSourcesTarget := fmt.Sprintf("%s/provider_data_sources.go", outputPath)
-	dataSourcesGenerated := generateCode(dataSourcesTarget, providerDataSourcesTemplate, value)
-	formatCode(dataSourcesGenerated)
 	resourcesTarget := fmt.Sprintf("%s/provider_resources.go", outputPath)
+	dataSourcesGenerated := generateCode(dataSourcesTarget, providerDataSourcesTemplate, value)
 	resourcesGenerated := generateCode(resourcesTarget, providerResourcesTemplate, value)
+	formatCode(dataSourcesGenerated)
 	formatCode(resourcesGenerated)
 }
 

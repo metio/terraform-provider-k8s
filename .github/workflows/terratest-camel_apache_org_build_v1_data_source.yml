@@ -8,6 +8,7 @@ on:
     paths:
       - examples/data-sources/k8s_camel_apache_org_build_v1/**
       - internal/provider/camel_apache_org_v1/camel_apache_org_build_v1_data_source.go
+      - internal/provider/camel_apache_org_v1/camel_apache_org_build_v1_data_source_test.go
       - terratest/camel_apache_org_v1/camel_apache_org_build_v1_data_source_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/camel_apache_org_v1/camel_apache_org_build_v1_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestCamelApacheOrgBuildV1DataSource ./terratest/camel_apache_org_v1
+        run: go test -v -timeout=120s -count=1 -run TestCamelApacheOrgBuildV1DataSource ./terratest/camel_apache_org_v1

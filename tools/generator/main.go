@@ -61,4 +61,5 @@ func main() {
 	generator.GenerateTerratestTests(filepath.Join(templatesDir, "/terratest"), fmt.Sprintf("%s/terratest", *providerDir), data)
 	generator.GenerateGitHubWorkflows(filepath.Join(templatesDir, "/github"), fmt.Sprintf("%s/.github/workflows", *providerDir), data)
 	generator.GenerateReuseFiles(filepath.Join(templatesDir, "/reuse"), fmt.Sprintf("%s/.reuse", *providerDir), fetcher.OpenAPIv2Sources, fetcher.CRDv1Sources)
+	generator.GenerateMakefiles(filepath.Join(templatesDir, "/makefile"), *providerDir, data)
 }

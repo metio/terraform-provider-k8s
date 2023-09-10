@@ -1,7 +1,7 @@
 data "k8s_operator_aquasec_com_aqua_enforcer_v1alpha1" "example" {
   metadata = {
-    name = "some-name"
+    name      = "some-name"
     namespace = "some-namespace"
-    
+
   }
 }

@@ -8,6 +8,7 @@ on:
     paths:
       - examples/resources/k8s_cluster_clusterpedia_io_cluster_sync_resources_v1alpha2/**
       - internal/provider/cluster_clusterpedia_io_v1alpha2/cluster_clusterpedia_io_cluster_sync_resources_v1alpha2_resource.go
+      - internal/provider/cluster_clusterpedia_io_v1alpha2/cluster_clusterpedia_io_cluster_sync_resources_v1alpha2_resource_test.go
       - terratest/cluster_clusterpedia_io_v1alpha2/cluster_clusterpedia_io_cluster_sync_resources_v1alpha2_resource_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/cluster_clusterpedia_io_v1alpha2/cluster_clusterpedia_io_cluster_sync_resources_v1alpha2_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestClusterClusterpediaIoClusterSyncResourcesV1Alpha2Resource ./terratest/cluster_clusterpedia_io_v1alpha2
+        run: go test -v -timeout=120s -count=1 -run TestClusterClusterpediaIoClusterSyncResourcesV1Alpha2Resource ./terratest/cluster_clusterpedia_io_v1alpha2

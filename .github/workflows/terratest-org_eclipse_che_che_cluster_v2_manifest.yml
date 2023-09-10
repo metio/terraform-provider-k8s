@@ -8,6 +8,7 @@ on:
     paths:
       - examples/data-sources/k8s_org_eclipse_che_che_cluster_v2_manifest/**
       - internal/provider/org_eclipse_che_v2/org_eclipse_che_che_cluster_v2_manifest.go
+      - internal/provider/org_eclipse_che_v2/org_eclipse_che_che_cluster_v2_manifest_test.go
       - terratest/org_eclipse_che_v2/org_eclipse_che_che_cluster_v2_manifest_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/org_eclipse_che_v2/org_eclipse_che_che_cluster_v2_manifest_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestOrgEclipseCheCheClusterV2Manifest ./terratest/org_eclipse_che_v2
+        run: go test -v -timeout=120s -count=1 -run TestOrgEclipseCheCheClusterV2Manifest ./terratest/org_eclipse_che_v2

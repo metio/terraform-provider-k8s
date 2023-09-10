@@ -8,6 +8,7 @@ on:
     paths:
       - examples/data-sources/k8s_couchbase_com_couchbase_scope_group_v2/**
       - internal/provider/couchbase_com_v2/couchbase_com_couchbase_scope_group_v2_data_source.go
+      - internal/provider/couchbase_com_v2/couchbase_com_couchbase_scope_group_v2_data_source_test.go
       - terratest/couchbase_com_v2/couchbase_com_couchbase_scope_group_v2_data_source_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/couchbase_com_v2/couchbase_com_couchbase_scope_group_v2_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestCouchbaseComCouchbaseScopeGroupV2DataSource ./terratest/couchbase_com_v2
+        run: go test -v -timeout=120s -count=1 -run TestCouchbaseComCouchbaseScopeGroupV2DataSource ./terratest/couchbase_com_v2

@@ -44,10 +44,10 @@ func GenerateExamples(templatePath string, outputPath string, data []*TemplateDa
 		}
 
 		resourceMainFile := fmt.Sprintf("%s/main.tf", resourceDirectory)
-		generateCode(resourceMainFile, exampleMainTemplate, nil)
 		dataSourceMainFile := fmt.Sprintf("%s/main.tf", dataSourceDirectory)
-		generateCode(dataSourceMainFile, exampleMainTemplate, nil)
 		manifestMainFile := fmt.Sprintf("%s/main.tf", manifestDirectory)
+		generateCode(resourceMainFile, exampleMainTemplate, nil)
+		generateCode(dataSourceMainFile, exampleMainTemplate, nil)
 		generateCode(manifestMainFile, exampleManifestMainTemplate, nil)
 
 		resourceOutputsFile := fmt.Sprintf("%s/outputs.tf", resourceDirectory)

@@ -8,6 +8,7 @@ on:
     paths:
       - examples/data-sources/k8s_image_toolkit_fluxcd_io_image_repository_v1beta2/**
       - internal/provider/image_toolkit_fluxcd_io_v1beta2/image_toolkit_fluxcd_io_image_repository_v1beta2_data_source.go
+      - internal/provider/image_toolkit_fluxcd_io_v1beta2/image_toolkit_fluxcd_io_image_repository_v1beta2_data_source_test.go
       - terratest/image_toolkit_fluxcd_io_v1beta2/image_toolkit_fluxcd_io_image_repository_v1beta2_data_source_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/image_toolkit_fluxcd_io_v1beta2/image_toolkit_fluxcd_io_image_repository_v1beta2_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestImageToolkitFluxcdIoImageRepositoryV1Beta2DataSource ./terratest/image_toolkit_fluxcd_io_v1beta2
+        run: go test -v -timeout=120s -count=1 -run TestImageToolkitFluxcdIoImageRepositoryV1Beta2DataSource ./terratest/image_toolkit_fluxcd_io_v1beta2

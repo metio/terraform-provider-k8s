@@ -8,6 +8,7 @@ on:
     paths:
       - examples/data-sources/k8s_cache_kubedl_io_cache_backend_v1alpha1_manifest/**
       - internal/provider/cache_kubedl_io_v1alpha1/cache_kubedl_io_cache_backend_v1alpha1_manifest.go
+      - internal/provider/cache_kubedl_io_v1alpha1/cache_kubedl_io_cache_backend_v1alpha1_manifest_test.go
       - terratest/cache_kubedl_io_v1alpha1/cache_kubedl_io_cache_backend_v1alpha1_manifest_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/cache_kubedl_io_v1alpha1/cache_kubedl_io_cache_backend_v1alpha1_manifest_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestCacheKubedlIoCacheBackendV1Alpha1Manifest ./terratest/cache_kubedl_io_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestCacheKubedlIoCacheBackendV1Alpha1Manifest ./terratest/cache_kubedl_io_v1alpha1

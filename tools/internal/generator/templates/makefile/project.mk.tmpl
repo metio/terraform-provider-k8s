@@ -1,0 +1,136 @@
+# SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+# SPDX-License-Identifier: 0BSD
+
+NAMESPACE     = metio
+NAME          = k8s
+PROVIDER      = terraform-provider-${NAME}
+VERSION       = 9999.99.99
+OS_ARCH       ?= linux_amd64
+XDG_DATA_HOME ?= ~/.local/share
+
+out/${PROVIDER}: $(shell find ./internal -type f -name '*.go' -and -not -name '*test.go')
+	mkdir --parents $(@D)
+	go build -o out/${PROVIDER}
+
+out/fetcher-sentinel: $(shell find ./tools/fetcher -type f -name '*.go') $(shell find ./tools/internal/fetcher -type f -name '*.go')
+	mkdir --parents $(@D)
+	go generate ./tools/fetch.go
+	touch $@
+
+out/generate-sentinel: $(shell find ./tools/generator -type f -name '*.go') $(shell find ./tools/internal/generator -type f -name '*.go') $(shell find ./tools/internal/generator/templates -type f -name '*.tmpl') $(shell find ./schemas/crd_v1 -type f -name '*.yaml') $(shell find ./schemas/openapi_v2 -type f -name '*.json')
+	mkdir --parents $(@D)
+	go generate ./tools/codegen.go
+	touch $@
+
+out/docs-sentinel: out/generate-sentinel out/tf-format-sentinel $(shell find ./internal -type f -name '*.go') $(shell find ./examples -type f -name '*.tf' -or -name '*.sh') $(shell find ./templates -type f -name '*.tmpl')
+	mkdir --parents $(@D)
+	go generate ./tools/docs.go
+	touch $@
+
+# see https://www.terraform.io/cli/config/config-file#implied-local-mirror-directories
+out/install-sentinel: out/${PROVIDER}
+	mkdir --parents $(@D)
+	mkdir --parents ${XDG_DATA_HOME}/terraform/plugins/localhost/${NAMESPACE}/${NAME}/${VERSION}/${OS_ARCH}
+	cp out/${PROVIDER} ${XDG_DATA_HOME}/terraform/plugins/localhost/${NAMESPACE}/${NAME}/${VERSION}/${OS_ARCH}/${PROVIDER}
+	touch $@
+
+{{ range $index, $resource := . -}}
+out/terratest-sentinel-{{ .ResourceTestFile }}: out/install-sentinel terratest/{{ $resource.Package }}/{{ $resource.ResourceTestFile }} $(shell find ./examples/resources/{{ $resource.FullResourceTypeName }} -type f -name '*.tf')
+	mkdir --parents $(@D)
+	go test -timeout=120s ./terratest/{{ $resource.Package }}/{{ $resource.ResourceTestFile }}
+	touch $@
+
+out/terratest-sentinel-{{ .DataSourceTestFile }}: out/install-sentinel terratest/{{ $resource.Package }}/{{ $resource.DataSourceTestFile }} $(shell find ./examples/data-sources/{{ $resource.FullDataSourceTypeName }} -type f -name '*.tf')
+	mkdir --parents $(@D)
+	go test -timeout=120s ./terratest/{{ $resource.Package }}/{{ $resource.DataSourceTestFile }}
+	touch $@
+
+out/terratest-sentinel-{{ .ManifestTestFile }}: out/install-sentinel terratest/{{ $resource.Package }}/{{ $resource.ManifestTestFile }} $(shell find ./examples/data-sources/{{ $resource.FullManifestTypeName }} -type f -name '*.tf')
+	mkdir --parents $(@D)
+	go test -timeout=120s ./terratest/{{ $resource.Package }}/{{ $resource.ManifestTestFile }}
+	touch $@
+{{ end }}
+
+{{ range $index, $resource := . -}}
+out/test-sentinel-{{ $resource.ResourceTestFile }}: ./internal/provider/{{ $resource.Package }}/{{ $resource.ResourceFile }} ./internal/provider/{{ $resource.Package }}/{{ $resource.ResourceTestFile }}
+	mkdir --parents $(@D)
+	go test -timeout=120s ./internal/provider/{{ $resource.Package }}/{{ $resource.ResourceTestFile }}
+	touch $@
+
+out/test-sentinel-{{ $resource.DataSourceTestFile }}: ./internal/provider/{{ $resource.Package }}/{{ $resource.DataSourceFile }} ./internal/provider/{{ $resource.Package }}/{{ $resource.DataSourceTestFile }}
+	mkdir --parents $(@D)
+	go test ./internal/provider/{{ $resource.Package }}/{{ $resource.DataSourceTestFile }}
+	touch $@
+
+out/test-sentinel-{{ $resource.ManifestTestFile }}: ./internal/provider/{{ $resource.Package }}/{{ $resource.ManifestFile }} ./internal/provider/{{ $resource.Package }}/{{ $resource.ManifestTestFile }}
+	mkdir --parents $(@D)
+	go test ./internal/provider/{{ $resource.Package }}/{{ $resource.ManifestTestFile }}
+	touch $@
+{{ end }}
+
+out/tools-tests-sentinel: $(shell find ./tools -type f -name '*.go')
+	mkdir --parents $(@D).
+	gotestsum --format=testname -- -timeout=120s ./tools/internal/...
+	touch $@
+
+out/coverage.out: $(shell find ./internal -type f -name '*.go')
+	mkdir --parents $(@D)
+	gotestsum --format=testname -- -v -cover -coverprofile=out/coverage.out -timeout=120s -parallel=4 ./internal/...
+
+out/coverage.html: out/coverage.out
+	go tool cover -html=out/coverage.out -o out/coverage.html
+
+out/go-format-sentinel: $(shell find . -type f -name '*.go')
+	mkdir --parents $(@D)
+	gofmt -s -w -e .
+	touch $@
+
+out/go-vet-sentinel: $(shell find . -type f -name '*.go')
+	mkdir --parents $(@D)
+	go vet
+	touch $@
+
+out/tf-format-sentinel: $(shell find ./examples -type f -name '*.tf')
+	mkdir --parents $(@D)
+	terraform fmt -recursive ./examples
+	touch $@
+
+.PHONY: install
+install: out/install-sentinel ## install the provider locally
+
+.PHONY: fetch
+fetch: out/fetcher-sentinel ## fetch upstream specs
+
+.PHONY: generate
+generate: out/generate-sentinel ## generate the code
+
+.PHONY: docs
+docs: out/docs-sentinel ## generate the documentation
+
+.PHONY: terratests
+terratests: {{ range $index, $resource := . }}out/terratest-sentinel-{{ $resource.ResourceTestFile }} out/terratest-sentinel-{{ $resource.DataSourceTestFile }} out/terratest-sentinel-{{ $resource.ManifestTestFile }} {{ end }} ## run all terratest tests
+
+.PHONY: tests
+tests: {{ range $index, $resource := . }}out/test-sentinel-{{ $resource.ResourceTestFile }} out/test-sentinel-{{ $resource.DataSourceTestFile }} out/test-sentinel-{{ $resource.ManifestTestFile }} {{ end }}out/tools-tests-sentinel ## run the unit tests
+
+.PHONY: download
+download: ## download specific upstream specs
+	go run ./tools/fetcher --schema-dir ./schemas --openapi  --crd --filter=$(filter-out $@,$(MAKECMDGOALS))
+
+.PHONY: coverage
+coverage: out/coverage.html ## generate coverage report
+
+.PHONY: format
+format: out/go-format-sentinel out/tf-format-sentinel ## format Go code and Terraform config
+
+.PHONY: vet
+vet: out/go-vet-sentinel ## vet all Go code
+
+.PHONY: update
+update: ## update all dependencies
+	go get -u
+	go mod tidy
+
+.PHONY: clean
+clean: ## removes all output files
+	rm -rf ./out

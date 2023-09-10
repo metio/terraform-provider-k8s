@@ -1,7 +1,6 @@
 data "k8s_kafka_strimzi_io_kafka_topic_v1beta1_manifest" "example" {
   metadata = {
-    name = "some-name"
+    name      = "some-name"
     namespace = "some-namespace"
-    
   }
 }

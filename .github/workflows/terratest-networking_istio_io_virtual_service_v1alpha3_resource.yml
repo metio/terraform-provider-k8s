@@ -8,6 +8,7 @@ on:
     paths:
       - examples/resources/k8s_networking_istio_io_virtual_service_v1alpha3/**
       - internal/provider/networking_istio_io_v1alpha3/networking_istio_io_virtual_service_v1alpha3_resource.go
+      - internal/provider/networking_istio_io_v1alpha3/networking_istio_io_virtual_service_v1alpha3_resource_test.go
       - terratest/networking_istio_io_v1alpha3/networking_istio_io_virtual_service_v1alpha3_resource_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/networking_istio_io_v1alpha3/networking_istio_io_virtual_service_v1alpha3_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestNetworkingIstioIoVirtualServiceV1Alpha3Resource ./terratest/networking_istio_io_v1alpha3
+        run: go test -v -timeout=120s -count=1 -run TestNetworkingIstioIoVirtualServiceV1Alpha3Resource ./terratest/networking_istio_io_v1alpha3
