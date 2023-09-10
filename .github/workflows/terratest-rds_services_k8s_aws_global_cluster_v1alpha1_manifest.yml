@@ -8,6 +8,7 @@ on:
     paths:
       - examples/data-sources/k8s_rds_services_k8s_aws_global_cluster_v1alpha1_manifest/**
       - internal/provider/rds_services_k8s_aws_v1alpha1/rds_services_k8s_aws_global_cluster_v1alpha1_manifest.go
+      - internal/provider/rds_services_k8s_aws_v1alpha1/rds_services_k8s_aws_global_cluster_v1alpha1_manifest_test.go
       - terratest/rds_services_k8s_aws_v1alpha1/rds_services_k8s_aws_global_cluster_v1alpha1_manifest_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/rds_services_k8s_aws_v1alpha1/rds_services_k8s_aws_global_cluster_v1alpha1_manifest_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestRdsServicesK8SAwsGlobalClusterV1Alpha1Manifest ./terratest/rds_services_k8s_aws_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestRdsServicesK8SAwsGlobalClusterV1Alpha1Manifest ./terratest/rds_services_k8s_aws_v1alpha1

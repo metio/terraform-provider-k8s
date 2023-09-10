@@ -8,6 +8,7 @@ on:
     paths:
       - examples/resources/k8s_infinispan_org_infinispan_v1/**
       - internal/provider/infinispan_org_v1/infinispan_org_infinispan_v1_resource.go
+      - internal/provider/infinispan_org_v1/infinispan_org_infinispan_v1_resource_test.go
       - terratest/infinispan_org_v1/infinispan_org_infinispan_v1_resource_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/infinispan_org_v1/infinispan_org_infinispan_v1_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestInfinispanOrgInfinispanV1Resource ./terratest/infinispan_org_v1
+        run: go test -v -timeout=120s -count=1 -run TestInfinispanOrgInfinispanV1Resource ./terratest/infinispan_org_v1

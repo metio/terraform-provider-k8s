@@ -8,6 +8,7 @@ on:
     paths:
       - examples/resources/k8s_ec2_services_k8s_aws_vpc_v1alpha1/**
       - internal/provider/ec2_services_k8s_aws_v1alpha1/ec2_services_k8s_aws_vpc_v1alpha1_resource.go
+      - internal/provider/ec2_services_k8s_aws_v1alpha1/ec2_services_k8s_aws_vpc_v1alpha1_resource_test.go
       - terratest/ec2_services_k8s_aws_v1alpha1/ec2_services_k8s_aws_vpc_v1alpha1_resource_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/ec2_services_k8s_aws_v1alpha1/ec2_services_k8s_aws_vpc_v1alpha1_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestEc2ServicesK8SAwsVPCV1Alpha1Resource ./terratest/ec2_services_k8s_aws_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestEc2ServicesK8SAwsVPCV1Alpha1Resource ./terratest/ec2_services_k8s_aws_v1alpha1

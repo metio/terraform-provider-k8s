@@ -413,8 +413,6 @@ var CRDv1Sources = []UpstreamSource{
 			"https://github.com/clusternet/clusternet/blob/main/manifests/crds/apps.clusternet.io_subscriptions.yaml",
 			"https://github.com/clusternet/clusternet/blob/main/manifests/crds/clusters.clusternet.io_clusterregistrationrequests.yaml",
 			"https://github.com/clusternet/clusternet/blob/main/manifests/crds/clusters.clusternet.io_managedclusters.yaml",
-			"https://github.com/clusternet/clusternet/blob/main/manifests/crds/multicluster.x-k8s.io_serviceexports.yaml",
-			"https://github.com/clusternet/clusternet/blob/main/manifests/crds/multicluster.x-k8s.io_serviceimports.yaml",
 			"https://github.com/clusternet/clusternet/blob/main/manifests/crds/nodefeaturerule-crd.yaml",
 		},
 	},

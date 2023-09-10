@@ -1,7 +1,6 @@
 data "k8s_image_toolkit_fluxcd_io_image_update_automation_v1beta1_manifest" "example" {
   metadata = {
-    name = "some-name"
+    name      = "some-name"
     namespace = "some-namespace"
-    
   }
 }

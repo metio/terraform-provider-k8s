@@ -8,6 +8,7 @@ on:
     paths:
       - examples/data-sources/k8s_servicebinding_io_cluster_workload_resource_mapping_v1alpha3/**
       - internal/provider/servicebinding_io_v1alpha3/servicebinding_io_cluster_workload_resource_mapping_v1alpha3_data_source.go
+      - internal/provider/servicebinding_io_v1alpha3/servicebinding_io_cluster_workload_resource_mapping_v1alpha3_data_source_test.go
       - terratest/servicebinding_io_v1alpha3/servicebinding_io_cluster_workload_resource_mapping_v1alpha3_data_source_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/servicebinding_io_v1alpha3/servicebinding_io_cluster_workload_resource_mapping_v1alpha3_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestServicebindingIoClusterWorkloadResourceMappingV1Alpha3DataSource ./terratest/servicebinding_io_v1alpha3
+        run: go test -v -timeout=120s -count=1 -run TestServicebindingIoClusterWorkloadResourceMappingV1Alpha3DataSource ./terratest/servicebinding_io_v1alpha3

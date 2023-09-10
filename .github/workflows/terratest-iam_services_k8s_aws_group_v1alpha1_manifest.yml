@@ -8,6 +8,7 @@ on:
     paths:
       - examples/data-sources/k8s_iam_services_k8s_aws_group_v1alpha1_manifest/**
       - internal/provider/iam_services_k8s_aws_v1alpha1/iam_services_k8s_aws_group_v1alpha1_manifest.go
+      - internal/provider/iam_services_k8s_aws_v1alpha1/iam_services_k8s_aws_group_v1alpha1_manifest_test.go
       - terratest/iam_services_k8s_aws_v1alpha1/iam_services_k8s_aws_group_v1alpha1_manifest_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/iam_services_k8s_aws_v1alpha1/iam_services_k8s_aws_group_v1alpha1_manifest_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestIamServicesK8SAwsGroupV1Alpha1Manifest ./terratest/iam_services_k8s_aws_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestIamServicesK8SAwsGroupV1Alpha1Manifest ./terratest/iam_services_k8s_aws_v1alpha1

@@ -8,6 +8,7 @@ on:
     paths:
       - examples/data-sources/k8s_opensearchservice_services_k8s_aws_domain_v1alpha1/**
       - internal/provider/opensearchservice_services_k8s_aws_v1alpha1/opensearchservice_services_k8s_aws_domain_v1alpha1_data_source.go
+      - internal/provider/opensearchservice_services_k8s_aws_v1alpha1/opensearchservice_services_k8s_aws_domain_v1alpha1_data_source_test.go
       - terratest/opensearchservice_services_k8s_aws_v1alpha1/opensearchservice_services_k8s_aws_domain_v1alpha1_data_source_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/opensearchservice_services_k8s_aws_v1alpha1/opensearchservice_services_k8s_aws_domain_v1alpha1_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestOpensearchserviceServicesK8SAwsDomainV1Alpha1DataSource ./terratest/opensearchservice_services_k8s_aws_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestOpensearchserviceServicesK8SAwsDomainV1Alpha1DataSource ./terratest/opensearchservice_services_k8s_aws_v1alpha1

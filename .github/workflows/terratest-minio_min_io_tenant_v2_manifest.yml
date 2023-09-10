@@ -8,6 +8,7 @@ on:
     paths:
       - examples/data-sources/k8s_minio_min_io_tenant_v2_manifest/**
       - internal/provider/minio_min_io_v2/minio_min_io_tenant_v2_manifest.go
+      - internal/provider/minio_min_io_v2/minio_min_io_tenant_v2_manifest_test.go
       - terratest/minio_min_io_v2/minio_min_io_tenant_v2_manifest_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/minio_min_io_v2/minio_min_io_tenant_v2_manifest_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestMinioMinIoTenantV2Manifest ./terratest/minio_min_io_v2
+        run: go test -v -timeout=120s -count=1 -run TestMinioMinIoTenantV2Manifest ./terratest/minio_min_io_v2

@@ -8,6 +8,7 @@ on:
     paths:
       - examples/resources/k8s_sfn_services_k8s_aws_state_machine_v1alpha1/**
       - internal/provider/sfn_services_k8s_aws_v1alpha1/sfn_services_k8s_aws_state_machine_v1alpha1_resource.go
+      - internal/provider/sfn_services_k8s_aws_v1alpha1/sfn_services_k8s_aws_state_machine_v1alpha1_resource_test.go
       - terratest/sfn_services_k8s_aws_v1alpha1/sfn_services_k8s_aws_state_machine_v1alpha1_resource_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/sfn_services_k8s_aws_v1alpha1/sfn_services_k8s_aws_state_machine_v1alpha1_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestSfnServicesK8SAwsStateMachineV1Alpha1Resource ./terratest/sfn_services_k8s_aws_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestSfnServicesK8SAwsStateMachineV1Alpha1Resource ./terratest/sfn_services_k8s_aws_v1alpha1

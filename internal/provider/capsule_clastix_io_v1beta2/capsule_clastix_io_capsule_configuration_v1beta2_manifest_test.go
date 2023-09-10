@@ -9,7 +9,6 @@ import (
 	"context"
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/capsule_clastix_io_v1beta2"
-	"github.com/metio/terraform-provider-k8s/internal/testutilities"
 	"testing"
 )
 
@@ -28,32 +27,5 @@ func TestCapsuleClastixIoCapsuleConfigurationV1Beta2Manifest_ValidateSchema(t *t
 
 	if diagnostics.HasError() {
 		t.Fatalf("Schema validation diagnostics: %+v", diagnostics)
-	}
-}
-
-func TestCapsuleClastixIoCapsuleConfigurationV1Beta2Manifest_ConfigurationErrors(t *testing.T) {
-	testCases := map[string]testutilities.ConfigurationErrorTestCase{
-		"empty-name": {
-			Configuration: `
-				metadata = {
-					name      = ""
-					
-				}
-			`,
-			ErrorRegex: "Attribute metadata.name string length must be at least 1, got: 0",
-		},
-		"missing-name": {
-			Configuration: `
-				metadata = {
-					
-				}
-			`,
-			ErrorRegex: `Inappropriate value for attribute "metadata": attribute "name" is required`,
-		},
-	}
-	for name, testCase := range testCases {
-		t.Run(name, func(t *testing.T) {
-			testutilities.VerifyConfigurationErrors(t, "data", "k8s_capsule_clastix_io_capsule_configuration_v1beta2_manifest", testCase)
-		})
 	}
 }

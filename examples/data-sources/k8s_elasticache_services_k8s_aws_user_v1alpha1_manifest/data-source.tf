@@ -1,7 +1,6 @@
 data "k8s_elasticache_services_k8s_aws_user_v1alpha1_manifest" "example" {
   metadata = {
-    name = "some-name"
+    name      = "some-name"
     namespace = "some-namespace"
-    
   }
 }

@@ -8,6 +8,7 @@ on:
     paths:
       - examples/resources/k8s_cilium_io_cilium_endpoint_slice_v2alpha1/**
       - internal/provider/cilium_io_v2alpha1/cilium_io_cilium_endpoint_slice_v2alpha1_resource.go
+      - internal/provider/cilium_io_v2alpha1/cilium_io_cilium_endpoint_slice_v2alpha1_resource_test.go
       - terratest/cilium_io_v2alpha1/cilium_io_cilium_endpoint_slice_v2alpha1_resource_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/cilium_io_v2alpha1/cilium_io_cilium_endpoint_slice_v2alpha1_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestCiliumIoCiliumEndpointSliceV2Alpha1Resource ./terratest/cilium_io_v2alpha1
+        run: go test -v -timeout=120s -count=1 -run TestCiliumIoCiliumEndpointSliceV2Alpha1Resource ./terratest/cilium_io_v2alpha1
