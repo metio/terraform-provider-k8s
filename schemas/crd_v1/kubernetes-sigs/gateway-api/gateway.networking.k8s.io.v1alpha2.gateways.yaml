@@ -2,7 +2,9 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    api-approved.kubernetes.io: https://github.com/kubernetes-sigs/gateway-api/pull/891
+    api-approved.kubernetes.io: https://github.com/kubernetes-sigs/gateway-api/pull/2245
+    gateway.networking.k8s.io/bundle-version: v0.8.0
+    gateway.networking.k8s.io/channel: experimental
   creationTimestamp: null
   name: gateways.gateway.networking.k8s.io
 spec:
@@ -25,12 +27,15 @@ spec:
     - jsonPath: .status.addresses[*].value
       name: Address
       type: string
-    - jsonPath: .status.conditions[?(@.type=="Ready")].status
-      name: Ready
+    - jsonPath: .status.conditions[?(@.type=="Programmed")].status
+      name: Programmed
       type: string
     - jsonPath: .metadata.creationTimestamp
       name: Age
       type: date
+    deprecated: true
+    deprecationWarning: The v1alpha2 version of Gateway has been deprecated and will
+      be removed in a future release of the API. Please upgrade to v1beta1.
     name: v1alpha2
     schema:
       openAPIV3Schema:
@@ -68,18 +73,31 @@ spec:
                   manner, assigning an appropriate set of Addresses. \n The implementation
                   MUST bind all Listeners to every GatewayAddress that it assigns
                   to the Gateway and add a corresponding entry in GatewayStatus.Addresses.
-                  \n Support: Core"
+                  \n Support: Extended \n "
                 items:
                   description: GatewayAddress describes an address that can be bound
                     to a Gateway.
+                  oneOf:
+                  - properties:
+                      type:
+                        enum:
+                        - IPAddress
+                      value:
+                        anyOf:
+                        - format: ipv4
+                        - format: ipv6
+                  - properties:
+                      type:
+                        not:
+                          enum:
+                          - IPAddress
                   properties:
                     type:
                       default: IPAddress
                       description: Type of the address.
-                      enum:
-                      - IPAddress
-                      - Hostname
-                      - NamedAddress
+                      maxLength: 253
+                      minLength: 1
+                      pattern: ^Hostname|IPAddress|NamedAddress|[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*\/[A-Za-z0-9\/\-._~%!$&'()*+,;=:]+$
                       type: string
                     value:
                       description: "Value of the address. The validity of the values
@@ -91,8 +109,20 @@ spec:
                   required:
                   - value
                   type: object
+                  x-kubernetes-validations:
+                  - message: Hostname value must only contain valid characters (matching
+                      ^(\*\.)?[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$)
+                    rule: 'self.type == ''Hostname'' ? self.value.matches(r"""^(\*\.)?[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"""):
+                      true'
                 maxItems: 16
                 type: array
+                x-kubernetes-validations:
+                - message: IPAddress values must be unique
+                  rule: 'self.all(a1, a1.type == ''IPAddress'' ? self.exists_one(a2,
+                    a2.type == a1.type && a2.value == a1.value) : true )'
+                - message: Hostname values must be unique
+                  rule: 'self.all(a1, a1.type == ''Hostname'' ? self.exists_one(a2,
+                    a2.type == a1.type && a2.value == a1.value) : true )'
               gatewayClassName:
                 description: GatewayClassName used for this Gateway. This is the name
                   of a GatewayClass resource.
@@ -104,27 +134,34 @@ spec:
                   logical endpoints that are bound on this Gateway's addresses. At
                   least one Listener MUST be specified. \n Each listener in a Gateway
                   must have a unique combination of Hostname, Port, and Protocol.
-                  \n An implementation MAY group Listeners by Port and then collapse
-                  each group of Listeners into a single Listener if the implementation
-                  determines that the Listeners in the group are \"compatible\". An
-                  implementation MAY also group together and collapse compatible Listeners
-                  belonging to different Gateways. \n For example, an implementation
-                  might consider Listeners to be compatible with each other if all
-                  of the following conditions are met: \n 1. Either each Listener
-                  within the group specifies the \"HTTP\"    Protocol or each Listener
-                  within the group specifies either    the \"HTTPS\" or \"TLS\" Protocol.
-                  \n 2. Each Listener within the group specifies a Hostname that is
-                  unique    within the group. \n 3. As a special case, one Listener
-                  within a group may omit Hostname,    in which case this Listener
-                  matches when no other Listener    matches. \n If the implementation
-                  does collapse compatible Listeners, the hostname provided in the
-                  incoming client request MUST be matched to a Listener to find the
-                  correct set of Routes. The incoming hostname MUST be matched using
-                  the Hostname field for each Listener in order of most to least specific.
-                  That is, exact matches must be processed before wildcard matches.
-                  \n If this field specifies multiple Listeners that have the same
-                  Port value but are not compatible, the implementation must raise
-                  a \"Conflicted\" condition in the Listener status. \n Support: Core"
+                  \n Within the HTTP Conformance Profile, the below combinations of
+                  port and protocol are considered Core and MUST be supported: \n
+                  1. Port: 80, Protocol: HTTP 2. Port: 443, Protocol: HTTPS \n Within
+                  the TLS Conformance Profile, the below combinations of port and
+                  protocol are considered Core and MUST be supported: \n 1. Port:
+                  443, Protocol: TLS \n Port and protocol combinations not listed
+                  above are considered Extended. \n An implementation MAY group Listeners
+                  by Port and then collapse each group of Listeners into a single
+                  Listener if the implementation determines that the Listeners in
+                  the group are \"compatible\". An implementation MAY also group together
+                  and collapse compatible Listeners belonging to different Gateways.
+                  \n For example, an implementation might consider Listeners to be
+                  compatible with each other if all of the following conditions are
+                  met: \n 1. Either each Listener within the group specifies the \"HTTP\"
+                  Protocol or each Listener within the group specifies either the
+                  \"HTTPS\" or \"TLS\" Protocol. \n 2. Each Listener within the group
+                  specifies a Hostname that is unique within the group. \n 3. As a
+                  special case, one Listener within a group may omit Hostname, in
+                  which case this Listener matches when no other Listener matches.
+                  \n If the implementation does collapse compatible Listeners, the
+                  hostname provided in the incoming client request MUST be matched
+                  to a Listener to find the correct set of Routes. The incoming hostname
+                  MUST be matched using the Hostname field for each Listener in order
+                  of most to least specific. That is, exact matches must be processed
+                  before wildcard matches. \n If this field specifies multiple Listeners
+                  that have the same Port value but are not compatible, the implementation
+                  must raise a \"Conflicted\" condition in the Listener status. \n
+                  Support: Core"
                 items:
                   description: Listener embodies the concept of a logical endpoint
                     where a Gateway accepts network connections.
@@ -141,19 +178,18 @@ spec:
                         determined in order of the following criteria: \n * The most
                         specific match as defined by the Route type. * The oldest
                         Route based on creation timestamp. For example, a Route with
-                        \  a creation timestamp of \"2020-09-08 01:02:03\" is given
-                        precedence over   a Route with a creation timestamp of \"2020-09-08
-                        01:02:04\". * If everything else is equivalent, the Route
-                        appearing first in   alphabetical order (namespace/name) should
-                        be given precedence. For   example, foo/bar is given precedence
-                        over foo/baz. \n All valid rules within a Route attached to
-                        this Listener should be implemented. Invalid Route rules can
-                        be ignored (sometimes that will mean the full Route). If a
-                        Route rule transitions from valid to invalid, support for
-                        that Route rule should be dropped to ensure consistency. For
-                        example, even if a filter specified by a Route rule is invalid,
-                        the rest of the rules within that Route should still be supported.
-                        \n Support: Core"
+                        a creation timestamp of \"2020-09-08 01:02:03\" is given precedence
+                        over a Route with a creation timestamp of \"2020-09-08 01:02:04\".
+                        * If everything else is equivalent, the Route appearing first
+                        in alphabetical order (namespace/name) should be given precedence.
+                        For example, foo/bar is given precedence over foo/baz. \n
+                        All valid rules within a Route attached to this Listener should
+                        be implemented. Invalid Route rules can be ignored (sometimes
+                        that will mean the full Route). If a Route rule transitions
+                        from valid to invalid, support for that Route rule should
+                        be dropped to ensure consistency. For example, even if a filter
+                        specified by a Route rule is invalid, the rest of the rules
+                        within that Route should still be supported. \n Support: Core"
                       properties:
                         kinds:
                           description: "Kinds specifies the groups and kinds of Routes
@@ -164,7 +200,7 @@ spec:
                             with the application protocol specified in the Listener's
                             Protocol field. If an implementation does not support
                             or recognize this resource type, it MUST set the \"ResolvedRefs\"
-                            condition to False for this Listener with the \"InvalidRoutesRef\"
+                            condition to False for this Listener with the \"InvalidRouteKinds\"
                             reason. \n Support: Core"
                           items:
                             description: RouteGroupKind indicates the group and kind
@@ -198,12 +234,12 @@ spec:
                             from:
                               default: Same
                               description: "From indicates where Routes will be selected
-                                for this Gateway. Possible values are: * All: Routes
+                                for this Gateway. Possible values are: \n * All: Routes
                                 in all namespaces may be used by this Gateway. * Selector:
                                 Routes in namespaces selected by the selector may
-                                be used by   this Gateway. * Same: Only Routes in
-                                the same namespace may be used by this Gateway. \n
-                                Support: Core"
+                                be used by this Gateway. * Same: Only Routes in the
+                                same namespace may be used by this Gateway. \n Support:
+                                Core"
                               enum:
                               - All
                               - Selector
@@ -259,6 +295,7 @@ spec:
                                     requirements are ANDed.
                                   type: object
                               type: object
+                              x-kubernetes-map-type: atomic
                           type: object
                       type: object
                     hostname:
@@ -270,22 +307,25 @@ spec:
                         following protocols: \n * TLS: The Listener Hostname MUST
                         match the SNI. * HTTP: The Listener Hostname MUST match the
                         Host header of the request. * HTTPS: The Listener Hostname
-                        SHOULD match at both the TLS and HTTP   protocol layers as
-                        described above. If an implementation does not   ensure that
-                        both the SNI and Host header match the Listener hostname,
-                        \  it MUST clearly document that. \n For HTTPRoute and TLSRoute
-                        resources, there is an interaction with the `spec.hostnames`
-                        array. When both listener and route specify hostnames, there
-                        MUST be an intersection between the values for a Route to
-                        be accepted. For more information, refer to the Route specific
-                        Hostnames documentation. \n Support: Core"
+                        SHOULD match at both the TLS and HTTP protocol layers as described
+                        above. If an implementation does not ensure that both the
+                        SNI and Host header match the Listener hostname, it MUST clearly
+                        document that. \n For HTTPRoute and TLSRoute resources, there
+                        is an interaction with the `spec.hostnames` array. When both
+                        listener and route specify hostnames, there MUST be an intersection
+                        between the values for a Route to be accepted. For more information,
+                        refer to the Route specific Hostnames documentation. \n Hostnames
+                        that are prefixed with a wildcard label (`*.`) are interpreted
+                        as a suffix match. That means that a match for `*.example.com`
+                        would match both `test.example.com`, and `foo.test.example.com`,
+                        but not `example.com`. \n Support: Core"
                       maxLength: 253
                       minLength: 1
                       pattern: ^(\*\.)?[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
                       type: string
                     name:
-                      description: "Name is the name of the Listener. \n Support:
-                        Core"
+                      description: "Name is the name of the Listener. This name MUST
+                        be unique within a Gateway. \n Support: Core"
                       maxLength: 253
                       minLength: 1
                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
@@ -325,18 +365,19 @@ spec:
                             MAY choose to support attaching multiple certificates
                             to a Listener, but this behavior is implementation-specific.
                             \n References to a resource in different namespace are
-                            invalid UNLESS there is a ReferencePolicy in the target
+                            invalid UNLESS there is a ReferenceGrant in the target
                             namespace that allows the certificate to be attached.
-                            If a ReferencePolicy does not allow this reference, the
+                            If a ReferenceGrant does not allow this reference, the
                             \"ResolvedRefs\" condition MUST be set to False for this
-                            listener with the \"InvalidCertificateRef\" reason. \n
-                            This field is required to have at least one element when
-                            the mode is set to \"Terminate\" (default) and is optional
+                            listener with the \"RefNotPermitted\" reason. \n This
+                            field is required to have at least one element when the
+                            mode is set to \"Terminate\" (default) and is optional
                             otherwise. \n CertificateRefs can reference to standard
                             Kubernetes resources, i.e. Secret, or implementation-specific
                             custom resources. \n Support: Core - A single reference
-                            to a Kubernetes Secret \n Support: Implementation-specific
-                            (More than one reference or other resource types)"
+                            to a Kubernetes Secret of type kubernetes.io/tls \n Support:
+                            Implementation-specific (More than one reference or other
+                            resource types)"
                           items:
                             description: "SecretObjectReference identifies an API
                               object including its namespace, defaulting to Secret.
@@ -350,15 +391,15 @@ spec:
                               group:
                                 default: ""
                                 description: Group is the group of the referent. For
-                                  example, "networking.k8s.io". When unspecified (empty
-                                  string), core API group is inferred.
+                                  example, "gateway.networking.k8s.io". When unspecified
+                                  or empty string, core API group is inferred.
                                 maxLength: 253
                                 pattern: ^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
                                 type: string
                               kind:
                                 default: Secret
                                 description: Kind is kind of the referent. For example
-                                  "HTTPRoute" or "Service".
+                                  "Secret".
                                 maxLength: 63
                                 minLength: 1
                                 pattern: ^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$
@@ -371,11 +412,12 @@ spec:
                               namespace:
                                 description: "Namespace is the namespace of the backend.
                                   When unspecified, the local namespace is inferred.
-                                  \n Note that when a namespace is specified, a ReferencePolicy
-                                  object is required in the referent namespace to
-                                  allow that namespace's owner to accept the reference.
-                                  See the ReferencePolicy documentation for details.
-                                  \n Support: Core"
+                                  \n Note that when a namespace different than the
+                                  local namespace is specified, a ReferenceGrant object
+                                  is required in the referent namespace to allow that
+                                  namespace's owner to accept the reference. See the
+                                  ReferenceGrant documentation for details. \n Support:
+                                  Core"
                                 maxLength: 63
                                 minLength: 1
                                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
@@ -390,13 +432,13 @@ spec:
                           description: "Mode defines the TLS behavior for the TLS
                             session initiated by the client. There are two possible
                             modes: \n - Terminate: The TLS session between the downstream
-                            client   and the Gateway is terminated at the Gateway.
-                            This mode requires   certificateRefs to be set and contain
-                            at least one element. - Passthrough: The TLS session is
-                            NOT terminated by the Gateway. This   implies that the
-                            Gateway can't decipher the TLS stream except for   the
-                            ClientHello message of the TLS protocol.   CertificateRefs
-                            field is ignored in this mode. \n Support: Core"
+                            client and the Gateway is terminated at the Gateway. This
+                            mode requires certificateRefs to be set and contain at
+                            least one element. - Passthrough: The TLS session is NOT
+                            terminated by the Gateway. This implies that the Gateway
+                            can't decipher the TLS stream except for the ClientHello
+                            message of the TLS protocol. CertificateRefs field is
+                            ignored in this mode. \n Support: Core"
                           enum:
                           - Terminate
                           - Passthrough
@@ -423,6 +465,11 @@ spec:
                           maxProperties: 16
                           type: object
                       type: object
+                      x-kubernetes-validations:
+                      - message: certificateRefs must be specified when TLSModeType
+                          is Terminate
+                        rule: 'self.mode == ''Terminate'' ? size(self.certificateRefs)
+                          > 0 : true'
                   required:
                   - name
                   - port
@@ -434,6 +481,24 @@ spec:
                 x-kubernetes-list-map-keys:
                 - name
                 x-kubernetes-list-type: map
+                x-kubernetes-validations:
+                - message: tls must be specified for protocols ['HTTPS', 'TLS']
+                  rule: 'self.all(l, l.protocol in [''HTTPS'', ''TLS''] ? has(l.tls)
+                    : true)'
+                - message: tls must not be specified for protocols ['HTTP', 'TCP',
+                    'UDP']
+                  rule: 'self.all(l, l.protocol in [''HTTP'', ''TCP'', ''UDP''] ?
+                    !has(l.tls) : true)'
+                - message: hostname must not be specified for protocols ['TCP', 'UDP']
+                  rule: 'self.all(l, l.protocol in [''TCP'', ''UDP'']  ? (!has(l.hostname)
+                    || l.hostname == '''') : true)'
+                - message: Listener name must be unique within the Gateway
+                  rule: self.all(l1, self.exists_one(l2, l1.name == l2.name))
+                - message: Combination of port, protocol and hostname must be unique
+                    for each listener
+                  rule: 'self.all(l1, self.exists_one(l2, l1.port == l2.port && l1.protocol
+                    == l2.protocol && (has(l1.hostname) && has(l2.hostname) ? l1.hostname
+                    == l2.hostname : !has(l1.hostname) && !has(l2.hostname))))'
             required:
             - gatewayClassName
             - listeners
@@ -443,27 +508,45 @@ spec:
               conditions:
               - lastTransitionTime: "1970-01-01T00:00:00Z"
                 message: Waiting for controller
-                reason: NotReconciled
+                reason: Pending
                 status: Unknown
-                type: Scheduled
+                type: Accepted
+              - lastTransitionTime: "1970-01-01T00:00:00Z"
+                message: Waiting for controller
+                reason: Pending
+                status: Unknown
+                type: Programmed
             description: Status defines the current state of Gateway.
             properties:
               addresses:
-                description: Addresses lists the IP addresses that have actually been
-                  bound to the Gateway. These addresses may differ from the addresses
+                description: "Addresses lists the IP addresses that have actually
+                  been bound to the Gateway. These addresses may differ from the addresses
                   in the Spec, e.g. if the Gateway automatically assigns an address
-                  from a reserved pool.
+                  from a reserved pool. \n "
                 items:
-                  description: GatewayAddress describes an address that can be bound
+                  description: GatewayStatusAddress describes an address that is bound
                     to a Gateway.
+                  oneOf:
+                  - properties:
+                      type:
+                        enum:
+                        - IPAddress
+                      value:
+                        anyOf:
+                        - format: ipv4
+                        - format: ipv6
+                  - properties:
+                      type:
+                        not:
+                          enum:
+                          - IPAddress
                   properties:
                     type:
                       default: IPAddress
                       description: Type of the address.
-                      enum:
-                      - IPAddress
-                      - Hostname
-                      - NamedAddress
+                      maxLength: 253
+                      minLength: 1
+                      pattern: ^Hostname|IPAddress|NamedAddress|[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*\/[A-Za-z0-9\/\-._~%!$&'()*+,;=:]+$
                       type: string
                     value:
                       description: "Value of the address. The validity of the values
@@ -475,32 +558,41 @@ spec:
                   required:
                   - value
                   type: object
+                  x-kubernetes-validations:
+                  - message: Hostname value must only contain valid characters (matching
+                      ^(\*\.)?[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$)
+                    rule: 'self.type == ''Hostname'' ? self.value.matches(r"""^(\*\.)?[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"""):
+                      true'
                 maxItems: 16
                 type: array
               conditions:
                 default:
                 - lastTransitionTime: "1970-01-01T00:00:00Z"
                   message: Waiting for controller
-                  reason: NotReconciled
+                  reason: Pending
                   status: Unknown
-                  type: Scheduled
+                  type: Accepted
+                - lastTransitionTime: "1970-01-01T00:00:00Z"
+                  message: Waiting for controller
+                  reason: Pending
+                  status: Unknown
+                  type: Programmed
                 description: "Conditions describe the current conditions of the Gateway.
                   \n Implementations should prefer to express Gateway conditions using
                   the `GatewayConditionType` and `GatewayConditionReason` constants
                   so that operators and tools can converge on a common vocabulary
-                  to describe Gateway state. \n Known condition types are: \n * \"Scheduled\"
-                  * \"Ready\""
+                  to describe Gateway state. \n Known condition types are: \n * \"Accepted\"
+                  * \"Programmed\" * \"Ready\""
                 items:
                   description: "Condition contains details for one aspect of the current
                     state of this API Resource. --- This struct is intended for direct
                     use as an array at the field path .status.conditions.  For example,
-                    type FooStatus struct{     // Represents the observations of a
-                    foo's current state.     // Known .status.conditions.type are:
-                    \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type
-                    \    // +patchStrategy=merge     // +listType=map     // +listMapKey=type
-                    \    Conditions []metav1.Condition `json:\"conditions,omitempty\"
-                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`
-                    \n     // other fields }"
+                    \n type FooStatus struct{ // Represents the observations of a
+                    foo's current state. // Known .status.conditions.type are: \"Available\",
+                    \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
+                    // +listType=map // +listMapKey=type Conditions []metav1.Condition
+                    `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
+                    protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }"
                   properties:
                     lastTransitionTime:
                       description: lastTransitionTime is the last time the condition
@@ -569,8 +661,8 @@ spec:
                   description: ListenerStatus is the status associated with a Listener.
                   properties:
                     attachedRoutes:
-                      description: AttachedRoutes represents the total number of Routes
-                        that have been successfully attached to this Listener.
+                      description: AttachedRoutes represents the total number of accepted
+                        Routes that have been successfully attached to this Listener.
                       format: int32
                       type: integer
                     conditions:
@@ -580,14 +672,14 @@ spec:
                         description: "Condition contains details for one aspect of
                           the current state of this API Resource. --- This struct
                           is intended for direct use as an array at the field path
-                          .status.conditions.  For example, type FooStatus struct{
-                          \    // Represents the observations of a foo's current state.
-                          \    // Known .status.conditions.type are: \"Available\",
-                          \"Progressing\", and \"Degraded\"     // +patchMergeKey=type
-                          \    // +patchStrategy=merge     // +listType=map     //
-                          +listMapKey=type     Conditions []metav1.Condition `json:\"conditions,omitempty\"
-                          patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`
-                          \n     // other fields }"
+                          .status.conditions.  For example, \n type FooStatus struct{
+                          // Represents the observations of a foo's current state.
+                          // Known .status.conditions.type are: \"Available\", \"Progressing\",
+                          and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
+                          // +listType=map // +listMapKey=type Conditions []metav1.Condition
+                          `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
+                          protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields
+                          }"
                         properties:
                           lastTransitionTime:
                             description: lastTransitionTime is the last time the condition
@@ -705,13 +797,13 @@ spec:
         required:
         - spec
         type: object
-    served: true
-    storage: true
+    served: false
+    storage: false
     subresources:
       status: {}
 status:
   acceptedNames:
     kind: ""
     plural: ""
-  conditions: []
-  storedVersions: []
+  conditions: null
+  storedVersions: null

@@ -927,6 +927,20 @@ var CRDv1Sources = []UpstreamSource{
 		},
 	},
 	{
+		ProjectName: "kubernetes-sigs/gateway-api",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes-sigs/gateway-api/blob/main/config/crd/experimental/gateway.networking.k8s.io_gatewayclasses.yaml",
+			"https://github.com/kubernetes-sigs/gateway-api/blob/main/config/crd/experimental/gateway.networking.k8s.io_gateways.yaml",
+			"https://github.com/kubernetes-sigs/gateway-api/blob/main/config/crd/experimental/gateway.networking.k8s.io_grpcroutes.yaml",
+			"https://github.com/kubernetes-sigs/gateway-api/blob/main/config/crd/experimental/gateway.networking.k8s.io_httproutes.yaml",
+			"https://github.com/kubernetes-sigs/gateway-api/blob/main/config/crd/experimental/gateway.networking.k8s.io_referencegrants.yaml",
+			"https://github.com/kubernetes-sigs/gateway-api/blob/main/config/crd/experimental/gateway.networking.k8s.io_tcproutes.yaml",
+			"https://github.com/kubernetes-sigs/gateway-api/blob/main/config/crd/experimental/gateway.networking.k8s.io_tlsroutes.yaml",
+			"https://github.com/kubernetes-sigs/gateway-api/blob/main/config/crd/experimental/gateway.networking.k8s.io_udproutes.yaml",
+		},
+	},
+	{
 		ProjectName: "kubernetes-sigs/security-profiles-operator",
 		License:     apacheV2,
 		URLs: []string{
@@ -1442,11 +1456,6 @@ var CRDv1Sources = []UpstreamSource{
 		ProjectName: "traefik/traefik",
 		License:     mit,
 		URLs: []string{
-			"https://github.com/traefik/traefik/blob/master/docs/content/reference/dynamic-configuration/gateway.networking.k8s.io_gatewayclasses.yaml",
-			"https://github.com/traefik/traefik/blob/master/docs/content/reference/dynamic-configuration/gateway.networking.k8s.io_gateways.yaml",
-			"https://github.com/traefik/traefik/blob/master/docs/content/reference/dynamic-configuration/gateway.networking.k8s.io_httproutes.yaml",
-			"https://github.com/traefik/traefik/blob/master/docs/content/reference/dynamic-configuration/gateway.networking.k8s.io_tcproutes.yaml",
-			"https://github.com/traefik/traefik/blob/master/docs/content/reference/dynamic-configuration/gateway.networking.k8s.io_tlsroutes.yaml",
 			"https://github.com/traefik/traefik/blob/master/docs/content/reference/dynamic-configuration/traefik.io_ingressroutes.yaml",
 			"https://github.com/traefik/traefik/blob/master/docs/content/reference/dynamic-configuration/traefik.io_ingressroutetcps.yaml",
 			"https://github.com/traefik/traefik/blob/master/docs/content/reference/dynamic-configuration/traefik.io_ingressrouteudps.yaml",
