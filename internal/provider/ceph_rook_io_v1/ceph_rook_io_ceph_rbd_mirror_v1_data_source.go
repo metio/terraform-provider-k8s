@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &CephRookIoCephRBDMirrorV1DataSource{}
-	_ datasource.DataSourceWithConfigure = &CephRookIoCephRBDMirrorV1DataSource{}
+	_ datasource.DataSource              = &CephRookIoCephRbdmirrorV1DataSource{}
+	_ datasource.DataSourceWithConfigure = &CephRookIoCephRbdmirrorV1DataSource{}
 )
 
-func NewCephRookIoCephRBDMirrorV1DataSource() datasource.DataSource {
-	return &CephRookIoCephRBDMirrorV1DataSource{}
+func NewCephRookIoCephRbdmirrorV1DataSource() datasource.DataSource {
+	return &CephRookIoCephRbdmirrorV1DataSource{}
 }
 
-type CephRookIoCephRBDMirrorV1DataSource struct {
+type CephRookIoCephRbdmirrorV1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type CephRookIoCephRBDMirrorV1DataSourceData struct {
+type CephRookIoCephRbdmirrorV1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -214,11 +214,11 @@ type CephRookIoCephRBDMirrorV1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CephRookIoCephRBDMirrorV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CephRookIoCephRbdmirrorV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_rbd_mirror_v1"
 }
 
-func (r *CephRookIoCephRBDMirrorV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CephRookIoCephRbdmirrorV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephRBDMirror represents a Ceph RBD Mirror",
 		MarkdownDescription: "CephRBDMirror represents a Ceph RBD Mirror",
@@ -1370,7 +1370,7 @@ func (r *CephRookIoCephRBDMirrorV1DataSource) Schema(_ context.Context, _ dataso
 	}
 }
 
-func (r *CephRookIoCephRBDMirrorV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *CephRookIoCephRbdmirrorV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -1393,10 +1393,10 @@ func (r *CephRookIoCephRBDMirrorV1DataSource) Configure(_ context.Context, reque
 	}
 }
 
-func (r *CephRookIoCephRBDMirrorV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CephRookIoCephRbdmirrorV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_ceph_rook_io_ceph_rbd_mirror_v1")
 
-	var data CephRookIoCephRBDMirrorV1DataSourceData
+	var data CephRookIoCephRbdmirrorV1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1425,7 +1425,7 @@ func (r *CephRookIoCephRBDMirrorV1DataSource) Read(ctx context.Context, request 
 		return
 	}
 
-	var readResponse CephRookIoCephRBDMirrorV1DataSourceData
+	var readResponse CephRookIoCephRbdmirrorV1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

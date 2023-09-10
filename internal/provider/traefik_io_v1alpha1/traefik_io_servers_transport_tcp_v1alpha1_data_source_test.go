@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestTraefikIoServersTransportTCPV1Alpha1DataSource_ValidateSchema(t *testing.T) {
+func TestTraefikIoServersTransportTcpV1Alpha1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	traefik_io_v1alpha1.NewTraefikIoServersTransportTCPV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	traefik_io_v1alpha1.NewTraefikIoServersTransportTcpV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestTraefikIoServersTransportTCPV1Alpha1DataSource_ValidateSchema(t *testin
 	}
 }
 
-func TestTraefikIoServersTransportTCPV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
+func TestTraefikIoServersTransportTcpV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestTraefikIoServersTransportTCPV1Alpha1DataSource_ConfigurationErrors(t *t
 	}
 }
 
-func TestTraefikIoServersTransportTCPV1Alpha1DataSource_OfflineUsage(t *testing.T) {
+func TestTraefikIoServersTransportTcpV1Alpha1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

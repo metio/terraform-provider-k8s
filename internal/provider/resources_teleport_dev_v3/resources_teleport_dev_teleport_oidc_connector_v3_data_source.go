@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &ResourcesTeleportDevTeleportOIDCConnectorV3DataSource{}
-	_ datasource.DataSourceWithConfigure = &ResourcesTeleportDevTeleportOIDCConnectorV3DataSource{}
+	_ datasource.DataSource              = &ResourcesTeleportDevTeleportOidcconnectorV3DataSource{}
+	_ datasource.DataSourceWithConfigure = &ResourcesTeleportDevTeleportOidcconnectorV3DataSource{}
 )
 
-func NewResourcesTeleportDevTeleportOIDCConnectorV3DataSource() datasource.DataSource {
-	return &ResourcesTeleportDevTeleportOIDCConnectorV3DataSource{}
+func NewResourcesTeleportDevTeleportOidcconnectorV3DataSource() datasource.DataSource {
+	return &ResourcesTeleportDevTeleportOidcconnectorV3DataSource{}
 }
 
-type ResourcesTeleportDevTeleportOIDCConnectorV3DataSource struct {
+type ResourcesTeleportDevTeleportOidcconnectorV3DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type ResourcesTeleportDevTeleportOIDCConnectorV3DataSourceData struct {
+type ResourcesTeleportDevTeleportOidcconnectorV3DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -73,11 +73,11 @@ type ResourcesTeleportDevTeleportOIDCConnectorV3DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ResourcesTeleportDevTeleportOIDCConnectorV3DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *ResourcesTeleportDevTeleportOidcconnectorV3DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_resources_teleport_dev_teleport_oidc_connector_v3"
 }
 
-func (r *ResourcesTeleportDevTeleportOIDCConnectorV3DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *ResourcesTeleportDevTeleportOidcconnectorV3DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "OIDCConnector is the Schema for the oidcconnectors API",
 		MarkdownDescription: "OIDCConnector is the Schema for the oidcconnectors API",
@@ -310,7 +310,7 @@ func (r *ResourcesTeleportDevTeleportOIDCConnectorV3DataSource) Schema(_ context
 	}
 }
 
-func (r *ResourcesTeleportDevTeleportOIDCConnectorV3DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *ResourcesTeleportDevTeleportOidcconnectorV3DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -333,10 +333,10 @@ func (r *ResourcesTeleportDevTeleportOIDCConnectorV3DataSource) Configure(_ cont
 	}
 }
 
-func (r *ResourcesTeleportDevTeleportOIDCConnectorV3DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *ResourcesTeleportDevTeleportOidcconnectorV3DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_resources_teleport_dev_teleport_oidc_connector_v3")
 
-	var data ResourcesTeleportDevTeleportOIDCConnectorV3DataSourceData
+	var data ResourcesTeleportDevTeleportOidcconnectorV3DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -365,7 +365,7 @@ func (r *ResourcesTeleportDevTeleportOIDCConnectorV3DataSource) Read(ctx context
 		return
 	}
 
-	var readResponse ResourcesTeleportDevTeleportOIDCConnectorV3DataSourceData
+	var readResponse ResourcesTeleportDevTeleportOidcconnectorV3DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

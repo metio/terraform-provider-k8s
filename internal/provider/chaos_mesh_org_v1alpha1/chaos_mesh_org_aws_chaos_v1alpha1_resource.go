@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &ChaosMeshOrgAWSChaosV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &ChaosMeshOrgAWSChaosV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &ChaosMeshOrgAWSChaosV1Alpha1Resource{}
+	_ resource.Resource                = &ChaosMeshOrgAwschaosV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &ChaosMeshOrgAwschaosV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &ChaosMeshOrgAwschaosV1Alpha1Resource{}
 )
 
-func NewChaosMeshOrgAWSChaosV1Alpha1Resource() resource.Resource {
-	return &ChaosMeshOrgAWSChaosV1Alpha1Resource{}
+func NewChaosMeshOrgAwschaosV1Alpha1Resource() resource.Resource {
+	return &ChaosMeshOrgAwschaosV1Alpha1Resource{}
 }
 
-type ChaosMeshOrgAWSChaosV1Alpha1Resource struct {
+type ChaosMeshOrgAwschaosV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type ChaosMeshOrgAWSChaosV1Alpha1ResourceData struct {
+type ChaosMeshOrgAwschaosV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -74,11 +74,11 @@ type ChaosMeshOrgAWSChaosV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *ChaosMeshOrgAwschaosV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_chaos_mesh_org_aws_chaos_v1alpha1"
 }
 
-func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *ChaosMeshOrgAwschaosV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "AWSChaos is the Schema for the awschaos API",
 		MarkdownDescription: "AWSChaos is the Schema for the awschaos API",
@@ -290,7 +290,7 @@ func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Schema(_ context.Context, _ resou
 	}
 }
 
-func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *ChaosMeshOrgAwschaosV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -315,10 +315,10 @@ func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Configure(_ context.Context, requ
 	}
 }
 
-func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *ChaosMeshOrgAwschaosV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_chaos_mesh_org_aws_chaos_v1alpha1")
 
-	var model ChaosMeshOrgAWSChaosV1Alpha1ResourceData
+	var model ChaosMeshOrgAwschaosV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -376,7 +376,7 @@ func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Create(ctx context.Context, reque
 		return
 	}
 
-	var readResponse ChaosMeshOrgAWSChaosV1Alpha1ResourceData
+	var readResponse ChaosMeshOrgAwschaosV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -394,10 +394,10 @@ func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Create(ctx context.Context, reque
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *ChaosMeshOrgAwschaosV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_chaos_mesh_org_aws_chaos_v1alpha1")
 
-	var data ChaosMeshOrgAWSChaosV1Alpha1ResourceData
+	var data ChaosMeshOrgAwschaosV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -426,7 +426,7 @@ func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Read(ctx context.Context, request
 		return
 	}
 
-	var readResponse ChaosMeshOrgAWSChaosV1Alpha1ResourceData
+	var readResponse ChaosMeshOrgAwschaosV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -444,10 +444,10 @@ func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Read(ctx context.Context, request
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *ChaosMeshOrgAwschaosV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_chaos_mesh_org_aws_chaos_v1alpha1")
 
-	var model ChaosMeshOrgAWSChaosV1Alpha1ResourceData
+	var model ChaosMeshOrgAwschaosV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -504,7 +504,7 @@ func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Update(ctx context.Context, reque
 		return
 	}
 
-	var readResponse ChaosMeshOrgAWSChaosV1Alpha1ResourceData
+	var readResponse ChaosMeshOrgAwschaosV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -522,10 +522,10 @@ func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Update(ctx context.Context, reque
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *ChaosMeshOrgAwschaosV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_chaos_mesh_org_aws_chaos_v1alpha1")
 
-	var data ChaosMeshOrgAWSChaosV1Alpha1ResourceData
+	var data ChaosMeshOrgAwschaosV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -546,7 +546,7 @@ func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) Delete(ctx context.Context, reque
 	}
 }
 
-func (r *ChaosMeshOrgAWSChaosV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *ChaosMeshOrgAwschaosV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

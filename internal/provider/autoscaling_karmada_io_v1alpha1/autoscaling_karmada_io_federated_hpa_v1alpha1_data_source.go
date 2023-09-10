@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &AutoscalingKarmadaIoFederatedHPAV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &AutoscalingKarmadaIoFederatedHPAV1Alpha1DataSource{}
+	_ datasource.DataSource              = &AutoscalingKarmadaIoFederatedHpaV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &AutoscalingKarmadaIoFederatedHpaV1Alpha1DataSource{}
 )
 
-func NewAutoscalingKarmadaIoFederatedHPAV1Alpha1DataSource() datasource.DataSource {
-	return &AutoscalingKarmadaIoFederatedHPAV1Alpha1DataSource{}
+func NewAutoscalingKarmadaIoFederatedHpaV1Alpha1DataSource() datasource.DataSource {
+	return &AutoscalingKarmadaIoFederatedHpaV1Alpha1DataSource{}
 }
 
-type AutoscalingKarmadaIoFederatedHPAV1Alpha1DataSource struct {
+type AutoscalingKarmadaIoFederatedHpaV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type AutoscalingKarmadaIoFederatedHPAV1Alpha1DataSourceData struct {
+type AutoscalingKarmadaIoFederatedHpaV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -164,11 +164,11 @@ type AutoscalingKarmadaIoFederatedHPAV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *AutoscalingKarmadaIoFederatedHPAV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_autoscaling_karmada_io_federated_hpa_v1alpha1"
 }
 
-func (r *AutoscalingKarmadaIoFederatedHPAV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "FederatedHPA is centralized HPA that can aggregate the metrics in multiple clusters. When the system load increases, it will query the metrics from multiple clusters and scales up the replicas. When the system load decreases, it will query the metrics from multiple clusters and scales down the replicas. After the replicas are scaled up/down, karmada-scheduler will schedule the replicas based on the policy.",
 		MarkdownDescription: "FederatedHPA is centralized HPA that can aggregate the metrics in multiple clusters. When the system load increases, it will query the metrics from multiple clusters and scales up the replicas. When the system load decreases, it will query the metrics from multiple clusters and scales down the replicas. After the replicas are scaled up/down, karmada-scheduler will schedule the replicas based on the policy.",
@@ -960,7 +960,7 @@ func (r *AutoscalingKarmadaIoFederatedHPAV1Alpha1DataSource) Schema(_ context.Co
 	}
 }
 
-func (r *AutoscalingKarmadaIoFederatedHPAV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -983,10 +983,10 @@ func (r *AutoscalingKarmadaIoFederatedHPAV1Alpha1DataSource) Configure(_ context
 	}
 }
 
-func (r *AutoscalingKarmadaIoFederatedHPAV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_autoscaling_karmada_io_federated_hpa_v1alpha1")
 
-	var data AutoscalingKarmadaIoFederatedHPAV1Alpha1DataSourceData
+	var data AutoscalingKarmadaIoFederatedHpaV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1015,7 +1015,7 @@ func (r *AutoscalingKarmadaIoFederatedHPAV1Alpha1DataSource) Read(ctx context.Co
 		return
 	}
 
-	var readResponse AutoscalingKarmadaIoFederatedHPAV1Alpha1DataSourceData
+	var readResponse AutoscalingKarmadaIoFederatedHpaV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

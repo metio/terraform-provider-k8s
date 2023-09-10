@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestRdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource_ValidateSchema(t *testing.T) {
+func TestRdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	rds_services_k8s_aws_v1alpha1.NewRdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	rds_services_k8s_aws_v1alpha1.NewRdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestRdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource_ValidateSche
 	}
 }
 
-func TestRdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
+func TestRdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestRdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource_Configuratio
 	}
 }
 
-func TestRdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource_OfflineUsage(t *testing.T) {
+func TestRdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &ApiregistrationK8SIoAPIServiceV1DataSource{}
-	_ datasource.DataSourceWithConfigure = &ApiregistrationK8SIoAPIServiceV1DataSource{}
+	_ datasource.DataSource              = &ApiregistrationK8SIoApiserviceV1DataSource{}
+	_ datasource.DataSourceWithConfigure = &ApiregistrationK8SIoApiserviceV1DataSource{}
 )
 
-func NewApiregistrationK8SIoAPIServiceV1DataSource() datasource.DataSource {
-	return &ApiregistrationK8SIoAPIServiceV1DataSource{}
+func NewApiregistrationK8SIoApiserviceV1DataSource() datasource.DataSource {
+	return &ApiregistrationK8SIoApiserviceV1DataSource{}
 }
 
-type ApiregistrationK8SIoAPIServiceV1DataSource struct {
+type ApiregistrationK8SIoApiserviceV1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type ApiregistrationK8SIoAPIServiceV1DataSourceData struct {
+type ApiregistrationK8SIoApiserviceV1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -63,11 +63,11 @@ type ApiregistrationK8SIoAPIServiceV1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ApiregistrationK8SIoAPIServiceV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *ApiregistrationK8SIoApiserviceV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_apiregistration_k8s_io_api_service_v1"
 }
 
-func (r *ApiregistrationK8SIoAPIServiceV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *ApiregistrationK8SIoApiserviceV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APIService represents a server for a particular GroupVersion. Name must be 'version.group'.",
 		MarkdownDescription: "APIService represents a server for a particular GroupVersion. Name must be 'version.group'.",
@@ -211,7 +211,7 @@ func (r *ApiregistrationK8SIoAPIServiceV1DataSource) Schema(_ context.Context, _
 	}
 }
 
-func (r *ApiregistrationK8SIoAPIServiceV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *ApiregistrationK8SIoApiserviceV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -234,10 +234,10 @@ func (r *ApiregistrationK8SIoAPIServiceV1DataSource) Configure(_ context.Context
 	}
 }
 
-func (r *ApiregistrationK8SIoAPIServiceV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *ApiregistrationK8SIoApiserviceV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_apiregistration_k8s_io_api_service_v1")
 
-	var data ApiregistrationK8SIoAPIServiceV1DataSourceData
+	var data ApiregistrationK8SIoApiserviceV1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -265,7 +265,7 @@ func (r *ApiregistrationK8SIoAPIServiceV1DataSource) Read(ctx context.Context, r
 		return
 	}
 
-	var readResponse ApiregistrationK8SIoAPIServiceV1DataSourceData
+	var readResponse ApiregistrationK8SIoApiserviceV1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

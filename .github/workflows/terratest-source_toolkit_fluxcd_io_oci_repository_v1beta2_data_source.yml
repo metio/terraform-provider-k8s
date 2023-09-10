@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource
+name: SourceToolkitFluxcdIoOcirepositoryV1Beta2DataSource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/source_toolkit_fluxcd_io_v1beta2/source_toolkit_fluxcd_io_oci_repository_v1beta2_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestSourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource ./terratest/source_toolkit_fluxcd_io_v1beta2
+        run: go test -v -timeout=120s -count=1 -run TestSourceToolkitFluxcdIoOcirepositoryV1Beta2DataSource ./terratest/source_toolkit_fluxcd_io_v1beta2

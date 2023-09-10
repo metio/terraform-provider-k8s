@@ -116,8 +116,8 @@ func (r *CertManagerIoCertificateV1DataSource) Metadata(_ context.Context, reque
 
 func (r *CertManagerIoCertificateV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "A Certificate resource should be created to ensure an up to date and signed x509 certificate is stored in the Kubernetes Secret resource named in 'spec.secretName'.  The stored certificate will be renewed before it expires (as configured by 'spec.renewBefore').",
-		MarkdownDescription: "A Certificate resource should be created to ensure an up to date and signed x509 certificate is stored in the Kubernetes Secret resource named in 'spec.secretName'.  The stored certificate will be renewed before it expires (as configured by 'spec.renewBefore').",
+		Description:         "A Certificate resource should be created to ensure an up to date and signed X.509 certificate is stored in the Kubernetes Secret resource named in 'spec.secretName'.  The stored certificate will be renewed before it expires (as configured by 'spec.renewBefore').",
+		MarkdownDescription: "A Certificate resource should be created to ensure an up to date and signed X.509 certificate is stored in the Kubernetes Secret resource named in 'spec.secretName'.  The stored certificate will be renewed before it expires (as configured by 'spec.renewBefore').",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -178,12 +178,12 @@ func (r *CertManagerIoCertificateV1DataSource) Schema(_ context.Context, _ datas
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Desired state of the Certificate resource.",
-				MarkdownDescription: "Desired state of the Certificate resource.",
+				Description:         "Specification of the desired state of the Certificate resource. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+				MarkdownDescription: "Specification of the desired state of the Certificate resource. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
 				Attributes: map[string]schema.Attribute{
 					"additional_output_formats": schema.ListNestedAttribute{
-						Description:         "AdditionalOutputFormats defines extra output formats of the private key and signed certificate chain to be written to this Certificate's target Secret. This is an Alpha Feature and is only enabled with the '--feature-gates=AdditionalCertificateOutputFormats=true' option on both the controller and webhook components.",
-						MarkdownDescription: "AdditionalOutputFormats defines extra output formats of the private key and signed certificate chain to be written to this Certificate's target Secret. This is an Alpha Feature and is only enabled with the '--feature-gates=AdditionalCertificateOutputFormats=true' option on both the controller and webhook components.",
+						Description:         "Defines extra output formats of the private key and signed certificate chain to be written to this Certificate's target Secret.  This is an Alpha Feature and is only enabled with the '--feature-gates=AdditionalCertificateOutputFormats=true' option set on both the controller and webhook components.",
+						MarkdownDescription: "Defines extra output formats of the private key and signed certificate chain to be written to this Certificate's target Secret.  This is an Alpha Feature and is only enabled with the '--feature-gates=AdditionalCertificateOutputFormats=true' option set on both the controller and webhook components.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"type": schema.StringAttribute{
@@ -201,16 +201,16 @@ func (r *CertManagerIoCertificateV1DataSource) Schema(_ context.Context, _ datas
 					},
 
 					"common_name": schema.StringAttribute{
-						Description:         "CommonName is a common name to be used on the Certificate. The CommonName should have a length of 64 characters or fewer to avoid generating invalid CSRs. This value is ignored by TLS clients when any subject alt name is set. This is x509 behaviour: https://tools.ietf.org/html/rfc6125#section-6.4.4",
-						MarkdownDescription: "CommonName is a common name to be used on the Certificate. The CommonName should have a length of 64 characters or fewer to avoid generating invalid CSRs. This value is ignored by TLS clients when any subject alt name is set. This is x509 behaviour: https://tools.ietf.org/html/rfc6125#section-6.4.4",
+						Description:         "Requested common name X509 certificate subject attribute. More info: https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6 NOTE: TLS clients will ignore this value when any subject alternative name is set (see https://tools.ietf.org/html/rfc6125#section-6.4.4).  Should have a length of 64 characters or fewer to avoid generating invalid CSRs. Cannot be set if the 'literalSubject' field is set.",
+						MarkdownDescription: "Requested common name X509 certificate subject attribute. More info: https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6 NOTE: TLS clients will ignore this value when any subject alternative name is set (see https://tools.ietf.org/html/rfc6125#section-6.4.4).  Should have a length of 64 characters or fewer to avoid generating invalid CSRs. Cannot be set if the 'literalSubject' field is set.",
 						Required:            false,
 						Optional:            false,
 						Computed:            true,
 					},
 
 					"dns_names": schema.ListAttribute{
-						Description:         "DNSNames is a list of DNS subjectAltNames to be set on the Certificate.",
-						MarkdownDescription: "DNSNames is a list of DNS subjectAltNames to be set on the Certificate.",
+						Description:         "Requested DNS subject alternative names.",
+						MarkdownDescription: "Requested DNS subject alternative names.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            false,
@@ -218,16 +218,16 @@ func (r *CertManagerIoCertificateV1DataSource) Schema(_ context.Context, _ datas
 					},
 
 					"duration": schema.StringAttribute{
-						Description:         "The requested 'duration' (i.e. lifetime) of the Certificate. This option may be ignored/overridden by some issuer types. If unset this defaults to 90 days. Certificate will be renewed either 2/3 through its duration or 'renewBefore' period before its expiry, whichever is later. Minimum accepted duration is 1 hour. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration",
-						MarkdownDescription: "The requested 'duration' (i.e. lifetime) of the Certificate. This option may be ignored/overridden by some issuer types. If unset this defaults to 90 days. Certificate will be renewed either 2/3 through its duration or 'renewBefore' period before its expiry, whichever is later. Minimum accepted duration is 1 hour. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration",
+						Description:         "Requested 'duration' (i.e. lifetime) of the Certificate. Note that the issuer may choose to ignore the requested duration, just like any other requested attribute.  If unset, this defaults to 90 days. Minimum accepted duration is 1 hour. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration.",
+						MarkdownDescription: "Requested 'duration' (i.e. lifetime) of the Certificate. Note that the issuer may choose to ignore the requested duration, just like any other requested attribute.  If unset, this defaults to 90 days. Minimum accepted duration is 1 hour. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration.",
 						Required:            false,
 						Optional:            false,
 						Computed:            true,
 					},
 
 					"email_addresses": schema.ListAttribute{
-						Description:         "EmailAddresses is a list of email subjectAltNames to be set on the Certificate.",
-						MarkdownDescription: "EmailAddresses is a list of email subjectAltNames to be set on the Certificate.",
+						Description:         "Requested email subject alternative names.",
+						MarkdownDescription: "Requested email subject alternative names.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            false,
@@ -235,16 +235,16 @@ func (r *CertManagerIoCertificateV1DataSource) Schema(_ context.Context, _ datas
 					},
 
 					"encode_usages_in_request": schema.BoolAttribute{
-						Description:         "EncodeUsagesInRequest controls whether key usages should be present in the CertificateRequest",
-						MarkdownDescription: "EncodeUsagesInRequest controls whether key usages should be present in the CertificateRequest",
+						Description:         "Whether the KeyUsage and ExtKeyUsage extensions should be set in the encoded CSR.  This option defaults to true, and should only be disabled if the target issuer does not support CSRs with these X509 KeyUsage/ ExtKeyUsage extensions.",
+						MarkdownDescription: "Whether the KeyUsage and ExtKeyUsage extensions should be set in the encoded CSR.  This option defaults to true, and should only be disabled if the target issuer does not support CSRs with these X509 KeyUsage/ ExtKeyUsage extensions.",
 						Required:            false,
 						Optional:            false,
 						Computed:            true,
 					},
 
 					"ip_addresses": schema.ListAttribute{
-						Description:         "IPAddresses is a list of IP address subjectAltNames to be set on the Certificate.",
-						MarkdownDescription: "IPAddresses is a list of IP address subjectAltNames to be set on the Certificate.",
+						Description:         "Requested IP address subject alternative names.",
+						MarkdownDescription: "Requested IP address subject alternative names.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            false,
@@ -252,16 +252,16 @@ func (r *CertManagerIoCertificateV1DataSource) Schema(_ context.Context, _ datas
 					},
 
 					"is_ca": schema.BoolAttribute{
-						Description:         "IsCA will mark this Certificate as valid for certificate signing. This will automatically add the 'cert sign' usage to the list of 'usages'.",
-						MarkdownDescription: "IsCA will mark this Certificate as valid for certificate signing. This will automatically add the 'cert sign' usage to the list of 'usages'.",
+						Description:         "Requested basic constraints isCA value. The isCA value is used to set the 'isCA' field on the created CertificateRequest resources. Note that the issuer may choose to ignore the requested isCA value, just like any other requested attribute.  If true, this will automatically add the 'cert sign' usage to the list of requested 'usages'.",
+						MarkdownDescription: "Requested basic constraints isCA value. The isCA value is used to set the 'isCA' field on the created CertificateRequest resources. Note that the issuer may choose to ignore the requested isCA value, just like any other requested attribute.  If true, this will automatically add the 'cert sign' usage to the list of requested 'usages'.",
 						Required:            false,
 						Optional:            false,
 						Computed:            true,
 					},
 
 					"issuer_ref": schema.SingleNestedAttribute{
-						Description:         "IssuerRef is a reference to the issuer for this certificate. If the 'kind' field is not set, or set to 'Issuer', an Issuer resource with the given name in the same namespace as the Certificate will be used. If the 'kind' field is set to 'ClusterIssuer', a ClusterIssuer with the provided name will be used. The 'name' field in this stanza is required at all times.",
-						MarkdownDescription: "IssuerRef is a reference to the issuer for this certificate. If the 'kind' field is not set, or set to 'Issuer', an Issuer resource with the given name in the same namespace as the Certificate will be used. If the 'kind' field is set to 'ClusterIssuer', a ClusterIssuer with the provided name will be used. The 'name' field in this stanza is required at all times.",
+						Description:         "Reference to the issuer responsible for issuing the certificate. If the issuer is namespace-scoped, it must be in the same namespace as the Certificate. If the issuer is cluster-scoped, it can be used from any namespace.  The 'name' field of the reference must always be specified.",
+						MarkdownDescription: "Reference to the issuer responsible for issuing the certificate. If the issuer is namespace-scoped, it must be in the same namespace as the Certificate. If the issuer is cluster-scoped, it can be used from any namespace.  The 'name' field of the reference must always be specified.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
 								Description:         "Group of the resource being referred to.",
@@ -293,8 +293,8 @@ func (r *CertManagerIoCertificateV1DataSource) Schema(_ context.Context, _ datas
 					},
 
 					"keystores": schema.SingleNestedAttribute{
-						Description:         "Keystores configures additional keystore output formats stored in the 'secretName' Secret resource.",
-						MarkdownDescription: "Keystores configures additional keystore output formats stored in the 'secretName' Secret resource.",
+						Description:         "Additional keystore output formats to be stored in the Certificate's Secret.",
+						MarkdownDescription: "Additional keystore output formats to be stored in the Certificate's Secret.",
 						Attributes: map[string]schema.Attribute{
 							"jks": schema.SingleNestedAttribute{
 								Description:         "JKS configures options for storing a JKS keystore in the 'spec.secretName' Secret resource.",
@@ -386,44 +386,44 @@ func (r *CertManagerIoCertificateV1DataSource) Schema(_ context.Context, _ datas
 					},
 
 					"literal_subject": schema.StringAttribute{
-						Description:         "LiteralSubject is an LDAP formatted string that represents the [X.509 Subject field](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6). Use this *instead* of the Subject field if you need to ensure the correct ordering of the RDN sequence, such as when issuing certs for LDAP authentication. See https://github.com/cert-manager/cert-manager/issues/3203, https://github.com/cert-manager/cert-manager/issues/4424. This field is alpha level and is only supported by cert-manager installations where LiteralCertificateSubject feature gate is enabled on both cert-manager controller and webhook.",
-						MarkdownDescription: "LiteralSubject is an LDAP formatted string that represents the [X.509 Subject field](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6). Use this *instead* of the Subject field if you need to ensure the correct ordering of the RDN sequence, such as when issuing certs for LDAP authentication. See https://github.com/cert-manager/cert-manager/issues/3203, https://github.com/cert-manager/cert-manager/issues/4424. This field is alpha level and is only supported by cert-manager installations where LiteralCertificateSubject feature gate is enabled on both cert-manager controller and webhook.",
+						Description:         "Requested X.509 certificate subject, represented using the LDAP 'String Representation of a Distinguished Name' [1]. Important: the LDAP string format also specifies the order of the attributes in the subject, this is important when issuing certs for LDAP authentication. Example: 'CN=foo,DC=corp,DC=example,DC=com' More info [1]: https://datatracker.ietf.org/doc/html/rfc4514 More info: https://github.com/cert-manager/cert-manager/issues/3203 More info: https://github.com/cert-manager/cert-manager/issues/4424  Cannot be set if the 'subject' or 'commonName' field is set. This is an Alpha Feature and is only enabled with the '--feature-gates=LiteralCertificateSubject=true' option set on both the controller and webhook components.",
+						MarkdownDescription: "Requested X.509 certificate subject, represented using the LDAP 'String Representation of a Distinguished Name' [1]. Important: the LDAP string format also specifies the order of the attributes in the subject, this is important when issuing certs for LDAP authentication. Example: 'CN=foo,DC=corp,DC=example,DC=com' More info [1]: https://datatracker.ietf.org/doc/html/rfc4514 More info: https://github.com/cert-manager/cert-manager/issues/3203 More info: https://github.com/cert-manager/cert-manager/issues/4424  Cannot be set if the 'subject' or 'commonName' field is set. This is an Alpha Feature and is only enabled with the '--feature-gates=LiteralCertificateSubject=true' option set on both the controller and webhook components.",
 						Required:            false,
 						Optional:            false,
 						Computed:            true,
 					},
 
 					"private_key": schema.SingleNestedAttribute{
-						Description:         "Options to control private keys used for the Certificate.",
-						MarkdownDescription: "Options to control private keys used for the Certificate.",
+						Description:         "Private key options. These include the key algorithm and size, the used encoding and the rotation policy.",
+						MarkdownDescription: "Private key options. These include the key algorithm and size, the used encoding and the rotation policy.",
 						Attributes: map[string]schema.Attribute{
 							"algorithm": schema.StringAttribute{
-								Description:         "Algorithm is the private key algorithm of the corresponding private key for this certificate. If provided, allowed values are either 'RSA','Ed25519' or 'ECDSA' If 'algorithm' is specified and 'size' is not provided, key size of 256 will be used for 'ECDSA' key algorithm and key size of 2048 will be used for 'RSA' key algorithm. key size is ignored when using the 'Ed25519' key algorithm.",
-								MarkdownDescription: "Algorithm is the private key algorithm of the corresponding private key for this certificate. If provided, allowed values are either 'RSA','Ed25519' or 'ECDSA' If 'algorithm' is specified and 'size' is not provided, key size of 256 will be used for 'ECDSA' key algorithm and key size of 2048 will be used for 'RSA' key algorithm. key size is ignored when using the 'Ed25519' key algorithm.",
+								Description:         "Algorithm is the private key algorithm of the corresponding private key for this certificate.  If provided, allowed values are either 'RSA', 'ECDSA' or 'Ed25519'. If 'algorithm' is specified and 'size' is not provided, key size of 2048 will be used for 'RSA' key algorithm and key size of 256 will be used for 'ECDSA' key algorithm. key size is ignored when using the 'Ed25519' key algorithm.",
+								MarkdownDescription: "Algorithm is the private key algorithm of the corresponding private key for this certificate.  If provided, allowed values are either 'RSA', 'ECDSA' or 'Ed25519'. If 'algorithm' is specified and 'size' is not provided, key size of 2048 will be used for 'RSA' key algorithm and key size of 256 will be used for 'ECDSA' key algorithm. key size is ignored when using the 'Ed25519' key algorithm.",
 								Required:            false,
 								Optional:            false,
 								Computed:            true,
 							},
 
 							"encoding": schema.StringAttribute{
-								Description:         "The private key cryptography standards (PKCS) encoding for this certificate's private key to be encoded in. If provided, allowed values are 'PKCS1' and 'PKCS8' standing for PKCS#1 and PKCS#8, respectively. Defaults to 'PKCS1' if not specified.",
-								MarkdownDescription: "The private key cryptography standards (PKCS) encoding for this certificate's private key to be encoded in. If provided, allowed values are 'PKCS1' and 'PKCS8' standing for PKCS#1 and PKCS#8, respectively. Defaults to 'PKCS1' if not specified.",
+								Description:         "The private key cryptography standards (PKCS) encoding for this certificate's private key to be encoded in.  If provided, allowed values are 'PKCS1' and 'PKCS8' standing for PKCS#1 and PKCS#8, respectively. Defaults to 'PKCS1' if not specified.",
+								MarkdownDescription: "The private key cryptography standards (PKCS) encoding for this certificate's private key to be encoded in.  If provided, allowed values are 'PKCS1' and 'PKCS8' standing for PKCS#1 and PKCS#8, respectively. Defaults to 'PKCS1' if not specified.",
 								Required:            false,
 								Optional:            false,
 								Computed:            true,
 							},
 
 							"rotation_policy": schema.StringAttribute{
-								Description:         "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to Never, a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exists but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to Always, a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.",
-								MarkdownDescription: "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to Never, a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exists but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to Always, a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.",
+								Description:         "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed.  If set to 'Never', a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exists but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to 'Always', a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.",
+								MarkdownDescription: "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed.  If set to 'Never', a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exists but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to 'Always', a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.",
 								Required:            false,
 								Optional:            false,
 								Computed:            true,
 							},
 
 							"size": schema.Int64Attribute{
-								Description:         "Size is the key bit size of the corresponding private key for this certificate. If 'algorithm' is set to 'RSA', valid values are '2048', '4096' or '8192', and will default to '2048' if not specified. If 'algorithm' is set to 'ECDSA', valid values are '256', '384' or '521', and will default to '256' if not specified. If 'algorithm' is set to 'Ed25519', Size is ignored. No other values are allowed.",
-								MarkdownDescription: "Size is the key bit size of the corresponding private key for this certificate. If 'algorithm' is set to 'RSA', valid values are '2048', '4096' or '8192', and will default to '2048' if not specified. If 'algorithm' is set to 'ECDSA', valid values are '256', '384' or '521', and will default to '256' if not specified. If 'algorithm' is set to 'Ed25519', Size is ignored. No other values are allowed.",
+								Description:         "Size is the key bit size of the corresponding private key for this certificate.  If 'algorithm' is set to 'RSA', valid values are '2048', '4096' or '8192', and will default to '2048' if not specified. If 'algorithm' is set to 'ECDSA', valid values are '256', '384' or '521', and will default to '256' if not specified. If 'algorithm' is set to 'Ed25519', Size is ignored. No other values are allowed.",
+								MarkdownDescription: "Size is the key bit size of the corresponding private key for this certificate.  If 'algorithm' is set to 'RSA', valid values are '2048', '4096' or '8192', and will default to '2048' if not specified. If 'algorithm' is set to 'ECDSA', valid values are '256', '384' or '521', and will default to '256' if not specified. If 'algorithm' is set to 'Ed25519', Size is ignored. No other values are allowed.",
 								Required:            false,
 								Optional:            false,
 								Computed:            true,
@@ -435,32 +435,32 @@ func (r *CertManagerIoCertificateV1DataSource) Schema(_ context.Context, _ datas
 					},
 
 					"renew_before": schema.StringAttribute{
-						Description:         "How long before the currently issued certificate's expiry cert-manager should renew the certificate. The default is 2/3 of the issued certificate's duration. Minimum accepted value is 5 minutes. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration",
-						MarkdownDescription: "How long before the currently issued certificate's expiry cert-manager should renew the certificate. The default is 2/3 of the issued certificate's duration. Minimum accepted value is 5 minutes. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration",
+						Description:         "How long before the currently issued certificate's expiry cert-manager should renew the certificate. For example, if a certificate is valid for 60 minutes, and 'renewBefore=10m', cert-manager will begin to attempt to renew the certificate 50 minutes after it was issued (i.e. when there are 10 minutes remaining until the certificate is no longer valid).  NOTE: The actual lifetime of the issued certificate is used to determine the renewal time. If an issuer returns a certificate with a different lifetime than the one requested, cert-manager will use the lifetime of the issued certificate.  If unset, this defaults to 1/3 of the issued certificate's lifetime. Minimum accepted value is 5 minutes. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration.",
+						MarkdownDescription: "How long before the currently issued certificate's expiry cert-manager should renew the certificate. For example, if a certificate is valid for 60 minutes, and 'renewBefore=10m', cert-manager will begin to attempt to renew the certificate 50 minutes after it was issued (i.e. when there are 10 minutes remaining until the certificate is no longer valid).  NOTE: The actual lifetime of the issued certificate is used to determine the renewal time. If an issuer returns a certificate with a different lifetime than the one requested, cert-manager will use the lifetime of the issued certificate.  If unset, this defaults to 1/3 of the issued certificate's lifetime. Minimum accepted value is 5 minutes. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration.",
 						Required:            false,
 						Optional:            false,
 						Computed:            true,
 					},
 
 					"revision_history_limit": schema.Int64Attribute{
-						Description:         "revisionHistoryLimit is the maximum number of CertificateRequest revisions that are maintained in the Certificate's history. Each revision represents a single 'CertificateRequest' created by this Certificate, either when it was created, renewed, or Spec was changed. Revisions will be removed by oldest first if the number of revisions exceeds this number. If set, revisionHistoryLimit must be a value of '1' or greater. If unset ('nil'), revisions will not be garbage collected. Default value is 'nil'.",
-						MarkdownDescription: "revisionHistoryLimit is the maximum number of CertificateRequest revisions that are maintained in the Certificate's history. Each revision represents a single 'CertificateRequest' created by this Certificate, either when it was created, renewed, or Spec was changed. Revisions will be removed by oldest first if the number of revisions exceeds this number. If set, revisionHistoryLimit must be a value of '1' or greater. If unset ('nil'), revisions will not be garbage collected. Default value is 'nil'.",
+						Description:         "The maximum number of CertificateRequest revisions that are maintained in the Certificate's history. Each revision represents a single 'CertificateRequest' created by this Certificate, either when it was created, renewed, or Spec was changed. Revisions will be removed by oldest first if the number of revisions exceeds this number.  If set, revisionHistoryLimit must be a value of '1' or greater. If unset ('nil'), revisions will not be garbage collected. Default value is 'nil'.",
+						MarkdownDescription: "The maximum number of CertificateRequest revisions that are maintained in the Certificate's history. Each revision represents a single 'CertificateRequest' created by this Certificate, either when it was created, renewed, or Spec was changed. Revisions will be removed by oldest first if the number of revisions exceeds this number.  If set, revisionHistoryLimit must be a value of '1' or greater. If unset ('nil'), revisions will not be garbage collected. Default value is 'nil'.",
 						Required:            false,
 						Optional:            false,
 						Computed:            true,
 					},
 
 					"secret_name": schema.StringAttribute{
-						Description:         "SecretName is the name of the secret resource that will be automatically created and managed by this Certificate resource. It will be populated with a private key and certificate, signed by the denoted issuer.",
-						MarkdownDescription: "SecretName is the name of the secret resource that will be automatically created and managed by this Certificate resource. It will be populated with a private key and certificate, signed by the denoted issuer.",
+						Description:         "Name of the Secret resource that will be automatically created and managed by this Certificate resource. It will be populated with a private key and certificate, signed by the denoted issuer. The Secret resource lives in the same namespace as the Certificate resource.",
+						MarkdownDescription: "Name of the Secret resource that will be automatically created and managed by this Certificate resource. It will be populated with a private key and certificate, signed by the denoted issuer. The Secret resource lives in the same namespace as the Certificate resource.",
 						Required:            false,
 						Optional:            false,
 						Computed:            true,
 					},
 
 					"secret_template": schema.SingleNestedAttribute{
-						Description:         "SecretTemplate defines annotations and labels to be copied to the Certificate's Secret. Labels and annotations on the Secret will be changed as they appear on the SecretTemplate when added or removed. SecretTemplate annotations are added in conjunction with, and cannot overwrite, the base set of annotations cert-manager sets on the Certificate's Secret.",
-						MarkdownDescription: "SecretTemplate defines annotations and labels to be copied to the Certificate's Secret. Labels and annotations on the Secret will be changed as they appear on the SecretTemplate when added or removed. SecretTemplate annotations are added in conjunction with, and cannot overwrite, the base set of annotations cert-manager sets on the Certificate's Secret.",
+						Description:         "Defines annotations and labels to be copied to the Certificate's Secret. Labels and annotations on the Secret will be changed as they appear on the SecretTemplate when added or removed. SecretTemplate annotations are added in conjunction with, and cannot overwrite, the base set of annotations cert-manager sets on the Certificate's Secret.",
+						MarkdownDescription: "Defines annotations and labels to be copied to the Certificate's Secret. Labels and annotations on the Secret will be changed as they appear on the SecretTemplate when added or removed. SecretTemplate annotations are added in conjunction with, and cannot overwrite, the base set of annotations cert-manager sets on the Certificate's Secret.",
 						Attributes: map[string]schema.Attribute{
 							"annotations": schema.MapAttribute{
 								Description:         "Annotations is a key value map to be copied to the target Kubernetes Secret.",
@@ -486,8 +486,8 @@ func (r *CertManagerIoCertificateV1DataSource) Schema(_ context.Context, _ datas
 					},
 
 					"subject": schema.SingleNestedAttribute{
-						Description:         "Full X509 name specification (https://golang.org/pkg/crypto/x509/pkix/#Name).",
-						MarkdownDescription: "Full X509 name specification (https://golang.org/pkg/crypto/x509/pkix/#Name).",
+						Description:         "Requested set of X509 certificate subject attributes. More info: https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6  The common name attribute is specified separately in the 'commonName' field. Cannot be set if the 'literalSubject' field is set.",
+						MarkdownDescription: "Requested set of X509 certificate subject attributes. More info: https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6  The common name attribute is specified separately in the 'commonName' field. Cannot be set if the 'literalSubject' field is set.",
 						Attributes: map[string]schema.Attribute{
 							"countries": schema.ListAttribute{
 								Description:         "Countries to be used on the Certificate.",
@@ -566,8 +566,8 @@ func (r *CertManagerIoCertificateV1DataSource) Schema(_ context.Context, _ datas
 					},
 
 					"uris": schema.ListAttribute{
-						Description:         "URIs is a list of URI subjectAltNames to be set on the Certificate.",
-						MarkdownDescription: "URIs is a list of URI subjectAltNames to be set on the Certificate.",
+						Description:         "Requested URI subject alternative names.",
+						MarkdownDescription: "Requested URI subject alternative names.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            false,
@@ -575,8 +575,8 @@ func (r *CertManagerIoCertificateV1DataSource) Schema(_ context.Context, _ datas
 					},
 
 					"usages": schema.ListAttribute{
-						Description:         "Usages is the set of x509 usages that are requested for the certificate. Defaults to 'digital signature' and 'key encipherment' if not specified.",
-						MarkdownDescription: "Usages is the set of x509 usages that are requested for the certificate. Defaults to 'digital signature' and 'key encipherment' if not specified.",
+						Description:         "Requested key usages and extended key usages. These usages are used to set the 'usages' field on the created CertificateRequest resources. If 'encodeUsagesInRequest' is unset or set to 'true', the usages will additionally be encoded in the 'request' field which contains the CSR blob.  If unset, defaults to 'digital signature' and 'key encipherment'.",
+						MarkdownDescription: "Requested key usages and extended key usages. These usages are used to set the 'usages' field on the created CertificateRequest resources. If 'encodeUsagesInRequest' is unset or set to 'true', the usages will additionally be encoded in the 'request' field which contains the CSR blob.  If unset, defaults to 'digital signature' and 'key encipherment'.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            false,

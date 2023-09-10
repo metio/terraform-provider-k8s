@@ -32,22 +32,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &DataFluidIoGooseFSRuntimeV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &DataFluidIoGooseFSRuntimeV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &DataFluidIoGooseFSRuntimeV1Alpha1Resource{}
+	_ resource.Resource                = &DataFluidIoGooseFsruntimeV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &DataFluidIoGooseFsruntimeV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &DataFluidIoGooseFsruntimeV1Alpha1Resource{}
 )
 
-func NewDataFluidIoGooseFSRuntimeV1Alpha1Resource() resource.Resource {
-	return &DataFluidIoGooseFSRuntimeV1Alpha1Resource{}
+func NewDataFluidIoGooseFsruntimeV1Alpha1Resource() resource.Resource {
+	return &DataFluidIoGooseFsruntimeV1Alpha1Resource{}
 }
 
-type DataFluidIoGooseFSRuntimeV1Alpha1Resource struct {
+type DataFluidIoGooseFsruntimeV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type DataFluidIoGooseFSRuntimeV1Alpha1ResourceData struct {
+type DataFluidIoGooseFsruntimeV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -485,11 +485,11 @@ type DataFluidIoGooseFSRuntimeV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *DataFluidIoGooseFsruntimeV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_data_fluid_io_goose_fs_runtime_v1alpha1"
 }
 
-func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *DataFluidIoGooseFsruntimeV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "GooseFSRuntime is the Schema for the goosefsruntimes API",
 		MarkdownDescription: "GooseFSRuntime is the Schema for the goosefsruntimes API",
@@ -3521,7 +3521,7 @@ func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Schema(_ context.Context, _ 
 	}
 }
 
-func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *DataFluidIoGooseFsruntimeV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -3546,10 +3546,10 @@ func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Configure(_ context.Context,
 	}
 }
 
-func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *DataFluidIoGooseFsruntimeV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_data_fluid_io_goose_fs_runtime_v1alpha1")
 
-	var model DataFluidIoGooseFSRuntimeV1Alpha1ResourceData
+	var model DataFluidIoGooseFsruntimeV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -3607,7 +3607,7 @@ func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Create(ctx context.Context, 
 		return
 	}
 
-	var readResponse DataFluidIoGooseFSRuntimeV1Alpha1ResourceData
+	var readResponse DataFluidIoGooseFsruntimeV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -3625,10 +3625,10 @@ func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Create(ctx context.Context, 
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *DataFluidIoGooseFsruntimeV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_data_fluid_io_goose_fs_runtime_v1alpha1")
 
-	var data DataFluidIoGooseFSRuntimeV1Alpha1ResourceData
+	var data DataFluidIoGooseFsruntimeV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -3657,7 +3657,7 @@ func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Read(ctx context.Context, re
 		return
 	}
 
-	var readResponse DataFluidIoGooseFSRuntimeV1Alpha1ResourceData
+	var readResponse DataFluidIoGooseFsruntimeV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -3675,10 +3675,10 @@ func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Read(ctx context.Context, re
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *DataFluidIoGooseFsruntimeV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_data_fluid_io_goose_fs_runtime_v1alpha1")
 
-	var model DataFluidIoGooseFSRuntimeV1Alpha1ResourceData
+	var model DataFluidIoGooseFsruntimeV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -3735,7 +3735,7 @@ func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Update(ctx context.Context, 
 		return
 	}
 
-	var readResponse DataFluidIoGooseFSRuntimeV1Alpha1ResourceData
+	var readResponse DataFluidIoGooseFsruntimeV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -3753,10 +3753,10 @@ func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Update(ctx context.Context, 
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *DataFluidIoGooseFsruntimeV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_data_fluid_io_goose_fs_runtime_v1alpha1")
 
-	var data DataFluidIoGooseFSRuntimeV1Alpha1ResourceData
+	var data DataFluidIoGooseFsruntimeV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -3777,7 +3777,7 @@ func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) Delete(ctx context.Context, 
 	}
 }
 
-func (r *DataFluidIoGooseFSRuntimeV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *DataFluidIoGooseFsruntimeV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

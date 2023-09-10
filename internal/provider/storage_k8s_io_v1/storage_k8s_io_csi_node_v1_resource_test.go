@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestStorageK8SIoCSINodeV1Resource_ValidateSchema(t *testing.T) {
+func TestStorageK8SIoCsinodeV1Resource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwresource.SchemaRequest{}
 	schemaResponse := &fwresource.SchemaResponse{}
 
-	storage_k8s_io_v1.NewStorageK8SIoCSINodeV1Resource().Schema(ctx, schemaRequest, schemaResponse)
+	storage_k8s_io_v1.NewStorageK8SIoCsinodeV1Resource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

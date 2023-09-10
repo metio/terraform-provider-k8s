@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &OperatorTigeraIoAPIServerV1DataSource{}
-	_ datasource.DataSourceWithConfigure = &OperatorTigeraIoAPIServerV1DataSource{}
+	_ datasource.DataSource              = &OperatorTigeraIoApiserverV1DataSource{}
+	_ datasource.DataSourceWithConfigure = &OperatorTigeraIoApiserverV1DataSource{}
 )
 
-func NewOperatorTigeraIoAPIServerV1DataSource() datasource.DataSource {
-	return &OperatorTigeraIoAPIServerV1DataSource{}
+func NewOperatorTigeraIoApiserverV1DataSource() datasource.DataSource {
+	return &OperatorTigeraIoApiserverV1DataSource{}
 }
 
-type OperatorTigeraIoAPIServerV1DataSource struct {
+type OperatorTigeraIoApiserverV1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type OperatorTigeraIoAPIServerV1DataSourceData struct {
+type OperatorTigeraIoApiserverV1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -237,11 +237,11 @@ type OperatorTigeraIoAPIServerV1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *OperatorTigeraIoAPIServerV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *OperatorTigeraIoApiserverV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_operator_tigera_io_api_server_v1"
 }
 
-func (r *OperatorTigeraIoAPIServerV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *OperatorTigeraIoApiserverV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APIServer installs the Tigera API server and related resources. At most one instance of this resource is supported. It must be named 'default' or 'tigera-secure'.",
 		MarkdownDescription: "APIServer installs the Tigera API server and related resources. At most one instance of this resource is supported. It must be named 'default' or 'tigera-secure'.",
@@ -1520,7 +1520,7 @@ func (r *OperatorTigeraIoAPIServerV1DataSource) Schema(_ context.Context, _ data
 	}
 }
 
-func (r *OperatorTigeraIoAPIServerV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *OperatorTigeraIoApiserverV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -1543,10 +1543,10 @@ func (r *OperatorTigeraIoAPIServerV1DataSource) Configure(_ context.Context, req
 	}
 }
 
-func (r *OperatorTigeraIoAPIServerV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *OperatorTigeraIoApiserverV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_operator_tigera_io_api_server_v1")
 
-	var data OperatorTigeraIoAPIServerV1DataSourceData
+	var data OperatorTigeraIoApiserverV1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1574,7 +1574,7 @@ func (r *OperatorTigeraIoAPIServerV1DataSource) Read(ctx context.Context, reques
 		return
 	}
 
-	var readResponse OperatorTigeraIoAPIServerV1DataSourceData
+	var readResponse OperatorTigeraIoApiserverV1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

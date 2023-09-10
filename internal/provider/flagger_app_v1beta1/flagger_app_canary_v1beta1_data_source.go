@@ -69,6 +69,11 @@ type FlaggerAppCanaryV1Beta1DataSourceData struct {
 					Regex  *string `tfsdk:"regex" json:"regex,omitempty"`
 					Suffix *string `tfsdk:"suffix" json:"suffix,omitempty"`
 				} `tfsdk:"headers" json:"headers,omitempty"`
+				QueryParams *struct {
+					Exact  *string `tfsdk:"exact" json:"exact,omitempty"`
+					Prefix *string `tfsdk:"prefix" json:"prefix,omitempty"`
+					Regex  *string `tfsdk:"regex" json:"regex,omitempty"`
+				} `tfsdk:"query_params" json:"queryParams,omitempty"`
 				SourceLabels *map[string]string `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
 			} `tfsdk:"match" json:"match,omitempty"`
 			MaxWeight *float64 `tfsdk:"max_weight" json:"maxWeight,omitempty"`
@@ -498,6 +503,39 @@ func (r *FlaggerAppCanaryV1Beta1DataSource) Schema(_ context.Context, _ datasour
 												"suffix": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
+													Required:            false,
+													Optional:            false,
+													Computed:            true,
+												},
+											},
+											Required: false,
+											Optional: false,
+											Computed: true,
+										},
+
+										"query_params": schema.SingleNestedAttribute{
+											Description:         "Query parameters for matching.",
+											MarkdownDescription: "Query parameters for matching.",
+											Attributes: map[string]schema.Attribute{
+												"exact": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            false,
+													Computed:            true,
+												},
+
+												"prefix": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            false,
+													Computed:            true,
+												},
+
+												"regex": schema.StringAttribute{
+													Description:         "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+													MarkdownDescription: "RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
 													Required:            false,
 													Optional:            false,
 													Computed:            true,

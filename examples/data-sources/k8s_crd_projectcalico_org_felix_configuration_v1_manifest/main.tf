@@ -8,5 +8,5 @@ terraform {
 }
 
 provider "k8s" {
-  offline = true
+    offline = true
 }

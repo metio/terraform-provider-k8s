@@ -65,16 +65,18 @@ type ApiextensionsCrossplaneIoCompositionRevisionV1ResourceData struct {
 			Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
 		} `tfsdk:"composite_type_ref" json:"compositeTypeRef,omitempty"`
 		Environment *struct {
+			DefaultData        *map[string]string `tfsdk:"default_data" json:"defaultData,omitempty"`
 			EnvironmentConfigs *[]struct {
 				Ref *struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"ref" json:"ref,omitempty"`
 				Selector *struct {
 					MatchLabels *[]struct {
-						Key                *string `tfsdk:"key" json:"key,omitempty"`
-						Type               *string `tfsdk:"type" json:"type,omitempty"`
-						Value              *string `tfsdk:"value" json:"value,omitempty"`
-						ValueFromFieldPath *string `tfsdk:"value_from_field_path" json:"valueFromFieldPath,omitempty"`
+						FromFieldPathPolicy *string `tfsdk:"from_field_path_policy" json:"fromFieldPathPolicy,omitempty"`
+						Key                 *string `tfsdk:"key" json:"key,omitempty"`
+						Type                *string `tfsdk:"type" json:"type,omitempty"`
+						Value               *string `tfsdk:"value" json:"value,omitempty"`
+						ValueFromFieldPath  *string `tfsdk:"value_from_field_path" json:"valueFromFieldPath,omitempty"`
 					} `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 					MaxMatch        *int64  `tfsdk:"max_match" json:"maxMatch,omitempty"`
 					Mode            *string `tfsdk:"mode" json:"mode,omitempty"`
@@ -458,6 +460,15 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Resource) Schema(_ contex
 						Description:         "Environment configures the environment in which resources are rendered.",
 						MarkdownDescription: "Environment configures the environment in which resources are rendered.",
 						Attributes: map[string]schema.Attribute{
+							"default_data": schema.MapAttribute{
+								Description:         "DefaultData statically defines the initial state of the environment. It has the same schema-less structure as the data field in environment configs. It is overwritten by the selected environment configs.",
+								MarkdownDescription: "DefaultData statically defines the initial state of the environment. It has the same schema-less structure as the data field in environment configs. It is overwritten by the selected environment configs.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"environment_configs": schema.ListNestedAttribute{
 								Description:         "EnvironmentConfigs selects a list of 'EnvironmentConfig's. The resolved resources are stored in the composite resource at 'spec.environmentConfigRefs' and is only updated if it is null.  The list of references is used to compute an in-memory environment at compose time. The data of all object is merged in the order they are listed, meaning the values of EnvironmentConfigs with a larger index take priority over ones with smaller indices.  The computed environment can be accessed in a composition using 'FromEnvironmentFieldPath' and 'CombineFromEnvironment' patches.",
 								MarkdownDescription: "EnvironmentConfigs selects a list of 'EnvironmentConfig's. The resolved resources are stored in the composite resource at 'spec.environmentConfigRefs' and is only updated if it is null.  The list of references is used to compute an in-memory environment at compose time. The data of all object is merged in the order they are listed, meaning the values of EnvironmentConfigs with a larger index take priority over ones with smaller indices.  The computed environment can be accessed in a composition using 'FromEnvironmentFieldPath' and 'CombineFromEnvironment' patches.",
@@ -489,6 +500,17 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Resource) Schema(_ contex
 													MarkdownDescription: "MatchLabels ensures an object with matching labels is selected.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
+															"from_field_path_policy": schema.StringAttribute{
+																Description:         "FromFieldPathPolicy specifies the policy for the valueFromFieldPath. The default is Required, meaning that an error will be returned if the field is not found in the composite resource. Optional means that if the field is not found in the composite resource, that label pair will just be skipped. N.B. other specified label matchers will still be used to retrieve the desired environment config, if any.",
+																MarkdownDescription: "FromFieldPathPolicy specifies the policy for the valueFromFieldPath. The default is Required, meaning that an error will be returned if the field is not found in the composite resource. Optional means that if the field is not found in the composite resource, that label pair will just be skipped. N.B. other specified label matchers will still be used to retrieve the desired environment config, if any.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("Optional", "Required"),
+																},
+															},
+
 															"key": schema.StringAttribute{
 																Description:         "Key of the label to match.",
 																MarkdownDescription: "Key of the label to match.",

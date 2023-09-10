@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &CiliumIoCiliumCIDRGroupV2Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &CiliumIoCiliumCIDRGroupV2Alpha1DataSource{}
+	_ datasource.DataSource              = &CiliumIoCiliumCidrgroupV2Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &CiliumIoCiliumCidrgroupV2Alpha1DataSource{}
 )
 
-func NewCiliumIoCiliumCIDRGroupV2Alpha1DataSource() datasource.DataSource {
-	return &CiliumIoCiliumCIDRGroupV2Alpha1DataSource{}
+func NewCiliumIoCiliumCidrgroupV2Alpha1DataSource() datasource.DataSource {
+	return &CiliumIoCiliumCidrgroupV2Alpha1DataSource{}
 }
 
-type CiliumIoCiliumCIDRGroupV2Alpha1DataSource struct {
+type CiliumIoCiliumCidrgroupV2Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type CiliumIoCiliumCIDRGroupV2Alpha1DataSourceData struct {
+type CiliumIoCiliumCidrgroupV2Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -53,11 +53,11 @@ type CiliumIoCiliumCIDRGroupV2Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CiliumIoCiliumCIDRGroupV2Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CiliumIoCiliumCidrgroupV2Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_cidr_group_v2alpha1"
 }
 
-func (r *CiliumIoCiliumCIDRGroupV2Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CiliumIoCiliumCidrgroupV2Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peers outside the clusters) that can be referenced as a single entity from CiliumNetworkPolicies.",
 		MarkdownDescription: "CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peers outside the clusters) that can be referenced as a single entity from CiliumNetworkPolicies.",
@@ -129,7 +129,7 @@ func (r *CiliumIoCiliumCIDRGroupV2Alpha1DataSource) Schema(_ context.Context, _ 
 	}
 }
 
-func (r *CiliumIoCiliumCIDRGroupV2Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *CiliumIoCiliumCidrgroupV2Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -152,10 +152,10 @@ func (r *CiliumIoCiliumCIDRGroupV2Alpha1DataSource) Configure(_ context.Context,
 	}
 }
 
-func (r *CiliumIoCiliumCIDRGroupV2Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CiliumIoCiliumCidrgroupV2Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_cilium_io_cilium_cidr_group_v2alpha1")
 
-	var data CiliumIoCiliumCIDRGroupV2Alpha1DataSourceData
+	var data CiliumIoCiliumCidrgroupV2Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -183,7 +183,7 @@ func (r *CiliumIoCiliumCIDRGroupV2Alpha1DataSource) Read(ctx context.Context, re
 		return
 	}
 
-	var readResponse CiliumIoCiliumCIDRGroupV2Alpha1DataSourceData
+	var readResponse CiliumIoCiliumCidrgroupV2Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

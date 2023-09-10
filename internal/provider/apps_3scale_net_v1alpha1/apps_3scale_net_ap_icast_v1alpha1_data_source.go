@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &Apps3ScaleNetAPIcastV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &Apps3ScaleNetAPIcastV1Alpha1DataSource{}
+	_ datasource.DataSource              = &Apps3ScaleNetApicastV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &Apps3ScaleNetApicastV1Alpha1DataSource{}
 )
 
-func NewApps3ScaleNetAPIcastV1Alpha1DataSource() datasource.DataSource {
-	return &Apps3ScaleNetAPIcastV1Alpha1DataSource{}
+func NewApps3ScaleNetApicastV1Alpha1DataSource() datasource.DataSource {
+	return &Apps3ScaleNetApicastV1Alpha1DataSource{}
 }
 
-type Apps3ScaleNetAPIcastV1Alpha1DataSource struct {
+type Apps3ScaleNetApicastV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type Apps3ScaleNetAPIcastV1Alpha1DataSourceData struct {
+type Apps3ScaleNetApicastV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -129,11 +129,11 @@ type Apps3ScaleNetAPIcastV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *Apps3ScaleNetAPIcastV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *Apps3ScaleNetApicastV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_apps_3scale_net_ap_icast_v1alpha1"
 }
 
-func (r *Apps3ScaleNetAPIcastV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *Apps3ScaleNetApicastV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APIcast is the Schema for the apicasts API.",
 		MarkdownDescription: "APIcast is the Schema for the apicasts API.",
@@ -729,7 +729,7 @@ func (r *Apps3ScaleNetAPIcastV1Alpha1DataSource) Schema(_ context.Context, _ dat
 	}
 }
 
-func (r *Apps3ScaleNetAPIcastV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *Apps3ScaleNetApicastV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -752,10 +752,10 @@ func (r *Apps3ScaleNetAPIcastV1Alpha1DataSource) Configure(_ context.Context, re
 	}
 }
 
-func (r *Apps3ScaleNetAPIcastV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *Apps3ScaleNetApicastV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_apps_3scale_net_ap_icast_v1alpha1")
 
-	var data Apps3ScaleNetAPIcastV1Alpha1DataSourceData
+	var data Apps3ScaleNetApicastV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -784,7 +784,7 @@ func (r *Apps3ScaleNetAPIcastV1Alpha1DataSource) Read(ctx context.Context, reque
 		return
 	}
 
-	var readResponse Apps3ScaleNetAPIcastV1Alpha1DataSourceData
+	var readResponse Apps3ScaleNetApicastV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

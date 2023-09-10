@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &MattermostComMattermostRestoreDBV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &MattermostComMattermostRestoreDBV1Alpha1DataSource{}
+	_ datasource.DataSource              = &MattermostComMattermostRestoreDbV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &MattermostComMattermostRestoreDbV1Alpha1DataSource{}
 )
 
-func NewMattermostComMattermostRestoreDBV1Alpha1DataSource() datasource.DataSource {
-	return &MattermostComMattermostRestoreDBV1Alpha1DataSource{}
+func NewMattermostComMattermostRestoreDbV1Alpha1DataSource() datasource.DataSource {
+	return &MattermostComMattermostRestoreDbV1Alpha1DataSource{}
 }
 
-type MattermostComMattermostRestoreDBV1Alpha1DataSource struct {
+type MattermostComMattermostRestoreDbV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type MattermostComMattermostRestoreDBV1Alpha1DataSourceData struct {
+type MattermostComMattermostRestoreDbV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -59,11 +59,11 @@ type MattermostComMattermostRestoreDBV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *MattermostComMattermostRestoreDBV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *MattermostComMattermostRestoreDbV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_mattermost_com_mattermost_restore_db_v1alpha1"
 }
 
-func (r *MattermostComMattermostRestoreDBV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *MattermostComMattermostRestoreDbV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MattermostRestoreDB is the Schema for the mattermostrestoredbs API",
 		MarkdownDescription: "MattermostRestoreDB is the Schema for the mattermostrestoredbs API",
@@ -186,7 +186,7 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1DataSource) Schema(_ context.Co
 	}
 }
 
-func (r *MattermostComMattermostRestoreDBV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *MattermostComMattermostRestoreDbV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -209,10 +209,10 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1DataSource) Configure(_ context
 	}
 }
 
-func (r *MattermostComMattermostRestoreDBV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *MattermostComMattermostRestoreDbV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_mattermost_com_mattermost_restore_db_v1alpha1")
 
-	var data MattermostComMattermostRestoreDBV1Alpha1DataSourceData
+	var data MattermostComMattermostRestoreDbV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -241,7 +241,7 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1DataSource) Read(ctx context.Co
 		return
 	}
 
-	var readResponse MattermostComMattermostRestoreDBV1Alpha1DataSourceData
+	var readResponse MattermostComMattermostRestoreDbV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

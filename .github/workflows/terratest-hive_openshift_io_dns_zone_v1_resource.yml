@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: HiveOpenshiftIoDNSZoneV1Resource
+name: HiveOpenshiftIoDnszoneV1Resource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/hive_openshift_io_v1/hive_openshift_io_dns_zone_v1_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestHiveOpenshiftIoDNSZoneV1Resource ./terratest/hive_openshift_io_v1
+        run: go test -v -timeout=120s -count=1 -run TestHiveOpenshiftIoDnszoneV1Resource ./terratest/hive_openshift_io_v1

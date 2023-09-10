@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestExternaldnsK8SIoDNSEndpointV1Alpha1Manifest(t *testing.T) {
+func TestExternaldnsK8SIoDnsendpointV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_externaldns_k8s_io_dns_endpoint_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

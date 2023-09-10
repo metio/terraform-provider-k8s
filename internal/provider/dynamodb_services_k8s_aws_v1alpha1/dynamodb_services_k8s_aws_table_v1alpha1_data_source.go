@@ -58,7 +58,8 @@ type DynamodbServicesK8SAwsTableV1Alpha1DataSourceData struct {
 		ContinuousBackups *struct {
 			PointInTimeRecoveryEnabled *bool `tfsdk:"point_in_time_recovery_enabled" json:"pointInTimeRecoveryEnabled,omitempty"`
 		} `tfsdk:"continuous_backups" json:"continuousBackups,omitempty"`
-		GlobalSecondaryIndexes *[]struct {
+		DeletionProtectionEnabled *bool `tfsdk:"deletion_protection_enabled" json:"deletionProtectionEnabled,omitempty"`
+		GlobalSecondaryIndexes    *[]struct {
 			IndexName *string `tfsdk:"index_name" json:"indexName,omitempty"`
 			KeySchema *[]struct {
 				AttributeName *string `tfsdk:"attribute_name" json:"attributeName,omitempty"`
@@ -235,6 +236,14 @@ func (r *DynamodbServicesK8SAwsTableV1Alpha1DataSource) Schema(_ context.Context
 						Required: false,
 						Optional: false,
 						Computed: true,
+					},
+
+					"deletion_protection_enabled": schema.BoolAttribute{
+						Description:         "Indicates whether deletion protection is to be enabled (true) or disabled (false) on the table.",
+						MarkdownDescription: "Indicates whether deletion protection is to be enabled (true) or disabled (false) on the table.",
+						Required:            false,
+						Optional:            false,
+						Computed:            true,
 					},
 
 					"global_secondary_indexes": schema.ListNestedAttribute{

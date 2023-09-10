@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource{}
+	_ resource.Resource                = &SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource{}
 )
 
-func NewSecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource() resource.Resource {
-	return &SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource{}
+func NewSecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource() resource.Resource {
+	return &SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource{}
 }
 
-type SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource struct {
+type SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1ResourceData struct {
+type SecretgeneratorMittwaldDeSshkeyPairV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -70,11 +70,11 @@ type SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_secretgenerator_mittwald_de_ssh_key_pair_v1alpha1"
 }
 
-func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SSHKeyPair is the Schema for the sshkeypairs API",
 		MarkdownDescription: "SSHKeyPair is the Schema for the sshkeypairs API",
@@ -252,7 +252,7 @@ func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Schema(_ context.C
 	}
 }
 
-func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -277,10 +277,10 @@ func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Configure(_ contex
 	}
 }
 
-func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_secretgenerator_mittwald_de_ssh_key_pair_v1alpha1")
 
-	var model SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1ResourceData
+	var model SecretgeneratorMittwaldDeSshkeyPairV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -338,7 +338,7 @@ func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Create(ctx context
 		return
 	}
 
-	var readResponse SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1ResourceData
+	var readResponse SecretgeneratorMittwaldDeSshkeyPairV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -356,10 +356,10 @@ func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Create(ctx context
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_secretgenerator_mittwald_de_ssh_key_pair_v1alpha1")
 
-	var data SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1ResourceData
+	var data SecretgeneratorMittwaldDeSshkeyPairV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -388,7 +388,7 @@ func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Read(ctx context.C
 		return
 	}
 
-	var readResponse SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1ResourceData
+	var readResponse SecretgeneratorMittwaldDeSshkeyPairV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -406,10 +406,10 @@ func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Read(ctx context.C
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_secretgenerator_mittwald_de_ssh_key_pair_v1alpha1")
 
-	var model SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1ResourceData
+	var model SecretgeneratorMittwaldDeSshkeyPairV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -466,7 +466,7 @@ func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Update(ctx context
 		return
 	}
 
-	var readResponse SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1ResourceData
+	var readResponse SecretgeneratorMittwaldDeSshkeyPairV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -484,10 +484,10 @@ func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Update(ctx context
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_secretgenerator_mittwald_de_ssh_key_pair_v1alpha1")
 
-	var data SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1ResourceData
+	var data SecretgeneratorMittwaldDeSshkeyPairV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -508,7 +508,7 @@ func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) Delete(ctx context
 	}
 }
 
-func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

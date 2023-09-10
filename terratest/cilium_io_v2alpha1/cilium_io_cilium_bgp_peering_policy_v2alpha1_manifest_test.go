@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestCiliumIoCiliumBGPPeeringPolicyV2Alpha1Manifest(t *testing.T) {
+func TestCiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_cilium_io_cilium_bgp_peering_policy_v2alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

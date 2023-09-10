@@ -4799,8 +4799,8 @@ func (r *KyvernoIoPolicyV1Resource) Schema(_ context.Context, _ resource.SchemaR
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"additional_extensions": schema.MapAttribute{
-												Description:         "AdditionalExtensions are certificate-extensions used for keyless signing. Deprecated.",
-												MarkdownDescription: "AdditionalExtensions are certificate-extensions used for keyless signing. Deprecated.",
+												Description:         "Deprecated.",
+												MarkdownDescription: "Deprecated.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -4808,8 +4808,8 @@ func (r *KyvernoIoPolicyV1Resource) Schema(_ context.Context, _ resource.SchemaR
 											},
 
 											"annotations": schema.MapAttribute{
-												Description:         "Annotations are used for image verification. Every specified key-value pair must exist and match in the verified payload. The payload may contain other key-value pairs. Deprecated. Use annotations per Attestor instead.",
-												MarkdownDescription: "Annotations are used for image verification. Every specified key-value pair must exist and match in the verified payload. The payload may contain other key-value pairs. Deprecated. Use annotations per Attestor instead.",
+												Description:         "Deprecated. Use annotations per Attestor instead.",
+												MarkdownDescription: "Deprecated. Use annotations per Attestor instead.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -5287,8 +5287,8 @@ func (r *KyvernoIoPolicyV1Resource) Schema(_ context.Context, _ resource.SchemaR
 														},
 
 														"predicate_type": schema.StringAttribute{
-															Description:         "PredicateType defines the type of Predicate contained within the Statement. Deprecated in favour of 'Type', to be removed soon",
-															MarkdownDescription: "PredicateType defines the type of Predicate contained within the Statement. Deprecated in favour of 'Type', to be removed soon",
+															Description:         "Deprecated in favour of 'Type', to be removed soon",
+															MarkdownDescription: "Deprecated in favour of 'Type', to be removed soon",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -5667,8 +5667,8 @@ func (r *KyvernoIoPolicyV1Resource) Schema(_ context.Context, _ resource.SchemaR
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Image is the image name consisting of the registry address, repository, image, and tag. Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images. Deprecated. Use ImageReferences instead.",
-												MarkdownDescription: "Image is the image name consisting of the registry address, repository, image, and tag. Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images. Deprecated. Use ImageReferences instead.",
+												Description:         "Deprecated. Use ImageReferences instead.",
+												MarkdownDescription: "Deprecated. Use ImageReferences instead.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5719,16 +5719,16 @@ func (r *KyvernoIoPolicyV1Resource) Schema(_ context.Context, _ resource.SchemaR
 											},
 
 											"issuer": schema.StringAttribute{
-												Description:         "Issuer is the certificate issuer used for keyless signing. Deprecated. Use KeylessAttestor instead.",
-												MarkdownDescription: "Issuer is the certificate issuer used for keyless signing. Deprecated. Use KeylessAttestor instead.",
+												Description:         "Deprecated. Use KeylessAttestor instead.",
+												MarkdownDescription: "Deprecated. Use KeylessAttestor instead.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"key": schema.StringAttribute{
-												Description:         "Key is the PEM encoded public key that the image or attestation is signed with. Deprecated. Use StaticKeyAttestor instead.",
-												MarkdownDescription: "Key is the PEM encoded public key that the image or attestation is signed with. Deprecated. Use StaticKeyAttestor instead.",
+												Description:         "Deprecated. Use StaticKeyAttestor instead.",
+												MarkdownDescription: "Deprecated. Use StaticKeyAttestor instead.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5759,16 +5759,16 @@ func (r *KyvernoIoPolicyV1Resource) Schema(_ context.Context, _ resource.SchemaR
 											},
 
 											"roots": schema.StringAttribute{
-												Description:         "Roots is the PEM encoded Root certificate chain used for keyless signing Deprecated. Use KeylessAttestor instead.",
-												MarkdownDescription: "Roots is the PEM encoded Root certificate chain used for keyless signing Deprecated. Use KeylessAttestor instead.",
+												Description:         "Deprecated. Use KeylessAttestor instead.",
+												MarkdownDescription: "Deprecated. Use KeylessAttestor instead.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"subject": schema.StringAttribute{
-												Description:         "Subject is the identity used for keyless signing, for example an email address Deprecated. Use KeylessAttestor instead.",
-												MarkdownDescription: "Subject is the identity used for keyless signing, for example an email address Deprecated. Use KeylessAttestor instead.",
+												Description:         "Deprecated. Use KeylessAttestor instead.",
+												MarkdownDescription: "Deprecated. Use KeylessAttestor instead.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

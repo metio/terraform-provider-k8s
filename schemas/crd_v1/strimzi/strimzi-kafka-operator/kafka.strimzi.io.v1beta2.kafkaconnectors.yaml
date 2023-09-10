@@ -53,6 +53,12 @@ spec:
                     description: Whether automatic restart for failed connectors and
                       tasks should be enabled or disabled.
                     type: boolean
+                  maxRestarts:
+                    description: The maximum number of connector restarts that the
+                      operator will try. If the connector remains in a failed state
+                      after reaching this limit, it must be restarted manually by
+                      the user. Defaults to an unlimited number of restarts.
+                    type: integer
                 type: object
               class:
                 description: The Class for the Kafka Connector.

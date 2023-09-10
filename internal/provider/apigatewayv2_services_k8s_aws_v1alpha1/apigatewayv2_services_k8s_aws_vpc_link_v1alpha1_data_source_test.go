@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestApigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource_ValidateSchema(t *testing.T) {
+func TestApigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	apigatewayv2_services_k8s_aws_v1alpha1.NewApigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	apigatewayv2_services_k8s_aws_v1alpha1.NewApigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestApigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource_ValidateSchema(t *t
 	}
 }
 
-func TestApigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
+func TestApigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestApigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource_ConfigurationErrors
 	}
 }
 
-func TestApigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource_OfflineUsage(t *testing.T) {
+func TestApigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

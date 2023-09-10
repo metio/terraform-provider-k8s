@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestTrainingKubedlIoMPIJobV1Alpha1Resource(t *testing.T) {
+func TestTrainingKubedlIoMpijobV1Alpha1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_training_kubedl_io_mpi_job_v1alpha1"
 
 	_, err := os.Stat(path)

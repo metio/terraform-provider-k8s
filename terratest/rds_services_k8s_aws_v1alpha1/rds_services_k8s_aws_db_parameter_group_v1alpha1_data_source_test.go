@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestRdsServicesK8SAwsDBParameterGroupV1Alpha1DataSource(t *testing.T) {
+func TestRdsServicesK8SAwsDbparameterGroupV1Alpha1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_rds_services_k8s_aws_db_parameter_group_v1alpha1"
 
 	_, err := os.Stat(path)

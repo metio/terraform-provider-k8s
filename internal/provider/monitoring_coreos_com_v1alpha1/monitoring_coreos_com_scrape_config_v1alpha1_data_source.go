@@ -173,6 +173,12 @@ type MonitoringCoreosComScrapeConfigV1Alpha1DataSourceData struct {
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"token_ref" json:"tokenRef,omitempty"`
 		} `tfsdk:"consul_sd_configs" json:"consulSDConfigs,omitempty"`
+		DnsSDConfigs *[]struct {
+			Names           *[]string `tfsdk:"names" json:"names,omitempty"`
+			Port            *int64    `tfsdk:"port" json:"port,omitempty"`
+			RefreshInterval *string   `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			Type            *string   `tfsdk:"type" json:"type,omitempty"`
+		} `tfsdk:"dns_sd_configs" json:"dnsSDConfigs,omitempty"`
 		FileSDConfigs *[]struct {
 			Files           *[]string `tfsdk:"files" json:"files,omitempty"`
 			RefreshInterval *string   `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
@@ -236,15 +242,25 @@ type MonitoringCoreosComScrapeConfigV1Alpha1DataSourceData struct {
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			Url *string `tfsdk:"url" json:"url,omitempty"`
 		} `tfsdk:"http_sd_configs" json:"httpSDConfigs,omitempty"`
+		KeepDroppedTargets  *int64 `tfsdk:"keep_dropped_targets" json:"keepDroppedTargets,omitempty"`
 		KubernetesSDConfigs *[]struct {
 			Role *string `tfsdk:"role" json:"role,omitempty"`
 		} `tfsdk:"kubernetes_sd_configs" json:"kubernetesSDConfigs,omitempty"`
-		LabelLimit            *int64               `tfsdk:"label_limit" json:"labelLimit,omitempty"`
-		LabelNameLengthLimit  *int64               `tfsdk:"label_name_length_limit" json:"labelNameLengthLimit,omitempty"`
-		LabelValueLengthLimit *int64               `tfsdk:"label_value_length_limit" json:"labelValueLengthLimit,omitempty"`
-		MetricsPath           *string              `tfsdk:"metrics_path" json:"metricsPath,omitempty"`
-		Params                *map[string][]string `tfsdk:"params" json:"params,omitempty"`
-		Relabelings           *[]struct {
+		LabelLimit            *int64 `tfsdk:"label_limit" json:"labelLimit,omitempty"`
+		LabelNameLengthLimit  *int64 `tfsdk:"label_name_length_limit" json:"labelNameLengthLimit,omitempty"`
+		LabelValueLengthLimit *int64 `tfsdk:"label_value_length_limit" json:"labelValueLengthLimit,omitempty"`
+		MetricRelabelings     *[]struct {
+			Action       *string   `tfsdk:"action" json:"action,omitempty"`
+			Modulus      *int64    `tfsdk:"modulus" json:"modulus,omitempty"`
+			Regex        *string   `tfsdk:"regex" json:"regex,omitempty"`
+			Replacement  *string   `tfsdk:"replacement" json:"replacement,omitempty"`
+			Separator    *string   `tfsdk:"separator" json:"separator,omitempty"`
+			SourceLabels *[]string `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
+			TargetLabel  *string   `tfsdk:"target_label" json:"targetLabel,omitempty"`
+		} `tfsdk:"metric_relabelings" json:"metricRelabelings,omitempty"`
+		MetricsPath *string              `tfsdk:"metrics_path" json:"metricsPath,omitempty"`
+		Params      *map[string][]string `tfsdk:"params" json:"params,omitempty"`
+		Relabelings *[]struct {
 			Action       *string   `tfsdk:"action" json:"action,omitempty"`
 			Modulus      *int64    `tfsdk:"modulus" json:"modulus,omitempty"`
 			Regex        *string   `tfsdk:"regex" json:"regex,omitempty"`
@@ -1178,6 +1194,50 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1DataSource) Schema(_ context.Con
 						Computed: true,
 					},
 
+					"dns_sd_configs": schema.ListNestedAttribute{
+						Description:         "DNSSDConfigs defines a list of DNS service discovery configurations.",
+						MarkdownDescription: "DNSSDConfigs defines a list of DNS service discovery configurations.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"names": schema.ListAttribute{
+									Description:         "A list of DNS domain names to be queried.",
+									MarkdownDescription: "A list of DNS domain names to be queried.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            false,
+									Computed:            true,
+								},
+
+								"port": schema.Int64Attribute{
+									Description:         "The port number used if the query type is not SRV Ignored for SRV records",
+									MarkdownDescription: "The port number used if the query type is not SRV Ignored for SRV records",
+									Required:            false,
+									Optional:            false,
+									Computed:            true,
+								},
+
+								"refresh_interval": schema.StringAttribute{
+									Description:         "RefreshInterval configures the time after which the provided names are refreshed. If not set, Prometheus uses its default value.",
+									MarkdownDescription: "RefreshInterval configures the time after which the provided names are refreshed. If not set, Prometheus uses its default value.",
+									Required:            false,
+									Optional:            false,
+									Computed:            true,
+								},
+
+								"type": schema.StringAttribute{
+									Description:         "The type of DNS query to perform. One of SRV, A, AAAA or MX. If not set, Prometheus uses its default value.",
+									MarkdownDescription: "The type of DNS query to perform. One of SRV, A, AAAA or MX. If not set, Prometheus uses its default value.",
+									Required:            false,
+									Optional:            false,
+									Computed:            true,
+								},
+							},
+						},
+						Required: false,
+						Optional: false,
+						Computed: true,
+					},
+
 					"file_sd_configs": schema.ListNestedAttribute{
 						Description:         "FileSDConfigs defines a list of file service discovery configurations.",
 						MarkdownDescription: "FileSDConfigs defines a list of file service discovery configurations.",
@@ -1582,6 +1642,14 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1DataSource) Schema(_ context.Con
 						Computed: true,
 					},
 
+					"keep_dropped_targets": schema.Int64Attribute{
+						Description:         "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
+						MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
+						Required:            false,
+						Optional:            false,
+						Computed:            true,
+					},
+
 					"kubernetes_sd_configs": schema.ListNestedAttribute{
 						Description:         "KubernetesSDConfigs defines a list of Kubernetes service discovery configurations.",
 						MarkdownDescription: "KubernetesSDConfigs defines a list of Kubernetes service discovery configurations.",
@@ -1623,6 +1691,74 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1DataSource) Schema(_ context.Con
 						Required:            false,
 						Optional:            false,
 						Computed:            true,
+					},
+
+					"metric_relabelings": schema.ListNestedAttribute{
+						Description:         "MetricRelabelConfigs to apply to samples before ingestion.",
+						MarkdownDescription: "MetricRelabelConfigs to apply to samples before ingestion.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"action": schema.StringAttribute{
+									Description:         "Action to perform based on the regex matching.  'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.  Default: 'Replace'",
+									MarkdownDescription: "Action to perform based on the regex matching.  'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.  Default: 'Replace'",
+									Required:            false,
+									Optional:            false,
+									Computed:            true,
+								},
+
+								"modulus": schema.Int64Attribute{
+									Description:         "Modulus to take of the hash of the source label values.  Only applicable when the action is 'HashMod'.",
+									MarkdownDescription: "Modulus to take of the hash of the source label values.  Only applicable when the action is 'HashMod'.",
+									Required:            false,
+									Optional:            false,
+									Computed:            true,
+								},
+
+								"regex": schema.StringAttribute{
+									Description:         "Regular expression against which the extracted value is matched.",
+									MarkdownDescription: "Regular expression against which the extracted value is matched.",
+									Required:            false,
+									Optional:            false,
+									Computed:            true,
+								},
+
+								"replacement": schema.StringAttribute{
+									Description:         "Replacement value against which a Replace action is performed if the regular expression matches.  Regex capture groups are available.",
+									MarkdownDescription: "Replacement value against which a Replace action is performed if the regular expression matches.  Regex capture groups are available.",
+									Required:            false,
+									Optional:            false,
+									Computed:            true,
+								},
+
+								"separator": schema.StringAttribute{
+									Description:         "Separator is the string between concatenated SourceLabels.",
+									MarkdownDescription: "Separator is the string between concatenated SourceLabels.",
+									Required:            false,
+									Optional:            false,
+									Computed:            true,
+								},
+
+								"source_labels": schema.ListAttribute{
+									Description:         "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+									MarkdownDescription: "The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            false,
+									Computed:            true,
+								},
+
+								"target_label": schema.StringAttribute{
+									Description:         "Label to which the resulting string is written in a replacement.  It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions.  Regex capture groups are available.",
+									MarkdownDescription: "Label to which the resulting string is written in a replacement.  It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions.  Regex capture groups are available.",
+									Required:            false,
+									Optional:            false,
+									Computed:            true,
+								},
+							},
+						},
+						Required: false,
+						Optional: false,
+						Computed: true,
 					},
 
 					"metrics_path": schema.StringAttribute{

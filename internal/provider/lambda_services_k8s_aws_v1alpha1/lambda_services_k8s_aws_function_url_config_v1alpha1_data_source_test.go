@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestLambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource_ValidateSchema(t *testing.T) {
+func TestLambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	lambda_services_k8s_aws_v1alpha1.NewLambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	lambda_services_k8s_aws_v1alpha1.NewLambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestLambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource_ValidateSchema(
 	}
 }
 
-func TestLambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
+func TestLambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestLambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource_ConfigurationEr
 	}
 }
 
-func TestLambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource_OfflineUsage(t *testing.T) {
+func TestLambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

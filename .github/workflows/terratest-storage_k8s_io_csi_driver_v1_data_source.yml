@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: StorageK8SIoCSIDriverV1DataSource
+name: StorageK8SIoCsidriverV1DataSource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/storage_k8s_io_v1/storage_k8s_io_csi_driver_v1_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestStorageK8SIoCSIDriverV1DataSource ./terratest/storage_k8s_io_v1
+        run: go test -v -timeout=120s -count=1 -run TestStorageK8SIoCsidriverV1DataSource ./terratest/storage_k8s_io_v1

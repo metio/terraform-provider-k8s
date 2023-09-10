@@ -29,22 +29,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &CrdProjectcalicoOrgBGPPeerV1Resource{}
-	_ resource.ResourceWithConfigure   = &CrdProjectcalicoOrgBGPPeerV1Resource{}
-	_ resource.ResourceWithImportState = &CrdProjectcalicoOrgBGPPeerV1Resource{}
+	_ resource.Resource                = &CrdProjectcalicoOrgBgppeerV1Resource{}
+	_ resource.ResourceWithConfigure   = &CrdProjectcalicoOrgBgppeerV1Resource{}
+	_ resource.ResourceWithImportState = &CrdProjectcalicoOrgBgppeerV1Resource{}
 )
 
-func NewCrdProjectcalicoOrgBGPPeerV1Resource() resource.Resource {
-	return &CrdProjectcalicoOrgBGPPeerV1Resource{}
+func NewCrdProjectcalicoOrgBgppeerV1Resource() resource.Resource {
+	return &CrdProjectcalicoOrgBgppeerV1Resource{}
 }
 
-type CrdProjectcalicoOrgBGPPeerV1Resource struct {
+type CrdProjectcalicoOrgBgppeerV1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type CrdProjectcalicoOrgBGPPeerV1ResourceData struct {
+type CrdProjectcalicoOrgBgppeerV1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -82,11 +82,11 @@ type CrdProjectcalicoOrgBGPPeerV1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *CrdProjectcalicoOrgBgppeerV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_crd_projectcalico_org_bgp_peer_v1"
 }
 
-func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *CrdProjectcalicoOrgBgppeerV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -347,7 +347,7 @@ func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Schema(_ context.Context, _ resou
 	}
 }
 
-func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *CrdProjectcalicoOrgBgppeerV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -372,10 +372,10 @@ func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Configure(_ context.Context, requ
 	}
 }
 
-func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *CrdProjectcalicoOrgBgppeerV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_crd_projectcalico_org_bgp_peer_v1")
 
-	var model CrdProjectcalicoOrgBGPPeerV1ResourceData
+	var model CrdProjectcalicoOrgBgppeerV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -432,7 +432,7 @@ func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Create(ctx context.Context, reque
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgBGPPeerV1ResourceData
+	var readResponse CrdProjectcalicoOrgBgppeerV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -450,10 +450,10 @@ func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Create(ctx context.Context, reque
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *CrdProjectcalicoOrgBgppeerV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_crd_projectcalico_org_bgp_peer_v1")
 
-	var data CrdProjectcalicoOrgBGPPeerV1ResourceData
+	var data CrdProjectcalicoOrgBgppeerV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -481,7 +481,7 @@ func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Read(ctx context.Context, request
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgBGPPeerV1ResourceData
+	var readResponse CrdProjectcalicoOrgBgppeerV1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -499,10 +499,10 @@ func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Read(ctx context.Context, request
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *CrdProjectcalicoOrgBgppeerV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_crd_projectcalico_org_bgp_peer_v1")
 
-	var model CrdProjectcalicoOrgBGPPeerV1ResourceData
+	var model CrdProjectcalicoOrgBgppeerV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -558,7 +558,7 @@ func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Update(ctx context.Context, reque
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgBGPPeerV1ResourceData
+	var readResponse CrdProjectcalicoOrgBgppeerV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -576,10 +576,10 @@ func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Update(ctx context.Context, reque
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *CrdProjectcalicoOrgBgppeerV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_crd_projectcalico_org_bgp_peer_v1")
 
-	var data CrdProjectcalicoOrgBGPPeerV1ResourceData
+	var data CrdProjectcalicoOrgBgppeerV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -599,7 +599,7 @@ func (r *CrdProjectcalicoOrgBGPPeerV1Resource) Delete(ctx context.Context, reque
 	}
 }
 
-func (r *CrdProjectcalicoOrgBGPPeerV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *CrdProjectcalicoOrgBgppeerV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	if request.ID == "" {
 		response.Diagnostics.AddError(
 			"Error importing resource",

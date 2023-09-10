@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestStorageK8SIoCSIDriverV1DataSource(t *testing.T) {
+func TestStorageK8SIoCsidriverV1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_storage_k8s_io_csi_driver_v1"
 
 	_, err := os.Stat(path)

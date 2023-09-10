@@ -546,7 +546,8 @@ type ScyllaScylladbComScyllaClusterV1DataSourceData struct {
 				} `tfsdk:"ingress" json:"ingress,omitempty"`
 			} `tfsdk:"cql" json:"cql,omitempty"`
 		} `tfsdk:"expose_options" json:"exposeOptions,omitempty"`
-		ForceRedeploymentReason *string `tfsdk:"force_redeployment_reason" json:"forceRedeploymentReason,omitempty"`
+		ExternalSeeds           *[]string `tfsdk:"external_seeds" json:"externalSeeds,omitempty"`
+		ForceRedeploymentReason *string   `tfsdk:"force_redeployment_reason" json:"forceRedeploymentReason,omitempty"`
 		GenericUpgrade          *struct {
 			FailureStrategy *string `tfsdk:"failure_strategy" json:"failureStrategy,omitempty"`
 			PollInterval    *string `tfsdk:"poll_interval" json:"pollInterval,omitempty"`
@@ -3964,6 +3965,15 @@ func (r *ScyllaScylladbComScyllaClusterV1DataSource) Schema(_ context.Context, _
 						Required: false,
 						Optional: false,
 						Computed: true,
+					},
+
+					"external_seeds": schema.ListAttribute{
+						Description:         "externalSeeds specifies the external seeds to propagate to ScyllaDB binary on startup as 'seeds' parameter of seed-provider.",
+						MarkdownDescription: "externalSeeds specifies the external seeds to propagate to ScyllaDB binary on startup as 'seeds' parameter of seed-provider.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            false,
+						Computed:            true,
 					},
 
 					"force_redeployment_reason": schema.StringAttribute{

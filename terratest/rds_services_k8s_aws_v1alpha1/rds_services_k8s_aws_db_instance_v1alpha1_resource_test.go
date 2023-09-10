@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestRdsServicesK8SAwsDBInstanceV1Alpha1Resource(t *testing.T) {
+func TestRdsServicesK8SAwsDbinstanceV1Alpha1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_rds_services_k8s_aws_db_instance_v1alpha1"
 
 	_, err := os.Stat(path)

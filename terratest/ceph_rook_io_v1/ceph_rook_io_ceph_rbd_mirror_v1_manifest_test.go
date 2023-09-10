@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestCephRookIoCephRBDMirrorV1Manifest(t *testing.T) {
+func TestCephRookIoCephRbdmirrorV1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_ceph_rook_io_ceph_rbd_mirror_v1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

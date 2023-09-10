@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &TraefikIoIngressRouteTCPV1Alpha1Manifest{}
+	_ datasource.DataSource = &TraefikIoIngressRouteTcpV1Alpha1Manifest{}
 )
 
-func NewTraefikIoIngressRouteTCPV1Alpha1Manifest() datasource.DataSource {
-	return &TraefikIoIngressRouteTCPV1Alpha1Manifest{}
+func NewTraefikIoIngressRouteTcpV1Alpha1Manifest() datasource.DataSource {
+	return &TraefikIoIngressRouteTcpV1Alpha1Manifest{}
 }
 
-type TraefikIoIngressRouteTCPV1Alpha1Manifest struct{}
+type TraefikIoIngressRouteTcpV1Alpha1Manifest struct{}
 
-type TraefikIoIngressRouteTCPV1Alpha1ManifestData struct {
+type TraefikIoIngressRouteTcpV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -85,11 +85,11 @@ type TraefikIoIngressRouteTCPV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TraefikIoIngressRouteTCPV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *TraefikIoIngressRouteTcpV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_traefik_io_ingress_route_tcp_v1alpha1_manifest"
 }
 
-func (r *TraefikIoIngressRouteTCPV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *TraefikIoIngressRouteTcpV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "IngressRouteTCP is the CRD implementation of a Traefik TCP Router.",
 		MarkdownDescription: "IngressRouteTCP is the CRD implementation of a Traefik TCP Router.",
@@ -436,10 +436,10 @@ func (r *TraefikIoIngressRouteTCPV1Alpha1Manifest) Schema(_ context.Context, _ d
 	}
 }
 
-func (r *TraefikIoIngressRouteTCPV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *TraefikIoIngressRouteTcpV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_traefik_io_ingress_route_tcp_v1alpha1_manifest")
 
-	var model TraefikIoIngressRouteTCPV1Alpha1ManifestData
+	var model TraefikIoIngressRouteTcpV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

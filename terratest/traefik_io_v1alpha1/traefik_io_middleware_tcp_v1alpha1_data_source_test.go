@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestTraefikIoMiddlewareTCPV1Alpha1DataSource(t *testing.T) {
+func TestTraefikIoMiddlewareTcpV1Alpha1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_traefik_io_middleware_tcp_v1alpha1"
 
 	_, err := os.Stat(path)

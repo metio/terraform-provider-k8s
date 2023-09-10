@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestDataFluidIoGooseFSRuntimeV1Alpha1DataSource_ValidateSchema(t *testing.T) {
+func TestDataFluidIoGooseFsruntimeV1Alpha1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	data_fluid_io_v1alpha1.NewDataFluidIoGooseFSRuntimeV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	data_fluid_io_v1alpha1.NewDataFluidIoGooseFsruntimeV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestDataFluidIoGooseFSRuntimeV1Alpha1DataSource_ValidateSchema(t *testing.T
 	}
 }
 
-func TestDataFluidIoGooseFSRuntimeV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
+func TestDataFluidIoGooseFsruntimeV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestDataFluidIoGooseFSRuntimeV1Alpha1DataSource_ConfigurationErrors(t *test
 	}
 }
 
-func TestDataFluidIoGooseFSRuntimeV1Alpha1DataSource_OfflineUsage(t *testing.T) {
+func TestDataFluidIoGooseFsruntimeV1Alpha1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

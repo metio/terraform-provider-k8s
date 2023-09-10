@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestCrdProjectcalicoOrgIPAMHandleV1DataSource_ValidateSchema(t *testing.T) {
+func TestCrdProjectcalicoOrgIpamhandleV1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	crd_projectcalico_org_v1.NewCrdProjectcalicoOrgIPAMHandleV1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	crd_projectcalico_org_v1.NewCrdProjectcalicoOrgIpamhandleV1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestCrdProjectcalicoOrgIPAMHandleV1DataSource_ValidateSchema(t *testing.T) 
 	}
 }
 
-func TestCrdProjectcalicoOrgIPAMHandleV1DataSource_ConfigurationErrors(t *testing.T) {
+func TestCrdProjectcalicoOrgIpamhandleV1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -58,7 +58,7 @@ func TestCrdProjectcalicoOrgIPAMHandleV1DataSource_ConfigurationErrors(t *testin
 	}
 }
 
-func TestCrdProjectcalicoOrgIPAMHandleV1DataSource_OfflineUsage(t *testing.T) {
+func TestCrdProjectcalicoOrgIpamhandleV1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

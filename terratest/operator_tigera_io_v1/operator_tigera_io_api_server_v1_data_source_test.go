@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestOperatorTigeraIoAPIServerV1DataSource(t *testing.T) {
+func TestOperatorTigeraIoApiserverV1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_operator_tigera_io_api_server_v1"
 
 	_, err := os.Stat(path)

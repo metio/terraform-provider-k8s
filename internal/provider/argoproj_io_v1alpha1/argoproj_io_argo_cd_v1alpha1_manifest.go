@@ -21,16 +21,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &ArgoprojIoArgoCDV1Alpha1Manifest{}
+	_ datasource.DataSource = &ArgoprojIoArgoCdV1Alpha1Manifest{}
 )
 
-func NewArgoprojIoArgoCDV1Alpha1Manifest() datasource.DataSource {
-	return &ArgoprojIoArgoCDV1Alpha1Manifest{}
+func NewArgoprojIoArgoCdV1Alpha1Manifest() datasource.DataSource {
+	return &ArgoprojIoArgoCdV1Alpha1Manifest{}
 }
 
-type ArgoprojIoArgoCDV1Alpha1Manifest struct{}
+type ArgoprojIoArgoCdV1Alpha1Manifest struct{}
 
-type ArgoprojIoArgoCDV1Alpha1ManifestData struct {
+type ArgoprojIoArgoCdV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -1294,11 +1294,11 @@ type ArgoprojIoArgoCDV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ArgoprojIoArgoCDV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_argoproj_io_argo_cd_v1alpha1_manifest"
 }
 
-func (r *ArgoprojIoArgoCDV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ArgoCD is the Schema for the argocds API",
 		MarkdownDescription: "ArgoCD is the Schema for the argocds API",
@@ -9769,10 +9769,10 @@ func (r *ArgoprojIoArgoCDV1Alpha1Manifest) Schema(_ context.Context, _ datasourc
 	}
 }
 
-func (r *ArgoprojIoArgoCDV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *ArgoprojIoArgoCdV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_argoproj_io_argo_cd_v1alpha1_manifest")
 
-	var model ArgoprojIoArgoCDV1Alpha1ManifestData
+	var model ArgoprojIoArgoCdV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

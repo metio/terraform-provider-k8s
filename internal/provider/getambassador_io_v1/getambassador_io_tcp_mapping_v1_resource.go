@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &GetambassadorIoTCPMappingV1Resource{}
-	_ resource.ResourceWithConfigure   = &GetambassadorIoTCPMappingV1Resource{}
-	_ resource.ResourceWithImportState = &GetambassadorIoTCPMappingV1Resource{}
+	_ resource.Resource                = &GetambassadorIoTcpmappingV1Resource{}
+	_ resource.ResourceWithConfigure   = &GetambassadorIoTcpmappingV1Resource{}
+	_ resource.ResourceWithImportState = &GetambassadorIoTcpmappingV1Resource{}
 )
 
-func NewGetambassadorIoTCPMappingV1Resource() resource.Resource {
-	return &GetambassadorIoTCPMappingV1Resource{}
+func NewGetambassadorIoTcpmappingV1Resource() resource.Resource {
+	return &GetambassadorIoTcpmappingV1Resource{}
 }
 
-type GetambassadorIoTCPMappingV1Resource struct {
+type GetambassadorIoTcpmappingV1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type GetambassadorIoTCPMappingV1ResourceData struct {
+type GetambassadorIoTcpmappingV1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -85,11 +85,11 @@ type GetambassadorIoTCPMappingV1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *GetambassadorIoTCPMappingV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *GetambassadorIoTcpmappingV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_getambassador_io_tcp_mapping_v1"
 }
 
-func (r *GetambassadorIoTCPMappingV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *GetambassadorIoTcpmappingV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TCPMapping is the Schema for the tcpmappings API",
 		MarkdownDescription: "TCPMapping is the Schema for the tcpmappings API",
@@ -385,7 +385,7 @@ func (r *GetambassadorIoTCPMappingV1Resource) Schema(_ context.Context, _ resour
 	}
 }
 
-func (r *GetambassadorIoTCPMappingV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *GetambassadorIoTcpmappingV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -410,10 +410,10 @@ func (r *GetambassadorIoTCPMappingV1Resource) Configure(_ context.Context, reque
 	}
 }
 
-func (r *GetambassadorIoTCPMappingV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *GetambassadorIoTcpmappingV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_getambassador_io_tcp_mapping_v1")
 
-	var model GetambassadorIoTCPMappingV1ResourceData
+	var model GetambassadorIoTcpmappingV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -471,7 +471,7 @@ func (r *GetambassadorIoTCPMappingV1Resource) Create(ctx context.Context, reques
 		return
 	}
 
-	var readResponse GetambassadorIoTCPMappingV1ResourceData
+	var readResponse GetambassadorIoTcpmappingV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -489,10 +489,10 @@ func (r *GetambassadorIoTCPMappingV1Resource) Create(ctx context.Context, reques
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *GetambassadorIoTCPMappingV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *GetambassadorIoTcpmappingV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_getambassador_io_tcp_mapping_v1")
 
-	var data GetambassadorIoTCPMappingV1ResourceData
+	var data GetambassadorIoTcpmappingV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -521,7 +521,7 @@ func (r *GetambassadorIoTCPMappingV1Resource) Read(ctx context.Context, request 
 		return
 	}
 
-	var readResponse GetambassadorIoTCPMappingV1ResourceData
+	var readResponse GetambassadorIoTcpmappingV1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -539,10 +539,10 @@ func (r *GetambassadorIoTCPMappingV1Resource) Read(ctx context.Context, request 
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *GetambassadorIoTCPMappingV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *GetambassadorIoTcpmappingV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_getambassador_io_tcp_mapping_v1")
 
-	var model GetambassadorIoTCPMappingV1ResourceData
+	var model GetambassadorIoTcpmappingV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -599,7 +599,7 @@ func (r *GetambassadorIoTCPMappingV1Resource) Update(ctx context.Context, reques
 		return
 	}
 
-	var readResponse GetambassadorIoTCPMappingV1ResourceData
+	var readResponse GetambassadorIoTcpmappingV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -617,10 +617,10 @@ func (r *GetambassadorIoTCPMappingV1Resource) Update(ctx context.Context, reques
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *GetambassadorIoTCPMappingV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *GetambassadorIoTcpmappingV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_getambassador_io_tcp_mapping_v1")
 
-	var data GetambassadorIoTCPMappingV1ResourceData
+	var data GetambassadorIoTcpmappingV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -641,7 +641,7 @@ func (r *GetambassadorIoTCPMappingV1Resource) Delete(ctx context.Context, reques
 	}
 }
 
-func (r *GetambassadorIoTCPMappingV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *GetambassadorIoTcpmappingV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

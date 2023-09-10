@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestTrainingKubedlIoMPIJobV1Alpha1Manifest(t *testing.T) {
+func TestTrainingKubedlIoMpijobV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_training_kubedl_io_mpi_job_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

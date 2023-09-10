@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestTraefikIoTLSOptionV1Alpha1Resource(t *testing.T) {
+func TestTraefikIoTlsoptionV1Alpha1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_traefik_io_tls_option_v1alpha1"
 
 	_, err := os.Stat(path)

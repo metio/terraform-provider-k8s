@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestGetambassadorIoTLSContextV1DataSource_ValidateSchema(t *testing.T) {
+func TestGetambassadorIoTlscontextV1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	getambassador_io_v1.NewGetambassadorIoTLSContextV1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	getambassador_io_v1.NewGetambassadorIoTlscontextV1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestGetambassadorIoTLSContextV1DataSource_ValidateSchema(t *testing.T) {
 	}
 }
 
-func TestGetambassadorIoTLSContextV1DataSource_ConfigurationErrors(t *testing.T) {
+func TestGetambassadorIoTlscontextV1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestGetambassadorIoTLSContextV1DataSource_ConfigurationErrors(t *testing.T)
 	}
 }
 
-func TestGetambassadorIoTLSContextV1DataSource_OfflineUsage(t *testing.T) {
+func TestGetambassadorIoTlscontextV1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

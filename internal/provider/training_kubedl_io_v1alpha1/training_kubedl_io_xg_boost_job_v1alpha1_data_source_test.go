@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestTrainingKubedlIoXGBoostJobV1Alpha1DataSource_ValidateSchema(t *testing.T) {
+func TestTrainingKubedlIoXgboostJobV1Alpha1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	training_kubedl_io_v1alpha1.NewTrainingKubedlIoXGBoostJobV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	training_kubedl_io_v1alpha1.NewTrainingKubedlIoXgboostJobV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestTrainingKubedlIoXGBoostJobV1Alpha1DataSource_ValidateSchema(t *testing.
 	}
 }
 
-func TestTrainingKubedlIoXGBoostJobV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
+func TestTrainingKubedlIoXgboostJobV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestTrainingKubedlIoXGBoostJobV1Alpha1DataSource_ConfigurationErrors(t *tes
 	}
 }
 
-func TestTrainingKubedlIoXGBoostJobV1Alpha1DataSource_OfflineUsage(t *testing.T) {
+func TestTrainingKubedlIoXgboostJobV1Alpha1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

@@ -104,7 +104,8 @@ type OpentelemetryIoInstrumentationV1Alpha1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resource_requirements" json:"resourceRequirements,omitempty"`
-			Version *string `tfsdk:"version" json:"version,omitempty"`
+			Version         *string `tfsdk:"version" json:"version,omitempty"`
+			VolumeLimitSize *string `tfsdk:"volume_limit_size" json:"volumeLimitSize,omitempty"`
 		} `tfsdk:"apache_httpd" json:"apacheHttpd,omitempty"`
 		Dotnet *struct {
 			Env *[]struct {
@@ -140,6 +141,7 @@ type OpentelemetryIoInstrumentationV1Alpha1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resource_requirements" json:"resourceRequirements,omitempty"`
+			VolumeLimitSize *string `tfsdk:"volume_limit_size" json:"volumeLimitSize,omitempty"`
 		} `tfsdk:"dotnet" json:"dotnet,omitempty"`
 		Env *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -203,6 +205,7 @@ type OpentelemetryIoInstrumentationV1Alpha1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resource_requirements" json:"resourceRequirements,omitempty"`
+			VolumeLimitSize *string `tfsdk:"volume_limit_size" json:"volumeLimitSize,omitempty"`
 		} `tfsdk:"go" json:"go,omitempty"`
 		Java *struct {
 			Env *[]struct {
@@ -238,6 +241,7 @@ type OpentelemetryIoInstrumentationV1Alpha1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
+			VolumeLimitSize *string `tfsdk:"volume_limit_size" json:"volumeLimitSize,omitempty"`
 		} `tfsdk:"java" json:"java,omitempty"`
 		Nginx *struct {
 			Attrs *[]struct {
@@ -299,6 +303,7 @@ type OpentelemetryIoInstrumentationV1Alpha1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resource_requirements" json:"resourceRequirements,omitempty"`
+			VolumeLimitSize *string `tfsdk:"volume_limit_size" json:"volumeLimitSize,omitempty"`
 		} `tfsdk:"nginx" json:"nginx,omitempty"`
 		Nodejs *struct {
 			Env *[]struct {
@@ -334,6 +339,7 @@ type OpentelemetryIoInstrumentationV1Alpha1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resource_requirements" json:"resourceRequirements,omitempty"`
+			VolumeLimitSize *string `tfsdk:"volume_limit_size" json:"volumeLimitSize,omitempty"`
 		} `tfsdk:"nodejs" json:"nodejs,omitempty"`
 		Propagators *[]string `tfsdk:"propagators" json:"propagators,omitempty"`
 		Python      *struct {
@@ -370,6 +376,7 @@ type OpentelemetryIoInstrumentationV1Alpha1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resource_requirements" json:"resourceRequirements,omitempty"`
+			VolumeLimitSize *string `tfsdk:"volume_limit_size" json:"volumeLimitSize,omitempty"`
 		} `tfsdk:"python" json:"python,omitempty"`
 		Resource *struct {
 			AddK8sUIDAttributes *bool              `tfsdk:"add_k8s_uid_attributes" json:"addK8sUIDAttributes,omitempty"`
@@ -860,6 +867,14 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 								Optional:            true,
 								Computed:            false,
 							},
+
+							"volume_limit_size": schema.StringAttribute{
+								Description:         "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								MarkdownDescription: "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -1082,6 +1097,14 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"volume_limit_size": schema.StringAttribute{
+								Description:         "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								MarkdownDescription: "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,
@@ -1483,6 +1506,14 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 								Optional: true,
 								Computed: false,
 							},
+
+							"volume_limit_size": schema.StringAttribute{
+								Description:         "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								MarkdownDescription: "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -1705,6 +1736,14 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"volume_limit_size": schema.StringAttribute{
+								Description:         "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								MarkdownDescription: "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,
@@ -2097,6 +2136,14 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 								Optional: true,
 								Computed: false,
 							},
+
+							"volume_limit_size": schema.StringAttribute{
+								Description:         "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								MarkdownDescription: "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -2319,6 +2366,14 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"volume_limit_size": schema.StringAttribute{
+								Description:         "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								MarkdownDescription: "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,
@@ -2551,6 +2606,14 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"volume_limit_size": schema.StringAttribute{
+								Description:         "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								MarkdownDescription: "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

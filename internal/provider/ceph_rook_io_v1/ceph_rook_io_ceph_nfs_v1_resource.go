@@ -32,22 +32,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &CephRookIoCephNFSV1Resource{}
-	_ resource.ResourceWithConfigure   = &CephRookIoCephNFSV1Resource{}
-	_ resource.ResourceWithImportState = &CephRookIoCephNFSV1Resource{}
+	_ resource.Resource                = &CephRookIoCephNfsV1Resource{}
+	_ resource.ResourceWithConfigure   = &CephRookIoCephNfsV1Resource{}
+	_ resource.ResourceWithImportState = &CephRookIoCephNfsV1Resource{}
 )
 
-func NewCephRookIoCephNFSV1Resource() resource.Resource {
-	return &CephRookIoCephNFSV1Resource{}
+func NewCephRookIoCephNfsV1Resource() resource.Resource {
+	return &CephRookIoCephNfsV1Resource{}
 }
 
-type CephRookIoCephNFSV1Resource struct {
+type CephRookIoCephNfsV1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type CephRookIoCephNFSV1ResourceData struct {
+type CephRookIoCephNfsV1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -569,11 +569,11 @@ type CephRookIoCephNFSV1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CephRookIoCephNFSV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *CephRookIoCephNfsV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_nfs_v1"
 }
 
-func (r *CephRookIoCephNFSV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *CephRookIoCephNfsV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephNFS represents a Ceph NFS",
 		MarkdownDescription: "CephNFS represents a Ceph NFS",
@@ -3970,7 +3970,7 @@ func (r *CephRookIoCephNFSV1Resource) Schema(_ context.Context, _ resource.Schem
 	}
 }
 
-func (r *CephRookIoCephNFSV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *CephRookIoCephNfsV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -3995,10 +3995,10 @@ func (r *CephRookIoCephNFSV1Resource) Configure(_ context.Context, request resou
 	}
 }
 
-func (r *CephRookIoCephNFSV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *CephRookIoCephNfsV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_ceph_rook_io_ceph_nfs_v1")
 
-	var model CephRookIoCephNFSV1ResourceData
+	var model CephRookIoCephNfsV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -4056,7 +4056,7 @@ func (r *CephRookIoCephNFSV1Resource) Create(ctx context.Context, request resour
 		return
 	}
 
-	var readResponse CephRookIoCephNFSV1ResourceData
+	var readResponse CephRookIoCephNfsV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -4074,10 +4074,10 @@ func (r *CephRookIoCephNFSV1Resource) Create(ctx context.Context, request resour
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CephRookIoCephNFSV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *CephRookIoCephNfsV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_ceph_rook_io_ceph_nfs_v1")
 
-	var data CephRookIoCephNFSV1ResourceData
+	var data CephRookIoCephNfsV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -4106,7 +4106,7 @@ func (r *CephRookIoCephNFSV1Resource) Read(ctx context.Context, request resource
 		return
 	}
 
-	var readResponse CephRookIoCephNFSV1ResourceData
+	var readResponse CephRookIoCephNfsV1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -4124,10 +4124,10 @@ func (r *CephRookIoCephNFSV1Resource) Read(ctx context.Context, request resource
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *CephRookIoCephNFSV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *CephRookIoCephNfsV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_ceph_rook_io_ceph_nfs_v1")
 
-	var model CephRookIoCephNFSV1ResourceData
+	var model CephRookIoCephNfsV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -4184,7 +4184,7 @@ func (r *CephRookIoCephNFSV1Resource) Update(ctx context.Context, request resour
 		return
 	}
 
-	var readResponse CephRookIoCephNFSV1ResourceData
+	var readResponse CephRookIoCephNfsV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -4202,10 +4202,10 @@ func (r *CephRookIoCephNFSV1Resource) Update(ctx context.Context, request resour
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CephRookIoCephNFSV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *CephRookIoCephNfsV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_ceph_rook_io_ceph_nfs_v1")
 
-	var data CephRookIoCephNFSV1ResourceData
+	var data CephRookIoCephNfsV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -4226,7 +4226,7 @@ func (r *CephRookIoCephNFSV1Resource) Delete(ctx context.Context, request resour
 	}
 }
 
-func (r *CephRookIoCephNFSV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *CephRookIoCephNfsV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

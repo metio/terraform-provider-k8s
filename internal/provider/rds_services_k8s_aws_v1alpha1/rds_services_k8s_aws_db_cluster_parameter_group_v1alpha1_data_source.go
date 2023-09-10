@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource{}
+	_ datasource.DataSource              = &RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSource{}
 )
 
-func NewRdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource() datasource.DataSource {
-	return &RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource{}
+func NewRdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSource() datasource.DataSource {
+	return &RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSource{}
 }
 
-type RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource struct {
+type RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSourceData struct {
+type RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -74,11 +74,11 @@ type RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_rds_services_k8s_aws_db_cluster_parameter_group_v1alpha1"
 }
 
-func (r *RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DBClusterParameterGroup is the Schema for the DBClusterParameterGroups API",
 		MarkdownDescription: "DBClusterParameterGroup is the Schema for the DBClusterParameterGroups API",
@@ -170,8 +170,8 @@ func (r *RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource) Schema(_ co
 					},
 
 					"parameter_overrides": schema.MapAttribute{
-						Description:         "These are ONLY user-defined parameter overrides for the DB cluster parameter group. This does not contain default or system parameters.",
-						MarkdownDescription: "These are ONLY user-defined parameter overrides for the DB cluster parameter group. This does not contain default or system parameters.",
+						Description:         "",
+						MarkdownDescription: "",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            false,
@@ -179,8 +179,8 @@ func (r *RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource) Schema(_ co
 					},
 
 					"parameters": schema.ListNestedAttribute{
-						Description:         "A list of parameters in the DB cluster parameter group to modify.  Valid Values (for the application method): immediate | pending-reboot  You can use the immediate value with dynamic parameters only. You can use the pending-reboot value for both dynamic and static parameters.  When the application method is immediate, changes to dynamic parameters are applied immediately to the DB clusters associated with the parameter group. When the application method is pending-reboot, changes to dynamic and static parameters are applied after a reboot without failover to the DB clusters associated with the parameter group.  DEPRECATED - do not use.  Prefer ParameterOverrides instead.",
-						MarkdownDescription: "A list of parameters in the DB cluster parameter group to modify.  Valid Values (for the application method): immediate | pending-reboot  You can use the immediate value with dynamic parameters only. You can use the pending-reboot value for both dynamic and static parameters.  When the application method is immediate, changes to dynamic parameters are applied immediately to the DB clusters associated with the parameter group. When the application method is pending-reboot, changes to dynamic and static parameters are applied after a reboot without failover to the DB clusters associated with the parameter group.  DEPRECATED - do not use.  Prefer ParameterOverrides instead.",
+						Description:         "A list of parameters in the DB cluster parameter group to modify.  Valid Values (for the application method): immediate | pending-reboot  You can use the immediate value with dynamic parameters only. You can use the pending-reboot value for both dynamic and static parameters.  When the application method is immediate, changes to dynamic parameters are applied immediately to the DB clusters associated with the parameter group. When the application method is pending-reboot, changes to dynamic and static parameters are applied after a reboot without failover to the DB clusters associated with the parameter group.",
+						MarkdownDescription: "A list of parameters in the DB cluster parameter group to modify.  Valid Values (for the application method): immediate | pending-reboot  You can use the immediate value with dynamic parameters only. You can use the pending-reboot value for both dynamic and static parameters.  When the application method is immediate, changes to dynamic parameters are applied immediately to the DB clusters associated with the parameter group. When the application method is pending-reboot, changes to dynamic and static parameters are applied after a reboot without failover to the DB clusters associated with the parameter group.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"allowed_values": schema.StringAttribute{
@@ -313,7 +313,7 @@ func (r *RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource) Schema(_ co
 	}
 }
 
-func (r *RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -336,10 +336,10 @@ func (r *RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource) Configure(_
 	}
 }
 
-func (r *RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_rds_services_k8s_aws_db_cluster_parameter_group_v1alpha1")
 
-	var data RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSourceData
+	var data RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -368,7 +368,7 @@ func (r *RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSource) Read(ctx co
 		return
 	}
 
-	var readResponse RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1DataSourceData
+	var readResponse RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

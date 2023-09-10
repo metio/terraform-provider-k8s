@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestStorageK8SIoCSINodeV1Resource(t *testing.T) {
+func TestStorageK8SIoCsinodeV1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_storage_k8s_io_csi_node_v1"
 
 	_, err := os.Stat(path)

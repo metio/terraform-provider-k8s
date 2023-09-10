@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestGatewayNetworkingK8SIoTCPRouteV1Alpha2Resource_ValidateSchema(t *testing.T) {
+func TestGatewayNetworkingK8SIoTcprouteV1Alpha2Resource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwresource.SchemaRequest{}
 	schemaResponse := &fwresource.SchemaResponse{}
 
-	gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoTCPRouteV1Alpha2Resource().Schema(ctx, schemaRequest, schemaResponse)
+	gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoTcprouteV1Alpha2Resource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

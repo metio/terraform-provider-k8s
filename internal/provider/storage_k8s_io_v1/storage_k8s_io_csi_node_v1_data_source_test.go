@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestStorageK8SIoCSINodeV1DataSource_ValidateSchema(t *testing.T) {
+func TestStorageK8SIoCsinodeV1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	storage_k8s_io_v1.NewStorageK8SIoCSINodeV1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	storage_k8s_io_v1.NewStorageK8SIoCsinodeV1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestStorageK8SIoCSINodeV1DataSource_ValidateSchema(t *testing.T) {
 	}
 }
 
-func TestStorageK8SIoCSINodeV1DataSource_ConfigurationErrors(t *testing.T) {
+func TestStorageK8SIoCsinodeV1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -58,7 +58,7 @@ func TestStorageK8SIoCSINodeV1DataSource_ConfigurationErrors(t *testing.T) {
 	}
 }
 
-func TestStorageK8SIoCSINodeV1DataSource_OfflineUsage(t *testing.T) {
+func TestStorageK8SIoCsinodeV1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

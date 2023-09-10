@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &TraefikIoTLSStoreV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &TraefikIoTLSStoreV1Alpha1DataSource{}
+	_ datasource.DataSource              = &TraefikIoTlsstoreV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &TraefikIoTlsstoreV1Alpha1DataSource{}
 )
 
-func NewTraefikIoTLSStoreV1Alpha1DataSource() datasource.DataSource {
-	return &TraefikIoTLSStoreV1Alpha1DataSource{}
+func NewTraefikIoTlsstoreV1Alpha1DataSource() datasource.DataSource {
+	return &TraefikIoTlsstoreV1Alpha1DataSource{}
 }
 
-type TraefikIoTLSStoreV1Alpha1DataSource struct {
+type TraefikIoTlsstoreV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type TraefikIoTLSStoreV1Alpha1DataSourceData struct {
+type TraefikIoTlsstoreV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -66,11 +66,11 @@ type TraefikIoTLSStoreV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TraefikIoTLSStoreV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *TraefikIoTlsstoreV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_traefik_io_tls_store_v1alpha1"
 }
 
-func (r *TraefikIoTLSStoreV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *TraefikIoTlsstoreV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TLSStore is the CRD implementation of a Traefik TLS Store. For the time being, only the TLSStore named default is supported. This means that you cannot have two stores that are named default in different Kubernetes namespaces. More info: https://doc.traefik.io/traefik/v3.0/https/tls/#certificates-stores",
 		MarkdownDescription: "TLSStore is the CRD implementation of a Traefik TLS Store. For the time being, only the TLSStore named default is supported. This means that you cannot have two stores that are named default in different Kubernetes namespaces. More info: https://doc.traefik.io/traefik/v3.0/https/tls/#certificates-stores",
@@ -224,7 +224,7 @@ func (r *TraefikIoTLSStoreV1Alpha1DataSource) Schema(_ context.Context, _ dataso
 	}
 }
 
-func (r *TraefikIoTLSStoreV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *TraefikIoTlsstoreV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -247,10 +247,10 @@ func (r *TraefikIoTLSStoreV1Alpha1DataSource) Configure(_ context.Context, reque
 	}
 }
 
-func (r *TraefikIoTLSStoreV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *TraefikIoTlsstoreV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_traefik_io_tls_store_v1alpha1")
 
-	var data TraefikIoTLSStoreV1Alpha1DataSourceData
+	var data TraefikIoTlsstoreV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -279,7 +279,7 @@ func (r *TraefikIoTLSStoreV1Alpha1DataSource) Read(ctx context.Context, request 
 		return
 	}
 
-	var readResponse TraefikIoTLSStoreV1Alpha1DataSourceData
+	var readResponse TraefikIoTlsstoreV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &ArgoprojIoArgoCDV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &ArgoprojIoArgoCDV1Alpha1DataSource{}
+	_ datasource.DataSource              = &ArgoprojIoArgoCdV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &ArgoprojIoArgoCdV1Alpha1DataSource{}
 )
 
-func NewArgoprojIoArgoCDV1Alpha1DataSource() datasource.DataSource {
-	return &ArgoprojIoArgoCDV1Alpha1DataSource{}
+func NewArgoprojIoArgoCdV1Alpha1DataSource() datasource.DataSource {
+	return &ArgoprojIoArgoCdV1Alpha1DataSource{}
 }
 
-type ArgoprojIoArgoCDV1Alpha1DataSource struct {
+type ArgoprojIoArgoCdV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type ArgoprojIoArgoCDV1Alpha1DataSourceData struct {
+type ArgoprojIoArgoCdV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -1299,11 +1299,11 @@ type ArgoprojIoArgoCDV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ArgoprojIoArgoCDV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *ArgoprojIoArgoCdV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_argoproj_io_argo_cd_v1alpha1"
 }
 
-func (r *ArgoprojIoArgoCDV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *ArgoprojIoArgoCdV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ArgoCD is the Schema for the argocds API",
 		MarkdownDescription: "ArgoCD is the Schema for the argocds API",
@@ -9754,7 +9754,7 @@ func (r *ArgoprojIoArgoCDV1Alpha1DataSource) Schema(_ context.Context, _ datasou
 	}
 }
 
-func (r *ArgoprojIoArgoCDV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *ArgoprojIoArgoCdV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -9777,10 +9777,10 @@ func (r *ArgoprojIoArgoCDV1Alpha1DataSource) Configure(_ context.Context, reques
 	}
 }
 
-func (r *ArgoprojIoArgoCDV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *ArgoprojIoArgoCdV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_argoproj_io_argo_cd_v1alpha1")
 
-	var data ArgoprojIoArgoCDV1Alpha1DataSourceData
+	var data ArgoprojIoArgoCdV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -9809,7 +9809,7 @@ func (r *ArgoprojIoArgoCDV1Alpha1DataSource) Read(ctx context.Context, request d
 		return
 	}
 
-	var readResponse ArgoprojIoArgoCDV1Alpha1DataSourceData
+	var readResponse ArgoprojIoArgoCdV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

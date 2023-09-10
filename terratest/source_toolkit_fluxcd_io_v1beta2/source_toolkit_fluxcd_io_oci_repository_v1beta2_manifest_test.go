@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestSourceToolkitFluxcdIoOCIRepositoryV1Beta2Manifest(t *testing.T) {
+func TestSourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_source_toolkit_fluxcd_io_oci_repository_v1beta2_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

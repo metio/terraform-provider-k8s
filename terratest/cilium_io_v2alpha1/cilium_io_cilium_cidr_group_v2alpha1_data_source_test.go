@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestCiliumIoCiliumCIDRGroupV2Alpha1DataSource(t *testing.T) {
+func TestCiliumIoCiliumCidrgroupV2Alpha1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_cilium_io_cilium_cidr_group_v2alpha1"
 
 	_, err := os.Stat(path)

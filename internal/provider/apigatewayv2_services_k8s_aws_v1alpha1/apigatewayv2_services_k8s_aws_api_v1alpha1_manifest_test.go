@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestApigatewayv2ServicesK8SAwsAPIV1Alpha1Manifest_ValidateSchema(t *testing.T) {
+func TestApigatewayv2ServicesK8SAwsApiV1Alpha1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	apigatewayv2_services_k8s_aws_v1alpha1.NewApigatewayv2ServicesK8SAwsAPIV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	apigatewayv2_services_k8s_aws_v1alpha1.NewApigatewayv2ServicesK8SAwsApiV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

@@ -65,6 +65,7 @@ type LonghornIoVolumeV1Beta2ManifestData struct {
 		NumberOfReplicas            *int64    `tfsdk:"number_of_replicas" json:"numberOfReplicas,omitempty"`
 		OfflineReplicaRebuilding    *string   `tfsdk:"offline_replica_rebuilding" json:"offlineReplicaRebuilding,omitempty"`
 		ReplicaAutoBalance          *string   `tfsdk:"replica_auto_balance" json:"replicaAutoBalance,omitempty"`
+		ReplicaDiskSoftAntiAffinity *string   `tfsdk:"replica_disk_soft_anti_affinity" json:"replicaDiskSoftAntiAffinity,omitempty"`
 		ReplicaSoftAntiAffinity     *string   `tfsdk:"replica_soft_anti_affinity" json:"replicaSoftAntiAffinity,omitempty"`
 		ReplicaZoneSoftAntiAffinity *string   `tfsdk:"replica_zone_soft_anti_affinity" json:"replicaZoneSoftAntiAffinity,omitempty"`
 		RestoreVolumeRecurringJob   *string   `tfsdk:"restore_volume_recurring_job" json:"restoreVolumeRecurringJob,omitempty"`
@@ -352,9 +353,20 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						},
 					},
 
+					"replica_disk_soft_anti_affinity": schema.StringAttribute{
+						Description:         "Replica disk soft anti affinity of the volume. Set enabled to allow replicas to be scheduled in the same disk.",
+						MarkdownDescription: "Replica disk soft anti affinity of the volume. Set enabled to allow replicas to be scheduled in the same disk.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("ignored", "enabled", "disabled"),
+						},
+					},
+
 					"replica_soft_anti_affinity": schema.StringAttribute{
-						Description:         "Replica soft anti affinity of the volume. Set enabled to allow replicas to be scheduled on the same node",
-						MarkdownDescription: "Replica soft anti affinity of the volume. Set enabled to allow replicas to be scheduled on the same node",
+						Description:         "Replica soft anti affinity of the volume. Set enabled to allow replicas to be scheduled on the same node.",
+						MarkdownDescription: "Replica soft anti affinity of the volume. Set enabled to allow replicas to be scheduled on the same node.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -364,8 +376,8 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"replica_zone_soft_anti_affinity": schema.StringAttribute{
-						Description:         "Replica zone soft anti affinity of the volume. Set enabled to allow replicas to be scheduled in the same zone",
-						MarkdownDescription: "Replica zone soft anti affinity of the volume. Set enabled to allow replicas to be scheduled in the same zone",
+						Description:         "Replica zone soft anti affinity of the volume. Set enabled to allow replicas to be scheduled in the same zone.",
+						MarkdownDescription: "Replica zone soft anti affinity of the volume. Set enabled to allow replicas to be scheduled in the same zone.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource{}
-	_ resource.ResourceWithImportState = &CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource{}
+	_ resource.Resource                = &CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource{}
+	_ resource.ResourceWithImportState = &CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource{}
 )
 
-func NewCiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource() resource.Resource {
-	return &CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource{}
+func NewCiliumIoCiliumBgppeeringPolicyV2Alpha1Resource() resource.Resource {
+	return &CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource{}
 }
 
-type CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource struct {
+type CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type CiliumIoCiliumBGPPeeringPolicyV2Alpha1ResourceData struct {
+type CiliumIoCiliumBgppeeringPolicyV2Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -101,11 +101,11 @@ type CiliumIoCiliumBGPPeeringPolicyV2Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_bgp_peering_policy_v2alpha1"
 }
 
-func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumBGPPeeringPolicy is a Kubernetes third-party resource for instructing Cilium's BGP control plane to create virtual BGP routers.",
 		MarkdownDescription: "CiliumBGPPeeringPolicy is a Kubernetes third-party resource for instructing Cilium's BGP control plane to create virtual BGP routers.",
@@ -525,7 +525,7 @@ func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Schema(_ context.Contex
 	}
 }
 
-func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -550,10 +550,10 @@ func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Configure(_ context.Con
 	}
 }
 
-func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_cilium_io_cilium_bgp_peering_policy_v2alpha1")
 
-	var model CiliumIoCiliumBGPPeeringPolicyV2Alpha1ResourceData
+	var model CiliumIoCiliumBgppeeringPolicyV2Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -610,7 +610,7 @@ func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Create(ctx context.Cont
 		return
 	}
 
-	var readResponse CiliumIoCiliumBGPPeeringPolicyV2Alpha1ResourceData
+	var readResponse CiliumIoCiliumBgppeeringPolicyV2Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -628,10 +628,10 @@ func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Create(ctx context.Cont
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_cilium_io_cilium_bgp_peering_policy_v2alpha1")
 
-	var data CiliumIoCiliumBGPPeeringPolicyV2Alpha1ResourceData
+	var data CiliumIoCiliumBgppeeringPolicyV2Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -659,7 +659,7 @@ func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Read(ctx context.Contex
 		return
 	}
 
-	var readResponse CiliumIoCiliumBGPPeeringPolicyV2Alpha1ResourceData
+	var readResponse CiliumIoCiliumBgppeeringPolicyV2Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -677,10 +677,10 @@ func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Read(ctx context.Contex
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_cilium_io_cilium_bgp_peering_policy_v2alpha1")
 
-	var model CiliumIoCiliumBGPPeeringPolicyV2Alpha1ResourceData
+	var model CiliumIoCiliumBgppeeringPolicyV2Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -736,7 +736,7 @@ func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Update(ctx context.Cont
 		return
 	}
 
-	var readResponse CiliumIoCiliumBGPPeeringPolicyV2Alpha1ResourceData
+	var readResponse CiliumIoCiliumBgppeeringPolicyV2Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -754,10 +754,10 @@ func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Update(ctx context.Cont
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_cilium_io_cilium_bgp_peering_policy_v2alpha1")
 
-	var data CiliumIoCiliumBGPPeeringPolicyV2Alpha1ResourceData
+	var data CiliumIoCiliumBgppeeringPolicyV2Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -777,7 +777,7 @@ func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) Delete(ctx context.Cont
 	}
 }
 
-func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	if request.ID == "" {
 		response.Diagnostics.AddError(
 			"Error importing resource",

@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: ApicodegenApimaticIoAPIMaticV1Beta1Manifest
+name: ApicodegenApimaticIoApimaticV1Beta1Manifest
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/apicodegen_apimatic_io_v1beta1/apicodegen_apimatic_io_api_matic_v1beta1_manifest_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestApicodegenApimaticIoAPIMaticV1Beta1Manifest ./terratest/apicodegen_apimatic_io_v1beta1
+        run: go test -v -timeout=120s -count=1 -run TestApicodegenApimaticIoApimaticV1Beta1Manifest ./terratest/apicodegen_apimatic_io_v1beta1

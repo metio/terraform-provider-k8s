@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestApps3ScaleNetAPIcastV1Alpha1Manifest(t *testing.T) {
+func TestApps3ScaleNetApicastV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_apps_3scale_net_ap_icast_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

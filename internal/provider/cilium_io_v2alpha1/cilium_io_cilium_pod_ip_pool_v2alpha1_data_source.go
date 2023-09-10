@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &CiliumIoCiliumPodIPPoolV2Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &CiliumIoCiliumPodIPPoolV2Alpha1DataSource{}
+	_ datasource.DataSource              = &CiliumIoCiliumPodIppoolV2Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &CiliumIoCiliumPodIppoolV2Alpha1DataSource{}
 )
 
-func NewCiliumIoCiliumPodIPPoolV2Alpha1DataSource() datasource.DataSource {
-	return &CiliumIoCiliumPodIPPoolV2Alpha1DataSource{}
+func NewCiliumIoCiliumPodIppoolV2Alpha1DataSource() datasource.DataSource {
+	return &CiliumIoCiliumPodIppoolV2Alpha1DataSource{}
 }
 
-type CiliumIoCiliumPodIPPoolV2Alpha1DataSource struct {
+type CiliumIoCiliumPodIppoolV2Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type CiliumIoCiliumPodIPPoolV2Alpha1DataSourceData struct {
+type CiliumIoCiliumPodIppoolV2Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -60,11 +60,11 @@ type CiliumIoCiliumPodIPPoolV2Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CiliumIoCiliumPodIPPoolV2Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CiliumIoCiliumPodIppoolV2Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_pod_ip_pool_v2alpha1"
 }
 
-func (r *CiliumIoCiliumPodIPPoolV2Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CiliumIoCiliumPodIppoolV2Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumPodIPPool defines an IP pool that can be used for pooled IPAM (i.e. the multi-pool IPAM mode).",
 		MarkdownDescription: "CiliumPodIPPool defines an IP pool that can be used for pooled IPAM (i.e. the multi-pool IPAM mode).",
@@ -179,7 +179,7 @@ func (r *CiliumIoCiliumPodIPPoolV2Alpha1DataSource) Schema(_ context.Context, _ 
 	}
 }
 
-func (r *CiliumIoCiliumPodIPPoolV2Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *CiliumIoCiliumPodIppoolV2Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -202,10 +202,10 @@ func (r *CiliumIoCiliumPodIPPoolV2Alpha1DataSource) Configure(_ context.Context,
 	}
 }
 
-func (r *CiliumIoCiliumPodIPPoolV2Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CiliumIoCiliumPodIppoolV2Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_cilium_io_cilium_pod_ip_pool_v2alpha1")
 
-	var data CiliumIoCiliumPodIPPoolV2Alpha1DataSourceData
+	var data CiliumIoCiliumPodIppoolV2Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -233,7 +233,7 @@ func (r *CiliumIoCiliumPodIPPoolV2Alpha1DataSource) Read(ctx context.Context, re
 		return
 	}
 
-	var readResponse CiliumIoCiliumPodIPPoolV2Alpha1DataSourceData
+	var readResponse CiliumIoCiliumPodIppoolV2Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &LoggingBanzaicloudIoSyslogNGClusterFlowV1Beta1Manifest{}
+	_ datasource.DataSource = &LoggingBanzaicloudIoSyslogNgclusterFlowV1Beta1Manifest{}
 )
 
-func NewLoggingBanzaicloudIoSyslogNGClusterFlowV1Beta1Manifest() datasource.DataSource {
-	return &LoggingBanzaicloudIoSyslogNGClusterFlowV1Beta1Manifest{}
+func NewLoggingBanzaicloudIoSyslogNgclusterFlowV1Beta1Manifest() datasource.DataSource {
+	return &LoggingBanzaicloudIoSyslogNgclusterFlowV1Beta1Manifest{}
 }
 
-type LoggingBanzaicloudIoSyslogNGClusterFlowV1Beta1Manifest struct{}
+type LoggingBanzaicloudIoSyslogNgclusterFlowV1Beta1Manifest struct{}
 
-type LoggingBanzaicloudIoSyslogNGClusterFlowV1Beta1ManifestData struct {
+type LoggingBanzaicloudIoSyslogNgclusterFlowV1Beta1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -175,11 +175,11 @@ type LoggingBanzaicloudIoSyslogNGClusterFlowV1Beta1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGClusterFlowV1Beta1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgclusterFlowV1Beta1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_logging_banzaicloud_io_syslog_ng_cluster_flow_v1beta1_manifest"
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGClusterFlowV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgclusterFlowV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -1155,10 +1155,10 @@ func (r *LoggingBanzaicloudIoSyslogNGClusterFlowV1Beta1Manifest) Schema(_ contex
 	}
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGClusterFlowV1Beta1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgclusterFlowV1Beta1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_logging_banzaicloud_io_syslog_ng_cluster_flow_v1beta1_manifest")
 
-	var model LoggingBanzaicloudIoSyslogNGClusterFlowV1Beta1ManifestData
+	var model LoggingBanzaicloudIoSyslogNgclusterFlowV1Beta1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

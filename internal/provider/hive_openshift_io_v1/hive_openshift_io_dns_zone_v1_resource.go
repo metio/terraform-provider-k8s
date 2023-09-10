@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &HiveOpenshiftIoDNSZoneV1Resource{}
-	_ resource.ResourceWithConfigure   = &HiveOpenshiftIoDNSZoneV1Resource{}
-	_ resource.ResourceWithImportState = &HiveOpenshiftIoDNSZoneV1Resource{}
+	_ resource.Resource                = &HiveOpenshiftIoDnszoneV1Resource{}
+	_ resource.ResourceWithConfigure   = &HiveOpenshiftIoDnszoneV1Resource{}
+	_ resource.ResourceWithImportState = &HiveOpenshiftIoDnszoneV1Resource{}
 )
 
-func NewHiveOpenshiftIoDNSZoneV1Resource() resource.Resource {
-	return &HiveOpenshiftIoDNSZoneV1Resource{}
+func NewHiveOpenshiftIoDnszoneV1Resource() resource.Resource {
+	return &HiveOpenshiftIoDnszoneV1Resource{}
 }
 
-type HiveOpenshiftIoDNSZoneV1Resource struct {
+type HiveOpenshiftIoDnszoneV1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type HiveOpenshiftIoDNSZoneV1ResourceData struct {
+type HiveOpenshiftIoDnszoneV1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -94,11 +94,11 @@ type HiveOpenshiftIoDNSZoneV1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *HiveOpenshiftIoDNSZoneV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *HiveOpenshiftIoDnszoneV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_hive_openshift_io_dns_zone_v1"
 }
 
-func (r *HiveOpenshiftIoDNSZoneV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *HiveOpenshiftIoDnszoneV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DNSZone is the Schema for the dnszones API",
 		MarkdownDescription: "DNSZone is the Schema for the dnszones API",
@@ -416,7 +416,7 @@ func (r *HiveOpenshiftIoDNSZoneV1Resource) Schema(_ context.Context, _ resource.
 	}
 }
 
-func (r *HiveOpenshiftIoDNSZoneV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *HiveOpenshiftIoDnszoneV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -441,10 +441,10 @@ func (r *HiveOpenshiftIoDNSZoneV1Resource) Configure(_ context.Context, request 
 	}
 }
 
-func (r *HiveOpenshiftIoDNSZoneV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *HiveOpenshiftIoDnszoneV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_hive_openshift_io_dns_zone_v1")
 
-	var model HiveOpenshiftIoDNSZoneV1ResourceData
+	var model HiveOpenshiftIoDnszoneV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -502,7 +502,7 @@ func (r *HiveOpenshiftIoDNSZoneV1Resource) Create(ctx context.Context, request r
 		return
 	}
 
-	var readResponse HiveOpenshiftIoDNSZoneV1ResourceData
+	var readResponse HiveOpenshiftIoDnszoneV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -520,10 +520,10 @@ func (r *HiveOpenshiftIoDNSZoneV1Resource) Create(ctx context.Context, request r
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *HiveOpenshiftIoDNSZoneV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *HiveOpenshiftIoDnszoneV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_hive_openshift_io_dns_zone_v1")
 
-	var data HiveOpenshiftIoDNSZoneV1ResourceData
+	var data HiveOpenshiftIoDnszoneV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -552,7 +552,7 @@ func (r *HiveOpenshiftIoDNSZoneV1Resource) Read(ctx context.Context, request res
 		return
 	}
 
-	var readResponse HiveOpenshiftIoDNSZoneV1ResourceData
+	var readResponse HiveOpenshiftIoDnszoneV1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -570,10 +570,10 @@ func (r *HiveOpenshiftIoDNSZoneV1Resource) Read(ctx context.Context, request res
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *HiveOpenshiftIoDNSZoneV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *HiveOpenshiftIoDnszoneV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_hive_openshift_io_dns_zone_v1")
 
-	var model HiveOpenshiftIoDNSZoneV1ResourceData
+	var model HiveOpenshiftIoDnszoneV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -630,7 +630,7 @@ func (r *HiveOpenshiftIoDNSZoneV1Resource) Update(ctx context.Context, request r
 		return
 	}
 
-	var readResponse HiveOpenshiftIoDNSZoneV1ResourceData
+	var readResponse HiveOpenshiftIoDnszoneV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -648,10 +648,10 @@ func (r *HiveOpenshiftIoDNSZoneV1Resource) Update(ctx context.Context, request r
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *HiveOpenshiftIoDNSZoneV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *HiveOpenshiftIoDnszoneV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_hive_openshift_io_dns_zone_v1")
 
-	var data HiveOpenshiftIoDNSZoneV1ResourceData
+	var data HiveOpenshiftIoDnszoneV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -672,7 +672,7 @@ func (r *HiveOpenshiftIoDNSZoneV1Resource) Delete(ctx context.Context, request r
 	}
 }
 
-func (r *HiveOpenshiftIoDNSZoneV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *HiveOpenshiftIoDnszoneV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

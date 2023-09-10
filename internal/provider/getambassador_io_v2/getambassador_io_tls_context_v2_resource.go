@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &GetambassadorIoTLSContextV2Resource{}
-	_ resource.ResourceWithConfigure   = &GetambassadorIoTLSContextV2Resource{}
-	_ resource.ResourceWithImportState = &GetambassadorIoTLSContextV2Resource{}
+	_ resource.Resource                = &GetambassadorIoTlscontextV2Resource{}
+	_ resource.ResourceWithConfigure   = &GetambassadorIoTlscontextV2Resource{}
+	_ resource.ResourceWithImportState = &GetambassadorIoTlscontextV2Resource{}
 )
 
-func NewGetambassadorIoTLSContextV2Resource() resource.Resource {
-	return &GetambassadorIoTLSContextV2Resource{}
+func NewGetambassadorIoTlscontextV2Resource() resource.Resource {
+	return &GetambassadorIoTlscontextV2Resource{}
 }
 
-type GetambassadorIoTLSContextV2Resource struct {
+type GetambassadorIoTlscontextV2Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type GetambassadorIoTLSContextV2ResourceData struct {
+type GetambassadorIoTlscontextV2ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -82,11 +82,11 @@ type GetambassadorIoTLSContextV2ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *GetambassadorIoTLSContextV2Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *GetambassadorIoTlscontextV2Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_getambassador_io_tls_context_v2"
 }
 
-func (r *GetambassadorIoTLSContextV2Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *GetambassadorIoTlscontextV2Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TLSContext is the Schema for the tlscontexts API",
 		MarkdownDescription: "TLSContext is the Schema for the tlscontexts API",
@@ -369,7 +369,7 @@ func (r *GetambassadorIoTLSContextV2Resource) Schema(_ context.Context, _ resour
 	}
 }
 
-func (r *GetambassadorIoTLSContextV2Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *GetambassadorIoTlscontextV2Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -394,10 +394,10 @@ func (r *GetambassadorIoTLSContextV2Resource) Configure(_ context.Context, reque
 	}
 }
 
-func (r *GetambassadorIoTLSContextV2Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *GetambassadorIoTlscontextV2Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_getambassador_io_tls_context_v2")
 
-	var model GetambassadorIoTLSContextV2ResourceData
+	var model GetambassadorIoTlscontextV2ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -455,7 +455,7 @@ func (r *GetambassadorIoTLSContextV2Resource) Create(ctx context.Context, reques
 		return
 	}
 
-	var readResponse GetambassadorIoTLSContextV2ResourceData
+	var readResponse GetambassadorIoTlscontextV2ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -473,10 +473,10 @@ func (r *GetambassadorIoTLSContextV2Resource) Create(ctx context.Context, reques
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *GetambassadorIoTLSContextV2Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *GetambassadorIoTlscontextV2Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_getambassador_io_tls_context_v2")
 
-	var data GetambassadorIoTLSContextV2ResourceData
+	var data GetambassadorIoTlscontextV2ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -505,7 +505,7 @@ func (r *GetambassadorIoTLSContextV2Resource) Read(ctx context.Context, request 
 		return
 	}
 
-	var readResponse GetambassadorIoTLSContextV2ResourceData
+	var readResponse GetambassadorIoTlscontextV2ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -523,10 +523,10 @@ func (r *GetambassadorIoTLSContextV2Resource) Read(ctx context.Context, request 
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *GetambassadorIoTLSContextV2Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *GetambassadorIoTlscontextV2Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_getambassador_io_tls_context_v2")
 
-	var model GetambassadorIoTLSContextV2ResourceData
+	var model GetambassadorIoTlscontextV2ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -583,7 +583,7 @@ func (r *GetambassadorIoTLSContextV2Resource) Update(ctx context.Context, reques
 		return
 	}
 
-	var readResponse GetambassadorIoTLSContextV2ResourceData
+	var readResponse GetambassadorIoTlscontextV2ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -601,10 +601,10 @@ func (r *GetambassadorIoTLSContextV2Resource) Update(ctx context.Context, reques
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *GetambassadorIoTLSContextV2Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *GetambassadorIoTlscontextV2Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_getambassador_io_tls_context_v2")
 
-	var data GetambassadorIoTLSContextV2ResourceData
+	var data GetambassadorIoTlscontextV2ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -625,7 +625,7 @@ func (r *GetambassadorIoTLSContextV2Resource) Delete(ctx context.Context, reques
 	}
 }
 
-func (r *GetambassadorIoTLSContextV2Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *GetambassadorIoTlscontextV2Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

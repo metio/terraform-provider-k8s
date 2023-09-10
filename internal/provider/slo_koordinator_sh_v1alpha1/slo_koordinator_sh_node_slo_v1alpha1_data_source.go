@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &SloKoordinatorShNodeSLOV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &SloKoordinatorShNodeSLOV1Alpha1DataSource{}
+	_ datasource.DataSource              = &SloKoordinatorShNodeSloV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &SloKoordinatorShNodeSloV1Alpha1DataSource{}
 )
 
-func NewSloKoordinatorShNodeSLOV1Alpha1DataSource() datasource.DataSource {
-	return &SloKoordinatorShNodeSLOV1Alpha1DataSource{}
+func NewSloKoordinatorShNodeSloV1Alpha1DataSource() datasource.DataSource {
+	return &SloKoordinatorShNodeSloV1Alpha1DataSource{}
 }
 
-type SloKoordinatorShNodeSLOV1Alpha1DataSource struct {
+type SloKoordinatorShNodeSloV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type SloKoordinatorShNodeSLOV1Alpha1DataSourceData struct {
+type SloKoordinatorShNodeSloV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -56,7 +56,18 @@ type SloKoordinatorShNodeSLOV1Alpha1DataSourceData struct {
 			Policy                     *string `tfsdk:"policy" json:"policy,omitempty"`
 			SharePoolThresholdPercent  *int64  `tfsdk:"share_pool_threshold_percent" json:"sharePoolThresholdPercent,omitempty"`
 		} `tfsdk:"cpu_burst_strategy" json:"cpuBurstStrategy,omitempty"`
-		Extensions          *map[string]string `tfsdk:"extensions" json:"extensions,omitempty"`
+		Extensions       *map[string]string `tfsdk:"extensions" json:"extensions,omitempty"`
+		HostApplications *[]struct {
+			CgroupPath *struct {
+				Base         *string `tfsdk:"base" json:"base,omitempty"`
+				ParentDir    *string `tfsdk:"parent_dir" json:"parentDir,omitempty"`
+				RelativePath *string `tfsdk:"relative_path" json:"relativePath,omitempty"`
+			} `tfsdk:"cgroup_path" json:"cgroupPath,omitempty"`
+			Name     *string            `tfsdk:"name" json:"name,omitempty"`
+			Priority *string            `tfsdk:"priority" json:"priority,omitempty"`
+			Qos      *string            `tfsdk:"qos" json:"qos,omitempty"`
+			Strategy *map[string]string `tfsdk:"strategy" json:"strategy,omitempty"`
+		} `tfsdk:"host_applications" json:"hostApplications,omitempty"`
 		ResourceQOSStrategy *struct {
 			BeClass *struct {
 				BlkioQOS *struct {
@@ -278,11 +289,11 @@ type SloKoordinatorShNodeSLOV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *SloKoordinatorShNodeSLOV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *SloKoordinatorShNodeSloV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_slo_koordinator_sh_node_slo_v1alpha1"
 }
 
-func (r *SloKoordinatorShNodeSLOV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *SloKoordinatorShNodeSloV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "NodeSLO is the Schema for the nodeslos API",
 		MarkdownDescription: "NodeSLO is the Schema for the nodeslos API",
@@ -393,6 +404,83 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1DataSource) Schema(_ context.Context, _ 
 						Required:            false,
 						Optional:            false,
 						Computed:            true,
+					},
+
+					"host_applications": schema.ListNestedAttribute{
+						Description:         "QoS management for out-of-band applications",
+						MarkdownDescription: "QoS management for out-of-band applications",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"cgroup_path": schema.SingleNestedAttribute{
+									Description:         "Optional, defines the host cgroup configuration, use default if not specified according to priority and qos",
+									MarkdownDescription: "Optional, defines the host cgroup configuration, use default if not specified according to priority and qos",
+									Attributes: map[string]schema.Attribute{
+										"base": schema.StringAttribute{
+											Description:         "cgroup base dir, the format is various across cgroup drivers",
+											MarkdownDescription: "cgroup base dir, the format is various across cgroup drivers",
+											Required:            false,
+											Optional:            false,
+											Computed:            true,
+										},
+
+										"parent_dir": schema.StringAttribute{
+											Description:         "cgroup parent path under base dir",
+											MarkdownDescription: "cgroup parent path under base dir",
+											Required:            false,
+											Optional:            false,
+											Computed:            true,
+										},
+
+										"relative_path": schema.StringAttribute{
+											Description:         "cgroup relative path under parent dir",
+											MarkdownDescription: "cgroup relative path under parent dir",
+											Required:            false,
+											Optional:            false,
+											Computed:            true,
+										},
+									},
+									Required: false,
+									Optional: false,
+									Computed: true,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            false,
+									Computed:            true,
+								},
+
+								"priority": schema.StringAttribute{
+									Description:         "Priority class of the application",
+									MarkdownDescription: "Priority class of the application",
+									Required:            false,
+									Optional:            false,
+									Computed:            true,
+								},
+
+								"qos": schema.StringAttribute{
+									Description:         "QoS class of the application",
+									MarkdownDescription: "QoS class of the application",
+									Required:            false,
+									Optional:            false,
+									Computed:            true,
+								},
+
+								"strategy": schema.MapAttribute{
+									Description:         "QoS Strategy of host application",
+									MarkdownDescription: "QoS Strategy of host application",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            false,
+									Computed:            true,
+								},
+							},
+						},
+						Required: false,
+						Optional: false,
+						Computed: true,
 					},
 
 					"resource_qos_strategy": schema.SingleNestedAttribute{
@@ -1891,7 +1979,7 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1DataSource) Schema(_ context.Context, _ 
 	}
 }
 
-func (r *SloKoordinatorShNodeSLOV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *SloKoordinatorShNodeSloV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -1914,10 +2002,10 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1DataSource) Configure(_ context.Context,
 	}
 }
 
-func (r *SloKoordinatorShNodeSLOV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *SloKoordinatorShNodeSloV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_slo_koordinator_sh_node_slo_v1alpha1")
 
-	var data SloKoordinatorShNodeSLOV1Alpha1DataSourceData
+	var data SloKoordinatorShNodeSloV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1945,7 +2033,7 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1DataSource) Read(ctx context.Context, re
 		return
 	}
 
-	var readResponse SloKoordinatorShNodeSLOV1Alpha1DataSourceData
+	var readResponse SloKoordinatorShNodeSloV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

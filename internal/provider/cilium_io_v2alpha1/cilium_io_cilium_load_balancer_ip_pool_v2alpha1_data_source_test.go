@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestCiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource_ValidateSchema(t *testing.T) {
+func TestCiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	cilium_io_v2alpha1.NewCiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	cilium_io_v2alpha1.NewCiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestCiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource_ValidateSchema(t *te
 	}
 }
 
-func TestCiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource_ConfigurationErrors(t *testing.T) {
+func TestCiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -58,7 +58,7 @@ func TestCiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource_ConfigurationErrors(
 	}
 }
 
-func TestCiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource_OfflineUsage(t *testing.T) {
+func TestCiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

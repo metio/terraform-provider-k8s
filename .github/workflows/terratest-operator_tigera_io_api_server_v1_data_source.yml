@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: OperatorTigeraIoAPIServerV1DataSource
+name: OperatorTigeraIoApiserverV1DataSource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/operator_tigera_io_v1/operator_tigera_io_api_server_v1_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestOperatorTigeraIoAPIServerV1DataSource ./terratest/operator_tigera_io_v1
+        run: go test -v -timeout=120s -count=1 -run TestOperatorTigeraIoApiserverV1DataSource ./terratest/operator_tigera_io_v1

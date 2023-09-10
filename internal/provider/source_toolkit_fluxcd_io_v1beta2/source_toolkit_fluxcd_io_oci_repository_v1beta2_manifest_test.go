@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestSourceToolkitFluxcdIoOCIRepositoryV1Beta2Manifest_ValidateSchema(t *testing.T) {
+func TestSourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	source_toolkit_fluxcd_io_v1beta2.NewSourceToolkitFluxcdIoOCIRepositoryV1Beta2Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	source_toolkit_fluxcd_io_v1beta2.NewSourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

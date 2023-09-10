@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestResourcesTeleportDevTeleportSAMLConnectorV2Manifest(t *testing.T) {
+func TestResourcesTeleportDevTeleportSamlconnectorV2Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_resources_teleport_dev_teleport_saml_connector_v2_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

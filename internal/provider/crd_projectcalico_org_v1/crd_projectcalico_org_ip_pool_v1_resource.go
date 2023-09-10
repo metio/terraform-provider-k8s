@@ -29,22 +29,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &CrdProjectcalicoOrgIPPoolV1Resource{}
-	_ resource.ResourceWithConfigure   = &CrdProjectcalicoOrgIPPoolV1Resource{}
-	_ resource.ResourceWithImportState = &CrdProjectcalicoOrgIPPoolV1Resource{}
+	_ resource.Resource                = &CrdProjectcalicoOrgIppoolV1Resource{}
+	_ resource.ResourceWithConfigure   = &CrdProjectcalicoOrgIppoolV1Resource{}
+	_ resource.ResourceWithImportState = &CrdProjectcalicoOrgIppoolV1Resource{}
 )
 
-func NewCrdProjectcalicoOrgIPPoolV1Resource() resource.Resource {
-	return &CrdProjectcalicoOrgIPPoolV1Resource{}
+func NewCrdProjectcalicoOrgIppoolV1Resource() resource.Resource {
+	return &CrdProjectcalicoOrgIppoolV1Resource{}
 }
 
-type CrdProjectcalicoOrgIPPoolV1Resource struct {
+type CrdProjectcalicoOrgIppoolV1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type CrdProjectcalicoOrgIPPoolV1ResourceData struct {
+type CrdProjectcalicoOrgIppoolV1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -76,11 +76,11 @@ type CrdProjectcalicoOrgIPPoolV1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CrdProjectcalicoOrgIPPoolV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *CrdProjectcalicoOrgIppoolV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_crd_projectcalico_org_ip_pool_v1"
 }
 
-func (r *CrdProjectcalicoOrgIPPoolV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *CrdProjectcalicoOrgIppoolV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -300,7 +300,7 @@ func (r *CrdProjectcalicoOrgIPPoolV1Resource) Schema(_ context.Context, _ resour
 	}
 }
 
-func (r *CrdProjectcalicoOrgIPPoolV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *CrdProjectcalicoOrgIppoolV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -325,10 +325,10 @@ func (r *CrdProjectcalicoOrgIPPoolV1Resource) Configure(_ context.Context, reque
 	}
 }
 
-func (r *CrdProjectcalicoOrgIPPoolV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *CrdProjectcalicoOrgIppoolV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_crd_projectcalico_org_ip_pool_v1")
 
-	var model CrdProjectcalicoOrgIPPoolV1ResourceData
+	var model CrdProjectcalicoOrgIppoolV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -385,7 +385,7 @@ func (r *CrdProjectcalicoOrgIPPoolV1Resource) Create(ctx context.Context, reques
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgIPPoolV1ResourceData
+	var readResponse CrdProjectcalicoOrgIppoolV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -403,10 +403,10 @@ func (r *CrdProjectcalicoOrgIPPoolV1Resource) Create(ctx context.Context, reques
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CrdProjectcalicoOrgIPPoolV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *CrdProjectcalicoOrgIppoolV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_crd_projectcalico_org_ip_pool_v1")
 
-	var data CrdProjectcalicoOrgIPPoolV1ResourceData
+	var data CrdProjectcalicoOrgIppoolV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -434,7 +434,7 @@ func (r *CrdProjectcalicoOrgIPPoolV1Resource) Read(ctx context.Context, request 
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgIPPoolV1ResourceData
+	var readResponse CrdProjectcalicoOrgIppoolV1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -452,10 +452,10 @@ func (r *CrdProjectcalicoOrgIPPoolV1Resource) Read(ctx context.Context, request 
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *CrdProjectcalicoOrgIPPoolV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *CrdProjectcalicoOrgIppoolV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_crd_projectcalico_org_ip_pool_v1")
 
-	var model CrdProjectcalicoOrgIPPoolV1ResourceData
+	var model CrdProjectcalicoOrgIppoolV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -511,7 +511,7 @@ func (r *CrdProjectcalicoOrgIPPoolV1Resource) Update(ctx context.Context, reques
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgIPPoolV1ResourceData
+	var readResponse CrdProjectcalicoOrgIppoolV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -529,10 +529,10 @@ func (r *CrdProjectcalicoOrgIPPoolV1Resource) Update(ctx context.Context, reques
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CrdProjectcalicoOrgIPPoolV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *CrdProjectcalicoOrgIppoolV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_crd_projectcalico_org_ip_pool_v1")
 
-	var data CrdProjectcalicoOrgIPPoolV1ResourceData
+	var data CrdProjectcalicoOrgIppoolV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -552,7 +552,7 @@ func (r *CrdProjectcalicoOrgIPPoolV1Resource) Delete(ctx context.Context, reques
 	}
 }
 
-func (r *CrdProjectcalicoOrgIPPoolV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *CrdProjectcalicoOrgIppoolV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	if request.ID == "" {
 		response.Diagnostics.AddError(
 			"Error importing resource",

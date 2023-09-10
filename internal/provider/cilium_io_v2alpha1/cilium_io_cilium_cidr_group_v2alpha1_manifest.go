@@ -19,16 +19,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &CiliumIoCiliumCIDRGroupV2Alpha1Manifest{}
+	_ datasource.DataSource = &CiliumIoCiliumCidrgroupV2Alpha1Manifest{}
 )
 
-func NewCiliumIoCiliumCIDRGroupV2Alpha1Manifest() datasource.DataSource {
-	return &CiliumIoCiliumCIDRGroupV2Alpha1Manifest{}
+func NewCiliumIoCiliumCidrgroupV2Alpha1Manifest() datasource.DataSource {
+	return &CiliumIoCiliumCidrgroupV2Alpha1Manifest{}
 }
 
-type CiliumIoCiliumCIDRGroupV2Alpha1Manifest struct{}
+type CiliumIoCiliumCidrgroupV2Alpha1Manifest struct{}
 
-type CiliumIoCiliumCIDRGroupV2Alpha1ManifestData struct {
+type CiliumIoCiliumCidrgroupV2Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -46,11 +46,11 @@ type CiliumIoCiliumCIDRGroupV2Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CiliumIoCiliumCIDRGroupV2Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CiliumIoCiliumCidrgroupV2Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_cidr_group_v2alpha1_manifest"
 }
 
-func (r *CiliumIoCiliumCIDRGroupV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CiliumIoCiliumCidrgroupV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peers outside the clusters) that can be referenced as a single entity from CiliumNetworkPolicies.",
 		MarkdownDescription: "CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peers outside the clusters) that can be referenced as a single entity from CiliumNetworkPolicies.",
@@ -136,10 +136,10 @@ func (r *CiliumIoCiliumCIDRGroupV2Alpha1Manifest) Schema(_ context.Context, _ da
 	}
 }
 
-func (r *CiliumIoCiliumCIDRGroupV2Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CiliumIoCiliumCidrgroupV2Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_cilium_io_cilium_cidr_group_v2alpha1_manifest")
 
-	var model CiliumIoCiliumCIDRGroupV2Alpha1ManifestData
+	var model CiliumIoCiliumCidrgroupV2Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

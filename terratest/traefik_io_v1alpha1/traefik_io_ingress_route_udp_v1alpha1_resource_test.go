@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestTraefikIoIngressRouteUDPV1Alpha1Resource(t *testing.T) {
+func TestTraefikIoIngressRouteUdpV1Alpha1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_traefik_io_ingress_route_udp_v1alpha1"
 
 	_, err := os.Stat(path)

@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: RdsServicesK8SAwsDBParameterGroupV1Alpha1Manifest
+name: RdsServicesK8SAwsDbparameterGroupV1Alpha1Manifest
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/rds_services_k8s_aws_v1alpha1/rds_services_k8s_aws_db_parameter_group_v1alpha1_manifest_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestRdsServicesK8SAwsDBParameterGroupV1Alpha1Manifest ./terratest/rds_services_k8s_aws_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestRdsServicesK8SAwsDbparameterGroupV1Alpha1Manifest ./terratest/rds_services_k8s_aws_v1alpha1

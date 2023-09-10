@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource{}
+	_ resource.Resource                = &Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Resource{}
 )
 
-func NewApigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource() resource.Resource {
-	return &Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource{}
+func NewApigatewayv2ServicesK8SAwsVpclinkV1Alpha1Resource() resource.Resource {
+	return &Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Resource{}
 }
 
-type Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource struct {
+type Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1ResourceData struct {
+type Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -69,11 +69,11 @@ type Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_apigatewayv2_services_k8s_aws_vpc_link_v1alpha1"
 }
 
-func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "VPCLink is the Schema for the VPCLinks API",
 		MarkdownDescription: "VPCLink is the Schema for the VPCLinks API",
@@ -245,7 +245,7 @@ func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Schema(_ context.Con
 	}
 }
 
-func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -270,10 +270,10 @@ func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Configure(_ context.
 	}
 }
 
-func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_apigatewayv2_services_k8s_aws_vpc_link_v1alpha1")
 
-	var model Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1ResourceData
+	var model Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -331,7 +331,7 @@ func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Create(ctx context.C
 		return
 	}
 
-	var readResponse Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1ResourceData
+	var readResponse Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -349,10 +349,10 @@ func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Create(ctx context.C
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_apigatewayv2_services_k8s_aws_vpc_link_v1alpha1")
 
-	var data Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1ResourceData
+	var data Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -381,7 +381,7 @@ func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Read(ctx context.Con
 		return
 	}
 
-	var readResponse Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1ResourceData
+	var readResponse Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -399,10 +399,10 @@ func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Read(ctx context.Con
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_apigatewayv2_services_k8s_aws_vpc_link_v1alpha1")
 
-	var model Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1ResourceData
+	var model Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -459,7 +459,7 @@ func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Update(ctx context.C
 		return
 	}
 
-	var readResponse Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1ResourceData
+	var readResponse Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -477,10 +477,10 @@ func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Update(ctx context.C
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_apigatewayv2_services_k8s_aws_vpc_link_v1alpha1")
 
-	var data Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1ResourceData
+	var data Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -501,7 +501,7 @@ func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) Delete(ctx context.C
 	}
 }
 
-func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &MariadbMmontesIoMariaDBV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &MariadbMmontesIoMariaDBV1Alpha1DataSource{}
+	_ datasource.DataSource              = &MariadbMmontesIoMariaDbV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &MariadbMmontesIoMariaDbV1Alpha1DataSource{}
 )
 
-func NewMariadbMmontesIoMariaDBV1Alpha1DataSource() datasource.DataSource {
-	return &MariadbMmontesIoMariaDBV1Alpha1DataSource{}
+func NewMariadbMmontesIoMariaDbV1Alpha1DataSource() datasource.DataSource {
+	return &MariadbMmontesIoMariaDbV1Alpha1DataSource{}
 }
 
-type MariadbMmontesIoMariaDBV1Alpha1DataSource struct {
+type MariadbMmontesIoMariaDbV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type MariadbMmontesIoMariaDBV1Alpha1DataSourceData struct {
+type MariadbMmontesIoMariaDbV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -1729,11 +1729,11 @@ type MariadbMmontesIoMariaDBV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *MariadbMmontesIoMariaDBV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *MariadbMmontesIoMariaDbV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_mariadb_mmontes_io_maria_db_v1alpha1"
 }
 
-func (r *MariadbMmontesIoMariaDBV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *MariadbMmontesIoMariaDbV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MariaDB is the Schema for the mariadbs API",
 		MarkdownDescription: "MariaDB is the Schema for the mariadbs API",
@@ -12997,7 +12997,7 @@ func (r *MariadbMmontesIoMariaDBV1Alpha1DataSource) Schema(_ context.Context, _ 
 	}
 }
 
-func (r *MariadbMmontesIoMariaDBV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *MariadbMmontesIoMariaDbV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -13020,10 +13020,10 @@ func (r *MariadbMmontesIoMariaDBV1Alpha1DataSource) Configure(_ context.Context,
 	}
 }
 
-func (r *MariadbMmontesIoMariaDBV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *MariadbMmontesIoMariaDbV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_mariadb_mmontes_io_maria_db_v1alpha1")
 
-	var data MariadbMmontesIoMariaDBV1Alpha1DataSourceData
+	var data MariadbMmontesIoMariaDbV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -13052,7 +13052,7 @@ func (r *MariadbMmontesIoMariaDBV1Alpha1DataSource) Read(ctx context.Context, re
 		return
 	}
 
-	var readResponse MariadbMmontesIoMariaDBV1Alpha1DataSourceData
+	var readResponse MariadbMmontesIoMariaDbV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

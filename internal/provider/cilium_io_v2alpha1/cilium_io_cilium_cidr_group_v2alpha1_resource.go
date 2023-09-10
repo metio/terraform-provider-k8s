@@ -29,22 +29,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &CiliumIoCiliumCIDRGroupV2Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &CiliumIoCiliumCIDRGroupV2Alpha1Resource{}
-	_ resource.ResourceWithImportState = &CiliumIoCiliumCIDRGroupV2Alpha1Resource{}
+	_ resource.Resource                = &CiliumIoCiliumCidrgroupV2Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &CiliumIoCiliumCidrgroupV2Alpha1Resource{}
+	_ resource.ResourceWithImportState = &CiliumIoCiliumCidrgroupV2Alpha1Resource{}
 )
 
-func NewCiliumIoCiliumCIDRGroupV2Alpha1Resource() resource.Resource {
-	return &CiliumIoCiliumCIDRGroupV2Alpha1Resource{}
+func NewCiliumIoCiliumCidrgroupV2Alpha1Resource() resource.Resource {
+	return &CiliumIoCiliumCidrgroupV2Alpha1Resource{}
 }
 
-type CiliumIoCiliumCIDRGroupV2Alpha1Resource struct {
+type CiliumIoCiliumCidrgroupV2Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type CiliumIoCiliumCIDRGroupV2Alpha1ResourceData struct {
+type CiliumIoCiliumCidrgroupV2Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -64,11 +64,11 @@ type CiliumIoCiliumCIDRGroupV2Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *CiliumIoCiliumCidrgroupV2Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_cidr_group_v2alpha1"
 }
 
-func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *CiliumIoCiliumCidrgroupV2Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peers outside the clusters) that can be referenced as a single entity from CiliumNetworkPolicies.",
 		MarkdownDescription: "CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peers outside the clusters) that can be referenced as a single entity from CiliumNetworkPolicies.",
@@ -199,7 +199,7 @@ func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Schema(_ context.Context, _ re
 	}
 }
 
-func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *CiliumIoCiliumCidrgroupV2Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -224,10 +224,10 @@ func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Configure(_ context.Context, r
 	}
 }
 
-func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *CiliumIoCiliumCidrgroupV2Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_cilium_io_cilium_cidr_group_v2alpha1")
 
-	var model CiliumIoCiliumCIDRGroupV2Alpha1ResourceData
+	var model CiliumIoCiliumCidrgroupV2Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -284,7 +284,7 @@ func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Create(ctx context.Context, re
 		return
 	}
 
-	var readResponse CiliumIoCiliumCIDRGroupV2Alpha1ResourceData
+	var readResponse CiliumIoCiliumCidrgroupV2Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -302,10 +302,10 @@ func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Create(ctx context.Context, re
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *CiliumIoCiliumCidrgroupV2Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_cilium_io_cilium_cidr_group_v2alpha1")
 
-	var data CiliumIoCiliumCIDRGroupV2Alpha1ResourceData
+	var data CiliumIoCiliumCidrgroupV2Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -333,7 +333,7 @@ func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Read(ctx context.Context, requ
 		return
 	}
 
-	var readResponse CiliumIoCiliumCIDRGroupV2Alpha1ResourceData
+	var readResponse CiliumIoCiliumCidrgroupV2Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -351,10 +351,10 @@ func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Read(ctx context.Context, requ
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *CiliumIoCiliumCidrgroupV2Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_cilium_io_cilium_cidr_group_v2alpha1")
 
-	var model CiliumIoCiliumCIDRGroupV2Alpha1ResourceData
+	var model CiliumIoCiliumCidrgroupV2Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -410,7 +410,7 @@ func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Update(ctx context.Context, re
 		return
 	}
 
-	var readResponse CiliumIoCiliumCIDRGroupV2Alpha1ResourceData
+	var readResponse CiliumIoCiliumCidrgroupV2Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -428,10 +428,10 @@ func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Update(ctx context.Context, re
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *CiliumIoCiliumCidrgroupV2Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_cilium_io_cilium_cidr_group_v2alpha1")
 
-	var data CiliumIoCiliumCIDRGroupV2Alpha1ResourceData
+	var data CiliumIoCiliumCidrgroupV2Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -451,7 +451,7 @@ func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) Delete(ctx context.Context, re
 	}
 }
 
-func (r *CiliumIoCiliumCIDRGroupV2Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *CiliumIoCiliumCidrgroupV2Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	if request.ID == "" {
 		response.Diagnostics.AddError(
 			"Error importing resource",

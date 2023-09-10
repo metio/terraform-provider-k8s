@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: MariadbMmontesIoMariaDBV1Alpha1Resource
+name: MariadbMmontesIoMariaDbV1Alpha1Resource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/mariadb_mmontes_io_v1alpha1/mariadb_mmontes_io_maria_db_v1alpha1_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestMariadbMmontesIoMariaDBV1Alpha1Resource ./terratest/mariadb_mmontes_io_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestMariadbMmontesIoMariaDbV1Alpha1Resource ./terratest/mariadb_mmontes_io_v1alpha1

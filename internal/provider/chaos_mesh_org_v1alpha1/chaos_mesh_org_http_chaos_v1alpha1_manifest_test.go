@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestChaosMeshOrgHTTPChaosV1Alpha1Manifest_ValidateSchema(t *testing.T) {
+func TestChaosMeshOrgHttpchaosV1Alpha1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	chaos_mesh_org_v1alpha1.NewChaosMeshOrgHTTPChaosV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	chaos_mesh_org_v1alpha1.NewChaosMeshOrgHttpchaosV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

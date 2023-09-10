@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &GraphqlGlooSoloIoGraphQLApiV1Beta1DataSource{}
-	_ datasource.DataSourceWithConfigure = &GraphqlGlooSoloIoGraphQLApiV1Beta1DataSource{}
+	_ datasource.DataSource              = &GraphqlGlooSoloIoGraphQlapiV1Beta1DataSource{}
+	_ datasource.DataSourceWithConfigure = &GraphqlGlooSoloIoGraphQlapiV1Beta1DataSource{}
 )
 
-func NewGraphqlGlooSoloIoGraphQLApiV1Beta1DataSource() datasource.DataSource {
-	return &GraphqlGlooSoloIoGraphQLApiV1Beta1DataSource{}
+func NewGraphqlGlooSoloIoGraphQlapiV1Beta1DataSource() datasource.DataSource {
+	return &GraphqlGlooSoloIoGraphQlapiV1Beta1DataSource{}
 }
 
-type GraphqlGlooSoloIoGraphQLApiV1Beta1DataSource struct {
+type GraphqlGlooSoloIoGraphQlapiV1Beta1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type GraphqlGlooSoloIoGraphQLApiV1Beta1DataSourceData struct {
+type GraphqlGlooSoloIoGraphQlapiV1Beta1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -147,11 +147,11 @@ type GraphqlGlooSoloIoGraphQLApiV1Beta1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *GraphqlGlooSoloIoGraphQLApiV1Beta1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *GraphqlGlooSoloIoGraphQlapiV1Beta1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_graphql_gloo_solo_io_graph_ql_api_v1beta1"
 }
 
-func (r *GraphqlGlooSoloIoGraphQLApiV1Beta1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *GraphqlGlooSoloIoGraphQlapiV1Beta1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -820,7 +820,7 @@ func (r *GraphqlGlooSoloIoGraphQLApiV1Beta1DataSource) Schema(_ context.Context,
 	}
 }
 
-func (r *GraphqlGlooSoloIoGraphQLApiV1Beta1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *GraphqlGlooSoloIoGraphQlapiV1Beta1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -843,10 +843,10 @@ func (r *GraphqlGlooSoloIoGraphQLApiV1Beta1DataSource) Configure(_ context.Conte
 	}
 }
 
-func (r *GraphqlGlooSoloIoGraphQLApiV1Beta1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *GraphqlGlooSoloIoGraphQlapiV1Beta1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_graphql_gloo_solo_io_graph_ql_api_v1beta1")
 
-	var data GraphqlGlooSoloIoGraphQLApiV1Beta1DataSourceData
+	var data GraphqlGlooSoloIoGraphQlapiV1Beta1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -875,7 +875,7 @@ func (r *GraphqlGlooSoloIoGraphQLApiV1Beta1DataSource) Read(ctx context.Context,
 		return
 	}
 
-	var readResponse GraphqlGlooSoloIoGraphQLApiV1Beta1DataSourceData
+	var readResponse GraphqlGlooSoloIoGraphQlapiV1Beta1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

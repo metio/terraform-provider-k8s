@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &GetambassadorIoTCPMappingV1Manifest{}
+	_ datasource.DataSource = &GetambassadorIoTcpmappingV1Manifest{}
 )
 
-func NewGetambassadorIoTCPMappingV1Manifest() datasource.DataSource {
-	return &GetambassadorIoTCPMappingV1Manifest{}
+func NewGetambassadorIoTcpmappingV1Manifest() datasource.DataSource {
+	return &GetambassadorIoTcpmappingV1Manifest{}
 }
 
-type GetambassadorIoTCPMappingV1Manifest struct{}
+type GetambassadorIoTcpmappingV1Manifest struct{}
 
-type GetambassadorIoTCPMappingV1ManifestData struct {
+type GetambassadorIoTcpmappingV1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -67,11 +67,11 @@ type GetambassadorIoTCPMappingV1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *GetambassadorIoTCPMappingV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *GetambassadorIoTcpmappingV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_getambassador_io_tcp_mapping_v1_manifest"
 }
 
-func (r *GetambassadorIoTCPMappingV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *GetambassadorIoTcpmappingV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TCPMapping is the Schema for the tcpmappings API",
 		MarkdownDescription: "TCPMapping is the Schema for the tcpmappings API",
@@ -319,10 +319,10 @@ func (r *GetambassadorIoTCPMappingV1Manifest) Schema(_ context.Context, _ dataso
 	}
 }
 
-func (r *GetambassadorIoTCPMappingV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *GetambassadorIoTcpmappingV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_getambassador_io_tcp_mapping_v1_manifest")
 
-	var model GetambassadorIoTCPMappingV1ManifestData
+	var model GetambassadorIoTcpmappingV1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

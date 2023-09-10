@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &TraefikIoServersTransportTCPV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &TraefikIoServersTransportTCPV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &TraefikIoServersTransportTCPV1Alpha1Resource{}
+	_ resource.Resource                = &TraefikIoServersTransportTcpV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &TraefikIoServersTransportTcpV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &TraefikIoServersTransportTcpV1Alpha1Resource{}
 )
 
-func NewTraefikIoServersTransportTCPV1Alpha1Resource() resource.Resource {
-	return &TraefikIoServersTransportTCPV1Alpha1Resource{}
+func NewTraefikIoServersTransportTcpV1Alpha1Resource() resource.Resource {
+	return &TraefikIoServersTransportTcpV1Alpha1Resource{}
 }
 
-type TraefikIoServersTransportTCPV1Alpha1Resource struct {
+type TraefikIoServersTransportTcpV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type TraefikIoServersTransportTCPV1Alpha1ResourceData struct {
+type TraefikIoServersTransportTcpV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -79,11 +79,11 @@ type TraefikIoServersTransportTCPV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *TraefikIoServersTransportTcpV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_traefik_io_servers_transport_tcp_v1alpha1"
 }
 
-func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *TraefikIoServersTransportTcpV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ServersTransportTCP is the CRD implementation of a TCPServersTransport. If no tcpServersTransport is specified, a default one named default@internal will be used. The default@internal tcpServersTransport can be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#serverstransport_3",
 		MarkdownDescription: "ServersTransportTCP is the CRD implementation of a TCPServersTransport. If no tcpServersTransport is specified, a default one named default@internal will be used. The default@internal tcpServersTransport can be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#serverstransport_3",
@@ -321,7 +321,7 @@ func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Schema(_ context.Context,
 	}
 }
 
-func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *TraefikIoServersTransportTcpV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -346,10 +346,10 @@ func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Configure(_ context.Conte
 	}
 }
 
-func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *TraefikIoServersTransportTcpV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_traefik_io_servers_transport_tcp_v1alpha1")
 
-	var model TraefikIoServersTransportTCPV1Alpha1ResourceData
+	var model TraefikIoServersTransportTcpV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -407,7 +407,7 @@ func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Create(ctx context.Contex
 		return
 	}
 
-	var readResponse TraefikIoServersTransportTCPV1Alpha1ResourceData
+	var readResponse TraefikIoServersTransportTcpV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -425,10 +425,10 @@ func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Create(ctx context.Contex
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *TraefikIoServersTransportTcpV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_traefik_io_servers_transport_tcp_v1alpha1")
 
-	var data TraefikIoServersTransportTCPV1Alpha1ResourceData
+	var data TraefikIoServersTransportTcpV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -457,7 +457,7 @@ func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Read(ctx context.Context,
 		return
 	}
 
-	var readResponse TraefikIoServersTransportTCPV1Alpha1ResourceData
+	var readResponse TraefikIoServersTransportTcpV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -475,10 +475,10 @@ func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Read(ctx context.Context,
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *TraefikIoServersTransportTcpV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_traefik_io_servers_transport_tcp_v1alpha1")
 
-	var model TraefikIoServersTransportTCPV1Alpha1ResourceData
+	var model TraefikIoServersTransportTcpV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -535,7 +535,7 @@ func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Update(ctx context.Contex
 		return
 	}
 
-	var readResponse TraefikIoServersTransportTCPV1Alpha1ResourceData
+	var readResponse TraefikIoServersTransportTcpV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -553,10 +553,10 @@ func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Update(ctx context.Contex
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *TraefikIoServersTransportTcpV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_traefik_io_servers_transport_tcp_v1alpha1")
 
-	var data TraefikIoServersTransportTCPV1Alpha1ResourceData
+	var data TraefikIoServersTransportTcpV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -577,7 +577,7 @@ func (r *TraefikIoServersTransportTCPV1Alpha1Resource) Delete(ctx context.Contex
 	}
 }
 
-func (r *TraefikIoServersTransportTCPV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *TraefikIoServersTransportTcpV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

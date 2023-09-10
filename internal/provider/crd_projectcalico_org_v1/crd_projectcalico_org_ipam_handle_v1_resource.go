@@ -29,22 +29,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &CrdProjectcalicoOrgIPAMHandleV1Resource{}
-	_ resource.ResourceWithConfigure   = &CrdProjectcalicoOrgIPAMHandleV1Resource{}
-	_ resource.ResourceWithImportState = &CrdProjectcalicoOrgIPAMHandleV1Resource{}
+	_ resource.Resource                = &CrdProjectcalicoOrgIpamhandleV1Resource{}
+	_ resource.ResourceWithConfigure   = &CrdProjectcalicoOrgIpamhandleV1Resource{}
+	_ resource.ResourceWithImportState = &CrdProjectcalicoOrgIpamhandleV1Resource{}
 )
 
-func NewCrdProjectcalicoOrgIPAMHandleV1Resource() resource.Resource {
-	return &CrdProjectcalicoOrgIPAMHandleV1Resource{}
+func NewCrdProjectcalicoOrgIpamhandleV1Resource() resource.Resource {
+	return &CrdProjectcalicoOrgIpamhandleV1Resource{}
 }
 
-type CrdProjectcalicoOrgIPAMHandleV1Resource struct {
+type CrdProjectcalicoOrgIpamhandleV1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type CrdProjectcalicoOrgIPAMHandleV1ResourceData struct {
+type CrdProjectcalicoOrgIpamhandleV1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -66,11 +66,11 @@ type CrdProjectcalicoOrgIPAMHandleV1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *CrdProjectcalicoOrgIpamhandleV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_crd_projectcalico_org_ipam_handle_v1"
 }
 
-func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *CrdProjectcalicoOrgIpamhandleV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -217,7 +217,7 @@ func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Schema(_ context.Context, _ re
 	}
 }
 
-func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *CrdProjectcalicoOrgIpamhandleV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -242,10 +242,10 @@ func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Configure(_ context.Context, r
 	}
 }
 
-func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *CrdProjectcalicoOrgIpamhandleV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_crd_projectcalico_org_ipam_handle_v1")
 
-	var model CrdProjectcalicoOrgIPAMHandleV1ResourceData
+	var model CrdProjectcalicoOrgIpamhandleV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -302,7 +302,7 @@ func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Create(ctx context.Context, re
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgIPAMHandleV1ResourceData
+	var readResponse CrdProjectcalicoOrgIpamhandleV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -320,10 +320,10 @@ func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Create(ctx context.Context, re
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *CrdProjectcalicoOrgIpamhandleV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_crd_projectcalico_org_ipam_handle_v1")
 
-	var data CrdProjectcalicoOrgIPAMHandleV1ResourceData
+	var data CrdProjectcalicoOrgIpamhandleV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -351,7 +351,7 @@ func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Read(ctx context.Context, requ
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgIPAMHandleV1ResourceData
+	var readResponse CrdProjectcalicoOrgIpamhandleV1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -369,10 +369,10 @@ func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Read(ctx context.Context, requ
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *CrdProjectcalicoOrgIpamhandleV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_crd_projectcalico_org_ipam_handle_v1")
 
-	var model CrdProjectcalicoOrgIPAMHandleV1ResourceData
+	var model CrdProjectcalicoOrgIpamhandleV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -428,7 +428,7 @@ func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Update(ctx context.Context, re
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgIPAMHandleV1ResourceData
+	var readResponse CrdProjectcalicoOrgIpamhandleV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -446,10 +446,10 @@ func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Update(ctx context.Context, re
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *CrdProjectcalicoOrgIpamhandleV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_crd_projectcalico_org_ipam_handle_v1")
 
-	var data CrdProjectcalicoOrgIPAMHandleV1ResourceData
+	var data CrdProjectcalicoOrgIpamhandleV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -469,7 +469,7 @@ func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) Delete(ctx context.Context, re
 	}
 }
 
-func (r *CrdProjectcalicoOrgIPAMHandleV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *CrdProjectcalicoOrgIpamhandleV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	if request.ID == "" {
 		response.Diagnostics.AddError(
 			"Error importing resource",

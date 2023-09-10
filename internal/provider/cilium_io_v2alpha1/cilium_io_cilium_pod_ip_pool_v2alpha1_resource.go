@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &CiliumIoCiliumPodIPPoolV2Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &CiliumIoCiliumPodIPPoolV2Alpha1Resource{}
-	_ resource.ResourceWithImportState = &CiliumIoCiliumPodIPPoolV2Alpha1Resource{}
+	_ resource.Resource                = &CiliumIoCiliumPodIppoolV2Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &CiliumIoCiliumPodIppoolV2Alpha1Resource{}
+	_ resource.ResourceWithImportState = &CiliumIoCiliumPodIppoolV2Alpha1Resource{}
 )
 
-func NewCiliumIoCiliumPodIPPoolV2Alpha1Resource() resource.Resource {
-	return &CiliumIoCiliumPodIPPoolV2Alpha1Resource{}
+func NewCiliumIoCiliumPodIppoolV2Alpha1Resource() resource.Resource {
+	return &CiliumIoCiliumPodIppoolV2Alpha1Resource{}
 }
 
-type CiliumIoCiliumPodIPPoolV2Alpha1Resource struct {
+type CiliumIoCiliumPodIppoolV2Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type CiliumIoCiliumPodIPPoolV2Alpha1ResourceData struct {
+type CiliumIoCiliumPodIppoolV2Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -72,11 +72,11 @@ type CiliumIoCiliumPodIPPoolV2Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *CiliumIoCiliumPodIppoolV2Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_pod_ip_pool_v2alpha1"
 }
 
-func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *CiliumIoCiliumPodIppoolV2Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumPodIPPool defines an IP pool that can be used for pooled IPAM (i.e. the multi-pool IPAM mode).",
 		MarkdownDescription: "CiliumPodIPPool defines an IP pool that can be used for pooled IPAM (i.e. the multi-pool IPAM mode).",
@@ -258,7 +258,7 @@ func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Schema(_ context.Context, _ re
 	}
 }
 
-func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *CiliumIoCiliumPodIppoolV2Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -283,10 +283,10 @@ func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Configure(_ context.Context, r
 	}
 }
 
-func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *CiliumIoCiliumPodIppoolV2Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_cilium_io_cilium_pod_ip_pool_v2alpha1")
 
-	var model CiliumIoCiliumPodIPPoolV2Alpha1ResourceData
+	var model CiliumIoCiliumPodIppoolV2Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -343,7 +343,7 @@ func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Create(ctx context.Context, re
 		return
 	}
 
-	var readResponse CiliumIoCiliumPodIPPoolV2Alpha1ResourceData
+	var readResponse CiliumIoCiliumPodIppoolV2Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -361,10 +361,10 @@ func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Create(ctx context.Context, re
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *CiliumIoCiliumPodIppoolV2Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_cilium_io_cilium_pod_ip_pool_v2alpha1")
 
-	var data CiliumIoCiliumPodIPPoolV2Alpha1ResourceData
+	var data CiliumIoCiliumPodIppoolV2Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -392,7 +392,7 @@ func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Read(ctx context.Context, requ
 		return
 	}
 
-	var readResponse CiliumIoCiliumPodIPPoolV2Alpha1ResourceData
+	var readResponse CiliumIoCiliumPodIppoolV2Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -410,10 +410,10 @@ func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Read(ctx context.Context, requ
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *CiliumIoCiliumPodIppoolV2Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_cilium_io_cilium_pod_ip_pool_v2alpha1")
 
-	var model CiliumIoCiliumPodIPPoolV2Alpha1ResourceData
+	var model CiliumIoCiliumPodIppoolV2Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -469,7 +469,7 @@ func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Update(ctx context.Context, re
 		return
 	}
 
-	var readResponse CiliumIoCiliumPodIPPoolV2Alpha1ResourceData
+	var readResponse CiliumIoCiliumPodIppoolV2Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -487,10 +487,10 @@ func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Update(ctx context.Context, re
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *CiliumIoCiliumPodIppoolV2Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_cilium_io_cilium_pod_ip_pool_v2alpha1")
 
-	var data CiliumIoCiliumPodIPPoolV2Alpha1ResourceData
+	var data CiliumIoCiliumPodIppoolV2Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -510,7 +510,7 @@ func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) Delete(ctx context.Context, re
 	}
 }
 
-func (r *CiliumIoCiliumPodIPPoolV2Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *CiliumIoCiliumPodIppoolV2Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	if request.ID == "" {
 		response.Diagnostics.AddError(
 			"Error importing resource",

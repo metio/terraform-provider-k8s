@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestSloKoordinatorShNodeSLOV1Alpha1DataSource_ValidateSchema(t *testing.T) {
+func TestSloKoordinatorShNodeSloV1Alpha1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	slo_koordinator_sh_v1alpha1.NewSloKoordinatorShNodeSLOV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	slo_koordinator_sh_v1alpha1.NewSloKoordinatorShNodeSloV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestSloKoordinatorShNodeSLOV1Alpha1DataSource_ValidateSchema(t *testing.T) 
 	}
 }
 
-func TestSloKoordinatorShNodeSLOV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
+func TestSloKoordinatorShNodeSloV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -58,7 +58,7 @@ func TestSloKoordinatorShNodeSLOV1Alpha1DataSource_ConfigurationErrors(t *testin
 	}
 }
 
-func TestSloKoordinatorShNodeSLOV1Alpha1DataSource_OfflineUsage(t *testing.T) {
+func TestSloKoordinatorShNodeSloV1Alpha1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

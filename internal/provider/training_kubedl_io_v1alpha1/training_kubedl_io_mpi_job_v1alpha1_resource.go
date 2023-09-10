@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &TrainingKubedlIoMPIJobV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &TrainingKubedlIoMPIJobV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &TrainingKubedlIoMPIJobV1Alpha1Resource{}
+	_ resource.Resource                = &TrainingKubedlIoMpijobV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &TrainingKubedlIoMpijobV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &TrainingKubedlIoMpijobV1Alpha1Resource{}
 )
 
-func NewTrainingKubedlIoMPIJobV1Alpha1Resource() resource.Resource {
-	return &TrainingKubedlIoMPIJobV1Alpha1Resource{}
+func NewTrainingKubedlIoMpijobV1Alpha1Resource() resource.Resource {
+	return &TrainingKubedlIoMpijobV1Alpha1Resource{}
 }
 
-type TrainingKubedlIoMPIJobV1Alpha1Resource struct {
+type TrainingKubedlIoMpijobV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type TrainingKubedlIoMPIJobV1Alpha1ResourceData struct {
+type TrainingKubedlIoMpijobV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -2450,11 +2450,11 @@ type TrainingKubedlIoMPIJobV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *TrainingKubedlIoMpijobV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_training_kubedl_io_mpi_job_v1alpha1"
 }
 
-func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *TrainingKubedlIoMpijobV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -18609,7 +18609,7 @@ func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Schema(_ context.Context, _ res
 	}
 }
 
-func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *TrainingKubedlIoMpijobV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -18634,10 +18634,10 @@ func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Configure(_ context.Context, re
 	}
 }
 
-func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *TrainingKubedlIoMpijobV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_training_kubedl_io_mpi_job_v1alpha1")
 
-	var model TrainingKubedlIoMPIJobV1Alpha1ResourceData
+	var model TrainingKubedlIoMpijobV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -18695,7 +18695,7 @@ func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Create(ctx context.Context, req
 		return
 	}
 
-	var readResponse TrainingKubedlIoMPIJobV1Alpha1ResourceData
+	var readResponse TrainingKubedlIoMpijobV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -18713,10 +18713,10 @@ func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Create(ctx context.Context, req
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *TrainingKubedlIoMpijobV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_training_kubedl_io_mpi_job_v1alpha1")
 
-	var data TrainingKubedlIoMPIJobV1Alpha1ResourceData
+	var data TrainingKubedlIoMpijobV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -18745,7 +18745,7 @@ func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Read(ctx context.Context, reque
 		return
 	}
 
-	var readResponse TrainingKubedlIoMPIJobV1Alpha1ResourceData
+	var readResponse TrainingKubedlIoMpijobV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -18763,10 +18763,10 @@ func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Read(ctx context.Context, reque
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *TrainingKubedlIoMpijobV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_training_kubedl_io_mpi_job_v1alpha1")
 
-	var model TrainingKubedlIoMPIJobV1Alpha1ResourceData
+	var model TrainingKubedlIoMpijobV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -18823,7 +18823,7 @@ func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Update(ctx context.Context, req
 		return
 	}
 
-	var readResponse TrainingKubedlIoMPIJobV1Alpha1ResourceData
+	var readResponse TrainingKubedlIoMpijobV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -18841,10 +18841,10 @@ func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Update(ctx context.Context, req
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *TrainingKubedlIoMpijobV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_training_kubedl_io_mpi_job_v1alpha1")
 
-	var data TrainingKubedlIoMPIJobV1Alpha1ResourceData
+	var data TrainingKubedlIoMpijobV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -18865,7 +18865,7 @@ func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) Delete(ctx context.Context, req
 	}
 }
 
-func (r *TrainingKubedlIoMPIJobV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *TrainingKubedlIoMpijobV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

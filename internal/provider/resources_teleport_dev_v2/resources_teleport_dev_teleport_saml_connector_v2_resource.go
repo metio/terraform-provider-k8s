@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &ResourcesTeleportDevTeleportSAMLConnectorV2Resource{}
-	_ resource.ResourceWithConfigure   = &ResourcesTeleportDevTeleportSAMLConnectorV2Resource{}
-	_ resource.ResourceWithImportState = &ResourcesTeleportDevTeleportSAMLConnectorV2Resource{}
+	_ resource.Resource                = &ResourcesTeleportDevTeleportSamlconnectorV2Resource{}
+	_ resource.ResourceWithConfigure   = &ResourcesTeleportDevTeleportSamlconnectorV2Resource{}
+	_ resource.ResourceWithImportState = &ResourcesTeleportDevTeleportSamlconnectorV2Resource{}
 )
 
-func NewResourcesTeleportDevTeleportSAMLConnectorV2Resource() resource.Resource {
-	return &ResourcesTeleportDevTeleportSAMLConnectorV2Resource{}
+func NewResourcesTeleportDevTeleportSamlconnectorV2Resource() resource.Resource {
+	return &ResourcesTeleportDevTeleportSamlconnectorV2Resource{}
 }
 
-type ResourcesTeleportDevTeleportSAMLConnectorV2Resource struct {
+type ResourcesTeleportDevTeleportSamlconnectorV2Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type ResourcesTeleportDevTeleportSAMLConnectorV2ResourceData struct {
+type ResourcesTeleportDevTeleportSamlconnectorV2ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -89,11 +89,11 @@ type ResourcesTeleportDevTeleportSAMLConnectorV2ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *ResourcesTeleportDevTeleportSamlconnectorV2Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_resources_teleport_dev_teleport_saml_connector_v2"
 }
 
-func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *ResourcesTeleportDevTeleportSamlconnectorV2Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SAMLConnector is the Schema for the samlconnectors API",
 		MarkdownDescription: "SAMLConnector is the Schema for the samlconnectors API",
@@ -404,7 +404,7 @@ func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Schema(_ context.C
 	}
 }
 
-func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *ResourcesTeleportDevTeleportSamlconnectorV2Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -429,10 +429,10 @@ func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Configure(_ contex
 	}
 }
 
-func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *ResourcesTeleportDevTeleportSamlconnectorV2Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_resources_teleport_dev_teleport_saml_connector_v2")
 
-	var model ResourcesTeleportDevTeleportSAMLConnectorV2ResourceData
+	var model ResourcesTeleportDevTeleportSamlconnectorV2ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -490,7 +490,7 @@ func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Create(ctx context
 		return
 	}
 
-	var readResponse ResourcesTeleportDevTeleportSAMLConnectorV2ResourceData
+	var readResponse ResourcesTeleportDevTeleportSamlconnectorV2ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -508,10 +508,10 @@ func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Create(ctx context
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *ResourcesTeleportDevTeleportSamlconnectorV2Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_resources_teleport_dev_teleport_saml_connector_v2")
 
-	var data ResourcesTeleportDevTeleportSAMLConnectorV2ResourceData
+	var data ResourcesTeleportDevTeleportSamlconnectorV2ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -540,7 +540,7 @@ func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Read(ctx context.C
 		return
 	}
 
-	var readResponse ResourcesTeleportDevTeleportSAMLConnectorV2ResourceData
+	var readResponse ResourcesTeleportDevTeleportSamlconnectorV2ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -558,10 +558,10 @@ func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Read(ctx context.C
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *ResourcesTeleportDevTeleportSamlconnectorV2Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_resources_teleport_dev_teleport_saml_connector_v2")
 
-	var model ResourcesTeleportDevTeleportSAMLConnectorV2ResourceData
+	var model ResourcesTeleportDevTeleportSamlconnectorV2ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -618,7 +618,7 @@ func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Update(ctx context
 		return
 	}
 
-	var readResponse ResourcesTeleportDevTeleportSAMLConnectorV2ResourceData
+	var readResponse ResourcesTeleportDevTeleportSamlconnectorV2ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -636,10 +636,10 @@ func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Update(ctx context
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *ResourcesTeleportDevTeleportSamlconnectorV2Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_resources_teleport_dev_teleport_saml_connector_v2")
 
-	var data ResourcesTeleportDevTeleportSAMLConnectorV2ResourceData
+	var data ResourcesTeleportDevTeleportSamlconnectorV2ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -660,7 +660,7 @@ func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) Delete(ctx context
 	}
 }
 
-func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *ResourcesTeleportDevTeleportSamlconnectorV2Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

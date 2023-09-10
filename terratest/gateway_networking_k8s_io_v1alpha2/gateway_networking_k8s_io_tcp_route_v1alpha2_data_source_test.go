@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestGatewayNetworkingK8SIoTCPRouteV1Alpha2DataSource(t *testing.T) {
+func TestGatewayNetworkingK8SIoTcprouteV1Alpha2DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_gateway_networking_k8s_io_tcp_route_v1alpha2"
 
 	_, err := os.Stat(path)

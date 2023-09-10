@@ -25,16 +25,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &ApicodegenApimaticIoAPIMaticV1Beta1Manifest{}
+	_ datasource.DataSource = &ApicodegenApimaticIoApimaticV1Beta1Manifest{}
 )
 
-func NewApicodegenApimaticIoAPIMaticV1Beta1Manifest() datasource.DataSource {
-	return &ApicodegenApimaticIoAPIMaticV1Beta1Manifest{}
+func NewApicodegenApimaticIoApimaticV1Beta1Manifest() datasource.DataSource {
+	return &ApicodegenApimaticIoApimaticV1Beta1Manifest{}
 }
 
-type ApicodegenApimaticIoAPIMaticV1Beta1Manifest struct{}
+type ApicodegenApimaticIoApimaticV1Beta1Manifest struct{}
 
-type ApicodegenApimaticIoAPIMaticV1Beta1ManifestData struct {
+type ApicodegenApimaticIoApimaticV1Beta1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -237,11 +237,11 @@ type ApicodegenApimaticIoAPIMaticV1Beta1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ApicodegenApimaticIoAPIMaticV1Beta1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *ApicodegenApimaticIoApimaticV1Beta1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_apicodegen_apimatic_io_api_matic_v1beta1_manifest"
 }
 
-func (r *ApicodegenApimaticIoAPIMaticV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *ApicodegenApimaticIoApimaticV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APIMatic is the Schema for the apimatics API",
 		MarkdownDescription: "APIMatic is the Schema for the apimatics API",
@@ -1671,10 +1671,10 @@ func (r *ApicodegenApimaticIoAPIMaticV1Beta1Manifest) Schema(_ context.Context, 
 	}
 }
 
-func (r *ApicodegenApimaticIoAPIMaticV1Beta1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *ApicodegenApimaticIoApimaticV1Beta1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_apicodegen_apimatic_io_api_matic_v1beta1_manifest")
 
-	var model ApicodegenApimaticIoAPIMaticV1Beta1ManifestData
+	var model ApicodegenApimaticIoApimaticV1Beta1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &Metal3IoBMCEventSubscriptionV1Alpha1Manifest{}
+	_ datasource.DataSource = &Metal3IoBmceventSubscriptionV1Alpha1Manifest{}
 )
 
-func NewMetal3IoBMCEventSubscriptionV1Alpha1Manifest() datasource.DataSource {
-	return &Metal3IoBMCEventSubscriptionV1Alpha1Manifest{}
+func NewMetal3IoBmceventSubscriptionV1Alpha1Manifest() datasource.DataSource {
+	return &Metal3IoBmceventSubscriptionV1Alpha1Manifest{}
 }
 
-type Metal3IoBMCEventSubscriptionV1Alpha1Manifest struct{}
+type Metal3IoBmceventSubscriptionV1Alpha1Manifest struct{}
 
-type Metal3IoBMCEventSubscriptionV1Alpha1ManifestData struct {
+type Metal3IoBmceventSubscriptionV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -54,11 +54,11 @@ type Metal3IoBMCEventSubscriptionV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *Metal3IoBMCEventSubscriptionV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *Metal3IoBmceventSubscriptionV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_metal3_io_bmc_event_subscription_v1alpha1_manifest"
 }
 
-func (r *Metal3IoBMCEventSubscriptionV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *Metal3IoBmceventSubscriptionV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "BMCEventSubscription is the Schema for the fast eventing API",
 		MarkdownDescription: "BMCEventSubscription is the Schema for the fast eventing API",
@@ -196,10 +196,10 @@ func (r *Metal3IoBMCEventSubscriptionV1Alpha1Manifest) Schema(_ context.Context,
 	}
 }
 
-func (r *Metal3IoBMCEventSubscriptionV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *Metal3IoBmceventSubscriptionV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_metal3_io_bmc_event_subscription_v1alpha1_manifest")
 
-	var model Metal3IoBMCEventSubscriptionV1Alpha1ManifestData
+	var model Metal3IoBmceventSubscriptionV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

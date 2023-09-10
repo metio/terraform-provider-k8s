@@ -79,9 +79,10 @@ type TestsTestkubeIoTestV3ManifestData struct {
 				StorageClassName       *string   `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
 				VolumeMountPath        *string   `tfsdk:"volume_mount_path" json:"volumeMountPath,omitempty"`
 			} `tfsdk:"artifact_request" json:"artifactRequest,omitempty"`
-			Command         *[]string `tfsdk:"command" json:"command,omitempty"`
-			CronJobTemplate *string   `tfsdk:"cron_job_template" json:"cronJobTemplate,omitempty"`
-			EnvConfigMaps   *[]struct {
+			Command                  *[]string `tfsdk:"command" json:"command,omitempty"`
+			CronJobTemplate          *string   `tfsdk:"cron_job_template" json:"cronJobTemplate,omitempty"`
+			CronJobTemplateReference *string   `tfsdk:"cron_job_template_reference" json:"cronJobTemplateReference,omitempty"`
+			EnvConfigMaps            *[]struct {
 				MapToVariables *bool   `tfsdk:"map_to_variables" json:"mapToVariables,omitempty"`
 				Mount          *bool   `tfsdk:"mount" json:"mount,omitempty"`
 				MountPath      *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
@@ -105,21 +106,25 @@ type TestsTestkubeIoTestV3ManifestData struct {
 			ImagePullSecrets *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
-			IsVariablesFileUploaded *bool              `tfsdk:"is_variables_file_uploaded" json:"isVariablesFileUploaded,omitempty"`
-			JobTemplate             *string            `tfsdk:"job_template" json:"jobTemplate,omitempty"`
-			Name                    *string            `tfsdk:"name" json:"name,omitempty"`
-			Namespace               *string            `tfsdk:"namespace" json:"namespace,omitempty"`
-			NegativeTest            *bool              `tfsdk:"negative_test" json:"negativeTest,omitempty"`
-			Number                  *int64             `tfsdk:"number" json:"number,omitempty"`
-			PostRunScript           *string            `tfsdk:"post_run_script" json:"postRunScript,omitempty"`
-			PreRunScript            *string            `tfsdk:"pre_run_script" json:"preRunScript,omitempty"`
-			ScraperTemplate         *string            `tfsdk:"scraper_template" json:"scraperTemplate,omitempty"`
-			SecretEnvs              *map[string]string `tfsdk:"secret_envs" json:"secretEnvs,omitempty"`
-			Sync                    *bool              `tfsdk:"sync" json:"sync,omitempty"`
-			TestSecretUUID          *string            `tfsdk:"test_secret_uuid" json:"testSecretUUID,omitempty"`
-			TestSuiteName           *string            `tfsdk:"test_suite_name" json:"testSuiteName,omitempty"`
-			TestSuiteSecretUUID     *string            `tfsdk:"test_suite_secret_uuid" json:"testSuiteSecretUUID,omitempty"`
-			Variables               *struct {
+			IsVariablesFileUploaded  *bool              `tfsdk:"is_variables_file_uploaded" json:"isVariablesFileUploaded,omitempty"`
+			JobTemplate              *string            `tfsdk:"job_template" json:"jobTemplate,omitempty"`
+			JobTemplateReference     *string            `tfsdk:"job_template_reference" json:"jobTemplateReference,omitempty"`
+			Name                     *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace                *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			NegativeTest             *bool              `tfsdk:"negative_test" json:"negativeTest,omitempty"`
+			Number                   *int64             `tfsdk:"number" json:"number,omitempty"`
+			PostRunScript            *string            `tfsdk:"post_run_script" json:"postRunScript,omitempty"`
+			PreRunScript             *string            `tfsdk:"pre_run_script" json:"preRunScript,omitempty"`
+			PvcTemplate              *string            `tfsdk:"pvc_template" json:"pvcTemplate,omitempty"`
+			PvcTemplateReference     *string            `tfsdk:"pvc_template_reference" json:"pvcTemplateReference,omitempty"`
+			ScraperTemplate          *string            `tfsdk:"scraper_template" json:"scraperTemplate,omitempty"`
+			ScraperTemplateReference *string            `tfsdk:"scraper_template_reference" json:"scraperTemplateReference,omitempty"`
+			SecretEnvs               *map[string]string `tfsdk:"secret_envs" json:"secretEnvs,omitempty"`
+			Sync                     *bool              `tfsdk:"sync" json:"sync,omitempty"`
+			TestSecretUUID           *string            `tfsdk:"test_secret_uuid" json:"testSecretUUID,omitempty"`
+			TestSuiteName            *string            `tfsdk:"test_suite_name" json:"testSuiteName,omitempty"`
+			TestSuiteSecretUUID      *string            `tfsdk:"test_suite_secret_uuid" json:"testSuiteSecretUUID,omitempty"`
+			Variables                *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Type      *string `tfsdk:"type" json:"type,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -509,6 +514,14 @@ func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.S
 								Computed:            false,
 							},
 
+							"cron_job_template_reference": schema.StringAttribute{
+								Description:         "name of the template resource",
+								MarkdownDescription: "name of the template resource",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"env_config_maps": schema.ListNestedAttribute{
 								Description:         "config map references",
 								MarkdownDescription: "config map references",
@@ -690,6 +703,14 @@ func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.S
 								Computed:            false,
 							},
 
+							"job_template_reference": schema.StringAttribute{
+								Description:         "name of the template resource",
+								MarkdownDescription: "name of the template resource",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"name": schema.StringAttribute{
 								Description:         "test execution custom name",
 								MarkdownDescription: "test execution custom name",
@@ -738,9 +759,33 @@ func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.S
 								Computed:            false,
 							},
 
+							"pvc_template": schema.StringAttribute{
+								Description:         "pvc template extensions",
+								MarkdownDescription: "pvc template extensions",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"pvc_template_reference": schema.StringAttribute{
+								Description:         "name of the template resource",
+								MarkdownDescription: "name of the template resource",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"scraper_template": schema.StringAttribute{
 								Description:         "scraper template extensions",
 								MarkdownDescription: "scraper template extensions",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"scraper_template_reference": schema.StringAttribute{
+								Description:         "name of the template resource",
+								MarkdownDescription: "name of the template resource",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

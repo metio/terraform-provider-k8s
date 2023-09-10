@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestCephRookIoCephRBDMirrorV1Resource_ValidateSchema(t *testing.T) {
+func TestCephRookIoCephRbdmirrorV1Resource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwresource.SchemaRequest{}
 	schemaResponse := &fwresource.SchemaResponse{}
 
-	ceph_rook_io_v1.NewCephRookIoCephRBDMirrorV1Resource().Schema(ctx, schemaRequest, schemaResponse)
+	ceph_rook_io_v1.NewCephRookIoCephRbdmirrorV1Resource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

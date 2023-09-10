@@ -46,8 +46,9 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 		AllowClusterResourcesFromAllNamespaces *bool   `tfsdk:"allow_cluster_resources_from_all_namespaces" json:"allowClusterResourcesFromAllNamespaces,omitempty"`
 		ClusterDomain                          *string `tfsdk:"cluster_domain" json:"clusterDomain,omitempty"`
 		ConfigCheck                            *struct {
-			Strategy       *string `tfsdk:"strategy" json:"strategy,omitempty"`
-			TimeoutSeconds *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+			Labels         *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Strategy       *string            `tfsdk:"strategy" json:"strategy,omitempty"`
+			TimeoutSeconds *int64             `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 		} `tfsdk:"config_check" json:"configCheck,omitempty"`
 		ControlNamespace *string `tfsdk:"control_namespace" json:"controlNamespace,omitempty"`
 		DefaultFlow      *struct {
@@ -1962,6 +1963,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 						Repository *string `tfsdk:"repository" json:"repository,omitempty"`
 						Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
 					} `tfsdk:"image" json:"image,omitempty"`
+					Labels     *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 					PauseImage *struct {
 						ImagePullSecrets *[]struct {
 							Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -5535,7 +5537,8 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				} `tfsdk:"volumes" json:"volumes,omitempty"`
 			} `tfsdk:"config_check_pod" json:"configCheckPod,omitempty"`
 			GlobalOptions *struct {
-				Stats *struct {
+				Log_level *string `tfsdk:"log_level" json:"log_level,omitempty"`
+				Stats     *struct {
 					Freq  *int64 `tfsdk:"freq" json:"freq,omitempty"`
 					Level *int64 `tfsdk:"level" json:"level,omitempty"`
 				} `tfsdk:"stats" json:"stats,omitempty"`
@@ -7118,6 +7121,15 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"labels": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"strategy": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -20171,6 +20183,15 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+
+											"labels": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 
 											"pause_image": schema.SingleNestedAttribute{
@@ -44380,6 +44401,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"log_level": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"stats": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",

@@ -19,16 +19,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &StorageK8SIoCSINodeV1Manifest{}
+	_ datasource.DataSource = &StorageK8SIoCsinodeV1Manifest{}
 )
 
-func NewStorageK8SIoCSINodeV1Manifest() datasource.DataSource {
-	return &StorageK8SIoCSINodeV1Manifest{}
+func NewStorageK8SIoCsinodeV1Manifest() datasource.DataSource {
+	return &StorageK8SIoCsinodeV1Manifest{}
 }
 
-type StorageK8SIoCSINodeV1Manifest struct{}
+type StorageK8SIoCsinodeV1Manifest struct{}
 
-type StorageK8SIoCSINodeV1ManifestData struct {
+type StorageK8SIoCsinodeV1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -53,11 +53,11 @@ type StorageK8SIoCSINodeV1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *StorageK8SIoCSINodeV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *StorageK8SIoCsinodeV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_storage_k8s_io_csi_node_v1_manifest"
 }
 
-func (r *StorageK8SIoCSINodeV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *StorageK8SIoCsinodeV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CSINode holds information about all CSI drivers installed on a node. CSI drivers do not need to create the CSINode object directly. As long as they use the node-driver-registrar sidecar container, the kubelet will automatically populate the CSINode object for the CSI driver as part of kubelet plugin registration. CSINode has the same name as a node. If the object is missing, it means either there are no CSI Drivers available on the node, or the Kubelet version is low enough that it doesn't create this object. CSINode has an OwnerReference that points to the corresponding node object.",
 		MarkdownDescription: "CSINode holds information about all CSI drivers installed on a node. CSI drivers do not need to create the CSINode object directly. As long as they use the node-driver-registrar sidecar container, the kubelet will automatically populate the CSINode object for the CSI driver as part of kubelet plugin registration. CSINode has the same name as a node. If the object is missing, it means either there are no CSI Drivers available on the node, or the Kubelet version is low enough that it doesn't create this object. CSINode has an OwnerReference that points to the corresponding node object.",
@@ -187,10 +187,10 @@ func (r *StorageK8SIoCSINodeV1Manifest) Schema(_ context.Context, _ datasource.S
 	}
 }
 
-func (r *StorageK8SIoCSINodeV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *StorageK8SIoCsinodeV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_storage_k8s_io_csi_node_v1_manifest")
 
-	var model StorageK8SIoCSINodeV1ManifestData
+	var model StorageK8SIoCsinodeV1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestCrdProjectcalicoOrgIPPoolV1Manifest(t *testing.T) {
+func TestCrdProjectcalicoOrgIppoolV1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_crd_projectcalico_org_ip_pool_v1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

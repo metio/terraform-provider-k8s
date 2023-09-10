@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestArgoprojIoArgoCDV1Beta1DataSource(t *testing.T) {
+func TestArgoprojIoArgoCdV1Beta1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_argoproj_io_argo_cd_v1beta1"
 
 	_, err := os.Stat(path)

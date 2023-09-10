@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &GetambassadorIoTCPMappingV1DataSource{}
-	_ datasource.DataSourceWithConfigure = &GetambassadorIoTCPMappingV1DataSource{}
+	_ datasource.DataSource              = &GetambassadorIoTcpmappingV1DataSource{}
+	_ datasource.DataSourceWithConfigure = &GetambassadorIoTcpmappingV1DataSource{}
 )
 
-func NewGetambassadorIoTCPMappingV1DataSource() datasource.DataSource {
-	return &GetambassadorIoTCPMappingV1DataSource{}
+func NewGetambassadorIoTcpmappingV1DataSource() datasource.DataSource {
+	return &GetambassadorIoTcpmappingV1DataSource{}
 }
 
-type GetambassadorIoTCPMappingV1DataSource struct {
+type GetambassadorIoTcpmappingV1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type GetambassadorIoTCPMappingV1DataSourceData struct {
+type GetambassadorIoTcpmappingV1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -73,11 +73,11 @@ type GetambassadorIoTCPMappingV1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *GetambassadorIoTCPMappingV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *GetambassadorIoTcpmappingV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_getambassador_io_tcp_mapping_v1"
 }
 
-func (r *GetambassadorIoTCPMappingV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *GetambassadorIoTcpmappingV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TCPMapping is the Schema for the tcpmappings API",
 		MarkdownDescription: "TCPMapping is the Schema for the tcpmappings API",
@@ -308,7 +308,7 @@ func (r *GetambassadorIoTCPMappingV1DataSource) Schema(_ context.Context, _ data
 	}
 }
 
-func (r *GetambassadorIoTCPMappingV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *GetambassadorIoTcpmappingV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -331,10 +331,10 @@ func (r *GetambassadorIoTCPMappingV1DataSource) Configure(_ context.Context, req
 	}
 }
 
-func (r *GetambassadorIoTCPMappingV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *GetambassadorIoTcpmappingV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_getambassador_io_tcp_mapping_v1")
 
-	var data GetambassadorIoTCPMappingV1DataSourceData
+	var data GetambassadorIoTcpmappingV1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -363,7 +363,7 @@ func (r *GetambassadorIoTCPMappingV1DataSource) Read(ctx context.Context, reques
 		return
 	}
 
-	var readResponse GetambassadorIoTCPMappingV1DataSourceData
+	var readResponse GetambassadorIoTcpmappingV1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

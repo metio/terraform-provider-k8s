@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestApicodegenApimaticIoAPIMaticV1Beta1Resource(t *testing.T) {
+func TestApicodegenApimaticIoApimaticV1Beta1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_apicodegen_apimatic_io_api_matic_v1beta1"
 
 	_, err := os.Stat(path)

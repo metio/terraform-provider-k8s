@@ -29,22 +29,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &CrdProjectcalicoOrgBGPFilterV1Resource{}
-	_ resource.ResourceWithConfigure   = &CrdProjectcalicoOrgBGPFilterV1Resource{}
-	_ resource.ResourceWithImportState = &CrdProjectcalicoOrgBGPFilterV1Resource{}
+	_ resource.Resource                = &CrdProjectcalicoOrgBgpfilterV1Resource{}
+	_ resource.ResourceWithConfigure   = &CrdProjectcalicoOrgBgpfilterV1Resource{}
+	_ resource.ResourceWithImportState = &CrdProjectcalicoOrgBgpfilterV1Resource{}
 )
 
-func NewCrdProjectcalicoOrgBGPFilterV1Resource() resource.Resource {
-	return &CrdProjectcalicoOrgBGPFilterV1Resource{}
+func NewCrdProjectcalicoOrgBgpfilterV1Resource() resource.Resource {
+	return &CrdProjectcalicoOrgBgpfilterV1Resource{}
 }
 
-type CrdProjectcalicoOrgBGPFilterV1Resource struct {
+type CrdProjectcalicoOrgBgpfilterV1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type CrdProjectcalicoOrgBGPFilterV1ResourceData struct {
+type CrdProjectcalicoOrgBgpfilterV1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -83,11 +83,11 @@ type CrdProjectcalicoOrgBGPFilterV1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *CrdProjectcalicoOrgBgpfilterV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_crd_projectcalico_org_bgp_filter_v1"
 }
 
-func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *CrdProjectcalicoOrgBgpfilterV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -349,7 +349,7 @@ func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Schema(_ context.Context, _ res
 	}
 }
 
-func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *CrdProjectcalicoOrgBgpfilterV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -374,10 +374,10 @@ func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Configure(_ context.Context, re
 	}
 }
 
-func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *CrdProjectcalicoOrgBgpfilterV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_crd_projectcalico_org_bgp_filter_v1")
 
-	var model CrdProjectcalicoOrgBGPFilterV1ResourceData
+	var model CrdProjectcalicoOrgBgpfilterV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -434,7 +434,7 @@ func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Create(ctx context.Context, req
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgBGPFilterV1ResourceData
+	var readResponse CrdProjectcalicoOrgBgpfilterV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -452,10 +452,10 @@ func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Create(ctx context.Context, req
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *CrdProjectcalicoOrgBgpfilterV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_crd_projectcalico_org_bgp_filter_v1")
 
-	var data CrdProjectcalicoOrgBGPFilterV1ResourceData
+	var data CrdProjectcalicoOrgBgpfilterV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -483,7 +483,7 @@ func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Read(ctx context.Context, reque
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgBGPFilterV1ResourceData
+	var readResponse CrdProjectcalicoOrgBgpfilterV1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -501,10 +501,10 @@ func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Read(ctx context.Context, reque
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *CrdProjectcalicoOrgBgpfilterV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_crd_projectcalico_org_bgp_filter_v1")
 
-	var model CrdProjectcalicoOrgBGPFilterV1ResourceData
+	var model CrdProjectcalicoOrgBgpfilterV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -560,7 +560,7 @@ func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Update(ctx context.Context, req
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgBGPFilterV1ResourceData
+	var readResponse CrdProjectcalicoOrgBgpfilterV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -578,10 +578,10 @@ func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Update(ctx context.Context, req
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *CrdProjectcalicoOrgBgpfilterV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_crd_projectcalico_org_bgp_filter_v1")
 
-	var data CrdProjectcalicoOrgBGPFilterV1ResourceData
+	var data CrdProjectcalicoOrgBgpfilterV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -601,7 +601,7 @@ func (r *CrdProjectcalicoOrgBGPFilterV1Resource) Delete(ctx context.Context, req
 	}
 }
 
-func (r *CrdProjectcalicoOrgBGPFilterV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *CrdProjectcalicoOrgBgpfilterV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	if request.ID == "" {
 		response.Diagnostics.AddError(
 			"Error importing resource",

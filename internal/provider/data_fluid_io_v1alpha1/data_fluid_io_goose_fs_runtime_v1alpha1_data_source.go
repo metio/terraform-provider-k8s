@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &DataFluidIoGooseFSRuntimeV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &DataFluidIoGooseFSRuntimeV1Alpha1DataSource{}
+	_ datasource.DataSource              = &DataFluidIoGooseFsruntimeV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &DataFluidIoGooseFsruntimeV1Alpha1DataSource{}
 )
 
-func NewDataFluidIoGooseFSRuntimeV1Alpha1DataSource() datasource.DataSource {
-	return &DataFluidIoGooseFSRuntimeV1Alpha1DataSource{}
+func NewDataFluidIoGooseFsruntimeV1Alpha1DataSource() datasource.DataSource {
+	return &DataFluidIoGooseFsruntimeV1Alpha1DataSource{}
 }
 
-type DataFluidIoGooseFSRuntimeV1Alpha1DataSource struct {
+type DataFluidIoGooseFsruntimeV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type DataFluidIoGooseFSRuntimeV1Alpha1DataSourceData struct {
+type DataFluidIoGooseFsruntimeV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -471,11 +471,11 @@ type DataFluidIoGooseFSRuntimeV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *DataFluidIoGooseFSRuntimeV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *DataFluidIoGooseFsruntimeV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_data_fluid_io_goose_fs_runtime_v1alpha1"
 }
 
-func (r *DataFluidIoGooseFSRuntimeV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *DataFluidIoGooseFsruntimeV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "GooseFSRuntime is the Schema for the goosefsruntimes API",
 		MarkdownDescription: "GooseFSRuntime is the Schema for the goosefsruntimes API",
@@ -3418,7 +3418,7 @@ func (r *DataFluidIoGooseFSRuntimeV1Alpha1DataSource) Schema(_ context.Context, 
 	}
 }
 
-func (r *DataFluidIoGooseFSRuntimeV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *DataFluidIoGooseFsruntimeV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -3441,10 +3441,10 @@ func (r *DataFluidIoGooseFSRuntimeV1Alpha1DataSource) Configure(_ context.Contex
 	}
 }
 
-func (r *DataFluidIoGooseFSRuntimeV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *DataFluidIoGooseFsruntimeV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_data_fluid_io_goose_fs_runtime_v1alpha1")
 
-	var data DataFluidIoGooseFSRuntimeV1Alpha1DataSourceData
+	var data DataFluidIoGooseFsruntimeV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -3473,7 +3473,7 @@ func (r *DataFluidIoGooseFSRuntimeV1Alpha1DataSource) Read(ctx context.Context, 
 		return
 	}
 
-	var readResponse DataFluidIoGooseFSRuntimeV1Alpha1DataSourceData
+	var readResponse DataFluidIoGooseFsruntimeV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestCiliumIoCiliumCIDRGroupV2Alpha1Manifest_ValidateSchema(t *testing.T) {
+func TestCiliumIoCiliumCidrgroupV2Alpha1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	cilium_io_v2alpha1.NewCiliumIoCiliumCIDRGroupV2Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	cilium_io_v2alpha1.NewCiliumIoCiliumCidrgroupV2Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
